@@ -49,7 +49,10 @@ $w.onReady(async function () {
     bindCardRepeater($w('#monthlyRepeater'), data.monthlyPicks || []);
     bindCardRepeater($w('#destinationRepeater'), data.destinations || []);
     bindCardRepeater($w('#browseRepeater'), data.browseByType || []);
-    bindCardRepeater($w('#featuredRepeater'), data.featuredPlaces || []);
+    bindCardRepeater($w('#featuredRepeater'), data.featuredVenues || []);
+    bindCardRepeater($w('#hotelRepeater'), data.hotels || []);
+    bindCardRepeater($w('#foodRepeater'), data.food || []);
+    bindCardRepeater($w('#thingToDoRepeater'), data.thingsToDo || []);
 
     const destinationSection = sectionByKey(sections, 'locations');
     const featuredSection = sectionByKey(sections, 'featured-arcades');
@@ -60,6 +63,9 @@ $w.onReady(async function () {
     $w('#destinationsBody').text = destinationSection.body || '';
     $w('#featuredHeading').text = featuredSection.heading || 'PLACES WORTH A LOOK';
     $w('#featuredBody').text = featuredSection.body || '';
+    $w('#hotelHeading').text = 'PLACES TO STAY';
+    $w('#foodHeading').text = 'PLACES TO EAT';
+    $w('#thingToDoHeading').text = 'THINGS TO DO';
     $w('#videoHeading').text = videoSection.heading || 'WATCH ON RAIDERTUBE';
     $w('#videoBody').text = videoSection.body || '';
     $w('#communityHeading').text = communitySection.heading || 'HELP KEEP SPIN RAIDERS CURRENT';
