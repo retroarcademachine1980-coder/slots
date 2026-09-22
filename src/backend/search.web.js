@@ -1,189 +1,454 @@
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
+import { normalizeSearch } from 'backend/searchText';
 
-function clean(value) {
-    return String(value || '')
-        .normalize('NFKD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .replace(/[’']/g, '')
-        .replace(/&/g, ' and ')
-        .replace(/[^a-z0-9]+/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-}
-
-function tokens(value) {
-    return clean(value).split(' ').filter(Boolean);
-}
-
-function fieldText(row, fields) {
-    const values = [];
-    for (const field of fields) {
-        const value = row[field];
-        if (Array.isArray(value)) values.push(...value);
-        else if (value !== undefined && value !== null) values.push(value);
+const SOURCES = [
+    {
+        collection: 'Locations', kind: 'location',
+        title: ['title'], subtitle: ['county','region'], category: ['locationType'],
+        description: ['shortDescription','raiderDestinationSummary','seoDescription'],
+        image: ['heroImage'], alt: ['heroImageAlt'], route: ['link-arcade-locations-title'],
+        location: ['title']
+    },
+    {
+        collection: 'Venues', kind: 'venue',
+        title: ['title'], subtitle: ['locationName','postcode'], category: ['venueType','mapPrimaryCategory'],
+        description: ['shortDescription','seoDescription','overview'],
+        image: ['heroImage'], alt: ['exteriorImageAlt'], route: ['link-arcade-venues-title'],
+        location: ['locationName']
+    },
+    {
+        collection: 'NearbyAttractions', kind: 'attraction',
+        title: ['title'], subtitle: ['locationName','postcode'], category: ['category'],
+        description: ['shortDescription'], image: ['heroImage'], alt: ['title'],
+        location: ['locationName'],
+        routeBuilder: row => row.locationSlug && row.slug
+            ? '/arcade-locations/' + row.locationSlug + '#' + row.slug
+            : (row.website || row.googleMapsUrl || '')
+    },
+    {
+        collection: 'DestinationRecommendations', kind: 'recommendation',
+        title: ['displayTitle','name','offerTitle'],
+        subtitle: ['displaySubtitle','locationName','destination'], category: ['category'],
+        description: ['summary','offerText'], image: ['dealImage','image'], alt: ['imageAlt'],
+        route: ['affiliateUrl','outboundUrl','bookingUrl','offerUrl','website'],
+        location: ['locationName','destination']
+    },
+    {
+        collection: 'WowcherOffers', kind: 'offer',
+        title: ['title'], subtitle: ['destination'], category: ['offerType'],
+        description: ['description'], image: ['image'], alt: ['imageAlt'],
+        route: ['affiliateUrl'], location: ['destination']
+    },
+    {
+        collection: 'Guides', kind: 'guide',
+        title: ['title'], subtitle: ['guideType'], category: ['guideType'],
+        description: ['summary','seoDescription'], image: [], alt: [],
+        routeBuilder: row => row.slug ? '/guides/' + row.slug : '', location: []
+    },
+    {
+        collection: 'SpinRaidersVideos', kind: 'video',
+        title: ['title'], subtitle: ['venueName','locationName','channelName'], category: ['channelName'],
+        description: ['seoSummary','seoDescription'], image: ['thumbnail'], alt: ['title'],
+        routeBuilder: row => row.slug ? '/raidertube/' + row.slug : (row.youtubeUrl || ''),
+        location: ['locationName']
+    },
+    {
+        collection: 'ClassicFruitMachines', kind: 'machine',
+        title: ['title'], subtitle: ['manufacturer','variantName'], category: ['machineType'],
+        description: ['seoDescription','history'], image: ['cardImage','heroImage'], alt: ['title'],
+        route: ['link-classic-fruit-machine-archive-1-title','link-classic-fruit-machine-archive-all'],
+        location: []
+    },
+    {
+        collection: 'ClassicFruitMachineFamilies', kind: 'machine-family',
+        title: ['title'], subtitle: [], category: [], description: ['seoDescription'],
+        image: [], alt: [], route: ['link-classic-fruit-machine-families-all'], location: []
+    },
+    {
+        collection: 'ClassicMachineSightings', kind: 'sighting',
+        title: ['machineName'], subtitle: ['venueName','town'], category: ['availabilityStatus'],
+        description: ['sourcePostText','notes'], image: ['sourceImageUrl'], alt: ['machineName'],
+        routeBuilder: row => row.venuePageSlug ? '/arcade-venues/' + row.venuePageSlug : '',
+        location: ['town','countyRegion']
+    },
+    {
+        collection: 'Manufacturers', kind: 'manufacturer',
+        title: ['title'], subtitle: [], category: [], description: ['shortDescription','seoDescription'],
+        image: [], alt: [], route: ['link-fruit-machine-manufacturers-all'], location: []
+    },
+    {
+        collection: 'Machines', kind: 'machine-directory',
+        title: ['title'], subtitle: ['manufacturer'], category: ['machineType'],
+        description: ['seoDescription'], image: [], alt: [],
+        routeBuilder: row => row.slug ? '/machines/' + row.slug : '', location: ['knownLocations']
+    },
+    {
+        collection: 'AffiliatePartners', kind: 'partner',
+        title: ['title'], subtitle: [], category: [], description: ['offerSummary'],
+        image: [], alt: [], route: ['reviewPath','affiliateUrl','link-affiliate-partners-all'], location: []
     }
-    return clean(values.join(' '));
+];
+
+function unique(values) {
+    return [...new Set(values.filter(Boolean))];
 }
 
-function rank(row, query, fields) {
-    const q = clean(query);
-    if (!q) return 0;
-    const qTokens = tokens(q);
-    const title = clean(row.title || row.displayTitle || row.name || row.offerTitle);
-    const haystack = fieldText(row, fields);
-
-    if (title === q) return 1000;
-    if (Array.isArray(row.searchTerms) && row.searchTerms.some(v => clean(v) === q)) return 950;
-    if (Array.isArray(row.searchAliases) && row.searchAliases.some(v => clean(v) === q)) return 950;
-    if (title.startsWith(q)) return 800;
-
-    if (qTokens.length && qTokens.every(token => haystack.split(' ').includes(token))) return 600;
-    if (q.length >= 4 && haystack.includes(q)) return 400;
-
-    return 0;
-}
-
-function safeRoute(row, kind) {
-    if (kind === 'venue') return row['link-arcade-venues-title'] || '';
-    if (kind === 'location') return row['link-arcade-locations-title'] || '';
-    if (kind === 'machine') return row['link-classic-fruit-machine-archive-1-title'] || row['link-classic-fruit-machine-archive-all'] || '';
-    if (kind === 'attraction') return row.locationSlug ? '/arcade-locations/' + row.locationSlug : '';
-    if (kind === 'offer') return row.affiliateUrl || row.outboundUrl || row.offerUrl || row.bookingUrl || row.website || '';
+function first(row, fields) {
+    for (const field of fields || []) {
+        const value = row && row[field];
+        if (Array.isArray(value) && value.length) return value.join(', ');
+        if (value !== undefined && value !== null && String(value).trim()) return value;
+    }
     return '';
 }
 
-function card(row, kind) {
+function imageValue(value) {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return value.url || '';
+}
+
+function plain(value) {
+    return String(value || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function routeFor(row, source) {
+    if (source.routeBuilder) return source.routeBuilder(row) || '';
+    return first(row, source.route || []);
+}
+
+function statusText(row) {
+    return normalizeSearch(
+        row.status || row.locationStatus || row.researchStatus || row.variantStatus || ''
+    );
+}
+
+function isPublicRow(source, row) {
+    if (!row) return false;
+    const status = statusText(row);
+
+    if (source.collection === 'Venues') {
+        return !!row.title && !/duplicate|closed historical|not a separate venue/.test(status);
+    }
+    if (source.collection === 'Locations') {
+        return !!row.title && !/archived|hold|research in progress/.test(status);
+    }
+    if (source.collection === 'NearbyAttractions') {
+        return !!row.title && !/duplicate|not open to general public|research retained/.test(status);
+    }
+    if (source.collection === 'WowcherOffers') return row.active !== false;
+    if (source.collection === 'SpinRaidersVideos') return row.active !== false;
+    if (source.collection === 'ClassicFruitMachines') {
+        return !!row.title && !/merged|duplicate|remove|rejected/.test(status);
+    }
+    if (source.collection === 'ClassicMachineSightings') return row.publicDisplay !== false;
+    if (source.collection === 'AffiliatePartners') return row.active !== false;
+
+    return !!first(row, source.title);
+}
+
+async function loadAliases() {
+    try {
+        const result = await wixData.query('SearchAliases')
+            .eq('active', true)
+            .limit(1000)
+            .find();
+
+        return (result.items || []).map(row => ({
+            title: String(row.title || '').trim(),
+            aliases: Array.isArray(row.aliases) ? row.aliases : []
+        }));
+    } catch (_) {
+        return [];
+    }
+}
+
+async function queryForms(input) {
+    const clean = normalizeSearch(input);
+    const forms = [clean];
+    const aliases = await loadAliases();
+
+    for (const entry of aliases) {
+        const family = unique([
+            normalizeSearch(entry.title),
+            ...entry.aliases.map(normalizeSearch)
+        ]);
+
+        if (family.some(term => term && (term === clean || clean.includes(term)))) {
+            forms.push(...family);
+        }
+    }
+
+    return unique(forms);
+}
+
+function makeMatch(collection, forms) {
+    let match = null;
+    for (const form of forms) {
+        if (!form || form.length < 2) continue;
+        const part = wixData.query(collection).contains('unifiedSearchText', form);
+        match = match ? match.or(part) : part;
+    }
+    return match;
+}
+
+function scoreRow(row, source, input, forms) {
+    const q = normalizeSearch(input);
+    const title = normalizeSearch(first(row, source.title));
+    const location = normalizeSearch(first(row, source.location));
+    const category = normalizeSearch(first(row, source.category));
+    const haystack = String(row.unifiedSearchText || '');
+    const terms = q.split(' ').filter(Boolean);
+
+    let score = 0;
+
+    if (title === q) score += 1500;
+    else if (title.startsWith(q)) score += 1050;
+    else if (title.includes(q)) score += 850;
+
+    if (location === q) score += 1000;
+    else if (location.includes(q)) score += 650;
+
+    if (category === q) score += 850;
+    else if (category.includes(q)) score += 450;
+
+    if (haystack.includes(q)) score += 500;
+    if (terms.length && terms.every(term => haystack.includes(term))) score += 300;
+
+    for (const form of forms) {
+        if (form && form !== q && haystack.includes(form)) score += 180;
+    }
+
+    if (row.featured === true) score += 30;
+    return score;
+}
+
+function makeCard(row, source, score) {
+    const title = String(first(row, source.title) || '');
+
     return {
-        _id: kind + '-' + row._id,
-        id: row._id,
-        kind,
-        title: row.title || row.displayTitle || row.name || row.offerTitle || '',
-        subtitle: row.locationName || row.destination || row.location || row.manufacturer || '',
-        category: row.category || row.venueType || row.machineType || kind,
-        description: String(row.shortDescription || row.summary || row.seoDescription || '').replace(/<[^>]*>/g, '').slice(0, 240),
-        image: row.heroImage || row.dealImage || row.image || row.cardImage || '',
-        route: safeRoute(row, kind)
+        _id: source.kind + ':' + String(row._id || title),
+        sourceId: String(row._id || ''),
+        sourceCollection: source.collection,
+        kind: source.kind,
+        title,
+        subtitle: String(first(row, source.subtitle) || ''),
+        category: String(first(row, source.category) || source.kind),
+        description: plain(first(row, source.description)).slice(0, 280),
+        image: imageValue(first(row, source.image)),
+        alt: String(first(row, source.alt) || title),
+        route: String(routeFor(row, source) || ''),
+        location: String(first(row, source.location) || ''),
+        score
     };
 }
 
-async function findVenues(q) {
-    let query = wixData.query('Venues')
-        .eq('directoryReady', true)
-        .eq('cardReady', true)
-        .eq('pageReady', true);
+async function searchSource(source, input, forms) {
+    const match = makeMatch(source.collection, forms);
+    if (!match) return [];
 
-    const short = clean(q).length <= 3;
-    let match = wixData.query('Venues').startsWith('title', q)
-        .or(wixData.query('Venues').hasSome('searchTerms', [q]));
-    if (!short) {
-        match = match
-            .or(wixData.query('Venues').contains('title', q))
-            .or(wixData.query('Venues').contains('locationName', q))
-            .or(wixData.query('Venues').contains('postcode', q));
+    try {
+        let page = await match.limit(1000).find();
+        const rows = [...(page.items || [])];
+
+        while (page.hasNext && page.hasNext() && rows.length < 5000) {
+            page = await page.next();
+            rows.push(...(page.items || []));
+        }
+
+        return rows
+            .filter(row => isPublicRow(source, row))
+            .map(row => ({ row, score: scoreRow(row, source, input, forms) }))
+            .filter(item => item.score > 0)
+            .map(item => makeCard(item.row, source, item.score));
+    } catch (_) {
+        return [];
     }
-    return (await query.and(match).limit(80).find()).items;
 }
 
-async function findLocations(q) {
-    let query = wixData.query('Locations').eq('directoryReady', true);
-    const short = clean(q).length <= 3;
-    let match = wixData.query('Locations').startsWith('title', q)
-        .or(wixData.query('Locations').hasSome('searchTerms', [q]));
-    if (!short) {
-        match = match
-            .or(wixData.query('Locations').contains('title', q))
-            .or(wixData.query('Locations').contains('county', q))
-            .or(wixData.query('Locations').contains('region', q));
+function dedupe(cards) {
+    const seen = new Map();
+
+    for (const card of cards) {
+        const routeKey = normalizeSearch(card.route);
+        const titleKey = normalizeSearch(card.title + ' ' + card.location);
+        const key = routeKey || titleKey || card._id;
+        const existing = seen.get(key);
+
+        if (!existing || card.score > existing.score) {
+            seen.set(key, card);
+        }
     }
-    return (await query.and(match).limit(60).find()).items;
+
+    return [...seen.values()];
 }
 
-async function findAttractions(q) {
-    let query = wixData.query('NearbyAttractions').eq('directoryReady', true);
-    const short = clean(q).length <= 3;
-    let match = wixData.query('NearbyAttractions').startsWith('title', q)
-        .or(wixData.query('NearbyAttractions').hasSome('searchTerms', [q]));
-    if (!short) {
-        match = match
-            .or(wixData.query('NearbyAttractions').contains('title', q))
-            .or(wixData.query('NearbyAttractions').contains('locationName', q))
-            .or(wixData.query('NearbyAttractions').contains('category', q));
-    }
-    return (await query.and(match).limit(60).find()).items;
-}
-
-async function findOffers(q) {
-    let query = wixData.query('DestinationRecommendations').eq('cardReady', true);
-    const short = clean(q).length <= 3;
-    let match = wixData.query('DestinationRecommendations').startsWith('name', q)
-        .or(wixData.query('DestinationRecommendations').startsWith('displayTitle', q));
-    if (!short) {
-        match = match
-            .or(wixData.query('DestinationRecommendations').contains('name', q))
-            .or(wixData.query('DestinationRecommendations').contains('displayTitle', q))
-            .or(wixData.query('DestinationRecommendations').contains('destination', q))
-            .or(wixData.query('DestinationRecommendations').contains('category', q));
-    }
-    return (await query.and(match).limit(60).find()).items;
-}
-
-async function findMachines(q) {
-    let query = wixData.query('ClassicFruitMachines').eq('active', true);
-    const short = clean(q).length <= 3;
-    let match = wixData.query('ClassicFruitMachines').startsWith('title', q)
-        .or(wixData.query('ClassicFruitMachines').hasSome('searchAliases', [q]))
-        .or(wixData.query('ClassicFruitMachines').hasSome('aliases', [q]));
-    if (!short) {
-        match = match
-            .or(wixData.query('ClassicFruitMachines').contains('title', q))
-            .or(wixData.query('ClassicFruitMachines').contains('manufacturer', q))
-            .or(wixData.query('ClassicFruitMachines').contains('searchText', q));
-    }
-    return (await query.and(match).limit(60).find()).items;
-}
-
-export const searchDirectory = webMethod(Permissions.Anyone, async (input, limit = 40) => {
+export async function runUnifiedSearchInternal(input, options = {}) {
     const query = String(input || '').trim().slice(0, 120);
-    if (!query) return { query: '', results: [], total: 0 };
 
-    const jobs = await Promise.allSettled([
-        findVenues(query),
-        findLocations(query),
-        findAttractions(query),
-        findOffers(query),
-        findMachines(query)
-    ]);
+    if (!query) {
+        return { query: '', total: 0, results: [], groups: {} };
+    }
 
-    const sets = jobs.map(result => result.status === 'fulfilled' ? result.value : []);
-    const kinds = ['venue', 'location', 'attraction', 'offer', 'machine'];
-    const fields = {
-        venue: ['title', 'searchTerms', 'locationName', 'brand', 'operator', 'postcode', 'venueType'],
-        location: ['title', 'searchTerms', 'county', 'region', 'locationType'],
-        attraction: ['title', 'searchTerms', 'locationName', 'category', 'parentVenue', 'tags'],
-        offer: ['name', 'displayTitle', 'destination', 'locationName', 'category'],
-        machine: ['title', 'searchAliases', 'aliases', 'manufacturer', 'searchText', 'machineType']
+    const forms = await queryForms(query);
+    const jobs = await Promise.allSettled(
+        SOURCES.map(source => searchSource(source, query, forms))
+    );
+
+    const cards = jobs.flatMap(result =>
+        result.status === 'fulfilled' ? result.value : []
+    );
+
+    const allResults = dedupe(cards)
+        .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
+
+    const total = allResults.length;
+    const offset = Math.max(0, Number(options.offset) || 0);
+    const limit = Math.max(1, Math.min(3000, Number(options.limit) || 100));
+    const results = allResults.slice(offset, offset + limit);
+
+    const groups = {};
+    for (const card of allResults) {
+        groups[card.kind] = (groups[card.kind] || 0) + 1;
+    }
+
+    return {
+        query,
+        total,
+        offset,
+        limit,
+        hasMore: offset + results.length < total,
+        results,
+        groups
     };
+}
 
-    const ranked = [];
-    sets.forEach((rows, index) => {
-        const kind = kinds[index];
-        rows.forEach(row => {
-            const score = rank(row, query, fields[kind]);
-            if (score > 0) ranked.push({ score, card: card(row, kind) });
-        });
+export const searchEverything = webMethod(
+    Permissions.Anyone,
+    async (input, options = {}) => runUnifiedSearchInternal(input, options)
+);
+
+export const getSearchSuggestions = webMethod(Permissions.Anyone, async (input, limit = 12) => {
+    const query = String(input || '').trim().slice(0, 80);
+    if (query.length < 2) return [];
+
+    const result = await runUnifiedSearchInternal(query, {
+        limit: Math.max(20, Math.min(100, Number(limit) || 12))
     });
 
-    const unique = new Map();
-    ranked
-        .sort((a, b) => b.score - a.score || a.card.title.localeCompare(b.card.title))
-        .forEach(item => {
-            const key = item.card.kind + ':' + item.card.id;
-            if (!unique.has(key)) unique.set(key, item.card);
+    const seen = new Set();
+    const suggestions = [];
+
+    for (const card of result.results) {
+        const key = normalizeSearch(card.title);
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+
+        suggestions.push({
+            _id: 'suggestion:' + card._id,
+            label: card.title,
+            kind: card.kind,
+            subtitle: card.subtitle || card.location || '',
+            route: card.route || '',
+            searchValue: card.title
         });
 
-    const max = Math.max(1, Math.min(60, Number(limit) || 40));
-    const results = [...unique.values()].slice(0, max);
-    return { query, results, total: results.length };
+        if (suggestions.length >= Math.max(1, Math.min(20, Number(limit) || 12))) break;
+    }
+
+    return suggestions;
 });
+
+export const getLocationBundle = webMethod(Permissions.Anyone, async (locationName, options = {}) => {
+    const result = await runUnifiedSearchInternal(locationName, {
+        limit: Math.max(100, Math.min(1500, Number(options.limit) || 750))
+    });
+
+    const q = normalizeSearch(locationName);
+    const destination = result.results.find(card =>
+        card.kind === 'location' && normalizeSearch(card.title) === q
+    ) || null;
+
+    const sections = {
+        venues: [],
+        attractions: [],
+        hotelsAndFood: [],
+        offers: [],
+        videos: [],
+        machines: [],
+        guides: [],
+        other: []
+    };
+
+    for (const card of result.results) {
+        if (destination && card._id === destination._id) continue;
+
+        if (card.kind === 'venue') sections.venues.push(card);
+        else if (card.kind === 'attraction') sections.attractions.push(card);
+        else if (card.kind === 'recommendation') sections.hotelsAndFood.push(card);
+        else if (card.kind === 'offer' || card.kind === 'partner') sections.offers.push(card);
+        else if (card.kind === 'video') sections.videos.push(card);
+        else if (card.kind === 'guide') sections.guides.push(card);
+        else if (['machine','machine-family','machine-directory','sighting','manufacturer'].includes(card.kind)) {
+            sections.machines.push(card);
+        } else {
+            sections.other.push(card);
+        }
+    }
+
+    return {
+        query: result.query,
+        destination,
+        total: result.total,
+        groups: result.groups,
+        sections
+    };
+});
+
+export const browseDirectory = webMethod(Permissions.Anyone, async (filters = {}) => {
+    const query = String(filters.query || filters.location || filters.category || '').trim();
+    const limit = Math.max(1, Math.min(500, Number(filters.limit) || 100));
+    const offset = Math.max(0, Number(filters.offset) || 0);
+    const kinds = Array.isArray(filters.kinds) ? filters.kinds.map(String) : [];
+    const location = normalizeSearch(filters.location || '');
+    const category = normalizeSearch(filters.category || '');
+
+    const result = query
+        ? await runUnifiedSearchInternal(query, { limit: 3000 })
+        : { results: [] };
+
+    let rows = result.results || [];
+
+    if (kinds.length) {
+        const allowed = new Set(kinds);
+        rows = rows.filter(card => allowed.has(card.kind));
+    }
+
+    if (location) {
+        rows = rows.filter(card =>
+            normalizeSearch(card.location).includes(location) ||
+            normalizeSearch(card.subtitle).includes(location) ||
+            normalizeSearch(card.title).includes(location)
+        );
+    }
+
+    if (category) {
+        rows = rows.filter(card =>
+            normalizeSearch(card.category).includes(category) ||
+            normalizeSearch(card.title).includes(category) ||
+            normalizeSearch(card.description).includes(category)
+        );
+    }
+
+    return {
+        total: rows.length,
+        offset,
+        limit,
+        results: rows.slice(offset, offset + limit)
+    };
+});
+
+export const publicSearchSources = webMethod(Permissions.Anyone, async () =>
+    SOURCES.map(source => ({ collection: source.collection, kind: source.kind }))
+);
