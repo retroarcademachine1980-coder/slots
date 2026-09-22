@@ -236,6 +236,28 @@ export const listMachines = webMethod(Permissions.Anyone, async (options = {}) =
     return pageSlice(rows.map(machineCard), options);
 });
 
+export const listPartners = webMethod(Permissions.Anyone, async (options = {}) => {
+    const query = String(options.query || '').trim();
+
+    const rows = (await allRows('AffiliatePartners', 1000))
+        .filter(row => row.active !== false && row.title)
+        .filter(row => matches(row, query))
+        .sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')))
+        .map(row => ({
+            _id: 'partner:' + row._id,
+            title: row.title || '',
+            subtitle: '',
+            category: 'Partner',
+            description: plain(row.offerSummary).slice(0, 280),
+            image: '',
+            alt: row.title || '',
+            route: row.reviewPath || row.affiliateUrl || row['link-affiliate-partners-all'] || '',
+            location: ''
+        }));
+
+    return pageSlice(rows, options);
+});
+
 export const getMapPins = webMethod(Permissions.Anyone, async (options = {}) => {
     const query = String(options.query || '').trim();
 
