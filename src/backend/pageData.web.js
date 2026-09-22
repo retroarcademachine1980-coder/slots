@@ -132,7 +132,9 @@ function machineModel(row) {
 
 export const getLocationPage = webMethod(Permissions.Anyone, async slug => {
     const row = await oneBySlug('Locations', slug);
-    if (!row || row.directoryReady !== true) return null;
+    if (!row) return null;
+    const status = String(row.locationStatus || '').toLowerCase();
+    if (/archived|hold|research in progress/.test(status)) return null;
 
     const page = locationModel(row);
     const related = await runUnifiedSearchInternal(row.title, { limit: 1000 });
@@ -163,7 +165,9 @@ export const getLocationPage = webMethod(Permissions.Anyone, async slug => {
 
 export const getVenuePage = webMethod(Permissions.Anyone, async slug => {
     const row = await oneBySlug('Venues', slug);
-    if (!row || row.directoryReady !== true || row.pageReady !== true) return null;
+    if (!row) return null;
+    const status = String(row.status || '').toLowerCase();
+    if (/duplicate|closed - historical|not a separate venue/.test(status)) return null;
 
     const page = venueModel(row);
     const searchTerms = [row.title, row.locationName, row.brand, row.operator]
@@ -182,7 +186,9 @@ export const getVenuePage = webMethod(Permissions.Anyone, async slug => {
 
 export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
     const row = await oneBySlug('ClassicFruitMachines', slug);
-    if (!row || row.active !== true) return null;
+    if (!row) return null;
+    const status = String(row.variantStatus || '').toLowerCase();
+    if (/merged|duplicate|remove|rejected/.test(status)) return null;
 
     const page = machineModel(row);
     const searchTerms = [row.title, row.manufacturer, row.familyName, row.variantName]
