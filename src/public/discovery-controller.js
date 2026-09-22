@@ -11,7 +11,11 @@ export function createSearchController({ search, render, setStatus }) {
                 const result = await search(query);
                 if (disposed || request !== version) return;
                 render(result);
-                setStatus(result.total ? `${result.total} matching places` : 'Try a nearby town or another spelling.');
+                const suggestions = (result.suggestions || []).map(item => item.title).join(', ');
+                const message = result.matchType === 'related' ? `No full match. ${result.total} related results` :
+                    result.matchType === 'suggested' && suggestions ? `Did you mean ${suggestions}?` :
+                        result.total ? `${result.total} matching places` : 'No close match found. Try a town, venue name or category.';
+                setStatus(message);
                 // Keep the complete result list visible; cards navigate only on a deliberate click.
             } catch (_) {
                 if (!disposed && request === version) setStatus('Search is temporarily unavailable. Please try again.');

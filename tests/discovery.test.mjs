@@ -118,3 +118,15 @@ test('submitting an exact town keeps all results visible instead of redirecting'
     assert.equal(rendered.total, 4);
     assert.equal(navigated, false);
 });
+
+
+test('typos are labelled as suggestions and partial queries have relevant fallback results', () => {
+    const entries = core.makeCatalogue([venue('bognor', 'Bognor Arcade'), venue('york', 'York Arcade')], [], []);
+    const typo = core.searchCatalogue(entries, 'Bogner');
+    assert.equal(typo.matchType, 'suggested');
+    assert.equal(typo.suggestions[0].title, 'Bognor Arcade');
+    const partial = core.searchCatalogue(entries, 'Bognor unknownthing');
+    assert.equal(partial.matchType, 'related');
+    assert.deepEqual(partial.results.map(c => c.id), ['bognor']);
+    assert.equal(core.searchCatalogue(entries, 'zxqvpk').total, 0);
+});

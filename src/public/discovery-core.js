@@ -128,7 +128,7 @@ export function searchCatalogue(entries, input, requestedLimit = 24) {
     const limit = Math.min(48, Math.max(1, Number(requestedLimit) || 24));
     if (!query) return { query, results: [], suggestions: [], exact: null, total: 0 };
     const qWords = [...new Set(words(query))];
-    const ranked = entries.map(entry => {
+    const candidates = entries.map(entry => {
         const titleExact = normalise(entry.card.title) === query;
         const aliasExact = entry.aliases.includes(query);
         const tokens = [...new Set(entry.tokens.flatMap(words))];
@@ -144,8 +144,14 @@ export function searchCatalogue(entries, input, requestedLimit = 24) {
             return 0;
         });
         const score = titleExact ? 1000 : aliasExact ? 900 : scores.length && scores.every(Boolean) ? scores.reduce((a, b) => a + b, 0) : 0;
-        return { entry, score, titleExact, aliasExact, fuzzy };
-    }).filter(r => r.score > 0).sort((a, b) => b.score - a.score || a.entry.card.title.localeCompare(b.entry.card.title));
+        const matched = scores.filter(Boolean).length;
+        const relatedScore = matched && matched / qWords.length >= 0.5 ? scores.reduce((a, b) => a + b, 0) : 0;
+        return { entry, score, relatedScore, titleExact, aliasExact, fuzzy };
+    });
+    const matched = candidates.filter(r => r.score > 0);
+    const related = matched.length === 0;
+    const ranked = (related ? candidates.filter(r => r.relatedScore > 0).map(r => ({ ...r, score: r.relatedScore })) : matched)
+        .sort((a, b) => b.score - a.score || a.entry.card.title.localeCompare(b.entry.card.title));
     const exactTitles = ranked.filter(r => r.titleExact);
     const exactAliases = ranked.filter(r => r.aliasExact);
     const direct = exactTitles.length === 1 ? exactTitles[0] : exactTitles.length === 0 && exactAliases.length === 1 ? exactAliases[0] : null;
@@ -153,6 +159,7 @@ export function searchCatalogue(entries, input, requestedLimit = 24) {
     const exact = direct ? direct.entry.card : null;
     return {
         query,
+        matchType: related && ranked.length ? 'related' : ranked.some(r => !r.fuzzy) ? 'matched' : ranked.length ? 'suggested' : 'none',
         results: ranked.slice(0, limit).map(r => r.entry.card),
         suggestions: ranked.filter(r => r.fuzzy && !r.aliasExact).slice(0, 3).map(r => ({ title: r.entry.card.title, id: r.entry.card._id })),
         exact,

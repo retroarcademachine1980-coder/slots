@@ -84,3 +84,11 @@ Search now indexes town, location slug, destination, brand, operator and postcod
 CMS audit found four Mr P records: Bognor enabled; Chatham, Fareham and Portsmouth disabled. Search matching alone cannot surface those disabled branches. SpinRaidersChangeReports returned zero rows. Wix intake submissions query failed with unsupported namespace; this is not proof that other submission channels are empty.
 
 Southport live remediation: mapEnabled restored for Funtime and Jackpot; MERKUR and Golden Sovereign restored to discovery at user request. Public map verified six venue cards plus two attractions. Other Southport records and town-filter redirect remain unresolved.
+
+## Live navigation repair and fuzzy fallback
+
+Existing core embed 323eeaea-60ee-4132-b793-a0642038df96 changed in place from revision 34 to 35. Its full-page venue navigation handler previously ran only when the current page was already a venue. It now handles same-origin venue/destination targets from any page, retaining modifier-key/external/download exclusions. No extra embed was created. The before/after source is in legacy-recovery. Confirmed by clicking six Southport destination card buttons: Funtime, Golden Sovereign, Late Lounge, Jackpot, Funland, MERKUR each reached its own URL AND showed its own H1. Existing open browser pages need refreshing to load the changed handler.
+
+Velo search now labels fuzzy matches as Did you mean suggestions and offers related matches when at least half the meaningful query words match, only if there is no full match. Completely unrelated input is not passed off as a match. This remains branch-only pending Editor integration.
+
+Wix Forms dashboard was checked after API failure: no forms and No submissions yet. Custom report form has no upload input. Venue photo submission is still a launch blocker, alongside missing images, full Editor integration and retiring the legacy renderer set.
