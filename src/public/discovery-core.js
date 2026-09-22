@@ -35,6 +35,11 @@ function imageUrl(value) {
         (value.startsWith('wix:image://v1/') || httpsUrl(value)) ? value : '';
 }
 
+function attractionRoute(row) {
+    const slug = String(row.locationSlug || '').trim();
+    return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) ? '/arcade-locations/' + slug : '';
+}
+
 function retired(row) {
     return !!(row.duplicateOf || row.duplicateReason || row.canonicalVenueId && row.canonicalVenueId !== row._id) ||
         /\b(closed|retired|duplicate|suppressed|quarantined)\b/i.test([row.status, row.currentVenueStatus, row.locationStatus].join(' '));
@@ -54,6 +59,11 @@ function deadline(value) {
     return new Date(text).getTime();
 }
 
+export function isAttractionPublic(row) {
+    if (!row || retired(row) || row.directoryReady !== true) return false;
+    return !!(row._id && row.title && row.slug && imageUrl(row.heroImage) && attractionRoute(row));
+}
+
 export function isOfferPublic(row, now = Date.now()) {
     if (!row || row.cardReady !== true || row.active !== true || retired(row)) return false;
     if (!(row.displayTitle || row.offerTitle || row.name) || !imageUrl(row.dealImage || row.image)) return false;
@@ -70,6 +80,7 @@ export function offerUrl(row) {
 
 export function toCard(row, kind) {
     const offer = kind === 'offer';
+    const attraction = kind === 'attraction';
     return {
         _id: kind + '-' + row._id,
         id: row._id,
@@ -78,7 +89,7 @@ export function toCard(row, kind) {
         description: String(row.shortDescription || row.cardSummary || row.summary || row.description || '').replace(/<[^>]*>/g, '').slice(0, 300),
         image: offer ? row.dealImage || row.image : row.heroImage,
         alt: String(offer ? row.imageAlt || row.imageAltText || row.name : row.heroImageAlt || row.exteriorImageAlt || row.imageAltText || row.title),
-        route: offer ? '' : canonicalRoute(row, kind),
+        route: offer ? '' : attraction ? attractionRoute(row) : canonicalRoute(row, kind),
         location: String(row.locationName || row.destination || row.town || ''),
         locationSlug: row.locationSlug || row.destinationSlug || (kind === 'location' ? row.slug : ''),
         category: row.category || row.venueType || kind,
@@ -89,15 +100,17 @@ export function toCard(row, kind) {
     };
 }
 
-export function makeCatalogue(venues, locations, offers, now = Date.now()) {
+export function makeCatalogue(venues, locations, offers, attractions = [], now = Date.now()) {
     const entries = [];
-    for (const [kind, rows] of [['venue', venues], ['location', locations], ['offer', offers]]) {
+    for (const [kind, rows] of [['venue', venues], ['location', locations], ['offer', offers], ['attraction', attractions]]) {
         for (const row of rows) {
-            if (!(kind === 'offer' ? isOfferPublic(row, now) : isPublic(row, kind))) continue;
+            const allowed = kind === 'offer' ? isOfferPublic(row, now) :
+                kind === 'attraction' ? isAttractionPublic(row) : isPublic(row, kind);
+            if (!allowed) continue;
             const card = toCard(row, kind);
             const aliases = [card.title, ...(Array.isArray(row.searchTerms) ? row.searchTerms : [])]
                 .filter(v => typeof v === 'string').map(normalise).filter(Boolean);
-            const tokens = normalise([card.title, card.location, row.town, row.locationName, row.locationSlug, row.destination, row.destinationSlug, row.brand, row.operator, row.postcode, row.category, row.venueType, ...aliases].join(' ')).split(' ');
+            const tokens = normalise([card.title, card.location, row.town, row.locationName, row.locationSlug, row.destination, row.destinationSlug, row.brand, row.operator, row.postcode, row.category, row.venueType, row.parentVenue, ...(Array.isArray(row.tags) ? row.tags : []), ...aliases].join(' ')).split(' ');
             entries.push({ card, aliases: [...new Set(aliases)], tokens: [...new Set(tokens)], row });
         }
     }
