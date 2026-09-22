@@ -104,7 +104,7 @@ function renderItem($item, itemData) {
 
     if (images[0] && itemData.image) {
         try { images[0].src = itemData.image; } catch (_) {}
-        try { images[0].alt = itemData.alt || itemData.title || ''; } catch (_) {}
+        try { images[0].alt = itemData.title || ''; } catch (_) {}
     }
 
     if (buttons[0]) {
