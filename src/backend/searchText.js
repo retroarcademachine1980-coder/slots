@@ -27,7 +27,7 @@ export function normalizeSearch(value) {
 }
 
 export function buildUnifiedSearchText(collection, item) {
-    const fields = FIELD_MAP[collection] || [];
+    const fields = [...(FIELD_MAP[collection] || []), 'searchKeywords'];
     const parts = [];
 
     for (const field of fields) {
