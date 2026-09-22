@@ -211,22 +211,6 @@ const SOURCES = [
     }
 ];
 
-const WORD_ALIASES = {
-    'mr ps': ['mr p', 'mr p s', "mr p's"],
-    'mr p': ['mr ps', "mr p's"],
-    'womtech': ['onetec', 'one tec'],
-    'onetec': ['womtech', 'one tec'],
-    'arcade': ['arcades', 'amusement', 'amusements', 'family entertainment centre', 'adult gaming centre', 'retro arcade', 'redemption arcade'],
-    'arcades': ['arcade', 'amusement', 'amusements'],
-    'hotel': ['hotels', 'accommodation', 'stay'],
-    'hotels': ['hotel', 'accommodation', 'stay'],
-    'food': ['restaurant', 'restaurants', 'cafe', 'cafes', 'dining'],
-    'restaurant': ['restaurants', 'food', 'dining'],
-    'bowling': ['bowl', 'tenpin'],
-    'fruit machine': ['fruit machines', 'bandit', 'bandits'],
-    'fruit machines': ['fruit machine', 'bandit', 'bandits']
-};
-
 function normalize(value) {
     return String(value || '')
         .normalize('NFKD')
@@ -247,15 +231,39 @@ function titleCase(value) {
     return String(value || '').replace(/\b[a-z0-9]/g, c => c.toUpperCase());
 }
 
-function queryForms(input) {
+async function loadAliases() {
+    try {
+        const result = await wixData.query('SearchAliases')
+            .eq('active', true)
+            .limit(1000)
+            .find();
+
+        return (result.items || []).map(row => ({
+            title: String(row.title || '').trim(),
+            aliases: Array.isArray(row.aliases) ? row.aliases : []
+        }));
+    } catch (_) {
+        return [];
+    }
+}
+
+async function queryForms(input) {
     const raw = String(input || '').trim();
     const clean = normalize(raw);
     const forms = [raw, clean, titleCase(clean)];
-    for (const [key, values] of Object.entries(WORD_ALIASES)) {
-        if (clean === key || clean.includes(key)) {
-            forms.push(...values, ...values.map(titleCase));
+    const aliases = await loadAliases();
+
+    for (const entry of aliases) {
+        const canonical = normalize(entry.title);
+        const alternatives = entry.aliases.map(normalize).filter(Boolean);
+        const family = unique([canonical, ...alternatives]);
+
+        if (family.some(term => term === clean || clean.includes(term))) {
+            forms.push(entry.title, ...entry.aliases);
+            forms.push(...family, ...family.map(titleCase));
         }
     }
+
     return unique(forms);
 }
 
@@ -283,7 +291,7 @@ function routeFor(row, source) {
     return first(row, source.route || []);
 }
 
-function scoreRow(row, source, input) {
+function scoreRow(row, source, input, forms) {
     const q = normalize(input);
     if (!q) return 0;
     const terms = q.split(' ').filter(Boolean);
@@ -306,7 +314,7 @@ function scoreRow(row, source, input) {
     if (haystack.includes(q)) score += 400;
     if (terms.length && terms.every(t => haystack.split(' ').includes(t))) score += 300;
 
-    for (const alias of queryForms(input)) {
+    for (const alias of forms) {
         const a = normalize(alias);
         if (a && a !== q && haystack.includes(a)) score += 220;
     }
@@ -355,7 +363,7 @@ function buildMatch(source, forms) {
 }
 
 async function searchSource(source, input) {
-    const forms = queryForms(input);
+    const forms = await queryForms(input);
     let query = wixData.query(source.collection);
 
     for (const [field, value] of Object.entries(source.required || {})) {
@@ -366,9 +374,9 @@ async function searchSource(source, input) {
     if (!match) return [];
 
     try {
-        const result = await query.and(match).limit(100).find();
+        const result = await query.and(match).limit(1000).find();
         return (result.items || [])
-            .map(row => ({ row, score: scoreRow(row, source, input) }))
+            .map(row => ({ row, score: scoreRow(row, source, input, forms) }))
             .filter(item => item.score > 0)
             .map(item => makeCard(item.row, source, item.score));
     } catch (_) {
@@ -409,7 +417,7 @@ export const searchEverything = webMethod(Permissions.Anyone, async (input, opti
 
     const results = dedupe(cards)
         .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
-        .slice(0, Math.max(1, Math.min(200, Number(options.limit) || 100)));
+        .slice(0, Math.max(1, Math.min(500, Number(options.limit) || 250)));
 
     const groups = {};
     for (const card of results) {
