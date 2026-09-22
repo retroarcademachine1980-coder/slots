@@ -4,27 +4,46 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      WIX_CLI_API_KEY: ${{ secrets.WIX_CLI_API_KEY }}
     steps:
+      - name: Check Wix deployment key
+        id: key
+        shell: bash
+        run: |
+          if [ -z "$WIX_CLI_API_KEY" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "WIX_CLI_API_KEY is not configured. Skipping Wix deployment."
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Check out repository
+        if: steps.key.outputs.available == 'true'
         uses: actions/checkout@v4
 
       - name: Set up Node
+        if: steps.key.outputs.available == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
       - name: Install dependencies
+        if: steps.key.outputs.available == 'true'
         run: npm install --ignore-scripts
 
       - name: Authenticate Wix CLI for Sites
-        run: npm run wix login -- --api-key "${{ secrets.WIX_CLI_API_KEY }}"
+        if: steps.key.outputs.available == 'true'
+        run: npm run wix login -- --api-key "$WIX_CLI_API_KEY"
 
       - name: Publish latest origin/main
+        if: steps.key.outputs.available == 'true'
         env:
           CI: "true"
         run: npm run wix publish
