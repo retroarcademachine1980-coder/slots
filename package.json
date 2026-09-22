@@ -9,6 +9,7 @@
     "postinstall": "wix sync-types",
     "dev": "wix dev",
     "lint": "eslint .",
-    "test": "node --experimental-vm-modules --test tests/*.test.mjs"
+    "test": "node --experimental-vm-modules --test tests/*.test.mjs",
+    "wix": "wix"
   }
 }
