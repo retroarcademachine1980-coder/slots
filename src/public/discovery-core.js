@@ -118,7 +118,21 @@ export function makeCatalogue(venues, locations, offers, attractions = [], now =
 }
 
 const FILLER = new Set(['find', 'the', 'in', 'at', 'near', 'me', 'please', 'a', 'an', 'for', 'to', 'of', 'and', 'show']);
-const WORDS = { amusements: 'arcade', amusement: 'arcade', arcades: 'arcade', casinos: 'casino', hotels: 'hotel', chippy: 'chips', maccies: 'mcdonalds', caff: 'cafe' };
+const WORDS = {
+    amusements: 'arcade',
+    amusement: 'arcade',
+    arcades: 'arcade',
+    casinos: 'casino',
+    hotels: 'hotel',
+    attractions: 'attraction',
+    restaurants: 'restaurant',
+    services: 'service',
+    bandit: 'slots',
+    bandits: 'slots',
+    chippy: 'chips',
+    maccies: 'mcdonalds',
+    caff: 'cafe'
+};
 function words(value) {
     return normalise(value).split(' ').filter(t => t && !FILLER.has(t)).map(t => WORDS[t] || t);
 }
