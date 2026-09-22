@@ -82,3 +82,33 @@ test('public endpoint cannot reveal member offer URLs and expired offers cannot 
     await assert.rejects(() => api.getMemberOffer('expired'), /no longer available/);
     assert.equal((await api.getMemberOffer('a')).url, 'https://example.com/book');
 });
+
+
+test('active Wowcher offers are searchable but affiliate URLs stay behind member resolution', async () => {
+    const wowcher = [{
+        _id: 'wowcher-blackpool',
+        title: 'The Imperial Hotel Blackpool',
+        offerTitle: 'Seafront stay, breakfast & entertainment',
+        image: 'https://example.com/imperial.jpg',
+        imageAlt: 'The Imperial Hotel Blackpool',
+        destination: 'Blackpool',
+        offerType: 'HOTEL',
+        active: true,
+        affiliateUrl: 'https://tidd.ly/example',
+        validUntil: '2026-12-27'
+    }];
+    const env = await runtime({
+        Venues: [],
+        Locations: [],
+        DestinationRecommendations: [],
+        NearbyAttractions: [],
+        WowcherOffers: wowcher
+    });
+    const api = await env.load('backend/discovery.web');
+    const result = await api.searchPlaces('Blackpool hotel');
+    assert.equal(result.results.some(card => card.id === 'wowcher-blackpool'), true);
+    const card = result.results.find(card => card.id === 'wowcher-blackpool');
+    assert.equal(card.memberOffer, true);
+    assert.equal(card.affiliateUrl, undefined);
+    assert.equal((await api.getMemberOffer('wowcher-blackpool')).url, 'https://tidd.ly/example');
+});
