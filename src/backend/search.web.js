@@ -17,31 +17,6 @@ function tokens(value) {
     return clean(value).split(' ').filter(Boolean);
 }
 
-function queryForms(value) {
-    const raw = String(value || '').trim();
-    const normalized = clean(raw);
-    const titled = normalized.replace(/\b[a-z0-9]/g, char => char.toUpperCase());
-    return [...new Set([raw, normalized, titled])].filter(Boolean);
-}
-
-function startsWithAny(collection, field, forms) {
-    let query = null;
-    for (const form of forms) {
-        const part = wixData.query(collection).startsWith(field, form);
-        query = query ? query.or(part) : part;
-    }
-    return query;
-}
-
-function containsAny(collection, field, forms) {
-    let query = null;
-    for (const form of forms) {
-        const part = wixData.query(collection).contains(field, form);
-        query = query ? query.or(part) : part;
-    }
-    return query;
-}
-
 function fieldText(row, fields) {
     const values = [];
     for (const field of fields) {
@@ -89,7 +64,6 @@ function card(row, kind) {
         category: row.category || row.venueType || row.machineType || kind,
         description: String(row.shortDescription || row.summary || row.seoDescription || '').replace(/<[^>]*>/g, '').slice(0, 240),
         image: row.heroImage || row.dealImage || row.image || row.cardImage || '',
-        alt: row.heroImageAlt || row.exteriorImageAlt || row.imageAlt || row.imageAltText || row.dealImageAlt || row.title || row.displayTitle || row.name || row.offerTitle || '',
         route: safeRoute(row, kind)
     };
 }
@@ -100,81 +74,72 @@ async function findVenues(q) {
         .eq('cardReady', true)
         .eq('pageReady', true);
 
-    const forms = queryForms(q);
     const short = clean(q).length <= 3;
-    let match = startsWithAny('Venues', 'title', forms)
-        .or(wixData.query('Venues').hasSome('searchTerms', forms));
+    let match = wixData.query('Venues').startsWith('title', q)
+        .or(wixData.query('Venues').hasSome('searchTerms', [q]));
     if (!short) {
         match = match
-            .or(containsAny('Venues', 'title', forms))
-            .or(containsAny('Venues', 'locationName', forms))
-            .or(containsAny('Venues', 'postcode', forms));
+            .or(wixData.query('Venues').contains('title', q))
+            .or(wixData.query('Venues').contains('locationName', q))
+            .or(wixData.query('Venues').contains('postcode', q));
     }
     return (await query.and(match).limit(80).find()).items;
 }
 
 async function findLocations(q) {
     let query = wixData.query('Locations').eq('directoryReady', true);
-    const forms = queryForms(q);
     const short = clean(q).length <= 3;
-    let match = startsWithAny('Locations', 'title', forms)
-        .or(wixData.query('Locations').hasSome('searchTerms', forms));
+    let match = wixData.query('Locations').startsWith('title', q)
+        .or(wixData.query('Locations').hasSome('searchTerms', [q]));
     if (!short) {
         match = match
-            .or(containsAny('Locations', 'title', forms))
-            .or(containsAny('Locations', 'county', forms))
-            .or(containsAny('Locations', 'region', forms))
-            .or(containsAny('Locations', 'archiveSearchText', forms))
-            .or(containsAny('Locations', 'shortDescription', forms))
-            .or(containsAny('Locations', 'discoveryHeading', forms));
+            .or(wixData.query('Locations').contains('title', q))
+            .or(wixData.query('Locations').contains('county', q))
+            .or(wixData.query('Locations').contains('region', q));
     }
     return (await query.and(match).limit(60).find()).items;
 }
 
 async function findAttractions(q) {
     let query = wixData.query('NearbyAttractions').eq('directoryReady', true);
-    const forms = queryForms(q);
     const short = clean(q).length <= 3;
-    let match = startsWithAny('NearbyAttractions', 'title', forms)
-        .or(wixData.query('NearbyAttractions').hasSome('searchTerms', forms));
+    let match = wixData.query('NearbyAttractions').startsWith('title', q)
+        .or(wixData.query('NearbyAttractions').hasSome('searchTerms', [q]));
     if (!short) {
         match = match
-            .or(containsAny('NearbyAttractions', 'title', forms))
-            .or(containsAny('NearbyAttractions', 'locationName', forms))
-            .or(containsAny('NearbyAttractions', 'category', forms));
+            .or(wixData.query('NearbyAttractions').contains('title', q))
+            .or(wixData.query('NearbyAttractions').contains('locationName', q))
+            .or(wixData.query('NearbyAttractions').contains('category', q));
     }
     return (await query.and(match).limit(60).find()).items;
 }
 
 async function findOffers(q) {
     let query = wixData.query('DestinationRecommendations').eq('cardReady', true);
-    const forms = queryForms(q);
     const short = clean(q).length <= 3;
-    let match = startsWithAny('DestinationRecommendations', 'name', forms)
-        .or(startsWithAny('DestinationRecommendations', 'displayTitle', forms));
+    let match = wixData.query('DestinationRecommendations').startsWith('name', q)
+        .or(wixData.query('DestinationRecommendations').startsWith('displayTitle', q));
     if (!short) {
         match = match
-            .or(containsAny('DestinationRecommendations', 'name', forms))
-            .or(containsAny('DestinationRecommendations', 'displayTitle', forms))
-            .or(containsAny('DestinationRecommendations', 'destination', forms))
-            .or(containsAny('DestinationRecommendations', 'locationName', forms))
-            .or(containsAny('DestinationRecommendations', 'category', forms));
+            .or(wixData.query('DestinationRecommendations').contains('name', q))
+            .or(wixData.query('DestinationRecommendations').contains('displayTitle', q))
+            .or(wixData.query('DestinationRecommendations').contains('destination', q))
+            .or(wixData.query('DestinationRecommendations').contains('category', q));
     }
     return (await query.and(match).limit(60).find()).items;
 }
 
 async function findMachines(q) {
     let query = wixData.query('ClassicFruitMachines').eq('active', true);
-    const forms = queryForms(q);
     const short = clean(q).length <= 3;
-    let match = startsWithAny('ClassicFruitMachines', 'title', forms)
-        .or(wixData.query('ClassicFruitMachines').hasSome('searchAliases', forms))
-        .or(wixData.query('ClassicFruitMachines').hasSome('aliases', forms));
+    let match = wixData.query('ClassicFruitMachines').startsWith('title', q)
+        .or(wixData.query('ClassicFruitMachines').hasSome('searchAliases', [q]))
+        .or(wixData.query('ClassicFruitMachines').hasSome('aliases', [q]));
     if (!short) {
         match = match
-            .or(containsAny('ClassicFruitMachines', 'title', forms))
-            .or(containsAny('ClassicFruitMachines', 'manufacturer', forms))
-            .or(containsAny('ClassicFruitMachines', 'searchText', forms));
+            .or(wixData.query('ClassicFruitMachines').contains('title', q))
+            .or(wixData.query('ClassicFruitMachines').contains('manufacturer', q))
+            .or(wixData.query('ClassicFruitMachines').contains('searchText', q));
     }
     return (await query.and(match).limit(60).find()).items;
 }
@@ -195,7 +160,7 @@ export const searchDirectory = webMethod(Permissions.Anyone, async (input, limit
     const kinds = ['venue', 'location', 'attraction', 'offer', 'machine'];
     const fields = {
         venue: ['title', 'searchTerms', 'locationName', 'brand', 'operator', 'postcode', 'venueType'],
-        location: ['title', 'searchTerms', 'archiveSearchText', 'county', 'region', 'locationType', 'shortDescription', 'seoTitle', 'seoDescription', 'discoveryHeading', 'knownFor', 'bestFor', 'featuredVenueNames'],
+        location: ['title', 'searchTerms', 'county', 'region', 'locationType'],
         attraction: ['title', 'searchTerms', 'locationName', 'category', 'parentVenue', 'tags'],
         offer: ['name', 'displayTitle', 'destination', 'locationName', 'category'],
         machine: ['title', 'searchAliases', 'aliases', 'manufacturer', 'searchText', 'machineType']
