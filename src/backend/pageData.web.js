@@ -205,9 +205,3 @@ export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
     };
 });
 
-export const resolveBySlug = webMethod(Permissions.Anyone, async (kind, slug) => {
-    if (kind === 'location') return getLocationPage(slug);
-    if (kind === 'venue') return getVenuePage(slug);
-    if (kind === 'machine') return getMachinePage(slug);
-    return null;
-});
