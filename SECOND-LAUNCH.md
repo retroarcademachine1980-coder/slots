@@ -1,0 +1,78 @@
+# Second launch — implementation checkpoint, 22 September 2026
+
+Status: **not ready to publish**. Keep `main` and the live site unchanged.
+
+Site: `517c2402-3182-4b3f-a2f1-be5611e7e22f`.
+Git branch: `clean-code-rebuild`.
+Wix design branch: `a1ffd007-a36b-448d-af43-b8f9b1e8be9b`.
+
+## Code added
+
+- `src/public/discovery-core.js`: publication eligibility, exact canonical routes, normalised British search aliases, typo/transposition matching, ambiguous-result handling, valid offers, exact/saved/local monetised recommendation ordering, nearest canonical destination.
+- `src/backend/discovery-service.js`: fresh, paginated CMS reads. Failed reads surface an error, not a misleading partial catalogue. No long-lived catalogue cache.
+- `src/backend/discovery.web.js`: public search/recommendations and nearest destination; member-only affiliate URL resolution with fresh readiness/expiry checks.
+- `src/backend/member-discovery.web.js`: author-scoped preferences and saved venues. Server-resolved member identity; collection author permissions remain enabled. No rating or readiness writes.
+- `src/public/member-preferences.js`: allowlisted preference validation and explicit marketing-consent timestamps.
+- `src/public/discovery-controller.js`: stale-response protection and deliberate second-click offer flow after login.
+- `src/public/discovery-ui.js`: Velo adapters to bind existing Editor controls, request location only on an explicit click, and load homepage recommendations.
+
+All public responses use selected display fields. Raw CMS records, research notes, member data and affiliate URLs are not included in public search cards. Exact offers remain selectable cards so exact-match handling does not bypass membership.
+
+## Verified
+
+`npm test`: 19 passing tests, covering suppression, route mismatches, duplicates, bookmaking, typo matching, ambiguity, expiry, private-field omission, pagination, data-source failure, member isolation, consent and offer login behaviour.
+
+`npm run lint`: passes.
+
+These are local JavaScript and mocked Velo integration tests. They are **not** a Wix compiler pass, Editor integration test, mobile check or live member-login sign-off.
+
+## Editor findings — actual observed state
+
+The design branch opens successfully from Wix Dashboard → Edit Site → clean-code-rebuild.
+Its Velo panel explicitly says: **“You're viewing the latest code from origin/main as read-only.”**
+The panel directs development through Local Dev Setup (`wix dev`). Selecting the Wix design branch does not by itself select the matching Git code branch.
+
+Observed Editor page bindings absent from the Git snapshot include:
+
+- `UK Amusement Arcades.jrgbr.js`
+- `Search Results.cfe9p.js`
+- `Search Suggestions.p2cgc.js`
+- `map.ngnt4.js`
+- dynamic Arcade Venues and Arcade Locations item pages (their exact code filenames still need syncing).
+
+The branch preview still includes the retired “Bookmakers With Fruit Machines” navigation. It must be removed in this branch too before release. Existing protected casino-offer/review layouts must be preserved.
+
+No masterPage override, invented page IDs, synthetic Editor page files or replacement page layout has been installed. The new adapters are **not yet bound to page controls**.
+
+## Next integration steps
+
+1. Open Local Editor with this code branch and the correct Wix design branch. Sync the actual page-code files and element IDs; preserve existing page structures and approved design.
+2. Bind `mountSearch({input, submit, render, status})` to the observed search controls. `render` must populate the existing card repeater and spelling suggestions. Set repeater handlers before assigning data and render plain text through `.text`, not unsanitised HTML. Do not bind affiliate cards directly to external URLs.
+3. Use `offerClickHandler(status)` for offer buttons. First click opens login; completed login stays on-page; a second click obtains the fresh destination URL. Marketing opt-in is separate.
+4. Wire homepage local/saved recommendation sections, manual location selection, member preference controls and save buttons. `chooseNearbyArea()` is only for the explicit location button. Implement preference category/radius filtering and explicit viewed/impression tracking before claiming full personalisation; these are not complete yet.
+5. Verify all card/routes, loading/error/empty states, keyboard navigation and mobile layouts in the actual branch preview. Wix Members and navigation APIs have preview limitations; use an authorised appropriate test environment, not an unapproved production publish.
+
+## Preview blocker
+
+The attempt to start `wix dev` was blocked by automatic approval review: the CLI triggers telemetry/error data to Sentry, and the payload was not established or explicitly authorised. Do not retry or bypass that restriction without resolving approval. No preview server or Wix build success is claimed.
+
+## CMS/image checkpoint
+
+Fresh enumeration: 2,104 Venues, 738 Locations. 12 venue and 24 location records had `directoryReady=true`. 689 venue records lacked `heroImage`; two locations did before the Renfrew fix below. These counts include held records and do not imply 689 publishable venues.
+
+Completed previously in this conversation: verified Tenpin Southampton exterior and eight location images (Newtownards, Looe, Northampton, Lake District, Bideford, Stoke-on-Trent, Bury and Lisburn).
+
+Completed in this checkpoint: Renfrew town hall photograph, visually inspected, alt and CC BY-SA 3.0 attribution attached. CMS record `loc-funstation-braehead-20260911`; photo `3a517e_7ef7bae0c9e742f38f53a538a79594f6~mv2.jpg`. Public readiness flags unchanged. Ballymena is the remaining destination hero gap. Venue gaps remain 689.
+
+Never bulk-promote images from galleries, reuse a brand photo across branches, or relist the 538 suppressed records simply because a hero or route exists. Exact exterior verification and venue-specific editorial completion remain required. Existing images also need crop/resolution verification; a non-empty image field is not a launch-quality sign-off.
+
+## Sources for implementation
+
+- https://dev.wix.com/docs/velo/apis/wix-web-module/web-method
+- https://dev.wix.com/docs/velo/apis/wix-data/wix-data-query/find
+- https://dev.wix.com/docs/velo/apis/wix-data/wix-data-query-result/next
+- https://dev.wix.com/docs/velo/apis/wix-data/save
+- https://dev.wix.com/docs/velo/apis/wix-members-backend/current-member/get-member
+- https://dev.wix.com/docs/velo/apis/wix-members-frontend/authentication/prompt-login
+- https://dev.wix.com/docs/velo/apis/wix-window-frontend/get-current-geolocation
+- https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/git-integration-wix-cli-for-sites/about-git-integration-wix-cli-for-sites
