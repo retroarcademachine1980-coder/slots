@@ -35,10 +35,28 @@ $w.onReady(async function () {
         $w('#locationHero').hide();
     }
 
-    bindCardRepeater($w('#venueRepeater'), data.sections.venues);
-    bindCardRepeater($w('#attractionRepeater'), data.sections.attractions);
-    bindCardRepeater($w('#recommendationRepeater'), data.sections.hotelsAndFood);
-    bindCardRepeater($w('#offerRepeater'), data.sections.offers);
-    bindCardRepeater($w('#videoRepeater'), data.sections.videos);
-    bindCardRepeater($w('#machineRepeater'), data.sections.machines);
+    bindCardRepeater($w('#venueRepeater'), data.sections.venues, {
+        title: '#venueCardTitle', meta: '#venueCardMeta', description: '#venueCardDescription',
+        image: '#venueCardImage', button: '#venueCardButton'
+    });
+    bindCardRepeater($w('#attractionRepeater'), data.sections.attractions, {
+        title: '#attractionCardTitle', meta: '#attractionCardMeta', description: '#attractionCardDescription',
+        image: '#attractionCardImage', button: '#attractionCardButton'
+    });
+    bindCardRepeater($w('#recommendationRepeater'), data.sections.hotelsAndFood, {
+        title: '#recommendationCardTitle', meta: '#recommendationCardMeta', description: '#recommendationCardDescription',
+        image: '#recommendationCardImage', button: '#recommendationCardButton'
+    });
+    bindCardRepeater($w('#offerRepeater'), data.sections.offers, {
+        title: '#offerCardTitle', meta: '#offerCardMeta', description: '#offerCardDescription',
+        image: '#offerCardImage', button: '#offerCardButton'
+    });
+    bindCardRepeater($w('#videoRepeater'), data.sections.videos, {
+        title: '#videoCardTitle', meta: '#videoCardMeta', description: '#videoCardDescription',
+        image: '#videoCardImage', button: '#videoCardButton'
+    });
+    bindCardRepeater($w('#machineRepeater'), data.sections.machines, {
+        title: '#machineCardTitle', meta: '#machineCardMeta', description: '#machineCardDescription',
+        image: '#machineCardImage', button: '#machineCardButton'
+    });
 });
