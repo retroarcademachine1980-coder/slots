@@ -92,3 +92,18 @@ Existing core embed 323eeaea-60ee-4132-b793-a0642038df96 changed in place from r
 Velo search now labels fuzzy matches as Did you mean suggestions and offers related matches when at least half the meaningful query words match, only if there is no full match. Completely unrelated input is not passed off as a match. This remains branch-only pending Editor integration.
 
 Wix Forms dashboard was checked after API failure: no forms and No submissions yet. Custom report form has no upload input. Venue photo submission is still a launch blocker, alongside missing images, full Editor integration and retiring the legacy renderer set.
+
+## Unified search wiring — 22 September 2026
+
+Background branch search is now wired end-to-end in code without publishing:
+
+- `masterPage.js` routes existing search-like header/home/directory controls to `/search?q=...`.
+- `Search Results.cfe9p.js` and `Search Suggestions.p2cgc.js` now mount the shared Velo discovery UI.
+- Search results use the existing Editor input/repeater/status controls through type/semantic matching rather than invented element IDs.
+- The catalogue now covers ready Venues, Locations, NearbyAttractions, DestinationRecommendations and active WowcherOffers.
+- Wowcher affiliate URLs remain private and use the same signed-in, deliberate second-click resolver as other affiliate offers.
+- The transfer-ready legacy seaside finder copy now points to `/search` instead of bypassing Velo through `/map`.
+- The live custom embed was deliberately not changed because custom-embed API updates are site-global/immediate and this rebuild is not approved for publication yet.
+- The existing map page is deliberately not hijacked by global search wiring; its real Editor controls/page code still need to be synced before its map-specific search can be connected safely.
+
+No publish was performed. The Wix Editor/local-dev branch-sync blocker remains: Classic Editor currently exposes origin/main as read-only, and the previous local-dev attempt was stopped at telemetry approval review.
