@@ -163,6 +163,23 @@ export const getLocationPage = webMethod(Permissions.Anyone, async slug => {
     return { page, sections, totalRelated: related.total || 0 };
 });
 
+function mergeRelated(...resultSets) {
+    const seen = new Map();
+
+    for (const set of resultSets) {
+        for (const card of set || []) {
+            const key = card.route || (card.kind + ':' + card.sourceId) || card._id;
+            const existing = seen.get(key);
+            if (!existing || Number(card.score || 0) > Number(existing.score || 0)) {
+                seen.set(key, card);
+            }
+        }
+    }
+
+    return [...seen.values()]
+        .sort((a, b) => Number(b.score || 0) - Number(a.score || 0));
+}
+
 export const getVenuePage = webMethod(Permissions.Anyone, async slug => {
     const row = await oneBySlug('Venues', slug);
     if (!row) return null;
@@ -170,18 +187,18 @@ export const getVenuePage = webMethod(Permissions.Anyone, async slug => {
     if (/duplicate|closed - historical|not a separate venue/.test(status)) return null;
 
     const page = venueModel(row);
-    const searchTerms = [row.title, row.locationName, row.brand, row.operator]
-        .filter(Boolean)
-        .join(' ');
+    const searches = await Promise.all([
+        row.title ? runUnifiedSearchInternal(row.title, { limit: 250 }) : Promise.resolve({ results: [] }),
+        row.locationName ? runUnifiedSearchInternal(row.locationName, { limit: 500 }) : Promise.resolve({ results: [] }),
+        row.brand ? runUnifiedSearchInternal(row.brand, { limit: 150 }) : Promise.resolve({ results: [] }),
+        row.operator ? runUnifiedSearchInternal(row.operator, { limit: 150 }) : Promise.resolve({ results: [] })
+    ]);
 
-    const related = await runUnifiedSearchInternal(searchTerms, { limit: 400 });
+    const related = mergeRelated(...searches.map(result => result.results))
+        .filter(card => !(card.kind === 'venue' && card.sourceId === row._id))
+        .slice(0, 500);
 
-    return {
-        page,
-        related: (related.results || []).filter(card =>
-            !(card.kind === 'venue' && card.sourceId === row._id)
-        )
-    };
+    return { page, related };
 });
 
 export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
@@ -191,17 +208,17 @@ export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
     if (/merged|duplicate|remove|rejected/.test(status)) return null;
 
     const page = machineModel(row);
-    const searchTerms = [row.title, row.manufacturer, row.familyName, row.variantName]
-        .filter(Boolean)
-        .join(' ');
+    const searches = await Promise.all([
+        row.title ? runUnifiedSearchInternal(row.title, { limit: 250 }) : Promise.resolve({ results: [] }),
+        row.manufacturer ? runUnifiedSearchInternal(row.manufacturer, { limit: 250 }) : Promise.resolve({ results: [] }),
+        row.familyName ? runUnifiedSearchInternal(row.familyName, { limit: 150 }) : Promise.resolve({ results: [] }),
+        row.variantName ? runUnifiedSearchInternal(row.variantName, { limit: 150 }) : Promise.resolve({ results: [] })
+    ]);
 
-    const related = await runUnifiedSearchInternal(searchTerms, { limit: 300 });
+    const related = mergeRelated(...searches.map(result => result.results))
+        .filter(card => !(card.kind === 'machine' && card.sourceId === row._id))
+        .slice(0, 400);
 
-    return {
-        page,
-        related: (related.results || []).filter(card =>
-            !(card.kind === 'machine' && card.sourceId === row._id)
-        )
-    };
+    return { page, related };
 });
 
