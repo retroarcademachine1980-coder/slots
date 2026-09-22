@@ -300,17 +300,28 @@ export async function runUnifiedSearchInternal(input, options = {}) {
         result.status === 'fulfilled' ? result.value : []
     );
 
-    const max = Math.max(1, Math.min(3000, Number(options.limit) || 500));
-    const results = dedupe(cards)
-        .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
-        .slice(0, max);
+    const allResults = dedupe(cards)
+        .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
+
+    const total = allResults.length;
+    const offset = Math.max(0, Number(options.offset) || 0);
+    const limit = Math.max(1, Math.min(500, Number(options.limit) || 100));
+    const results = allResults.slice(offset, offset + limit);
 
     const groups = {};
-    for (const card of results) {
+    for (const card of allResults) {
         groups[card.kind] = (groups[card.kind] || 0) + 1;
     }
 
-    return { query, total: results.length, results, groups };
+    return {
+        query,
+        total,
+        offset,
+        limit,
+        hasMore: offset + results.length < total,
+        results,
+        groups
+    };
 }
 
 export const searchEverything = webMethod(
