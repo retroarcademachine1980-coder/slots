@@ -362,8 +362,7 @@ function buildMatch(source, forms) {
     return match;
 }
 
-async function searchSource(source, input) {
-    const forms = await queryForms(input);
+async function searchSource(source, input, forms) {
     let query = wixData.query(source.collection);
 
     for (const [field, value] of Object.entries(source.required || {})) {
@@ -407,8 +406,10 @@ export const searchEverything = webMethod(Permissions.Anyone, async (input, opti
         };
     }
 
+    const forms = await queryForms(query);
+
     const jobs = await Promise.allSettled(
-        SOURCES.map(source => searchSource(source, query))
+        SOURCES.map(source => searchSource(source, query, forms))
     );
 
     const cards = jobs.flatMap(result =>
