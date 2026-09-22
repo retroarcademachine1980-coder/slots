@@ -19,7 +19,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --ignore-scripts
 
       - name: Authenticate Wix CLI for Sites
         run: npm run wix login -- --api-key "${{ secrets.WIX_CLI_API_KEY }}"
