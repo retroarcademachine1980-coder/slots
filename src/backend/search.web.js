@@ -395,7 +395,7 @@ function dedupe(cards) {
     return [...seen.values()];
 }
 
-export const searchEverything = webMethod(Permissions.Anyone, async (input, options = {}) => {
+async function runUnifiedSearch(input, options = {}) {
     const query = String(input || '').trim().slice(0, 120);
     if (!query) {
         return {
@@ -430,6 +430,53 @@ export const searchEverything = webMethod(Permissions.Anyone, async (input, opti
         total: results.length,
         results,
         groups
+    };
+}
+
+export const searchEverything = webMethod(Permissions.Anyone, async (input, options = {}) =>
+    runUnifiedSearch(input, options)
+);
+
+export const getLocationBundle = webMethod(Permissions.Anyone, async (locationName, options = {}) => {
+    const result = await runUnifiedSearch(locationName, {
+        limit: Math.max(50, Math.min(500, Number(options.limit) || 300))
+    });
+
+    const q = normalize(locationName);
+    const destination = result.results.find(card =>
+        card.kind === 'location' && normalize(card.title) === q
+    ) || null;
+
+    const sections = {
+        venues: [],
+        attractions: [],
+        hotelsAndFood: [],
+        offers: [],
+        videos: [],
+        machines: [],
+        guides: [],
+        other: []
+    };
+
+    for (const card of result.results) {
+        if (destination && card._id === destination._id) continue;
+
+        if (card.kind === 'venue') sections.venues.push(card);
+        else if (card.kind === 'attraction') sections.attractions.push(card);
+        else if (card.kind === 'recommendation') sections.hotelsAndFood.push(card);
+        else if (card.kind === 'offer' || card.kind === 'partner') sections.offers.push(card);
+        else if (card.kind === 'video') sections.videos.push(card);
+        else if (['machine', 'machine-family', 'machine-directory', 'sighting', 'manufacturer'].includes(card.kind)) sections.machines.push(card);
+        else if (card.kind === 'guide') sections.guides.push(card);
+        else sections.other.push(card);
+    }
+
+    return {
+        query: result.query,
+        destination,
+        total: result.total,
+        groups: result.groups,
+        sections
     };
 });
 
