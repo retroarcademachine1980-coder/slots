@@ -8,6 +8,7 @@ const prefs = await load('member-preferences');
 const venue = (id, title, extra = {}) => ({ _id: id, title, slug: id, directoryReady: true, cardReady: true, pageReady: true, heroImage: 'https://static.wixstatic.com/media/example.jpg', 'link-arcade-venues-title': '/arcade-venues/' + id, ...extra });
 const location = (id, title, extra = {}) => ({ ...venue(id, title), imageVerified: true, contentVerified: true, 'link-arcade-locations-title': '/arcade-locations/' + id, ...extra });
 const offer = (id, extra = {}) => ({ _id: id, name: id, image: 'https://example.com/photo.jpg', cardReady: true, active: true, affiliate: true, revenueReady: true, affiliateUrl: 'https://example.com/book', ...extra });
+const attraction = (id, title, extra = {}) => ({ _id: id, title, slug: id, directoryReady: true, heroImage: 'https://static.wixstatic.com/media/attraction.jpg', locationSlug: 'blackpool', locationName: 'Blackpool', ...extra });
 
 test('538 suppressed records remain absent even with complete images and routes', () => {
     const hidden = Array.from({ length: 538 }, (_, i) => venue('held-' + i, 'Hidden ' + i, { directoryReady: false }));
@@ -129,4 +130,22 @@ test('typos are labelled as suggestions and partial queries have relevant fallba
     assert.equal(partial.matchType, 'related');
     assert.deepEqual(partial.results.map(c => c.id), ['bognor']);
     assert.equal(core.searchCatalogue(entries, 'zxqvpk').total, 0);
+});
+
+
+test('unified search includes ready attractions and British aliases without inventing attraction routes', () => {
+    const entries = core.makeCatalogue(
+        [venue('services', 'Moto Wetherby Gaming', { searchTerms: ['services slots', 'bandits at services'] })],
+        [location('blackpool', 'Blackpool')],
+        [offer('hotel', { locationName: 'Blackpool' })],
+        [
+            attraction('tower', 'The Blackpool Tower Dungeon', { category: 'Attraction', tags: ['things to do', 'family attraction'] }),
+            attraction('chippy', 'Seafront Fish Bar', { category: 'Fish and Chips', searchTerms: ['chippy', 'fish shop'] })
+        ]
+    );
+    assert.equal(core.searchCatalogue(entries, 'things to do in Blackpool').results.some(c => c.id === 'tower'), true);
+    assert.equal(core.searchCatalogue(entries, 'chippy Blackpool').results.some(c => c.id === 'chippy'), true);
+    assert.equal(core.searchCatalogue(entries, 'bandits at services').results.some(c => c.id === 'services'), true);
+    const tower = entries.find(e => e.card.id === 'tower').card;
+    assert.equal(tower.route, '/arcade-locations/blackpool');
 });
