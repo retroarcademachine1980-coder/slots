@@ -1,7 +1,11 @@
 import wixLocation from 'wix-location';
 import { searchEverything } from 'backend/search.web';
 
+const PAGE_SIZE = 100;
 let requestId = 0;
+let activeQuery = '';
+let loaded = 0;
+let total = 0;
 
 function groupLabel(kind) {
     const labels = {
@@ -26,8 +30,17 @@ function setStatus(message) {
     $w('#resultsStatus').text = message;
 }
 
-function setCount(total) {
-    $w('#resultsCount').text = total === 1 ? '1 result' : total + ' results';
+function setCount(value) {
+    $w('#resultsCount').text = value === 1 ? '1 result' : value + ' results';
+}
+
+function updateLoadMore(hasMore) {
+    if (hasMore) {
+        $w('#loadMoreButton').show();
+        $w('#loadMoreButton').enable();
+    } else {
+        $w('#loadMoreButton').hide();
+    }
 }
 
 function bindCard($item, itemData) {
@@ -58,27 +71,37 @@ function bindCard($item, itemData) {
     }
 }
 
-async function runSearch(value) {
-    const query = String(value || '').trim();
+async function fetchPage(query, offset, append) {
     const myRequest = ++requestId;
 
-    if (!query) {
+    if (!append) {
+        setStatus('Searching everything…');
         $w('#resultsRepeater').data = [];
-        setCount(0);
-        setStatus('Search destinations, venues, hotels, attractions, arcades, machines and more.');
-        return;
+        loaded = 0;
+        total = 0;
+        updateLoadMore(false);
+    } else {
+        $w('#loadMoreButton').disable();
     }
 
-    setStatus('Searching everything…');
-
     try {
-        const response = await searchEverything(query, { limit: 200 });
+        const response = await searchEverything(query, {
+            limit: PAGE_SIZE,
+            offset
+        });
+
         if (myRequest !== requestId) return;
 
-        $w('#resultsRepeater').data = response.results || [];
-        setCount(response.total || 0);
+        const incoming = response.results || [];
+        const current = append ? ($w('#resultsRepeater').data || []) : [];
+        $w('#resultsRepeater').data = [...current, ...incoming];
 
-        if (response.total) {
+        loaded = offset + incoming.length;
+        total = response.total || 0;
+        setCount(total);
+        updateLoadMore(Boolean(response.hasMore));
+
+        if (total) {
             const groups = Object.entries(response.groups || {})
                 .map(([kind, count]) => count + ' ' + groupLabel(kind).toLowerCase())
                 .join(' · ');
@@ -88,18 +111,43 @@ async function runSearch(value) {
         }
     } catch (_) {
         if (myRequest !== requestId) return;
-        $w('#resultsRepeater').data = [];
-        setCount(0);
+        if (!append) $w('#resultsRepeater').data = [];
+        updateLoadMore(false);
         setStatus('Search is temporarily unavailable.');
     }
+}
+
+async function runSearch(value) {
+    const query = String(value || '').trim();
+
+    if (!query) {
+        activeQuery = '';
+        loaded = 0;
+        total = 0;
+        $w('#resultsRepeater').data = [];
+        setCount(0);
+        updateLoadMore(false);
+        setStatus('Search destinations, venues, hotels, attractions, arcades, machines and more.');
+        return;
+    }
+
+    activeQuery = query;
+    await fetchPage(query, 0, false);
 }
 
 $w.onReady(function () {
     $w('#resultsRepeater').onItemReady(($item, itemData) => bindCard($item, itemData));
 
     $w('#searchButton').onClick(() => runSearch($w('#searchInput').value));
+
     $w('#searchInput').onKeyPress(event => {
         if (event.key === 'Enter') runSearch($w('#searchInput').value);
+    });
+
+    $w('#loadMoreButton').onClick(() => {
+        if (activeQuery && loaded < total) {
+            fetchPage(activeQuery, loaded, true);
+        }
     });
 
     const initial = String(
@@ -111,6 +159,7 @@ $w.onReady(function () {
         runSearch(initial);
     } else {
         setCount(0);
+        updateLoadMore(false);
         setStatus('Search destinations, venues, hotels, attractions, arcades, machines and more.');
     }
 });
