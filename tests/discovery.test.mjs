@@ -27,7 +27,7 @@ test('duplicates, bookmaker records and quarantined destinations stay excluded',
     assert.equal(core.isPublic(venue('a', 'A', { duplicateOf: 'b' }), 'venue'), false);
     assert.equal(core.isPublic(venue('a', 'A', { venueType: 'Bookmaker' }), 'venue'), false);
     assert.equal(core.isPublic(location('b', 'B', { imageVerified: false }), 'location'), false);
-    assert.equal(core.isPublic(venue('a', 'A', { researchStatus: 'Written, awaiting completion — temporarily removed from public discovery' }), 'venue'), false);
+    assert.equal(core.isPublic(venue('a', 'A', { directoryReady: false, researchStatus: 'Written, awaiting completion — temporarily removed from public discovery' }), 'venue'), false);
 });
 test('exact destination wins over venue aliases; ambiguous names never redirect', () => {
     const entries = core.makeCatalogue([venue('coral', 'Coral Island', { searchTerms: ['Blackpool'] }), venue('fun-one', 'Funland'), venue('fun-two', 'Funland')], [location('blackpool', 'Blackpool')], []);
@@ -93,4 +93,28 @@ test('consent is opt-in only with server timestamp, and malformed inputs fail', 
     assert.equal(prefs.preferencePatch({ emailOffersOptIn: true }, now).emailConsentAt, now);
     assert.throws(() => prefs.preferencePatch({ emailOffersOptIn: 'true' }));
     assert.throws(() => prefs.preferencePatch({ preferredRadiusMiles: Infinity }));
+});
+
+
+test('restored current flags are not overridden by historical research notes', () => {
+    assert.equal(core.isPublic(venue('restored', 'Restored', { researchStatus: 'Restored today. History: temporarily removed from public discovery' }), 'venue'), true);
+});
+test('Bognor returns destination and local matches across location fields', () => {
+    const entries = core.makeCatalogue([
+        venue('neptune', "Neptune's", { town: 'Bognor Regis' }),
+        venue('mrp', "Mr P’s", { locationSlug: 'bognor-regis' }),
+        venue('other', 'Elsewhere', { town: 'York' })
+    ], [location('bognor-regis', 'Bognor Regis')], [offer('hotel', { destination: 'Bognor Regis' })]);
+    assert.deepEqual(new Set(core.searchCatalogue(entries, 'Bognor').results.map(c => c.id)), new Set(['neptune', 'mrp', 'bognor-regis', 'hotel']));
+});
+test('Mr P brand queries return all branches despite punctuation and spacing', () => {
+    const entries = core.makeCatalogue(['Bognor Regis', 'Chatham', 'Fareham', 'Portsmouth'].map((town, i) => venue('mrp-' + i, "Mr. P’s Classic Amusements - " + town)), [], []);
+    for (const query of ["Mr P's", 'Mr. P’s', 'Mr Ps', 'MrPs', 'Mister Ps']) assert.equal(core.searchCatalogue(entries, query).total, 4, query);
+});
+test('submitting an exact town keeps all results visible instead of redirecting', async () => {
+    let navigated = false, rendered;
+    const controller = controls.createSearchController({ search: async () => ({ total: 4, exact: {route: '/arcade-locations/bognor-regis'} }), render: r => { rendered = r; }, setStatus() {}, navigate() { navigated = true; } });
+    await controller.run('Bognor Regis', true);
+    assert.equal(rendered.total, 4);
+    assert.equal(navigated, false);
 });

@@ -6,10 +6,11 @@ const ROUTES = {
 };
 
 export function normalise(value) {
-    return String(value || '').slice(0, 240).normalize('NFKD')
+    return String(value || '').normalize('NFKD')
         .replace(/[\u0300-\u036f]/g, '').toLowerCase()
         .replace(/[’']/g, '').replace(/&/g, ' and ')
-        .replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ');
+        .replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ')
+        .replace(/\b(?:mr|mister)\s*p\s*s\b/g, 'mr ps');
 }
 
 export function httpsUrl(value) {
@@ -36,8 +37,7 @@ function imageUrl(value) {
 
 function retired(row) {
     return !!(row.duplicateOf || row.duplicateReason || row.canonicalVenueId && row.canonicalVenueId !== row._id) ||
-        /\b(closed|retired|duplicate|suppressed|quarantined)\b/i.test([row.status, row.currentVenueStatus, row.locationStatus].join(' ')) ||
-        /temporarily removed from public discovery|removed for AdSense quality remediation/i.test(row.researchStatus || '');
+        /\b(closed|retired|duplicate|suppressed|quarantined)\b/i.test([row.status, row.currentVenueStatus, row.locationStatus].join(' '));
 }
 
 export function isPublic(row, kind) {
@@ -97,7 +97,7 @@ export function makeCatalogue(venues, locations, offers, now = Date.now()) {
             const card = toCard(row, kind);
             const aliases = [card.title, ...(Array.isArray(row.searchTerms) ? row.searchTerms : [])]
                 .filter(v => typeof v === 'string').map(normalise).filter(Boolean);
-            const tokens = normalise([card.title, card.location, row.brand, row.category, row.venueType, ...aliases].join(' ')).split(' ');
+            const tokens = normalise([card.title, card.location, row.town, row.locationName, row.locationSlug, row.destination, row.destinationSlug, row.brand, row.operator, row.postcode, row.category, row.venueType, ...aliases].join(' ')).split(' ');
             entries.push({ card, aliases: [...new Set(aliases)], tokens: [...new Set(tokens)], row });
         }
     }

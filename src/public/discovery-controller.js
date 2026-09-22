@@ -1,10 +1,10 @@
 // UI-independent controller, called after $w.onReady with observed Editor elements.
-export function createSearchController({ search, render, setStatus, navigate }) {
+export function createSearchController({ search, render, setStatus }) {
     let version = 0;
     let disposed = false;
     return {
         invalidate() { version++; },
-        async run(query, submit = false) {
+        async run(query) {
             const request = ++version;
             setStatus('Searching…');
             try {
@@ -12,7 +12,7 @@ export function createSearchController({ search, render, setStatus, navigate }) 
                 if (disposed || request !== version) return;
                 render(result);
                 setStatus(result.total ? `${result.total} matching places` : 'Try a nearby town or another spelling.');
-                if (submit && result.exact && result.exact.route) navigate(result.exact.route);
+                // Keep the complete result list visible; cards navigate only on a deliberate click.
             } catch (_) {
                 if (!disposed && request === version) setStatus('Search is temporarily unavailable. Please try again.');
             }

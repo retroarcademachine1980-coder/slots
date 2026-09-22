@@ -76,3 +76,11 @@ Never bulk-promote images from galleries, reuse a brand photo across branches, o
 - https://dev.wix.com/docs/velo/apis/wix-members-frontend/authentication/prompt-login
 - https://dev.wix.com/docs/velo/apis/wix-window-frontend/get-current-geolocation
 - https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/git-integration-wix-cli-for-sites/about-git-integration-wix-cli-for-sites
+
+## Search and report follow-up
+
+Search now indexes town, location slug, destination, brand, operator and postcode independently of display location; Mr P punctuation/spacing variants match consistently. Search submission preserves the result list instead of redirecting to an exact destination. Historical research notes no longer override current publication flags. Explicit closed/duplicate/quarantined statuses and readiness flags still apply. 23 tests and lint pass. These changes remain unconnected to production pages.
+
+CMS audit found four Mr P records: Bognor enabled; Chatham, Fareham and Portsmouth disabled. Search matching alone cannot surface those disabled branches. SpinRaidersChangeReports returned zero rows. Wix intake submissions query failed with unsupported namespace; this is not proof that other submission channels are empty.
+
+Southport live remediation: mapEnabled restored for Funtime and Jackpot; MERKUR and Golden Sovereign restored to discovery at user request. Public map verified six venue cards plus two attractions. Other Southport records and town-filter redirect remain unresolved.
