@@ -46,4 +46,4 @@ jobs:
         if: steps.key.outputs.available == 'true'
         env:
           CI: "true"
-        run: printf '\n' | npm run wix publish
+        run: printf '\033[B\n' | npm run wix publish
