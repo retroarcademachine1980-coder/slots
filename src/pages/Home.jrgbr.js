@@ -46,13 +46,34 @@ $w.onReady(async function () {
         $w('#heroImage').hide();
     }
 
-    bindCardRepeater($w('#monthlyRepeater'), data.monthlyPicks || []);
-    bindCardRepeater($w('#destinationRepeater'), data.destinations || []);
-    bindCardRepeater($w('#browseRepeater'), data.browseByType || []);
-    bindCardRepeater($w('#featuredRepeater'), data.featuredVenues || []);
-    bindCardRepeater($w('#hotelRepeater'), data.hotels || []);
-    bindCardRepeater($w('#foodRepeater'), data.food || []);
-    bindCardRepeater($w('#thingToDoRepeater'), data.thingsToDo || []);
+    bindCardRepeater($w('#monthlyRepeater'), data.monthlyPicks || [], {
+        title: '#monthlyTitle', meta: '#monthlyMeta', description: '#monthlyDescription',
+        image: '#monthlyImage', button: '#monthlyButton'
+    });
+    bindCardRepeater($w('#destinationRepeater'), data.destinations || [], {
+        title: '#destinationTitle', meta: '#destinationMeta', description: '#destinationDescription',
+        image: '#destinationImage', button: '#destinationButton'
+    });
+    bindCardRepeater($w('#browseRepeater'), data.browseByType || [], {
+        title: '#browseTitle', meta: '#browseMeta', description: '#browseDescription',
+        image: '#browseImage', button: '#browseButton'
+    });
+    bindCardRepeater($w('#featuredRepeater'), data.featuredVenues || [], {
+        title: '#featuredTitle', meta: '#featuredMeta', description: '#featuredDescription',
+        image: '#featuredImage', button: '#featuredButton'
+    });
+    bindCardRepeater($w('#hotelRepeater'), data.hotels || [], {
+        title: '#hotelTitle', meta: '#hotelMeta', description: '#hotelDescription',
+        image: '#hotelImage', button: '#hotelButton'
+    });
+    bindCardRepeater($w('#foodRepeater'), data.food || [], {
+        title: '#foodTitle', meta: '#foodMeta', description: '#foodDescription',
+        image: '#foodImage', button: '#foodButton'
+    });
+    bindCardRepeater($w('#thingToDoRepeater'), data.thingsToDo || [], {
+        title: '#thingToDoTitle', meta: '#thingToDoMeta', description: '#thingToDoDescription',
+        image: '#thingToDoImage', button: '#thingToDoButton'
+    });
 
     const destinationSection = sectionByKey(sections, 'locations');
     const featuredSection = sectionByKey(sections, 'featured-arcades');
