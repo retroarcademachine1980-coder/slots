@@ -402,7 +402,7 @@ function dedupe(cards) {
     return [...seen.values()];
 }
 
-async function runUnifiedSearch(input, options = {}) {
+export async function runUnifiedSearchInternal(input, options = {}) {
     const query = String(input || '').trim().slice(0, 120);
     if (!query) {
         return {
@@ -441,14 +441,14 @@ async function runUnifiedSearch(input, options = {}) {
 }
 
 export const searchEverything = webMethod(Permissions.Anyone, async (input, options = {}) =>
-    runUnifiedSearch(input, options)
+    runUnifiedSearchInternal(input, options)
 );
 
 export const getSearchSuggestions = webMethod(Permissions.Anyone, async (input, limit = 12) => {
     const query = String(input || '').trim().slice(0, 80);
     if (query.length < 2) return [];
 
-    const result = await runUnifiedSearch(query, {
+    const result = await runUnifiedSearchInternal(query, {
         limit: Math.max(12, Math.min(100, Number(limit) || 12))
     });
 
@@ -475,7 +475,7 @@ export const getSearchSuggestions = webMethod(Permissions.Anyone, async (input, 
 });
 
 export const getLocationBundle = webMethod(Permissions.Anyone, async (locationName, options = {}) => {
-    const result = await runUnifiedSearch(locationName, {
+    const result = await runUnifiedSearchInternal(locationName, {
         limit: Math.max(50, Math.min(500, Number(options.limit) || 300))
     });
 
