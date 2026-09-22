@@ -16,7 +16,8 @@ export async function loadCatalogue() {
     const queries = [
         wixData.query('Venues').eq('directoryReady', true).eq('cardReady', true).eq('pageReady', true),
         wixData.query('Locations').eq('directoryReady', true).eq('cardReady', true),
-        wixData.query('DestinationRecommendations').eq('cardReady', true).eq('active', true)
+        wixData.query('DestinationRecommendations').eq('cardReady', true).eq('active', true),
+        wixData.query('NearbyAttractions').eq('directoryReady', true)
     ];
     const outcomes = await Promise.allSettled(queries.map(readAll));
     // Never turn a failed collection read into a misleading empty/partial search.
