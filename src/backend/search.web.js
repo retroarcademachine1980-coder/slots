@@ -373,8 +373,15 @@ async function searchSource(source, input, forms) {
     if (!match) return [];
 
     try {
-        const result = await query.and(match).limit(1000).find();
-        return (result.items || [])
+        let page = await query.and(match).limit(1000).find();
+        const rows = [...(page.items || [])];
+
+        while (page.hasNext && page.hasNext() && rows.length < 5000) {
+            page = await page.next();
+            rows.push(...(page.items || []));
+        }
+
+        return rows
             .map(row => ({ row, score: scoreRow(row, source, input, forms) }))
             .filter(item => item.score > 0)
             .map(item => makeCard(item.row, source, item.score));
@@ -418,7 +425,7 @@ async function runUnifiedSearch(input, options = {}) {
 
     const results = dedupe(cards)
         .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
-        .slice(0, Math.max(1, Math.min(500, Number(options.limit) || 250)));
+        .slice(0, Math.max(1, Math.min(2000, Number(options.limit) || 500)));
 
     const groups = {};
     for (const card of results) {
@@ -436,6 +443,36 @@ async function runUnifiedSearch(input, options = {}) {
 export const searchEverything = webMethod(Permissions.Anyone, async (input, options = {}) =>
     runUnifiedSearch(input, options)
 );
+
+export const getSearchSuggestions = webMethod(Permissions.Anyone, async (input, limit = 12) => {
+    const query = String(input || '').trim().slice(0, 80);
+    if (query.length < 2) return [];
+
+    const result = await runUnifiedSearch(query, {
+        limit: Math.max(12, Math.min(100, Number(limit) || 12))
+    });
+
+    const seen = new Set();
+    const suggestions = [];
+
+    for (const card of result.results) {
+        const label = card.title;
+        const key = normalize(label);
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        suggestions.push({
+            _id: 'suggestion:' + card._id,
+            label,
+            kind: card.kind,
+            subtitle: card.subtitle || card.location || '',
+            route: card.route || '',
+            searchValue: label
+        });
+        if (suggestions.length >= Math.max(1, Math.min(20, Number(limit) || 12))) break;
+    }
+
+    return suggestions;
+});
 
 export const getLocationBundle = webMethod(Permissions.Anyone, async (locationName, options = {}) => {
     const result = await runUnifiedSearch(locationName, {
