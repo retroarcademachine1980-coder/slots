@@ -305,7 +305,7 @@ export async function runUnifiedSearchInternal(input, options = {}) {
 
     const total = allResults.length;
     const offset = Math.max(0, Number(options.offset) || 0);
-    const limit = Math.max(1, Math.min(500, Number(options.limit) || 100));
+    const limit = Math.max(1, Math.min(3000, Number(options.limit) || 100));
     const results = allResults.slice(offset, offset + limit);
 
     const groups = {};
