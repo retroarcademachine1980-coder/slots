@@ -70,6 +70,7 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
         destinations: groups['top-destinations'] || [],
         browseByType: groups['browse-by-type'] || [],
         featuredPlaces: groups['featured-venues'] || [],
+        monthlyPicks: groups['monthly-picks'] || [],
         groups
     };
 });
