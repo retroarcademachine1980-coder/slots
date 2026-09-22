@@ -1,3 +1,4 @@
+// Wix deployment sync: clean rebuild 2026-09-22
 import wixData from 'wix-data';
 import { normalizeSearch } from 'backend/searchText';
 
