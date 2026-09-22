@@ -1,6 +1,6 @@
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
-import { runUnifiedSearchInternal } from 'backend/search.web';
+import { runUnifiedSearchInternal } from 'backend/searchCore';
 
 function plain(value) {
     return String(value || '').replace(/<[^>]*>/g, '').trim();

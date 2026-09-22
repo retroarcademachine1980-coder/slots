@@ -66,13 +66,35 @@ function statusText($w) {
         return asArray($w('Text'))
             .map(element => ({
                 element,
-                score: score(element, ['searchstatus', 'search', 'result', 'status'])
+                score: score(element, ['searchstatus', 'search', 'result', 'status', "couldn't find", 'couldn', 'spelling', 'another spelling'])
             }))
             .filter(row => row.score > 0)
             .sort((a, b) => b.score - a.score)[0]?.element || null;
     } catch (_) {
         return null;
     }
+}
+
+function toggleEmptyStateCopy($w, show) {
+    try {
+        const texts = asArray($w('Text'));
+        for (const element of texts) {
+            const value = read(element, 'text').toLowerCase();
+            if (
+                value.includes("couldn't find") ||
+                value.includes('try another spelling') ||
+                value.includes('search articles and blog posts')
+            ) {
+                if (show) {
+                    if (typeof element.show === 'function') element.show();
+                    if (typeof element.expand === 'function') element.expand();
+                } else {
+                    if (typeof element.hide === 'function') element.hide();
+                    if (typeof element.collapse === 'function') element.collapse();
+                }
+            }
+        }
+    } catch (_) {}
 }
 
 function pickById(elements, pattern, fallbackIndex) {
@@ -227,8 +249,17 @@ export function mountAutoSearchResults($w) {
             repeater.data = result.results || [];
 
             if (result.total) {
+                try {
+                    if (typeof repeater.show === 'function') repeater.show();
+                    if (typeof repeater.expand === 'function') repeater.expand();
+                } catch (_) {}
+                toggleEmptyStateCopy($w, false);
                 setStatus(status, result.total + (result.total === 1 ? ' result' : ' results'));
             } else {
+                toggleEmptyStateCopy($w, true);
+                try {
+                    if (typeof repeater.collapse === 'function') repeater.collapse();
+                } catch (_) {}
                 setStatus(status, 'No results found.');
             }
         } catch (_) {
