@@ -517,6 +517,49 @@ export const getLocationBundle = webMethod(Permissions.Anyone, async (locationNa
     };
 });
 
+export const browseDirectory = webMethod(Permissions.Anyone, async (filters = {}) => {
+    const query = String(filters.query || filters.location || filters.category || '').trim();
+    const limit = Math.max(1, Math.min(500, Number(filters.limit) || 100));
+    const offset = Math.max(0, Number(filters.offset) || 0);
+    const kinds = Array.isArray(filters.kinds) ? filters.kinds.map(String) : [];
+    const location = normalize(filters.location || '');
+    const category = normalize(filters.category || '');
+
+    const result = query
+        ? await runUnifiedSearchInternal(query, { limit: 2000 })
+        : { results: [], groups: {}, total: 0 };
+
+    let rows = result.results || [];
+
+    if (kinds.length) {
+        const allowed = new Set(kinds);
+        rows = rows.filter(card => allowed.has(card.kind));
+    }
+
+    if (location) {
+        rows = rows.filter(card =>
+            normalize(card.location).includes(location) ||
+            normalize(card.subtitle).includes(location) ||
+            normalize(card.title).includes(location)
+        );
+    }
+
+    if (category) {
+        rows = rows.filter(card =>
+            normalize(card.category).includes(category) ||
+            normalize(card.title).includes(category) ||
+            normalize(card.description).includes(category)
+        );
+    }
+
+    return {
+        total: rows.length,
+        offset,
+        limit,
+        results: rows.slice(offset, offset + limit)
+    };
+});
+
 export const publicSearchSources = webMethod(Permissions.Anyone, async () =>
     SOURCES.map(source => ({
         collection: source.collection,
