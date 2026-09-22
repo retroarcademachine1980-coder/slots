@@ -42,8 +42,23 @@ jobs:
         if: steps.key.outputs.available == 'true'
         run: npm run wix login -- --api-key "$WIX_CLI_API_KEY"
 
-      - name: Publish latest origin/main
+      - name: Install expect
+        if: steps.key.outputs.available == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq expect
+
+      - name: Publish checked-out code
         if: steps.key.outputs.available == 'true'
         env:
           CI: "true"
-        run: printf '\033[B\ny\n' | npm run wix publish
+        run: |
+          expect <<'EOF'
+          set timeout 180
+          spawn npm run wix publish
+          expect "What would you like to publish?"
+          send "\033\[B\r"
+          expect "Continue with publish?"
+          send "y\r"
+          expect eof
+          catch wait result
+          exit [lindex $result 3]
+          EOF
