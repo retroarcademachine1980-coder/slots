@@ -96,5 +96,29 @@
   ],
   "repository": "retroarcademachine1980-coder/slots",
   "branch": "url-only-rewire-20260924",
-  "warning": "Main push auto-publishes Wix via .github/workflows/publish-wix.yml. Do not merge partial migration."
+  "warning": "Main push auto-publishes Wix via .github/workflows/publish-wix.yml. Do not merge partial migration.",
+  "newSectionContainers": [
+    {
+      "page": "Cinemas",
+      "to": "/cinemas",
+      "status": "saved-unpublished-empty-container",
+      "pageCode": "Cinemas.pyonq.js"
+    },
+    {
+      "page": "Bowling",
+      "to": "/bowling",
+      "status": "saved-unpublished-empty-container",
+      "pageCode": "Bowling.hdhfa.js"
+    },
+    {
+      "page": "Outdoors",
+      "to": "/outdoors",
+      "status": "saved-unpublished-empty-container"
+    }
+  ],
+  "preparedRenderer": {
+    "id": "832b57e5-b7cb-4bfd-9d96-b25a53f1c9cb",
+    "status": "prepared, not applied to Wix",
+    "tests": "Six old and new route-selection checks passed; not live end-to-end tests"
+  }
 }
