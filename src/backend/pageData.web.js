@@ -1,3 +1,4 @@
+import { canonicalInternalUrl } from 'public/canonicalUrls';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 import { runUnifiedSearchInternal } from 'backend/searchCore';
@@ -97,7 +98,7 @@ function locationModel(row) {
         ].filter(Boolean),
         seoTitle: row.seoTitle || '',
         seoDescription: row.seoDescription || '',
-        route: row['link-arcade-locations-title'] || ''
+        route: canonicalInternalUrl(row['link-arcade-locations-title'] || '')
     };
 }
 
@@ -221,4 +222,5 @@ export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
 
     return { page, related };
 });
+
 

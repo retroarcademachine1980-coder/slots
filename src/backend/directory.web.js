@@ -1,3 +1,4 @@
+import { canonicalInternalUrl } from 'public/canonicalUrls';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 import { normalizeSearch } from 'backend/searchText';
@@ -84,7 +85,7 @@ function locationCard(row) {
         description: plain(row.shortDescription || row.raiderDestinationSummary || row.overview).slice(0, 280),
         image: imageValue(row.heroImage),
         alt: row.heroImageAlt || row.title || '',
-        route: row['link-arcade-locations-title'] || (row.slug ? '/arcade-locations/' + row.slug : ''),
+        route: canonicalInternalUrl(row['link-arcade-locations-title'] || (row.slug ? '/destination/' + row.slug : '')),
         location: row.title || ''
     };
 }
@@ -114,7 +115,7 @@ function attractionCard(row) {
         alt: row.title || '',
         route: row.website || row.googleMapsUrl || (
             row.locationSlug && row.slug
-                ? '/arcade-locations/' + row.locationSlug + '#' + row.slug
+                ? '/destination/' + row.locationSlug + '#' + row.slug
                 : ''
         ),
         location: row.locationName || ''
@@ -305,3 +306,4 @@ export const getMapPins = webMethod(Permissions.Anyone, async (options = {}) => 
         pins: [...venuePins, ...attractionPins]
     };
 });
+

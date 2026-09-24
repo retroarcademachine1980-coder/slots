@@ -1,0 +1,233 @@
+[
+  {
+    "id": "46453347-69c6-47c0-a5d8-7101bd7663d2",
+    "name": "Spin Raiders Shared Sitewide Skin 20260911",
+    "matches": [
+      "general-8','/casinos','/uk-casinos','/general-1-1'].includes(p)||p.startsWith('/arcade-locations/')||p.startsWith('/arcade-venues/')||/^\\/classic-fruit-machine/.test(p);"
+    ],
+    "count": 1
+  },
+  {
+    "id": "323eeaea-60ee-4132-b793-a0642038df96",
+    "name": "Spin Raiders Seaside Skin core.js",
+    "matches": [
+      "small class=\\\"image-credit\\\">'+e.e(a[8])+\\\"</small>\\\":\\\"\\\",href:e.detailHref(\\\"/arcade-locations/\\\",a[9],a[1])}),e.finder=(a=\\\"\\\")=>`<aside class=\\\"finder\\\"><h3>${a?\\\"Life’s brighter by the seasid",
+      " (link.origin !== current.origin) return false;\\n    if (!/^\\\\/(?:arcade-venues|arcade-locations)\\\\//.test(link.pathname)) return false;\\n    return link.pathname !== current.pathname || link.sear"
+    ],
+    "count": 2
+  },
+  {
+    "id": "d893e888-8986-48cc-8050-cadcae8ae2a2",
+    "name": "Spin Raiders Seaside Skin pages.js",
+    "matches": [
+      "=\\\\\\\"sr-town-shortcuts\\\\\\\" aria-label=\\\\\\\"Popular destinations\\\\\\\"><a href=\\\\\\\"/arcade-locations/blackpool\\\\\\\">Blackpool</a><a href=\\\\\\\"/arcade-locations/skegness\\\\\\\">Skegness</a><a href=\\\\\\\"/arca",
+      "de-locations/great-yarmouth\\\\\\\">Great Yarmouth</a><a href=\\\\\\\"/arcade-locations/southport\\\\\\\">Southport</a></nav><div class=\\\\\\\"sr-story-grid\\\\\\\"><article><p class=\\\\\\\"sr-story-ki"
+    ],
+    "count": 2
+  },
+  {
+    "id": "4bcd41c2-d3cd-47a4-b1fc-4733d3c540fc",
+    "name": "Spin Raiders Seaside Skin bootstrap.js",
+    "matches": [
+      "googleReviewCount|rating|reviewCount|ratingSource|link-arcade-venues-title|link-arcade-locations-title\\\".split(\\\"|\\\"),h=\\\"/\\\"==location.pathname&&!/[?&](sr|raidertube)=/.test(location.search),a=as",
+      "=t?\\\"Venues\\\":\\\"Locations\\\",r=\\\"venue\\\"===t?\\\"link-arcade-venues-title\\\":\\\"link-arcade-locations-title\\\";let c=await a(s,{$or:[{slug:{$eq:n}},{_id:{$eq:n}}]});c.length||(c=(await a(s)).filter(e=>i",
+      ".shortDescription||\\\"\\\",n(e),\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",e.imageCredit||\\\"\\\",i(e,\\\"link-arcade-locations-title\\\",e.slug||e._id)]),window.SR_A=y.filter(e.listingReady).map(e=>[e.title,e.locationName||\\\"\\\",",
+      "venue:\\\"/arcade-venues/\\\"+encodeURIComponent(t.get(\\\"slug\\\")||\\\"\\\"),location:\\\"/arcade-locations/\\\"+encodeURIComponent(t.get(\\\"slug\\\")||\\\"\\\"),directory:\\\"/arcades\\\",locations:\\\"/locations\\\",map:\\\"",
+      "ers\\\":\\\"/\\\"!==i||n.has(\\\"sr\\\")||n.has(\\\"raidertube\\\")?\\\"/map\\\"===i?\\\"map\\\":/^\\\\/arcade-locations\\\\//.test(i)?\\\"destination\\\":/^\\\\/arcade-venues\\\\//.test(i)?\\\"venue\\\":/^\\\\/(locations|destinations)$"
+    ],
+    "count": 5
+  },
+  {
+    "id": "8eb54812-a041-4b2d-98d5-223388a42654",
+    "name": "Spin Raiders Seaside Skin adult.js",
+    "matches": [
+      " Raiders\\\",!0);let d=\\\"\\\";const p=n?.[\\\"link-arcade-venues-title\\\"]||n?.[\\\"link-arcade-locations-title\\\"];if(p)try{const e=new URL(p,location.origin);e.origin===location.origin&&(d=e.origin+e.path"
+    ],
+    "count": 1
+  },
+  {
+    "id": "778e43d8-ab42-421a-a99b-c6753725fd7d",
+    "name": "Spin Raiders Seaside Skin archive-quality.js",
+    "matches": [
+      "e-archive-1\\\\//.test(f)?\\\"machine\\\":/\\\\/arcade-venues\\\\//.test(f)?\\\"venue\\\":/\\\\/arcade-locations\\\\//.test(f)?\\\"town\\\":\\\"place\\\"),m=s&&e.saved().includes(s),g=r.category||(\\\"machine\\\"===h?\\\"Fruit m"
+    ],
+    "count": 1
+  },
+  {
+    "id": "5264420e-b3be-48c4-b330-985cf9f44032",
+    "name": "Google AdSense Auto Ads",
+    "matches": [
+      "    /^\\/arcade-locations\\//.test(path)||"
+    ],
+    "count": 1
+  },
+  {
+    "id": "430eb5a9-fb28-47d1-b467-e7fc1747298c",
+    "name": "Spin Raiders Partner Cards V6",
+    "matches": [
+      "unction(){const e=[...s.querySelectorAll(\"article.raider-card\")],a=new Map,o=/\\/arcade-locations\\/|\\/arcade-venues\\//.test(location.pathname);for(const r of e){const e=r.querySelector(\"h3\")?.textC"
+    ],
+    "count": 1
+  },
+  {
+    "id": "7401e96c-6168-466a-a8c1-51a0a63ea165",
+    "name": "Spin Raiders shared page frame v2 20260923",
+    "matches": [
+      "1\"===t.get(\"raidertube\")||/trip|raidertube/.test(e)?6:\"agc\"===r||/arcade-venues|arcade-locations/.test(e)?3:-1}()),!0),s=r(\"sr-brand-footer\",window.SR_SHELL.foot(),!1),i=document.getElementById(\"r"
+    ],
+    "count": 1
+  },
+  {
+    "id": "cce872e3-db49-483a-ab1f-c84cc097942c",
+    "name": "Spin Raiders Directory First Search and Local Listings",
+    "matches": [
+      "Until','offerText','region','county','country','link-arcade-venues-title','link-arcade-locations-title','link-classic-fruit-machine-archive-1-title'];",
+      "de-venues/'+encodeURIComponent(r.slug||r._id);if(c==='Locations')return r['link-arcade-locations-title']||'/arcade-locations/'+encodeURIComponent(r.slug||r._id);if(c==='ClassicFruitMachines')retur",
+      "const path=location.pathname,isTown=/^\\/arcade-locations\\//.test(path),isVenue=/^\\/arcade-venues\\//.test(path);if(!isTown&&!isVenue)return;"
+    ],
+    "count": 3
+  },
+  {
+    "id": "808467f3-ffc9-4629-9c52-6d626130de5f",
+    "name": "Spin Raiders Universal Location V2 Skin",
+    "matches": [
+      " if(!/^\\/arcade-locations\\//.test(location.pathname))return;"
+    ],
+    "count": 1
+  },
+  {
+    "id": "3f488a18-1e68-456f-81ee-5d50922f91dc",
+    "name": "Spin Raiders Blackpool Flagship Layout Repair 20260921",
+    "matches": [
+      "mportant}}</style><script>(()=>{\"use strict\";if(!location.pathname.startsWith(\"/arcade-locations/\"))return;document.documentElement.classList.add(\"sr-bp-restored\");let timer;function fix(){const r"
+    ],
+    "count": 1
+  },
+  {
+    "id": "4dd22cfc-0c35-4634-8fe5-9315c072309c",
+    "name": "Location recommended arcades and affiliate fallback",
+    "matches": [
+      "const town=path.startsWith(\"/arcade-locations/\");",
+      "const blackpool=path===\"/arcade-locations/blackpool\"||label.toLowerCase()===\"blackpool\";"
+    ],
+    "count": 2
+  },
+  {
+    "id": "63cbccc9-b55e-4a4c-a442-0ec033c960a9",
+    "name": "Spin Raiders category content 1 20260922",
+    "matches": [
+      "e4ed069389c91d~mv2.webp\",\"alt\":\"Blackpool\",\"href\":\"https://www.spin-raiders.com/arcade-locations/blackpool\",\"description\":\"Explore the destination guide\"},{\"title\":\"Skegness\",\"image\":\"https://stat",
+      "b81c3578d88dd20~mv2.webp\",\"alt\":\"Skegness\",\"href\":\"https://www.spin-raiders.com/arcade-locations/skegness\",\"description\":\"Explore the destination guide\"},{\"title\":\"Great Yarmouth\",\"image\":\"https:/",
+      "672ca13d7~mv2.webp\",\"alt\":\"Great Yarmouth\",\"href\":\"https://www.spin-raiders.com/arcade-locations/great-yarmouth\",\"description\":\"Explore the destination guide\"},{\"title\":\"Scarborough\",\"image\":\"http",
+      "c4d95a5481eb~mv2.webp\",\"alt\":\"Scarborough\",\"href\":\"https://www.spin-raiders.com/arcade-locations/scarborough\",\"description\":\"Explore the destination guide\"}],\"hero\":\"https://static.wixstatic.com/m",
+      "487a7c4b4e2061e8ca7~mv2.jpg/v1/fit/w_900,h_900,q_90/file.webp\"]],\"rowLinks\":[[\"/arcade-locations/newquay\",\"/arcade-locations/st-ives\",\"/arcade-locations/weymouth\",\"/arcade-locations/margate\",\"/arc"
+    ],
+    "count": 6
+  },
+  {
+    "id": "a6c9cb86-2f04-4e19-9276-70869764d91d",
+    "name": "Spin Raiders category content 2 20260922",
+    "matches": [
+      "f5acd4f4f34bb4043a~mv2.webp/v1/fit/w_900,h_900,q_90/file.webp\"]],\"rowLinks\":[[\"/arcade-locations/mablethorpe\",null,\"/arcade-locations/tenby\",\"/arcade-locations/bridlington\",null,\"/arcade-locations",
+      "/newquay\",\"/arcade-locations/bognor-regis\",\"/arcade-locations/weymouth\"]],\"layout\":[1536,50,228,38,81,220,78,123]},\"family-fun\":{\"id\":\"family-fun\",\"title\":\"Famil",
+      "5eae~mv2.jpg/v1/fit/w_900,h_900,q_90/file.webp\",null]],\"rowLinks\":[[null,null,\"/arcade-locations/lake-district\",\"/arcade-locations/bristol\",\"/arcade-locations/edinburgh\",null]],\"layout\":[1448,50,2"
+    ],
+    "count": 3
+  },
+  {
+    "id": "9b30107c-55fd-4d30-b881-a707de114b94",
+    "name": "Spin Raiders category content 4 20260922",
+    "matches": [
+      "321f863e09384~mv2.webp/v1/fit/w_900,h_900,q_90/file.webp\",null]],\"rowLinks\":[[\"/arcade-locations/whitby\",\"/arcade-locations/cromer\",\"/arcade-locations/eastbourne\",\"/arcade-locations/margate\",\"/arc",
+      "i/Special:Redirect/file/Isle_of_Wight_coastline.jpg\"]],\"rowLinks\":[[null,null,\"/arcade-locations/lake-district\",\"/arcade-locations/york\",\"/arcade-locations/newquay\",\"/arcade-locations/isle-of-wigh",
+      "e4ed069389c91d~mv2.webp\",\"alt\":\"Blackpool\",\"href\":\"https://www.spin-raiders.com/arcade-locations/blackpool\",\"description\":\"Explore the destination guide\"},{\"title\":\"Southport\",\"image\":\"https://sta",
+      "_ab424007092840bcbab53b10370dd13e~mv2.jpg\",\"href\":\"https://www.spin-raiders.com/arcade-locations/southport\",\"alt\":\"Southport Pier and seafront in Southport\",\"description\":\"Explore the destination ",
+      "_2a57f12607d74545b3b1d31f3016587c~mv2.jpg\",\"href\":\"https://www.spin-raiders.com/arcade-locations/whitby\",\"alt\":\"Whitby\",\"description\":\"Explore the destination guide\"},{\"title\":\"York\",\"image\":\"http"
+    ],
+    "count": 7
+  },
+  {
+    "id": "e3aaa69c-5128-42ad-9840-b2abd924b1c6",
+    "name": "Spin Raiders category content 5 20260922",
+    "matches": [
+      "e4ed069389c91d~mv2.webp\",\"alt\":\"Blackpool\",\"href\":\"https://www.spin-raiders.com/arcade-locations/blackpool\",\"description\":\"Explore the destination guide\"},{\"title\":\"Southport\",\"image\":\"https://sta",
+      "_ab424007092840bcbab53b10370dd13e~mv2.jpg\",\"href\":\"https://www.spin-raiders.com/arcade-locations/southport\",\"alt\":\"Southport Pier and seafront in Southport\",\"description\":\"Explore the destination ",
+      "_2a57f12607d74545b3b1d31f3016587c~mv2.jpg\",\"href\":\"https://www.spin-raiders.com/arcade-locations/whitby\",\"alt\":\"Whitby\",\"description\":\"Explore the destination guide\"},{\"title\":\"Tenby\",\"image\":\"htt",
+      "_ea20e80588ec428a857cad205ed14be1~mv2.jpg\",\"href\":\"https://www.spin-raiders.com/arcade-locations/tenby\",\"alt\":\"Tenby\",\"description\":\"Explore the destination guide\"}],\"hero\":\"https://static.wixstat",
+      "mv2.jpg/v1/fit/w_900,h_900,q_90/file.webp\",null]],\"rowLinks\":[[null,null,null,\"/arcade-locations/llandudno\",\"/arcade-locations/tenby\",null]],\"layout\":[1122,57,364,34,95,239,150,186]}});</script>"
+    ],
+    "count": 5
+  },
+  {
+    "id": "172fe49d-2fdf-4c9e-aa60-7fe22fe935ff",
+    "name": "Spin Raiders public directory adapter",
+    "matches": [
+      "\"shortDescription\",\"region\",\"county\",\"country\",\"link-arcade-venues-title\",\"link-arcade-locations-title\"];window.SR_PUBLIC_DIRECTORY={S:{e:t=>String(t??\"\").replace(/[&<>\"']/g,t=>({\"&\":\"&amp;\",\"<\":\""
+    ],
+    "count": 1
+  },
+  {
+    "id": "f41b9217-ca73-4415-9cf8-14bf96ac7799",
+    "name": "Spin Raiders My Trips and dashboard",
+    "matches": [
+      "\"Venues\"===e._collection?\"/arcade-venues/\"+e.slug:\"Locations\"===e._collection?\"/arcade-locations/\"+e.slug:\"ClassicFruitMachines\"===e._collection?\"/classic-fruit-machine-archive-1/\"+e.slug:\"/destin"
+    ],
+    "count": 1
+  },
+  {
+    "id": "e5d90d5c-52c7-4b55-ac67-e63d6859208d",
+    "name": "Spin Raiders route-navigation 20260922",
+    "matches": [
+      "&(n.pathname=\"/destination-recommendations\"),(\"/\"===n.pathname||/^\\/(search|map|arcade-locations|arcade-venues|destination-recommendations|classic-fruit-machine-archive(?:-1)?|raidertube)(\\/|$)/.t"
+    ],
+    "count": 1
+  },
+  {
+    "id": "798926bc-c15d-4353-ac9b-d0616167b5ef",
+    "name": "Spin Raiders front page renderer v5 20260923",
+    "matches": [
+      "s])=>`<a href=\"${s}\">${f(e,32)}${a}</a>`).join(\"\")}</details>`).join(\"\"),S=e=>\"/arcade-locations/\"+e.toLowerCase().replace(/ /g,\"-\"),$=[[\"Skegness\",\"Traditional fun\",\"89bd10a9088945cdbb81c3578d88d"
+    ],
+    "count": 1
+  },
+  {
+    "id": "79a8a040-0175-4816-85e8-9100de699b05",
+    "name": "Spin Raiders Whole Site Renderer",
+    "matches": [
+      "\">'+tg(v[3])+'</div></div></a>'}function lc(l){return '<a class=\"srcard\" href=\"/arcade-locations/'+U(l[1])+'\">'+im(l[3],l[0])+'<div class=\"srbody\"><div class=\"srmeta\">DESTINATION</div><h3>'+E(l[0]",
+      "h(l=>{if((l[0]+' '+l[2]).toLowerCase().includes(t))z.push([l[0],'Destination','/arcade-locations/'+U(l[1])])});G('SR_A').forEach(a=>{if((a[0]+' '+a[1]+' '+a[2]).toLowerCase().includes(t))z.push([a",
+      ";return (v||G('SR_V').some(x=>x[1]===k))?venue(v?v[1]:k):null}if(p.startsWith('/arcade-locations/')){const k=D(p.split('/').pop()),l=G('SR_L').find(x=>x[9]===k);return (l||G('SR_L').some(x=>x[1]==",
+      "||p==='/arcades'||s==='directory')return directory();if(p==='/locations'||p==='/arcade-locations'||s==='locations')return locations();if(p==='/map'||s==='map')return map();if(['/general-8','/casin",
+      "os','/uk-casinos'].includes(p)||p.startsWith('/arcade-venues/')||p.startsWith('/arcade-locations/')||p.startsWith('/classic-fruit-machine')||q.has('sr')||q.has('report')||q.has('raidertube'))retur"
+    ],
+    "count": 5
+  },
+  {
+    "id": "b32d702f-11ec-417f-bb58-c1220bb03835",
+    "name": "Spin Raiders — Discovery UX 2026-09-11",
+    "matches": [
+      " '/classic-fruit-machine-archive-1/' : kind === 'venue' ? '/arcade-venues/' : '/arcade-locations/';",
+      "achine-archive-1-title' : kind === 'venue' ? 'link-arcade-venues-title' : 'link-arcade-locations-title';",
+      "['title'], fields:[...common,'region','county','country','locationStatus','link-arcade-locations-title']},",
+      "const isVenue = path.startsWith('/arcade-venues/'), isTown = path.startsWith('/arcade-locations/'), isMachine = path.startsWith('/classic-fruit-machine-archive-1/') || params.has('machine');",
+      " (record.locationName) crumbs.push([record.locationName,record.locationSlug ? '/arcade-locations/' + encodeURIComponent(record.locationSlug) : '/destination-recommendations?q=' + encodeURIComponen"
+    ],
+    "count": 5
+  },
+  {
+    "id": "bb74d97f-c5cf-46b6-8682-a55ac5713059",
+    "name": "Spin Raiders Venue Quality Gate 20260921",
+    "matches": [
+      "  var destination=/^\\/arcade-locations\\//.test(location.pathname);"
+    ],
+    "count": 1
+  },
+  {
+    "id": "08c99c72-1e31-4034-b680-9e8b08b0d08a",
+    "name": "Spin Raiders venue page renderer v3 20260923",
+    "matches": [
+      "arcades\",I=h.agc&&!h.family?\"Adult Gaming Centres\":\"Arcades\",E=e.locationSlug?\"/arcade-locations/\"+encodeURIComponent(e.locationSlug):\"\",x=((e,t)=>{const a=[...Array.isArray(e.facilities)?e.facili"
+    ],
+    "count": 1
+  }
+]

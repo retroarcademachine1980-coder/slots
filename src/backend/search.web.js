@@ -1,3 +1,4 @@
+import { canonicalInternalUrl } from 'public/canonicalUrls';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 import { normalizeSearch } from 'backend/searchText';
@@ -23,7 +24,7 @@ const SOURCES = [
         description: ['shortDescription'], image: ['heroImage'], alt: ['title'],
         location: ['locationName'],
         routeBuilder: row => row.locationSlug && row.slug
-            ? '/arcade-locations/' + row.locationSlug + '#' + row.slug
+            ? '/destination/' + row.locationSlug + '#' + row.slug
             : (row.website || row.googleMapsUrl || '')
     },
     {
@@ -114,8 +115,8 @@ function plain(value) {
 }
 
 function routeFor(row, source) {
-    if (source.routeBuilder) return source.routeBuilder(row) || '';
-    return first(row, source.route || []);
+    if (source.routeBuilder) return canonicalInternalUrl(source.routeBuilder(row) || '');
+    return canonicalInternalUrl(first(row, source.route || []));
 }
 
 function statusText(row) {
@@ -452,3 +453,4 @@ export const browseDirectory = webMethod(Permissions.Anyone, async (filters = {}
 export const publicSearchSources = webMethod(Permissions.Anyone, async () =>
     SOURCES.map(source => ({ collection: source.collection, kind: source.kind }))
 );
+

@@ -1,0 +1,100 @@
+{
+  "updated": "2026-09-24",
+  "scope": "URL-only; preserve page design, content, images, visibility and affiliate tracking",
+  "status": "INCOMPLETE — saved Wix draft; not published",
+  "changes": [
+    {
+      "page": "Arcades Near Me",
+      "from": "/about-1-1",
+      "to": "/near-me",
+      "status": "saved-unpublished",
+      "redirect": "Wix automatic redirect shown"
+    },
+    {
+      "page": "Retro Arcades",
+      "from": "/about-5-1",
+      "to": "/retro-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "£500 Jackpot Slots",
+      "from": "/about-5",
+      "to": "/500-jackpot-slots",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Ticket Arcades",
+      "from": "/general-clean",
+      "to": "/ticket-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Coin Pusher Arcades",
+      "from": "/general-9",
+      "to": "/coin-pusher-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Dog-Friendly Arcades",
+      "from": "/general-9-1",
+      "to": "/dog-friendly-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Wheelchair-Friendly Arcades",
+      "from": "/general-6",
+      "to": "/wheelchair-friendly-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Seaside Arcades",
+      "from": "/general-1",
+      "to": "/seaside-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Casinos in the UK",
+      "from": "/general-8",
+      "to": "/casinos",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Adult Gaming Centres",
+      "from": "/adult-gaming-centres",
+      "to": "/agc",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Arcade Locations (Item)",
+      "from": "/arcade-locations/{Location Name}",
+      "to": "/destination/{Location Name}",
+      "status": "saved-unpublished",
+      "redirect": "Not automatic; migration required"
+    }
+  ],
+  "bookmakers": "Hidden from Wix menu; no Venues records with bookmaker/betting shop venueType found in 2105 audited rows; custom script remnants still require cleanup",
+  "agreedPatterns": [
+    "/destination/<town>",
+    "/destination/<town>/<section>/<venue>",
+    "/cinemas/<brand>/<town>",
+    "/bowling/<brand>/<town>",
+    "/agc/<brand>/<town>",
+    "/agc/<brand>/<street>/<town> for multiple branches",
+    "/outdoors/<operator>/<location>",
+    "/classic-fruit-machines/<brand>/<machine>"
+  ],
+  "blockers": [
+    "26 enabled embeds reference old town paths. Preserve CMS field names; update path recognizers and links together.",
+    "43 pageReady venues lack locationSlug in live data; resolve actual links before nested venue URL changes.",
+    "Create real routes for query-only live sections and their parents, retaining current renderers.",
+    "Generate and validate redirects before publishing. No redirects created yet.",
+    "No live end-to-end tests yet."
+  ],
+  "automationsPaused": [
+    "6aa0bdf6a7948191a17a53da4dc48e30",
+    "6aaa62df9fe881919087da1a25428dc0"
+  ],
+  "repository": "retroarcademachine1980-coder/slots",
+  "branch": "url-only-rewire-20260924",
+  "warning": "Main push auto-publishes Wix via .github/workflows/publish-wix.yml. Do not merge partial migration."
+}
