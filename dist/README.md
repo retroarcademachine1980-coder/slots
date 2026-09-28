@@ -127,7 +127,7 @@ size on town/venue pages and photo recompression (<0.8% pixels), plus pages that
 REMAINING (needs the Wix editor / owner decision, not code): the hidden Wix sections still load full-size originals —
 /classic-fruit-machine-archive's old repeater (93 image elements, ~17 MB, 64 downloaded at once), the hidden dynamic-page
 hero on food pages (~400 KB) and town pages (~140 KB). Their CMS image fields hold bare https URLs, so Wix can't resize.
-Also: ~200 ClassicFruitMachines records are active:false but still in the Wix sitemap -> "Record unavailable" soft 404s.
+Also: 3,438 of 3,650 ClassicFruitMachines records are active:false but still in the Wix sitemap -> "Record unavailable" soft 404s.
 
 ## To ship a change later
 Run `sh tools/ship.sh "message"` (sizes images, splits bundles, commits, pushes, prints the hash), then put the
