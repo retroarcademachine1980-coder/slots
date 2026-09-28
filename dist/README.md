@@ -103,6 +103,15 @@ Verified live: town, venue, search, machine and home pages now show only their f
 the baseline on 21 of 22 comparable pages (/map varies between loads on its own). The Seaside drawing still happens
 underneath (hidden) — removing it needs the final designs to stop depending on the Seaside layer (a rebuild job).
 
+## Town pages: old layer no longer draws (28 Sep 2026, 12:45) — LIVE on b9dcb77 (loader revision 18)
+The Seaside bootstrap router (inside the "bootstrap.js" string in block "[7] Seaside Skin bootstrap.js") now returns
+early for route "destination" unless window.SR_SEASIDE_DRAW_TOWN is set. The final town design (block "[49] Universal
+Location V2 Skin", #sr-location-directory) only needs SR_SEASIDE.archiveQuery + SR_SEARCH_DATA/VIEW, which still load.
+Verified: 22-page baseline identical except og:image/twitter:image on town pages now keep Wix's own 2500px version of
+the same photo instead of a 1200px one. Slow 4G + 4x CPU: Blackpool 22 s -> 9.8 s, Cleethorpes 18 s -> 9.8 s.
+Next: venue pages (#sr-shell-page from "[117] venue page renderer v3") read SR_SEASIDE.currentRecord, which the
+Seaside venue render sets — needs that record loaded without drawing before the same switch-off can be made.
+
 ## To ship a change later
 Run `sh tools/ship.sh "message"` (sizes images, splits bundles, commits, pushes, prints the hash), then put the
 hash into the loader embed.
