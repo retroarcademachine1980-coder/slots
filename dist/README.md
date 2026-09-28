@@ -81,7 +81,7 @@ Original-Branch and press Publish (restored revision 6283 this way). Do NOT use 
 ## Homepage split (28 Sep 2026)
 The homepage no longer downloads the whole 1 MB bundle before it can paint. `tools/split-bundle.py`
 builds two files from `sr.js`:
-- `sr.core.min.js` — the 13 snippets that actually act on `/` (measured in headless Chromium with every
+- `sr.core.min.js` — the 16 snippets that actually act on `/` (measured in headless Chromium with every
   snippet instrumented: 12 did DOM work or were read via a global by one that did, plus the newsletter).
   ~83 KB raw / 27 KB gzip. Loaded immediately on `/` with fetchpriority=high.
 - `sr.rest.min.js` — the other 116, loaded on `/` 1.5 s after the load event or on the first
@@ -96,3 +96,9 @@ bundle on /, /seaside, /classic-fruit-machine-archive, /casino-offers, /destinat
 and /search?q=blackpool. The core list lives in
 `dist/homepage-core.json` (0-based snippet indexes in sr.js order); after editing sr.js re-run
 `python3 tools/split-bundle.py` and commit all three files together.
+
+Measured 28 Sep 2026 04:20, Pixel-6 emulation, slow 4G (1.6 Mbps / 150 ms) + 4x CPU throttle, real network:
+hero painted at 8.8–12.4 s with the single bundle; 1.9–2.5 s with the core bundle (3 runs: 2.00 / 2.05 / 1.94 s).
+Two of the core snippets ("Homepage Style Discovery Cards", "Days Out Experience") do their rendering inside timer
+callbacks, which the instrumented probe could not attribute — they were found by injecting the rest snippets one by
+one (scratch script "bisect"). If the homepage ever comes up empty with only the core loaded, repeat that bisection.
