@@ -60,7 +60,24 @@ Still heavy on inner pages: sr.rest.min.js (~300 KB gz, loads at once off the ho
 (~1.3 MB of script from the Wix map element), Wowcher deal photos (up to 470 KB each, external, can't be resized),
 and ~1 MB of images for the hidden old Wix sections the skin paints over.
 
+## Affiliate/offer photos re-hosted (28 Sep 2026, 09:45)
+158 photos that pages pulled from Wowcher, Booking-style hotel sites, Coral Island, Visit Blackpool etc. were
+downloaded, resized to 800px WebP (25.7 MB of originals -> 6.6 MB, ~40 KB each) and uploaded to the site's own
+Wix media (folder copies also in img/offers/). CMS display fields were switched to the Wix copies:
+DestinationRecommendations image/dealImage/fallbackImage (153 items), Venues mainImage/heroImage/gallery (4),
+WowcherOffers (2), HomepageArcadeFeed monthly-hotel (1), NearbyAttractions heroImage (1). Source/provenance fields
+(imageSource, imageSourceUrl, exteriorPhotoSource...) were left untouched for backlink outreach.
+tools/rehost_map.json maps every original URL to its Wix copy. Not re-hosted: YouTube thumbnails, the Hunstanton
+webcam (live), OSM tiles, and 3 that could not be fetched (Flibco London 404, two Wikimedia photos rate-limited).
+After this no page downloads images from outside hosts. Card photos now request 720px q62 instead of 1200px q76.
+Measured (slow 4G + 4x CPU, Pixel 5): /destination/blackpool LCP ~22 s, /search ~20 s, homepage LCP 2.2 s.
+Inner pages are now limited by sr.rest.min.js (276 KB gz, must download + run before the page paints) and ~2 MB of
+Wix's own scripts/images. Next: split sr.rest by page type; empty the hidden old Wix sections in the editor.
+
 ## To ship a change later
+Run `sh tools/ship.sh "message"` (sizes images, splits bundles, commits, pushes, prints the hash), then put the
+hash into the loader embed.
+
 Edit the source in the repo, rebuild/push, update the commit hash in the loader. Never paste code
 back into Custom Code snippets.
 
