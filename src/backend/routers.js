@@ -67,7 +67,3 @@ export const ClassicFruitMachines_afterRouter = probe('collection');
 export const classicFruitMachines_afterRouter = probe('collection-camel');
 export const classic_fruit_machine_archive_afterRouter = probe('archive-underscore');
 export const classicFruitMachineArchive_afterRouter = probe('archive-camel');
-
-// The page prefix contains dashes, so Wix may look the hook up by its literal name.
-const machineProbe = probe('literal');
-export { machineSitemap as "classic-fruit-machine-archive-1_afterSitemap", machineProbe as "classic-fruit-machine-archive-1_afterRouter" };
