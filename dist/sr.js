@@ -719,7 +719,7 @@ let n=0;const timer=setInterval(()=>{apply();if(++n>=80)clearInterval(timer)},35
 
 /* [52] Spin Raiders front page styles v5 20260923 */
 (function(){try{
-(function(){if(location.pathname!=="/"||document.getElementById("sr-home-hero-preload"))return;var l=document.createElement("link");l.id="sr-home-hero-preload";l.rel="preload";l.as="image";l.href="https://static.wixstatic.com/media/3a517e_42651a2e3b284d329c0d12dcab45d1a0~mv2.webp/v1/fit/w_1600,h_900,al_c,q_80,enc_avif/hero.webp";l.setAttribute("fetchpriority","high");document.head.append(l)})();
+/* hero preload moved to the Wix head loader snippet (viewport-specific) */
 }catch(e){console.warn('SR snippet failed: Spin Raiders front page styles v5 20260923',e)}})();
 
 /* [52] Spin Raiders front page styles v5 20260923 */
