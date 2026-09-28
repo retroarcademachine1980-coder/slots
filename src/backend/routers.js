@@ -18,7 +18,11 @@ async function switchedOffSlugs() {
   const slugs = new Set();
   let res = await wixData.query('ClassicFruitMachines').eq('active', false).limit(1000).find({ suppressAuth: true });
   for (;;) {
-    for (const item of res.items) if (item.slug) slugs.add(String(item.slug).toLowerCase());
+    for (const item of res.items) {
+      // The machine page URL is stored on the item by Wix (link-...-title), e.g. /classic-fruit-machine-archive-1/jungle-jive.
+      const link = item['link-classic-fruit-machine-archive-1-title'];
+      if (link) slugs.add(String(link).replace(/\/+$/, '').split('/').pop().toLowerCase());
+    }
     if (!res.hasNext()) break;
     res = await res.next();
   }
@@ -28,7 +32,7 @@ async function switchedOffSlugs() {
 
 function entrySlug(entry) {
   const url = String((entry && entry.url) || '').split(/[?#]/)[0].replace(/\/+$/, '');
-  try { return decodeURIComponent(url.split('/').pop() || '').toLowerCase(); } catch (e) { return ''; }
+  try { return decodeURIComponent(url.split('/').pop() || '').toLowerCase().replace(/\s+/g, '-'); } catch (e) { return ''; }
 }
 
 // Wix calls afterSitemap(sitemapRequest, sitemapEntries); take whichever argument is the entry list.
@@ -63,3 +67,7 @@ export const ClassicFruitMachines_afterRouter = probe('collection');
 export const classicFruitMachines_afterRouter = probe('collection-camel');
 export const classic_fruit_machine_archive_afterRouter = probe('archive-underscore');
 export const classicFruitMachineArchive_afterRouter = probe('archive-camel');
+
+// The page prefix contains dashes, so Wix may look the hook up by its literal name.
+const machineProbe = probe('literal');
+export { machineSitemap as "classic-fruit-machine-archive-1_afterSitemap", machineProbe as "classic-fruit-machine-archive-1_afterRouter" };

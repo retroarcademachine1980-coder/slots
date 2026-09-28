@@ -54,3 +54,13 @@ export async function get_fuelAverage() {
     }
 }
 
+
+// Diagnostic: lists the hook names the routers file exports (proves which version is live).
+export async function get_srRouters() {
+    try {
+        const r = await import('backend/routers');
+        return ok({ headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }, body: JSON.stringify(Object.keys(r)) });
+    } catch (error) {
+        return serverError({ headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: String(error && error.message || error) }) });
+    }
+}
