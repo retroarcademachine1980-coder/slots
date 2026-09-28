@@ -112,6 +112,23 @@ the same photo instead of a 1200px one. Slow 4G + 4x CPU: Blackpool 22 s -> 9.8 
 Next: venue pages (#sr-shell-page from "[117] venue page renderer v3") read SR_SEASIDE.currentRecord, which the
 Seaside venue render sets — needs that record loaded without drawing before the same switch-off can be made.
 
+## Final pass 28 Sep 2026 (13:40) — LIVE on bdf9a4c (loader embed revision 20)
+- Seaside router no longer draws hidden pages for destination, venue or archive routes (venue v3 fetches its own record;
+  the archive design gets an empty hidden #sr-seaside-root to mount beside).
+- Photos right-sized: venue hero 1000 / gallery 900 / nearby cards 480 (a 1.69 MB PNG thumbnail was loading raw),
+  directory/search cards 480, town deals strip 560, homepage cards 480-500 q55 AVIF (restaurant card 114 -> 46 KB),
+  homepage promo crops 700 q55, search banner 1000 q60 (preloaded on /search; the town banner is preloaded on towns).
+- Tried and rejected: display:none on #SITE_CONTAINER from the first byte (mixed results, not worth the risk).
+Measured live, Pixel 5 — typical 4G (9 Mbps, 2x CPU): home 1.1 s, Blackpool 3.2 s, Cleethorpes 3.4 s, Admiral York 3.7 s,
+search 4.9 s, food page 2.0 s first paint. Slow 4G (1.6 Mbps, 4x CPU): home 2.2 s, towns 9.3-9.9 s, venue 9.8 s,
+search 10.8 s (this morning: towns 22-54 s, search 48 s).
+Regression: 25-page screenshot + SEO-tag comparison with the morning baseline — identical apart from share-preview image
+size on town/venue pages and photo recompression (<0.8% pixels), plus pages that vary on their own (blog, casino-offers).
+REMAINING (needs the Wix editor / owner decision, not code): the hidden Wix sections still load full-size originals —
+/classic-fruit-machine-archive's old repeater (93 image elements, ~17 MB, 64 downloaded at once), the hidden dynamic-page
+hero on food pages (~400 KB) and town pages (~140 KB). Their CMS image fields hold bare https URLs, so Wix can't resize.
+Also: ~200 ClassicFruitMachines records are active:false but still in the Wix sitemap -> "Record unavailable" soft 404s.
+
 ## To ship a change later
 Run `sh tools/ship.sh "message"` (sizes images, splits bundles, commits, pushes, prints the hash), then put the
 hash into the loader embed.
