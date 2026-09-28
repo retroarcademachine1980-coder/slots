@@ -1252,7 +1252,7 @@ let n=0;const t=setInterval(()=>{const q=window.SR_SEASIDE&&window.SR_SEASIDE.ar
         link.textContent = 'Check offer ↗';
         article.append(link);
       }
-      if (isStay(stop.category) && !article.querySelector('[data-stop-price]')) {
+      if (!article.querySelector('[data-stop-price]') && slug(stop.name).length > 3) {
         const match = offers.find(offer => slug(offer.name) === slug(stop.name) || slug(offer.name).includes(slug(stop.name)) || slug(stop.name).includes(slug(offer.name)));
         if (match && match.dealPrice) {
           const tag = document.createElement('a');
@@ -1278,7 +1278,10 @@ let n=0;const t=setInterval(()=>{const q=window.SR_SEASIDE&&window.SR_SEASIDE.ar
       loadOffers(towns);
     }
     if (root._stayOffers && root._stayOffers.length) {
-      panel.innerHTML = `<h3>Places to stay${firstTown ? ' in ' + esc(firstTown) : ''} — live offers</h3>` + root._stayOffers.slice(0, 6).map((offer, i) => `<div class="offer"><div><strong>${esc(offer.name)}</strong>${offer.offerTitle ? esc(offer.offerTitle) : ''}</div><div class="price">${esc(offer.dealPrice || '')}${offer.wasPrice ? `<br><s class="muted">${esc(offer.wasPrice)}</s>` : ''}</div><div class="actions">${offer.price ? `<button type="button" data-use-offer="${i}">Use £${offer.price} as room quote</button>` : ''}<a href="${esc(offer.url)}" target="_blank" rel="sponsored noopener">View deal ↗</a>${offer.validUntil ? `<span class="muted">until ${esc(offer.validUntil)}</span>` : ''}</div></div>`).join('') + '<p class="muted">Partner links — we may earn a small commission at no extra cost to you. Deal prices are usually per room or per stay; check the deal page before booking.</p>';
+      const all = root._stayOffers;
+      const card = (offer, i) => `<div class="offer"><div><strong>${esc(offer.name)}</strong>${offer.offerTitle ? esc(offer.offerTitle) : ''}</div><div class="price">${esc(offer.dealPrice || '')}${offer.wasPrice ? `<br><s class="muted">${esc(offer.wasPrice)}</s>` : ''}</div><div class="actions">${offer.price ? `<button type="button" data-use-offer="${i}">${offer.stay ? `Use £${offer.price} as room quote` : `Add £${offer.price} to activities`}</button>` : ''}<a href="${esc(offer.url)}" target="_blank" rel="sponsored noopener">View deal ↗</a>${offer.validUntil ? `<span class="muted">until ${esc(offer.validUntil)}</span>` : ''}</div></div>`;
+      const stays = all.map((o, i) => [o, i]).filter(([o]) => o.stay).slice(0, 6), fun = all.map((o, i) => [o, i]).filter(([o]) => !o.stay).slice(0, 6);
+      panel.innerHTML = (stays.length ? `<h3>Places to stay${firstTown ? ' in ' + esc(firstTown) : ''} — live offers</h3>` + stays.map(([o, i]) => card(o, i)).join('') : '') + (fun.length ? `<h3>Things to do${firstTown ? ' in ' + esc(firstTown) : ''} — ticket deals</h3>` + fun.map(([o, i]) => card(o, i)).join('') : '') + '<p class="muted">Partner links — we may earn a small commission at no extra cost to you. Stay prices are usually per room or per stay, tickets per person; check the deal page before booking.</p>';
     } else if (root._stayOffers && towns.length) {
       panel.innerHTML = `<p class="muted">No live stay offers for ${esc(firstTown)} right now — <a href="/offers">browse all offers</a> or enter a quote from the hotel above.</p>`;
     } else if (!towns.length) {
@@ -1328,8 +1331,13 @@ let n=0;const t=setInterval(()=>{const q=window.SR_SEASIDE&&window.SR_SEASIDE.ar
         if (use) {
           const offer = (root._stayOffers || [])[+use.dataset.useOffer];
           if (offer && offer.price) {
-            plan.roomRate = offer.price;
-            budget.querySelector('[name="roomRate"]').value = offer.price;
+            if (offer.stay) {
+              plan.roomRate = offer.price;
+              budget.querySelector('[name="roomRate"]').value = offer.price;
+            } else {
+              plan.activities = +(num(plan.activities) + offer.price / (num(plan.days) || 1)).toFixed(2);
+              budget.querySelector('[name="activities"]').value = plan.activities;
+            }
             recalculate();
             save();
           }
@@ -1361,21 +1369,21 @@ let n=0;const t=setInterval(()=>{const q=window.SR_SEASIDE&&window.SR_SEASIDE.ar
     }
     async function loadOffers(list) {
       const key = list.join('|');
-      const S = window.SR_SEASIDE;
+      const Q = () => window.SR_PUBLIC_DIRECTORY?.S?.archiveQuery || window.SR_SEASIDE?.archiveQuery;
       if (!list.length) { root._stayOffers = []; return; }
       let tries = 0;
-      while (!S?.archiveQuery && tries++ < 100) await new Promise(r => setTimeout(r, 100));
-      if (!S?.archiveQuery) { root._stayOffers = []; recalculate(); return; }
+      while (!Q() && tries++ < 100) await new Promise(r => setTimeout(r, 100));
+      if (!Q()) { root._stayOffers = []; recalculate(); return; }
       let rows = [];
       try {
         const slugs = list.map(slug).filter(Boolean);
         const filter = { $or: slugs.flatMap(s => [{ locationSlug: { $eq: s } }, { destinationSlug: { $eq: s } }]) };
-        const res = await S.archiveQuery({ filter, paging: { limit: 60 } }, null, false, 'DestinationRecommendations');
+        const res = await Q()({ filter, paging: { limit: 100 } }, null, false, 'DestinationRecommendations');
         rows = (res.dataItems || []).map(x => x.data || x)
-          .filter(r => (r.affiliateUrl || r.affiliate) && r.cardReady !== false && !expired(r.offerValidUntil) && (r.dealPrice || r.offerTitle))
-          .filter(r => isStay([r.category, r.offerType, r.name, r.title, r.offerTitle].join(' ')))
+          .filter(r => (r.affiliateUrl || r.affiliate) && r.cardReady !== false && !expired(r.offerValidUntil) && r.dealPrice)
           .map(r => ({
-            name: r.displayTitle || r.name || r.title || 'Stay offer',
+            stay: isStay([r.category, r.offerType, r.offerTitle].join(' ')),
+            name: r.displayTitle || r.name || r.title || 'Offer',
             offerTitle: r.offerTitle || '',
             dealPrice: String(r.dealPrice || '').replace(/^FROM\s*/i, 'From '),
             wasPrice: r.wasPrice || '',
