@@ -21,9 +21,9 @@ All of them were scoped to "All pages" and 102 sat in the `<head>`, adding ~1.1 
 3. In Wix → Settings → Custom Code, add the loader snippet: Head, All pages, Load once.
 4. Delete every other Spin Raiders snippet (all 125 except the ones below). Leaving any in place
    would run the code twice.
-5. **Keep** in Wix: Pinterest / Bing / Yandex verification metas.
-   **Delete** outright: "Proper Casinos 01–06" (empty placeholders) and "Google AdSense Auto Ads (head)"
-   until AdSense re-approves — it costs ~300 ms on every page and renders nothing while rejected.
+5. **Keep** in Wix, always: "Google AdSense Auto Ads (head)" (AdSense is under review — NEVER remove
+   or edit this snippet) and the Pinterest / Bing / Yandex verification metas.
+   **Delete** only: "Proper Casinos 01–06" (empty placeholders).
 6. Publish, then re-run PageSpeed on the homepage and one destination page.
 
 ## To ship a change later
