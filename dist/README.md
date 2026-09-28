@@ -188,3 +188,17 @@ hero painted at 8.8–12.4 s with the single bundle; 1.9–2.5 s with the core b
 Two of the core snippets ("Homepage Style Discovery Cards", "Days Out Experience") do their rendering inside timer
 callbacks, which the instrumented probe could not attribute — they were found by injecting the rest snippets one by
 one (scratch script "bisect"). If the homepage ever comes up empty with only the core loaded, repeat that bisection.
+
+## SEO wording (28 Sep 2026)
+
+Strategy: the homepage and every general page use days-out / road-trip / family wording ("Your next big day out
+starts here"); arcade wording stays on arcade, AGC, casino and fruit-machine pages only.
+
+- Server titles/descriptions: `src/public/seo.js` (`HOME_TITLE`, `GENERAL_PAGE_SEO`), rendered into the HTML by
+  masterPage.js. Client copy of the same wording: snippet [125] in dist/sr.js, which stops later page designs
+  swapping the title back. Change both together.
+- Town pages: a town is let into Google when its intro is 40+ words, or 25+ words with 3+ venues/attractions
+  listed (was 40+ words only, which kept Blackpool, Leeds, Glasgow etc. out).
+- Not done yet: town titles/descriptions still come from each Locations record's seoTitle/seoDescription and
+  mostly say "Arcades & Gaming Guide". The planned days-out rewrite (662 non-services towns) needs Jamie's go-ahead
+  for a bulk CMS update.
