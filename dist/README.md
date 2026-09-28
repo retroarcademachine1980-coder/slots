@@ -74,6 +74,18 @@ Measured (slow 4G + 4x CPU, Pixel 5): /destination/blackpool LCP ~22 s, /search 
 Inner pages are now limited by sr.rest.min.js (276 KB gz, must download + run before the page paints) and ~2 MB of
 Wix's own scripts/images. Next: split sr.rest by page type; empty the hidden old Wix sections in the editor.
 
+## Page-type split (28 Sep 2026, 10:15) — LIVE on e3b678a (loader embed revision 16)
+V8 coverage on town, search, venue, food-and-drink and machine pages showed 26 rest snippets (235 KB) only run
+their URL check there (list in dist/inner-idle.json). On those page types the bootstrap now loads sr.page.min.js
+(86 snippets) straight away and sr.idle.min.js after load / first tap. Every other page still gets the full
+sr.rest.min.js at once; the homepage is unchanged. Verified against the live site before switching: identical
+text and page height, 0.00-0.41% pixel difference (lighter banner) on 8 pages. The loader also preloads the
+search/town banner (now 1000px q60, 83 KB instead of 174 KB) on /destination/<town> and /search.
+If a snippet is added that should paint on those page types, re-run the coverage check and update inner-idle.json.
+Measured after: typical 4G phone (9 Mbps, 2x CPU) — Blackpool 3.5 s, Cleethorpes 3.4 s, search 5.2 s,
+venue 3.5 s, homepage 1.0 s (largest paint). Slow 4G + 4x CPU — Blackpool 22 s, search 18.6 s, Cleethorpes 18 s,
+venue 11.6 s. What is left is mostly Wix's own scripts (~900 KB) plus AdSense.
+
 ## To ship a change later
 Run `sh tools/ship.sh "message"` (sizes images, splits bundles, commits, pushes, prints the hash), then put the
 hash into the loader embed.
