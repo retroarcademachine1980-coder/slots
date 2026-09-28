@@ -5,7 +5,7 @@
 // finding "Record unavailable" pages while their photos are being added. Nothing is deleted: switch a machine back on
 // (active = true) and it returns to the sitemap automatically on the next sitemap read (within 10 minutes).
 //
-// Wix names dynamic-page hooks <hook>_<prefix>; the prefix here contains dashes, so the same function is exported under
+// Wix names dynamic-page hooks <prefix>_<hook> (e.g. myRouter_afterSitemap); the prefix here contains dashes, so the same function is exported under
 // the identifier spellings Wix may use for it. Unused exports are harmless.
 
 import wixData from 'wix-data';
@@ -31,7 +31,9 @@ function entrySlug(entry) {
   try { return decodeURIComponent(url.split('/').pop() || '').toLowerCase(); } catch (e) { return ''; }
 }
 
-async function machineSitemap(sitemapEntries) {
+// Wix calls afterSitemap(sitemapRequest, sitemapEntries); take whichever argument is the entry list.
+async function machineSitemap(...args) {
+  const sitemapEntries = args.find(Array.isArray) || [];
   try {
     const off = await switchedOffSlugs();
     return sitemapEntries.filter(entry => !off.has(entrySlug(entry)));
@@ -41,6 +43,6 @@ async function machineSitemap(sitemapEntries) {
   }
 }
 
-export const afterSitemap_classic_fruit_machine_archive_1 = machineSitemap;
-export const afterSitemap_classicFruitMachineArchive1 = machineSitemap;
-export const afterSitemap_ClassicFruitMachineArchive1 = machineSitemap;
+export const classic_fruit_machine_archive_1_afterSitemap = machineSitemap;
+export const classicFruitMachineArchive1_afterSitemap = machineSitemap;
+export const ClassicFruitMachineArchive1_afterSitemap = machineSitemap;
