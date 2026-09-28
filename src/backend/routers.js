@@ -46,3 +46,20 @@ async function machineSitemap(...args) {
 export const classic_fruit_machine_archive_1_afterSitemap = machineSitemap;
 export const classicFruitMachineArchive1_afterSitemap = machineSitemap;
 export const ClassicFruitMachineArchive1_afterSitemap = machineSitemap;
+
+// Probe (temporary): tags the machine page HTML with which hook name Wix actually calls, so the sitemap hook can be
+// named correctly. Returns the response unchanged apart from one meta tag.
+function probe(name) {
+  return (request, response) => {
+    try {
+      const head = response.head || (response.head = {});
+      const tags = head.metaTags || (head.metaTags = []);
+      if (Array.isArray(tags)) tags.push({ name: 'sr-hook', content: name });
+      else tags['sr-hook'] = name;
+    } catch (e) {}
+    return response;
+  };
+}
+export const classic_fruit_machine_archive_1_afterRouter = probe('underscore');
+export const classicFruitMachineArchive1_afterRouter = probe('camel');
+export const ClassicFruitMachineArchive1_afterRouter = probe('pascal');
