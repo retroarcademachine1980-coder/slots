@@ -86,6 +86,23 @@ Measured after: typical 4G phone (9 Mbps, 2x CPU) — Blackpool 3.5 s, Cleethorp
 venue 3.5 s, homepage 1.0 s (largest paint). Slow 4G + 4x CPU — Blackpool 22 s, search 18.6 s, Cleethorpes 18 s,
 venue 11.6 s. What is left is mostly Wix's own scripts (~900 KB) plus AdSense.
 
+## Old skins and the flicker (28 Sep 2026, 11:55) — paint hold LIVE (loader embed revision 17)
+Findings (layer-by-layer screenshot tests + draw-order recording, scratch scripts skins.py / layers.py):
+- The "Seaside Skin" (core/pages/bootstrap/adult/archive/native/reports/offers/archive-quality/Loader), "Clean Rebuild
+  Preview" (map.js, style-1/2.css), "Arcade Life fun.js/fun.css" and "Casino Design styles/layout" blocks are NOT old:
+  the Seaside Skin Loader refuses to draw unless all 16 of those parts are registered in window.SR_SEASIDE_SOURCE, and the
+  newer page designs read its data/helpers. Removing any one of them collapses town pages to ~2,500 px. "Proper Casinos
+  01-06" are the /casinos listings (content). "category router compatibility" routes the ?explore= links.
+- The flicker was two things: (1) the original Wix page painted first on town/search/food/machine/seaside pages (the
+  Early Native Shell Guard only covered some routes and arrives with the async bundle); (2) double drawing — the Seaside
+  skin draws a whole town/venue page, then the final design replaces it (#sr-location-directory on /destination/<town>
+  ~0.75 s later, #sr-shell-page on /arcade-venues/ ~1 s later; search flashed the Blackpool picks strip).
+Fix: dist/paint-hold.html is now the first thing in the loader embed. On those page types it keeps the page on the dark
+brand background until the FINAL design's container is on screen, then shows it in one go (15 s safety release).
+Verified live: town, venue, search, machine and home pages now show only their final design; finished pages identical to
+the baseline on 21 of 22 comparable pages (/map varies between loads on its own). The Seaside drawing still happens
+underneath (hidden) — removing it needs the final designs to stop depending on the Seaside layer (a rebuild job).
+
 ## To ship a change later
 Run `sh tools/ship.sh "message"` (sizes images, splits bundles, commits, pushes, prints the hash), then put the
 hash into the loader embed.
