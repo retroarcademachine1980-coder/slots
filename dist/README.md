@@ -31,7 +31,20 @@ Done via the Wix Custom Embeds API on 28 Sep 2026 (01:15). The loader snippet is
 `a7b6db23-d37d-4400-b04c-85ec1b97e4a2`. The 121 replaced snippets were **disabled, not deleted**
 (so they can be re-enabled one by one if anything is missing). Left enabled and untouched:
 GTM ("spin raiders"), **both Google AdSense snippets**, Private Traffic Tracker V1.
-Homepage mobile PageSpeed before → after: FCP 9.8 s → 3.3 s, LCP 17.9 s → 9.5 s.
+Homepage mobile PageSpeed before → after: FCP 9.8 s → 3.3 s, LCP 17.9 s → ~10 s (PSI varies ±3 s run to run
+because Wix sometimes serves a 0.76 MB "lite" shell and sometimes the full 1.2 MB render).
+Also 28 Sep: bundle loaded `async fetchpriority=high`; Google Fonts non-blocking; hero/tile images served
+phone-sized; Imperial Hotel photo re-hosted on Wix (467 KB → 94 KB); 32 unused Wix apps uninstalled and site
+published via API (the rendered clientSpecMap still listed 59 apps 3 min later — re-check).
+
+## What still makes the homepage slow (measured 28 Sep, slow-4G/4x CPU)
+Cold mobile load is ~3.9 MB: Wix scripts ~1.5 MB, images ~1.3 MB, fonts 340 KB, our bundle 310 KB, AdSense 350 KB
+(must stay). Under throttling everything downloads at once so the bundle lands at ~12 s and the hero paints
+right after it. To get near 2 s the Wix page underneath must shrink — it is still the old full homepage
+(400 elements, 360 KB inline CSS) that the skin paints over. Next steps in order:
+1. Empty the old homepage sections in the Wix editor (keep header/footer), publish.
+2. Split the bundle by route so the homepage loads ~80 KB instead of 310 KB (54 snippets self-gate on URL).
+3. Trim Google Fonts to the weights actually used.
 
 ## To ship a change later
 Edit the source in the repo, rebuild/push, update the commit hash in the loader. Never paste code
