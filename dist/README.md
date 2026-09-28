@@ -46,6 +46,17 @@ right after it. To get near 2 s the Wix page underneath must shrink — it is st
 2. Split the bundle by route so the homepage loads ~80 KB instead of 310 KB (54 snippets self-gate on URL).
 3. Trim Google Fonts to the weights actually used.
 
+## Image sizing (28 Sep 2026, 08:15)
+227 image URLs in the snippets were bare `static.wixstatic.com/media/<id>~mv2.png` links, which serve the
+ORIGINAL upload: the search-page hero was a 2.75 MB PNG and the trip-planner panel 2.0 MB, on every
+destination/search page (LCP 54 s on throttled mobile). `tools/size-images.py` now rewrites them to
+`/v1/fit/w_1400,h_1400,q_70,enc_auto/file.webp` (browsers get AVIF/WebP: 2.75 MB → 174 KB, 2.0 MB → 87 KB).
+Run it after editing sr.js, then split-bundle.py. Measured on /destination/blackpool, slow 4G + 4x CPU:
+4.8 MB → 2.4 MB, LCP 54 s → 16 s; /search?q=blackpool 7.4 MB → 2.9 MB, LCP 48 s → 13.5 s.
+Still heavy on inner pages: sr.rest.min.js (~300 KB gz, loads at once off the homepage), Google Maps embed
+(~1.3 MB of script from the Wix map element), Wowcher deal photos (up to 470 KB each, external, can't be resized),
+and ~1 MB of images for the hidden old Wix sections the skin paints over.
+
 ## To ship a change later
 Edit the source in the repo, rebuild/push, update the commit hash in the loader. Never paste code
 back into Custom Code snippets.
