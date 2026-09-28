@@ -50,20 +50,3 @@ async function machineSitemap(...args) {
 export const classic_fruit_machine_archive_1_afterSitemap = machineSitemap;
 export const classicFruitMachineArchive1_afterSitemap = machineSitemap;
 export const ClassicFruitMachineArchive1_afterSitemap = machineSitemap;
-
-// Probe (temporary): only when the URL has ?srprobe=1, redirect to /?srhook=<name> so we can see which hook name
-// Wix actually calls for the machine pages. Normal visitors are never affected.
-import { redirect } from 'wix-router';
-function probe(name) {
-  return (request, response) => {
-    try { if (request && request.query && request.query.srprobe) return redirect('/?srhook=' + name, '302'); } catch (e) {}
-    return response;
-  };
-}
-export const classic_fruit_machine_archive_1_afterRouter = probe('underscore');
-export const classicFruitMachineArchive1_afterRouter = probe('camel');
-export const ClassicFruitMachineArchive1_afterRouter = probe('pascal');
-export const ClassicFruitMachines_afterRouter = probe('collection');
-export const classicFruitMachines_afterRouter = probe('collection-camel');
-export const classic_fruit_machine_archive_afterRouter = probe('archive-underscore');
-export const classicFruitMachineArchive_afterRouter = probe('archive-camel');
