@@ -47,19 +47,19 @@ export const classic_fruit_machine_archive_1_afterSitemap = machineSitemap;
 export const classicFruitMachineArchive1_afterSitemap = machineSitemap;
 export const ClassicFruitMachineArchive1_afterSitemap = machineSitemap;
 
-// Probe (temporary): tags the machine page HTML with which hook name Wix actually calls, so the sitemap hook can be
-// named correctly. Returns the response unchanged apart from one meta tag.
+// Probe (temporary): only when the URL has ?srprobe=1, redirect to /?srhook=<name> so we can see which hook name
+// Wix actually calls for the machine pages. Normal visitors are never affected.
+import { redirect } from 'wix-router';
 function probe(name) {
   return (request, response) => {
-    try {
-      const head = response.head || (response.head = {});
-      const tags = head.metaTags || (head.metaTags = []);
-      if (Array.isArray(tags)) tags.push({ name: 'sr-hook', content: name });
-      else tags['sr-hook'] = name;
-    } catch (e) {}
+    try { if (request && request.query && request.query.srprobe) return redirect('/?srhook=' + name, '302'); } catch (e) {}
     return response;
   };
 }
 export const classic_fruit_machine_archive_1_afterRouter = probe('underscore');
 export const classicFruitMachineArchive1_afterRouter = probe('camel');
 export const ClassicFruitMachineArchive1_afterRouter = probe('pascal');
+export const ClassicFruitMachines_afterRouter = probe('collection');
+export const classicFruitMachines_afterRouter = probe('collection-camel');
+export const classic_fruit_machine_archive_afterRouter = probe('archive-underscore');
+export const classicFruitMachineArchive_afterRouter = probe('archive-camel');
