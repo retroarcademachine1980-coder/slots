@@ -87,7 +87,12 @@ builds two files from `sr.js`:
 - `sr.rest.min.js` — the other 116, loaded on `/` 1.5 s after the load event or on the first
   pointer/key/touch, whichever is first. They all bail on `/` anyway (they gate on other paths), so
   nothing changes visually — verified pixel-identical against the full bundle on desktop and mobile.
-Every other URL (and `/?view=…`, `/?explore=…`) still loads `sr.min.js` exactly as before.
-The loader snippet picks the file inline (see wix-loader-snippet.html). The core list lives in
+`sr.min.js` (all 129 in one file) is still built and kept for reference/rollback but the loader no longer uses it.
+The loader has ONE static `<script async fetchpriority=high src=…/sr.core.min.js>` on every page (static so the
+browser's preload scanner finds it at once — a dynamically inserted tag was measured landing 10 s later on slow 4G).
+The generated bootstrap at the top of sr.core.min.js loads sr.rest.min.js: immediately on inner pages, deferred on `/`.
+Inner pages therefore run the 13 core snippets before the other 116 — verified pixel-identical to the old single
+bundle on /, /seaside, /classic-fruit-machine-archive, /casino-offers, /destination/blackpool, /agc, /?view=offers
+and /search?q=blackpool. The core list lives in
 `dist/homepage-core.json` (0-based snippet indexes in sr.js order); after editing sr.js re-run
 `python3 tools/split-bundle.py` and commit all three files together.
