@@ -77,3 +77,17 @@ again, keep both of these, plus anything the Velo code or Custom Embeds referenc
 from OLD revision 5616 of Original-Branch (the casino site). Every push to main therefore put the casino
 site live and 404'd all dynamic pages. The Action now only runs by hand. To publish, open the editor on
 Original-Branch and press Publish (restored revision 6283 this way). Do NOT use the Publish Site API.
+
+## Homepage split (28 Sep 2026)
+The homepage no longer downloads the whole 1 MB bundle before it can paint. `tools/split-bundle.py`
+builds two files from `sr.js`:
+- `sr.core.min.js` — the 13 snippets that actually act on `/` (measured in headless Chromium with every
+  snippet instrumented: 12 did DOM work or were read via a global by one that did, plus the newsletter).
+  ~83 KB raw / 27 KB gzip. Loaded immediately on `/` with fetchpriority=high.
+- `sr.rest.min.js` — the other 116, loaded on `/` 1.5 s after the load event or on the first
+  pointer/key/touch, whichever is first. They all bail on `/` anyway (they gate on other paths), so
+  nothing changes visually — verified pixel-identical against the full bundle on desktop and mobile.
+Every other URL (and `/?view=…`, `/?explore=…`) still loads `sr.min.js` exactly as before.
+The loader snippet picks the file inline (see wix-loader-snippet.html). The core list lives in
+`dist/homepage-core.json` (0-based snippet indexes in sr.js order); after editing sr.js re-run
+`python3 tools/split-bundle.py` and commit all three files together.
