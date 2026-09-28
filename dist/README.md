@@ -65,3 +65,9 @@ release from an old branch (branch ea0199f5, revision 2, the casino site) regist
 so visitors were routed to it no matter how often the editor was published. Fix: open Release Manager,
 make sure "Live Site" shows the latest main revision (was 6282) and no old branch; discard any leftover
 release candidate. Check with:  curl -s https://www.spin-raiders.com/ | grep -o '"siteRevision":[0-9]*'
+
+## Never uninstall the Wix CMS or Site Search apps (28 Sep 2026)
+An app clean-up removed "Wix CMS" (e593b0bd-b783-45b8-97c2-873d42aacaf4) and "Site Search"
+(13322a7c-6039-ac58-86e8-48b76f901d91). Every dynamic page (venues, destinations, food) then 404'd.
+They were reinstalled via the Apps Installer API and the site republished. If a clean-up is ever done
+again, keep both of these, plus anything the Velo code or Custom Embeds reference.
