@@ -51,7 +51,10 @@ right after it. To get near 2 s the Wix page underneath must shrink — it is st
 ORIGINAL upload: the search-page hero was a 2.75 MB PNG and the trip-planner panel 2.0 MB, on every
 destination/search page (LCP 54 s on throttled mobile). `tools/size-images.py` now rewrites them to
 `/v1/fit/w_1400,h_1400,q_70,enc_auto/file.webp` (browsers get AVIF/WebP: 2.75 MB → 174 KB, 2.0 MB → 87 KB).
-Run it after editing sr.js, then split-bundle.py. Measured on /destination/blackpool, slow 4G + 4x CPU:
+Run it after editing sr.js, then split-bundle.py. LIVE since 08:40 on commit 9e84889 (loader embed revision 13).
+Live re-measure (2 runs each, slow 4G + 4x CPU): /destination/blackpool LCP 54 s → 25 s, 4.8 → 3.1 MB;
+/search?q=blackpool 48 s → 22 s; /destination/cleethorpes ~21 s. Wix's edge cache kept serving the old
+loader for a few minutes after the embed update — check with curl for the slots@<hash> before measuring. Measured on /destination/blackpool, slow 4G + 4x CPU:
 4.8 MB → 2.4 MB, LCP 54 s → 16 s; /search?q=blackpool 7.4 MB → 2.9 MB, LCP 48 s → 13.5 s.
 Still heavy on inner pages: sr.rest.min.js (~300 KB gz, loads at once off the homepage), Google Maps embed
 (~1.3 MB of script from the Wix map element), Wowcher deal photos (up to 470 KB each, external, can't be resized),
