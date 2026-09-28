@@ -58,3 +58,10 @@ Doesn't fix on its own: the ~30 `setInterval` / `MutationObserver` pollers ("Ski
 layers of skins guarding against each other and want retiring one by one now that they're in one file
 where you can see them. Next step after this ships: split the bundle by route (seaside/casino/archive/
 trip/account each only on their own pages) — 54 snippets already self-gate on the URL, so it's mechanical.
+
+## If the old "Spin Blitz" casino site ever reappears on the live URL (fixed 28 Sep 2026)
+It was never in the editor. Wix's Release Manager (Dashboard > Settings > Release Manager) had a stale
+release from an old branch (branch ea0199f5, revision 2, the casino site) registered as "Live Site 100%",
+so visitors were routed to it no matter how often the editor was published. Fix: open Release Manager,
+make sure "Live Site" shows the latest main revision (was 6282) and no old branch; discard any leftover
+release candidate. Check with:  curl -s https://www.spin-raiders.com/ | grep -o '"siteRevision":[0-9]*'
