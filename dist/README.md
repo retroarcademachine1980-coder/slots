@@ -26,6 +26,13 @@ All of them were scoped to "All pages" and 102 sat in the `<head>`, adding ~1.1 
    **Delete** only: "Proper Casinos 01–06" (empty placeholders).
 6. Publish, then re-run PageSpeed on the homepage and one destination page.
 
+## Status — 28 Sep 2026: LIVE
+Done via the Wix Custom Embeds API on 28 Sep 2026 (01:15). The loader snippet is embed
+`a7b6db23-d37d-4400-b04c-85ec1b97e4a2`. The 121 replaced snippets were **disabled, not deleted**
+(so they can be re-enabled one by one if anything is missing). Left enabled and untouched:
+GTM ("spin raiders"), **both Google AdSense snippets**, Private Traffic Tracker V1.
+Homepage mobile PageSpeed before → after: FCP 9.8 s → 3.3 s, LCP 17.9 s → 9.5 s.
+
 ## To ship a change later
 Edit the source in the repo, rebuild/push, update the commit hash in the loader. Never paste code
 back into Custom Code snippets.
