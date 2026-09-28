@@ -164,7 +164,18 @@ async function townPage(slug) {
     const url = `${SITE}/destination/${slug}`;
     const intro = clean(item.pageIntro);
     // Towns with no real write-up yet are kept out of Google until they have one.
-    const thin = intro.split(' ').length < 40;
+    // A shorter intro is enough when the town also has several places listed (Blackpool, Leeds, Glasgow...).
+    const words = intro ? intro.split(' ').length : 0;
+    let thin = words < 40;
+    if (thin && words >= 25) {
+        try {
+            const [venues, places] = await Promise.all([
+                wixData.query('Venues').eq('locationSlug', slug).ne('directoryReady', false).count(),
+                wixData.query('NearbyAttractions').eq('locationSlug', slug).ne('directoryReady', false).count(),
+            ]);
+            thin = venues + places < 3;
+        } catch (e) { /* keep the page out if the counts can't be read */ }
+    }
     const live = item.directoryReady !== false && item.pageReady !== false && !thin;
     const place = {
         '@context': 'https://schema.org',
@@ -211,10 +222,34 @@ async function foodPage(townSlug, urlName) {
     await apply({ title, description, image, url, noindex: item.directoryReady === false, schema: [place, breadcrumbs(crumbs)] });
 }
 
+const HOME_TITLE = 'UK Days Out, Road Trips & Family Adventures | Spin Raiders';
+const HOME_DESC = 'Your next big day out starts here. Plan UK road trips, family days out, beaches, museums, zoos and attractions, with food, places to stay and arcades nearby.';
+
+// General (non-arcade) pages: days-out wording. Arcade and AGC pages keep their own arcade titles.
+export const GENERAL_PAGE_SEO = {
+    seaside: ['UK Seaside Days Out: Towns, Beaches & Piers | Spin Raiders', 'Plan a UK seaside day out: resort towns, beaches, piers, fish and chips and family fun, with places to eat and stay nearby. Your next big day out starts here.'],
+    beaches: ['Best UK Beaches for a Family Day Out | Spin Raiders', 'Find UK beaches for a family day out, with what is nearby: food, attractions, places to stay and seaside fun. Your next big day out starts here.'],
+    piers: ['UK Piers & Promenades: Seaside Days Out | Spin Raiders', 'Plan a seaside day out around the UK\'s piers and promenades, with food, attractions and family fun nearby. Your next big day out starts here.'],
+    outdoors: ['UK Outdoor Days Out: Parks, Walks & Nature | Spin Raiders', 'Outdoor days out across the UK: country parks, walks, nature spots and adventure parks for the whole family. Your next big day out starts here.'],
+    cinemas: ['UK Cinemas for a Family Day or Night Out | Spin Raiders', 'Find cinemas for a family day or night out across the UK, with food and other things to do nearby. Your next big day out starts here.'],
+    bowling: ['Bowling Alleys for a Family Day Out in the UK | Spin Raiders', 'Find UK bowling alleys for a family day out, with arcades, food and other things to do nearby. Your next big day out starts here.'],
+    'food-and-drink': ['Where to Eat on a UK Day Out | Spin Raiders', 'Places to eat on your day out: cafes, pubs, fish and chips and family-friendly restaurants near UK attractions and seaside towns.'],
+    'food-and-drink-hub': ['Where to Eat on a UK Day Out | Spin Raiders', 'Places to eat on your day out: cafes, pubs, fish and chips and family-friendly restaurants near UK attractions and seaside towns.'],
+    map: ['UK Days Out Map: Attractions, Beaches & Arcades | Spin Raiders', 'Plan your next big day out on the map: attractions, beaches, museums, food, places to stay and arcades across the UK.'],
+    'about-us': ['About Spin Raiders | UK Days Out, Road Trips & Arcades', 'Spin Raiders plans real UK days out and road trips: family attractions, seaside towns, food and places to stay, plus arcades and classic fruit machines.'],
+    blog: ['Spin Raiders Blog | UK Days Out, Road Trips & Arcade Guides', 'Ideas for your next big day out: UK road trips, family days out, seaside towns and attractions, plus arcade and fruit machine guides.'],
+};
+
+async function generalPage(key) {
+    const seo = GENERAL_PAGE_SEO[key];
+    if (!seo) return;
+    await apply({ title: seo[0], description: seo[1], url: `${SITE}/${key}` });
+}
+
 async function homePage() {
     await apply({
-        title: 'UK Days Out with Arcades at the Heart | Spin Raiders',
-        description: 'Plan a proper UK day out: seaside arcades, 2p pushers, bowling, cinemas, piers, food and places to stay, from real visits and real reviews.',
+        title: HOME_TITLE,
+        description: HOME_DESC,
         url: SITE + '/',
         schema: [{
             '@context': 'https://schema.org',
@@ -242,6 +277,7 @@ export async function applyPageSeo(pathParts) {
         if (parts[0] === 'arcade-venues' && parts[1]) return await venuePage(parts[1]);
         if (parts[0] === 'destination' && parts[1]) return await townPage(parts[1]);
         if (parts[0] === 'food-and-drink' && parts[1] && parts[2]) return await foodPage(parts[1], parts[2]);
+        if (parts.length === 1 && GENERAL_PAGE_SEO[parts[0]]) return await generalPage(parts[0]);
     } catch (err) {
         console.warn('Spin Raiders SEO skipped', err);
     }
