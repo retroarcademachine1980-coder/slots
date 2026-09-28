@@ -71,3 +71,9 @@ An app clean-up removed "Wix CMS" (e593b0bd-b783-45b8-97c2-873d42aacaf4) and "Si
 (13322a7c-6039-ac58-86e8-48b76f901d91). Every dynamic page (venues, destinations, food) then 404'd.
 They were reinstalled via the Apps Installer API and the site republished. If a clean-up is ever done
 again, keep both of these, plus anything the Velo code or Custom Embeds reference.
+
+## Auto-publish from GitHub switched OFF (28 Sep 2026, 03:15)
+`wix publish` (GitHub Action) and the REST "Publish Site" API both publish a new technical branch built
+from OLD revision 5616 of Original-Branch (the casino site). Every push to main therefore put the casino
+site live and 404'd all dynamic pages. The Action now only runs by hand. To publish, open the editor on
+Original-Branch and press Publish (restored revision 6283 this way). Do NOT use the Publish Site API.
