@@ -34,6 +34,65 @@
     roots.add(root);
     new MutationObserver(schedule).observe(root, {childList:true,subtree:true});
   }
+
+  const townBanners = new WeakSet();
+  const townRequests = new Map();
+  function townBanner(root) {
+    const hero = root.querySelector('.search-hero');
+    const S = window.SR_SEASIDE;
+    if (!hero || townBanners.has(hero) || !S?.archiveQuery) return;
+    const input = root.querySelector('#search-query');
+    const query = (input?.value || '').trim();
+    const locationPage = root.host.id === 'sr-location-directory';
+    let term = query;
+    try { term = window.SR_PARSE_PLACE_SEARCH?.(query)?.query || query; } catch {}
+    const route = locationPage ? decodeURIComponent(location.pathname.split('/').filter(Boolean).at(-1) || '') : '';
+    const slug = (route || term).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+    if (!slug || new URLSearchParams(location.search).has('favourites')) return;
+    townBanners.add(hero);
+    const photo = hero.querySelector('img');
+    if (!photo) return;
+    const originalDisplay = photo.style.display;
+    photo.style.display = 'none';
+    if (!townRequests.has(slug)) {
+      townRequests.set(slug,S.archiveQuery({
+        fields:['title','slug','heroImage','heroImageAlt','imageAltText'],
+        filter:{slug:{$eq:slug}},paging:{limit:1}
+      },null,false,'Locations').then(result=>result.dataItems?.[0]?.data || null).catch(error=>{
+        townRequests.delete(slug);
+        throw error;
+      }));
+    }
+    townRequests.get(slug).then(record=>{
+      if (!hero.isConnected) return;
+      if (!record && !locationPage) { photo.style.display = originalDisplay; return; }
+      hero.classList.add('town-photo-banner');
+      const style = document.createElement('style');
+      style.textContent = '.town-photo-banner{background:#103958!important;min-height:300px}.town-photo-banner>img{object-fit:cover;object-position:center}.town-photo-banner:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#00172c55,transparent 45%,#00172caa)}.town-banner-title{position:absolute;z-index:1;top:12%;left:6%;right:6%;color:white;font-size:clamp(32px,5vw,72px);font-weight:800;text-shadow:0 2px 7px #00172c;margin:0}.town-photo-banner .hero-controls{z-index:2}@media(max-width:600px){.town-photo-banner{display:block;min-height:320px}.town-photo-banner>img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.town-photo-banner .hero-controls{position:absolute;left:4%;bottom:14px;width:92%;margin:0}.town-banner-title{top:28px}}';
+      root.appendChild(style);
+      const title = document.createElement('h2');
+      title.className = 'town-banner-title';
+      title.textContent = 'Explore ' + (record?.title || query || term);
+      hero.appendChild(title);
+      let src = record?.heroImage;
+      if (typeof src === 'object') src = src?.url || src?.src;
+      if (src) {
+        src = S.img ? S.img(src) : src;
+        if (/^https:\/\//.test(src)) {
+          const match = src.match(/^(https:\/\/static\.wixstatic\.com\/media\/[^/?]+)(?:\/v1\/.*)?$/);
+          if (match) src = match[1] + '/v1/fit/w_2560,h_1440,q_85,enc_auto/town.webp';
+          photo.alt = record.heroImageAlt || record.imageAltText || record.title;
+          photo.onerror = () => { photo.style.display = 'none'; };
+          photo.src = src;
+          photo.style.display = originalDisplay;
+        }
+      }
+    }).catch(()=>{
+      townBanners.delete(hero);
+      if (!locationPage) photo.style.display = originalDisplay;
+    });
+  }
+
   function scan() {
     register(document);
     for (const root of roots) {
@@ -41,6 +100,7 @@
       for (const host of root.querySelectorAll('*')) if (host.shadowRoot) register(host.shadowRoot);
       const owned = root.host && /^sr-|^raidertube/.test(root.host.id);
       if (!owned) continue;
+      townBanner(root);
       if (root.querySelector('.search-hero') && !root.querySelector('#sr-search-banner-width')) {
         const style = document.createElement('style');
         style.id = 'sr-search-banner-width';
