@@ -1,4 +1,4 @@
-/* Spin Raiders: responsive image quality; original artwork for the existing town sign. */
+/* Spin Raiders: responsive image quality; original artwork and brush lettering for town signs. */
 (() => {
   'use strict';
   if (window.SR_IMAGE_QUALITY_V1) return;
@@ -32,6 +32,33 @@
     roots.add(root);
     new MutationObserver(schedule).observe(root, {childList:true,subtree:true});
   }
+  function ensureTownFont() {
+    if (document.getElementById('sr-town-brush-font')) return;
+    const link = document.createElement('link');
+    link.id = 'sr-town-brush-font';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Knewave&display=swap';
+    link.addEventListener('load', () => {
+      if (document.fonts) document.fonts.load('400 100px Knewave').then(schedule).catch(() => {});
+    }, {once:true});
+    document.head.appendChild(link);
+  }
+  function fitTownSign(sign) {
+    const width = sign.clientWidth;
+    if (!width) return;
+    // Measure rendered text: short and long town names stay inside the same board.
+    for (const [selector, size, available] of [
+      ['.town-banner-explore', .215, .86],
+      ['.town-banner-town', .16, .86],
+      ['.town-banner-strapline-text', .047, .91]
+    ]) {
+      const line = sign.querySelector(selector);
+      if (!line) continue;
+      line.style.fontSize = (width * size) + 'px';
+      const actual = line.scrollWidth;
+      if (actual > width * available) line.style.fontSize = (width * size * width * available / actual) + 'px';
+    }
+  }
   const townBanners = new WeakSet();
   const townRequests = new Map();
   function townBanner(root) {
@@ -46,9 +73,9 @@
     const route = locationPage ? decodeURIComponent(location.pathname.split('/').filter(Boolean).at(-1) || '') : '';
     const slug = (route || term).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
     if (!slug || new URLSearchParams(location.search).has('favourites')) return;
-    townBanners.add(hero);
     const photo = hero.querySelector('img');
     if (!photo) return;
+    townBanners.add(hero);
     const originalDisplay = photo.style.display;
     photo.style.display = 'none';
     if (!townRequests.has(slug)) {
@@ -63,45 +90,49 @@
     townRequests.get(slug).then(record=>{
       if (!hero.isConnected) return;
       if (!record && !locationPage) { photo.style.display = originalDisplay; return; }
+      ensureTownFont();
       hero.classList.add('town-photo-banner');
       const style = document.createElement('style');
       style.textContent = `
-.town-photo-banner{background:#103958!important;min-height:500px;height:clamp(500px,35vw,620px);max-height:none!important;aspect-ratio:auto!important}
+.town-photo-banner{background:#103958!important;min-height:620px;height:clamp(620px,40vw,740px);max-height:none!important;aspect-ratio:auto!important}
 .town-photo-banner>img{object-fit:cover;object-position:center}
 .town-photo-banner:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#00172c88,transparent 40%)}
-.town-banner-sign{position:absolute;z-index:1;top:7%;left:2%;width:37%;max-width:660px;aspect-ratio:1484/1060;container-type:inline-size;box-sizing:border-box;padding:0;color:white;transform:none;background:transparent url("https://static.wixstatic.com/media/3a517e_07b6f0e7586d4f8ab7d8ab67ad6ea7b1~mv2.png/v1/fit/w_1484,h_1060,q_90,enc_auto/location-sign.webp") center/contain no-repeat;border:0;box-shadow:none;filter:drop-shadow(5px 8px 12px #00152366)}
-.town-banner-title{position:absolute;top:15%;left:7%;width:86%;height:40%;display:flex;flex-direction:column;justify-content:center;align-items:center;margin:0!important;padding:0!important;text-align:center;font-family:'Barlow Condensed','Roboto Condensed',Arial,sans-serif;font-size:10cqw!important;font-weight:900;font-style:normal;line-height:1!important;text-transform:uppercase;text-shadow:2px 3px #001523}
-.town-banner-title span{display:block;width:100%;color:#ffdf28;font-size:var(--town-type,18cqw);line-height:1.05;overflow-wrap:normal}
-.town-banner-strapline{position:absolute;top:61%;left:8%;width:84%;height:15%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:transparent!important;color:white;text-align:center;font-family:'Barlow Condensed','Roboto Condensed',Arial,sans-serif;font-size:4.4cqw!important;font-weight:800;line-height:1.05;text-transform:uppercase;margin:0!important;padding:0!important;transform:rotate(-3.3deg)}
-.town-banner-strapline span{display:block}
-.town-banner-description{position:absolute;left:8%;bottom:6%;width:84%;box-sizing:border-box;font-size:clamp(13px,2.65cqw,18px);line-height:1.25;margin:0!important;color:white;text-shadow:0 1px 2px #001523}
+.town-banner-sign{position:absolute;z-index:1;top:6%;left:3%;width:37%;max-width:660px;aspect-ratio:1484/1060;container-type:inline-size;box-sizing:border-box;padding:0;color:white;transform:rotate(-7deg);transform-origin:center;background:transparent url("https://static.wixstatic.com/media/3a517e_07b6f0e7586d4f8ab7d8ab67ad6ea7b1~mv2.png/v1/fit/w_1484,h_1060,q_90,enc_auto/location-sign.webp") center/contain no-repeat;border:0;box-shadow:none;filter:drop-shadow(5px 8px 12px #00152366)}
+.town-banner-title{position:absolute;top:11%;left:5%;width:90%;height:45%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2cqw;margin:0!important;padding:0!important;text-align:center;font-family:'Knewave','Permanent Marker','Arial Black',Arial,sans-serif!important;font-weight:400!important;font-style:normal!important;line-height:1!important;text-transform:uppercase;text-shadow:2px 4px 1px #001523b3;letter-spacing:0!important}
+.town-banner-title .town-banner-explore,.town-banner-title .town-banner-town{display:block;flex:none;width:max-content;max-width:none;white-space:nowrap;margin:0;padding:0;overflow-wrap:normal;line-height:1!important;font-family:inherit!important;font-weight:400!important;font-style:normal!important}
+.town-banner-title .town-banner-explore{color:#fff;font-size:21.5cqw}
+.town-banner-title .town-banner-town{color:#ffe21b;font-size:16cqw}
+.town-banner-strapline{position:absolute;top:61%;left:4.5%;width:91%;height:13%;display:flex;justify-content:center;align-items:center;background:transparent!important;color:white;text-align:center;font-family:'Roboto Condensed','Barlow Condensed',Arial,sans-serif;font-weight:700;line-height:1;text-transform:uppercase;margin:0!important;padding:0!important;transform:rotate(-3.3deg)}
+.town-banner-strapline .town-banner-strapline-text{display:block;width:max-content;white-space:nowrap;font-size:4.7cqw;line-height:1.1;margin:0;padding:0}
+.town-banner-description{position:absolute;left:6%;top:78%;bottom:auto;width:88%;box-sizing:border-box;font-family:Arial,sans-serif!important;font-size:3.3cqw!important;font-weight:400!important;line-height:1.2!important;letter-spacing:0!important;margin:0!important;color:#fff;text-shadow:0 1px 2px #001523}
 .town-photo-banner .hero-controls{z-index:2;bottom:4%;left:18%;width:66%}
-@media(max-width:1100px){.town-banner-description{top:calc(100% + 10px);bottom:auto;left:0;width:100%;font-size:16px;line-height:1.3}.town-banner-sign{max-width:420px}}
-@media(max-width:950px) and (min-width:601px){.town-banner-sign{width:52%}}
-@media(max-width:600px){.town-photo-banner{display:block;height:570px;min-height:570px}.town-photo-banner>img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.town-banner-sign{top:28px;left:6%;width:88%;max-width:420px;padding:0}.town-banner-description{font-size:18px}.town-photo-banner .hero-controls{position:absolute;left:4%;bottom:18px;width:92%;margin:0}}
+@media(max-width:1100px) and (min-width:601px){.town-banner-sign{width:52%;max-width:520px}}
+@media(max-width:600px){.town-photo-banner{display:block;height:570px;min-height:570px}.town-photo-banner>img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.town-banner-sign{top:32px;left:50%;width:84%;max-width:420px;padding:0;transform:translateX(-50%) rotate(-7deg)}.town-banner-description{top:calc(100% + 20px);left:0;width:100%;font-size:16px!important;line-height:1.35!important;transform:rotate(7deg);text-shadow:0 1px 3px #001523,0 1px 8px #001523}.town-photo-banner .hero-controls{position:absolute;left:4%;bottom:18px;width:92%;margin:0}}
 `;
       root.appendChild(style);
       const sign = document.createElement('div');
       sign.className = 'town-banner-sign';
       const title = document.createElement('h2');
       title.className = 'town-banner-title';
-      title.appendChild(document.createTextNode('Explore '));
+      const explore = document.createElement('span');
+      explore.className = 'town-banner-explore';
+      explore.textContent = 'Explore';
       const town = document.createElement('span');
+      town.className = 'town-banner-town';
       town.textContent = record?.title || query || term;
-      town.style.setProperty('--town-type',Math.max(7.5,Math.min(18,130 / Math.max(town.textContent.length,1))) + 'cqw');
-      title.appendChild(town);
+      title.append(explore, document.createTextNode(' '), town);
       const strapline = document.createElement('strong');
       strapline.className = 'town-banner-strapline';
-      for (const text of ['Amazing places.','Unforgettable days.']) {
-        const line = document.createElement('span');
-        line.textContent = text;
-        strapline.appendChild(line);
-      }
+      const straplineText = document.createElement('span');
+      straplineText.className = 'town-banner-strapline-text';
+      straplineText.textContent = 'Amazing places. Unforgettable days.';
+      strapline.appendChild(straplineText);
       const description = document.createElement('p');
       description.className = 'town-banner-description';
       description.textContent = 'Search for towns, cities or attractions and discover arcades, theme parks, places to stay, great food and more \u2013 all in one place.';
       sign.append(title,strapline,description);
       hero.appendChild(sign);
+      fitTownSign(sign);
       let src = record?.heroImage;
       if (typeof src === 'object') src = src?.url || src?.src;
       if (src) {
@@ -128,6 +159,7 @@
       const owned = root.host && /^sr-|^raidertube/.test(root.host.id);
       if (!owned) continue;
       townBanner(root);
+      for (const sign of root.querySelectorAll('.town-banner-sign')) fitTownSign(sign);
       if (root.querySelector('.search-hero') && !root.querySelector('#sr-search-banner-width')) {
         const style = document.createElement('style');
         style.id = 'sr-search-banner-width';
@@ -155,6 +187,7 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',schedule,{once:true});
   else schedule();
+  if (document.fonts) document.fonts.addEventListener('loadingdone',schedule);
   addEventListener('resize',schedule,{passive:true});
   let attempts = 0;
   const startup = setInterval(() => { schedule(); if (++attempts >= 30) clearInterval(startup); },1000);
