@@ -1,18 +1,7 @@
-<!-- Spin Raiders paint hold (28 Sep 2026) — goes at the TOP of the loader embed, before everything else.
-     Stops the flicker: the old Wix page and the intermediate Seaside drawing are never shown. On the page types below
-     the page stays on the dark brand background until the FINAL design for that page type is on screen, then appears
-     in one go. Safety: released after 15 s whatever happens, so a page can never stay blank. -->
-<script>(function(){try{var p=(location.pathname||'/').replace(/\/+$/,'')||'/',q=location.search,f=null;
-if(/^\/destination\/[^/]+$/.test(p))f='#sr-location-directory';
-else if(/^\/arcade-venues\//.test(p))f='#sr-shell-page';
-else if(p==='/search')f='#sr-directory-search';
-else if(/^\/food-and-drink\/[^/]+\/[^/]+$/.test(p))f='#sr-food-page';
-else if(/^\/classic-fruit-machine-archive(-1\/.+)?$/.test(p))f='#sr-approved-archive';
-else if(p==='/destination-recommendations'&&/[?&]view=offers\b/.test(q))f='#sr-extended-pages';
-else if((p==='/'&&(!q||/^\?explore=/.test(q)))||p==='/seaside'||p==='/casinos')f='#sr-seaside-root';
-if(!f)return;var s=document.createElement('style');s.id='sr-hold';
-s.textContent='html,body{background:#0d1928!important}body{visibility:hidden!important}';
-(document.head||document.documentElement).appendChild(s);var t0=Date.now();
-function done(){if(s.parentNode)s.parentNode.removeChild(s)}
-(function w(){var e=document.querySelector(f);if(e&&e.getBoundingClientRect().height>300){requestAnimationFrame(done);return}
-if(Date.now()-t0>15000){done();return}setTimeout(w,50)})()}catch(e){}})();</script>
+<!-- Hide the obsolete Wix surface, never the body or the new page roots. -->
+<script>(function(){try{var p=(location.pathname||'/').replace(/\/+$/,'')||'/';
+var owned=p==='/'||/^\/(destination\/|arcade-venues\/|search$|food-and-drink\/|classic-fruit-machine-archive|seaside$|casinos$|destination-recommendations$)/.test(p);
+if(!owned)return;var s=document.createElement('style');s.id='sr-hold';
+s.textContent='html,body{background:#0d1928}#SITE_CONTAINER{visibility:hidden!important}';
+(document.head||document.documentElement).appendChild(s);
+setTimeout(function(){s.remove()},4000)}catch(e){}})();</script>
