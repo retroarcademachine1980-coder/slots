@@ -1,4 +1,4 @@
-/* Spin Raiders: responsive images and reference-matched dynamic town signs. */
+/* Spin Raiders: responsive images and reference-matched dynamic town signs; measured type proportions. */
 (() => {
   'use strict';
   if (window.SR_IMAGE_QUALITY_V1) return;
@@ -16,23 +16,23 @@
 .town-photo-banner{position:relative!important;isolation:isolate;background:#103958!important;width:100%;min-height:0!important;height:var(--town-hero-height,620px)!important;max-height:none!important;aspect-ratio:auto!important;overflow:hidden}
 .town-photo-banner>img{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover;object-position:center}
 .town-photo-banner:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(0deg,#00172c88,transparent 45%)}
-.town-banner-sign{position:absolute;z-index:1;top:var(--town-sign-top,48px);left:3%;width:37%;max-width:660px;height:var(--town-board-height,auto);aspect-ratio:1484/1210;container-type:inline-size;box-sizing:border-box;padding:0;color:#fff;transform:rotate(-7deg);transform-origin:center;background:transparent;border:0;box-shadow:none;filter:drop-shadow(5px 8px 12px #00152366)}
+.town-banner-sign{position:absolute;z-index:1;top:var(--town-sign-top,48px);left:3%;width:37%;max-width:660px;height:var(--town-board-height,auto);aspect-ratio:1484/1336;container-type:inline-size;box-sizing:border-box;padding:0;color:#fff;transform:rotate(-6deg);transform-origin:center;background:transparent;border:0;box-shadow:none;filter:drop-shadow(5px 8px 12px #00152366)}
 
 .town-banner-sign:before,.town-banner-sign:after{content:"";position:absolute;z-index:0;left:0;width:100%;pointer-events:none;background-image:url("https://static.wixstatic.com/media/3a517e_07b6f0e7586d4f8ab7d8ab67ad6ea7b1~mv2.png/v1/fit/w_1484,h_1060,q_90,enc_auto/location-sign.webp");background-repeat:no-repeat}
 .town-banner-sign:before{top:0;height:62.70cqw;background-size:100cqw 81.54cqw;background-position:center top}
 .town-banner-sign:after{top:62.70cqw;height:calc(100% - 62.70cqw);background-size:100% 432.653061%;background-position:center bottom}
 .town-banner-title{position:absolute;z-index:1;inset:0;width:100%;height:81.54cqw;display:block;margin:0!important;padding:0!important;font-weight:400!important;line-height:1!important;text-transform:uppercase;letter-spacing:0!important;transform:rotate(-3.3deg);transform-origin:center}
-.town-banner-explore{position:absolute;top:13%;left:8%;width:84%;height:auto;display:block;line-height:0!important;margin:0!important;padding:0!important;filter:drop-shadow(2px 4px 1px #00152388)}
+.town-banner-explore{position:absolute;top:13%;left:8.5%;width:83%;height:auto;display:block;line-height:0!important;margin:0!important;padding:0!important;filter:drop-shadow(2px 4px 1px #00152388)}
 .town-banner-explore svg{display:block;width:100%;height:auto;overflow:visible}
-.town-banner-town{position:absolute;top:38.5%;left:50%;transform:translateX(-50%);display:block;width:max-content;max-width:none;white-space:nowrap;margin:0!important;padding:0!important;font-family:'Permanent Marker','Roboto Condensed',Arial,sans-serif!important;font-size:var(--town-name-size,17.8cqw)!important;font-weight:400!important;font-style:normal!important;font-kerning:none;line-height:1!important;letter-spacing:0!important;color:#ffe21b;text-shadow:2px 4px 1px #00152388}
+.town-banner-town{position:absolute;top:39%;left:50%;transform:translateX(-50%) scaleX(.88);transform-origin:center;display:block;width:max-content;max-width:none;white-space:nowrap;margin:0!important;padding:0!important;font-family:'Permanent Marker','Roboto Condensed',Arial,sans-serif!important;font-size:var(--town-name-size,16cqw)!important;font-weight:400!important;font-style:normal!important;font-kerning:none;line-height:1!important;letter-spacing:0!important;color:#ffe21b;text-shadow:2px 4px 1px #00152388}
 .town-banner-strapline{position:absolute;z-index:1;top:49.74cqw;left:4.5%;width:91%;height:10.6cqw;display:flex;justify-content:center;align-items:center;background:transparent!important;color:#fff;text-align:center;font-family:'Roboto Condensed',Arial,sans-serif!important;font-weight:400!important;line-height:1;text-transform:uppercase;margin:0!important;padding:0!important;transform:rotate(-3.3deg);transform-origin:center}
 .town-banner-strapline-text{display:block;width:max-content;white-space:nowrap;font-size:var(--town-strap-size,4.7cqw)!important;font-weight:400!important;line-height:1.1;margin:0!important;padding:0!important;letter-spacing:0!important}
-.town-banner-description{position:absolute;z-index:1;left:6%;top:63cqw;bottom:auto;width:88%;box-sizing:border-box;font-family:Arial,sans-serif!important;font-size:var(--town-description-size,3.5cqw)!important;font-weight:400!important;line-height:1.22!important;letter-spacing:0!important;margin:0!important;padding:0!important;color:#fff;text-shadow:0 1px 2px #001523}
+.town-banner-description{position:absolute;z-index:1;left:6%;top:63cqw;bottom:auto;width:88%;box-sizing:border-box;font-family:Arial,sans-serif!important;font-size:var(--town-description-size,3.5cqw)!important;font-weight:400!important;line-height:1.22!important;letter-spacing:0!important;margin:0!important;padding:0!important;color:#fff;text-shadow:0 1px 2px #001523;transform:rotate(-3.3deg);transform-origin:center}
 .town-banner-description .town-description-line{display:block;width:max-content;white-space:nowrap}
 .town-sign-accessible{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
 .town-photo-banner .hero-controls{position:absolute!important;z-index:2;top:var(--town-controls-top,500px)!important;bottom:auto!important;left:18%;width:66%;margin:0!important}
 @media(max-width:1100px) and (min-width:601px){.town-banner-sign{width:52%;max-width:520px}}
-@media(max-width:600px){.town-photo-banner{display:block}.town-banner-sign{left:50%;width:88%;max-width:420px;aspect-ratio:auto;transform:translateX(-50%) rotate(-7deg)}.town-banner-description{top:63cqw;font-size:var(--town-description-size,14px)!important;line-height:1.2!important}.town-banner-description .town-description-line{display:inline;width:auto;white-space:normal}.town-photo-banner .hero-controls{left:4%;width:92%}}
+@media(max-width:600px){.town-photo-banner{display:block}.town-banner-sign{left:50%;width:88%;max-width:420px;aspect-ratio:auto;transform:translateX(-50%) rotate(-6deg)}.town-banner-description{top:63cqw;font-size:var(--town-description-size,14px)!important;line-height:1.2!important}.town-banner-description .town-description-line{display:inline;width:auto;white-space:normal}.town-photo-banner .hero-controls{left:4%;width:92%}}
 `;
   function improve(url, displayWidth) {
     if (!url || !url.includes('static.wixstatic.com/media/') || !url.includes('/v1/')) return url;
@@ -85,7 +85,7 @@
     const signature = [width,mobile,loaded,fontEpoch,name?.textContent].join('|');
     if (signFits.get(sign) !== signature) {
       for (const [selector,variable,size,available] of [
-        ['.town-banner-town','--town-name-size',.178,.84],
+        ['.town-banner-town','--town-name-size',.16,.91],
         ['.town-banner-strapline-text','--town-strap-size',.047,.90]
       ]) {
         const line = sign.querySelector(selector);
@@ -102,7 +102,7 @@
       signFits.set(sign,signature);
     }
     const description = sign.querySelector('.town-banner-description');
-    const boardHeight = mobile ? Math.max(width * .8154,width * .81 + (description?.offsetHeight || 84)) : width * .8154;
+    const boardHeight = mobile ? Math.max(width * .8154,width * .81 + (description?.offsetHeight || 84)) : width * .90;
     setVariable(sign,'--town-board-height',Math.ceil(boardHeight) + 'px');
     const top = Math.max(24,Math.round(width * .085));
     setVariable(hero,'--town-sign-top',top + 'px');
