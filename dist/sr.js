@@ -3529,7 +3529,7 @@ window.SR_EXTENDED_CSS += "@media(max-width:760px){.hero.art{height:auto;min-hei
       if(typeof row.slug==='string'&&row.slug.trim()&&!['undefined','null'].includes(row.slug))return config[1]+encodeURIComponent(row.slug.trim());
     }
     if(collection==='ClassicFruitMachines')return '/?sr=classic&machine='+encodeURIComponent(row._id||'');
-    return '/destination-recommendations?collection='+encodeURIComponent(collection)+'&place='+encodeURIComponent(row._id||'');
+    return (collection==='NearbyAttractions'?'/?collection=':'/destination-recommendations?collection=')+encodeURIComponent(collection)+'&place='+encodeURIComponent(row._id||'');
   };
   const style=document.createElement('style');style.id='sr-mobile-cookie-control';style.textContent='@media(max-width:760px){[data-hook="consent-banner-revisit-settings-container"]{top:auto!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;left:10px!important;right:auto!important;transform:none!important;width:auto!important;height:44px!important;flex-direction:row!important;border-radius:8px!important;overflow:hidden!important}[data-hook="consent-banner-revisit-settings-button"]{width:auto!important;height:44px!important;padding:0 12px!important}[data-hook="consent-banner-revisit-settings-button-text"]{writing-mode:horizontal-tb!important;transform:none!important;width:auto!important;height:auto!important;margin:0!important;font-size:12px!important}[data-hook="consent-banner-revisit-settings-close-button"]{width:44px!important;height:44px!important}}';document.head.append(style);
 })();
