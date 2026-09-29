@@ -877,19 +877,1011 @@ window.SR_SEARCH_VIEW_CSS="@import url('https://fonts.googleapis.com/css2?family
 }catch(e){console.warn('SR snippet failed: Spin Raiders approved search layout CSS 20260922',e)}})();
 
 /* [68] Spin Raiders approved search layout renderer 20260922 */
-(function(){try{
-window.SR_SEARCH_VIEW=function(e,t){"use strict";const{S:a,q:s,category:i="",locationMode:n=!1,favourites:o=!1}=t,r=a.e,l=e=>e.displayTitle||e.title||e.name||"",c=e=>e.locationName||e.destination||e.town||"",d=e=>{const t=[e.category,e.venueType,e.offerType].filter(Boolean).join(" ");return"ClassicFruitMachines"===e._collection?"machines":"Locations"===e._collection?"destinations":/casino/i.test(t+" "+(e.title||""))?"casinos":/hotel|stay|accommodation|guest|b&b|holiday park/i.test(t)?"stays":/food|restaurant|cafe|café|drink|pub|chippy/i.test(t)?"food":/museum|gallery/i.test(t)?"museums":/theme park/i.test(t)?"theme":/nature|outdoor|beach|garden|forest|reserve|walk/i.test(t)?"outdoors":"Venues"===e._collection?"venues":"attractions"},u=[["","All Results","search"],["venues","Arcades","arcade"],["casinos","Casinos","game"],["attractions","Attractions","coaster"],["stays","Places to Stay","bed"],["food","Eat & Drink","food"],["theme","Theme Parks","coaster"],["museums","Museums","museum"],["outdoors","Nature & Outdoors","tree"],["machines","Fruit Machines","game"],["destinations","Destinations","map"]];let p=[],m=[],h=1,g=null,b=!1,f=i,y=0,v=[];const $=n?9:6,S="sr-directory-favourites-v1";try{v=JSON.parse(localStorage.getItem(S)||"[]"),Array.isArray(v)||(v=[])}catch{}const w=e=>e._collection+":"+(e._id||e.slug||l(e)),x=e=>{const t="ClassicFruitMachines"===e._collection?a.archiveQuality?.cardPhoto(e):a.safePhoto?.({...e,heroImage:e.heroImage||e.image});return t?a.fit(a.img(t),480):""},C=e=>/^VERIFIED/i.test(e.publicRatingStatus||"")&&Number(e.publicRating)>0&&Number(e.publicReviewCount)>0?{score:Number(e.publicRating),count:Number(e.publicReviewCount),source:e.publicRatingSource||e.ratingSource||""}:null,q=e=>{const t=Number(e.latitude),a=Number(e.longitude);if(!g||null==e.latitude||null==e.longitude||!Number.isFinite(t)||!Number.isFinite(a))return null;const s=e=>e*Math.PI/180,i=Math.sin(s(t-g[0])/2)**2+Math.cos(s(g[0]))*Math.cos(s(t))*Math.sin(s(a-g[1])/2)**2;return 7917.6*Math.asin(Math.min(1,Math.sqrt(i)))},R=e=>(e=>{if("string"!=typeof e||!e.trim())return"";try{const t=new URL(e,location.origin);return/^https?:$/.test(t.protocol)?t.href:""}catch{return""}})(t.href(e))||"/search?q="+encodeURIComponent(l(e));function A(e){const t=x(e),a=C(e),s=w(e),i=!(!e.affiliateUrl&&!e.affiliate),n=u.find(t=>t[0]===d(e))?.[1]||"Explore";return`<article class="result-card"><a class="card-image" href="${r(R(e))}"${i?' rel="sponsored noopener"':""}>${t?`<img src="${r(t)}" alt="${r(e.exteriorImageAlt||e.imageAltText||e.imageAlt||l(e))}" loading="lazy" width="600" height="480">`:'<span class="image-empty">Photo being added</span>'}<span class="badge">${"541e7ebd-3e48-441e-9e21-c24b2233a0f0"===e._id?"RAIDER RECOMMENDED":r(n)}</span></a><button class="save" data-save="${r(s)}" aria-pressed="${v.includes(s)}" aria-label="Save ${r(l(e))}">${v.includes(s)?"♥":"♡"}</button><div class="card-copy"><h2><a href="${r(R(e))}"${i?' rel="sponsored noopener"':""}>${r(l(e))}<span aria-hidden="true">→</span></a></h2><p>⌖ ${r([c(e),e.postcode].filter(Boolean).join(", "))}${g&&!b&&null!=q(e)?" · "+q(e).toFixed(1)+" miles":""}</p>${"541e7ebd-3e48-441e-9e21-c24b2233a0f0"===e._id?"<p><strong>Raider Score 4.9/5 · Hidden Gem</strong></p>":""}<p>${a?`<span class="stars">★</span> ${a.score.toFixed(1)} (${a.count.toLocaleString("en-GB")})${a.source?" · "+r(a.source):""}`:"No public rating yet."}</p><div class="tags">${(e=>[e.venueType||e.category||e.manufacturer,!0===e.familyFriendly?"Family Friendly":null,e.ageRestriction].filter(Boolean).slice(0,3))(e).map(e=>"<span>"+r(e)+"</span>").join("")}</div>${i?'<p class="ad-note">Ad · Affiliate link</p>':""}</div></article>`}e.innerHTML="<style>"+window.SR_SEARCH_VIEW_CSS+"</style>"+`<main class="${n?"location-mode":""}"><section class="search-hero"><img src="${n?"https://static.wixstatic.com/media/3a517e_d1cae7805ea348a796fa77821f7f1f17~mv2.png/v1/fit/w_1000,h_1000,q_60,enc_auto/file.webp":"https://static.wixstatic.com/media/3a517e_a97bdf5ade7f463bb2b47daf79dacbb3~mv2.png/v1/fit/w_1000,h_1000,q_60,enc_auto/file.webp"}" alt="${n?"Explore the UK":"Find your next adventure"} — Blackpool seaside header artwork" width="2048" height="683" fetchpriority="high"><div class="hero-controls"><form class="hero-form" action="/search" role="search"><span aria-hidden="true">⌕</span><label class="sr-only" for="search-query">Search for a town, venue or attraction</label><input id="search-query" name="q" value="${r(o?"":s)}" required maxlength="160" placeholder="Search for a town, venue or attraction…"><button class="button pink">Search →</button></form><nav class="hero-quick" aria-label="Popular searches">${["Blackpool","Skegness","Great Yarmouth","Southend","Hotels","Arcades"].map(e=>`<a href="/search?q=${encodeURIComponent(e)}">${r(e)}</a>`).join("")}</nav></div></section><nav class="categories" aria-label="Results categories">${u.map(([e,t,a])=>{return`<button data-cat="${e}" aria-pressed="${f===e}">${s=a,'<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'+(window.SR_CATEGORY_ICONS?.[s]||'<circle cx="16" cy="13" r="8"/><path d="m22 19 8 10"/>')+"</svg>"}<span>${t}</span></button>`;var s}).join("")}</nav><div class="content"><div class="results-heading"><div><h1>${o?"Your saved places":(n?"Results for":"Search results for")+" <em>"+r(s||"your next adventure")+"</em>"}</h1><p data-count role="status">${s?"Finding matching places…":"Enter a town, venue or attraction to begin."}</p></div><div class="toolbar"><label>Sort by <select data-sort><option value="relevance">Most relevant</option><option value="rating">Highest rated</option><option value="name">Name A–Z</option></select></label><button data-view="grid" aria-pressed="true">▦ Grid</button><button data-view="list" aria-pressed="false">☷ List</button><button class="map-link" data-toggle-map aria-pressed="true">◫ Show map</button></div></div><p class="result-status" data-message role="status"></p><div class="layout"><details class="filter-panel" open><summary>Filter results <span>⌄</span></summary><form data-filters><fieldset><legend>Category</legend>${u.slice(1).map(([e,t])=>`<label><input type="checkbox" name="category" value="${e}"${f===e?" checked":""}>${t}</label>`).join("")}</fieldset><fieldset><legend>Distance</legend><label class="range-label"><input type="range" name="distance" min="1" max="100" value="25" disabled aria-label="Distance in miles"><output>Within 25 miles</output></label><button type="button" class="button reset" data-locate>Use my location</button><p class="small-status" data-location-status>Choose your location to filter by distance.</p></fieldset><fieldset><legend>Rating</legend>${[4,3,2,1].map(e=>`<label><input type="radio" name="rating" value="${e}"><span class="stars">${"★".repeat(e)}</span> & up</label>`).join("")}</fieldset><fieldset><legend>Facilities</legend>${[["disabledAccess","Disabled Access"],["parking","On-site Parking"],["familyFriendly","Family Friendly"],["dogFriendly","Dog Friendly"],["wifi","Free Wi-Fi"]].map(([e,t])=>`<label><input type="checkbox" name="facility" value="${e}">${t}</label>`).join("")}</fieldset><button class="button" type="submit">▽ Apply filters</button><button class="button reset" type="reset">↻ Reset filters</button></form></details><section aria-label="Search results"><div class="results-grid" data-results><div class="empty"><h2>${s?"Finding places for your next day out…":"Where would you like to go?"}</h2></div></div><nav class="pagination" aria-label="Results pages" data-pagination></nav></section><aside><section class="side-panel"><div class="side-heading"><h2>⌖ Results on map</h2><a href="/map?q=${encodeURIComponent(s)}">View larger map →</a></div><iframe class="map-frame" src="https://www.google.com/maps?q=${encodeURIComponent(s||"United Kingdom")}&output=embed" title="Map of ${r(s||"the UK")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section><div data-side-results></div><section class="plan-panel"><h2>Plan ${s?"more in "+r(s):"your next adventure"}</h2><p>Bring together places to visit, food and drink, and somewhere to stay.</p><a class="button yellow" href="/destination-recommendations?view=trip">Plan your day →</a></section></aside></div><a class="articles-link" href="/search?q=${encodeURIComponent(s)}&view=articles">Search articles and blog posts →</a></div></main>`;const k=e.querySelector("[data-filters]"),F=e.querySelector("[data-results]"),M=e.querySelector("[data-message]");function N(){const t=new FormData(k),a=t.getAll("category"),s=t.getAll("facility"),i=Number(t.get("rating")||0),n=Number(t.get("distance")||25),r=e.querySelector("[data-sort]").value;m=p.filter(e=>(!o||v.includes(w(e)))&&(!a.length||a.includes(d(e)))&&(!i||(C(e)?.score||0)>=i)&&s.every(t=>"parking"===t?e.parking===true||e.parkingAvailable===true||e.freeParking===true:"wifi"===t?e.wifi===true||e.freeWifi===true:e[t]===true)&&(!g||(null===q(e)?b:q(e)<=n))),"name"===r&&m.sort((e,t)=>l(e).localeCompare(l(t))),"rating"===r&&m.sort((e,t)=>(C(t)?.score||0)-(C(e)?.score||0)),"relevance"===r&&g&&!b&&m.sort((e,t)=>(q(e)??1e9)-(q(t)??1e9)),"relevance"===r&&m.sort((e,t)=>Number("541e7ebd-3e48-441e-9e21-c24b2233a0f0"===t._id)-Number("541e7ebd-3e48-441e-9e21-c24b2233a0f0"===e._id));const c=Math.max(1,Math.ceil(m.length/$));h=Math.max(1,Math.min(h,c)),e.querySelector("[data-count]").textContent=m.length+(1===m.length?" result found":" results found"),F.innerHTML=m.length?m.slice((h-1)*$,h*$).map(A).join(""):'<div class="empty"><h2>No matching places</h2><p>Try another search or reset the filters.</p></div>';const u=[...new Set([1,...Array.from({length:5},(e,t)=>h-2+t).filter(e=>e>1&&e<c),c])];e.querySelector("[data-pagination]").innerHTML=c>1?`<button data-page="${h-1}" ${1===h?"disabled":""}>← Previous</button>`+u.map((e,t)=>`${t&&e-u[t-1]>1?"<span>…</span>":""}<button data-page="${e}"${e===h?' aria-current="page"':""}>${e}</button>`).join("")+`<button data-page="${h+1}" ${h===c?"disabled":""}>Next →</button>`:"",M.textContent=y?"Some categories could not load. Reload to try again.":"",e.querySelectorAll("[data-cat]").forEach(e=>e.setAttribute("aria-pressed",String(1===a.length?a[0]===e.dataset.cat:!a.length&&!e.dataset.cat)))}let E;let srNearKey="";async function srNear(){try{const api=window.SR_SEARCH_DATA;if(o||!g||!api||!api.rows)return;const key=g[0].toFixed(3)+","+g[1].toFixed(3);if(srNearKey===key)return;srNearKey=key;const dl=1.5,dn=1.5/Math.max(.2,Math.cos(g[0]*Math.PI/180)),f={$and:[{latitude:{$gt:g[0]-dl}},{latitude:{$lt:g[0]+dl}},{longitude:{$gt:g[1]-dn}},{longitude:{$lt:g[1]+dn}}]},out=await Promise.allSettled(["Venues","NearbyAttractions","DestinationRecommendations"].map(c=>api.rows(c,f))),have=new Set(p.map(w)),add=out.flatMap(r=>"fulfilled"===r.status?r.value:[]).filter(x=>!have.has(w(x)));if(add.length){p=p.concat(add);N()}}catch(err){console.warn("SR nearby search failed",err)}}function L(){if(!s)return;const t=String(s).toLowerCase().trim(),a=t.replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");let i=(window.SR_TRIP_COORDS||{})[a];if(!i){const e=p.filter(e=>c(e).toLowerCase().trim()===t).map(e=>[Number(e.latitude),Number(e.longitude)]).filter(e=>Number.isFinite(e[0])&&Number.isFinite(e[1])&&0!==e[0]);if(e.length){const t=e=>(e=e.slice().sort((e,t)=>e-t))[e.length>>1];i=[t(e.map(e=>e[0])),t(e.map(e=>e[1]))]}}if(!i)return;g=i,b=!0,k.elements.distance.disabled=!1;const n=e.querySelector("[data-location-status]");n&&(n.textContent="Distances are measured from "+s+". Tap “Use my location” to measure from where you are.")}return o&&(e.querySelector(".map-link").remove(),e.querySelector("aside .side-panel").remove(),e.querySelector(".plan-panel h2").textContent="Plan your next adventure",e.querySelector(".articles-link").remove()),window.matchMedia?.("(max-width:600px)").matches&&(e.querySelector(".filter-panel").open=!1),k.addEventListener("submit",e=>{e.preventDefault(),h=1,N()}),k.addEventListener("reset",()=>{g=null,b=!1,k.elements.distance.disabled=!0,e.querySelector("[data-location-status]").textContent="Choose your location to filter by distance.",setTimeout(()=>{L(),e.querySelector("output").textContent="Within "+k.elements.distance.value+" miles",k.querySelectorAll("input[name=category]").forEach(e=>e.checked=!1),h=1,N()},0)}),k.elements.distance.addEventListener("input",()=>{b=!1;srNear();const z=e.querySelector("[data-location-status]");z&&!z.textContent.includes("Places without a map location")&&(z.textContent+=" Places without a map location are excluded.");e.querySelector("output").textContent="Within "+k.elements.distance.value+(1===Number(k.elements.distance.value)?" mile":" miles"),clearTimeout(E),E=setTimeout(()=>{h=1,N()},150)}),k.addEventListener("change",e=>{"distance"!==e.target.name&&(h=1,N())}),e.querySelector("[data-sort]").addEventListener("change",()=>{h=1,N()}),e.addEventListener("click",t=>{const a=t.target.closest("button");if(a){if(a.hasAttribute("data-cat")&&(k.querySelectorAll("input[name=category]").forEach(e=>e.checked=e.value===a.dataset.cat),h=1,N()),a.dataset.view&&(F.classList.toggle("list","list"===a.dataset.view),e.querySelectorAll("[data-view]").forEach(e=>e.setAttribute("aria-pressed",String(e===a)))),a.hasAttribute("data-toggle-map")){const t=e.querySelector("main").classList.toggle("map-hidden");a.setAttribute("aria-pressed",String(!t)),a.textContent=t?"◫ Show map":"◫ Hide map"}if(a.dataset.page&&(h=Number(a.dataset.page),N(),e.querySelector(".results-heading").scrollIntoView({block:"start"})),a.dataset.save){const e=a.dataset.save,t=v.includes(e)?v.filter(t=>t!==e):[...v,e];try{localStorage.setItem(S,JSON.stringify(t)),v=t,o&&N(),a.setAttribute("aria-pressed",String(v.includes(e))),a.textContent=v.includes(e)?"♥":"♡",M.textContent=v.includes(e)?"Saved to favourites on this browser.":"Removed from favourites."}catch{M.textContent="Favourites could not be saved in this browser."}}}}),e.querySelector("[data-locate]").onclick=()=>{const t=e.querySelector("[data-location-status]");navigator.geolocation?(t.textContent="Finding your location…",navigator.geolocation.getCurrentPosition(e=>{g=[e.coords.latitude,e.coords.longitude],b=!1,srNearKey="",srNear(),k.elements.distance.disabled=!1,t.textContent="Using your location. Distances are straight-line estimates.",h=1,N()},()=>t.textContent="Location access was unavailable. Search by town instead.",{timeout:1e4,maximumAge:6e4})):t.textContent="Location is unavailable in this browser."},{setRecords(t,a=0){p=t,y=a,g||L(),function(){if(o)return;const t=p.filter(e=>"stays"===d(e)&&x(e)).slice(0,4);e.querySelector("[data-side-results]").innerHTML=t.length?`<section class="side-panel"><div class="side-heading"><h2>Places to stay${s?" in "+r(s):""}</h2><a href="/search?q=${encodeURIComponent(s)}&category=stays">View all →</a></div><div class="side-cards">${t.map(e=>`<a class="side-card" href="${r(R(e))}"${e.affiliateUrl?' rel="sponsored noopener"':""}><img src="${r(x(e))}" alt="${r(l(e))}" loading="lazy"><h3>${r(l(e))}</h3><p>${r(e.ctaLabel||e.ctaText||"View stay →")}</p>${e.affiliateUrl?'<p class="ad-note">Ad · Affiliate link</p>':""}</a>`).join("")}</div></section>`:""}(),N()},error(){e.querySelector("[data-count]").textContent="Search could not load.",F.innerHTML='<div class="empty"><h2>Unable to load results</h2><p>Please reload to try again.</p></div>'}}};
-}catch(e){console.warn('SR snippet failed: Spin Raiders approved search layout renderer 20260922',e)}})();
+(function () {
+  try {
+    window.SR_SEARCH_VIEW = function (e, t) {
+      "use strict";
+      const {
+          S: a,
+          q: s,
+          category: i = "",
+          locationMode: n = !1,
+          favourites: o = !1,
+        } = t,
+        r = a.e,
+        l = (e) => e.displayTitle || e.title || e.name || "",
+        c = (e) => e.locationName || e.destination || e.town || "",
+        d = (e) => {
+          const t = [e.category, e.venueType, e.offerType]
+            .filter(Boolean)
+            .join(" ");
+          return "ClassicFruitMachines" === e._collection
+            ? "machines"
+            : "Locations" === e._collection
+              ? "destinations"
+              : /casino/i.test(t + " " + (e.title || ""))
+                ? "casinos"
+                : /hotel|stay|accommodation|guest|b&b|holiday park/i.test(t)
+                  ? "stays"
+                  : /food|restaurant|cafe|café|drink|pub|chippy/i.test(t)
+                    ? "food"
+                    : /museum|gallery/i.test(t)
+                      ? "museums"
+                      : /theme park/i.test(t)
+                        ? "theme"
+                        : /nature|outdoor|beach|garden|forest|reserve|walk/i.test(
+                              t,
+                            )
+                          ? "outdoors"
+                          : "Venues" === e._collection
+                            ? "venues"
+                            : "attractions";
+        },
+        u = [
+          ["", "All Results", "search"],
+          ["venues", "Arcades", "arcade"],
+          ["casinos", "Casinos", "game"],
+          ["attractions", "Attractions", "coaster"],
+          ["stays", "Places to Stay", "bed"],
+          ["food", "Eat & Drink", "food"],
+          ["theme", "Theme Parks", "coaster"],
+          ["museums", "Museums", "museum"],
+          ["outdoors", "Nature & Outdoors", "tree"],
+          ["machines", "Fruit Machines", "game"],
+          ["destinations", "Destinations", "map"],
+        ];
+      let p = [],
+        m = [],
+        h = 1,
+        g = null,
+        b = !1,
+        f = i,
+        y = 0,
+        v = [];
+      const $ = n ? 9 : 6,
+        S = "sr-directory-favourites-v1";
+      try {
+        ((v = JSON.parse(localStorage.getItem(S) || "[]")),
+          Array.isArray(v) || (v = []));
+      } catch {}
+      const w = (e) => e._collection + ":" + (e._id || e.slug || l(e)),
+        x = (e) => {
+          const t =
+            "ClassicFruitMachines" === e._collection
+              ? a.archiveQuality?.cardPhoto(e)
+              : a.safePhoto?.({ ...e, heroImage: e.heroImage || e.image });
+          return t ? a.fit(a.img(t), 480) : "";
+        },
+        C = (e) =>
+          /^VERIFIED/i.test(e.publicRatingStatus || "") &&
+          Number(e.publicRating) > 0 &&
+          Number(e.publicReviewCount) > 0
+            ? {
+                score: Number(e.publicRating),
+                count: Number(e.publicReviewCount),
+                source: e.publicRatingSource || e.ratingSource || "",
+              }
+            : null,
+        q = (e) => {
+          const t = Number(e.latitude),
+            a = Number(e.longitude);
+          if (
+            !g ||
+            null == e.latitude ||
+            null == e.longitude ||
+            !Number.isFinite(t) ||
+            !Number.isFinite(a)
+          )
+            return null;
+          const s = (e) => (e * Math.PI) / 180,
+            i =
+              Math.sin(s(t - g[0]) / 2) ** 2 +
+              Math.cos(s(g[0])) *
+                Math.cos(s(t)) *
+                Math.sin(s(a - g[1]) / 2) ** 2;
+          return 7917.6 * Math.asin(Math.min(1, Math.sqrt(i)));
+        },
+        R = (e) =>
+          ((e) => {
+            if ("string" != typeof e || !e.trim()) return "";
+            try {
+              const t = new URL(e, location.origin);
+              return /^https?:$/.test(t.protocol) ? t.href : "";
+            } catch {
+              return "";
+            }
+          })(t.href(e)) || "/search?q=" + encodeURIComponent(l(e));
+      function A(e) {
+        const t = x(e),
+          a = C(e),
+          s = w(e),
+          i = !(!e.affiliateUrl && !e.affiliate),
+          n = u.find((t) => t[0] === d(e))?.[1] || "Explore";
+        return `<article class="result-card"><a class="card-image" href="${r(R(e))}"${i ? ' rel="sponsored noopener"' : ""}>${t ? `<img src="${r(t)}" alt="${r(e.exteriorImageAlt || e.imageAltText || e.imageAlt || l(e))}" loading="lazy" width="600" height="480">` : '<span class="image-empty">Photo being added</span>'}<span class="badge">${"541e7ebd-3e48-441e-9e21-c24b2233a0f0" === e._id ? "RAIDER RECOMMENDED" : r(n)}</span></a><button class="save" data-save="${r(s)}" aria-pressed="${v.includes(s)}" aria-label="Save ${r(l(e))}">${v.includes(s) ? "♥" : "♡"}</button><div class="card-copy"><h2><a href="${r(R(e))}"${i ? ' rel="sponsored noopener"' : ""}>${r(l(e))}<span aria-hidden="true">→</span></a></h2><p>⌖ ${r([c(e), e.postcode].filter(Boolean).join(", "))}${g && !b && null != q(e) ? " · " + q(e).toFixed(1) + " miles" : ""}</p>${"541e7ebd-3e48-441e-9e21-c24b2233a0f0" === e._id ? "<p><strong>Raider Score 4.9/5 · Hidden Gem</strong></p>" : ""}<p>${a ? `<span class="stars">★</span> ${a.score.toFixed(1)} (${a.count.toLocaleString("en-GB")})${a.source ? " · " + r(a.source) : ""}` : "No public rating yet."}</p><div class="tags">${((
+          e,
+        ) =>
+          [
+            e.venueType || e.category || e.manufacturer,
+            !0 === e.familyFriendly ? "Family Friendly" : null,
+            e.ageRestriction,
+          ]
+            .filter(Boolean)
+            .slice(0, 3))(e)
+          .map((e) => "<span>" + r(e) + "</span>")
+          .join(
+            "",
+          )}</div>${i ? '<p class="ad-note">Ad · Affiliate link</p>' : ""}</div></article>`;
+      }
+      e.innerHTML =
+        "<style>" +
+        window.SR_SEARCH_VIEW_CSS +
+        "</style>" +
+        `<main class="${n ? "location-mode" : ""}"><section class="search-hero"><img src="${n ? "https://static.wixstatic.com/media/3a517e_d1cae7805ea348a796fa77821f7f1f17~mv2.png/v1/fit/w_1000,h_1000,q_60,enc_auto/file.webp" : "https://static.wixstatic.com/media/3a517e_a97bdf5ade7f463bb2b47daf79dacbb3~mv2.png/v1/fit/w_1000,h_1000,q_60,enc_auto/file.webp"}" alt="${n ? "Explore the UK" : "Find your next adventure"} — Blackpool seaside header artwork" width="2048" height="683" fetchpriority="high"><div class="hero-controls"><form class="hero-form" action="/search" role="search"><span aria-hidden="true">⌕</span><label class="sr-only" for="search-query">Search for a town, venue or attraction</label><input id="search-query" name="q" value="${r(o ? "" : s)}" required maxlength="160" placeholder="Search for a town, venue or attraction…"><button class="button pink">Search →</button></form><nav class="hero-quick" aria-label="Popular searches">${["Blackpool", "Skegness", "Great Yarmouth", "Southend", "Hotels", "Arcades"].map((e) => `<a href="/search?q=${encodeURIComponent(e)}">${r(e)}</a>`).join("")}</nav></div></section><nav class="categories" aria-label="Results categories">${u
+          .map(([e, t]) => `<button data-cat="${e}" aria-pressed="${f === e}">${window.SR_TOPIC_ICON(t, 40)}<span>${t}</span></button>`)
+          .join(
+            "",
+          )}</nav><div class="content"><div class="results-heading"><div><h1>${o ? "Your saved places" : (n ? "Results for" : "Search results for") + " <em>" + r(s || "your next adventure") + "</em>"}</h1><p data-count role="status">${s ? "Finding matching places…" : "Enter a town, venue or attraction to begin."}</p></div><div class="toolbar"><label>Sort by <select data-sort><option value="relevance">Most relevant</option><option value="rating">Highest rated</option><option value="name">Name A–Z</option></select></label><button data-view="grid" aria-pressed="true">▦ Grid</button><button data-view="list" aria-pressed="false">☷ List</button><button class="map-link" data-toggle-map aria-pressed="true">◫ Show map</button></div></div><p class="result-status" data-message role="status"></p><div class="layout"><details class="filter-panel" open><summary>Filter results <span>⌄</span></summary><form data-filters><fieldset><legend>Category</legend>${u
+          .slice(1)
+          .map(
+            ([e, t]) =>
+              `<label><input type="checkbox" name="category" value="${e}"${f === e ? " checked" : ""}>${t}</label>`,
+          )
+          .join(
+            "",
+          )}</fieldset><fieldset><legend>Distance</legend><label class="range-label"><input type="range" name="distance" min="1" max="100" value="25" disabled aria-label="Distance in miles"><output>Within 25 miles</output></label><button type="button" class="button reset" data-locate>Use my location</button><p class="small-status" data-location-status>Choose your location to filter by distance.</p></fieldset><fieldset><legend>Rating</legend>${[4, 3, 2, 1].map((e) => `<label><input type="radio" name="rating" value="${e}"><span class="stars">${"★".repeat(e)}</span> & up</label>`).join("")}</fieldset><fieldset><legend>Facilities</legend>${[
+          ["disabledAccess", "Disabled Access"],
+          ["parking", "On-site Parking"],
+          ["familyFriendly", "Family Friendly"],
+          ["dogFriendly", "Dog Friendly"],
+          ["wifi", "Free Wi-Fi"],
+        ]
+          .map(
+            ([e, t]) =>
+              `<label><input type="checkbox" name="facility" value="${e}">${t}</label>`,
+          )
+          .join(
+            "",
+          )}</fieldset><button class="button" type="submit">▽ Apply filters</button><button class="button reset" type="reset">↻ Reset filters</button></form></details><section aria-label="Search results"><div class="results-grid" data-results><div class="empty"><h2>${s ? "Finding places for your next day out…" : "Where would you like to go?"}</h2></div></div><nav class="pagination" aria-label="Results pages" data-pagination></nav></section><aside><section class="side-panel"><div class="side-heading"><h2>⌖ Results on map</h2><a href="/map?q=${encodeURIComponent(s)}">View larger map →</a></div><iframe class="map-frame" src="https://www.google.com/maps?q=${encodeURIComponent(s || "United Kingdom")}&output=embed" title="Map of ${r(s || "the UK")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section><div data-side-results></div><section class="plan-panel"><h2>Plan ${s ? "more in " + r(s) : "your next adventure"}</h2><p>Bring together places to visit, food and drink, and somewhere to stay.</p><a class="button yellow" href="/destination-recommendations?view=trip">Plan your day →</a></section></aside></div><a class="articles-link" href="/search?q=${encodeURIComponent(s)}&view=articles">Search articles and blog posts →</a></div></main>`;
+      const k = e.querySelector("[data-filters]"),
+        F = e.querySelector("[data-results]"),
+        M = e.querySelector("[data-message]");
+      function N() {
+        const t = new FormData(k),
+          a = t.getAll("category"),
+          s = t.getAll("facility"),
+          i = Number(t.get("rating") || 0),
+          n = Number(t.get("distance") || 25),
+          r = e.querySelector("[data-sort]").value;
+        ((m = p.filter(
+          (e) =>
+            (!o || v.includes(w(e))) &&
+            (!a.length || a.includes(d(e))) &&
+            (!i || (C(e)?.score || 0) >= i) &&
+            s.every((t) =>
+              "parking" === t
+                ? e.parking === true ||
+                  e.parkingAvailable === true ||
+                  e.freeParking === true
+                : "wifi" === t
+                  ? e.wifi === true || e.freeWifi === true
+                  : e[t] === true,
+            ) &&
+            (!g || (null === q(e) ? b : q(e) <= n)),
+        )),
+          "name" === r && m.sort((e, t) => l(e).localeCompare(l(t))),
+          "rating" === r &&
+            m.sort((e, t) => (C(t)?.score || 0) - (C(e)?.score || 0)),
+          "relevance" === r &&
+            g &&
+            !b &&
+            m.sort((e, t) => (q(e) ?? 1e9) - (q(t) ?? 1e9)),
+          "relevance" === r &&
+            m.sort(
+              (e, t) =>
+                Number("541e7ebd-3e48-441e-9e21-c24b2233a0f0" === t._id) -
+                Number("541e7ebd-3e48-441e-9e21-c24b2233a0f0" === e._id),
+            ));
+        const c = Math.max(1, Math.ceil(m.length / $));
+        ((h = Math.max(1, Math.min(h, c))),
+          (e.querySelector("[data-count]").textContent =
+            m.length + (1 === m.length ? " result found" : " results found")),
+          (F.innerHTML = m.length
+            ? m
+                .slice((h - 1) * $, h * $)
+                .map(A)
+                .join("")
+            : '<div class="empty"><h2>No matching places</h2><p>Try another search or reset the filters.</p></div>'));
+        const u = [
+          ...new Set([
+            1,
+            ...Array.from({ length: 5 }, (e, t) => h - 2 + t).filter(
+              (e) => e > 1 && e < c,
+            ),
+            c,
+          ]),
+        ];
+        ((e.querySelector("[data-pagination]").innerHTML =
+          c > 1
+            ? `<button data-page="${h - 1}" ${1 === h ? "disabled" : ""}>← Previous</button>` +
+              u
+                .map(
+                  (e, t) =>
+                    `${t && e - u[t - 1] > 1 ? "<span>…</span>" : ""}<button data-page="${e}"${e === h ? ' aria-current="page"' : ""}>${e}</button>`,
+                )
+                .join("") +
+              `<button data-page="${h + 1}" ${h === c ? "disabled" : ""}>Next →</button>`
+            : ""),
+          (M.textContent = y
+            ? "Some categories could not load. Reload to try again."
+            : ""),
+          e
+            .querySelectorAll("[data-cat]")
+            .forEach((e) =>
+              e.setAttribute(
+                "aria-pressed",
+                String(
+                  1 === a.length
+                    ? a[0] === e.dataset.cat
+                    : !a.length && !e.dataset.cat,
+                ),
+              ),
+            ));
+      }
+      let E;
+      let srNearKey = "";
+      async function srNear() {
+        try {
+          const api = window.SR_SEARCH_DATA;
+          if (o || !g || !api || !api.rows) return;
+          const key = g[0].toFixed(3) + "," + g[1].toFixed(3);
+          if (srNearKey === key) return;
+          srNearKey = key;
+          const dl = 1.5,
+            dn = 1.5 / Math.max(0.2, Math.cos((g[0] * Math.PI) / 180)),
+            f = {
+              $and: [
+                { latitude: { $gt: g[0] - dl } },
+                { latitude: { $lt: g[0] + dl } },
+                { longitude: { $gt: g[1] - dn } },
+                { longitude: { $lt: g[1] + dn } },
+              ],
+            },
+            out = await Promise.allSettled(
+              ["Venues", "NearbyAttractions", "DestinationRecommendations"].map(
+                (c) => api.rows(c, f),
+              ),
+            ),
+            have = new Set(p.map(w)),
+            add = out
+              .flatMap((r) => ("fulfilled" === r.status ? r.value : []))
+              .filter((x) => !have.has(w(x)));
+          if (add.length) {
+            p = p.concat(add);
+            N();
+          }
+        } catch (err) {
+          console.warn("SR nearby search failed", err);
+        }
+      }
+      function L() {
+        if (!s) return;
+        const t = String(s).toLowerCase().trim(),
+          a = t.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        let i = (window.SR_TRIP_COORDS || {})[a];
+        if (!i) {
+          const e = p
+            .filter((e) => c(e).toLowerCase().trim() === t)
+            .map((e) => [Number(e.latitude), Number(e.longitude)])
+            .filter(
+              (e) =>
+                Number.isFinite(e[0]) && Number.isFinite(e[1]) && 0 !== e[0],
+            );
+          if (e.length) {
+            const t = (e) =>
+              (e = e.slice().sort((e, t) => e - t))[e.length >> 1];
+            i = [t(e.map((e) => e[0])), t(e.map((e) => e[1]))];
+          }
+        }
+        if (!i) return;
+        ((g = i), (b = !0), (k.elements.distance.disabled = !1));
+        const n = e.querySelector("[data-location-status]");
+        n &&
+          (n.textContent =
+            "Distances are measured from " +
+            s +
+            ". Tap “Use my location” to measure from where you are.");
+      }
+      return (
+        o &&
+          (e.querySelector(".map-link").remove(),
+          e.querySelector("aside .side-panel").remove(),
+          (e.querySelector(".plan-panel h2").textContent =
+            "Plan your next adventure"),
+          e.querySelector(".articles-link").remove()),
+        window.matchMedia?.("(max-width:600px)").matches &&
+          (e.querySelector(".filter-panel").open = !1),
+        k.addEventListener("submit", (e) => {
+          (e.preventDefault(), (h = 1), N());
+        }),
+        k.addEventListener("reset", () => {
+          ((g = null),
+            (b = !1),
+            (k.elements.distance.disabled = !0),
+            (e.querySelector("[data-location-status]").textContent =
+              "Choose your location to filter by distance."),
+            setTimeout(() => {
+              (L(),
+                (e.querySelector("output").textContent =
+                  "Within " + k.elements.distance.value + " miles"),
+                k
+                  .querySelectorAll("input[name=category]")
+                  .forEach((e) => (e.checked = !1)),
+                (h = 1),
+                N());
+            }, 0));
+        }),
+        k.elements.distance.addEventListener("input", () => {
+          b = !1;
+          srNear();
+          const z = e.querySelector("[data-location-status]");
+          z &&
+            !z.textContent.includes("Places without a map location") &&
+            (z.textContent += " Places without a map location are excluded.");
+          ((e.querySelector("output").textContent =
+            "Within " +
+            k.elements.distance.value +
+            (1 === Number(k.elements.distance.value) ? " mile" : " miles")),
+            clearTimeout(E),
+            (E = setTimeout(() => {
+              ((h = 1), N());
+            }, 150)));
+        }),
+        k.addEventListener("change", (e) => {
+          "distance" !== e.target.name && ((h = 1), N());
+        }),
+        e.querySelector("[data-sort]").addEventListener("change", () => {
+          ((h = 1), N());
+        }),
+        e.addEventListener("click", (t) => {
+          const a = t.target.closest("button");
+          if (a) {
+            if (
+              (a.hasAttribute("data-cat") &&
+                (k
+                  .querySelectorAll("input[name=category]")
+                  .forEach((e) => (e.checked = e.value === a.dataset.cat)),
+                (h = 1),
+                N()),
+              a.dataset.view &&
+                (F.classList.toggle("list", "list" === a.dataset.view),
+                e
+                  .querySelectorAll("[data-view]")
+                  .forEach((e) =>
+                    e.setAttribute("aria-pressed", String(e === a)),
+                  )),
+              a.hasAttribute("data-toggle-map"))
+            ) {
+              const t = e.querySelector("main").classList.toggle("map-hidden");
+              (a.setAttribute("aria-pressed", String(!t)),
+                (a.textContent = t ? "◫ Show map" : "◫ Hide map"));
+            }
+            if (
+              (a.dataset.page &&
+                ((h = Number(a.dataset.page)),
+                N(),
+                e
+                  .querySelector(".results-heading")
+                  .scrollIntoView({ block: "start" })),
+              a.dataset.save)
+            ) {
+              const e = a.dataset.save,
+                t = v.includes(e) ? v.filter((t) => t !== e) : [...v, e];
+              try {
+                (localStorage.setItem(S, JSON.stringify(t)),
+                  (v = t),
+                  o && N(),
+                  a.setAttribute("aria-pressed", String(v.includes(e))),
+                  (a.textContent = v.includes(e) ? "♥" : "♡"),
+                  (M.textContent = v.includes(e)
+                    ? "Saved to favourites on this browser."
+                    : "Removed from favourites."));
+              } catch {
+                M.textContent =
+                  "Favourites could not be saved in this browser.";
+              }
+            }
+          }
+        }),
+        (e.querySelector("[data-locate]").onclick = () => {
+          const t = e.querySelector("[data-location-status]");
+          navigator.geolocation
+            ? ((t.textContent = "Finding your location…"),
+              navigator.geolocation.getCurrentPosition(
+                (e) => {
+                  ((g = [e.coords.latitude, e.coords.longitude]),
+                    (b = !1),
+                    (srNearKey = ""),
+                    srNear(),
+                    (k.elements.distance.disabled = !1),
+                    (t.textContent =
+                      "Using your location. Distances are straight-line estimates."),
+                    (h = 1),
+                    N());
+                },
+                () =>
+                  (t.textContent =
+                    "Location access was unavailable. Search by town instead."),
+                { timeout: 1e4, maximumAge: 6e4 },
+              ))
+            : (t.textContent = "Location is unavailable in this browser.");
+        }),
+        {
+          setRecords(t, a = 0) {
+            ((p = t),
+              (y = a),
+              g || L(),
+              (function () {
+                if (o) return;
+                const t = p.filter((e) => "stays" === d(e) && x(e)).slice(0, 4);
+                e.querySelector("[data-side-results]").innerHTML = t.length
+                  ? `<section class="side-panel"><div class="side-heading"><h2>Places to stay${s ? " in " + r(s) : ""}</h2><a href="/search?q=${encodeURIComponent(s)}&category=stays">View all →</a></div><div class="side-cards">${t.map((e) => `<a class="side-card" href="${r(R(e))}"${e.affiliateUrl ? ' rel="sponsored noopener"' : ""}><img src="${r(x(e))}" alt="${r(l(e))}" loading="lazy"><h3>${r(l(e))}</h3><p>${r(e.ctaLabel || e.ctaText || "View stay →")}</p>${e.affiliateUrl ? '<p class="ad-note">Ad · Affiliate link</p>' : ""}</a>`).join("")}</div></section>`
+                  : "";
+              })(),
+              N());
+          },
+          error() {
+            ((e.querySelector("[data-count]").textContent =
+              "Search could not load."),
+              (F.innerHTML =
+                '<div class="empty"><h2>Unable to load results</h2><p>Please reload to try again.</p></div>'));
+          },
+        }
+      );
+    };
+  } catch (e) {
+    console.warn(
+      "SR snippet failed: Spin Raiders approved search layout renderer 20260922",
+      e,
+    );
+  }
+})();
+
 
 /* [69] Spin Raiders approved interactive map styles 20260922 */
 (function(){try{
-window.SR_MAP_DESIGN_CSS=":host{display:block;background:#fff;color:#061655;font:16px 'Roboto Condensed',Arial,sans-serif}*{box-sizing:border-box}button,input,a{font:inherit}button,a{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #ffdb23;outline-offset:3px}a{color:#0066ff;text-decoration:none}button{border:1px solid #d5e5fc;border-radius:6px;background:#fff;color:#07175b;padding:10px 14px}button[aria-pressed=true],.primary{background:#0666ff;color:#fff}.map-ribbon{height:60px;background:linear-gradient(90deg,#daf5ffcc,#fff6),var(--coast) center 55%/cover;display:flex;justify-content:flex-end;align-items:center;padding:4px 32px;color:#001b52;font:700 28px Caveat,cursive}.layout{display:grid;grid-template-columns:280px minmax(350px,1fr) minmax(300px,410px);gap:10px;padding:10px;min-height:720px;height:calc(100vh - 150px)}.filters{padding:6px;overflow:auto}.filters h1{font-size:32px;line-height:1.1;margin:0 0 8px}.filters p{font-size:14px;color:#43628a;margin:0 0 12px}.tabs{display:flex;margin:10px 0}.tabs button{flex:1;padding:9px 3px;font-size:14px}.search{display:flex;gap:5px}.search input{width:100%;min-width:0;border:1px solid #d5e5fc;border-radius:6px;padding:11px}.filter-top{display:flex;justify-content:space-between;align-items:center;margin-top:16px}.text-button{border:0;padding:4px;color:#0066ff}.categories{display:grid;margin:5px 0 12px;border:1px solid #e0ebf9;border-radius:6px;overflow:hidden}.category{display:flex;gap:10px;align-items:center;padding:6px 9px;border-bottom:1px solid #e8eef7;font-size:14px}.category input{margin-left:auto;accent-color:#0566ff;width:17px;height:17px}.category .icon{background:var(--pin);color:#fff;display:grid;place-items:center;border-radius:6px;width:30px;height:30px;font-size:21px}.wide{width:100%;margin-bottom:6px}.map-stage{position:relative;min-height:500px;border-radius:9px;overflow:hidden;border:1px solid #d5e5fc}.map-canvas{position:absolute;inset:0;background:#c0e4fa}.map-count,.map-tools{position:absolute;z-index:500;background:white;box-shadow:0 2px 8px #00143e30;border-radius:6px}.map-count{bottom:22px;left:10px;max-width:80%;padding:10px 12px;font-size:14px}.map-tools{top:10px;right:10px;display:flex;gap:2px}.map-pin{background:var(--pin);border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 4px #00123980;width:29px;height:29px;display:grid;place-items:center;color:white}.map-pin span{transform:rotate(45deg);font-size:17px}.map-pin:focus-visible{outline:4px solid #ffdf25}.leaflet-marker-icon{background:none;border:0}.place{border:1px solid #d8e7fb;border-radius:8px;overflow:auto;background:white}.place-hero{position:relative}.place-hero>img{width:100%;aspect-ratio:1.85;object-fit:cover;display:block}.place-hero .save{position:absolute;right:10px;top:10px;font-size:14px;background:white}.save[aria-pressed=true]{color:#f50078}.place-copy{padding:16px}.place h2{font-size:28px;line-height:1.05;margin:0 0 6px}.place p{line-height:1.45;margin:8px 0}.location{font-size:18px}.rating{font-weight:600}.rating b{color:#f8bd00}.tags{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.tags span{background:#e1f0ff;padding:6px 9px;border-radius:6px;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.actions a{flex:1;text-align:center;padding:11px 10px;border:1px solid #a7caff;border-radius:6px;min-width:100px}.actions .visit{background:#fa0074;color:white;border-color:#fa0074}.address,.hours{background:#f7fbff;border:1px solid #deebfb;border-radius:7px;padding:10px;margin:8px 0}.hours summary{cursor:pointer;font-weight:bold}.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:12px 0}.gallery img{width:100%;height:70px;object-fit:cover;border-radius:5px}.nearby{border:1px solid #e1eafb;border-radius:6px;margin-top:15px;padding:10px}.nearby h3{margin:0 0 8px}.nearby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.nearby-card{padding:0;text-align:left;overflow:hidden;font-size:13px}.nearby-card img{width:100%;height:75px;object-fit:cover;display:block}.nearby-card span{display:block;padding:5px}.empty{padding:24px;line-height:1.5}.map-status{font-size:13px;margin:8px 0;line-height:1.35}.legend-note{font-size:12px;color:#526784}.preferences{background:#eef8ff;padding:14px;border-radius:7px;margin:10px 0}.preferences label{display:block;margin:10px 0}.map-results{max-height:220px;overflow:auto;margin:12px 0}.map-results button{display:block;width:100%;text-align:left;margin:4px 0}.map-results small{display:block;color:#486381}.photo-empty{padding:60px 15px;background:#eaf5ff;text-align:center}.fullscreen{position:fixed!important;inset:0!important;z-index:999999!important;border-radius:0!important}.map-stage .leaflet-control-attribution{font-size:10px}dialog{border:0;border-radius:8px;max-width:90vw;background:#061b40;color:white}dialog img{max-width:85vw;max-height:80vh;object-fit:contain}dialog::backdrop{background:#000b}@media(min-width:1600px){.layout{grid-template-columns:310px minmax(500px,1fr) 500px}}@media(max-width:1050px){.layout{grid-template-columns:240px minmax(350px,1fr);height:auto}.map-stage{height:650px}.place{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.place-hero>img{height:100%;aspect-ratio:auto}.place-copy{min-width:0}}@media(max-width:650px){.layout{display:flex;flex-direction:column;padding:8px}.filters{max-height:420px}.filters h1{font-size:29px}.map-stage{height:60vh;min-height:400px}.place{display:block}.map-ribbon{font-size:23px}.categories{grid-template-columns:1fr 1fr}.category{font-size:12px;gap:5px;padding:5px}.category .icon{width:25px;height:25px}.place h2{font-size:25px}}\n";
+window.SR_MAP_DESIGN_CSS=":host{display:block;background:#fff;color:#061655;font:16px 'Roboto Condensed',Arial,sans-serif}*{box-sizing:border-box}button,input,a{font:inherit}button,a{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #ffdb23;outline-offset:3px}a{color:#0066ff;text-decoration:none}button{border:1px solid #d5e5fc;border-radius:6px;background:#fff;color:#07175b;padding:10px 14px}button[aria-pressed=true],.primary{background:#0666ff;color:#fff}.map-ribbon{height:60px;background:linear-gradient(90deg,#daf5ffcc,#fff6),var(--coast) center 55%/cover;display:flex;justify-content:flex-end;align-items:center;padding:4px 32px;color:#001b52;font:700 28px Caveat,cursive}.layout{display:grid;grid-template-columns:280px minmax(350px,1fr) minmax(300px,410px);gap:10px;padding:10px;min-height:720px;height:calc(100vh - 150px)}.filters{padding:6px;overflow:auto}.filters h1{font-size:32px;line-height:1.1;margin:0 0 8px}.filters p{font-size:14px;color:#43628a;margin:0 0 12px}.tabs{display:flex;margin:10px 0}.tabs button{flex:1;padding:9px 3px;font-size:14px}.search{display:flex;gap:5px}.search input{width:100%;min-width:0;border:1px solid #d5e5fc;border-radius:6px;padding:11px}.filter-top{display:flex;justify-content:space-between;align-items:center;margin-top:16px}.text-button{border:0;padding:4px;color:#0066ff}.categories{display:grid;margin:5px 0 12px;border:1px solid #e0ebf9;border-radius:6px;overflow:hidden}.category{display:flex;gap:10px;align-items:center;padding:6px 9px;border-bottom:1px solid #e8eef7;font-size:14px}.category input{margin-left:auto;accent-color:#0566ff;width:17px;height:17px}.category .icon{background:transparent;color:#fff;display:grid;place-items:center;border-radius:6px;width:30px;height:30px;font-size:21px}.wide{width:100%;margin-bottom:6px}.map-stage{position:relative;min-height:500px;border-radius:9px;overflow:hidden;border:1px solid #d5e5fc}.map-canvas{position:absolute;inset:0;background:#c0e4fa}.map-count,.map-tools{position:absolute;z-index:500;background:white;box-shadow:0 2px 8px #00143e30;border-radius:6px}.map-count{bottom:22px;left:10px;max-width:80%;padding:10px 12px;font-size:14px}.map-tools{top:10px;right:10px;display:flex;gap:2px}.map-pin{background:var(--pin);border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 4px #00123980;width:29px;height:29px;display:grid;place-items:center;color:white}.map-pin span{transform:rotate(45deg);font-size:17px;display:grid;place-items:center}.map-pin .sr-gicon{width:25px;height:25px}.category .icon .sr-gicon{width:100%;height:100%}.map-pin:focus-visible{outline:4px solid #ffdf25}.leaflet-marker-icon{background:none;border:0}.place{border:1px solid #d8e7fb;border-radius:8px;overflow:auto;background:white}.place-hero{position:relative}.place-hero>img{width:100%;aspect-ratio:1.85;object-fit:cover;display:block}.place-hero .save{position:absolute;right:10px;top:10px;font-size:14px;background:white}.save[aria-pressed=true]{color:#f50078}.place-copy{padding:16px}.place h2{font-size:28px;line-height:1.05;margin:0 0 6px}.place p{line-height:1.45;margin:8px 0}.location{font-size:18px}.rating{font-weight:600}.rating b{color:#f8bd00}.tags{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.tags span{background:#e1f0ff;padding:6px 9px;border-radius:6px;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.actions a{flex:1;text-align:center;padding:11px 10px;border:1px solid #a7caff;border-radius:6px;min-width:100px}.actions .visit{background:#fa0074;color:white;border-color:#fa0074}.address,.hours{background:#f7fbff;border:1px solid #deebfb;border-radius:7px;padding:10px;margin:8px 0}.hours summary{cursor:pointer;font-weight:bold}.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:12px 0}.gallery img{width:100%;height:70px;object-fit:cover;border-radius:5px}.nearby{border:1px solid #e1eafb;border-radius:6px;margin-top:15px;padding:10px}.nearby h3{margin:0 0 8px}.nearby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.nearby-card{padding:0;text-align:left;overflow:hidden;font-size:13px}.nearby-card img{width:100%;height:75px;object-fit:cover;display:block}.nearby-card span{display:block;padding:5px}.empty{padding:24px;line-height:1.5}.map-status{font-size:13px;margin:8px 0;line-height:1.35}.legend-note{font-size:12px;color:#526784}.preferences{background:#eef8ff;padding:14px;border-radius:7px;margin:10px 0}.preferences label{display:block;margin:10px 0}.map-results{max-height:220px;overflow:auto;margin:12px 0}.map-results button{display:block;width:100%;text-align:left;margin:4px 0}.map-results small{display:block;color:#486381}.photo-empty{padding:60px 15px;background:#eaf5ff;text-align:center}.fullscreen{position:fixed!important;inset:0!important;z-index:999999!important;border-radius:0!important}.map-stage .leaflet-control-attribution{font-size:10px}dialog{border:0;border-radius:8px;max-width:90vw;background:#061b40;color:white}dialog img{max-width:85vw;max-height:80vh;object-fit:contain}dialog::backdrop{background:#000b}@media(min-width:1600px){.layout{grid-template-columns:310px minmax(500px,1fr) 500px}}@media(max-width:1050px){.layout{grid-template-columns:240px minmax(350px,1fr);height:auto}.map-stage{height:650px}.place{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.place-hero>img{height:100%;aspect-ratio:auto}.place-copy{min-width:0}}@media(max-width:650px){.layout{display:flex;flex-direction:column;padding:8px}.filters{max-height:420px}.filters h1{font-size:29px}.map-stage{height:60vh;min-height:400px}.place{display:block}.map-ribbon{font-size:23px}.categories{grid-template-columns:1fr 1fr}.category{font-size:12px;gap:5px;padding:5px}.category .icon{width:25px;height:25px}.place h2{font-size:25px}}\n";
 }catch(e){console.warn('SR snippet failed: Spin Raiders approved interactive map styles 20260922',e)}})();
 
 /* [70] Spin Raiders approved interactive map renderer 20260922 */
-(function(){try{
-(()=>{"use strict";if("/map"!==location.pathname.replace(/\/$/,""))return;window.SR_NEW_MAP_ACTIVE=!0;let e=0;!async function t(){if("/map"!==location.pathname.replace(/\/$/,"")||document.documentElement.classList.contains("rt-active"))return;const a=window.SR_SEASIDE,o=window.SR_SEARCH_DATA;if(!(document.body&&document.getElementById("sr-seaside-root")&&a?.archiveQuery&&o&&window.SR_MAP_DESIGN_CSS))return void(++e<600&&setTimeout(t,100));if(document.getElementById("sr-approved-map"))return;const i=document.createElement("div");i.id="sr-approved-map",document.getElementById("sr-seaside-root").before(i);const s=i.attachShadow({mode:"open"}),r=a.e,n=document.createElement("style");n.textContent="body:has(#sr-approved-map){background:white!important}body:has(#sr-approved-map) #sr-seaside-root,body:has(#sr-approved-map) #sr-seaside-related,body:has(#sr-approved-map) #SITE_CONTAINER,body:has(#sr-approved-map) #raidertube-global-button,body:has(#sr-approved-map) #sr-report-action{display:none!important}",document.head.append(n),document.title="Explore the UK Map | Spin Raiders";const l=[["seaside","Arcades (Seaside)","#06a56b","♜"],["classic","Classic Arcades","#ff8600","777"],["agc","Adult Gaming (AGC)","#ed1642","18"],["merkur","Merkur","#f7b500","☀"],["admiral","Admiral","#063dc7","⚓"],["casino","Other Casinos","#9427d3","♣"],["bingo","Bingo","#f7008b","B"],["cinema","Cinemas","#0659d9","▣"],["bowling","Bowling","#008f68","●"],["holiday","Holiday Parks","#049967","△"],["hotel","Hotels","#7825cc","▰"],["attraction","Attractions","#ff8200","◎"],["food","Food & Drink","#ff6500","♜"],["service","Service Stations","#008b67","▤"],["other","Other","#506a85","•••"]],c=e=>{const t=[e.category,e.venueType,e.title,e.brand].join(" ").toLowerCase();return/merkur/.test(t)?"merkur":/admiral/.test(t)?"admiral":/service station|motorway services/.test(t)?"service":/bingo/.test(t)?"bingo":/cinema/.test(t)?"cinema":/bowling/.test(t)?"bowling":/casino/.test(t)?"casino":/holiday park|caravan|camping/.test(t)?"holiday":/hotel|guest house|b&b|accommodation/.test(t)?"hotel":/restaurant|cafe|café|food|drink|pub|chippy/.test(t)?"food":/classic/.test(t)?"classic":/adult gaming|agc/.test(t)?"agc":"Venues"===e._collection?"seaside":"NearbyAttractions"===e._collection?"attraction":"other"},d=e=>e.displayTitle||e.title||e.name||"Place",p=e=>e.locationName||e.destination||"",u=e=>e._collection+":"+e._id,m=e=>{const t=a.safePhoto?.({...e,heroImage:e.heroImage||e.image});return t?a.fit(a.img(t),480):""},g=new Map((window.SR_MAP||[]).filter(e=>e[2]&&null!=e[6]&&null!=e[7]).map(e=>[e[2],[+e[6],+e[7]]])),h=e=>null!=e.latitude&&null!=e.longitude&&Number.isFinite(+e.latitude)&&Number.isFinite(+e.longitude)&&+e.latitude>=49&&+e.latitude<=61&&+e.longitude>=-9&&+e.longitude<=2?[+e.latitude,+e.longitude]:null,y=e=>l.find(t=>t[0]===c(e));let b,v,f=[],S=[],w=null,A=null,$=[],k=l.map(e=>e[0]),R=[];try{const e=JSON.parse(localStorage.getItem("sr-map-design-preferences")||"null");Array.isArray(e)&&(k=e.filter(e=>l.some(t=>t[0]===e))),$=JSON.parse(localStorage.getItem("sr-directory-favourites-v1")||"[]")}catch{}Array.isArray($)||($=[]);const I=new URLSearchParams(location.search).get("q")||"";s.innerHTML='<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><style>'+window.SR_MAP_DESIGN_CSS+"</style>"+`<div class="map-ribbon">Putting great places back on the map!</div><main class="layout"><aside class="filters"><h1>Explore the UK Map</h1><p>Find arcades, attractions, places to stay, food and more.</p><div class="tabs"><button data-tab="search" aria-pressed="true">Search</button><button data-tab="categories">Categories</button><button data-tab="preferences">My Preferences</button></div><form class="search"><input aria-label="Search the UK map" value="${r(I)}" placeholder="Search for a town, venue or attraction…"><button aria-label="Search map">⌕</button></form><div class="preferences" hidden><strong>Your map preferences</strong><p>Selected categories are remembered on this browser.</p><label><input type="checkbox" data-saved-only> Only my saved places</label><button data-near>Use my location</button></div><div class="filter-top"><strong>Show on Map</strong><button class="text-button" data-all>Select all</button></div><div class="categories">${l.map(([e,t,a,o])=>`<label class="category"><span class="icon" style="--pin:${a}">${o}</span>${t}<input type="checkbox" value="${e}" ${k.includes(e)?"checked":""}></label>`).join("")}</div><button class="primary wide" data-update>Update Map ↻</button><button class="wide" data-reset>Reset Filters</button><p class="map-status" role="status">Loading places…</p><div class="map-results" aria-label="Matching places"></div></aside><section class="map-stage" aria-label="UK places map"><div class="map-canvas"></div><div class="map-tools"><button data-near aria-label="Find my location">⌖</button><button data-fullscreen aria-label="Expand map">⛶</button></div><div class="map-count" role="status">Loading map…</div></section><article class="place"><div class="empty"><h2>Where will you explore?</h2><p>Select a pin or a place to see its photos, facilities and guide.</p></div></article></main><dialog><button data-close>Close ✕</button><div data-photo></div></dialog>`;const q=s.querySelector(".search input"),M=s.querySelector(".map-status"),C=s.querySelector(".place");function E(e,t){const a=e=>e*Math.PI/180,o=Math.sin(a(t[0]-e[0])/2)**2+Math.cos(a(e[0]))*Math.cos(a(t[0]))*Math.sin(a(t[1]-e[1])/2)**2;return 7917.6*Math.asin(Math.sqrt(Math.min(1,o)))}function x(e){w=e;const t=m(e),i=y(e),s=/^VERIFIED/i.test(e.publicRatingStatus||"")&&+e.publicReviewCount>0&&+e.publicRating>0,n=f.filter(t=>u(t)!==u(e)&&h(t)&&h(e)).sort((t,a)=>E(h(t),h(e))-E(h(a),h(e))).slice(0,3);R=[t].filter(Boolean),C.innerHTML=`<div class="place-hero">${t?`<img src="${r(t)}" alt="${r(e.exteriorImageAlt||e.imageAlt||d(e))}">`:'<div class="photo-empty">Photo being added</div>'}<button class="save" data-save aria-pressed="${$.includes(u(e))}">${$.includes(u(e))?"♥ Saved":"♡ Save to Favourites"}</button></div><div class="place-copy"><h2>${r(d(e))}</h2><p class="location">${r(p(e))}</p><p class="rating">${s?"<b>★</b> "+(+e.publicRating).toFixed(1)+" ("+Number(e.publicReviewCount).toLocaleString("en-GB")+" reviews)":"No public rating yet."}</p><div class="tags"><span>${r(i[1])}</span>${!0===e.familyFriendly?"<span>Family Friendly</span>":""}${e.ageRestriction?"<span>"+r(e.ageRestriction)+"</span>":""}</div><p>${r(e.shortDescription||e.description||"")}</p><div class="actions"><a class="visit" href="${r((e=>o.href(e))(e))}"${e.affiliateUrl?' rel="sponsored noopener"':""}>View place →</a><a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent([d(e),e.address,e.postcode,p(e)].filter(Boolean).join(", "))}" target="_blank" rel="noopener">Get Directions</a></div>${e.affiliateUrl?"<p>Ad · Affiliate link</p>":""}<div class="address">⌖ ${r([e.address,e.postcode,p(e)].filter(Boolean).join(", "))}</div><div data-details></div><div class="gallery"></div>${n.length?`<section class="nearby"><h3>Nearby Places</h3><div class="nearby-grid">${n.map(t=>`<button class="nearby-card" data-place="${r(u(t))}">${m(t)?`<img src="${r(m(t))}" alt="${r(d(t))}" loading="lazy">`:""}<span>${r(d(t))}<br>${E(h(t),h(e)).toFixed(1)} miles</span></button>`).join("")}</div><small>Distances are straight-line estimates.</small></section>`:""}</div>`,a.archiveQuery({filter:{_id:{$eq:e._id}},paging:{limit:1}},null,!1,e._collection).then(t=>{if(w!==e)return;const o=t.dataItems[0]?.data||{},i=o.openingHoursSummary||o.openingHours||o.openingTimes,s=[["Disabled access",o.disabledAccess],["Parking",o.parking],["Toilets",o.toilets],["Wi-Fi",o.wifi],["Food & drink",o.cafe]].filter(e=>!0===e[1]);C.querySelector("[data-details]").innerHTML=("string"==typeof i?`<details class="hours"><summary>Opening Times</summary><p>${r(i)}</p></details>`:"")+(s.length?'<div class="tags">'+s.map(e=>"<span>"+r(e[0])+"</span>").join("")+"</div>":"");const n=[...Array.from({length:12},(e,t)=>o["galleryImage"+(t+1)]).filter(Boolean),...Array.isArray(o.galleryImages)?o.galleryImages:Array.isArray(o.gallery)?o.gallery:Array.isArray(o.photos)?o.photos:[]];Array.isArray(n)&&(R=[...new Set([...R,...n.map(e=>"string"==typeof e?e:e.src||e.url||e.image).filter(Boolean).map(e=>a.img(e))])].slice(0,12)),C.querySelector(".gallery").innerHTML=R.slice(0,4).map((t,o)=>`<button data-photo-index="${o}" aria-label="View photo ${o+1}"><img src="${r(a.fit(t,600))}" alt="${r(d(e))} photo ${o+1}" loading="lazy"></button>`).join("")}).catch(()=>{})}function _(e=!0){k=Array.from(s.querySelectorAll(".categories input:checked")).map(e=>e.value);try{localStorage.setItem("sr-map-design-preferences",JSON.stringify(k))}catch{}const t=o.norm(q.value).split(" ").filter(Boolean),a=s.querySelector("[data-saved-only]").checked;S=f.filter(e=>k.includes(c(e))&&(!a||$.includes(u(e)))&&t.every(t=>o.norm([d(e),p(e),e.postcode,e.category,e.venueType].join(" ")).includes(t))),A&&S.sort((e,t)=>(h(e)?E(A,h(e)):1/0)-(h(t)?E(A,h(t)):1/0));const i=S.filter(h);s.querySelector(".map-count").textContent="Showing "+i.length.toLocaleString("en-GB")+" places",M.textContent=S.length.toLocaleString("en-GB")+" matching places"+(S.length>i.length?" · "+(S.length-i.length)+" without map coordinates":""),s.querySelector(".map-results").innerHTML=S.slice(0,40).map(e=>`<button data-place="${r(u(e))}">${r(d(e))}<small>${r(p(e))}</small></button>`).join("")||"<p>No matching places. Try a town or another category.</p>",b&&(v.clearLayers(),i.forEach(e=>{const t=y(e),a=L.marker(h(e),{icon:L.divIcon({className:"",html:`<div class="map-pin" style="--pin:${t[2]}"><span>${t[3]}</span></div>`,iconSize:[29,29],iconAnchor:[15,29]}),title:d(e),alt:d(e),keyboard:!0}).addTo(v);a.getElement()?.setAttribute("aria-label",d(e)),a.on("click",()=>x(e))}),e&&i.length&&q.value?b.fitBounds(L.latLngBounds(i.map(h)),{padding:[35,35],maxZoom:13}):!e||q.value||A||b.setView([54.4,-3.4],6)),!w&&S.length&&x(S.find(e=>/golden mile/i.test(d(e)))||S.find(e=>/blackpool/i.test(p(e)))||S[0])}s.querySelector("form").onsubmit=e=>{e.preventDefault(),A=null,_()},s.querySelector("[data-update]").onclick=()=>_(),s.querySelector("[data-all]").onclick=()=>{s.querySelectorAll(".categories input").forEach(e=>e.checked=!0),_()},s.querySelector("[data-reset]").onclick=()=>{q.value="",A=null,s.querySelector("[data-saved-only]").checked=!1,s.querySelectorAll(".categories input").forEach(e=>e.checked=!0),_()},s.querySelector("[data-saved-only]").onchange=()=>_(),s.querySelectorAll("[data-tab]").forEach(e=>e.onclick=()=>{s.querySelectorAll("[data-tab]").forEach(t=>t.setAttribute("aria-pressed",String(t===e))),s.querySelector(".preferences").hidden="preferences"!==e.dataset.tab,"search"===e.dataset.tab&&q.focus(),"categories"===e.dataset.tab&&s.querySelector(".categories input").focus()}),s.addEventListener("click",e=>{const t=e.target.closest("button");if(t){if(t.dataset.place){const e=f.find(e=>u(e)===t.dataset.place);e&&(x(e),b&&h(e)&&b.setView(h(e),14))}if(t.hasAttribute("data-save")&&w){const e=u(w);$=$.includes(e)?$.filter(t=>t!==e):[...$,e];try{localStorage.setItem("sr-directory-favourites-v1",JSON.stringify($)),t.setAttribute("aria-pressed",String($.includes(e))),t.textContent=$.includes(e)?"♥ Saved":"♡ Save to Favourites"}catch{M.textContent="Unable to save on this browser."}}if(t.hasAttribute("data-photo-index")&&(s.querySelector("[data-photo]").innerHTML='<img src="'+r(a.fit(R[+t.dataset.photoIndex],1800))+'" alt="'+r(d(w))+'">',s.querySelector("dialog").showModal()),t.hasAttribute("data-close")&&s.querySelector("dialog").close(),t.hasAttribute("data-fullscreen")&&(s.querySelector(".map-stage").classList.toggle("fullscreen"),setTimeout(()=>b?.invalidateSize(),50)),t.hasAttribute("data-near")){if(!navigator.geolocation)return void(M.textContent="Location unavailable. Search by town.");navigator.geolocation.getCurrentPosition(e=>{A=[e.coords.latitude,e.coords.longitude],q.value="",_(!1),b?.setView(A,11)},()=>M.textContent="Location unavailable. Search by town instead.",{timeout:1e4})}}});try{window.L||await new Promise((e,t)=>{const a=document.createElement("script");a.src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",a.integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=",a.crossOrigin="",a.onload=e,a.onerror=t,document.head.append(a)}),b=L.map(s.querySelector(".map-canvas"),{zoomControl:!0}).setView([54.4,-3.4],6),L.tileLayer(window.SR_MAP_TILE_URL||"https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(b),v=L.layerGroup().addTo(b),new ResizeObserver(()=>b.invalidateSize()).observe(s.querySelector(".map-stage"))}catch{s.querySelector(".map-count").textContent="Map unavailable — use the place list."}const T=["title","name","displayTitle","slug","locationName","destination","category","venueType","brand","latitude","longitude","active","directoryReady","cardReady","status","heroImage","image","imageVerified","imageResearchStatus","imageAccuracy","address","postcode","website","outboundUrl","bookingUrl","affiliateUrl","offerUrl","sourceUrl","publicRatingStatus","publicRating","publicReviewCount","familyFriendly","ageRestriction","exteriorImageAlt","imageAlt","shortDescription","link-arcade-venues-title"],N=new Set;let B=0;await Promise.allSettled(["Venues","NearbyAttractions","DestinationRecommendations"].map(async e=>{try{for(let t=0;;t+=500){const i=await a.archiveQuery({fields:T,sort:[{fieldName:"_id",order:"ASC"}],paging:{limit:500,offset:t}},null,!1,e);if(i.dataItems.forEach(t=>{const a={...t.data,_id:t.id,_collection:e};null==a.latitude&&g.has(a.slug)&&([a.latitude,a.longitude]=g.get(a.slug));const i=o.norm(d(a))+"|"+o.norm(p(a));!1===a.active||!1===a.directoryReady||!1===a.cardReady||/^(duplicate|merged|deleted|archived|closed|quarantin|suppress)/i.test(a.status||"")||N.has(i)||(N.add(i),f.push(a))}),_(0===t),i.dataItems.length<500)break}}catch{B++}})),_(),B&&(M.textContent+=" · Some records could not load. Reload to retry.")}()})();
-}catch(e){console.warn('SR snippet failed: Spin Raiders approved interactive map renderer 20260922',e)}})();
+(function () {
+  try {
+    (() => {
+      "use strict";
+      if ("/map" !== location.pathname.replace(/\/$/, "")) return;
+      window.SR_NEW_MAP_ACTIVE = !0;
+      let e = 0;
+      !(async function t() {
+        if (
+          "/map" !== location.pathname.replace(/\/$/, "") ||
+          document.documentElement.classList.contains("rt-active")
+        )
+          return;
+        const a = window.SR_SEASIDE,
+          o = window.SR_SEARCH_DATA;
+        if (!(
+          document.body &&
+          document.getElementById("sr-seaside-root") &&
+          a?.archiveQuery &&
+          o &&
+          window.SR_MAP_DESIGN_CSS
+        ))
+          return void (++e < 600 && setTimeout(t, 100));
+        if (document.getElementById("sr-approved-map")) return;
+        const i = document.createElement("div");
+        ((i.id = "sr-approved-map"),
+          document.getElementById("sr-seaside-root").before(i));
+        const s = i.attachShadow({ mode: "open" }),
+          r = a.e,
+          n = document.createElement("style");
+        ((n.textContent =
+          "body:has(#sr-approved-map){background:white!important}body:has(#sr-approved-map) #sr-seaside-root,body:has(#sr-approved-map) #sr-seaside-related,body:has(#sr-approved-map) #SITE_CONTAINER,body:has(#sr-approved-map) #raidertube-global-button,body:has(#sr-approved-map) #sr-report-action{display:none!important}"),
+          document.head.append(n),
+          (document.title = "Explore the UK Map | Spin Raiders"));
+        const l = [
+            ["seaside", "Arcades (Seaside)", "#06a56b", "♜"],
+            ["classic", "Classic Arcades", "#ff8600", "777"],
+            ["agc", "Adult Gaming (AGC)", "#ed1642", "18"],
+            ["merkur", "Merkur", "#f7b500", "☀"],
+            ["admiral", "Admiral", "#063dc7", "⚓"],
+            ["casino", "Other Casinos", "#9427d3", "♣"],
+            ["bingo", "Bingo", "#f7008b", "B"],
+            ["cinema", "Cinemas", "#0659d9", "▣"],
+            ["bowling", "Bowling", "#008f68", "●"],
+            ["holiday", "Holiday Parks", "#049967", "△"],
+            ["hotel", "Hotels", "#7825cc", "▰"],
+            ["attraction", "Attractions", "#ff8200", "◎"],
+            ["food", "Food & Drink", "#ff6500", "♜"],
+            ["service", "Service Stations", "#008b67", "▤"],
+            ["other", "Other", "#506a85", "•••"],
+          ],
+          c = (e) => {
+            const t = [e.category, e.venueType, e.title, e.brand]
+              .join(" ")
+              .toLowerCase();
+            return /merkur/.test(t)
+              ? "merkur"
+              : /admiral/.test(t)
+                ? "admiral"
+                : /service station|motorway services/.test(t)
+                  ? "service"
+                  : /bingo/.test(t)
+                    ? "bingo"
+                    : /cinema/.test(t)
+                      ? "cinema"
+                      : /bowling/.test(t)
+                        ? "bowling"
+                        : /casino/.test(t)
+                          ? "casino"
+                          : /holiday park|caravan|camping/.test(t)
+                            ? "holiday"
+                            : /hotel|guest house|b&b|accommodation/.test(t)
+                              ? "hotel"
+                              : /restaurant|cafe|café|food|drink|pub|chippy/.test(
+                                    t,
+                                  )
+                                ? "food"
+                                : /classic/.test(t)
+                                  ? "classic"
+                                  : /adult gaming|agc/.test(t)
+                                    ? "agc"
+                                    : "Venues" === e._collection
+                                      ? "seaside"
+                                      : "NearbyAttractions" === e._collection
+                                        ? "attraction"
+                                        : "other";
+          },
+          d = (e) => e.displayTitle || e.title || e.name || "Place",
+          p = (e) => e.locationName || e.destination || "",
+          u = (e) => e._collection + ":" + e._id,
+          m = (e) => {
+            const t = a.safePhoto?.({
+              ...e,
+              heroImage: e.heroImage || e.image,
+            });
+            return t ? a.fit(a.img(t), 480) : "";
+          },
+          g = new Map(
+            (window.SR_MAP || [])
+              .filter((e) => e[2] && null != e[6] && null != e[7])
+              .map((e) => [e[2], [+e[6], +e[7]]]),
+          ),
+          h = (e) =>
+            null != e.latitude &&
+            null != e.longitude &&
+            Number.isFinite(+e.latitude) &&
+            Number.isFinite(+e.longitude) &&
+            +e.latitude >= 49 &&
+            +e.latitude <= 61 &&
+            +e.longitude >= -9 &&
+            +e.longitude <= 2
+              ? [+e.latitude, +e.longitude]
+              : null,
+          y = (e) => l.find((t) => t[0] === c(e));
+        let b,
+          v,
+          f = [],
+          S = [],
+          w = null,
+          A = null,
+          $ = [],
+          k = l.map((e) => e[0]),
+          R = [];
+        try {
+          const e = JSON.parse(
+            localStorage.getItem("sr-map-design-preferences") || "null",
+          );
+          (Array.isArray(e) && (k = e.filter((e) => l.some((t) => t[0] === e))),
+            ($ = JSON.parse(
+              localStorage.getItem("sr-directory-favourites-v1") || "[]",
+            )));
+        } catch {}
+        Array.isArray($) || ($ = []);
+        const I = new URLSearchParams(location.search).get("q") || "";
+        s.innerHTML =
+          '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><style>' +
+          window.SR_MAP_DESIGN_CSS +
+          "</style>" +
+          `<div class="map-ribbon">Putting great places back on the map!</div><main class="layout"><aside class="filters"><h1>Explore the UK Map</h1><p>Find arcades, attractions, places to stay, food and more.</p><div class="tabs"><button data-tab="search" aria-pressed="true">Search</button><button data-tab="categories">Categories</button><button data-tab="preferences">My Preferences</button></div><form class="search"><input aria-label="Search the UK map" value="${r(I)}" placeholder="Search for a town, venue or attraction…"><button aria-label="Search map">⌕</button></form><div class="preferences" hidden><strong>Your map preferences</strong><p>Selected categories are remembered on this browser.</p><label><input type="checkbox" data-saved-only> Only my saved places</label><button data-near>Use my location</button></div><div class="filter-top"><strong>Show on Map</strong><button class="text-button" data-all>Select all</button></div><div class="categories">${l.map(([e, t, a, o]) => `<label class="category"><span class="icon" style="--pin:${a}">${window.SR_ICON(({seaside:"arcades",classic:"fruit-machines",agc:"agc",merkur:"agc",admiral:"agc",casino:"casinos",bingo:"bingo",cinema:"cinemas",bowling:"bowling",holiday:"holiday-parks",hotel:"places-to-stay",attraction:"attractions",food:"food-drink",service:"services",other:"all"})[e],30)}</span>${t}<input type="checkbox" value="${e}" ${k.includes(e) ? "checked" : ""}></label>`).join("")}</div><button class="primary wide" data-update>Update Map ↻</button><button class="wide" data-reset>Reset Filters</button><p class="map-status" role="status">Loading places…</p><div class="map-results" aria-label="Matching places"></div></aside><section class="map-stage" aria-label="UK places map"><div class="map-canvas"></div><div class="map-tools"><button data-near aria-label="Find my location">⌖</button><button data-fullscreen aria-label="Expand map">⛶</button></div><div class="map-count" role="status">Loading map…</div></section><article class="place"><div class="empty"><h2>Where will you explore?</h2><p>Select a pin or a place to see its photos, facilities and guide.</p></div></article></main><dialog><button data-close>Close ✕</button><div data-photo></div></dialog>`;
+        const q = s.querySelector(".search input"),
+          M = s.querySelector(".map-status"),
+          C = s.querySelector(".place");
+        function E(e, t) {
+          const a = (e) => (e * Math.PI) / 180,
+            o =
+              Math.sin(a(t[0] - e[0]) / 2) ** 2 +
+              Math.cos(a(e[0])) *
+                Math.cos(a(t[0])) *
+                Math.sin(a(t[1] - e[1]) / 2) ** 2;
+          return 7917.6 * Math.asin(Math.sqrt(Math.min(1, o)));
+        }
+        function x(e) {
+          w = e;
+          const t = m(e),
+            i = y(e),
+            s =
+              /^VERIFIED/i.test(e.publicRatingStatus || "") &&
+              +e.publicReviewCount > 0 &&
+              +e.publicRating > 0,
+            n = f
+              .filter((t) => u(t) !== u(e) && h(t) && h(e))
+              .sort((t, a) => E(h(t), h(e)) - E(h(a), h(e)))
+              .slice(0, 3);
+          ((R = [t].filter(Boolean)),
+            (C.innerHTML = `<div class="place-hero">${t ? `<img src="${r(t)}" alt="${r(e.exteriorImageAlt || e.imageAlt || d(e))}">` : '<div class="photo-empty">Photo being added</div>'}<button class="save" data-save aria-pressed="${$.includes(u(e))}">${$.includes(u(e)) ? "♥ Saved" : "♡ Save to Favourites"}</button></div><div class="place-copy"><h2>${r(d(e))}</h2><p class="location">${r(p(e))}</p><p class="rating">${s ? "<b>★</b> " + (+e.publicRating).toFixed(1) + " (" + Number(e.publicReviewCount).toLocaleString("en-GB") + " reviews)" : "No public rating yet."}</p><div class="tags"><span>${r(i[1])}</span>${!0 === e.familyFriendly ? "<span>Family Friendly</span>" : ""}${e.ageRestriction ? "<span>" + r(e.ageRestriction) + "</span>" : ""}</div><p>${r(e.shortDescription || e.description || "")}</p><div class="actions"><a class="visit" href="${r(((e) => o.href(e))(e))}"${e.affiliateUrl ? ' rel="sponsored noopener"' : ""}>View place →</a><a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent([d(e), e.address, e.postcode, p(e)].filter(Boolean).join(", "))}" target="_blank" rel="noopener">Get Directions</a></div>${e.affiliateUrl ? "<p>Ad · Affiliate link</p>" : ""}<div class="address">⌖ ${r([e.address, e.postcode, p(e)].filter(Boolean).join(", "))}</div><div data-details></div><div class="gallery"></div>${n.length ? `<section class="nearby"><h3>Nearby Places</h3><div class="nearby-grid">${n.map((t) => `<button class="nearby-card" data-place="${r(u(t))}">${m(t) ? `<img src="${r(m(t))}" alt="${r(d(t))}" loading="lazy">` : ""}<span>${r(d(t))}<br>${E(h(t), h(e)).toFixed(1)} miles</span></button>`).join("")}</div><small>Distances are straight-line estimates.</small></section>` : ""}</div>`),
+            a
+              .archiveQuery(
+                { filter: { _id: { $eq: e._id } }, paging: { limit: 1 } },
+                null,
+                !1,
+                e._collection,
+              )
+              .then((t) => {
+                if (w !== e) return;
+                const o = t.dataItems[0]?.data || {},
+                  i = o.openingHoursSummary || o.openingHours || o.openingTimes,
+                  s = [
+                    ["Disabled access", o.disabledAccess],
+                    ["Parking", o.parking],
+                    ["Toilets", o.toilets],
+                    ["Wi-Fi", o.wifi],
+                    ["Food & drink", o.cafe],
+                  ].filter((e) => !0 === e[1]);
+                C.querySelector("[data-details]").innerHTML =
+                  ("string" == typeof i
+                    ? `<details class="hours"><summary>Opening Times</summary><p>${r(i)}</p></details>`
+                    : "") +
+                  (s.length
+                    ? '<div class="tags">' +
+                      s.map((e) => "<span>" + r(e[0]) + "</span>").join("") +
+                      "</div>"
+                    : "");
+                const n = [
+                  ...Array.from(
+                    { length: 12 },
+                    (e, t) => o["galleryImage" + (t + 1)],
+                  ).filter(Boolean),
+                  ...(Array.isArray(o.galleryImages)
+                    ? o.galleryImages
+                    : Array.isArray(o.gallery)
+                      ? o.gallery
+                      : Array.isArray(o.photos)
+                        ? o.photos
+                        : []),
+                ];
+                (Array.isArray(n) &&
+                  (R = [
+                    ...new Set([
+                      ...R,
+                      ...n
+                        .map((e) =>
+                          "string" == typeof e ? e : e.src || e.url || e.image,
+                        )
+                        .filter(Boolean)
+                        .map((e) => a.img(e)),
+                    ]),
+                  ].slice(0, 12)),
+                  (C.querySelector(".gallery").innerHTML = R.slice(0, 4)
+                    .map(
+                      (t, o) =>
+                        `<button data-photo-index="${o}" aria-label="View photo ${o + 1}"><img src="${r(a.fit(t, 600))}" alt="${r(d(e))} photo ${o + 1}" loading="lazy"></button>`,
+                    )
+                    .join("")));
+              })
+              .catch(() => {}));
+        }
+        function _(e = !0) {
+          k = Array.from(s.querySelectorAll(".categories input:checked")).map(
+            (e) => e.value,
+          );
+          try {
+            localStorage.setItem(
+              "sr-map-design-preferences",
+              JSON.stringify(k),
+            );
+          } catch {}
+          const t = o.norm(q.value).split(" ").filter(Boolean),
+            a = s.querySelector("[data-saved-only]").checked;
+          ((S = f.filter(
+            (e) =>
+              k.includes(c(e)) &&
+              (!a || $.includes(u(e))) &&
+              t.every((t) =>
+                o
+                  .norm(
+                    [d(e), p(e), e.postcode, e.category, e.venueType].join(" "),
+                  )
+                  .includes(t),
+              ),
+          )),
+            A &&
+              S.sort(
+                (e, t) =>
+                  (h(e) ? E(A, h(e)) : 1 / 0) - (h(t) ? E(A, h(t)) : 1 / 0),
+              ));
+          const i = S.filter(h);
+          ((s.querySelector(".map-count").textContent =
+            mapFailed ? "Map unavailable — use the place list." : b ? "Showing " + i.length.toLocaleString("en-GB") + " places" : "Loading map — places are available below."),
+            (M.textContent =
+              S.length.toLocaleString("en-GB") +
+              " matching places" +
+              (S.length > i.length
+                ? " · " + (S.length - i.length) + " without map coordinates"
+                : "")),
+            (s.querySelector(".map-results").innerHTML =
+              S.slice(0, 40)
+                .map(
+                  (e) =>
+                    `<button data-place="${r(u(e))}">${r(d(e))}<small>${r(p(e))}</small></button>`,
+                )
+                .join("") ||
+              "<p>No matching places. Try a town or another category.</p>"),
+            b &&
+              (v.clearLayers(),
+              i.forEach((e) => {
+                const t = y(e),
+                  a = L.marker(h(e), {
+                    icon: L.divIcon({
+                      className: "",
+                      html: `<div class="map-pin" style="--pin:${t[2]}"><span>${window.SR_ICON(({seaside:"arcades",classic:"fruit-machines",agc:"agc",merkur:"agc",admiral:"agc",casino:"casinos",bingo:"bingo",cinema:"cinemas",bowling:"bowling",holiday:"holiday-parks",hotel:"places-to-stay",attraction:"attractions",food:"food-drink",service:"services",other:"all"})[t[0]],25)}</span></div>`,
+                      iconSize: [29, 29],
+                      iconAnchor: [15, 29],
+                    }),
+                    title: d(e),
+                    alt: d(e),
+                    keyboard: !0,
+                  }).addTo(v);
+                (a.getElement()?.setAttribute("aria-label", d(e)),
+                  a.on("click", () => x(e)));
+              }),
+              e && i.length && q.value
+                ? b.fitBounds(L.latLngBounds(i.map(h)), {
+                    padding: [35, 35],
+                    maxZoom: 13,
+                  })
+                : !e || q.value || A || b.setView([54.4, -3.4], 6)),
+            !w &&
+              S.length &&
+              x(
+                S.find((e) => /golden mile/i.test(d(e))) ||
+                  S.find((e) => /blackpool/i.test(p(e))) ||
+                  S[0],
+              ));
+        }
+        ((s.querySelector("form").onsubmit = (e) => {
+          (e.preventDefault(), (A = null), _());
+        }),
+          (s.querySelector("[data-update]").onclick = () => _()),
+          (s.querySelector("[data-all]").onclick = () => {
+            (s
+              .querySelectorAll(".categories input")
+              .forEach((e) => (e.checked = !0)),
+              _());
+          }),
+          (s.querySelector("[data-reset]").onclick = () => {
+            ((q.value = ""),
+              (A = null),
+              (s.querySelector("[data-saved-only]").checked = !1),
+              s
+                .querySelectorAll(".categories input")
+                .forEach((e) => (e.checked = !0)),
+              _());
+          }),
+          (s.querySelector("[data-saved-only]").onchange = () => _()),
+          s.querySelectorAll("[data-tab]").forEach(
+            (e) =>
+              (e.onclick = () => {
+                (s
+                  .querySelectorAll("[data-tab]")
+                  .forEach((t) =>
+                    t.setAttribute("aria-pressed", String(t === e)),
+                  ),
+                  (s.querySelector(".preferences").hidden =
+                    "preferences" !== e.dataset.tab),
+                  "search" === e.dataset.tab && q.focus(),
+                  "categories" === e.dataset.tab &&
+                    s.querySelector(".categories input").focus());
+              }),
+          ),
+          s.addEventListener("click", (e) => {
+            const t = e.target.closest("button");
+            if (t) {
+              if (t.dataset.place) {
+                const e = f.find((e) => u(e) === t.dataset.place);
+                e && (x(e), b && h(e) && b.setView(h(e), 14));
+              }
+              if (t.hasAttribute("data-save") && w) {
+                const e = u(w);
+                $ = $.includes(e) ? $.filter((t) => t !== e) : [...$, e];
+                try {
+                  (localStorage.setItem(
+                    "sr-directory-favourites-v1",
+                    JSON.stringify($),
+                  ),
+                    t.setAttribute("aria-pressed", String($.includes(e))),
+                    (t.textContent = $.includes(e)
+                      ? "♥ Saved"
+                      : "♡ Save to Favourites"));
+                } catch {
+                  M.textContent = "Unable to save on this browser.";
+                }
+              }
+              if (
+                (t.hasAttribute("data-photo-index") &&
+                  ((s.querySelector("[data-photo]").innerHTML =
+                    '<img src="' +
+                    r(a.fit(R[+t.dataset.photoIndex], 1800)) +
+                    '" alt="' +
+                    r(d(w)) +
+                    '">'),
+                  s.querySelector("dialog").showModal()),
+                t.hasAttribute("data-close") &&
+                  s.querySelector("dialog").close(),
+                t.hasAttribute("data-fullscreen") &&
+                  (s.querySelector(".map-stage").classList.toggle("fullscreen"),
+                  setTimeout(() => b?.invalidateSize(), 50)),
+                t.hasAttribute("data-near"))
+              ) {
+                if (!navigator.geolocation)
+                  return void (M.textContent =
+                    "Location unavailable. Search by town.");
+                navigator.geolocation.getCurrentPosition(
+                  (e) => {
+                    ((A = [e.coords.latitude, e.coords.longitude]),
+                      (q.value = ""),
+                      _(!1),
+                      b?.setView(A, 11));
+                  },
+                  () =>
+                    (M.textContent =
+                      "Location unavailable. Search by town instead."),
+                  { timeout: 1e4 },
+                );
+              }
+            }
+          }));
+        let mapFailed = false;
+        void (async () => {
+        try {
+          (window.L ||
+            (await new Promise((e, t) => {
+              const a = document.createElement("script");
+              const timer = setTimeout(() => t(new Error("Map library timed out")), 10000);
+              ((a.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"),
+                (a.integrity =
+                  "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="),
+                (a.crossOrigin = ""),
+                (a.onload = () => { clearTimeout(timer); e(); }),
+                (a.onerror = () => { clearTimeout(timer); t(new Error("Map library failed")); }),
+                document.head.append(a));
+            })),
+            (b = L.map(s.querySelector(".map-canvas"), {
+              zoomControl: !0,
+            }).setView([54.4, -3.4], 6)),
+            L.tileLayer(
+              window.SR_MAP_TILE_URL ||
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+              {
+                maxZoom: 19,
+                attribution:
+                  '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+              },
+            ).addTo(b),
+            (v = L.layerGroup().addTo(b)),
+            new ResizeObserver(() => b.invalidateSize()).observe(
+              s.querySelector(".map-stage"),
+            ));
+        } catch {
+          mapFailed = true;
+        }
+        _();
+        })();
+        const T = [
+            "title",
+            "name",
+            "displayTitle",
+            "slug",
+            "locationName",
+            "destination",
+            "category",
+            "venueType",
+            "brand",
+            "latitude",
+            "longitude",
+            "active",
+            "directoryReady",
+            "cardReady",
+            "status",
+            "heroImage",
+            "image",
+            "imageVerified",
+            "imageResearchStatus",
+            "imageAccuracy",
+            "address",
+            "postcode",
+            "website",
+            "outboundUrl",
+            "bookingUrl",
+            "affiliateUrl",
+            "offerUrl",
+            "sourceUrl",
+            "publicRatingStatus",
+            "publicRating",
+            "publicReviewCount",
+            "familyFriendly",
+            "ageRestriction",
+            "exteriorImageAlt",
+            "imageAlt",
+            "shortDescription",
+            "link-arcade-venues-title",
+          ],
+          N = new Set();
+        let B = 0;
+        (await Promise.allSettled(
+          ["Venues", "NearbyAttractions", "DestinationRecommendations"].map(
+            async (e) => {
+              try {
+                for (let t = 0; ; t += 500) {
+                  const i = await a.archiveQuery(
+                    {
+                      fields: T,
+                      sort: [{ fieldName: "_id", order: "ASC" }],
+                      paging: { limit: 500, offset: t },
+                    },
+                    null,
+                    !1,
+                    e,
+                  );
+                  if (
+                    (i.dataItems.forEach((t) => {
+                      const a = { ...t.data, _id: t.id, _collection: e };
+                      null == a.latitude &&
+                        g.has(a.slug) &&
+                        ([a.latitude, a.longitude] = g.get(a.slug));
+                      const i = o.norm(d(a)) + "|" + o.norm(p(a));
+                      !1 === a.active ||
+                        !1 === a.directoryReady ||
+                        !1 === a.cardReady ||
+                        /^(duplicate|merged|deleted|archived|closed|quarantin|suppress)/i.test(
+                          a.status || "",
+                        ) ||
+                        N.has(i) ||
+                        (N.add(i), f.push(a));
+                    }),
+                    _(0 === t),
+                    i.dataItems.length < 500)
+                  )
+                    break;
+                }
+              } catch {
+                B++;
+              }
+            },
+          ),
+        ),
+          _(),
+          B &&
+            (M.textContent +=
+              " · Some records could not load. Reload to retry."));
+      })();
+    })();
+  } catch (e) {
+    console.warn(
+      "SR snippet failed: Spin Raiders approved interactive map renderer 20260922",
+      e,
+    );
+  }
+})();
+
 
 /* [71] Spin Raiders approved archive styles 20260922 */
 (function(){try{
@@ -981,7 +1973,7 @@ window.SR_OFFERS_CSS=".offers{container-type:inline-size;background:white;color:
 
 /* [89] Spin Raiders glossy icon set 20260923 */
 (function(){try{
-(()=>{const P={"cyan":["#3ee0ff","#0284c7"],"yellow":["#ffe45c","#f59e0b"],"pink":["#ff6fb1","#e11d48"],"purple":["#b98cff","#6d28d9"],"green":["#5ef0a8","#059669"],"orange":["#ffb35c","#ea580c"],"navy":["#4f7bd9","#0b192c"],"teal":["#4ff0e0","#0f766e"],"red":["#ff7a6b","#b91c1c"]},C={"attractions":"cyan","seaside":"yellow","places-to-stay":"purple","food-drink":"orange","arcades":"pink","hidden-gems":"teal","plan-a-trip":"green","beaches":"yellow","piers":"cyan","family-fun":"pink","theme-parks":"red","zoos":"orange","sea-life":"teal","museums":"navy","historical-sites":"purple","nature":"green","tours":"cyan","bingo":"pink","bowling":"navy","cinemas":"red","casinos":"navy","fishing":"teal","fruit-machines":"red","retro-video-games":"purple","arcade-bars":"pink","holiday-parks":"green","offers":"pink","services":"orange","agc":"navy","map":"red","all":"cyan","videos":"red"},G={"attractions":"<path d=\"M12 46h40\" stroke-width=\"3.2\"/><path d=\"M12 40c6 0 8-4 11-10 3-7 8-12 13-8 4 3 1 10-4 10s-6-6-2-12c4-7 13-8 17 0 2 4 3 12 5 20\" stroke-width=\"3.2\"/><path d=\"M18 46v-8M28 46V30M44 46V22\" stroke-width=\"2.4\"/>","seaside":"<circle cx=\"32\" cy=\"30\" r=\"8\" fill=\"#fff\" stroke=\"none\"/><path d=\"M32 14v4M32 42v4M16 30h4M44 30h4M20.5 18.5l3 3M40.5 38.5l3 3M20.5 41.5l3-3M40.5 21.5l3-3\" stroke-width=\"3.5\"/><path d=\"M14 50c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"3\"/>","places-to-stay":"<path d=\"M15 20v26M49 32v14M15 40h34\" stroke-width=\"3.5\"/><rect x=\"18\" y=\"31\" width=\"31\" height=\"9\" rx=\"2.5\" fill=\"#fff\" stroke=\"none\"/><rect x=\"19\" y=\"24\" width=\"10\" height=\"7\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/>","food-drink":"<path d=\"M22 16v10a5 5 0 0 0 10 0V16M27 16v32\" stroke-width=\"3.5\"/><path d=\"M42 48V16c-5 4-6 12-6 18h6\" stroke-width=\"3.5\" fill=\"#fff\"/>","arcades":"<path d=\"M22 14h20l4 34H18Z\" fill=\"#fff\" stroke=\"none\"/><rect x=\"24\" y=\"19\" width=\"16\" height=\"12\" rx=\"2\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"27\" cy=\"38\" r=\"2.6\" fill=\"var(--c2)\" stroke=\"none\"/><rect x=\"33\" y=\"36.5\" width=\"8\" height=\"3\" rx=\"1.5\" fill=\"var(--c2)\" stroke=\"none\"/>","hidden-gems":"<path d=\"M17 26l7-9h16l7 9-15 22Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M17 26h30M24 17l8 31 8-31\" stroke=\"var(--c2)\" stroke-width=\"2\"/>","plan-a-trip":"<path d=\"M16 19l10-4 12 4 10-4v30l-10 4-12-4-10 4Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M26 15v30M38 19v30\" stroke=\"var(--c2)\" stroke-width=\"2.2\"/>","beaches":"<path d=\"M16 30a16 13 0 0 1 32 0Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M32 30v17\" stroke-width=\"3.5\"/><path d=\"M14 49c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"3\"/>","piers":"<path d=\"M12 30h40\" stroke-width=\"3.5\"/><path d=\"M18 30v14M28 30v14M38 30v14M48 30v14\" stroke-width=\"3\"/><path d=\"M40 30v-8h8v8M44 22v-6\" stroke-width=\"3\"/><path d=\"M12 48c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"2.6\"/>","family-fun":"<circle cx=\"23\" cy=\"20\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"41\" cy=\"20\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"30\" r=\"4\" fill=\"#fff\" stroke=\"none\"/><path d=\"M17 46V33a6 6 0 0 1 12 0v13M35 46V33a6 6 0 0 1 12 0v13M28 47v-7a4 4 0 0 1 8 0v7\" stroke-width=\"3\"/>","theme-parks":"<circle cx=\"32\" cy=\"28\" r=\"14\" stroke-width=\"3\"/><path d=\"M32 14v28M18 28h28M22 18l20 20M42 18 22 38\" stroke-width=\"2\"/><path d=\"M24 50l8-8 8 8\" stroke-width=\"3.5\"/>","zoos":"<circle cx=\"32\" cy=\"34\" r=\"11\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"22\" cy=\"22\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"42\" cy=\"22\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"28\" cy=\"32\" r=\"1.8\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"36\" cy=\"32\" r=\"1.8\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M29 38q3 3 6 0\" stroke=\"var(--c2)\" stroke-width=\"2\"/>","sea-life":"<path d=\"M14 32c8-12 24-12 30 0-6 12-22 12-30 0Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M44 32l8-7v14Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"23\" cy=\"30\" r=\"2\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"46\" cy=\"15\" r=\"2.2\" stroke-width=\"2\"/><circle cx=\"51\" cy=\"21\" r=\"1.6\" stroke-width=\"2\"/>","museums":"<path d=\"M14 24 32 14l18 10Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M19 28v14M27 28v14M37 28v14M45 28v14\" stroke-width=\"3.5\"/><path d=\"M14 47h36\" stroke-width=\"3.5\"/>","historical-sites":"<path d=\"M16 48V22h6v5h5v-5h10v5h5v-5h6v26Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M28 48v-9a4 4 0 0 1 8 0v9\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M32 22V12l7 3-7 3\" stroke-width=\"2.4\"/>","nature":"<path d=\"M32 14c11 8 13 22 0 32-13-10-11-24 0-32Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M32 22v28M32 32l-6-5M32 38l6-5\" stroke=\"var(--c2)\" stroke-width=\"2.2\"/>","tours":"<rect x=\"14\" y=\"22\" width=\"36\" height=\"24\" rx=\"5\" fill=\"#fff\" stroke=\"none\"/><path d=\"M24 22l3-5h10l3 5Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"34\" r=\"7\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"32\" cy=\"34\" r=\"3.5\" fill=\"#fff\" stroke=\"none\"/>","bingo":"<circle cx=\"32\" cy=\"32\" r=\"15\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"32\" r=\"8.5\" fill=\"var(--c2)\" stroke=\"none\"/><text x=\"32\" y=\"36.5\" text-anchor=\"middle\" font-family=\"Arial Black,Arial\" font-weight=\"900\" font-size=\"12\" fill=\"#fff\" stroke=\"none\">7</text>","bowling":"<path d=\"M26 14c-3 0-4 4-3 8l2 6c-3 5-4 10-2 18h8c2-8 1-13-2-18l2-6c1-4 0-8-3-8Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"42\" cy=\"40\" r=\"9\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"40\" cy=\"37\" r=\"1.4\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"44\" cy=\"37\" r=\"1.4\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"42\" cy=\"41\" r=\"1.4\" fill=\"var(--c2)\" stroke=\"none\"/>","cinemas":"<rect x=\"15\" y=\"26\" width=\"34\" height=\"21\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><path d=\"M15 26l32-9 2 7-32 9Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M23 23.5l4 5M33 20.5l4 5\" stroke=\"var(--c2)\" stroke-width=\"2.6\"/>","casinos":"<rect x=\"17\" y=\"17\" width=\"30\" height=\"30\" rx=\"6\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"25\" cy=\"25\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"39\" cy=\"25\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"32\" cy=\"32\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"25\" cy=\"39\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"39\" cy=\"39\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/>","fishing":"<path d=\"M18 48 44 14\" stroke-width=\"3.2\"/><path d=\"M44 14v22\" stroke-width=\"1.8\"/><path d=\"M44 36a4 4 0 1 1-4 4\" stroke-width=\"2.6\"/><path d=\"M14 50c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"2.6\"/>","fruit-machines":"<rect x=\"13\" y=\"18\" width=\"38\" height=\"28\" rx=\"5\" fill=\"#fff\" stroke=\"none\"/><text x=\"32\" y=\"38\" text-anchor=\"middle\" font-family=\"Arial Black,Arial\" font-weight=\"900\" font-size=\"15\" letter-spacing=\"-.5\" fill=\"var(--c2)\" stroke=\"none\">777</text><path d=\"M51 24h4v10\" stroke-width=\"3\"/><circle cx=\"55\" cy=\"22\" r=\"3\" fill=\"#fff\" stroke=\"none\"/>","retro-video-games":"<path d=\"M16 26h32a6 6 0 0 1 6 6l-2 10a5 5 0 0 1-9 2l-3-4H24l-3 4a5 5 0 0 1-9-2l-2-10a6 6 0 0 1 6-6Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M22 30v8M18 34h8\" stroke=\"var(--c2)\" stroke-width=\"2.6\"/><circle cx=\"41\" cy=\"32\" r=\"2.2\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"46\" cy=\"36\" r=\"2.2\" fill=\"var(--c2)\" stroke=\"none\"/>","arcade-bars":"<path d=\"M18 16h20l-10 14Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M28 30v14M22 46h12\" stroke-width=\"3.2\"/><path d=\"M40 20h8v24a4 4 0 0 1-4 4h0a4 4 0 0 1-4-4Z\" fill=\"#fff\" stroke=\"none\"/>","holiday-parks":"<path d=\"M14 44 30 18l16 26Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M30 44l-5-9h10Z\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M46 44V30M40 36h12M42 30l4-6 4 6\" stroke-width=\"2.8\"/><path d=\"M12 47h40\" stroke-width=\"3\"/>","offers":"<path d=\"M16 18h16l17 17-14 14-19-19Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"23\" cy=\"25\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M29 38l8-8\" stroke=\"var(--c2)\" stroke-width=\"2.4\"/>","services":"<path d=\"M14 42V30l6-10h24l6 10v12Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M20 30h24\" stroke=\"var(--c2)\" stroke-width=\"2.4\"/><circle cx=\"22\" cy=\"44\" r=\"4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"42\" cy=\"44\" r=\"4\" fill=\"#fff\" stroke=\"none\"/>","agc":"<text x=\"32\" y=\"38\" text-anchor=\"middle\" font-family=\"Arial Black,Arial\" font-weight=\"900\" font-size=\"17\" fill=\"#fff\" stroke=\"none\">18+</text>","map":"<path d=\"M32 50s-13-13-13-23a13 13 0 0 1 26 0c0 10-13 23-13 23Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"27\" r=\"5\" fill=\"var(--c2)\" stroke=\"none\"/>","all":"<rect x=\"16\" y=\"16\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><rect x=\"35\" y=\"16\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><rect x=\"16\" y=\"35\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><rect x=\"35\" y=\"35\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/>","videos":"<rect x=\"13\" y=\"18\" width=\"38\" height=\"28\" rx=\"7\" fill=\"#fff\" stroke=\"none\"/><path d=\"M28 25v14l11-7Z\" fill=\"var(--c2)\" stroke=\"none\"/>"};let n=0;window.SR_ICON=(k,s)=>{const g=G[k]||G.all,[a,b]=P[C[k]||"cyan"],i="sri"+(n++);return`<svg class="sr-gicon" viewBox="0 0 64 64" width="${s||64}" height="${s||64}" aria-hidden="true" style="--c2:${b}"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient><linearGradient id="h${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><circle cx="32" cy="34" r="29" fill="#0b192c" opacity=".22"/><circle cx="32" cy="32" r="29" fill="url(#g${i})"/><circle cx="32" cy="32" r="28" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">${g}</g><path d="M8 26C10 13 20 5 32 5s22 8 24 21c-7-5-15-7-24-7S15 21 8 26Z" fill="url(#h${i})"/></svg>`};window.SR_TOPIC_ICON=(label,size)=>{const rules=[[/^all /i,"all"],[/beach|seaside/i,"beaches"],[/walk|hik|forest|wood|garden|countryside|reserve|national park|nature|outdoor/i,"nature"],[/wildlife|zoo/i,"zoos"],[/water/i,"sea-life"],[/viewpoint|travel/i,"map"],[/holiday|caravan|lodge|camp/i,"holiday-parks"],[/hotel|stay|break/i,"places-to-stay"],[/cocktail|bar|night/i,"arcade-bars"],[/retro|video|social gaming/i,"retro-video-games"],[/classic|machine|slot|pinball/i,"fruit-machines"],[/arcade/i,"arcades"],[/food|drink|eat/i,"food-drink"],[/family/i,"family-fun"],[/theme park|attraction/i,"attractions"],[/museum/i,"museums"],[/historic/i,"historical-sites"],[/tour/i,"tours"],[/cinema|vue|odeon|cineworld/i,"cinemas"],[/bowling|tenpin|hollywood/i,"bowling"],[/bingo|mecca|buzz|session/i,"bingo"],[/service|moto|roadchef|extra|charging|welcome break/i,"services"],[/casino|grosvenor|genting/i,"casinos"],[/agc|merkur|admiral|luxury leisure/i,"agc"],[/offer|deal/i,"offers"],[/plan|visit/i,"plan-a-trip"],[/event/i,"videos"]];return window.SR_ICON((rules.find(([rx])=>rx.test(label))||[null,"all"])[1],size)};window.SR_ICON_KEYS=Object.keys(G)})();
+(()=>{const P={"cyan":["#3ee0ff","#0284c7"],"yellow":["#ffe45c","#f59e0b"],"pink":["#ff6fb1","#e11d48"],"purple":["#b98cff","#6d28d9"],"green":["#5ef0a8","#059669"],"orange":["#ffb35c","#ea580c"],"navy":["#4f7bd9","#0b192c"],"teal":["#4ff0e0","#0f766e"],"red":["#ff7a6b","#b91c1c"]},C={"attractions":"cyan","seaside":"yellow","places-to-stay":"purple","food-drink":"orange","arcades":"pink","hidden-gems":"teal","plan-a-trip":"green","beaches":"yellow","piers":"cyan","family-fun":"pink","theme-parks":"red","zoos":"orange","sea-life":"teal","museums":"navy","historical-sites":"purple","nature":"green","tours":"cyan","bingo":"pink","bowling":"navy","cinemas":"red","casinos":"navy","fishing":"teal","fruit-machines":"red","retro-video-games":"purple","arcade-bars":"pink","holiday-parks":"green","offers":"pink","services":"orange","agc":"navy","map":"red","all":"cyan","videos":"red"},G={"attractions":"<path d=\"M12 46h40\" stroke-width=\"3.2\"/><path d=\"M12 40c6 0 8-4 11-10 3-7 8-12 13-8 4 3 1 10-4 10s-6-6-2-12c4-7 13-8 17 0 2 4 3 12 5 20\" stroke-width=\"3.2\"/><path d=\"M18 46v-8M28 46V30M44 46V22\" stroke-width=\"2.4\"/>","seaside":"<circle cx=\"32\" cy=\"30\" r=\"8\" fill=\"#fff\" stroke=\"none\"/><path d=\"M32 14v4M32 42v4M16 30h4M44 30h4M20.5 18.5l3 3M40.5 38.5l3 3M20.5 41.5l3-3M40.5 21.5l3-3\" stroke-width=\"3.5\"/><path d=\"M14 50c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"3\"/>","places-to-stay":"<path d=\"M15 20v26M49 32v14M15 40h34\" stroke-width=\"3.5\"/><rect x=\"18\" y=\"31\" width=\"31\" height=\"9\" rx=\"2.5\" fill=\"#fff\" stroke=\"none\"/><rect x=\"19\" y=\"24\" width=\"10\" height=\"7\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/>","food-drink":"<path d=\"M22 16v10a5 5 0 0 0 10 0V16M27 16v32\" stroke-width=\"3.5\"/><path d=\"M42 48V16c-5 4-6 12-6 18h6\" stroke-width=\"3.5\" fill=\"#fff\"/>","arcades":"<path d=\"M22 14h20l4 34H18Z\" fill=\"#fff\" stroke=\"none\"/><rect x=\"24\" y=\"19\" width=\"16\" height=\"12\" rx=\"2\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"27\" cy=\"38\" r=\"2.6\" fill=\"var(--c2)\" stroke=\"none\"/><rect x=\"33\" y=\"36.5\" width=\"8\" height=\"3\" rx=\"1.5\" fill=\"var(--c2)\" stroke=\"none\"/>","hidden-gems":"<path d=\"M17 26l7-9h16l7 9-15 22Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M17 26h30M24 17l8 31 8-31\" stroke=\"var(--c2)\" stroke-width=\"2\"/>","plan-a-trip":"<path d=\"M16 19l10-4 12 4 10-4v30l-10 4-12-4-10 4Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M26 15v30M38 19v30\" stroke=\"var(--c2)\" stroke-width=\"2.2\"/>","beaches":"<path d=\"M16 30a16 13 0 0 1 32 0Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M32 30v17\" stroke-width=\"3.5\"/><path d=\"M14 49c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"3\"/>","piers":"<path d=\"M12 30h40\" stroke-width=\"3.5\"/><path d=\"M18 30v14M28 30v14M38 30v14M48 30v14\" stroke-width=\"3\"/><path d=\"M40 30v-8h8v8M44 22v-6\" stroke-width=\"3\"/><path d=\"M12 48c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"2.6\"/>","family-fun":"<circle cx=\"23\" cy=\"20\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"41\" cy=\"20\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"30\" r=\"4\" fill=\"#fff\" stroke=\"none\"/><path d=\"M17 46V33a6 6 0 0 1 12 0v13M35 46V33a6 6 0 0 1 12 0v13M28 47v-7a4 4 0 0 1 8 0v7\" stroke-width=\"3\"/>","theme-parks":"<circle cx=\"32\" cy=\"28\" r=\"14\" stroke-width=\"3\"/><path d=\"M32 14v28M18 28h28M22 18l20 20M42 18 22 38\" stroke-width=\"2\"/><path d=\"M24 50l8-8 8 8\" stroke-width=\"3.5\"/>","zoos":"<circle cx=\"32\" cy=\"34\" r=\"11\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"22\" cy=\"22\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"42\" cy=\"22\" r=\"5\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"28\" cy=\"32\" r=\"1.8\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"36\" cy=\"32\" r=\"1.8\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M29 38q3 3 6 0\" stroke=\"var(--c2)\" stroke-width=\"2\"/>","sea-life":"<path d=\"M14 32c8-12 24-12 30 0-6 12-22 12-30 0Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M44 32l8-7v14Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"23\" cy=\"30\" r=\"2\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"46\" cy=\"15\" r=\"2.2\" stroke-width=\"2\"/><circle cx=\"51\" cy=\"21\" r=\"1.6\" stroke-width=\"2\"/>","museums":"<path d=\"M14 24 32 14l18 10Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M19 28v14M27 28v14M37 28v14M45 28v14\" stroke-width=\"3.5\"/><path d=\"M14 47h36\" stroke-width=\"3.5\"/>","historical-sites":"<path d=\"M16 48V22h6v5h5v-5h10v5h5v-5h6v26Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M28 48v-9a4 4 0 0 1 8 0v9\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M32 22V12l7 3-7 3\" stroke-width=\"2.4\"/>","nature":"<path d=\"M32 14c11 8 13 22 0 32-13-10-11-24 0-32Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M32 22v28M32 32l-6-5M32 38l6-5\" stroke=\"var(--c2)\" stroke-width=\"2.2\"/>","tours":"<rect x=\"14\" y=\"22\" width=\"36\" height=\"24\" rx=\"5\" fill=\"#fff\" stroke=\"none\"/><path d=\"M24 22l3-5h10l3 5Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"34\" r=\"7\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"32\" cy=\"34\" r=\"3.5\" fill=\"#fff\" stroke=\"none\"/>","bingo":"<circle cx=\"32\" cy=\"32\" r=\"15\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"32\" r=\"8.5\" fill=\"var(--c2)\" stroke=\"none\"/><text x=\"32\" y=\"36.5\" text-anchor=\"middle\" font-family=\"Arial Black,Arial\" font-weight=\"900\" font-size=\"12\" fill=\"#fff\" stroke=\"none\">7</text>","bowling":"<path d=\"M26 14c-3 0-4 4-3 8l2 6c-3 5-4 10-2 18h8c2-8 1-13-2-18l2-6c1-4 0-8-3-8Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"42\" cy=\"40\" r=\"9\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"40\" cy=\"37\" r=\"1.4\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"44\" cy=\"37\" r=\"1.4\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"42\" cy=\"41\" r=\"1.4\" fill=\"var(--c2)\" stroke=\"none\"/>","cinemas":"<rect x=\"15\" y=\"26\" width=\"34\" height=\"21\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><path d=\"M15 26l32-9 2 7-32 9Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M23 23.5l4 5M33 20.5l4 5\" stroke=\"var(--c2)\" stroke-width=\"2.6\"/>","casinos":"<rect x=\"17\" y=\"17\" width=\"30\" height=\"30\" rx=\"6\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"25\" cy=\"25\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"39\" cy=\"25\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"32\" cy=\"32\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"25\" cy=\"39\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"39\" cy=\"39\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/>","fishing":"<path d=\"M18 48 44 14\" stroke-width=\"3.2\"/><path d=\"M44 14v22\" stroke-width=\"1.8\"/><path d=\"M44 36a4 4 0 1 1-4 4\" stroke-width=\"2.6\"/><path d=\"M14 50c4-3 8-3 12 0s8 3 12 0 8-3 12 0\" stroke-width=\"2.6\"/>","fruit-machines":"<rect x=\"13\" y=\"18\" width=\"38\" height=\"28\" rx=\"5\" fill=\"#fff\" stroke=\"none\"/><text x=\"32\" y=\"38\" text-anchor=\"middle\" font-family=\"Arial Black,Arial\" font-weight=\"900\" font-size=\"15\" letter-spacing=\"-.5\" fill=\"var(--c2)\" stroke=\"none\">777</text><path d=\"M51 24h4v10\" stroke-width=\"3\"/><circle cx=\"55\" cy=\"22\" r=\"3\" fill=\"#fff\" stroke=\"none\"/>","retro-video-games":"<path d=\"M16 26h32a6 6 0 0 1 6 6l-2 10a5 5 0 0 1-9 2l-3-4H24l-3 4a5 5 0 0 1-9-2l-2-10a6 6 0 0 1 6-6Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M22 30v8M18 34h8\" stroke=\"var(--c2)\" stroke-width=\"2.6\"/><circle cx=\"41\" cy=\"32\" r=\"2.2\" fill=\"var(--c2)\" stroke=\"none\"/><circle cx=\"46\" cy=\"36\" r=\"2.2\" fill=\"var(--c2)\" stroke=\"none\"/>","arcade-bars":"<path d=\"M18 16h20l-10 14Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M28 30v14M22 46h12\" stroke-width=\"3.2\"/><path d=\"M40 20h8v24a4 4 0 0 1-4 4h0a4 4 0 0 1-4-4Z\" fill=\"#fff\" stroke=\"none\"/>","holiday-parks":"<path d=\"M14 44 30 18l16 26Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M30 44l-5-9h10Z\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M46 44V30M40 36h12M42 30l4-6 4 6\" stroke-width=\"2.8\"/><path d=\"M12 47h40\" stroke-width=\"3\"/>","offers":"<path d=\"M16 18h16l17 17-14 14-19-19Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"23\" cy=\"25\" r=\"3\" fill=\"var(--c2)\" stroke=\"none\"/><path d=\"M29 38l8-8\" stroke=\"var(--c2)\" stroke-width=\"2.4\"/>","services":"<path d=\"M14 42V30l6-10h24l6 10v12Z\" fill=\"#fff\" stroke=\"none\"/><path d=\"M20 30h24\" stroke=\"var(--c2)\" stroke-width=\"2.4\"/><circle cx=\"22\" cy=\"44\" r=\"4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"42\" cy=\"44\" r=\"4\" fill=\"#fff\" stroke=\"none\"/>","agc":"<text x=\"32\" y=\"38\" text-anchor=\"middle\" font-family=\"Arial Black,Arial\" font-weight=\"900\" font-size=\"17\" fill=\"#fff\" stroke=\"none\">18+</text>","map":"<path d=\"M32 50s-13-13-13-23a13 13 0 0 1 26 0c0 10-13 23-13 23Z\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"32\" cy=\"27\" r=\"5\" fill=\"var(--c2)\" stroke=\"none\"/>","all":"<rect x=\"16\" y=\"16\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><rect x=\"35\" y=\"16\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><rect x=\"16\" y=\"35\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/><rect x=\"35\" y=\"35\" width=\"13\" height=\"13\" rx=\"3\" fill=\"#fff\" stroke=\"none\"/>","videos":"<rect x=\"13\" y=\"18\" width=\"38\" height=\"28\" rx=\"7\" fill=\"#fff\" stroke=\"none\"/><path d=\"M28 25v14l11-7Z\" fill=\"var(--c2)\" stroke=\"none\"/>"};let n=0;window.SR_ICON=(k,s)=>{const g=G[k]||G.all,[a,b]=P[C[k]||"cyan"],i="sri"+(n++);return`<svg class="sr-gicon" viewBox="0 0 64 64" width="${s||64}" height="${s||64}" aria-hidden="true" style="--c2:${b}"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient><linearGradient id="h${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><circle cx="32" cy="34" r="29" fill="#0b192c" opacity=".22"/><circle cx="32" cy="32" r="29" fill="url(#g${i})"/><circle cx="32" cy="32" r="28" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">${g}</g><path d="M8 26C10 13 20 5 32 5s22 8 24 21c-7-5-15-7-24-7S15 21 8 26Z" fill="url(#h${i})"/></svg>`};window.SR_TOPIC_ICON=(label,size)=>{const rules=[[/^all /i,"all"],[/beach|seaside/i,"beaches"],[/walk|hik|forest|wood|garden|countryside|reserve|national park|nature|outdoor/i,"nature"],[/wildlife|zoo/i,"zoos"],[/water/i,"sea-life"],[/viewpoint|travel|destination/i,"map"],[/holiday|caravan|lodge|camp/i,"holiday-parks"],[/hotel|stay|break/i,"places-to-stay"],[/cocktail|bar|night/i,"arcade-bars"],[/retro|video|social gaming/i,"retro-video-games"],[/classic|machine|slot|pinball/i,"fruit-machines"],[/arcade/i,"arcades"],[/food|drink|eat/i,"food-drink"],[/family/i,"family-fun"],[/theme park/i,"theme-parks"],[/attraction/i,"attractions"],[/museum/i,"museums"],[/historic/i,"historical-sites"],[/tour/i,"tours"],[/cinema|vue|odeon|cineworld/i,"cinemas"],[/bowling|tenpin|hollywood/i,"bowling"],[/bingo|mecca|buzz|session/i,"bingo"],[/service|moto|roadchef|extra|charging|welcome break/i,"services"],[/casino|grosvenor|genting/i,"casinos"],[/agc|merkur|admiral|luxury leisure/i,"agc"],[/offer|deal/i,"offers"],[/plan|visit/i,"plan-a-trip"],[/event/i,"videos"]];return window.SR_ICON((rules.find(([rx])=>rx.test(label))||[null,"all"])[1],size)};window.SR_ICON_KEYS=Object.keys(G)})();
 }catch(e){console.warn('SR snippet failed: Spin Raiders glossy icon set 20260923',e)}})();
 
 /* [90] Spin Raiders category mockup art 20260923 */
@@ -991,7 +1983,7 @@ window.SR_CAT_ART={"places-to-stay":{"sprite":"https://static.wixstatic.com/medi
 
 /* [91] Spin Raiders shared shell 20260923 */
 (function(){try{
-(()=>{"use strict";const e=(e,s,a,r,o)=>`https://static.wixstatic.com/media/3a517e_7ae3a75dcc3047cf8aa26411a6455c16~mv2.webp/v1/crop/x_${e},y_${s},w_${a},h_${r}/${o}.webp`,s=(e,s)=>window.SR_ICON?window.SR_ICON(e,s):"",a={search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 6 6"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m12 0 2 10 10 2-10 2-2 10-2-10L0 12l10-2Z"/>'},r=e=>`<svg viewBox="0 0 24 24" aria-hidden="true">${a[e]}</svg>`,o={towns:"/?explore=seaside",attractions:"/?explore=attractions",stays:"/?explore=places-to-stay",food:"/?explore=food-drink",arcades:"/?explore=arcades",gems:"/?explore=hidden-gems",planner:"/?view=trip",offers:"/?view=offers"},t=[["Days Out",o.towns,[["seaside","Seaside",o.towns],["beaches","Beaches","/?explore=beaches"],["piers","Piers","/?explore=piers"],["theme-parks","Theme Parks","/?explore=theme-parks"],["family-fun","Family Fun","/?explore=family-fun"],["zoos","Zoos","/?explore=zoos"],["sea-life","Sea Life","/?explore=sea-life"],["nature","Nature","/?explore=nature-outdoors"],["tours","Tours","/?explore=tours"],["hidden-gems","Hidden Gems",o.gems]]],["Places to Stay",o.stays,[["places-to-stay","Places to Stay",o.stays],["holiday-parks","Holiday Parks & Hotels","/?explore=holiday-parks"]]],["Eat & Drink",o.food,[["food-drink","Food & Drink",o.food],["arcade-bars","Arcade Bars & Clubs","/?explore=arcade-bars"]]],["Attractions",o.attractions,[["attractions","All Attractions",o.attractions],["arcades","Arcades",o.arcades],["retro-video-games","Retro Video Games","/?explore=retro-video-games"],["agc","Adult Gaming Centres","/?view=agc"],["bingo","Bingo","/?explore=bingo"],["bowling","Bowling","/?explore=bowling"],["cinemas","Cinemas","/?explore=cinema"],["fishing","Fishing","/?explore=fishing"],["museums","Museums","/?explore=museums"],["historical-sites","Historical Sites","/?explore=historical-sites"]]],["Fruit Machines","/classic-fruit-machine-archive",[["fruit-machines","Classic Machine Archive","/classic-fruit-machine-archive"],["casinos","Manufacturers","/fruit-machine-manufacturers"]]],["Offers",o.offers,[["offers","Amazing Offers",o.offers],["casinos","UK Casino Deals","/casino-offers"]]],["Plan Your Trip",o.planner,[["plan-a-trip","Trip Builder",o.planner],["map","Raiders Map","/map"],["videos","Video Vault","/?raidertube=1"]]]];window.SR_SHELL={U:o,crop:e,css:".srsh{--navy:#0b2a4a;--ink:#0b192c;--cyan:#00b4d8;--yellow:#ffd21f;--blue:#1d4fa3;font-family:'Roboto Condensed',Arial,sans-serif;color:var(--ink);background:#fff}.srsh *{box-sizing:border-box}.srsh a{color:inherit;text-decoration:none}.srsh img{display:block;max-width:100%}.srsh .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.srsh .masthead{position:sticky;top:0;z-index:50;background:linear-gradient(#0e3561,#0b2a4a);box-shadow:0 2px 12px #0005}.srsh .nav{display:flex;align-items:center;gap:clamp(10px,1.6vw,26px);height:72px;width:min(1440px,100%);margin:0 auto;padding:0 clamp(12px,2vw,28px)}.srsh .brand{display:flex;align-items:center;gap:10px;color:#fff;font:800 clamp(22px,2vw,30px)/1 'Roboto Condensed';letter-spacing:.01em;white-space:nowrap}.srsh .brand svg{width:44px;height:44px;stroke:var(--cyan);fill:none;stroke-width:1.6}.srsh .brand small{display:block;font:700 10px/1.4 'Roboto Condensed';letter-spacing:.22em;color:var(--cyan)}.srsh .menu{display:flex;gap:clamp(4px,1vw,14px);margin-left:auto}.srsh .dd{position:relative}.srsh .dd>a{display:flex;align-items:center;gap:4px;color:#fff;font:700 16px 'Roboto Condensed';padding:24px 6px;border-bottom:3px solid transparent}.srsh .dd>a:after{content:'';width:6px;height:6px;border:solid #9fd8ff;border-width:0 2px 2px 0;transform:rotate(45deg) translateY(-2px);margin-left:2px}.srsh .dd:hover>a,.srsh .dd:focus-within>a,.srsh .dd.on>a{color:var(--yellow);border-color:var(--yellow)}.srsh .panel{position:absolute;left:50%;top:100%;transform:translateX(-50%);min-width:260px;background:#fff;border-radius:14px;box-shadow:0 18px 40px #0b192c40;padding:10px;display:none;grid-template-columns:1fr 1fr;gap:2px}.srsh .dd:hover .panel,.srsh .dd:focus-within .panel{display:grid}.srsh .panel.one{grid-template-columns:1fr}.srsh .panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;font:700 15px 'Roboto Condensed';color:var(--ink);white-space:nowrap}.srsh .panel a:hover{background:#eef6fd}.srsh .panel svg{width:34px;height:34px;flex:none}.srsh .nav-search{background:none;border:0;cursor:pointer;padding:6px}.srsh .nav-search svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2.2}.srsh .button{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(#ffe45c,#ffc400);color:var(--ink);font:800 17px 'Roboto Condensed';padding:12px 20px;border-radius:10px;border:0;cursor:pointer;box-shadow:0 3px 0 #d69e00,0 6px 14px #0003;white-space:nowrap}.srsh .button.pink{background:linear-gradient(#ff4f93,#e11d62);color:#fff;box-shadow:0 3px 0 #a3123f,0 6px 14px #0003}.srsh .tagline{font:700 18px/0.95 Caveat,cursive;color:#fff;transform:rotate(-6deg);text-align:center}.srsh .burger{display:none}.srsh .hero .sr-only{position:absolute}.srsh .hero-search .button{padding:14px 26px;font-size:19px}.srsh .promo .hit{position:absolute;border-radius:10px}.srsh .promo .hit:focus-visible{outline:3px solid #1f63c6}.srsh .footer{position:relative;aspect-ratio:7.37;background-size:cover!important;background-position:center!important}.srsh .footer .hit{position:absolute}.srsh .footlinks{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;background:#0b2a4a;padding:10px;font:600 14px Inter,Arial;color:#cfe6ff}.srsh dialog{border:0;border-radius:16px;padding:26px;width:min(560px,92vw);box-shadow:0 30px 70px #0008}.srsh dialog::backdrop{background:#0b192ccc}.srsh dialog form{display:flex;gap:8px}.srsh dialog input{flex:1;font:16px Inter;padding:12px;border:2px solid #cbd5e1;border-radius:10px}.srsh .close{float:right;background:none;border:0;font-size:28px;cursor:pointer}@media(max-width:1100px){.srsh .menu,.srsh .tagline{display:none}.srsh .burger{display:block;margin-left:auto}.srsh .burger summary{list-style:none;color:#fff;font:800 17px 'Roboto Condensed';cursor:pointer;padding:10px 14px;border:2px solid #ffffff55;border-radius:10px}.srsh .burger[open] nav{position:absolute;left:0;right:0;top:72px;background:#fff;max-height:78vh;overflow:auto;padding:8px 14px 20px;box-shadow:0 20px 40px #0006}.srsh .burger details{border-bottom:1px solid #e2e8f0}.srsh .burger details summary{list-style:none;color:var(--ink);border:0;padding:14px 4px;font-size:19px}.srsh .burger details a{display:flex;align-items:center;gap:10px;padding:8px 6px;font:700 16px 'Roboto Condensed'}.srsh .burger details svg{width:32px;height:32px}.srsh .nav>.button{display:none}}@media(max-width:760px){.srsh .nav{height:60px;gap:6px;padding:0 10px}.srsh .brand{font-size:20px;gap:8px}.srsh .brand svg{width:32px;height:32px}.srsh .brand small{font-size:7.5px;letter-spacing:.16em}.srsh .nav-search{margin-left:auto;padding:6px}.srsh .nav-search svg{width:24px;height:24px}.srsh .burger{margin-left:0}.srsh .burger summary{white-space:nowrap;padding:8px 12px;font-size:16px}.srsh .burger[open] nav{top:60px}.srsh .hero-search .button{padding:11px 14px;font-size:16px}.srsh .footer{aspect-ratio:auto;min-height:0;background:#0b2a4a!important}.srsh .footer .hit{display:none}.srsh .fm{display:block!important}}.srsh .footer-live{aspect-ratio:auto!important;background:#0b2a4a!important;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:32px clamp(16px,4vw,64px);color:white}.srsh .footer-live p{margin:0}.srsh .footer-live .brand{white-space:normal}.srsh .footer-live .brand small{letter-spacing:.1em}.srsh .fm{display:none;padding:22px 16px;color:#fff;text-align:center;font:800 24px 'Roboto Condensed'}.srsh .fm small{display:block;font:700 10px 'Roboto Condensed';letter-spacing:.2em;color:var(--cyan);margin-top:4px}.srsh .fm p{margin:12px 0 0;font:600 15px Inter,Arial;color:#cfe6ff}",head(e){const a=t.map(([a,r,o],t)=>`<div class="dd${t===e?" on":""}"><a href="${r}">${a}</a><div class="panel${o.length<4?" one":""}">${o.map(([e,a,r])=>`<a href="${r}">${s(e,34)}${a}</a>`).join("")}</div></div>`).join(""),i=t.map(([e,a,r])=>`<details><summary>${e}</summary>${r.map(([e,a,r])=>`<a href="${r}">${s(e,32)}${a}</a>`).join("")}</details>`).join("");return`<div class="srsh" style="display:contents"><header class="masthead"><div class="nav"><a href="/" class="brand" aria-label="Spin Raiders home">${r("compass")}<span>SPIN RAIDERS<small>DISCOVER MORE OF THE UK</small></span></a><nav class="menu" aria-label="Main">${a}</nav><button class="nav-search" aria-label="Search">${r("search")}</button><a class="button" href="${o.planner}">Plan a day out →</a><span class="tagline">Great<br>Places<br>Brighter<br>Days</span><details class="burger"><summary>Menu ☰</summary><nav aria-label="Mobile">${i}</nav></details></div></header></div>`},foot:()=>`<div class="srsh"><footer><div class="footer footer-live"><a href="/" class="brand" aria-label="Spin Raiders home">${r("compass")}<span>SPIN RAIDERS<small>PUTTING GREAT PLACES BACK ON THE MAP</small></span></a><p>Real places · Honest guides · Great tips · For all ages</p><p>Explore more together</p></div><nav class="footlinks" aria-label="Footer"><a href="/about-us">About us</a><a href="/?report=change">Report a change</a><a href="/responsiblegambling">Safer gambling</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></nav></footer><dialog id="sd"><button class="close" data-close aria-label="Close">×</button><h2>Where shall we go?</h2><form action="/search" role="search"><input name="q" type="search" placeholder="Search places, towns and days out" required><button class="button pink">Search →</button></form></dialog></div>`,wire(e){const s="width=device-width, initial-scale=1",a=()=>{const e=document.querySelector('meta[name="viewport"]');e&&e.content!==s&&(e.content=s)};if(a(),window.__srVP||(window.__srVP=1,new MutationObserver(a).observe(document.head,{subtree:!0,childList:!0,attributes:!0,attributeFilter:["content"]})),!document.getElementById("sr-home-fonts")){const e=document.createElement("link");e.id="sr-home-fonts",e.rel="stylesheet",e.href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@500;600&family=Roboto+Condensed:wght@500;700;800;900&display=swap",document.head.append(e)}const r=e.querySelector(".nav-search");r&&(r.onclick=()=>{const s=e.querySelector("#sd")||document.getElementById("sr-brand-footer")?.shadowRoot?.querySelector("#sd");if(s){s.showModal();s.querySelector("input").focus()}else location.assign("/search")}),e.querySelectorAll("[data-close]").forEach(e=>e.onclick=()=>e.closest("dialog").close()),e.querySelectorAll("[data-signup]").forEach(e=>e.onclick=()=>window.SR_NEWSLETTER?window.SR_NEWSLETTER():location.assign("https://spinraiders.wixforms.com/f/7508127101044655112")),e.addEventListener("click",e=>e.stopPropagation()),e.addEventListener("submit",e=>e.stopPropagation())},own(){let e=document.getElementById("sr-shell-surface");e||(e=document.createElement("style"),e.id="sr-shell-surface",document.head.append(e)),e.textContent="html.sr-shell #raidertube-global-button,html.sr-shell #sr-report-action,html.sr-shell #sr-seaside-related,html.sr-shell body #SITE_CONTAINER#SITE_CONTAINER,html.sr-shell #sr-brand-header,html.sr-shell #sr-brand-footer,html.sr-shell body>#srapp,html.sr-shell body>#srh-root,html.sr-shell #sr-seaside-root{display:none!important}html.sr-shell,html.sr-shell body{margin:0!important;background:#fff!important;height:auto!important;min-height:0!important;overflow:visible!important}html.sr-shell #sr-shell-page{display:block!important}",document.documentElement.classList.add("sr-shell");const s=document.getElementById("sr-shell-page");s&&s.style.setProperty("background","#fff","important");const a=()=>["sr-brand-header","sr-brand-footer","raidertube-global-button","sr-report-action","sr-seaside-related"].forEach(e=>document.getElementById(e)?.remove());a(),window.__srKill||(window.__srKill=1,new MutationObserver(a).observe(document.body,{childList:!0}))}}})();
+(()=>{"use strict";const e=(e,s,a,r,o)=>`https://static.wixstatic.com/media/3a517e_7ae3a75dcc3047cf8aa26411a6455c16~mv2.webp/v1/crop/x_${e},y_${s},w_${a},h_${r}/${o}.webp`,s=(e,s)=>window.SR_ICON?window.SR_ICON(e,s):"",a={search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 6 6"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m12 0 2 10 10 2-10 2-2 10-2-10L0 12l10-2Z"/>'},r=e=>`<svg viewBox="0 0 24 24" aria-hidden="true">${a[e]}</svg>`,o={towns:"/?explore=seaside",attractions:"/?explore=attractions",stays:"/?explore=places-to-stay",food:"/?explore=food-drink",arcades:"/?explore=arcades",gems:"/?explore=hidden-gems",planner:"/?view=trip",offers:"/?view=offers"},t=[["Days Out",o.towns,[["seaside","Seaside",o.towns],["beaches","Beaches","/?explore=beaches"],["piers","Piers","/?explore=piers"],["theme-parks","Theme Parks","/?explore=theme-parks"],["family-fun","Family Fun","/?explore=family-fun"],["zoos","Zoos","/?explore=zoos"],["sea-life","Sea Life","/?explore=sea-life"],["nature","Nature","/?explore=nature-outdoors"],["tours","Tours","/?explore=tours"],["hidden-gems","Hidden Gems",o.gems]]],["Places to Stay",o.stays,[["places-to-stay","Places to Stay",o.stays],["holiday-parks","Holiday Parks & Hotels","/?explore=holiday-parks"]]],["Eat & Drink",o.food,[["food-drink","Food & Drink",o.food],["arcade-bars","Arcade Bars & Clubs","/?explore=arcade-bars"]]],["Attractions",o.attractions,[["attractions","All Attractions",o.attractions],["arcades","Arcades",o.arcades],["retro-video-games","Retro Video Games","/?explore=retro-video-games"],["agc","Adult Gaming Centres","/?view=agc"],["bingo","Bingo","/?explore=bingo"],["bowling","Bowling","/?explore=bowling"],["cinemas","Cinemas","/?explore=cinema"],["fishing","Fishing","/?explore=fishing"],["museums","Museums","/?explore=museums"],["historical-sites","Historical Sites","/?explore=historical-sites"]]],["Fruit Machines","/classic-fruit-machine-archive",[["fruit-machines","Classic Machine Archive","/classic-fruit-machine-archive"],["casinos","Manufacturers","/fruit-machine-manufacturers"]]],["Offers",o.offers,[["offers","Amazing Offers",o.offers],["casinos","UK Casino Deals","/casino-offers"]]],["Plan Your Trip",o.planner,[["plan-a-trip","Trip Builder",o.planner],["map","Raiders Map","/map"],["videos","Video Vault","/?raidertube=1"]]]];window.SR_SHELL={U:o,crop:e,css:".srsh{--navy:#0b2a4a;--ink:#0b192c;--cyan:#00b4d8;--yellow:#ffd21f;--blue:#1d4fa3;font-family:'Roboto Condensed',Arial,sans-serif;color:var(--ink);background:#fff}.srsh *{box-sizing:border-box}.srsh a{color:inherit;text-decoration:none}.srsh img{display:block;max-width:100%}.srsh .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.srsh .masthead{position:sticky;top:0;z-index:50;background:linear-gradient(#0e3561,#0b2a4a);box-shadow:0 2px 12px #0005}.srsh .nav{display:flex;align-items:center;gap:clamp(10px,1.6vw,26px);height:72px;width:min(1440px,100%);margin:0 auto;padding:0 clamp(12px,2vw,28px)}.srsh .brand{display:flex;align-items:center;gap:10px;color:#fff;font:800 clamp(22px,2vw,30px)/1 'Roboto Condensed';letter-spacing:.01em;white-space:nowrap}.srsh .brand svg{width:44px;height:44px;stroke:var(--cyan);fill:none;stroke-width:1.6}.srsh .brand small{display:block;font:700 10px/1.4 'Roboto Condensed';letter-spacing:.22em;color:var(--cyan)}.srsh .menu{display:flex;gap:clamp(4px,1vw,14px);margin-left:auto}.srsh .dd{position:relative}.srsh .dd>a{display:flex;align-items:center;gap:4px;color:#fff;font:700 16px 'Roboto Condensed';padding:24px 6px;border-bottom:3px solid transparent}.srsh .dd>a:after{content:'';width:6px;height:6px;border:solid #9fd8ff;border-width:0 2px 2px 0;transform:rotate(45deg) translateY(-2px);margin-left:2px}.srsh .dd:hover>a,.srsh .dd:focus-within>a,.srsh .dd.on>a{color:var(--yellow);border-color:var(--yellow)}.srsh .panel{position:absolute;left:50%;top:100%;transform:translateX(-50%);min-width:260px;background:#fff;border-radius:14px;box-shadow:0 18px 40px #0b192c40;padding:10px;display:none;grid-template-columns:1fr 1fr;gap:2px}.srsh .dd:hover .panel,.srsh .dd:focus-within .panel{display:grid}.srsh .panel.one{grid-template-columns:1fr}.srsh .panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;font:700 15px 'Roboto Condensed';color:var(--ink);white-space:nowrap}.srsh .panel a:hover{background:#eef6fd}.srsh .panel svg{width:34px;height:34px;flex:none}.srsh .nav-search{background:none;border:0;cursor:pointer;padding:6px}.srsh .nav-search svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2.2}.srsh .button{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(#ffe45c,#ffc400);color:var(--ink);font:800 17px 'Roboto Condensed';padding:12px 20px;border-radius:10px;border:0;cursor:pointer;box-shadow:0 3px 0 #d69e00,0 6px 14px #0003;white-space:nowrap}.srsh .button.pink{background:linear-gradient(#ff4f93,#e11d62);color:#fff;box-shadow:0 3px 0 #a3123f,0 6px 14px #0003}.srsh .tagline{font:700 18px/0.95 Caveat,cursive;color:#fff;transform:rotate(-6deg);text-align:center}.srsh .burger{display:none}.srsh .hero .sr-only{position:absolute}.srsh .hero-search .button{padding:14px 26px;font-size:19px}.srsh .promo .hit{position:absolute;border-radius:10px}.srsh .promo .hit:focus-visible{outline:3px solid #1f63c6}.srsh .footer{position:relative;aspect-ratio:7.37;background-size:cover!important;background-position:center!important}.srsh .footer .hit{position:absolute}.srsh .footlinks{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;background:#0b2a4a;padding:10px;font:600 14px Inter,Arial;color:#cfe6ff}.srsh dialog{border:0;border-radius:16px;padding:26px;width:min(560px,92vw);box-shadow:0 30px 70px #0008}.srsh dialog::backdrop{background:#0b192ccc}.srsh dialog form{display:flex;gap:8px}.srsh dialog input{flex:1;font:16px Inter;padding:12px;border:2px solid #cbd5e1;border-radius:10px}.srsh .close{float:right;background:none;border:0;font-size:28px;cursor:pointer}@media(max-width:1100px){.srsh .menu,.srsh .tagline{display:none}.srsh .burger{display:block;margin-left:auto}.srsh .burger summary{list-style:none;color:#fff;font:800 17px 'Roboto Condensed';cursor:pointer;padding:10px 14px;border:2px solid #ffffff55;border-radius:10px}.srsh .burger[open] nav{position:absolute;left:0;right:0;top:72px;background:#fff;max-height:78vh;overflow:auto;padding:8px 14px 20px;box-shadow:0 20px 40px #0006}.srsh .burger details{border-bottom:1px solid #e2e8f0}.srsh .burger details summary{list-style:none;color:var(--ink);border:0;padding:14px 4px;font-size:19px}.srsh .burger details a{display:flex;align-items:center;gap:10px;padding:8px 6px;font:700 16px 'Roboto Condensed'}.srsh .burger details svg{width:32px;height:32px}.srsh .nav>.button{display:none}}@media(max-width:760px){.srsh .nav{height:60px;gap:6px;padding:0 10px}.srsh .brand{font-size:20px;gap:8px}.srsh .brand svg{width:32px;height:32px}.srsh .brand small{font-size:7.5px;letter-spacing:.16em}.srsh .nav-search{margin-left:auto;padding:6px}.srsh .nav-search svg{width:24px;height:24px}.srsh .burger{margin-left:0}.srsh .burger summary{white-space:nowrap;padding:8px 12px;font-size:16px}.srsh .burger[open] nav{top:60px}.srsh .hero-search .button{padding:11px 14px;font-size:16px}.srsh .footer{aspect-ratio:auto;min-height:0;background:#0b2a4a!important}.srsh .footer .hit{display:none}.srsh .fm{display:block!important}}.srsh .footer-live{aspect-ratio:auto!important;background:#0b2a4a!important;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:32px clamp(16px,4vw,64px);color:white}.srsh .footer-live p{margin:0;font-size:16px;line-height:1.5}.srsh .footer-live .brand{white-space:normal}.srsh .footer-live .brand small{letter-spacing:.1em}.srsh .fm{display:none;padding:22px 16px;color:#fff;text-align:center;font:800 24px 'Roboto Condensed'}.srsh .fm small{display:block;font:700 10px 'Roboto Condensed';letter-spacing:.2em;color:var(--cyan);margin-top:4px}.srsh .fm p{margin:12px 0 0;font:600 15px Inter,Arial;color:#cfe6ff}",head(e){const a=t.map(([a,r,o],t)=>`<div class="dd${t===e?" on":""}"><a href="${r}">${a}</a><div class="panel${o.length<4?" one":""}">${o.map(([e,a,r])=>`<a href="${r}">${s(e,34)}${a}</a>`).join("")}</div></div>`).join(""),i=t.map(([e,a,r])=>`<details><summary>${e}</summary>${r.map(([e,a,r])=>`<a href="${r}">${s(e,32)}${a}</a>`).join("")}</details>`).join("");return`<div class="srsh" style="display:contents"><header class="masthead"><div class="nav"><a href="/" class="brand" aria-label="Spin Raiders home">${r("compass")}<span>SPIN RAIDERS<small>DISCOVER MORE OF THE UK</small></span></a><nav class="menu" aria-label="Main">${a}</nav><button class="nav-search" aria-label="Search">${r("search")}</button><a class="button" href="${o.planner}">Plan a day out →</a><span class="tagline">Great<br>Places<br>Brighter<br>Days</span><details class="burger"><summary>Menu ☰</summary><nav aria-label="Mobile">${i}</nav></details></div></header></div>`},foot:()=>`<div class="srsh"><footer><div class="footer footer-live"><a href="/" class="brand" aria-label="Spin Raiders home">${r("compass")}<span>SPIN RAIDERS<small>PUTTING GREAT PLACES BACK ON THE MAP</small></span></a><p>Real places · Honest guides · Great tips · For all ages</p><p>Explore more together</p></div><nav class="footlinks" aria-label="Footer"><a href="/about-us">About us</a><a href="/?report=change">Report a change</a><a href="/responsiblegambling">Safer gambling</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></nav></footer><dialog id="sd"><button class="close" data-close aria-label="Close">×</button><h2>Where shall we go?</h2><form action="/search" role="search"><input name="q" type="search" placeholder="Search places, towns and days out" required><button class="button pink">Search →</button></form></dialog></div>`,wire(e){const s="width=device-width, initial-scale=1",a=()=>{const e=document.querySelector('meta[name="viewport"]');e&&e.content!==s&&(e.content=s)};if(a(),window.__srVP||(window.__srVP=1,new MutationObserver(a).observe(document.head,{subtree:!0,childList:!0,attributes:!0,attributeFilter:["content"]})),!document.getElementById("sr-home-fonts")){const e=document.createElement("link");e.id="sr-home-fonts",e.rel="stylesheet",e.href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@500;600&family=Roboto+Condensed:wght@500;700;800;900&display=swap",document.head.append(e)}const r=e.querySelector(".nav-search");r&&(r.onclick=()=>{const s=e.querySelector("#sd")||document.getElementById("sr-brand-footer")?.shadowRoot?.querySelector("#sd");if(s){s.showModal();s.querySelector("input").focus()}else location.assign("/search")}),e.querySelectorAll("[data-close]").forEach(e=>e.onclick=()=>e.closest("dialog").close()),e.querySelectorAll("[data-signup]").forEach(e=>e.onclick=()=>window.SR_NEWSLETTER?window.SR_NEWSLETTER():location.assign("https://spinraiders.wixforms.com/f/7508127101044655112")),e.addEventListener("click",e=>e.stopPropagation()),e.addEventListener("submit",e=>e.stopPropagation())},own(){let e=document.getElementById("sr-shell-surface");e||(e=document.createElement("style"),e.id="sr-shell-surface",document.head.append(e)),e.textContent="html.sr-shell #raidertube-global-button,html.sr-shell #sr-report-action,html.sr-shell #sr-seaside-related,html.sr-shell body #SITE_CONTAINER#SITE_CONTAINER,html.sr-shell #sr-brand-header,html.sr-shell #sr-brand-footer,html.sr-shell body>#srapp,html.sr-shell body>#srh-root,html.sr-shell #sr-seaside-root{display:none!important}html.sr-shell,html.sr-shell body{margin:0!important;background:#fff!important;height:auto!important;min-height:0!important;overflow:visible!important}html.sr-shell #sr-shell-page{display:block!important}",document.documentElement.classList.add("sr-shell");const s=document.getElementById("sr-shell-page");s&&s.style.setProperty("background","#fff","important");const a=()=>["sr-brand-header","sr-brand-footer","raidertube-global-button","sr-report-action","sr-seaside-related"].forEach(e=>document.getElementById(e)?.remove());a(),window.__srKill||(window.__srKill=1,new MutationObserver(a).observe(document.body,{childList:!0}))}}})();
 }catch(e){console.warn('SR snippet failed: Spin Raiders shared shell 20260923',e)}})();
 
 /* [92] Spin Raiders category router compatibility 20260923 */
