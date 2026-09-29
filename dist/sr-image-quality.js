@@ -41,6 +41,12 @@
       for (const host of root.querySelectorAll('*')) if (host.shadowRoot) register(host.shadowRoot);
       const owned = root.host && /^sr-|^raidertube/.test(root.host.id);
       if (!owned) continue;
+      if (root.querySelector('.search-hero') && !root.querySelector('#sr-search-banner-width')) {
+        const style = document.createElement('style');
+        style.id = 'sr-search-banner-width';
+        style.textContent = '.search-hero{width:100%;min-width:100%;box-sizing:border-box}';
+        root.appendChild(style);
+      }
       for (const img of root.querySelectorAll('img')) {
         const width = img.getBoundingClientRect().width;
         if (!width || img.srcset) continue;
