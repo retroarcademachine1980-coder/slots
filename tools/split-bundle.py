@@ -40,7 +40,7 @@ idle = [c for c in rest if c.split(' */')[0][3:] in idle_keys]
 # Category pages use the shared shell and public directory, not the legacy skins.
 discovery_numbers = {26, 36, *range(55, 67), 76, 77, 78, 86, 87, 88, 90, 91, 92, 103, 125}
 discovery = [c for c in rest if int(re.match(r'/\* \[(\d+)\]', c).group(1)) in discovery_numbers]
-discovery_keys = 'seaside beaches piers theme-parks family-fun zoos sea-life tours hidden-gems places-to-stay food-drink attractions arcades retro-video-games family-arcades museums historical-sites plan-a-trip fishing nature-outdoors agc arcade-bars classic-arcades holiday-parks bowling cinema bingo services casino-venues offers discover'.split()
+discovery_keys = 'seaside beaches piers theme-parks family-fun zoos sea-life tours hidden-gems places-to-stay food-drink attractions arcades retro-video-games family-arcades museums historical-sites fishing nature-outdoors agc arcade-bars classic-arcades holiday-parks bowling cinema bingo services casino-venues offers discover'.split()
 discovery_paths = '/seaside /beaches /piers /theme-parks /family-fun /zoos /sea-life /tours /hidden-gems /places-to-stay /food-and-drink /food-and-drink-hub /attractions /amusement-arcades /retro-video-games /museums /historical-sites /agc /adult-gaming-centres /cinemas /bowling /outdoors /holiday-parks /arcade-bars /bingo-halls /services /offers /days-out'.split()
 
 # Bootstrap: homepage -> rest after load/first interaction (unchanged).
