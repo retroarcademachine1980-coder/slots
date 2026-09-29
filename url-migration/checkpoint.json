@@ -1,0 +1,124 @@
+{
+  "updated": "2026-09-24",
+  "scope": "URL-only; preserve page design, content, images, visibility and affiliate tracking",
+  "status": "PARTIAL LIVE MIGRATION: destination town pattern and 23 town-routing embeds are live; category settings remain draft/unverified.",
+  "changes": [
+    {
+      "page": "Arcades Near Me",
+      "from": "/about-1-1",
+      "to": "/near-me",
+      "status": "saved-unpublished",
+      "redirect": "Wix automatic redirect shown"
+    },
+    {
+      "page": "Retro Arcades",
+      "from": "/about-5-1",
+      "to": "/retro-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "£500 Jackpot Slots",
+      "from": "/about-5",
+      "to": "/500-jackpot-slots",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Ticket Arcades",
+      "from": "/general-clean",
+      "to": "/ticket-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Coin Pusher Arcades",
+      "from": "/general-9",
+      "to": "/coin-pusher-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Dog-Friendly Arcades",
+      "from": "/general-9-1",
+      "to": "/dog-friendly-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Wheelchair-Friendly Arcades",
+      "from": "/general-6",
+      "to": "/wheelchair-friendly-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Seaside Arcades",
+      "from": "/general-1",
+      "to": "/seaside-arcades",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Casinos in the UK",
+      "from": "/general-8",
+      "to": "/casinos",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Adult Gaming Centres",
+      "from": "/adult-gaming-centres",
+      "to": "/agc",
+      "status": "saved-unpublished"
+    },
+    {
+      "page": "Arcade Locations (Item)",
+      "from": "/arcade-locations/{Location Name}",
+      "to": "/destination/{Location Name}",
+      "status": "live",
+      "redirect": "Group redirect /arcade-locations/ -> /destination/ created; six exact homepage town redirects also created"
+    }
+  ],
+  "bookmakers": "Hidden from Wix menu; no Venues records with bookmaker/betting shop venueType found in 2105 audited rows; custom script remnants still require cleanup",
+  "agreedPatterns": [
+    "/destination/<town>",
+    "/destination/<town>/<section>/<venue>",
+    "/cinemas/<brand>/<town>",
+    "/bowling/<brand>/<town>",
+    "/agc/<brand>/<town>",
+    "/agc/<brand>/<street>/<town> for multiple branches",
+    "/outdoors/<operator>/<location>",
+    "/classic-fruit-machines/<brand>/<machine>"
+  ],
+  "blockers": [
+    "43 pageReady venues lack locationSlug in live data; resolve actual links before nested venue URL changes.",
+    "Create real routes for query-only live sections and their parents, retaining current renderers.",
+    "Generate and validate redirects before publishing. No redirects created yet.",
+    "No live end-to-end tests yet.",
+    "Ordinary previously fetched town URLs still returned cached 404s in browser after redirects. Fresh query-bearing old Blackpool and Southport URLs redirected to destination pages with correct town results. Do not claim fully verified until normal URLs work."
+  ],
+  "automationsPaused": [
+    "6aa0bdf6a7948191a17a53da4dc48e30",
+    "6aaa62df9fe881919087da1a25428dc0"
+  ],
+  "repository": "retroarcademachine1980-coder/slots",
+  "branch": "url-only-rewire-20260924",
+  "warning": "Main push auto-publishes Wix via .github/workflows/publish-wix.yml. Do not merge partial migration.",
+  "newSectionContainers": [
+    {
+      "page": "Cinemas",
+      "to": "/cinemas",
+      "status": "saved-unpublished-empty-container",
+      "pageCode": "Cinemas.pyonq.js"
+    },
+    {
+      "page": "Bowling",
+      "to": "/bowling",
+      "status": "saved-unpublished-empty-container",
+      "pageCode": "Bowling.hdhfa.js"
+    },
+    {
+      "page": "Outdoors",
+      "to": "/outdoors",
+      "status": "saved-unpublished-empty-container"
+    }
+  ],
+  "preparedRenderer": {
+    "id": "832b57e5-b7cb-4bfd-9d96-b25a53f1c9cb",
+    "status": "prepared, not applied to Wix",
+    "tests": "Six old and new route-selection checks passed; not live end-to-end tests"
+  }
+}

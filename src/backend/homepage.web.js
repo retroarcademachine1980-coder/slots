@@ -1,3 +1,4 @@
+import { canonicalInternalUrl } from 'public/canonicalUrls';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 
@@ -35,7 +36,7 @@ function standardCard({
         description: cleanText(description || '').slice(0, 280),
         image: imageValue(image),
         alt: String(alt || title || ''),
-        route: String(route || ''),
+        route: canonicalInternalUrl(String(route || '')),
         location: String(location || ''),
         displayOrder: Number(displayOrder || 9999)
     };
@@ -95,7 +96,7 @@ function attractionCard(row) {
         alt: row.title,
         route: row.website || row.googleMapsUrl || (
             row.locationSlug && row.slug
-                ? '/arcade-locations/' + row.locationSlug + '#' + row.slug
+                ? '/destination/' + row.locationSlug + '#' + row.slug
                 : ''
         ),
         location: row.locationName
@@ -212,3 +213,4 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
         groups
     };
 });
+

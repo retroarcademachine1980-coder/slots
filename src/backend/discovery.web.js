@@ -1,3 +1,4 @@
+import { canonicalInternalUrl } from 'public/canonicalUrls';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 import { runUnifiedSearchInternal } from 'backend/searchCore';
@@ -146,7 +147,7 @@ export const getNearestDestination = webMethod(Permissions.Anyone, async point =
         .map(item => ({
             title: item.row.title || '',
             slug: item.row.slug || '',
-            route: item.row['link-arcade-locations-title'] || (item.row.slug ? '/arcade-locations/' + item.row.slug : ''),
+            route: canonicalInternalUrl(item.row['link-arcade-locations-title'] || (item.row.slug ? '/destination/' + item.row.slug : '')),
             miles: distanceMiles({ lat, lng }, { lat: item.lat, lng: item.lng })
         }))
         .sort((a, b) => a.miles - b.miles);
@@ -180,3 +181,4 @@ async function resolveOffer(id) {
 
 export const getMemberOffer = webMethod(Permissions.SiteMember, resolveOffer);
 export const getPublicRecommendationLink = webMethod(Permissions.Anyone, resolveOffer);
+
