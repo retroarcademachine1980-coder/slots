@@ -3474,7 +3474,7 @@ window.SR_EXTENDED_CSS += "@media(max-width:760px){.hero.art{height:auto;min-hei
 (function(){
   const types = [
     ['fishing','Fishing Lakes','fishing',/fishery|fisheries|fishing|angling/i,/\b(?:fishing(?: lakes?)?|fisheries|fishery|angling)\b/i],
-    ['cinemas','Cinemas','cinemas',/cinema|cineworld|odeon|\bvue\b/i,/\b(?:cinemas?|cineworld|odeon)\b/i],
+    ['cinemas','Cinemas','cinemas',/\bcinema\b|\bcineworld\b|\bodeon\b|\bvue\b/i,/\b(?:cinemas?|cineworld|odeon)\b/i],
     ['bowling','Bowling','bowling',/bowling|tenpin/i,/\b(?:bowling|tenpin)\b/i],
     ['bingo','Bingo','bingo',/bingo/i,/\bbingo\b/i],
     ['agc','Adult Gaming Centres','agc',/adult gaming|\bagc\b|merkur|admiral/i,/\b(?:adult gaming centres?|agcs?)\b/i],

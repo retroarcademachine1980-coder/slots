@@ -16,6 +16,7 @@ function setup(route){
  const ctx=setup('/?explore=holiday-parks'),{w,run}=ctx;
  for(const [q,key] of [['cinemas in York','cinemas'],['nature reserves near York','outdoors'],['fishing lakes in Lincolnshire','fishing'],['beach','beaches']])assert.equal(w.SR_PARSE_PLACE_SEARCH(q).category,key);
  assert.equal(w.SR_CLASSIFY_PLACE({_collection:'Venues',title:'Barrow Arcade'}),'venues');
+ assert.notEqual(w.SR_CLASSIFY_PLACE({_collection:'NearbyAttractions',title:'Nickelodeon Land',category:'Theme Park'}),'cinemas');
  assert.equal(w.SR_PLACE_HREF({_collection:'Locations','link-arcade-locations-title':'/arcade-locations/york'}),'/destination/york');
  assert(!w.SR_PLACE_HREF({_collection:'Venues',_id:'x'}).includes('undefined'));
  w.SR_PUBLIC_DIRECTORY.D.rows=async coll=>['York','Whitby'].map(t=>({_collection:coll,_id:t,title:t+' Holiday Park',category:'Holiday Park',locationName:t}));run(78);await pause();
