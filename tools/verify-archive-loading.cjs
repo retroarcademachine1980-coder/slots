@@ -1,0 +1,25 @@
+const {JSDOM,VirtualConsole}=require('jsdom');
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const src=fs.readFileSync(require('node:path').join(__dirname,'../dist/sr.js'),'utf8');
+const blocks=src.split(/(?=\/\* \[\d+\])/).slice(1);
+(async()=>{
+ const errors=[],vc=new VirtualConsole();vc.on('warn',(...a)=>errors.push(a.join(' ')));vc.on('jsdomError',e=>errors.push(e.message));
+ const dom=new JSDOM('<body><div id="sr-seaside-root"></div></body>',{url:'https://www.spin-raiders.com/classic-fruit-machine-archive',runScripts:'outside-only',virtualConsole:vc});const w=dom.window;
+ w.HTMLElement.prototype.scrollIntoView=function(){};
+ const run=n=>w.eval(blocks.find(b=>b.startsWith('/* ['+n+']')));
+ run(89);run(71);w.SR_ARCHIVE_DETAIL=()=>{};
+ let finish,calls=[];const items=(start,count)=>Array.from({length:count},(_,i)=>({id:'m'+(start+i),data:{title:'Machine '+(start+i),manufacturer:'Barcrest',image:'https://static.wixstatic.com/media/test.jpg'}}));
+ w.SR_SEASIDE={e:x=>String(x??''),img:x=>x,fit:(x,size)=>x+'?width='+size,makerBadge:()=>'',archiveQuality:{fields:[],usable:()=>true,photo:x=>x.image,cardPhoto:x=>x.image,text:x=>String(x??''),year:()=>1990,exactYear:()=>1990,makers:x=>[x.manufacturer],key:x=>x.toLowerCase(),val:x=>x||'',group:x=>x},archiveQuery:q=>{calls.push(q.paging);return calls.length===1?Promise.resolve({dataItems:items(0,100)}):new Promise(resolve=>finish=resolve)}};
+ run(73);await new Promise(r=>setTimeout(r,20));
+ const root=w.document.querySelector('#sr-approved-archive').shadowRoot;
+ assert.deepEqual(JSON.parse(JSON.stringify(calls)),[{limit:100,offset:0},{limit:500,offset:100}]);
+ assert.equal(root.querySelectorAll('[data-featured] .card').length,4,'Featured content before remaining data');
+ assert(root.querySelector('[data-hero-photos] img'),'Hero images before remaining data');
+ assert.equal(root.querySelectorAll('.tabs .sr-gicon').length,9);
+ assert([...root.querySelectorAll('[data-featured] img')].every(x=>x.src.includes('width=640')));
+ const hero=root.querySelector('[data-hero-photos]').innerHTML;
+ finish({dataItems:items(100,2)});await new Promise(r=>setTimeout(r,20));
+ assert.match(root.querySelector('.status').textContent,/102 matching titles/);assert(!root.querySelector('.status').textContent.includes('Loading'));
+ assert.equal(root.querySelector('[data-hero-photos]').innerHTML,hero,'Do not replace hero after background data load');
+ assert.equal(errors.length,0,errors.join('\n'));dom.window.close();console.log('PASS archive first-page rendering, pagination offsets, stable hero, shared icons, smaller images');
+})().catch(e=>{console.error(e);process.exitCode=1});
