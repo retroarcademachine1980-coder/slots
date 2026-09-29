@@ -68,12 +68,24 @@
       if (!record && !locationPage) { photo.style.display = originalDisplay; return; }
       hero.classList.add('town-photo-banner');
       const style = document.createElement('style');
-      style.textContent = '.town-photo-banner{background:#103958!important;min-height:300px}.town-photo-banner>img{object-fit:cover;object-position:center}.town-photo-banner:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#00172c55,transparent 45%,#00172caa)}.town-banner-title{position:absolute;z-index:1;top:12%;left:6%;right:6%;color:white;font-size:clamp(32px,5vw,72px);font-weight:800;text-shadow:0 2px 7px #00172c;margin:0}.town-photo-banner .hero-controls{z-index:2}@media(max-width:600px){.town-photo-banner{display:block;min-height:320px}.town-photo-banner>img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.town-photo-banner .hero-controls{position:absolute;left:4%;bottom:14px;width:92%;margin:0}.town-banner-title{top:28px}}';
+      style.textContent = "\n.town-photo-banner{background:#103958!important;min-height:500px;height:clamp(500px,35vw,620px);max-height:none!important;aspect-ratio:auto!important}\n.town-photo-banner>img{object-fit:cover;object-position:center}\n.town-photo-banner:after{content:\"\";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#00172c88,transparent 40%)}\n.town-banner-sign{position:absolute;z-index:1;top:7%;left:2%;width:39%;max-width:660px;box-sizing:border-box;padding:20px 22px 24px;color:white;transform:rotate(-3deg);background:repeating-linear-gradient(0deg,#062b42 0,#062b42 47px,#183e4e 49px,#062436 51px);border-top:5px solid #c79b39;border-bottom:4px solid #bb8a30;box-shadow:5px 8px 15px #00152366}\n.town-banner-title{margin:0;text-align:center;font-family:'Barlow Condensed','Roboto Condensed',Arial,sans-serif;font-size:clamp(42px,5vw,86px);font-weight:900;font-style:italic;line-height:.95;text-transform:uppercase;text-shadow:2px 3px #001523}\n.town-banner-title span{display:block;color:#ffdf28;overflow-wrap:anywhere}\n.town-banner-strapline{display:block;background:#ff007d;color:white;text-align:center;font-size:clamp(16px,1.8vw,29px);font-weight:800;line-height:1.15;text-transform:uppercase;margin:16px -30px 12px;padding:9px 10px}\n.town-banner-description{font-size:clamp(15px,1.35vw,22px);line-height:1.3;margin:0!important;color:white}\n.town-photo-banner .hero-controls{z-index:2;bottom:4%;left:18%;width:66%}\n@media(max-width:950px) and (min-width:601px){.town-banner-sign{width:52%}.town-banner-title{font-size:52px}.town-banner-description{font-size:18px}}\n@media(max-width:600px){.town-photo-banner{display:block;height:570px;min-height:570px}.town-photo-banner>img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}.town-banner-sign{top:28px;left:6%;width:88%;padding:20px 18px}.town-banner-title{font-size:clamp(40px,11vw,60px)}.town-banner-strapline{font-size:20px;margin-left:-22px;margin-right:-22px}.town-banner-description{font-size:18px}.town-photo-banner .hero-controls{position:absolute;left:4%;bottom:18px;width:92%;margin:0}}\n";
       root.appendChild(style);
+      const sign = document.createElement('div');
+      sign.className = 'town-banner-sign';
       const title = document.createElement('h2');
       title.className = 'town-banner-title';
-      title.textContent = 'Explore ' + (record?.title || query || term);
-      hero.appendChild(title);
+      title.appendChild(document.createTextNode('Explore '));
+      const town = document.createElement('span');
+      town.textContent = record?.title || query || term;
+      title.appendChild(town);
+      const strapline = document.createElement('strong');
+      strapline.className = 'town-banner-strapline';
+      strapline.textContent = 'Amazing places. Unforgettable days.';
+      const description = document.createElement('p');
+      description.className = 'town-banner-description';
+      description.textContent = 'Search for towns, cities or attractions and discover arcades, theme parks, places to stay, great food and more – all in one place.';
+      sign.append(title,strapline,description);
+      hero.appendChild(sign);
       let src = record?.heroImage;
       if (typeof src === 'object') src = src?.url || src?.src;
       if (src) {
