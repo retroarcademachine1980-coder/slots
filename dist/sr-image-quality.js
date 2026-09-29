@@ -16,7 +16,7 @@
 .town-photo-banner{position:relative!important;isolation:isolate;background:#103958!important;width:100%;min-height:0!important;height:var(--town-hero-height,620px)!important;max-height:none!important;aspect-ratio:auto!important;overflow:hidden}
 .town-photo-banner>img{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover;object-position:center}
 .town-photo-banner:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(0deg,#00172c88,transparent 45%)}
-.town-banner-sign{position:absolute;z-index:1;top:var(--town-sign-top,48px);left:3%;width:37%;max-width:660px;height:var(--town-board-height,auto);aspect-ratio:1484/1336;container-type:inline-size;box-sizing:border-box;padding:0;color:#fff;transform:rotate(-6deg);transform-origin:center;background:transparent;border:0;box-shadow:none;filter:drop-shadow(5px 8px 12px #00152366)}
+.town-banner-sign{position:absolute;z-index:1;top:var(--town-sign-top,48px);left:3%;width:37%;max-width:660px;height:var(--town-board-height,auto);aspect-ratio:1484/1425;container-type:inline-size;box-sizing:border-box;padding:0;color:#fff;transform:rotate(-6deg);transform-origin:center;background:transparent;border:0;box-shadow:none;filter:drop-shadow(5px 8px 12px #00152366)}
 
 .town-banner-sign:before,.town-banner-sign:after{content:"";position:absolute;z-index:0;left:0;width:100%;pointer-events:none;background-image:url("https://static.wixstatic.com/media/3a517e_07b6f0e7586d4f8ab7d8ab67ad6ea7b1~mv2.png/v1/fit/w_1484,h_1060,q_90,enc_auto/location-sign.webp");background-repeat:no-repeat}
 .town-banner-sign:before{top:0;height:62.70cqw;background-size:100cqw 81.54cqw;background-position:center top}
@@ -103,12 +103,12 @@
     }
     const description = sign.querySelector('.town-banner-description');
     const boardHeight = mobile ? Math.max(width * .8154,width * .81 + (description?.offsetHeight || 84)) : width * .90;
-    setVariable(sign,'--town-board-height',Math.ceil(boardHeight) + 'px');
+    setVariable(sign,'--town-board-height',Math.ceil(boardHeight + width * .06) + 'px');
     const top = Math.max(24,Math.round(width * .085));
     setVariable(hero,'--town-sign-top',top + 'px');
     const controls = hero.querySelector('.hero-controls');
     const controlsHeight = controls?.offsetHeight || 100;
-    const controlsTop = Math.ceil(top + sign.offsetHeight - width * .045);
+    const controlsTop = Math.ceil(top + boardHeight - width * .045);
     setVariable(hero,'--town-controls-top',controlsTop + 'px');
     setVariable(hero,'--town-hero-height',Math.ceil(controlsTop + controlsHeight + (mobile ? 24 : 30)) + 'px');
   }
