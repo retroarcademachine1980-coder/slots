@@ -1,0 +1,87 @@
+name: Town sign visual check
+on:
+  push:
+    paths:
+      - '.github/workflows/town-sign-visual-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated browser tools
+        run: |
+          mkdir -p /tmp/town-sign-check
+          cd /tmp/town-sign-check
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+      - name: Capture source artwork and live page
+        run: |
+          mkdir -p visual-check
+          cp dist/sr-image-quality.js visual-check/current.js
+          cp dist/sr.page.min.js visual-check/page.js
+          cp dist/sr.core.min.js visual-check/core.js
+          cat > /tmp/town-sign-check/check.cjs <<'JS'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          const out = path.resolve(process.env.GITHUB_WORKSPACE, 'visual-check');
+          const assets = {
+            'original-sign.webp': 'https://static.wixstatic.com/media/3a517e_95a3a249979b43e785602d22bcc28221~mv2.webp',
+            'blank-sign.png': 'https://static.wixstatic.com/media/3a517e_07b6f0e7586d4f8ab7d8ab67ad6ea7b1~mv2.png',
+            'permanent-marker.woff2': 'https://raw.githubusercontent.com/fontsource/font-files/main/fonts/google/permanent-marker/files/permanent-marker-latin-400-normal.woff2',
+            'knewave.ttf': 'https://raw.githubusercontent.com/google/fonts/main/ofl/knewave/Knewave-Regular.ttf'
+          };
+          (async () => {
+            const downloads = await Promise.allSettled(Object.entries(assets).map(async ([name, url]) => {
+              const r = await fetch(url, { signal: AbortSignal.timeout(30000) });
+              if (!r.ok) throw new Error(name + ': ' + r.status);
+              fs.writeFileSync(path.join(out, name), Buffer.from(await r.arrayBuffer()));
+              return name;
+            }));
+            fs.writeFileSync(path.join(out, 'downloads.json'), JSON.stringify(downloads, null, 2));
+            const browser = await chromium.launch();
+            const page = await browser.newPage({ viewport: {width: 1440, height: 1100}, deviceScaleFactor: 1 });
+            const errors = [];
+            page.on('pageerror', e => errors.push(String(e)));
+            try {
+              await page.goto('https://www.spin-raiders.com/destination/cromer', {waitUntil: 'domcontentloaded', timeout: 60000});
+              await page.waitForTimeout(15000);
+              await page.screenshot({path: path.join(out, 'live-cromer-1440.png')});
+              const state = await page.evaluate(() => {
+                const roots = [document];
+                const result = [];
+                for (const root of roots) {
+                  for (const e of root.querySelectorAll('*')) if (e.shadowRoot) roots.push(e.shadowRoot);
+                  const h = root.querySelector('.search-hero');
+                  if (h) result.push({host: root.host?.id, html: h.outerHTML, css: [...root.querySelectorAll('style')].map(x => x.textContent).join('\n')});
+                }
+                return {url: location.href, title: document.title, banners: result, scripts:[...document.scripts].map(s => s.src)};
+              });
+              fs.writeFileSync(path.join(out, 'live-state.json'), JSON.stringify(state, null, 2));
+              for (const [i, img] of (state.banners || []).entries()) {
+                const src = img.html.match(/<img[^>]+src="([^"]+)"/);
+                if (src) { const r = await fetch(src[1]); if (r.ok) fs.writeFileSync(path.join(out, 'town-photo-' + i + '.jpg'), Buffer.from(await r.arrayBuffer())); }
+              }
+              await page.setViewportSize({width:390,height:1000});
+              await page.waitForTimeout(2000);
+              await page.screenshot({path: path.join(out,'live-cromer-390.png')});
+            } catch (e) { errors.push(String(e)); }
+            fs.writeFileSync(path.join(out, 'errors.json'), JSON.stringify(errors, null, 2));
+            await browser.close();
+          })().catch(e => { console.error(e); process.exit(1); });
+          JS
+          node /tmp/town-sign-check/check.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: town-sign-check
+          path: visual-check/
+          retention-days: 1
