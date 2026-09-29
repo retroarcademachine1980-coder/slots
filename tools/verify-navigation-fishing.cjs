@@ -1,0 +1,24 @@
+const {JSDOM}=require('jsdom'),fs=require('fs'),assert=require('node:assert/strict');
+const blocks=fs.readFileSync('dist/sr.js','utf8').split(/(?=\/\* \[\d+\])/).slice(1);
+const dom=new JSDOM('<body><nav aria-label="Main"></nav><div id="test"></div></body>',{url:'https://www.spin-raiders.com/?explore=fishing',runScripts:'outside-only'}),w=dom.window;
+w.matchMedia=()=>({matches:false});w.HTMLElement.prototype.scrollIntoView=function(){};
+const run=n=>w.eval(blocks.find(b=>b.startsWith('/* ['+n+']')));
+for(const n of [79,89,64,65])run(n);
+assert.equal(w.SR_CLASSIFY_PLACE({_collection:'NearbyAttractions',title:'Beer Garden',category:'Food & drink'}),'food');
+assert.equal(w.SR_CLASSIFY_PLACE({_collection:'NearbyAttractions',title:'Nickelodeon Land',category:'Family theme park area'}),'theme');
+assert.equal(w.SR_PARSE_PLACE_SEARCH('cinemas in York').query,'York');
+const row={_id:'f1',_collection:'NearbyAttractions',title:'Test Fishery',category:'Fishing Lakes',locationName:'Retford',tags:['Coarse Fishing','Lake']};
+w.SR_PUBLIC_DIRECTORY.D.rows=async c=>c==='NearbyAttractions'?[row]:[];
+const root=w.document.getElementById('test').attachShadow({mode:'open'}),p=w.SR_CATEGORY_PAGES.fishing;
+root.innerHTML='<div class="search-area"><form><input name="q"><button>Search</button></form></div>'+w.SR_DIRECTORY_HTML(p);
+w.SR_INIT_DIRECTORY(root,p);
+setTimeout(()=>{try{
+ assert(root.querySelector('[data-results]').textContent.includes('Test Fishery'));
+ assert(!root.querySelector('[data-results]').textContent.includes('coming soon'));
+ assert.equal(root.querySelector('[data-results] img'),null,'no broken blank image');
+ root.querySelector('[data-save]').click();assert(JSON.parse(w.localStorage.getItem('sr-directory-favourites-v1')).includes('NearbyAttractions:f1'));
+ root.querySelector('input[name=q]').value='Retford';root.querySelector('input[name=q]').dispatchEvent(new w.Event('input',{bubbles:true}));
+ run(130);assert(w.document.querySelector('[data-sr-browse] a[href="/?explore=cinema"]'));assert(w.document.querySelector('[data-sr-browse] a[href="/?explore=fishing"]'));
+ console.log('PASS live fishing adapter, shared favourites, missing-image fallback, category-first classification, search phrase parsing and browse navigation');
+ dom.window.close();
+}catch(e){console.error(e);dom.window.close();process.exitCode=1}},100);
