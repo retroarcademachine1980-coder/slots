@@ -32,7 +32,7 @@ jobs:
           const path = require('path');
           const assert = require('assert');
           const out = path.resolve(process.env.GITHUB_WORKSPACE, 'visual-check');
-          const release = '6bf37c78ac8d6b223d6f0f3b9c207b5b5081942f';
+          const release = '8d583e3d1a01d1c21cdf938d3c0a5798298e1538';
           const reports = [];
           const errors = [];
           (async () => {
