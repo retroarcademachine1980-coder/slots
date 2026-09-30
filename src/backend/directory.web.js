@@ -98,7 +98,23 @@ function recommendationCard(row) {
         description: plain(row.summary || row.offerText).slice(0, 280),
         image: imageValue(row.dealImage || row.image),
         alt: row.imageAlt || row.displayTitle || row.name || '',
-        route: row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website || '',
+        route: row.guideReady === true || String(row.linkType || '').toUpperCase().startsWith('SPIN RAIDERS')
+            ? '/destination-recommendations?collection=DestinationRecommendations&place=' + encodeURIComponent(row._id)
+            : (row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website || ''),
+        location: row.locationName || row.destination || ''
+    };
+}
+
+function hotelCard(row) {
+    return {
+        _id: 'hotel:' + row._id,
+        title: row.title || '',
+        subtitle: row.locationName || row.destination || '',
+        category: 'Hotel',
+        description: plain(row.guideDetails || row.guideContent).slice(0, 280),
+        image: imageValue(row.image),
+        alt: row.imageAlt || row.title || '',
+        route: row.canonicalUrl || (row.slug ? '/hotels/' + row.slug : ''),
         location: row.locationName || row.destination || ''
     };
 }
@@ -185,6 +201,7 @@ export const listRecommendations = webMethod(Permissions.Anyone, async (options 
     const category = normalizeSearch(options.category || '');
 
     let rows = (await allRows('DestinationRecommendations', 3000))
+        .filter(row => String(row.offerRecordType || '').toUpperCase() !== 'HOTEL_OFFER')
         .filter(row => row.displayTitle || row.name || row.offerTitle)
         .filter(row => matches(row, query));
 
@@ -304,4 +321,28 @@ export const getMapPins = webMethod(Permissions.Anyone, async (options = {}) => 
         total: venuePins.length + attractionPins.length,
         pins: [...venuePins, ...attractionPins]
     };
+});
+
+export const listHotels = webMethod(Permissions.Anyone, async (options = {}) => {
+    const query = String(options.query || '').trim();
+    const location = normalizeSearch(options.location || '');
+
+    let rows = (await allRows('HotelGuides', 3000))
+        .filter(row => row.active !== false && row.title)
+        .filter(row => matches(row, query));
+
+    if (location) {
+        rows = rows.filter(row =>
+            normalizeSearch(row.locationName).includes(location) ||
+            normalizeSearch(row.destination).includes(location) ||
+            normalizeSearch(row.locationSlug).includes(location)
+        );
+    }
+
+    rows.sort((a, b) =>
+        Number(b.offerCount || 0) - Number(a.offerCount || 0) ||
+        String(a.title || '').localeCompare(String(b.title || ''))
+    );
+
+    return pageSlice(rows.map(hotelCard), options);
 });
