@@ -31,7 +31,7 @@ const SOURCES = [
         title: ['displayTitle','name','offerTitle'],
         subtitle: ['displaySubtitle','locationName','destination'], category: ['category'],
         description: ['summary','offerText'], image: ['dealImage','image'], alt: ['imageAlt'],
-        route: ['affiliateUrl','outboundUrl','bookingUrl','offerUrl','website'],
+        routeBuilder: recommendationRoute,
         location: ['locationName','destination']
     },
     {
@@ -111,6 +111,22 @@ function imageValue(value) {
 
 function plain(value) {
     return String(value || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function recommendationRoute(row) {
+    const id = String(row && row._id || '').trim();
+    const linkType = String(row && row.linkType || '').toUpperCase();
+    if (id && (row.guideReady === true || linkType.startsWith('SPIN RAIDERS'))) {
+        return '/destination-recommendations?collection=DestinationRecommendations&place=' + encodeURIComponent(id);
+    }
+    return String(
+        row.affiliateUrl ||
+        row.outboundUrl ||
+        row.bookingUrl ||
+        row.offerUrl ||
+        row.website ||
+        ''
+    );
 }
 
 function routeFor(row, source) {
