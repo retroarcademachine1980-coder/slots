@@ -81,7 +81,7 @@ export const getRecommendations = webMethod(Permissions.Anyone, async (options =
             description: String(row.shortDescription || row.seoDescription || '').replace(/<[^>]*>/g, '').slice(0, 300),
             image: row.heroImage || '',
             alt: row.exteriorImageAlt || row.title,
-            route: row['link-arcade-venues-title'] || (row.slug ? '/arcade-venues/' + row.slug : ''),
+            route: row.shortUrl || '',
             location: row.locationName || '',
             category: row.venueType || 'Venue'
         });
