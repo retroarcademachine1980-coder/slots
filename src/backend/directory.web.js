@@ -70,7 +70,7 @@ function venueCard(row) {
         description: plain(row.shortDescription || row.seoDescription || row.overview).slice(0, 280),
         image: imageValue(row.heroImage),
         alt: row.exteriorImageAlt || row.title || '',
-        route: row['link-arcade-venues-title'] || (row.slug ? '/arcade-venues/' + row.slug : ''),
+        route: row.shortUrl || '',
         location: row.locationName || ''
     };
 }
@@ -84,7 +84,7 @@ function locationCard(row) {
         description: plain(row.shortDescription || row.raiderDestinationSummary || row.overview).slice(0, 280),
         image: imageValue(row.heroImage),
         alt: row.heroImageAlt || row.title || '',
-        route: row['link-arcade-locations-title'] || (row.slug ? '/arcade-locations/' + row.slug : ''),
+        route: row.shortUrl || '',
         location: row.title || ''
     };
 }
@@ -128,7 +128,7 @@ function attractionCard(row) {
         alt: row.title || '',
         route: row.website || row.googleMapsUrl || (
             row.locationSlug && row.slug
-                ? '/arcade-locations/' + row.locationSlug + '#' + row.slug
+                ? '/destination/' + row.locationSlug + '#' + row.slug
                 : ''
         ),
         location: row.locationName || ''
@@ -293,7 +293,7 @@ export const getMapPins = webMethod(Permissions.Anyone, async (options = {}) => 
             category: row.mapPrimaryCategory || row.venueType || 'Venue',
             latitude: Number(row.latitude),
             longitude: Number(row.longitude),
-            route: row['link-arcade-venues-title'] || (row.slug ? '/arcade-venues/' + row.slug : ''),
+            route: row.shortUrl || '',
             image: imageValue(row.heroImage),
             alt: row.exteriorImageAlt || row.title || ''
         }));
