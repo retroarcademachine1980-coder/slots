@@ -1,0 +1,82 @@
+name: Read-only live route audit
+on:
+  push:
+    branches: [audit/live-routing-20260930]
+    paths: [.github/workflows/read-only-route-audit.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare isolated browser
+        run: |
+          mkdir -p /tmp/sr-audit
+          cd /tmp/sr-audit
+          npm init -y >/dev/null
+          npm install --ignore-scripts playwright jsdom >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Read source and public routes without mutations
+        env:
+          NODE_PATH: /tmp/sr-audit/node_modules
+        run: |
+          mkdir -p audit-results/source
+          cp dist/sr.js dist/sr.css dist/*json dist/*html audit-results/source/
+          cp tools/split-bundle.py tools/ship.sh audit-results/source/
+          cp tools/verify-*.cjs audit-results/source/
+          python3 - <<'PY'
+          from pathlib import Path
+          import re,json
+          s=Path('dist/sr.js').read_text()
+          print('SOURCE_BYTES',len(s))
+          titles=re.findall(r'/\*\s*\[(\d+)\][^\n]*',s)
+          print('BLOCKS',len(titles))
+          patterns=['DestinationRecommendations','/arcade/','/arcades/','/arcade-venues/','trip-planner','HotelGuides','queryDataItems','archiveQuery','SR_SEARCH_DATA','canonical','apiBase']
+          report={}
+          for t in patterns:
+            spans=[]
+            for m in list(re.finditer(re.escape(t),s))[:16]:
+              a=max(0,m.start()-200);b=min(len(s),m.end()+320)
+              spans.append(s[a:b])
+            report[t]={'count':s.count(t),'contexts':spans}
+          Path('audit-results/source-excerpts.json').write_text(json.dumps(report,indent=2))
+          print('SOURCE_COUNTS',json.dumps({k:v['count'] for k,v in report.items()}))
+          PY
+          node <<'JS'
+          const fs=require('fs'); const {chromium}=require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const context=await browser.newContext({viewport:{width:1440,height:1000}});
+            const paths=['/','/destination/blackpool','/arcade/humber-pastimes/cleethorpes','/arcades/humber-pastimes/cleethorpes','/agc/onetec-casino-lounge/eston','/hotel/leonardo-hotel/leeds','/hotels/leonardo-hotel-leeds','/trip-planner','/classic-fruit-machines','/search?q=blackpool'];
+            const report=[];
+            for(let i=0;i<paths.length;i++){
+              const page=await context.newPage(); const errors=[],failed=[],bad=[];
+              page.on('pageerror',e=>errors.push(String(e).slice(0,600)));
+              page.on('requestfailed',r=>failed.push({url:r.url().split('?')[0],error:r.failure()?.errorText}));
+              page.on('response',r=>{if(r.status()>=400)bad.push({status:r.status(),url:r.url().split('?')[0]})});
+              let status=null,navError='';
+              try{const r=await page.goto('https://www.spin-raiders.com'+paths[i],{waitUntil:'domcontentloaded',timeout:45000});status=r?.status();await page.waitForTimeout(10000);}catch(e){navError=String(e).slice(0,300)}
+              const info=await page.evaluate(()=>{let roots=[document];for(let n of document.querySelectorAll('*'))if(n.shadowRoot)roots.push(n.shadowRoot);return {url:location.href,title:document.title,revision:window.viewerModel?.site?.siteRevision||window.viewerModel?.siteRevision||null,headings:[...document.querySelectorAll('h1,h2')].filter(n=>n.getClientRects().length).map(n=>n.textContent.trim()).slice(0,24),text:document.body.innerText.slice(0,3500),links:roots.flatMap(root=>[...root.querySelectorAll('a[href]')].map(a=>({text:a.textContent.trim().slice(0,70),href:a.getAttribute('href')}))).filter(x=>x.text).slice(0,200),scripts:[...document.scripts].map(s=>s.src).filter(s=>s.includes('slots@')),globals:Object.keys(window).filter(k=>/^SR_/.test(k)).slice(0,80)}}).catch(()=>({}));
+              await page.screenshot({path:'audit-results/page-'+i+'.png',fullPage:false}).catch(()=>{});
+              fs.writeFileSync('audit-results/page-'+i+'.html',await page.content().catch(()=>''));
+              report.push({path:paths[i],status,navError,...info,errors,failed:failed.slice(0,20),bad:bad.slice(0,20)});
+              console.log('ROUTE',JSON.stringify({path:paths[i],status,url:info.url,title:info.title,headings:info.headings,errors,bad:bad.slice(0,8),scripts:info.scripts}));
+              await page.close();
+            }
+            fs.writeFileSync('audit-results/live-routes.json',JSON.stringify(report,null,2));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exitCode=1});
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-route-audit
+          path: audit-results/
+          retention-days: 7
