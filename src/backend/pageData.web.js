@@ -153,7 +153,7 @@ export const getLocationPage = webMethod(Permissions.Anyone, async slug => {
         if (card.kind === 'location' && card.sourceId === row._id) continue;
         if (card.kind === 'venue') sections.venues.push(card);
         else if (card.kind === 'attraction') sections.attractions.push(card);
-        else if (card.kind === 'recommendation') sections.hotelsAndFood.push(card);
+        else if (card.kind === 'hotel' || card.kind === 'recommendation') sections.hotelsAndFood.push(card);
         else if (card.kind === 'offer' || card.kind === 'partner') sections.offers.push(card);
         else if (card.kind === 'video') sections.videos.push(card);
         else if (card.kind === 'guide') sections.guides.push(card);
@@ -222,3 +222,138 @@ export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
     return { page, related };
 });
 
+
+
+function hotelModel(row) {
+    if (!row) return null;
+    return {
+        _id: row._id,
+        title: row.title || '',
+        slug: row.slug || '',
+        locationName: row.locationName || '',
+        locationSlug: row.locationSlug || '',
+        destination: row.destination || '',
+        address: row.address || '',
+        phone: row.phone || '',
+        website: row.website || '',
+        guideContent: row.guideContent || '',
+        guideDetails: row.guideDetails || '',
+        image: row.image || '',
+        imageAlt: row.imageAlt || row.title || '',
+        publicRating: row.publicRating ?? null,
+        publicReviewCount: row.publicReviewCount ?? null,
+        publicRatingSource: row.publicRatingSource || '',
+        publicRatingSourceUrl: row.publicRatingSourceUrl || '',
+        offerCount: row.offerCount ?? 0,
+        canonicalUrl: row.canonicalUrl || (row.slug ? '/hotels/' + row.slug : ''),
+        nearbyAffiliateLocation: row.nearbyAffiliateLocation || row.locationSlug || '',
+        active: row.active !== false
+    };
+}
+
+function affiliateUrl(row) {
+    return String(
+        row.affiliateUrl ||
+        row.offerUrl ||
+        row.bookingUrl ||
+        row.outboundUrl ||
+        ''
+    ).trim();
+}
+
+function offerModel(row) {
+    if (!row) return null;
+    return {
+        _id: row._id,
+        title: row.offerTitle || row.displayTitle || row.name || 'View deal',
+        provider: row.provider || row.dealSource || '',
+        summary: plain(row.offerText || row.offerSummary || row.summary),
+        ctaLabel: row.ctaLabel || 'VIEW DEAL',
+        affiliateUrl: affiliateUrl(row),
+        featured: row.featured === true,
+        revenueReady: row.revenueReady === true,
+        category: row.category || ''
+    };
+}
+
+function nearbyAffiliateModel(row) {
+    if (!row) return null;
+    return {
+        _id: row._id,
+        title: row.displayTitle || row.name || row.offerTitle || '',
+        category: row.category || '',
+        summary: plain(row.summary || row.offerText || row.offerSummary),
+        image: row.dealImage || row.image || '',
+        imageAlt: row.imageAlt || row.displayTitle || row.name || '',
+        ctaLabel: row.ctaLabel || 'VIEW OFFER',
+        affiliateUrl: affiliateUrl(row),
+        featured: row.featured === true,
+        revenueReady: row.revenueReady === true
+    };
+}
+
+export const getHotelPage = webMethod(Permissions.Anyone, async slug => {
+    const row = await oneBySlug('HotelGuides', slug);
+    if (!row || row.active === false) return null;
+
+    const page = hotelModel(row);
+
+    const offersResult = await wixData.query('DestinationRecommendations')
+        .eq('hotelGuideId', row._id)
+        .limit(1000)
+        .find();
+
+    const offers = (offersResult.items || [])
+        .filter(item => affiliateUrl(item))
+        .map(offerModel)
+        .sort((a, b) =>
+            Number(b.featured) - Number(a.featured) ||
+            Number(b.revenueReady) - Number(a.revenueReady) ||
+            a.title.localeCompare(b.title)
+        );
+
+    const nearbyLocation = row.nearbyAffiliateLocation || row.locationSlug || '';
+    let nearbyAffiliates = [];
+
+    if (nearbyLocation) {
+        const nearbyResult = await wixData.query('DestinationRecommendations')
+            .eq('locationSlug', nearbyLocation)
+            .limit(1000)
+            .find();
+
+        nearbyAffiliates = (nearbyResult.items || [])
+            .filter(item => {
+                if (String(item.offerRecordType || '').toUpperCase() === 'HOTEL_OFFER') return false;
+                const category = String(item.category || '').toLowerCase();
+                if (category.includes('hotel') || category.includes('accommodation')) return false;
+                if (item.cardReady === false || item.active === false) return false;
+                return !!affiliateUrl(item);
+            })
+            .map(nearbyAffiliateModel)
+            .sort((a, b) =>
+                Number(b.featured) - Number(a.featured) ||
+                Number(b.revenueReady) - Number(a.revenueReady) ||
+                a.title.localeCompare(b.title)
+            )
+            .slice(0, 12);
+    }
+
+    const locationSearch = row.locationName || row.destination || row.locationSlug || '';
+    const related = locationSearch
+        ? await runUnifiedSearchInternal(locationSearch, { limit: 500 })
+        : { results: [] };
+
+    const localDirectory = (related.results || [])
+        .filter(card =>
+            ['venue', 'attraction'].includes(card.kind) &&
+            !(card.kind === 'hotel' && card.sourceId === row._id)
+        )
+        .slice(0, 30);
+
+    return {
+        page,
+        offers,
+        nearbyAffiliates,
+        localDirectory
+    };
+});
