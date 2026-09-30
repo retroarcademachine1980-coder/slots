@@ -27,6 +27,13 @@ const SOURCES = [
             : (row.website || row.googleMapsUrl || '')
     },
     {
+        collection: 'HotelGuides', kind: 'hotel',
+        title: ['title'], subtitle: ['locationName','destination'], category: ['locationName'],
+        description: ['guideDetails','guideContent'], image: ['image'], alt: ['imageAlt'],
+        routeBuilder: row => row.canonicalUrl || (row.slug ? '/hotels/' + row.slug : ''),
+        location: ['locationName','destination']
+    },
+    {
         collection: 'DestinationRecommendations', kind: 'recommendation',
         title: ['displayTitle','name','offerTitle'],
         subtitle: ['displaySubtitle','locationName','destination'], category: ['category'],
@@ -152,6 +159,12 @@ function isPublicRow(source, row) {
     }
     if (source.collection === 'NearbyAttractions') {
         return !!row.title && !/duplicate|not open to general public|research retained/.test(status);
+    }
+    if (source.collection === 'HotelGuides') return row.active !== false && !!row.title;
+    if (source.collection === 'DestinationRecommendations') {
+        const type = String(row.offerRecordType || '').toUpperCase();
+        if (type === 'HOTEL_OFFER') return false;
+        return !!first(row, source.title);
     }
     if (source.collection === 'WowcherOffers') return row.active !== false;
     if (source.collection === 'SpinRaidersVideos') return row.active !== false;
