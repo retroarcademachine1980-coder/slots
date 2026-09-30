@@ -25,21 +25,6 @@ function safeHttps(value) {
     }
 }
 
-function recommendationRoute(row) {
-    const id = String(row && row._id || '').trim();
-    const linkType = String(row && row.linkType || '').toUpperCase();
-    if (id && (row.guideReady === true || linkType.startsWith('SPIN RAIDERS'))) {
-        return '/destination-recommendations?collection=DestinationRecommendations&place=' + encodeURIComponent(id);
-    }
-    return safeHttps(
-        row.affiliateUrl ||
-        row.outboundUrl ||
-        row.bookingUrl ||
-        row.offerUrl ||
-        row.website
-    );
-}
-
 export const searchPlaces = webMethod(Permissions.Anyone, async (query, limit = 100) => {
     const input = String(query || '').trim().slice(0, 120);
     if (!input) {
@@ -113,7 +98,7 @@ export const getRecommendations = webMethod(Permissions.Anyone, async (options =
             description: String(row.summary || row.offerText || '').replace(/<[^>]*>/g, '').slice(0, 300),
             image: row.dealImage || row.image || '',
             alt: row.imageAlt || title,
-            route: recommendationRoute(row),
+            route: safeHttps(row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website),
             location: row.locationName || row.destination || '',
             category: row.category || 'Recommendation'
         });
