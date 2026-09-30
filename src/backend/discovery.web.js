@@ -80,7 +80,7 @@ export const getRecommendations = webMethod(Permissions.Anyone, async (options =
 
     const [venues, recommendations, attractions] = await Promise.all([
         wixData.query('Venues').eq('featured', true).limit(limit).find(),
-        wixData.query('DestinationRecommendations').eq('featured', true).limit(limit).find(),
+        wixData.query('AffiliateOffers').eq('featured', true).limit(limit).find(),
         wixData.query('NearbyAttractions').limit(limit).find()
     ]);
 
@@ -174,7 +174,7 @@ async function resolveOffer(id) {
     if (!value) throw new Error('Invalid offer.');
 
     const [recommendation, wowcher] = await Promise.all([
-        wixData.query('DestinationRecommendations').eq('_id', value).limit(1).find(),
+        wixData.query('AffiliateOffers').eq('_id', value).limit(1).find(),
         wixData.query('WowcherOffers').eq('_id', value).limit(1).find()
     ]);
 
