@@ -34,11 +34,11 @@ const SOURCES = [
         location: ['locationName','destination']
     },
     {
-        collection: 'DestinationRecommendations', kind: 'recommendation',
+        collection: 'AffiliateOffers', kind: 'offer',
         title: ['displayTitle','name','offerTitle'],
         subtitle: ['displaySubtitle','locationName','destination'], category: ['category'],
         description: ['summary','offerText'], image: ['dealImage','image'], alt: ['imageAlt'],
-        routeBuilder: recommendationRoute,
+        route: ['affiliateUrl','outboundUrl','bookingUrl','offerUrl'],
         location: ['locationName','destination']
     },
     {
@@ -120,22 +120,6 @@ function plain(value) {
     return String(value || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-function recommendationRoute(row) {
-    const id = String(row && row._id || '').trim();
-    const linkType = String(row && row.linkType || '').toUpperCase();
-    if (id && (row.guideReady === true || linkType.startsWith('SPIN RAIDERS'))) {
-        return '/destination-recommendations?collection=DestinationRecommendations&place=' + encodeURIComponent(id);
-    }
-    return String(
-        row.affiliateUrl ||
-        row.outboundUrl ||
-        row.bookingUrl ||
-        row.offerUrl ||
-        row.website ||
-        ''
-    );
-}
-
 function routeFor(row, source) {
     if (source.routeBuilder) return source.routeBuilder(row) || '';
     return first(row, source.route || []);
@@ -161,11 +145,6 @@ function isPublicRow(source, row) {
         return !!row.title && !/duplicate|not open to general public|research retained/.test(status);
     }
     if (source.collection === 'HotelGuides') return row.active !== false && !!row.title;
-    if (source.collection === 'DestinationRecommendations') {
-        const type = String(row.offerRecordType || '').toUpperCase();
-        if (type === 'HOTEL_OFFER') return false;
-        return !!first(row, source.title);
-    }
     if (source.collection === 'WowcherOffers') return row.active !== false;
     if (source.collection === 'SpinRaidersVideos') return row.active !== false;
     if (source.collection === 'ClassicFruitMachines') {
