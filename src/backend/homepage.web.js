@@ -153,7 +153,7 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
             .eq('featured', true)
             .limit(100)
             .find(),
-        wixData.query('DestinationRecommendations')
+        wixData.query('AffiliateOffers')
             .limit(1000)
             .find(),
         wixData.query('HotelGuides')
