@@ -146,7 +146,7 @@ export const getNearestDestination = webMethod(Permissions.Anyone, async point =
         .map(item => ({
             title: item.row.title || '',
             slug: item.row.slug || '',
-            route: item.row['link-arcade-locations-title'] || (item.row.slug ? '/arcade-locations/' + item.row.slug : ''),
+            route: item.row.shortUrl || '',
             miles: distanceMiles({ lat, lng }, { lat: item.lat, lng: item.lng })
         }))
         .sort((a, b) => a.miles - b.miles);
