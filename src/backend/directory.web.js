@@ -200,7 +200,7 @@ export const listRecommendations = webMethod(Permissions.Anyone, async (options 
     const query = String(options.query || '').trim();
     const category = normalizeSearch(options.category || '');
 
-    let rows = (await allRows('DestinationRecommendations', 3000))
+    let rows = (await allRows('AffiliateOffers', 3000))
         .filter(row => String(row.offerRecordType || '').toUpperCase() !== 'HOTEL_OFFER')
         .filter(row => row.displayTitle || row.name || row.offerTitle)
         .filter(row => matches(row, query));
