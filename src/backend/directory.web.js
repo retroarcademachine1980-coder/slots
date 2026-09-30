@@ -144,9 +144,7 @@ function machineCard(row) {
         description: plain(row.seoDescription || row.history).slice(0, 280),
         image: imageValue(row.cardImage || row.heroImage),
         alt: row.title || '',
-        route: row['link-classic-fruit-machine-archive-1-title'] ||
-            row['link-classic-fruit-machine-archive-all'] ||
-            (row.slug ? '/classic-fruit-machine-archive-1/' + row.slug : ''),
+        route: row.shortUrl || '',
         location: ''
     };
 }
