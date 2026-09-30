@@ -98,9 +98,7 @@ function recommendationCard(row) {
         description: plain(row.summary || row.offerText).slice(0, 280),
         image: imageValue(row.dealImage || row.image),
         alt: row.imageAlt || row.displayTitle || row.name || '',
-        route: row.guideReady === true || String(row.linkType || '').toUpperCase().startsWith('SPIN RAIDERS')
-            ? '/destination-recommendations?collection=DestinationRecommendations&place=' + encodeURIComponent(row._id)
-            : (row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website || ''),
+        route: row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website || '',
         location: row.locationName || row.destination || ''
     };
 }
