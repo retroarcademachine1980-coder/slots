@@ -62,7 +62,7 @@ function venueModel(row) {
         ].filter(Boolean),
         seoTitle: row.seoTitle || '',
         seoDescription: row.seoDescription || '',
-        route: row['link-arcade-venues-title'] || ''
+        route: row.shortUrl || ''
     };
 }
 
@@ -97,7 +97,7 @@ function locationModel(row) {
         ].filter(Boolean),
         seoTitle: row.seoTitle || '',
         seoDescription: row.seoDescription || '',
-        route: row['link-arcade-locations-title'] || ''
+        route: row.shortUrl || ''
     };
 }
 
@@ -126,7 +126,7 @@ function machineModel(row) {
         cardImage: row.cardImage || row.heroImage || '',
         seoTitle: row.seoTitle || '',
         seoDescription: row.seoDescription || '',
-        route: row['link-classic-fruit-machine-archive-1-title'] || row['link-classic-fruit-machine-archive-all'] || ''
+        route: row.shortUrl || ''
     };
 }
 
