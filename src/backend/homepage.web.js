@@ -65,7 +65,7 @@ function venueCard(row) {
         description: row.shortDescription || row.seoDescription || row.overview,
         image: row.heroImage,
         alt: row.exteriorImageAlt || row.title,
-        route: row['link-arcade-venues-title'] || (row.slug ? '/arcade-venues/' + row.slug : ''),
+        route: row.shortUrl || '',
         location: row.locationName
     });
 }
@@ -109,7 +109,7 @@ function attractionCard(row) {
         alt: row.title,
         route: row.website || row.googleMapsUrl || (
             row.locationSlug && row.slug
-                ? '/arcade-locations/' + row.locationSlug + '#' + row.slug
+                ? '/destination/' + row.locationSlug + '#' + row.slug
                 : ''
         ),
         location: row.locationName
