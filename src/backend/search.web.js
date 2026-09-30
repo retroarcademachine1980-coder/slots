@@ -7,14 +7,14 @@ const SOURCES = [
         collection: 'Locations', kind: 'location',
         title: ['title'], subtitle: ['county','region'], category: ['locationType'],
         description: ['shortDescription','raiderDestinationSummary','seoDescription'],
-        image: ['heroImage'], alt: ['heroImageAlt'], route: ['link-arcade-locations-title'],
+        image: ['heroImage'], alt: ['heroImageAlt'], route: ['shortUrl'],
         location: ['title']
     },
     {
         collection: 'Venues', kind: 'venue',
         title: ['title'], subtitle: ['locationName','postcode'], category: ['venueType','mapPrimaryCategory'],
         description: ['shortDescription','seoDescription','overview'],
-        image: ['heroImage'], alt: ['exteriorImageAlt'], route: ['link-arcade-venues-title'],
+        image: ['heroImage'], alt: ['exteriorImageAlt'], route: ['shortUrl'],
         location: ['locationName']
     },
     {
@@ -23,7 +23,7 @@ const SOURCES = [
         description: ['shortDescription'], image: ['heroImage'], alt: ['title'],
         location: ['locationName'],
         routeBuilder: row => row.locationSlug && row.slug
-            ? '/arcade-locations/' + row.locationSlug + '#' + row.slug
+            ? '/destination/' + row.locationSlug + '#' + row.slug
             : (row.website || row.googleMapsUrl || '')
     },
     {
@@ -64,7 +64,7 @@ const SOURCES = [
         collection: 'ClassicFruitMachines', kind: 'machine',
         title: ['title'], subtitle: ['manufacturer','variantName'], category: ['machineType'],
         description: ['seoDescription','history'], image: ['cardImage','heroImage'], alt: ['title'],
-        route: ['link-classic-fruit-machine-archive-1-title','link-classic-fruit-machine-archive-all'],
+        route: ['shortUrl'],
         location: []
     },
     {
@@ -76,7 +76,7 @@ const SOURCES = [
         collection: 'ClassicMachineSightings', kind: 'sighting',
         title: ['machineName'], subtitle: ['venueName','town'], category: ['availabilityStatus'],
         description: ['sourcePostText','notes'], image: ['sourceImageUrl'], alt: ['machineName'],
-        routeBuilder: row => row.venuePageSlug ? '/arcade-venues/' + row.venuePageSlug : '',
+        routeBuilder: row => row.venuePageSlug ? '/arcades/' + row.venuePageSlug : '',
         location: ['town','countyRegion']
     },
     {
