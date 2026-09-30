@@ -79,7 +79,23 @@ function recommendationCard(row) {
         description: row.summary || row.offerText,
         image: row.dealImage || row.image,
         alt: row.imageAlt || row.displayTitle || row.name,
-        route: row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website,
+        route: row.guideReady === true || String(row.linkType || '').toUpperCase().startsWith('SPIN RAIDERS')
+            ? '/destination-recommendations?collection=DestinationRecommendations&place=' + encodeURIComponent(row._id)
+            : (row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website),
+        location: row.locationName || row.destination
+    });
+}
+
+function hotelCard(row) {
+    return standardCard({
+        id: 'hotel:' + row._id,
+        title: row.title,
+        subtitle: row.locationName || row.destination,
+        category: 'Hotel',
+        description: row.guideDetails || row.guideContent,
+        image: row.image,
+        alt: row.imageAlt || row.title,
+        route: row.canonicalUrl || (row.slug ? '/hotels/' + row.slug : ''),
         location: row.locationName || row.destination
     });
 }
@@ -120,6 +136,7 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
         feedResult,
         venueResult,
         recommendationResult,
+        hotelResult,
         attractionResult
     ] = await Promise.all([
         wixData.query('HomepageSections')
@@ -137,6 +154,10 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
             .limit(100)
             .find(),
         wixData.query('DestinationRecommendations')
+            .limit(1000)
+            .find(),
+        wixData.query('HotelGuides')
+            .eq('active', true)
             .limit(1000)
             .find(),
         wixData.query('NearbyAttractions')
@@ -176,13 +197,13 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
 
     const recommendations = recommendationResult.items || [];
 
-    const hotels = recommendations
-        .filter(row =>
-            /^hotel$/i.test(String(row.category || '')) &&
-            (row.dealImage || row.image) &&
-            (row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website)
+    const hotels = (hotelResult.items || [])
+        .filter(row => row.title && row.image && row.canonicalUrl)
+        .sort((a, b) =>
+            Number(b.offerCount || 0) - Number(a.offerCount || 0) ||
+            String(a.title || '').localeCompare(String(b.title || ''))
         )
-        .map(recommendationCard)
+        .map(hotelCard)
         .slice(0, 6);
 
     const food = recommendations
