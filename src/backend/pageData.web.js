@@ -153,7 +153,7 @@ export const getLocationPage = webMethod(Permissions.Anyone, async slug => {
         if (card.kind === 'location' && card.sourceId === row._id) continue;
         if (card.kind === 'venue') sections.venues.push(card);
         else if (card.kind === 'attraction') sections.attractions.push(card);
-        else if (card.kind === 'hotel' || card.kind === 'recommendation') sections.hotelsAndFood.push(card);
+        else if (card.kind === 'hotel') sections.hotelsAndFood.push(card);
         else if (card.kind === 'offer' || card.kind === 'partner') sections.offers.push(card);
         else if (card.kind === 'video') sections.videos.push(card);
         else if (card.kind === 'guide') sections.guides.push(card);
@@ -298,7 +298,7 @@ export const getHotelPage = webMethod(Permissions.Anyone, async slug => {
 
     const page = hotelModel(row);
 
-    const offersResult = await wixData.query('DestinationRecommendations')
+    const offersResult = await wixData.query('HotelOffers')
         .eq('hotelGuideId', row._id)
         .limit(1000)
         .find();
@@ -316,7 +316,7 @@ export const getHotelPage = webMethod(Permissions.Anyone, async slug => {
     let nearbyAffiliates = [];
 
     if (nearbyLocation) {
-        const nearbyResult = await wixData.query('DestinationRecommendations')
+        const nearbyResult = await wixData.query('AffiliateOffers')
             .eq('locationSlug', nearbyLocation)
             .limit(1000)
             .find();
