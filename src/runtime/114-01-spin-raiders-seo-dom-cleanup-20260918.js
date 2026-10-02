@@ -1,7 +1,7 @@
 (function(){try{
 (()=>{'use strict';
 const LOGO='https://static.wixstatic.com/media/3a517e_f00e5a18805c4337b938ce71379c0f50~mv2.jpg/v1/fit/w_1400,h_1400,q_70,enc_auto/file.webp';
-const CONTRAST_IDS=['comp-lunurbwh','comp-me4boe4q','hqyya','hh4vk','jm2fd','z00kr','comp-lunurbwo','l8fi0','z73my','nsqbc','h6104','zwn1e'];
+const CONTRAST_IDS=['comp-lunurbwh','comp-me4boe4q','hqyya','hh4vk','z00kr','comp-lunurbwo','l8fi0','z73my','nsqbc','h6104','zwn1e'];
 const visible=x=>!!(x&&x.getClientRects().length);
 function replaceHeading(el,level){
  const tag='H'+level;if(el.tagName===tag){el.removeAttribute('aria-level');return el}

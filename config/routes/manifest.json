@@ -185519,8 +185519,8 @@
     "meaning": "Reviewed source metadata, captured native bindings and local renderer preservation tests. Does not assert native E2E acceptance."
   },
   "identity": {
-    "releaseFingerprint": "7596435b40fffe77b1ce33a49f3f8a83a386d5d30a4814846061f88ea3bfc151",
+    "releaseFingerprint": "7b992f5a8100a981432810624b40d6f73bc5ae89fc7086866d59287d18c39c63",
     "manifestFingerprint": "2b06fbad381d2ed4eb0d127c98084ff528322def7620b4a177c4d3c09e539cf6",
-    "rendererFingerprint": "470ffc54fd4b0b29dfba87ff22ec562f658e6ac78554324913651bdce7de7058"
+    "rendererFingerprint": "0592428871da1a87687fbf533ca346aa4d8e24cf39a994b0ef86837545e135e4"
   }
 }
