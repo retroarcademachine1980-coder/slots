@@ -1,45 +1,52 @@
-# Git Integration & Wix CLI <img align="left" src="https://user-images.githubusercontent.com/89579857/185785022-cab37bf5-26be-4f11-85f0-1fac63c07d3b.png">
+# Spin Raiders unified canonical routing
 
-This repo is part of Git Integration & Wix CLI, a set of tools that allows you to write, test, and publish code for your Wix site locally on your computer. 
+This is a testable migration candidate. Local checks are separate from acceptance of the exact compiled Wix UI/backend build. Production promotion requires the recorded native, HTTP, SEO, browser and recovery gates; do not infer readiness from repository sync or a visible commit label.
 
-Connect your site to GitHub, develop in your favorite IDE, test your code in real time, and publish your site from the command line.
+## Maintained authorities
 
-## Set up this repository in your IDE
-This repo is connected to a Wix site. That site tracks this repo's default branch. Any code committed and pushed to that branch from your local IDE appears on the site.
+- `config/routes/manifest.json` is the single reviewed inventory of original record identities, canonical paths, incoming aliases, source groups, record policies, landing content and endpoint evidence. `tools/build-route-manifest.mjs` compiles it losslessly into deterministic supported Velo modules below a conservative 100,000-byte engineering budget. The obsolete intermediate-manifest assembler has been retired.
+- `src/public/routes/canonicalRoutes.js` defines canonical URL policy shared by backend models, native resolution, SEO and browser validation. CMS `shortUrl`, affiliate URLs, query IDs, archive prefixes and guessed title slugs cannot override it.
+- `config/routes/native-bindings.json` is the minimal reviewed Original native metadata input. Its generators validate captured IDs, page names, registered prefixes and handlers before producing native navigation, handler summaries and loader fallback ownership. They do not infer native runtime acceptance or read an old isolated-branch snapshot.
+- `src/runtime/manifest.json` orders the final maintained runtime modules. The deterministic runtime builder integrates the route client once and emits delivery chunks plus a distinct test entry. Retired skins and competing renderers are not loaded underneath it.
 
-Before getting started, make sure you have the following things installed:
-* [Git](https://git-scm.com/download)
-* [Node](https://nodejs.org/en/download/), version 14.8 or later.
-* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [yarn](https://yarnpkg.com/getting-started/install)
-* An SSH key [added to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+Original CMS records remain the content authority. Approved same-entity groups and the explicitly reviewed editorial index preserve source prose, photos, attribution and conflicting facts. `publicDetailProjection` default-denies internal and unknown nested fields. Source readiness/status restrictions remain effective.
 
-To set up your local environment and start coding locally, do the following:
+## Routing behavior
 
-1. Open your terminal and navigate to where you want to store the repo.
-1. Clone the repo by running `git clone <your-repository-url>`.
-1. Navigate to the repo's directory by running `cd <directory-name>`.
-1. Install the repo's dependencies by running `npm install` or `yarn install`.
-1. Install the Wix CLI by running `npm install -g @wix/cli` or `yarn global add @wix/cli`.  
-   Once you've installed the CLI globally, you can use it with any Wix site's repo.
+Search, directory cards, map pins, discovery, homepage models, rich-text links, native pages and sitemaps share the same record authority. The native resolver retrieves the exact collection and ID, verifies current metadata/readiness and rejects ambiguous identities. Offers join exactly one eligible hotel guide before producing a business route; merchant URLs remain explicit offer actions.
 
-For more information, see [Setting up Git Integration & Wix CLI](https://support.wix.com/en/article/velo-setting-up-git-integration-wix-cli-beta).
+The browser client rejects inconsistent responses, coalesces requests, bounds caching, rejects stale completions and verifies the expected immutable backend fingerprint. It does not trust CMS routing properties or use a link-rewriting observer.
 
-## Write Velo code in your IDE
-Once your repo is set up, you can write code in it as you would in any other non-Wix project. The repo's file structure matches the [public](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#public), [backend](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#backend), and [page code](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#page-code) sections in Editor X.
+Path aliases resolve forward to canonical targets through server301s. Query-ID aliases use client replacement and are not described as HTTP301s. See `docs/legacy-venue-aliases.md` for the finite native-title/runtime-slug inventory, collision policy, strict eight-path encoded-slash exceptions and acceptance limits. Legacy inputs never enter emitted canonical inventories.
 
-Learn more about [this repo's file structure](https://support.wix.com/en/article/velo-understanding-your-sites-github-repository-beta).
+Food uses `/food-and-drink/{name}/{town}`. Its original town/name data-binding pattern remains a legacy input; the source-aware before/query/after hooks require native acceptance. Machine pages use `/classic-fruit-machines/{manufacturer}/{machine}`.
 
-## Test your code with the Local Editor
-The Local Editor allows you test changes made to your site in real time. The code in your local IDE is synced with the Local Editor, so you can test your changes before committing them to your repo. You can also change the site design in the Local Editor and sync it with your IDE.
+## Build and checks
 
-Start the Local Editor by navigating to this repo's directory in your terminal and running `wix dev`.
+Use the repository's pinned toolchain and supported Node test loader. Do not fabricate `velo.dependencies.json`; see `docs/LINT-AND-PACKAGE.md`.
 
-For more information, see [Working with the Local Editor](https://support.wix.com/en/article/velo-working-with-the-local-editor-beta).
+- `npm test` runs pure policy and actual-module/mock-Wix integration tests
+- `npm run check` runs the checked-in project checks
+- `node tools/verify-ui.cjs` runs the maintained UI suites against one immutable source/bundle snapshot
+- `node tools/generate-native-handlers.mjs`, `node tools/generate-native-navigation.mjs` and `node tools/build-loader-page-ownership.mjs` consume the reviewed native binding input
+- `node tools/build-route-manifest.mjs` compiles the reviewed route manifest
+- `node tools/compute-release-identity.mjs config/routes/manifest.json` computes the review identity; the manifest and generated assets must be pinned to that exact identity before release
+- `python tools/build-runtime.py --fingerprint=<reviewed-sha256>` emits production and test bundles
 
-## Preview and publish with the Wix CLI
-The Wix CLI is a tool that allows you to work with your site locally from your computer's terminal. You can use it to build a preview version of your site and publish it. You can also use the CLI to install [approved npm packages](https://support.wix.com/en/article/velo-working-with-npm-packages) to your site.
+Node build commands importing Velo aliases use `NODE_OPTIONS='--import ./tools/register-wix-test-loader.mjs'`. Runtime source uses supported `public/...` and `backend/...` aliases.
 
-Learn more about [working with the Wix CLI](https://support.wix.com/en/article/velo-working-with-the-wix-cli-beta).
+`--release-manager-test` selects a separately compiled client using the test backend transport. Visitor query strings cannot switch the production client into test mode. The temporary release loader has separate test and production-acceptance gates; its configuration must pin the actual candidate native/backend identity and immutable asset commit.
 
-## Invite contributors to work with you
-Git Integration & Wix CLI extends Editor X's [concurrent editing](https://support.wix.com/en/article/editor-x-about-concurrent-editing) capabilities. Invite other developers as collaborators on your [site](https://support.wix.com/en/article/inviting-people-to-contribute-to-your-site) and your [GitHub repo](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository). Multiple developers can work on a site's code at once.
+## Native release gates
+
+The Original draft contains registered native templates and handler configurations. Registration, local fixtures and Git sync do not establish successful native execution. Before traffic or publication changes, verify on the exact compiled candidate:
+
+1. Every final root/detail route and source-aware data-binding hook, with native reload, Back/Forward and desktop/mobile flows
+2. Original content preservation, Terms contrast, failure states, maps, search and category loading
+3. Exact backend fingerprint, immutable CDN assets, native build identity, canonical SEO and sitemap behavior
+4. Legacy one-hop redirects, collisions, intentionally non-public records and raw punctuation/encoded-path representations
+5. A checked recovery path and coordinated global redirect ordering
+
+`indexAliasesActive:false` with `deploymentPhase:'transition'` preserves old index rendering while the 17 exact backward host rules remain. Do not activate forward index redirects into those rules. Final cleanup requires removing the reverse rules and proving direct root HTTP200 responses, clean canonicals and no loops. Client rendering alone is not host acceptance.
+
+The scoped release preserves unrelated scheduled cinema updates. Do not run historical generic publishing commands, upload raw CMS/audit captures, or treat local test success as permission to publish.

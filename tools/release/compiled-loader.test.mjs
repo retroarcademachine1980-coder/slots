@@ -7,6 +7,8 @@ import { execFileSync } from 'node:child_process';
 import { webcrypto } from 'node:crypto';
 import { createRequire } from 'node:module';
 const require=createRequire(import.meta.url),{JSDOM}=require('jsdom');
+const nativeBindings=JSON.parse(fs.readFileSync(new URL('../../config/routes/native-bindings.json',import.meta.url),'utf8'));
+const machinePageId=nativeBindings.customRouters.find(router=>router.kind==='machine').pageId;
 const root=new URL('.',import.meta.url);
 const outputDir=fs.mkdtempSync(path.join(os.tmpdir(),'sr-loader-test-'));
 const target=name=>path.join(outputDir,name);
@@ -30,12 +32,12 @@ for(const path of ['/','/search','/destination/blackpool'])test('compiled preser
 test('compiled candidate guard hands over once to explicit test entry and owner readiness',async()=>{
  const { nativeBuildHash }=await import('./build-identity.mjs');
  const base=JSON.parse(read('fixtures/production-6300-projection.json'));
- const model={site:{metaSiteId:base.metaSiteId,siteId:base.siteId},siteFeaturesConfigs:{router:{pagesMap:{zcvbk:{pageId:'zcvbk',pageJsonFileName:'candidate_fixture_99.json',title:'Machine'}},routes:{},mainPageId:'zcvbk',pageIdToPrefix:{zcvbk:'classic-fruit-machines'}},platform:{bootstrapData:{wixCodeBootstrapData:{wixCodeModel:{appData:{codeAppId:'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'}}},platformAPIData:{routersConfigMap:{}}}}}};
+ const model={site:{metaSiteId:base.metaSiteId,siteId:base.siteId},siteFeaturesConfigs:{router:{pagesMap:{[machinePageId]:{pageId:machinePageId,pageJsonFileName:'candidate_fixture_99.json',title:'Machine'}},routes:{},mainPageId:machinePageId,pageIdToPrefix:{[machinePageId]:'classic-fruit-machines'}},platform:{bootstrapData:{wixCodeBootstrapData:{wixCodeModel:{appData:{codeAppId:'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'}}},platformAPIData:{routersConfigMap:{}}}}}};
  const config=JSON.parse(read('fixtures/compiler-config.json'));config.nativeBuildHash=await nativeBuildHash(model,webcrypto.subtle);
  fs.writeFileSync(target('candidate-test-config.fixture.json'),JSON.stringify(config));
  execFileSync(process.execPath,[new URL('compile-loader.mjs',root).pathname,target('candidate-test-config.fixture.json'),target('candidate-compiled.fixture.html'),target('candidate-compiled.fixture.js')]);
  const d=createPage('/classic-fruit-machines/maygay/donkey-kong'),w=d.window;
- w.document.getElementById('SITE_CONTAINER').innerHTML='<div id="SITE_PAGES"><div id="zcvbk"><div class="wixui-page"></div></div></div>';
+ w.document.getElementById('SITE_CONTAINER').innerHTML='<div id="SITE_PAGES"><div id="'+machinePageId+'"><div class="wixui-page"></div></div></div>';
  const essential={site:{externalBaseUrl:'https://www.spin-raiders.com'},commonConfig:{siteRevision:'99',branchId:config.testIdentity.branchId}};
  for(const[id,value]of [['wix-essential-viewer-model',essential],['wix-viewer-model',model]]){const n=w.document.createElement('script');n.id=id;n.type='application/json';n.textContent=JSON.stringify(value);w.document.body.appendChild(n);}
  const fetched=[];w.fetch=async path=>{fetched.push(path);return {ok:true,headers:new Headers({'content-type':'application/json'}),text:async()=>JSON.stringify({...config.expectedFingerprint,complete:true,deployable:true})}};

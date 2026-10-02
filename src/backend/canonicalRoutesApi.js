@@ -12,6 +12,16 @@ for (const alias of routeManifest.aliases || []) {
   const parsed = parseLegacyInput(alias.from);
   if (parsed.ok) (aliasIndex.get(parsed.input) || (aliasIndex.set(parsed.input, []), aliasIndex.get(parsed.input))).push(alias);
 }
+// Identity collisions are decided before reading current availability. A closed
+// alternative is still a distinct historical owner, never a first-match fallback.
+function legacyIdentity(keys, context) {
+  if (keys.length === 1) return keys[0];
+  if (!keys.length) return null;
+  const group = context.groupsBySource[keys[0]];
+  if (!group || !group.groupId || group.blocked || group.relation !== 'same-entity' || group.approved !== true || group.provenSameEntity !== true || group.renderPolicy?.contentVerified !== true) return null;
+  return keys.every(key => group.sourceKeys.includes(key) && context.groupsBySource[key]?.groupId === group.groupId && context.groupsBySource[key]?.primaryKey === group.primaryKey && context.groupsBySource[key]?.canonicalPath === group.canonicalPath)
+    ? group.primaryKey : null;
+}
 export async function resolveRouteRequests(input, suppliedContext, { surface = 'listing' } = {}) {
   if (!Array.isArray(input) || input.length > 1000 || input.some(item => !item || typeof item !== 'object' || !SOURCES.has(item.collection) || typeof item.id !== 'string' || !item.id || item.id.length > 200)) {
     return { ok: false, code: 'invalid_route_requests' };
@@ -53,7 +63,9 @@ export async function resolveLegacyAlias(input) {
   const parsed = parseLegacyInput(input);
   if (!parsed.ok) return parsed;
   const candidates = aliasIndex.get(parsed.input) || [];
-  for (const key of new Set(candidates.map(alias => alias.key))) {
+  const keys = [...new Set(candidates.map(alias => alias.key))];
+  if (keys.length > 1 && !legacyIdentity(keys, context)) return { ok: false, code: 'ambiguous_legacy_source', inputMapped: true, status: 503 };
+  for (const key of keys) {
     const separator = key.indexOf(':'), collection = key.slice(0, separator), id = key.slice(separator + 1);
     if (!SOURCES.has(collection)) continue;
     try { const row = await wixData.get(collection, id); routes.set(key, resolveRecord(collection, row, context, { surface: 'redirect' })); }
@@ -87,7 +99,7 @@ export async function resolveLinkRequests(inputs) {
     const parsed = parseCanonical(input), legacy = parseLegacyInput(input);
     const keys = parsed.ok && context.owners[parsed.path]?.length ? context.owners[parsed.path]
       : legacy.ok ? [...new Set((aliasIndex.get(legacy.input) || []).map(alias => alias.key))] : [];
-    if (keys.length !== 1) { planned.push({ input, result: { ok: false, code: keys.length ? 'ambiguous_internal_link' : 'unresolved_internal_link' } }); continue; }
+    if (!legacyIdentity(keys, context)) { planned.push({ input, result: { ok: false, code: keys.length ? 'ambiguous_internal_link' : 'unresolved_internal_link' } }); continue; }
     const key = keys[0], split = key.indexOf(':'), collection = key.slice(0, split), id = key.slice(split + 1);
     if (!SOURCES.has(collection)) { planned.push({ input, result: { ok: false, code: 'unverified_internal_link_source' } }); continue; }
     requests.set(key, { collection, id }); planned.push({ input, key });

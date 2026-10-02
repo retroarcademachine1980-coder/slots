@@ -13,12 +13,29 @@ export function isLegacyRecordInput(value) {
  const url=new URL(parsed.input,SITE_ORIGIN),q=url.searchParams,path=url.pathname;
  return q.has('collection')&&LEGACY_ROUTING_INPUTS.collections.includes(q.get('collection'))&&Boolean(q.get('place')) || q.get('sr')==='classic'&&Boolean(q.get('machine')) || LEGACY_ROUTING_INPUTS.exactPaths.includes(path) || LEGACY_ROUTING_INPUTS.prefixes.some(prefix=>path.startsWith(prefix+'/')) || /^\/cinemas\/[^/]+$/.test(path);
 }
+// Exact exceptions from the captured production venue sitemap. Never infer or
+// normalize another encoded-slash input into this allowlist.
+export const EXACT_ENCODED_LEGACY_PATHS = Object.freeze([
+  "/arcade-venues/h.j's-%2F-henry-js-casino-slots---plymouth",
+  "/arcade-venues/codona's-%2F-sunset-boulevard---aberdeen",
+  "/arcade-venues/fortunes-%2F-quay-amusements---poole",
+  "/arcade-venues/oasis-%2F-lings-amusements---high-street-skegness",
+  "/arcade-venues/quicksilver---blackburn%2Fdarwen-services",
+  "/arcade-venues/moto-game-zone-%2F-jackpot-lounge",
+  "/arcade-venues/the-sands-%2F-golden-sands-arcade",
+  "/arcade-venues/merkur-slots---rosehill-%2F-carshalton"
+]);
+export function exactEncodedLegacyInput(value) {
+  if (typeof value !== 'string') return null;
+  const path = value.startsWith(SITE_ORIGIN + '/') ? value.slice(SITE_ORIGIN.length) : value;
+  return EXACT_ENCODED_LEGACY_PATHS.includes(path) ? path : null;
+}
 const ID_PARAMS = new Set(['collection', 'place', 'machine', 'sr']);
 export function parseLegacyInput(value) {
   if (typeof value !== 'string' || /[\\\s]/.test(value) || value.startsWith('//')) return blocked('invalid_legacy_input');
   let url;
   try { url = new URL(value, SITE_ORIGIN); } catch { return blocked('invalid_legacy_input'); }
-  if (url.origin !== SITE_ORIGIN || url.username || url.password || url.hash || /%(?:2f|5c|25|2e)/i.test(value)) return blocked('invalid_legacy_input');
+  if (url.origin !== SITE_ORIGIN || url.username || url.password || url.hash || (/%(?:2f|5c|25|2e)/i.test(value) && !exactEncodedLegacyInput(value))) return blocked('invalid_legacy_input');
   if (!value.startsWith('/') && !value.startsWith(SITE_ORIGIN + '/')) return blocked('invalid_legacy_input');
   if (url.pathname.split('/').some(segment => segment === '.' || segment === '..') || /(?:^|\/)\.\.?(?:\/|$)/.test(value)) return blocked('invalid_legacy_input');
   const params = [...url.searchParams];
@@ -32,21 +49,27 @@ export function parseLegacyInput(value) {
   return { ok: true, input: pathname + (query ? '?' + query : '') };
 }
 export function buildRedirectManifest(mapping, resolveKey, { canonicalPaths } = {}) {
-  const routes = new Map(), issues = [], unchanged = [];
+  const routes = new Map(), issues = [], unchanged = [], rejectedInputs = new Set();
   const current = canonicalPaths ? new Set(canonicalPaths) : null;
   for (const entry of mapping) {
     const from = parseLegacyInput(entry.from);
     if (!from.ok) { issues.push({ from: entry.from, code: from.code }); continue; }
+    if (rejectedInputs.has(from.input)) continue;
+    const reject = code => {
+      issues.push({ from: entry.from, key: entry.key, code });
+      routes.delete(from.input);
+      rejectedInputs.add(from.input);
+      for (let i = unchanged.length - 1; i >= 0; i--) if (unchanged[i].path === from.input) unchanged.splice(i, 1);
+    };
     const target = resolveKey(entry.key);
-    if (!target?.ok || !parseCanonical(target.href).ok) { issues.push({ from: entry.from, key: entry.key, code: target?.code || 'unresolved_redirect_target' }); continue; }
+    if (!target?.ok || !parseCanonical(target.href).ok) { reject(target?.code || 'unresolved_redirect_target'); continue; }
     if (from.input === target.href) { unchanged.push({ path: from.input, key: entry.key }); continue; }
     // Protect current canonical destinations. A retired semantic-looking name
     // may redirect only when a complete reviewed canonical set excludes it.
-    if (parseCanonical(from.input).ok && (!current || current.has(from.input))) { issues.push({ from: entry.from, code: 'canonical_source_forbidden' }); continue; }
-    if (current && !current.has(target.href)) { issues.push({ from: entry.from, code: 'target_not_in_canonical_index' }); continue; }
+    if (parseCanonical(from.input).ok && (!current || current.has(from.input))) { reject('canonical_source_forbidden'); continue; }
+    if (current && !current.has(target.href)) { reject('target_not_in_canonical_index'); continue; }
     const existing = routes.get(from.input);
-    if (existing && existing.to !== target.href) { issues.push({ from: entry.from, code: 'ambiguous_legacy_source' }); routes.delete(from.input); continue; }
-    if (issues.some(issue => issue.code === 'ambiguous_legacy_source' && parseLegacyInput(issue.from).input === from.input)) continue;
+    if (existing && existing.to !== target.href) { reject('ambiguous_legacy_source'); continue; }
     routes.set(from.input, { from: from.input, to: target.href, status: from.input.includes('?') ? null : 301, method: from.input.includes('?') ? 'clientReplace' : 'server301', key: entry.key });
   }
   return { entries: [...routes.values()], unchanged, issues, complete: issues.length === 0 };

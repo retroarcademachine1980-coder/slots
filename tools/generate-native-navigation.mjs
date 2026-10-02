@@ -1,15 +1,18 @@
-import fs from 'node:fs';
-import { NATIVE_STATIC_PATHS } from '../src/public/routes/nativeStaticPaths.js';
-const dir='/workspace/shared/spin-raiders-release-preflight-20261002';
-const pages=JSON.parse(fs.readFileSync(dir+'/isolated-r18-native-pages.json'));
-const bindings=JSON.parse(fs.readFileSync(dir+'/all-custom-router-native-bindings.json'));
-const paths={};
-for(const [path,id] of Object.entries(NATIVE_STATIC_PATHS))if(pages[id])paths[path]=id;
-for(const wrapper of bindings)for(const router of Object.values(wrapper)){
- if(['hotels','nearby-attractions'].includes(router.prefix))continue;
- const ids=Object.values(router.pages);if(ids.length!==1||!pages[ids[0]])throw Error('Unverified native router page');
- paths['/'+router.prefix]=ids[0];
+import { DEFAULT_NATIVE_INPUT, isNativeGeneratorMain, nativeCaptureLabel, nativeGeneratorOptions, readNativeBindings, validateNativeBindings, writeNativeOutputs } from './native-bindings.mjs';
+
+export function generateNativeNavigation(reviewed) {
+  const bindings = validateNativeBindings(reviewed);
+  const source = '// Reviewed native capture: ' + nativeCaptureLabel(bindings.capture) + '.\n' +
+    '// Metadata only. Release gate must verify every final native root before promotion/redirect retirement.\n' +
+    'export const NATIVE_STATIC_PATHS = Object.freeze(' + JSON.stringify(bindings.staticPaths, null, 2) + ');\n';
+  return { paths: bindings.staticPaths, source };
 }
-const source='// Captured isolated Wix branch f37020b8 revision18 (not published or runtime acceptance).\n// Release gate must verify every final native root before promotion/redirect retirement.\nexport const NATIVE_STATIC_PATHS = Object.freeze('+JSON.stringify(paths,null,2)+');\n';
-fs.writeFileSync(new URL('../src/public/routes/nativeStaticPaths.js',import.meta.url),source);
-console.log('Captured '+Object.keys(paths).length+' exact static/index native bindings, readiness remains separately gated');
+export function buildNativeNavigation({ input = DEFAULT_NATIVE_INPUT, outputRoot } = {}) {
+  const result = generateNativeNavigation(readNativeBindings(input));
+  writeNativeOutputs(new Map([['src/public/routes/nativeStaticPaths.js', result.source]]), { outputRoot });
+  return result;
+}
+if (isNativeGeneratorMain(import.meta.url)) {
+  const result = buildNativeNavigation(nativeGeneratorOptions());
+  console.log('Captured ' + Object.keys(result.paths).length + ' exact static/index native bindings, readiness remains separately gated');
+}
