@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import { routeManifest } from '../src/public/routes/routeManifest.generated.js';
+const root=new URL('../',import.meta.url);
+const mode=process.argv.includes('--release-manager-test')?'release-manager-test':'production';
+const fingerprint=process.argv.find(arg=>arg.startsWith('--fingerprint='))?.split('=')[1]||null;
+if(fingerprint&&!/^[a-f0-9]{64}$/.test(fingerprint))throw new Error('Invalid release fingerprint');
+const files=['canonicalRoutes.js','nativeStaticPaths.js','nativeBlogPaths.js','navigationRoutes.js','indexRoutes.js','legacyRedirects.js','indexAliases.js','browserRouteClient.js'];
+const source=files.map(file=>fs.readFileSync(new URL('src/public/routes/'+file,root),'utf8').replace(/^import .*?;\n/gm,'').replace(/^export /gm,'')).join('\n');
+const wrapper=`/* Generated from src/public/routes; do not hand-edit or append a second authority. */\n(function(){'use strict';\n${source}\nif(Object.prototype.hasOwnProperty.call(window,'SR_ROUTES'))throw new Error('Duplicate route authority');\nObject.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:${JSON.stringify(mode)},indexAliasesActive:${routeManifest.indexAliasesActive===true},expectedReleaseFingerprint:${JSON.stringify(fingerprint)},onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});\n})();\n`;
+fs.mkdirSync(new URL('generated/',root),{recursive:true});fs.writeFileSync(new URL('generated/routes-authority'+(mode==='production'?'':'.test')+'.js',root),wrapper);

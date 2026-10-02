@@ -1,52 +1,99 @@
-// Router hooks for dynamic pages.
-//
-// Classic fruit machine pages (/classic-fruit-machine-archive-1/<slug>):
-// machines switched off in the CMS (ClassicFruitMachines.active === false) are left out of the sitemap, so Google stops
-// finding "Record unavailable" pages while their photos are being added. Nothing is deleted: switch a machine back on
-// (active = true) and it returns to the sitemap automatically on the next sitemap read (within 10 minutes).
-//
-// Wix names dynamic-page hooks <prefix>_<hook> (e.g. myRouter_afterSitemap); the prefix here contains dashes, so the same function is exported under
-// the identifier spellings Wix may use for it. Unused exports are harmless.
+// Generated ONLY from captured isolated native handler names. Not deployed.
+import { canonicalRouter, canonicalSitemap } from 'backend/nativeRoutingService';
 
-import wixData from 'wix-data';
+export async function classic_fruit_machines_Router(request) { return canonicalRouter('machine', request); }
+export async function classic_fruit_machines_SiteMap() { return canonicalSitemap('machine'); }
 
-const CACHE_MS = 10 * 60 * 1000;
-let cache = { at: 0, slugs: null };
+export async function arcade_Router(request) { return canonicalRouter('arcade', request); }
+export async function arcade_SiteMap() { return canonicalSitemap('arcade'); }
 
-async function switchedOffSlugs() {
-  if (cache.slugs && Date.now() - cache.at < CACHE_MS) return cache.slugs;
-  const slugs = new Set();
-  let res = await wixData.query('ClassicFruitMachines').eq('active', false).limit(1000).find({ suppressAuth: true });
-  for (;;) {
-    for (const item of res.items) {
-      // The machine page URL is stored on the item by Wix (link-...-title), e.g. /classic-fruit-machine-archive-1/jungle-jive.
-      const link = item['link-classic-fruit-machine-archive-1-title'];
-      if (link) slugs.add(String(link).replace(/\/+$/, '').split('/').pop().toLowerCase());
-    }
-    if (!res.hasNext()) break;
-    res = await res.next();
-  }
-  cache = { at: Date.now(), slugs };
-  return slugs;
-}
+export async function bingo_halls_Router(request) { return canonicalRouter('bingo', request); }
+export async function bingo_halls_SiteMap() { return canonicalSitemap('bingo'); }
 
-function entrySlug(entry) {
-  const url = String((entry && entry.url) || '').split(/[?#]/)[0].replace(/\/+$/, '');
-  try { return decodeURIComponent(url.split('/').pop() || '').toLowerCase().replace(/\s+/g, '-'); } catch (e) { return ''; }
-}
+export async function holiday_parks_Router(request) { return canonicalRouter('holidayPark', request); }
+export async function holiday_parks_SiteMap() { return canonicalSitemap('holidayPark'); }
 
-// Wix calls afterSitemap(sitemapRequest, sitemapEntries); take whichever argument is the entry list.
-async function machineSitemap(...args) {
-  const sitemapEntries = args.find(Array.isArray) || [];
-  try {
-    const off = await switchedOffSlugs();
-    return sitemapEntries.filter(entry => !off.has(entrySlug(entry)));
-  } catch (e) {
-    console.error('machine sitemap filter failed, leaving sitemap unchanged', e);
-    return sitemapEntries;
-  }
-}
+export async function arcade_bars_Router(request) { return canonicalRouter('arcadeBar', request); }
+export async function arcade_bars_SiteMap() { return canonicalSitemap('arcadeBar'); }
 
-export const classic_fruit_machine_archive_1_afterSitemap = machineSitemap;
-export const classicFruitMachineArchive1_afterSitemap = machineSitemap;
-export const ClassicFruitMachineArchive1_afterSitemap = machineSitemap;
+export async function fishing_lakes_Router(request) { return canonicalRouter('fishing', request); }
+export async function fishing_lakes_SiteMap() { return canonicalSitemap('fishing'); }
+
+export async function theme_parks_Router(request) { return canonicalRouter('themePark', request); }
+export async function theme_parks_SiteMap() { return canonicalSitemap('themePark'); }
+
+export async function zoos_Router(request) { return canonicalRouter('zoo', request); }
+export async function zoos_SiteMap() { return canonicalSitemap('zoo'); }
+
+export async function sea_life_Router(request) { return canonicalRouter('seaLife', request); }
+export async function sea_life_SiteMap() { return canonicalSitemap('seaLife'); }
+
+export async function museums_Router(request) { return canonicalRouter('museum', request); }
+export async function museums_SiteMap() { return canonicalSitemap('museum'); }
+
+export async function historical_sites_Router(request) { return canonicalRouter('historicSite', request); }
+export async function historical_sites_SiteMap() { return canonicalSitemap('historicSite'); }
+
+export async function tours_Router(request) { return canonicalRouter('tour', request); }
+export async function tours_SiteMap() { return canonicalSitemap('tour'); }
+
+export async function services_Router(request) { return canonicalRouter('service', request); }
+export async function services_SiteMap() { return canonicalSitemap('service'); }
+
+export async function attractions_Router(request) { return canonicalRouter('attraction', request); }
+export async function attractions_SiteMap() { return canonicalSitemap('attraction'); }
+
+export async function cinemas_Router(request) { return canonicalRouter('cinema', request); }
+export async function cinemas_SiteMap() { return canonicalSitemap('cinema'); }
+
+export async function agc_Router(request) { return canonicalRouter('agc', request); }
+export async function agc_SiteMap() { return canonicalSitemap('agc'); }
+
+export async function bowling_Router(request) { return canonicalRouter('bowling', request); }
+export async function bowling_SiteMap() { return canonicalSitemap('bowling'); }
+
+export async function casinos_Router(request) { return canonicalRouter('casino', request); }
+export async function casinos_SiteMap() { return canonicalSitemap('casino'); }
+
+export async function piers_Router(request) { return canonicalRouter('pier', request); }
+export async function piers_SiteMap() { return canonicalSitemap('pier'); }
+
+export async function outdoors_Router(request) { return canonicalRouter('outdoors', request); }
+export async function outdoors_SiteMap() { return canonicalSitemap('outdoors'); }
+
+export async function places_to_stay_Router(request) { return canonicalRouter('staysIndex', request); }
+export async function places_to_stay_SiteMap() { return canonicalSitemap('staysIndex'); }
+
+export async function offers_Router(request) { return canonicalRouter('offersIndex', request); }
+export async function offers_SiteMap() { return canonicalSitemap('offersIndex'); }
+
+export async function family_fun_Router(request) { return canonicalRouter('familyFunIndex', request); }
+export async function family_fun_SiteMap() { return canonicalSitemap('familyFunIndex'); }
+
+export async function hidden_gems_Router(request) { return canonicalRouter('hiddenGemsIndex', request); }
+export async function hidden_gems_SiteMap() { return canonicalSitemap('hiddenGemsIndex'); }
+
+export async function retro_video_games_Router(request) { return canonicalRouter('retroIndex', request); }
+export async function retro_video_games_SiteMap() { return canonicalSitemap('retroIndex'); }
+
+export async function days_out_Router(request) { return canonicalRouter('daysOutIndex', request); }
+export async function days_out_SiteMap() { return canonicalSitemap('daysOutIndex'); }
+
+export async function plan_a_trip_Router(request) { return canonicalRouter('tripIndex', request); }
+export async function plan_a_trip_SiteMap() { return canonicalSitemap('tripIndex'); }
+
+export async function hotels_Router(request) { return legacyPathRouter('/hotels', request); }
+export function hotels_SiteMap() { return []; }
+
+export async function nearby_attractions_Router(request) { return legacyPathRouter('/nearby-attractions', request); }
+export function nearby_attractions_SiteMap() { return []; }
+
+// Dynamic hook spellings follow the documented prefix convention; invocation is a native test gate.
+import { foodBeforeRouter, foodCustomizeQuery, foodAfterRouter } from 'backend/dynamicRoutingService';
+import { legacyPathRouter } from 'backend/legacyRoutingService';
+export function food_and_drink_beforeRouter(request) { return foodBeforeRouter(request); }
+export function food_and_drink_customizeQuery(request, route, query) { return foodCustomizeQuery(request, route, query); }
+export function food_and_drink_afterRouter(request, response) { return foodAfterRouter(request, response); }
+export function arcade_venues_beforeRouter(request) { return legacyPathRouter('/arcade-venues', request); }
+export function classic_fruit_machine_archive_beforeRouter(request) { return legacyPathRouter('/classic-fruit-machine-archive', request); }
+export function classic_fruit_machine_archive_1_beforeRouter(request) { return legacyPathRouter('/classic-fruit-machine-archive-1', request); }

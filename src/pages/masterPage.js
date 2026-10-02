@@ -1,3 +1,4 @@
+import { getRouterData } from 'wix-window-frontend';
 import wixLocation from 'wix-location-frontend';
 import { wireSearchEntryPoints } from 'public/discovery-ui';
 import { applyPageSeo } from 'public/seo';
@@ -7,7 +8,9 @@ $w.onReady(async function () {
     // town, food and home pages. Awaited so it lands in the HTML Google downloads.
     // Dynamic pages report their router prefix separately (e.g. prefix 'arcade-venues',
     // path ['the-mint-great-yarmouth']), so put it back on the front.
-    await applyPageSeo([wixLocation.prefix, ...(wixLocation.path || [])].filter(Boolean));
+    let routerData;
+    try { routerData = getRouterData(); } catch { /* Regular pages do not carry router data. */ }
+    await applyPageSeo([wixLocation.prefix, ...(wixLocation.path || [])].filter(Boolean), routerData);
 
     // No automatic rating calculations or database saves.
     // Ratings must only change after a deliberate submission.

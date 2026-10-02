@@ -1,0 +1,10 @@
+{
+  "name": "eslint-plugin-spin-raiders",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.cjs",
+  "peerDependencies": {
+    "@wix/eslint-plugin-cli": "1.0.2",
+    "eslint": "^8.57.1"
+  }
+}

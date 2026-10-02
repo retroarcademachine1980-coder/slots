@@ -1,0 +1,98 @@
+{
+  "source": "Read-only CMS full-record snapshots, 2026-10-02",
+  "records": [
+    {
+      "_id": "classic-each-way-nudge",
+      "title": "Each Way Nudge",
+      "manufacturer": "Barcrest",
+      "manufacturers": [
+        "JPM"
+      ],
+      "manufacturerAliases": [
+        "JPM"
+      ],
+      "active": true,
+      "pageReady": true,
+      "directoryReady": true,
+      "variantStatus": "ARCHIVE_ENTRY",
+      "boardFamily": "",
+      "platform": "",
+      "platformTechnology": "",
+      "cabinet": "",
+      "yearReleased": null,
+      "releaseYear": null,
+      "year": "",
+      "doNotAutoMerge": true,
+      "history": "Loads going on with this one. Each Way Nudge has a stack of banknotes and coins in the middle of the top glass and a nudge ladder climbing each side of it, one pink and one green, both topping out at 10 nudges.\n\nI snapped it at Retropolis Classic Amusements. It's 10p play, and the big disc at the top reads \u00a35 with repeat chance. Down the right-hand side the features are named: Super Streak, Money Grabber, Note Shoot and Cash Belt, then Reel Money, 3 Reel Blasts, Coin Snake and Cash Dash on the lower glass.\n\nThe button row's a good one too: Hold, Hold Hi, Hold Lo, Swap Nudges and Death or Glory, plus Cancel/Collect and Start. There's a little Let's Play Barcrest badge in the bottom corner of the glass as well.",
+      "description": "Loads going on with this one. Each Way Nudge has a stack of banknotes and coins in the middle of the top glass and a nudge ladder climbing each side of it, one pink and one green, both topping out at 10 nudges.\n\nI snapped it at Retropolis Classic Amusements. It's 10p play, and the big disc at the top reads \u00a35 with repeat chance. Down the right-hand side the features are named: Super Streak, Money Grabber, Note Shoot and Cash Belt, then Reel Money, 3 Reel Blasts, Coin Snake and Cash Dash on the lower glass.\n\nThe button row's a good one too: Hold, Hold Hi, Hold Lo, Swap Nudges and Death or Glory, plus Cancel/Collect and Start. There's a little Let's Play Barcrest badge in the bottom corner of the glass as well.",
+      "shortDescription": "Pink and green nudge ladders, banknotes everywhere and a Death or Glory button. This 10p Barcrest's a busy one.",
+      "technicalNotes": "<p>Verified archive fields currently include release year 1979; platform/technology SRU; documented stakes 5p; documented jackpots \u00a31. Stake, jackpot, cabinet, board and program details are recorded only when supported by physical, preservation or trade evidence, because surviving machines can exist in multiple conversions and settings.</p>",
+      "gameplay": null,
+      "gameplay_guide": "It's 10p a go on this one, for \u00a35 with repeat chance. The reels have Hold, Hold Hi and Hold Lo buttons, and there's a Swap Nudges button to go with the two nudge ladders on the top glass. Barcrest's flyer says you nudge up and down for cash, with multiple repeats.",
+      "lore_review": null,
+      "photoEvidenceSummary": "<p>Barcrest Each Way Nudge cabinet with \u00a35 and 10p-play markings, distinct from Each Way Nudger MK3.</p>",
+      "sourceAttributions": [
+        "Spin Raiders Original Photos & Tours",
+        "Fruit Machine Database"
+      ],
+      "evidenceSources": [
+        "Spin Raiders original photograph / Retropolis Classic Amusements archive",
+        "https://www.theoldcomputer.com/roms/index.php?folder=Arcade%2FFruit-Machines%2FLayouts%2FMFME"
+      ],
+      "heroImage": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "cardImage": "https://static.wixstatic.com/media/3a517e_3a5481b9e0e3402399f697a395514007~mv2.jpg",
+      "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3a5481b9e0e3402399f697a395514007~mv2.jpg",
+      "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "main_image": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "physical_cabinet_photo": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "fullCabinetAltText": "Each Way Nudge (Barcrest) physical arcade cabinet photograph",
+      "imageAltText": "Each Way Nudge Barcrest fruit machine archive image",
+      "cardMarqueeAltText": "Each Way Nudge illuminated top glass marquee artwork",
+      "photo_source": "Live Physical Arcade Floor Photography"
+    },
+    {
+      "_id": "fmd-a1a4b487",
+      "title": "Each Way Nudge",
+      "manufacturer": "Barcrest",
+      "manufacturers": [
+        "Barcrest"
+      ],
+      "active": true,
+      "pageReady": true,
+      "directoryReady": true,
+      "variantName": "",
+      "variantStatus": "catalogued",
+      "variantKey": "each way nudge|barcrest|mpu5|awp",
+      "boardFamily": "",
+      "platform": "",
+      "platformTechnology": "",
+      "cabinet": "",
+      "yearReleased": null,
+      "releaseYear": null,
+      "year": "",
+      "doNotAutoMerge": false,
+      "history": "\"Nudge up and down for great cash prizes.\" That's the first line on the flyer, and it's written next to a big pointing hand. The others go \"Two trails to nudges \u2013 twice the chance\", \"Nudge your way to the jackpot\" and \"Multiple repeats!\"\n\nThe name makes sense once you look at the glass. There's a nudge ladder either side of the cash artwork, both going up to 10 nudges. The cabinet pictured here is 10p play, playing for a fiver plus repeat chance.\n\nIt was Barcrest's game for the Genesis '98 cabinet, the one with the note acceptor, and the flyer says it ran on MPU5. Genesis options were \u00a315 cash at 20p, 25p or 30p, \u00a310 cash at the same three stakes, or \u00a35 cash at anything from 5p to 30p.\n\nJust don't get it mixed up with Each Way Nudger, which is a different machine with an annoyingly similar name.",
+      "description": "\"Nudge up and down for great cash prizes.\" That's the first line on the flyer, and it's written next to a big pointing hand. The others go \"Two trails to nudges \u2013 twice the chance\", \"Nudge your way to the jackpot\" and \"Multiple repeats!\"\n\nThe name makes sense once you look at the glass. There's a nudge ladder either side of the cash artwork, both going up to 10 nudges. The cabinet pictured here is 10p play, playing for a fiver plus repeat chance.\n\nIt was Barcrest's game for the Genesis '98 cabinet, the one with the note acceptor, and the flyer says it ran on MPU5. Genesis options were \u00a315 cash at 20p, 25p or 30p, \u00a310 cash at the same three stakes, or \u00a35 cash at anything from 5p to 30p.\n\nJust don't get it mixed up with Each Way Nudger, which is a different machine with an annoyingly similar name.",
+      "shortDescription": "Barcrest's Each Way Nudge from the Genesis '98 range: two ways to nudge, multiple repeats and MPU5 under the bonnet.",
+      "technicalNotes": "<p>Machine type: AWP. Platform/technology: MPU5. Cabinet: Barcrest: * Genesis - need to check which type. Stake, jackpot, program and hardware-revision details are treated as variant-specific unless separately verified.</p>",
+      "gameplay": null,
+      "gameplay_guide": "Two nudge ladders run up either side of the top glass, each from 1 up to 10 nudges. Barcrest's flyer says you nudge up and down for cash prizes, and that having two trails to nudges gives you twice the chance. The machine pictured is 10p play with a \u00a35 jackpot and repeat chance.",
+      "lore_review": null,
+      "photoEvidenceSummary": "<p>Barcrest Each Way Nudge, 10p play and \u00a35 photograph; conflicting MPU4/MPU5 assignments removed.</p>",
+      "provenanceNotes": "Catalogued from the user-supplied Fruit Machine Database. Physical-photo verification remains separate.\n2026-09-09 mapping audit: this photograph belongs to the JPM Each Way Nudger image record, not the separately catalogued Barcrest Each Way Nudge. The copied hero has been withheld. The Barcrest record remains separate pending an exact photograph.",
+      "sourceAttributions": [
+        "Fruit Machine Database"
+      ],
+      "heroImage": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "cardImage": "https://static.wixstatic.com/media/3a517e_3a5481b9e0e3402399f697a395514007~mv2.jpg",
+      "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3a5481b9e0e3402399f697a395514007~mv2.jpg",
+      "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "main_image": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "physical_cabinet_photo": "https://static.wixstatic.com/media/3a517e_878ed223a8db4de5b0cdeffe23c2cb4f~mv2.jpg",
+      "fullCabinetAltText": "Each Way Nudge (Barcrest) physical arcade cabinet photograph",
+      "imageAltText": "Each Way Nudge Barcrest fruit machine archive image",
+      "cardMarqueeAltText": "Each Way Nudge illuminated top glass marquee artwork",
+      "photo_source": "Live Physical Arcade Floor Photography"
+    }
+  ]
+}

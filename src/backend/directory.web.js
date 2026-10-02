@@ -1,3 +1,4 @@
+import { publicRouteModel, loadRouteContext, routeSummary } from 'backend/canonicalRouteService';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 import { normalizeSearch } from 'backend/searchText';
@@ -13,10 +14,12 @@ function imageValue(value) {
 }
 
 function pageSlice(rows, options = {}) {
+    rows=rows.filter(row=>row.discoveryAllowed!==false);
     const offset = Math.max(0, Number(options.offset) || 0);
     const limit = Math.max(1, Math.min(200, Number(options.limit) || 60));
     return {
         total: rows.length,
+        ...routeSummary(rows),
         offset,
         limit,
         hasMore: offset + limit < rows.length,
@@ -61,7 +64,7 @@ function machinePublic(row) {
     return row.title && !/merged|duplicate|remove|rejected/.test(status);
 }
 
-function venueCard(row) {
+function venueCard(row, routeContext) {
     return {
         _id: 'venue:' + row._id,
         title: row.title || '',
@@ -70,12 +73,12 @@ function venueCard(row) {
         description: plain(row.shortDescription || row.seoDescription || row.overview).slice(0, 280),
         image: imageValue(row.heroImage),
         alt: row.exteriorImageAlt || row.title || '',
-        route: row.shortUrl || '',
+        ...publicRouteModel('Venues', row, routeContext),
         location: row.locationName || ''
     };
 }
 
-function locationCard(row) {
+function locationCard(row, routeContext) {
     return {
         _id: 'location:' + row._id,
         title: row.title || '',
@@ -84,12 +87,12 @@ function locationCard(row) {
         description: plain(row.shortDescription || row.raiderDestinationSummary || row.overview).slice(0, 280),
         image: imageValue(row.heroImage),
         alt: row.heroImageAlt || row.title || '',
-        route: row.shortUrl || '',
+        ...publicRouteModel('Locations', row, routeContext),
         location: row.title || ''
     };
 }
 
-function recommendationCard(row) {
+function recommendationCard(row, routeContext) {
     return {
         _id: 'recommendation:' + row._id,
         title: row.displayTitle || row.name || row.offerTitle || '',
@@ -98,12 +101,12 @@ function recommendationCard(row) {
         description: plain(row.summary || row.offerText).slice(0, 280),
         image: imageValue(row.dealImage || row.image),
         alt: row.imageAlt || row.displayTitle || row.name || '',
-        route: row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website || '',
+        ...publicRouteModel('AffiliateOffers', row, routeContext),
         location: row.locationName || row.destination || ''
     };
 }
 
-function hotelCard(row) {
+function hotelCard(row, routeContext) {
     return {
         _id: 'hotel:' + row._id,
         title: row.title || '',
@@ -112,12 +115,12 @@ function hotelCard(row) {
         description: plain(row.guideDetails || row.guideContent).slice(0, 280),
         image: imageValue(row.image),
         alt: row.imageAlt || row.title || '',
-        route: row.canonicalUrl || (row.slug ? '/hotels/' + row.slug : ''),
+        ...publicRouteModel('HotelGuides', row, routeContext),
         location: row.locationName || row.destination || ''
     };
 }
 
-function attractionCard(row) {
+function attractionCard(row, routeContext) {
     return {
         _id: 'attraction:' + row._id,
         title: row.title || '',
@@ -126,16 +129,12 @@ function attractionCard(row) {
         description: plain(row.shortDescription).slice(0, 280),
         image: imageValue(row.heroImage),
         alt: row.title || '',
-        route: row.website || row.googleMapsUrl || (
-            row.locationSlug && row.slug
-                ? '/destination/' + row.locationSlug + '#' + row.slug
-                : ''
-        ),
+        ...publicRouteModel('NearbyAttractions', row, routeContext),
         location: row.locationName || ''
     };
 }
 
-function machineCard(row) {
+function machineCard(row, routeContext) {
     return {
         _id: 'machine:' + row._id,
         title: row.title || '',
@@ -144,12 +143,13 @@ function machineCard(row) {
         description: plain(row.seoDescription || row.history).slice(0, 280),
         image: imageValue(row.cardImage || row.heroImage),
         alt: row.title || '',
-        route: row.shortUrl || '',
+        ...publicRouteModel('ClassicFruitMachines', row, routeContext),
         location: ''
     };
 }
 
 export const listVenues = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
     const location = normalizeSearch(options.location || '');
     const category = normalizeSearch(options.category || '');
@@ -174,10 +174,11 @@ export const listVenues = webMethod(Permissions.Anyone, async (options = {}) => 
         String(a.title || '').localeCompare(String(b.title || ''))
     );
 
-    return pageSlice(rows.map(venueCard), options);
+    return pageSlice(rows.map(row => venueCard(row, routeContext)), options);
 });
 
 export const listLocations = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
 
     const rows = (await allRows('Locations'))
@@ -187,12 +188,13 @@ export const listLocations = webMethod(Permissions.Anyone, async (options = {}) 
             Number(b.featured === true) - Number(a.featured === true) ||
             String(a.title || '').localeCompare(String(b.title || ''))
         )
-        .map(locationCard);
+        .map(row => locationCard(row, routeContext));
 
     return pageSlice(rows, options);
 });
 
 export const listRecommendations = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
     const category = normalizeSearch(options.category || '');
 
@@ -210,22 +212,24 @@ export const listRecommendations = webMethod(Permissions.Anyone, async (options 
         String(a.displayTitle || a.name || '').localeCompare(String(b.displayTitle || b.name || ''))
     );
 
-    return pageSlice(rows.map(recommendationCard), options);
+    return pageSlice(rows.map(row => recommendationCard(row, routeContext)), options);
 });
 
 export const listAttractions = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
 
     const rows = (await allRows('NearbyAttractions', 3000))
         .filter(attractionPublic)
         .filter(row => matches(row, query))
         .sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')))
-        .map(attractionCard);
+        .map(row => attractionCard(row, routeContext));
 
     return pageSlice(rows, options);
 });
 
 export const listMachines = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
     const manufacturer = normalizeSearch(options.manufacturer || '');
 
@@ -246,10 +250,11 @@ export const listMachines = webMethod(Permissions.Anyone, async (options = {}) =
         String(a.title || '').localeCompare(String(b.title || ''))
     );
 
-    return pageSlice(rows.map(machineCard), options);
+    return pageSlice(rows.map(row => machineCard(row, routeContext)), options);
 });
 
 export const listPartners = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
 
     const rows = (await allRows('AffiliatePartners', 1000))
@@ -264,7 +269,7 @@ export const listPartners = webMethod(Permissions.Anyone, async (options = {}) =
             description: plain(row.offerSummary).slice(0, 280),
             image: '',
             alt: row.title || '',
-            route: row.reviewPath || row.affiliateUrl || row['link-affiliate-partners-all'] || '',
+            ...publicRouteModel('AffiliatePartners', row, routeContext),
             location: ''
         }));
 
@@ -272,6 +277,7 @@ export const listPartners = webMethod(Permissions.Anyone, async (options = {}) =
 });
 
 export const getMapPins = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
 
     const [venues, attractions] = await Promise.all([
@@ -291,7 +297,7 @@ export const getMapPins = webMethod(Permissions.Anyone, async (options = {}) => 
             category: row.mapPrimaryCategory || row.venueType || 'Venue',
             latitude: Number(row.latitude),
             longitude: Number(row.longitude),
-            route: row.shortUrl || '',
+            ...publicRouteModel('Venues', row, routeContext),
             image: imageValue(row.heroImage),
             alt: row.exteriorImageAlt || row.title || ''
         }));
@@ -308,18 +314,20 @@ export const getMapPins = webMethod(Permissions.Anyone, async (options = {}) => 
             category: row.category || 'Thing to do',
             latitude: Number(row.latitude),
             longitude: Number(row.longitude),
-            route: row.website || row.googleMapsUrl || '',
+            ...publicRouteModel('NearbyAttractions', row, routeContext),
             image: imageValue(row.heroImage),
             alt: row.title || ''
         }));
 
     return {
-        total: venuePins.length + attractionPins.length,
-        pins: [...venuePins, ...attractionPins]
+        total: [...venuePins,...attractionPins].filter(row=>row.discoveryAllowed!==false).length,
+        ...routeSummary([...venuePins, ...attractionPins]),
+        pins: [...venuePins, ...attractionPins].filter(row=>row.discoveryAllowed!==false)
     };
 });
 
 export const listHotels = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const query = String(options.query || '').trim();
     const location = normalizeSearch(options.location || '');
 
@@ -340,5 +348,5 @@ export const listHotels = webMethod(Permissions.Anyone, async (options = {}) => 
         String(a.title || '').localeCompare(String(b.title || ''))
     );
 
-    return pageSlice(rows.map(hotelCard), options);
+    return pageSlice(rows.map(row => hotelCard(row, routeContext)), options);
 });

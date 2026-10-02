@@ -1,0 +1,175 @@
+{
+  "source": "Reviewed public source identities, 2026-10-02. Layout preservation fixtures; content is synthetic except separately projected Each Way fixture.",
+  "groups": [
+    {
+      "groupId": "food:FoodAndDrink:fd-agrah-cleethorpes",
+      "primaryKey": "FoodAndDrink:fd-agrah-cleethorpes",
+      "sourceKeys": [
+        "FoodAndDrink:fd-agrah-cleethorpes",
+        "NearbyAttractions:3e63b39f-d84b-4236-baad-5d49bd0f3ce4"
+      ],
+      "canonicalPath": "/food-and-drink/agrah/cleethorpes"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-farmhouse-beechwood-farm-grimsby",
+      "primaryKey": "FoodAndDrink:fd-farmhouse-beechwood-farm-grimsby",
+      "sourceKeys": [
+        "FoodAndDrink:fd-farmhouse-beechwood-farm-grimsby",
+        "NearbyAttractions:adc0e022-cd02-47ef-8a81-6b807b2e25a4"
+      ],
+      "canonicalPath": "/food-and-drink/beechwood-farm/grimsby"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-jug-and-bottle-holton-le-clay",
+      "primaryKey": "FoodAndDrink:fd-jug-and-bottle-holton-le-clay",
+      "sourceKeys": [
+        "FoodAndDrink:fd-jug-and-bottle-holton-le-clay",
+        "NearbyAttractions:616a2558-8f22-4f84-ae69-e966bcf1c604"
+      ],
+      "canonicalPath": "/food-and-drink/jug-and-bottle/grimsby"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-masala-n-malt-grimsby",
+      "primaryKey": "FoodAndDrink:fd-masala-n-malt-grimsby",
+      "sourceKeys": [
+        "FoodAndDrink:fd-masala-n-malt-grimsby",
+        "NearbyAttractions:541e7ebd-3e48-441e-9e21-c24b2233a0f0",
+        "Venues:venue-the-masala-n-malt-grimsby"
+      ],
+      "canonicalPath": "/food-and-drink/masala-n-malt/grimsby"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-millers-waltham",
+      "primaryKey": "FoodAndDrink:fd-millers-waltham",
+      "sourceKeys": [
+        "FoodAndDrink:fd-millers-waltham",
+        "NearbyAttractions:a284c0ac-e8c9-485d-b79f-1fe51d02cc8c"
+      ],
+      "canonicalPath": "/food-and-drink/millers/grimsby"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-oriental-express-cleethorpes",
+      "primaryKey": "FoodAndDrink:fd-oriental-express-cleethorpes",
+      "sourceKeys": [
+        "FoodAndDrink:fd-oriental-express-cleethorpes",
+        "NearbyAttractions:02fbd75c-cc8e-4e4b-ad8f-d4117dffa032"
+      ],
+      "canonicalPath": "/food-and-drink/oriental-express/cleethorpes"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-pear-tree-humberston",
+      "primaryKey": "FoodAndDrink:fd-pear-tree-humberston",
+      "sourceKeys": [
+        "FoodAndDrink:fd-pear-tree-humberston",
+        "NearbyAttractions:9e0c86cb-f9ba-4c9e-b5e3-da2998dd6e87"
+      ],
+      "canonicalPath": "/food-and-drink/pear-tree/cleethorpes"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-pizza-parlour-grimsby",
+      "primaryKey": "FoodAndDrink:fd-pizza-parlour-grimsby",
+      "sourceKeys": [
+        "FoodAndDrink:fd-pizza-parlour-grimsby",
+        "NearbyAttractions:9706b752-db72-40d8-925e-bfa95148d431",
+        "Venues:venue-pizza-parlour-grimsby"
+      ],
+      "canonicalPath": "/food-and-drink/pizza-parlour/grimsby"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-trawlerman-cleethorpes",
+      "primaryKey": "FoodAndDrink:fd-trawlerman-cleethorpes",
+      "sourceKeys": [
+        "FoodAndDrink:fd-trawlerman-cleethorpes",
+        "NearbyAttractions:b512cf95-bc6e-4bee-b989-1ef3daa8c263"
+      ],
+      "canonicalPath": "/food-and-drink/trawlerman/cleethorpes"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-vikings-hungry-horse-goole",
+      "primaryKey": "FoodAndDrink:fd-vikings-hungry-horse-goole",
+      "sourceKeys": [
+        "FoodAndDrink:fd-vikings-hungry-horse-goole",
+        "NearbyAttractions:b9b27b4e-1ce0-44e8-b3c3-dc8e76f23bd0"
+      ],
+      "canonicalPath": "/food-and-drink/vikings-hungry-horse/goole"
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-wellow-hungry-horse-cleethorpes",
+      "primaryKey": "FoodAndDrink:fd-wellow-hungry-horse-cleethorpes",
+      "sourceKeys": [
+        "FoodAndDrink:fd-wellow-hungry-horse-cleethorpes",
+        "NearbyAttractions:1aeba3f8-9ff8-4db2-9c67-24f24d8a9773"
+      ],
+      "canonicalPath": "/food-and-drink/wellow-hungry-horse/cleethorpes"
+    }
+  ],
+  "near": [
+    {
+      "sourceKey": "NearbyAttractions:0cd54c57-71e4-4582-b51b-dea0a00b25f7",
+      "title": "Bistro @ The Loch",
+      "proposedCanonicalPath": "/food-and-drink/bistro-the-loch/motherwell"
+    },
+    {
+      "sourceKey": "NearbyAttractions:593fac6e-dcf7-4199-8154-12396855a0c1",
+      "title": "Monterey Jacks",
+      "proposedCanonicalPath": "/food-and-drink/monterey-jacks/motherwell"
+    },
+    {
+      "sourceKey": "NearbyAttractions:612b85b0-8cdc-489c-92e1-4abc06c80343",
+      "title": "Diner by the lanes",
+      "proposedCanonicalPath": "/food-and-drink/diner-by-the-lanes/motherwell"
+    },
+    {
+      "sourceKey": "NearbyAttractions:7e2f0c0b-4619-4ad3-a190-c1a4357bc591",
+      "title": "Sports Bar",
+      "proposedCanonicalPath": "/food-and-drink/sports-bar/motherwell"
+    },
+    {
+      "sourceKey": "NearbyAttractions:8f93237e-2e5d-455d-a79f-521db32a0f74",
+      "title": "Boardwalk Bar",
+      "proposedCanonicalPath": "/food-and-drink/boardwalk-bar/clacton-on-sea"
+    },
+    {
+      "sourceKey": "NearbyAttractions:9829910e-583d-448f-ae22-bf168f5c23b2",
+      "title": "Mario & Dino\u2019s",
+      "proposedCanonicalPath": "/food-and-drink/mario-and-dinos/motherwell"
+    },
+    {
+      "sourceKey": "NearbyAttractions:9d857eaf-578c-4dc3-ba90-985c004bd215",
+      "title": "Beer Garden",
+      "proposedCanonicalPath": "/food-and-drink/beer-garden/motherwell"
+    }
+  ],
+  "affiliate": [
+    {
+      "key": "AffiliateOffers:20e66071-5b35-4580-ac39-58621d3a4a74",
+      "title": "Catch",
+      "canonicalPath": "/food-and-drink/catch/looe"
+    },
+    {
+      "key": "AffiliateOffers:2a1a7c56-ee22-4942-9407-4407fab78238",
+      "title": "The Mermaid Fish Bar",
+      "canonicalPath": "/food-and-drink/the-mermaid-fish-bar/barmouth"
+    },
+    {
+      "key": "AffiliateOffers:6ac925aa-68d5-4d5f-8e5a-9b0e65b831df",
+      "title": "Reel Plaice",
+      "canonicalPath": "/food-and-drink/reel-plaice/ayr"
+    },
+    {
+      "key": "AffiliateOffers:89a3f7f7-1e1a-4fbb-94d7-3d77cfbf173f",
+      "title": "Crispy's of Minehead",
+      "canonicalPath": "/food-and-drink/crispys-of-minehead/minehead"
+    },
+    {
+      "key": "AffiliateOffers:a9b77b7f-1e8f-4846-9fe5-f260c687b988",
+      "title": "Deep Blue South Parade Pier",
+      "canonicalPath": "/food-and-drink/deep-blue-south-parade-pier/portsmouth"
+    },
+    {
+      "key": "AffiliateOffers:d1f50717-b622-4f12-bb70-a19e48ff3ebd",
+      "title": "Seastar Fish And Chips",
+      "canonicalPath": "/food-and-drink/seastar-fish-and-chips/bournemouth"
+    }
+  ]
+}

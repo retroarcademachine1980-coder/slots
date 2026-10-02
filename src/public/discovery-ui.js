@@ -163,8 +163,8 @@ function renderCardItem($item, card) {
     if (!button) return;
 
     try {
-        button.label = resultButtonLabel(card);
-        if (card.route) {
+        button.label = card.routeStatus === 'ready' ? resultButtonLabel(card) : 'Guide unavailable';
+        if (card.routeStatus === 'ready' && card.route) {
             button.link = card.route;
             if (typeof button.enable === 'function') button.enable();
         } else if (typeof button.disable === 'function') {
@@ -254,7 +254,7 @@ export function mountAutoSearchResults($w) {
                     if (typeof repeater.expand === 'function') repeater.expand();
                 } catch (_) {}
                 toggleEmptyStateCopy($w, false);
-                setStatus(status, result.total + (result.total === 1 ? ' result' : ' results'));
+                setStatus(status, result.total + (result.total === 1 ? ' result' : ' results') + (result.unavailableRoutes?.length ? ' · Some guide links are currently unavailable' : ''));
             } else {
                 toggleEmptyStateCopy($w, true);
                 try {

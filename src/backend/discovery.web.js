@@ -1,3 +1,4 @@
+import { publicRouteModel, loadRouteContext } from 'backend/canonicalRouteService';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 import { runUnifiedSearchInternal } from 'backend/searchCore';
@@ -55,6 +56,7 @@ export const searchPlaces = webMethod(Permissions.Anyone, async (query, limit = 
 });
 
 export const getRecommendations = webMethod(Permissions.Anyone, async (options = {}) => {
+    const routeContext = await loadRouteContext({ offers: true });
     const area = plain(options.area).slice(0, 120);
     const limit = Math.max(1, Math.min(100, Number(options.limit) || 24));
 
@@ -81,7 +83,7 @@ export const getRecommendations = webMethod(Permissions.Anyone, async (options =
             description: String(row.shortDescription || row.seoDescription || '').replace(/<[^>]*>/g, '').slice(0, 300),
             image: row.heroImage || '',
             alt: row.exteriorImageAlt || row.title,
-            route: row.shortUrl || '',
+            ...publicRouteModel('Venues', row, routeContext),
             location: row.locationName || '',
             category: row.venueType || 'Venue'
         });
@@ -98,7 +100,7 @@ export const getRecommendations = webMethod(Permissions.Anyone, async (options =
             description: String(row.summary || row.offerText || '').replace(/<[^>]*>/g, '').slice(0, 300),
             image: row.dealImage || row.image || '',
             alt: row.imageAlt || title,
-            route: safeHttps(row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website),
+            ...publicRouteModel('AffiliateOffers', row, routeContext),
             location: row.locationName || row.destination || '',
             category: row.category || 'Recommendation'
         });
@@ -114,16 +116,17 @@ export const getRecommendations = webMethod(Permissions.Anyone, async (options =
             description: String(row.shortDescription || '').replace(/<[^>]*>/g, '').slice(0, 300),
             image: row.heroImage || '',
             alt: row.title,
-            route: safeHttps(row.website || row.googleMapsUrl),
+            ...publicRouteModel('NearbyAttractions', row, routeContext),
             location: row.locationName || '',
             category: row.category || 'Thing to do'
         });
     }
 
-    return cards.slice(0, limit);
+    return cards.filter(card=>card.discoveryAllowed!==false).slice(0, limit);
 });
 
 export const getNearestDestination = webMethod(Permissions.Anyone, async point => {
+    const routeContext = await loadRouteContext({ offers: true });
     const lat = Number(point && point.lat);
     const lng = Number(point && point.lng);
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
@@ -146,7 +149,7 @@ export const getNearestDestination = webMethod(Permissions.Anyone, async point =
         .map(item => ({
             title: item.row.title || '',
             slug: item.row.slug || '',
-            route: item.row.shortUrl || '',
+            ...publicRouteModel('Locations', item.row, routeContext),
             miles: distanceMiles({ lat, lng }, { lat: item.lat, lng: item.lng })
         }))
         .sort((a, b) => a.miles - b.miles);
@@ -166,6 +169,9 @@ async function resolveOffer(id) {
     const row = (recommendation.items || [])[0] || (wowcher.items || [])[0];
     if (!row) throw new Error('This offer is no longer available.');
 
+    const context=await loadRouteContext();
+    const collection=(recommendation.items||[]).length?'AffiliateOffers':'WowcherOffers';
+    if(context.recordPolicies?.[collection+':'+row._id]?.offerActionsAllowed===false)throw new Error('Offer actions are unavailable for this historical or unverified record.');
     const url = safeHttps(
         row.affiliateUrl ||
         row.outboundUrl ||

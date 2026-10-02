@@ -1,3 +1,6 @@
+import { INDEX_ROUTES } from 'public/routes/indexRoutes';
+import { getCanonicalPage } from 'backend/canonicalPages.web';
+import { parseCanonical, ROUTES } from 'public/routes/canonicalRoutes';
 // Server-rendered SEO for Spin Raiders dynamic pages (venues, towns, food and drink).
 // Runs from masterPage.js inside $w.onReady, so Wix renders these tags into the HTML
 // that Google downloads (no JavaScript needed on Google's side).
@@ -15,6 +18,8 @@ import wixSeoFrontend from 'wix-seo-frontend';
 
 const SITE = 'https://www.spin-raiders.com';
 const BRAND = 'Spin Raiders';
+// Wix documents reading links before onReady and preserving unrelated link tags.
+const existingLinks = (wixSeoFrontend.links || []).filter(link => link.rel !== 'canonical');
 
 function clean(value) {
     return String(value || '')
@@ -48,11 +53,6 @@ function wixImageUrl(src) {
     // wix:image://v1/<id>/<name>#... -> static URL
     const m = s.match(/^wix:image:\/\/v1\/([^/]+)\//);
     return m ? `https://static.wixstatic.com/media/${m[1]}` : '';
-}
-
-async function findOne(collection, field, value) {
-    const res = await wixData.query(collection).eq(field, value).limit(1).find({ suppressAuth: false });
-    return res.items[0] || null;
 }
 
 function venueSchemaType(item) {
@@ -113,7 +113,10 @@ async function apply({ title, description, image, url, noindex, schema }) {
         tags.push({ name: 'twitter:image', content: image });
     }
     tags.push({ name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' });
-    if (url) tags.push({ property: 'og:url', content: url });
+    if (url) {
+        tags.push({ property: 'og:url', content: url });
+        tasks.push(wixSeoFrontend.setLinks([...existingLinks, { rel: 'canonical', href: url }]));
+    }
     tags.push({ property: 'og:site_name', content: BRAND });
     tags.push({ property: 'og:type', content: 'website' });
     tags.push({ property: 'og:locale', content: 'en_GB' });
@@ -123,9 +126,8 @@ async function apply({ title, description, image, url, noindex, schema }) {
     await Promise.all(tasks);
 }
 
-async function venuePage(slug) {
-    const path = `/arcade-venues/${slug}`;
-    const item = (await findOne('Venues', 'link-arcade-venues-title', path)) || (await findOne('Venues', 'slug', slug));
+async function venuePage(resolved) {
+    const item = resolved.row, path = resolved.route.path;
     if (!item) return;
     const name = first(item.displayTitle, item.title);
     const town = first(item.town, item.city, item.locationName);
@@ -134,7 +136,7 @@ async function venuePage(slug) {
     const description = first(item.seoDescription, item.shortDescription, item.overview, item.pageIntro, item.detailedReview);
     const image = wixImageUrl(item.mainImage || item.heroImage);
     const url = SITE + path;
-    const live = item.directoryReady !== false && item.pageReady !== false;
+    const live = resolved.route.indexable !== false && item.directoryReady !== false && item.pageReady !== false;
     const place = {
         '@context': 'https://schema.org',
         '@type': venueSchemaType(item),
@@ -149,13 +151,13 @@ async function venuePage(slug) {
         sameAs: /^https?:\/\//.test(item.website || '') ? [item.website] : undefined,
     };
     const crumbs = [{ name: 'Home', path: '/' }];
-    if (item.locationSlug && town) crumbs.push({ name: town, path: `/destination/${item.locationSlug}` });
+    // Related destination crumbs require an independently resolved native path.
     crumbs.push({ name, path });
     await apply({ title, description, image, url, noindex: !live, schema: [place, breadcrumbs(crumbs)] });
 }
 
-async function townPage(slug) {
-    const item = await findOne('Locations', 'slug', slug);
+async function townPage(resolved) {
+    const item = resolved.row, slug = resolved.route.path.split('/').pop();
     if (!item) return;
     const name = first(item.title);
     const title = first(item.seoTitle, `${name} Days Out: Arcades, Bowling & Things to Do | ${BRAND}`);
@@ -193,11 +195,8 @@ async function townPage(slug) {
     });
 }
 
-async function foodPage(townSlug, urlName) {
-    const path = `/food-and-drink/${townSlug}/${urlName}`;
-    let item = null;
-    const res = await wixData.query('FoodAndDrink').eq('townSlug', townSlug).eq('urlName', urlName).limit(1).find();
-    item = res.items[0] || null;
+async function foodPage(resolved) {
+    const item = resolved.row, path = resolved.route.path;
     if (!item) return;
     const name = first(item.displayName, item.title);
     const town = first(item.town);
@@ -217,9 +216,9 @@ async function foodPage(townSlug, urlName) {
         geo: geo(item),
     };
     const crumbs = [{ name: 'Home', path: '/' }, { name: 'Food & Drink', path: '/food-and-drink' }];
-    if (town) crumbs.push({ name: town, path: `/destination/${townSlug}` });
+    // Never synthesize a destination link from a potentially different CMS slug.
     crumbs.push({ name, path });
-    await apply({ title, description, image, url, noindex: item.directoryReady === false, schema: [place, breadcrumbs(crumbs)] });
+    await apply({ title, description, image, url, noindex: resolved.route.indexable === false || item.directoryReady === false, schema: [place, breadcrumbs(crumbs)] });
 }
 
 const HOME_TITLE = 'UK Days Out, Road Trips & Family Adventures | Spin Raiders';
@@ -270,15 +269,43 @@ async function homePage() {
     });
 }
 
-export async function applyPageSeo(pathParts) {
-    try {
-        const parts = (pathParts || []).map((p) => decodeURIComponent(String(p)).toLowerCase());
-        if (!parts.length || (parts.length === 1 && parts[0] === 'home')) return await homePage();
-        if (parts[0] === 'arcade-venues' && parts[1]) return await venuePage(parts[1]);
-        if (parts[0] === 'destination' && parts[1]) return await townPage(parts[1]);
-        if (parts[0] === 'food-and-drink' && parts[1] && parts[2]) return await foodPage(parts[1], parts[2]);
-        if (parts.length === 1 && GENERAL_PAGE_SEO[parts[0]]) return await generalPage(parts[0]);
-    } catch (err) {
-        console.warn('Spin Raiders SEO skipped', err);
+async function canonicalDetailPage(resolved) {
+    const item = resolved.row, route = resolved.route;
+    if (route.routeType === 'historical' || route.routeType === 'unverified') {
+        const name=first(item.displayTitle,item.displayName,item.title,item.name);
+        return apply({title:first(item.seoTitle,name+' | '+BRAND),description:route.contentNotice,url:route.canonicalUrl,noindex:true,schema:[{'@context':'https://schema.org','@type':'Article',headline:name,url:route.canonicalUrl,description:route.contentNotice}]});
     }
+    if (route.kind === 'destination') return townPage(resolved);
+    if (route.kind === 'food') return foodPage(resolved);
+    if (route.kind === 'arcade') return venuePage(resolved);
+    const name = first(item.displayTitle, item.displayName, item.title, item.name);
+    const description = first(item.seoDescription, item.shortDescription, item.summary, item.overview);
+    const image = wixImageUrl(item.mainImage || item.heroImage || item.cardImage || item.image);
+    const type = route.routeType === 'operator' ? 'Organization' : route.kind === 'hotel' ? 'Hotel' : route.kind === 'machine' ? 'Thing' : venueSchemaType(item);
+    await apply({ title: first(item.seoTitle, name + ' | ' + BRAND), description, image,
+        url: route.canonicalUrl, noindex: route.indexable === false || item.pageReady === false || item.directoryReady === false,
+        schema: [{ '@context': 'https://schema.org', '@type': type, name, url: route.canonicalUrl,
+            description: clip(description, 300), image: image || undefined },
+            breadcrumbs([{ name: 'Home', path: '/' }, { name, path: route.path }])] });
+}
+export async function applyPageSeo(pathParts, routerData) {
+    try {
+        if (routerData?.view === 'index' && [...Object.values(ROUTES), ...Object.values(INDEX_ROUTES)].some(route => route.prefix === routerData.route?.path)) {
+            await wixSeoFrontend.setLinks([...existingLinks, { rel: 'canonical', href: SITE + routerData.route.path }]);
+            return; // Preserve exact native/router landing title, description and artwork.
+        }
+        if (routerData?.view === 'detail' && routerData.record && parseCanonical(routerData.route?.path).ok) {
+            return canonicalDetailPage({ row: routerData.record, route: routerData.route });
+        }
+        const parts = (pathParts || []).map(String);
+        if (!parts.length || (parts.length === 1 && parts[0] === 'home')) return await homePage();
+        const path = '/' + parts.join('/'), canonical = parseCanonical(path);
+        if (canonical.ok && canonical.kind !== 'machineIndex') {
+            const result = await getCanonicalPage(path);
+            if (result.status === 200) return await canonicalDetailPage(result);
+            await wixSeoFrontend.setLinks(existingLinks);
+            return await apply({ noindex: true });
+        }
+        if (parts.length === 1 && GENERAL_PAGE_SEO[parts[0]]) return await generalPage(parts[0]);
+    } catch (err) { console.warn('Spin Raiders SEO unavailable', err); }
 }

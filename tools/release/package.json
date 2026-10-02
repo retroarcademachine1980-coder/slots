@@ -1,0 +1,6 @@
+{
+  "name": "spin-raiders-release-tooling",
+  "private": true,
+  "type": "module",
+  "dependencies": {"acorn":"8.18.0","terser":"5.44.0","jsdom":"26.1.0"}
+}

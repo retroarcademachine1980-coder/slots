@@ -1,4 +1,7 @@
-import { ok, serverError } from 'wix-http-functions';
+import { releaseIdentity } from 'public/routes/releaseIdentity';
+import { routeManifest } from 'public/routes/routeManifest.generated';
+import { resolveRouteRequests, resolveRoutePath, resolveLegacyAlias, resolveLinkRequests } from 'backend/canonicalRoutesApi';
+import { ok, serverError, badRequest } from 'wix-http-functions';
 import { fetch } from 'wix-fetch';
 import { runUnifiedSearchInternal } from 'backend/searchCore';
 
@@ -52,4 +55,37 @@ export async function get_fuelAverage() {
         if (fuelCache) return ok({ headers, body: JSON.stringify({ ...fuelCache, stale: true }) });
         return serverError({ headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Fuel prices temporarily unavailable' }) });
     }
+}
+
+// Read-only route service. Original CMS permissions remain in force; no suppressAuth.
+export async function post_canonicalRoutes(request) {
+    const headers = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
+    try {
+        const body = await request.body.json();
+        const result = await resolveRouteRequests(body?.requests);
+        return (result.ok ? ok : badRequest)({ headers, body: JSON.stringify({ ...result, fingerprint: releaseIdentity(routeManifest) }) });
+    } catch { return serverError({ headers, body: JSON.stringify({ ok: false, code: 'route_service_unavailable' }) }); }
+}
+export async function get_canonicalRoute(request) {
+    try { return ok({ headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }, body: JSON.stringify({ ...await resolveRoutePath(request.query.path), fingerprint: releaseIdentity(routeManifest) }) }); }
+    catch { return serverError({ body: JSON.stringify({ status: 503, issue: 'route_service_unavailable' }) }); }
+}
+export async function get_canonicalAlias(request) {
+    try { return ok({ headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }, body: JSON.stringify({ ...await resolveLegacyAlias(request.query.input), fingerprint: releaseIdentity(routeManifest) }) }); }
+    catch { return serverError({ body: JSON.stringify({ ok: false, code: 'route_service_unavailable' }) }); }
+}
+
+// Immutable build identity for exact candidate/test-to-production verification.
+// This observes code identity. It does not toggle routing or read/write a CMS flag.
+export function get_canonicalFingerprint() {
+    return ok({ headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+        body: JSON.stringify(releaseIdentity(routeManifest)) });
+}
+
+export async function post_canonicalLinks(request) {
+    const headers = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
+    try {
+        const body = await request.body.json(), result = await resolveLinkRequests(body?.inputs);
+        return (result.ok ? ok : badRequest)({ headers, body: JSON.stringify({ ...result, fingerprint: releaseIdentity(routeManifest) }) });
+    } catch { return serverError({ headers, body: JSON.stringify({ ok: false, code: 'route_service_unavailable' }) }); }
 }

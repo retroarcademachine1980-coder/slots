@@ -1,0 +1,892 @@
+{
+  "header": "/* Spin Raiders unified runtime; generated bundles share this source. */\n",
+  "modules": [
+    {
+      "id": "1.1",
+      "number": 1,
+      "name": "Spin Raiders canonical route authority",
+      "generated": "generated/routes-authority.js"
+    },
+    {
+      "id": "2.1",
+      "number": 2,
+      "name": "Spin Raiders route hydration and unavailable states",
+      "file": "002-01-spin-raiders-route-hydration-and-unavailable-states.js"
+    },
+    {
+      "id": "141.1",
+      "number": 141,
+      "name": "Spin Raiders authoritative rich-content links",
+      "file": "141-01-spin-raiders-authoritative-rich-content-links.js"
+    },
+    {
+      "id": "142.1",
+      "number": 142,
+      "name": "Spin Raiders original public source preservation",
+      "file": "142-01-spin-raiders-original-public-source-preservation.js"
+    },
+    {
+      "id": "140.1",
+      "number": 140,
+      "name": "Spin Raiders canonical curated cards",
+      "file": "140-01-spin-raiders-canonical-curated-cards.js"
+    },
+    {
+      "id": "138.1",
+      "number": 138,
+      "name": "Spin Raiders canonical detail lifecycle",
+      "file": "138-01-spin-raiders-canonical-detail-lifecycle.js"
+    },
+    {
+      "id": "137.1",
+      "number": 137,
+      "name": "Spin Raiders incoming legacy alias resolver",
+      "file": "137-01-spin-raiders-incoming-legacy-alias-resolver.js"
+    },
+    {
+      "id": "5.1",
+      "number": 5,
+      "name": "Spin Raiders Seaside Skin core.js",
+      "file": "005-01-spin-raiders-seaside-skin-core-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded core.js */ null",
+          "file": "seaside/core.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "6.1",
+      "number": 6,
+      "name": "Spin Raiders Seaside Skin pages.js",
+      "file": "006-01-spin-raiders-seaside-skin-pages-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded pages.js */ null",
+          "file": "seaside/pages.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "7.1",
+      "number": 7,
+      "name": "Spin Raiders Seaside Skin bootstrap.js",
+      "file": "007-01-spin-raiders-seaside-skin-bootstrap-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded bootstrap.js */ null",
+          "file": "seaside/bootstrap.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "8.1",
+      "number": 8,
+      "name": "Spin Raiders Clean Rebuild Preview map.js",
+      "file": "008-01-spin-raiders-clean-rebuild-preview-map-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded map.js */ null",
+          "file": "seaside/map.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "9.1",
+      "number": 9,
+      "name": "Spin Raiders Seaside Skin adult.js",
+      "file": "009-01-spin-raiders-seaside-skin-adult-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded adult.js */ null",
+          "file": "seaside/adult.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "10.1",
+      "number": 10,
+      "name": "Spin Raiders Seaside Skin archive.js",
+      "file": "010-01-spin-raiders-seaside-skin-archive-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded archive.js */ null",
+          "file": "seaside/archive.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "11.1",
+      "number": 11,
+      "name": "Spin Raiders Seaside Skin native.js",
+      "file": "011-01-spin-raiders-seaside-skin-native-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded native.js */ null",
+          "file": "seaside/native.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "12.1",
+      "number": 12,
+      "name": "Spin Raiders Seaside Skin reports.js",
+      "file": "012-01-spin-raiders-seaside-skin-reports-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded reports.js */ null",
+          "file": "seaside/reports.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "13.1",
+      "number": 13,
+      "name": "Spin Raiders Clean Rebuild Preview style-1.css",
+      "file": "013-01-spin-raiders-clean-rebuild-preview-style-1-css.js",
+      "embeds": [
+        {
+          "token": "/* @embedded style-1.css */ null",
+          "file": "seaside/style-1.css",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "14.1",
+      "number": 14,
+      "name": "Spin Raiders Clean Rebuild Preview style-2.css",
+      "file": "014-01-spin-raiders-clean-rebuild-preview-style-2-css.js",
+      "embeds": [
+        {
+          "token": "/* @embedded style-2.css */ null",
+          "file": "seaside/style-2.css",
+          "trailingNewline": true
+        }
+      ]
+    },
+    {
+      "id": "15.1",
+      "number": 15,
+      "name": "Spin Raiders Seaside Skin archive-quality.js",
+      "file": "015-01-spin-raiders-seaside-skin-archive-quality-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded archive-quality.js */ null",
+          "file": "seaside/archive-quality.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "16.1",
+      "number": 16,
+      "name": "Spin Raiders Factual Ratings Policy 20260911",
+      "file": "016-01-spin-raiders-factual-ratings-policy-20260911.js",
+      "embeds": [
+        {
+          "token": "/* @embedded ratings-policy.js */ null",
+          "file": "seaside/ratings-policy.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "17.1",
+      "number": 17,
+      "name": "Spin Raiders Seaside Skin offers.js",
+      "file": "017-01-spin-raiders-seaside-skin-offers-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded offers.js */ null",
+          "file": "seaside/offers.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "18.1",
+      "number": 18,
+      "name": "Spin Raiders Proper Casinos 01",
+      "file": "018-01-spin-raiders-proper-casinos-01.js"
+    },
+    {
+      "id": "18.2",
+      "number": 18,
+      "name": "Spin Raiders Proper Casinos 01",
+      "file": "018-02-spin-raiders-proper-casinos-01.js"
+    },
+    {
+      "id": "19.1",
+      "number": 19,
+      "name": "Spin Raiders Proper Casinos 02",
+      "file": "019-01-spin-raiders-proper-casinos-02.js"
+    },
+    {
+      "id": "19.2",
+      "number": 19,
+      "name": "Spin Raiders Proper Casinos 02",
+      "file": "019-02-spin-raiders-proper-casinos-02.js"
+    },
+    {
+      "id": "20.1",
+      "number": 20,
+      "name": "Spin Raiders Proper Casinos 03",
+      "file": "020-01-spin-raiders-proper-casinos-03.js"
+    },
+    {
+      "id": "20.2",
+      "number": 20,
+      "name": "Spin Raiders Proper Casinos 03",
+      "file": "020-02-spin-raiders-proper-casinos-03.js"
+    },
+    {
+      "id": "21.1",
+      "number": 21,
+      "name": "Spin Raiders Proper Casinos 04",
+      "file": "021-01-spin-raiders-proper-casinos-04.js"
+    },
+    {
+      "id": "21.2",
+      "number": 21,
+      "name": "Spin Raiders Proper Casinos 04",
+      "file": "021-02-spin-raiders-proper-casinos-04.js"
+    },
+    {
+      "id": "21.3",
+      "number": 21,
+      "name": "Spin Raiders Proper Casinos 04",
+      "file": "021-03-spin-raiders-proper-casinos-04.js"
+    },
+    {
+      "id": "22.1",
+      "number": 22,
+      "name": "Spin Raiders Proper Casinos 05",
+      "file": "022-01-spin-raiders-proper-casinos-05.js"
+    },
+    {
+      "id": "22.2",
+      "number": 22,
+      "name": "Spin Raiders Proper Casinos 05",
+      "file": "022-02-spin-raiders-proper-casinos-05.js"
+    },
+    {
+      "id": "23.1",
+      "number": 23,
+      "name": "Spin Raiders Proper Casinos 06",
+      "file": "023-01-spin-raiders-proper-casinos-06.js"
+    },
+    {
+      "id": "23.2",
+      "number": 23,
+      "name": "Spin Raiders Proper Casinos 06",
+      "file": "023-02-spin-raiders-proper-casinos-06.js"
+    },
+    {
+      "id": "24.1",
+      "number": 24,
+      "name": "Spin Raiders UK Map SEO",
+      "file": "024-01-spin-raiders-uk-map-seo.js"
+    },
+    {
+      "id": "25.1",
+      "number": 25,
+      "name": "Spin Raiders Verified Venue Photo Galleries V1",
+      "file": "025-01-spin-raiders-verified-venue-photo-galleries-v1.js"
+    },
+    {
+      "id": "25.2",
+      "number": 25,
+      "name": "Spin Raiders Verified Venue Photo Galleries V1",
+      "file": "025-02-spin-raiders-verified-venue-photo-galleries-v1.js"
+    },
+    {
+      "id": "27.1",
+      "number": 27,
+      "name": "Spin Raiders About Directory Page 20260911",
+      "file": "027-01-spin-raiders-about-directory-page-20260911.js"
+    },
+    {
+      "id": "28.1",
+      "number": 28,
+      "name": "Spin Raiders Arcade Life fun.js",
+      "file": "028-01-spin-raiders-arcade-life-fun-js.js",
+      "embeds": [
+        {
+          "token": "/* @embedded fun.js */ null",
+          "file": "seaside/fun.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "29.1",
+      "number": 29,
+      "name": "Spin Raiders Arcade Life fun.css",
+      "file": "029-01-spin-raiders-arcade-life-fun-css.js",
+      "embeds": [
+        {
+          "token": "/* @embedded fun.css */ null",
+          "file": "seaside/fun.css",
+          "trailingNewline": true
+        }
+      ]
+    },
+    {
+      "id": "30.1",
+      "number": 30,
+      "name": "Spin Raiders Casino Design styles",
+      "file": "030-01-spin-raiders-casino-design-styles.js",
+      "embeds": [
+        {
+          "token": "/* @embedded casino-design.css */ null",
+          "file": "seaside/casino-design.css",
+          "trailingNewline": true
+        }
+      ]
+    },
+    {
+      "id": "31.1",
+      "number": 31,
+      "name": "Spin Raiders Casino Design layout",
+      "file": "031-01-spin-raiders-casino-design-layout.js",
+      "embeds": [
+        {
+          "token": "/* @embedded casino-layout.js */ null",
+          "file": "seaside/casino-layout.js",
+          "trailingNewline": false
+        }
+      ]
+    },
+    {
+      "id": "34.1",
+      "number": 34,
+      "name": "Spin Raiders Progressive Loading",
+      "file": "034-01-spin-raiders-progressive-loading.js"
+    },
+    {
+      "id": "35.1",
+      "number": 35,
+      "name": "Spin Raiders RaiderTube Cinema",
+      "file": "035-01-spin-raiders-raidertube-cinema.js"
+    },
+    {
+      "id": "37.1",
+      "number": 37,
+      "name": "Spin Raiders shared page frame v2 20260923",
+      "file": "037-01-spin-raiders-shared-page-frame-v2-20260923.js"
+    },
+    {
+      "id": "38.1",
+      "number": 38,
+      "name": "Discovery Controls and Canonical Places",
+      "file": "038-01-discovery-controls-and-canonical-places.js"
+    },
+    {
+      "id": "40.1",
+      "number": 40,
+      "name": "Spin Raiders inner design September 2026",
+      "file": "040-01-spin-raiders-inner-design-september-2026.js"
+    },
+    {
+      "id": "41.1",
+      "number": 41,
+      "name": "Spin Raiders planner design September 2026",
+      "file": "041-01-spin-raiders-planner-design-september-2026.js"
+    },
+    {
+      "id": "42.1",
+      "number": 42,
+      "name": "Spin Raiders shared trip selection storage",
+      "file": "042-01-spin-raiders-shared-trip-selection-storage.js"
+    },
+    {
+      "id": "43.1",
+      "number": 43,
+      "name": "Spin Raiders inner experience September 2026",
+      "file": "043-01-spin-raiders-inner-experience-september-2026.js"
+    },
+    {
+      "id": "44.1",
+      "number": 44,
+      "name": "Spin Raiders trip coordinates 1",
+      "file": "044-01-spin-raiders-trip-coordinates-1.js"
+    },
+    {
+      "id": "45.1",
+      "number": 45,
+      "name": "Spin Raiders trip coordinates 2",
+      "file": "045-01-spin-raiders-trip-coordinates-2.js"
+    },
+    {
+      "id": "46.1",
+      "number": 46,
+      "name": "Spin Raiders Early Native Shell Guard 20260918",
+      "file": "046-01-spin-raiders-early-native-shell-guard-20260918.js"
+    },
+    {
+      "id": "47.1",
+      "number": 47,
+      "name": "Spin Raiders Venue Photo Renderer 20260919",
+      "file": "047-01-spin-raiders-venue-photo-renderer-20260919.js"
+    },
+    {
+      "id": "48.1",
+      "number": 48,
+      "name": "Spin Raiders Directory First Search and Local Listings",
+      "file": "048-01-spin-raiders-directory-first-search-and-local-listings.js"
+    },
+    {
+      "id": "49.1",
+      "number": 49,
+      "name": "Spin Raiders Universal Location V2 Skin",
+      "file": "049-01-spin-raiders-universal-location-v2-skin.js"
+    },
+    {
+      "id": "50.1",
+      "number": 50,
+      "name": "Spin Raiders homepage CMS selections September 2026",
+      "file": "050-01-spin-raiders-homepage-cms-selections-september-2026.js"
+    },
+    {
+      "id": "52.1",
+      "number": 52,
+      "name": "Spin Raiders front page styles v5 20260923",
+      "file": "052-01-spin-raiders-front-page-styles-v5-20260923.js"
+    },
+    {
+      "id": "55.1",
+      "number": 55,
+      "name": "Spin Raiders category content 1 20260922",
+      "file": "055-01-spin-raiders-category-content-1-20260922.js"
+    },
+    {
+      "id": "56.1",
+      "number": 56,
+      "name": "Spin Raiders category content 2 20260922",
+      "file": "056-01-spin-raiders-category-content-2-20260922.js"
+    },
+    {
+      "id": "57.1",
+      "number": 57,
+      "name": "Spin Raiders category content 3 20260922",
+      "file": "057-01-spin-raiders-category-content-3-20260922.js"
+    },
+    {
+      "id": "58.1",
+      "number": 58,
+      "name": "Spin Raiders category content 4 20260922",
+      "file": "058-01-spin-raiders-category-content-4-20260922.js"
+    },
+    {
+      "id": "59.1",
+      "number": 59,
+      "name": "Spin Raiders category content 5 20260922",
+      "file": "059-01-spin-raiders-category-content-5-20260922.js"
+    },
+    {
+      "id": "60.1",
+      "number": 60,
+      "name": "Spin Raiders category content 6 20260922",
+      "file": "060-01-spin-raiders-category-content-6-20260922.js"
+    },
+    {
+      "id": "61.1",
+      "number": 61,
+      "name": "Spin Raiders category icons 20260922",
+      "file": "061-01-spin-raiders-category-icons-20260922.js"
+    },
+    {
+      "id": "62.1",
+      "number": 62,
+      "name": "Spin Raiders category styles v2 20260923",
+      "file": "062-01-spin-raiders-category-styles-v2-20260923.js"
+    },
+    {
+      "id": "63.1",
+      "number": 63,
+      "name": "Spin Raiders category renderer v2 20260923",
+      "file": "063-01-spin-raiders-category-renderer-v2-20260923.js"
+    },
+    {
+      "id": "64.1",
+      "number": 64,
+      "name": "Spin Raiders fishing content 20260922",
+      "file": "064-01-spin-raiders-fishing-content-20260922.js"
+    },
+    {
+      "id": "65.1",
+      "number": 65,
+      "name": "Spin Raiders directory components 20260922",
+      "file": "065-01-spin-raiders-directory-components-20260922.js"
+    },
+    {
+      "id": "66.1",
+      "number": 66,
+      "name": "Spin Raiders directory styles 20260922",
+      "file": "066-01-spin-raiders-directory-styles-20260922.js"
+    },
+    {
+      "id": "67.1",
+      "number": 67,
+      "name": "Spin Raiders approved search layout CSS 20260922",
+      "file": "067-01-spin-raiders-approved-search-layout-css-20260922.js"
+    },
+    {
+      "id": "68.1",
+      "number": 68,
+      "name": "Spin Raiders approved search layout renderer 20260922",
+      "file": "068-01-spin-raiders-approved-search-layout-renderer-20260922.js"
+    },
+    {
+      "id": "69.1",
+      "number": 69,
+      "name": "Spin Raiders approved interactive map styles 20260922",
+      "file": "069-01-spin-raiders-approved-interactive-map-styles-20260922.js"
+    },
+    {
+      "id": "70.1",
+      "number": 70,
+      "name": "Spin Raiders approved interactive map renderer 20260922",
+      "file": "070-01-spin-raiders-approved-interactive-map-renderer-20260922.js"
+    },
+    {
+      "id": "71.1",
+      "number": 71,
+      "name": "Spin Raiders approved archive styles 20260922",
+      "file": "071-01-spin-raiders-approved-archive-styles-20260922.js"
+    },
+    {
+      "id": "72.1",
+      "number": 72,
+      "name": "Spin Raiders machine page v2 20260923",
+      "file": "072-01-spin-raiders-machine-page-v2-20260923.js"
+    },
+    {
+      "id": "73.1",
+      "number": 73,
+      "name": "Spin Raiders approved archive landing 20260922",
+      "file": "073-01-spin-raiders-approved-archive-landing-20260922.js"
+    },
+    {
+      "id": "75.1",
+      "number": 75,
+      "name": "Spin Raiders venue page styles v3 20260923",
+      "file": "075-01-spin-raiders-venue-page-styles-v3-20260923.js"
+    },
+    {
+      "id": "76.1",
+      "number": 76,
+      "name": "Spin Raiders additional page definitions",
+      "file": "076-01-spin-raiders-additional-page-definitions.js"
+    },
+    {
+      "id": "77.1",
+      "number": 77,
+      "name": "Spin Raiders additional page styles",
+      "file": "077-01-spin-raiders-additional-page-styles.js"
+    },
+    {
+      "id": "78.1",
+      "number": 78,
+      "name": "Spin Raiders additional page layouts",
+      "file": "078-01-spin-raiders-additional-page-layouts.js"
+    },
+    {
+      "id": "79.1",
+      "number": 79,
+      "name": "Spin Raiders public directory adapter",
+      "file": "079-01-spin-raiders-public-directory-adapter.js"
+    },
+    {
+      "id": "80.1",
+      "number": 80,
+      "name": "Spin Raiders account and trip styles",
+      "file": "080-01-spin-raiders-account-and-trip-styles.js"
+    },
+    {
+      "id": "81.1",
+      "number": 81,
+      "name": "Spin Raiders trip builder design",
+      "file": "081-01-spin-raiders-trip-builder-design.js"
+    },
+    {
+      "id": "82.1",
+      "number": 82,
+      "name": "Spin Raiders My Trips and dashboard",
+      "file": "082-01-spin-raiders-my-trips-and-dashboard.js"
+    },
+    {
+      "id": "83.1",
+      "number": 83,
+      "name": "Spin Raiders trip and account routes",
+      "file": "083-01-spin-raiders-trip-and-account-routes.js"
+    },
+    {
+      "id": "84.1",
+      "number": 84,
+      "name": "Spin Raiders venue-machines 20260922",
+      "file": "084-01-spin-raiders-venue-machines-20260922.js"
+    },
+    {
+      "id": "85.1",
+      "number": 85,
+      "name": "Spin Raiders newsletter 20260922",
+      "file": "085-01-spin-raiders-newsletter-20260922.js"
+    },
+    {
+      "id": "87.1",
+      "number": 87,
+      "name": "Spin Raiders offers design support 20260922",
+      "file": "087-01-spin-raiders-offers-design-support-20260922.js"
+    },
+    {
+      "id": "88.1",
+      "number": 88,
+      "name": "Spin Raiders offers reference CSS 20260922",
+      "file": "088-01-spin-raiders-offers-reference-css-20260922.js"
+    },
+    {
+      "id": "89.1",
+      "number": 89,
+      "name": "Spin Raiders glossy icon set 20260923",
+      "file": "089-01-spin-raiders-glossy-icon-set-20260923.js"
+    },
+    {
+      "id": "90.1",
+      "number": 90,
+      "name": "Spin Raiders category mockup art 20260923",
+      "file": "090-01-spin-raiders-category-mockup-art-20260923.js"
+    },
+    {
+      "id": "91.1",
+      "number": 91,
+      "name": "Spin Raiders shared shell 20260923",
+      "file": "091-01-spin-raiders-shared-shell-20260923.js"
+    },
+    {
+      "id": "92.1",
+      "number": 92,
+      "name": "Spin Raiders category router compatibility 20260923",
+      "file": "092-01-spin-raiders-category-router-compatibility-20260923.js"
+    },
+    {
+      "id": "93.1",
+      "number": 93,
+      "name": "Spin Raiders machine page styles v2 20260923",
+      "file": "093-01-spin-raiders-machine-page-styles-v2-20260923.js"
+    },
+    {
+      "id": "94.1",
+      "number": 94,
+      "name": "Spin Raiders blog styles v2 20260923",
+      "file": "094-01-spin-raiders-blog-styles-v2-20260923.js"
+    },
+    {
+      "id": "95.1",
+      "number": 95,
+      "name": "Spin Raiders glossy icons + community styles v2 20260923",
+      "file": "095-01-spin-raiders-glossy-icons-community-styles-v2-20260923.js"
+    },
+    {
+      "id": "96.1",
+      "number": 96,
+      "name": "Spin Raiders fruit machine logo cards 20260923",
+      "file": "096-01-spin-raiders-fruit-machine-logo-cards-20260923.js"
+    },
+    {
+      "id": "99.1",
+      "number": 99,
+      "name": "Spin Raiders front page renderer v5 20260923",
+      "file": "099-01-spin-raiders-front-page-renderer-v5-20260923.js"
+    },
+    {
+      "id": "100.1",
+      "number": 100,
+      "name": "Spin Raiders trip cost estimator",
+      "file": "100-01-spin-raiders-trip-cost-estimator.js"
+    },
+    {
+      "id": "101.1",
+      "number": 101,
+      "name": "Spin Raiders member sign-in bridge",
+      "file": "101-01-spin-raiders-member-sign-in-bridge.js"
+    },
+    {
+      "id": "102.1",
+      "number": 102,
+      "name": "Spin Raiders Seaside Skin Loader",
+      "file": "102-01-spin-raiders-seaside-skin-loader.js"
+    },
+    {
+      "id": "103.1",
+      "number": 103,
+      "name": "Spin Raiders category routes 20260922",
+      "file": "103-01-spin-raiders-category-routes-20260922.js"
+    },
+    {
+      "id": "104.1",
+      "number": 104,
+      "name": "RaiderTube Frontend",
+      "file": "104-01-raidertube-frontend.js"
+    },
+    {
+      "id": "105.1",
+      "number": 105,
+      "name": "RaiderTube Global Navigation",
+      "file": "105-01-raidertube-global-navigation.js"
+    },
+    {
+      "id": "106.1",
+      "number": 106,
+      "name": "Spin Raiders Content X 2",
+      "file": "106-01-spin-raiders-content-x-2.js"
+    },
+    {
+      "id": "107.1",
+      "number": 107,
+      "name": "Spin Raiders Content X 1",
+      "file": "107-01-spin-raiders-content-x-1.js"
+    },
+    {
+      "id": "109.1",
+      "number": 109,
+      "name": "Spin Raiders Related News Footer",
+      "file": "109-01-spin-raiders-related-news-footer.js"
+    },
+    {
+      "id": "110.1",
+      "number": 110,
+      "name": "Spin Raiders Casino Review Renderer 20260914",
+      "file": "110-01-spin-raiders-casino-review-renderer-20260914.js"
+    },
+    {
+      "id": "112.1",
+      "number": 112,
+      "name": "Spin Raiders Editorial Depth 20260918",
+      "file": "112-01-spin-raiders-editorial-depth-20260918.js"
+    },
+    {
+      "id": "113.1",
+      "number": 113,
+      "name": "Spin Raiders Hub Editorial Depth 20260918",
+      "file": "113-01-spin-raiders-hub-editorial-depth-20260918.js"
+    },
+    {
+      "id": "114.1",
+      "number": 114,
+      "name": "Spin Raiders SEO DOM Cleanup 20260918",
+      "file": "114-01-spin-raiders-seo-dom-cleanup-20260918.js"
+    },
+    {
+      "id": "115.1",
+      "number": 115,
+      "name": "Spin Raiders Town Offers 20260921",
+      "file": "115-01-spin-raiders-town-offers-20260921.js"
+    },
+    {
+      "id": "116.1",
+      "number": 116,
+      "name": "Spin Raiders Venue Quality Gate 20260921",
+      "file": "116-01-spin-raiders-venue-quality-gate-20260921.js"
+    },
+    {
+      "id": "117.1",
+      "number": 117,
+      "name": "Spin Raiders venue page renderer v3 20260923",
+      "file": "117-01-spin-raiders-venue-page-renderer-v3-20260923.js"
+    },
+    {
+      "id": "118.1",
+      "number": 118,
+      "name": "Spin Raiders UK casino deals page v2 20260923",
+      "file": "118-01-spin-raiders-uk-casino-deals-page-v2-20260923.js"
+    },
+    {
+      "id": "119.1",
+      "number": 119,
+      "name": "Spin Raiders community page v2 20260923",
+      "file": "119-01-spin-raiders-community-page-v2-20260923.js"
+    },
+    {
+      "id": "120.1",
+      "number": 120,
+      "name": "Spin Raiders blog home + post page v2 20260923",
+      "file": "120-01-spin-raiders-blog-home-post-page-v2-20260923.js"
+    },
+    {
+      "id": "122.1",
+      "number": 122,
+      "name": "Spin Raiders Town Deals Strip 20260925",
+      "file": "122-01-spin-raiders-town-deals-strip-20260925.js"
+    },
+    {
+      "id": "123.1",
+      "number": 123,
+      "name": "Spin Raiders Place Page 20260925",
+      "file": "123-01-spin-raiders-place-page-20260925.js"
+    },
+    {
+      "id": "124.1",
+      "number": 124,
+      "name": "Spin Raiders Food and Drink Page 20260925",
+      "file": "124-01-spin-raiders-food-and-drink-page-20260925.js"
+    },
+    {
+      "id": "125.1",
+      "number": 125,
+      "name": "Spin Raiders general page SEO titles 20260928",
+      "file": "125-01-spin-raiders-general-page-seo-titles-20260928.js"
+    },
+    {
+      "id": "130.1",
+      "number": 130,
+      "name": "Spin Raiders browse and return navigation",
+      "file": "130-01-spin-raiders-browse-and-return-navigation.js"
+    },
+    {
+      "id": "131.1",
+      "number": 131,
+      "name": "Spin Raiders automatic cinema showtimes",
+      "file": "131-01-spin-raiders-automatic-cinema-showtimes.js"
+    },
+    {
+      "id": "132.1",
+      "number": 132,
+      "name": "Spin Raiders canonical hotel guide renderer",
+      "file": "132-01-spin-raiders-canonical-hotel-guide-renderer.js"
+    },
+    {
+      "id": "134.1",
+      "number": 134,
+      "name": "Spin Raiders responsive image quality",
+      "file": "134-01-spin-raiders-responsive-image-quality.js"
+    },
+    {
+      "id": "135.1",
+      "number": 135,
+      "name": "Spin Raiders cinema banner",
+      "file": "135-01-spin-raiders-cinema-banner.js"
+    },
+    {
+      "id": "136.1",
+      "number": 136,
+      "name": "Spin Raiders browse tile navigation",
+      "file": "136-01-spin-raiders-browse-tile-navigation.js"
+    },
+    {
+      "id": "139.1",
+      "number": 139,
+      "name": "Spin Raiders canonical machine detail owner",
+      "file": "139-01-spin-raiders-canonical-machine-detail-owner.js"
+    }
+  ]
+}

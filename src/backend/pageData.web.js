@@ -1,3 +1,4 @@
+import { publicRouteModel, loadRouteContext } from 'backend/canonicalRouteService';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 import { runUnifiedSearchInternal } from 'backend/searchCore';
@@ -6,23 +7,14 @@ function plain(value) {
     return String(value || '').replace(/<[^>]*>/g, '').trim();
 }
 
-function first(row, fields) {
-    for (const field of fields) {
-        const value = row && row[field];
-        if (Array.isArray(value) && value.length) return value.join(', ');
-        if (value !== undefined && value !== null && String(value).trim()) return value;
-    }
-    return '';
-}
-
 async function oneBySlug(collection, slug) {
     const value = String(slug || '').trim();
     if (!value) return null;
-    const result = await wixData.query(collection).eq('slug', value).limit(1).find();
-    return (result.items || [])[0] || null;
+    const result = await wixData.query(collection).eq('slug', value).limit(2).find();
+    return result.items?.length === 1 ? result.items[0] : null;
 }
 
-function venueModel(row) {
+function venueModel(row, routeContext) {
     if (!row) return null;
     return {
         _id: row._id,
@@ -62,11 +54,11 @@ function venueModel(row) {
         ].filter(Boolean),
         seoTitle: row.seoTitle || '',
         seoDescription: row.seoDescription || '',
-        route: row.shortUrl || ''
+        ...publicRouteModel('Venues', row, routeContext)
     };
 }
 
-function locationModel(row) {
+function locationModel(row, routeContext) {
     if (!row) return null;
     return {
         _id: row._id,
@@ -97,11 +89,11 @@ function locationModel(row) {
         ].filter(Boolean),
         seoTitle: row.seoTitle || '',
         seoDescription: row.seoDescription || '',
-        route: row.shortUrl || ''
+        ...publicRouteModel('Locations', row, routeContext)
     };
 }
 
-function machineModel(row) {
+function machineModel(row, routeContext) {
     if (!row) return null;
     return {
         _id: row._id,
@@ -126,17 +118,18 @@ function machineModel(row) {
         cardImage: row.cardImage || row.heroImage || '',
         seoTitle: row.seoTitle || '',
         seoDescription: row.seoDescription || '',
-        route: row.shortUrl || ''
+        ...publicRouteModel('ClassicFruitMachines', row, routeContext)
     };
 }
 
 export const getLocationPage = webMethod(Permissions.Anyone, async slug => {
+    const routeContext = await loadRouteContext({ offers: true });
     const row = await oneBySlug('Locations', slug);
     if (!row) return null;
     const status = String(row.locationStatus || '').toLowerCase();
     if (/archived|hold|research in progress/.test(status)) return null;
 
-    const page = locationModel(row);
+    const page = locationModel(row, routeContext);
     const related = await runUnifiedSearchInternal(row.title, { limit: 1000 });
 
     const sections = {
@@ -181,12 +174,13 @@ function mergeRelated(...resultSets) {
 }
 
 export const getVenuePage = webMethod(Permissions.Anyone, async slug => {
+    const routeContext = await loadRouteContext({ offers: true });
     const row = await oneBySlug('Venues', slug);
     if (!row) return null;
     const status = String(row.status || '').toLowerCase();
     if (/duplicate|closed - historical|not a separate venue/.test(status)) return null;
 
-    const page = venueModel(row);
+    const page = venueModel(row, routeContext);
     const searches = await Promise.all([
         row.title ? runUnifiedSearchInternal(row.title, { limit: 250 }) : Promise.resolve({ results: [] }),
         row.locationName ? runUnifiedSearchInternal(row.locationName, { limit: 500 }) : Promise.resolve({ results: [] }),
@@ -202,12 +196,13 @@ export const getVenuePage = webMethod(Permissions.Anyone, async slug => {
 });
 
 export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
+    const routeContext = await loadRouteContext({ offers: true });
     const row = await oneBySlug('ClassicFruitMachines', slug);
     if (!row) return null;
     const status = String(row.variantStatus || '').toLowerCase();
     if (/merged|duplicate|remove|rejected/.test(status)) return null;
 
-    const page = machineModel(row);
+    const page = machineModel(row, routeContext);
     const searches = await Promise.all([
         row.title ? runUnifiedSearchInternal(row.title, { limit: 250 }) : Promise.resolve({ results: [] }),
         row.manufacturer ? runUnifiedSearchInternal(row.manufacturer, { limit: 250 }) : Promise.resolve({ results: [] }),
@@ -224,7 +219,7 @@ export const getMachinePage = webMethod(Permissions.Anyone, async slug => {
 
 
 
-function hotelModel(row) {
+function hotelModel(row, routeContext) {
     if (!row) return null;
     return {
         _id: row._id,
@@ -245,7 +240,7 @@ function hotelModel(row) {
         publicRatingSource: row.publicRatingSource || '',
         publicRatingSourceUrl: row.publicRatingSourceUrl || '',
         offerCount: row.offerCount ?? 0,
-        canonicalUrl: row.canonicalUrl || (row.slug ? '/hotels/' + row.slug : ''),
+        ...publicRouteModel('HotelGuides', row, routeContext),
         nearbyAffiliateLocation: row.nearbyAffiliateLocation || row.locationSlug || '',
         active: row.active !== false
     };
@@ -293,10 +288,11 @@ function nearbyAffiliateModel(row) {
 }
 
 export const getHotelPage = webMethod(Permissions.Anyone, async slug => {
+    const routeContext = await loadRouteContext({ offers: true });
     const row = await oneBySlug('HotelGuides', slug);
     if (!row || row.active === false) return null;
 
-    const page = hotelModel(row);
+    const page = hotelModel(row, routeContext);
 
     const offersResult = await wixData.query('HotelOffers')
         .eq('hotelGuideId', row._id)

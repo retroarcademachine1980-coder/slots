@@ -1,0 +1,4 @@
+(function(){try{
+(()=>{const p=(location.pathname||'/').replace(/\/$/,'')||'/',q=new URLSearchParams(location.search),owned=p==='/'||p==='/map'||p==='/arcades'||p==='/uk-amusement-arcades'||p==='/locations'||p==='/destinations'||p==='/destination-recommendations'||p==='/attractions'||p==='/general-1-1'||p==='/general-8'||p==='/casinos'||p==='/uk-casinos'||p==='/classic-fruit-machines'||/^\/arcade-(venues|locations)\//.test(p)||q.has('sr');if(!owned)return;document.documentElement.classList.add('sr-early-guard');const s=document.createElement('style');s.id='sr-early-guard-style';s.textContent='html.sr-early-guard body #SITE_CONTAINER{visibility:hidden!important}';document.head.append(s);setTimeout(()=>{if(!document.getElementById('sr-seaside-root')){document.documentElement.classList.remove('sr-early-guard');s.remove()}},4000)})();
+}catch(e){console.warn('SR snippet failed: Spin Raiders Early Native Shell Guard 20260918',e)}})();
+

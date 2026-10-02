@@ -1,3 +1,4 @@
+import { publicRouteModel, storedLinkModel, loadRouteContext } from 'backend/canonicalRouteService';
 import wixData from 'wix-data';
 import { Permissions, webMethod } from 'wix-web-module';
 
@@ -23,7 +24,7 @@ function standardCard({
     description,
     image,
     alt,
-    route,
+    route, routeStatus, routeIssue, canonicalUrl, discoveryAllowed, routeNotice, routeType, offerActionsAllowed,
     location,
     displayOrder
 }) {
@@ -35,13 +36,13 @@ function standardCard({
         description: cleanText(description || '').slice(0, 280),
         image: imageValue(image),
         alt: String(alt || title || ''),
-        route: String(route || ''),
+        route, routeStatus, routeIssue, canonicalUrl, discoveryAllowed, routeNotice, routeType, offerActionsAllowed,
         location: String(location || ''),
         displayOrder: Number(displayOrder || 9999)
     };
 }
 
-function feedCard(row) {
+function feedCard(row, routeContext) {
     return standardCard({
         id: row._id,
         title: row.title,
@@ -50,13 +51,13 @@ function feedCard(row) {
         description: row.summary,
         image: row.image,
         alt: row.altText || row.title,
-        route: row.link,
+        ...storedLinkModel(row.link, routeContext),
         location: row.town,
         displayOrder: row.displayOrder
     });
 }
 
-function venueCard(row) {
+function venueCard(row, routeContext) {
     return standardCard({
         id: 'venue:' + row._id,
         title: row.title,
@@ -65,12 +66,12 @@ function venueCard(row) {
         description: row.shortDescription || row.seoDescription || row.overview,
         image: row.heroImage,
         alt: row.exteriorImageAlt || row.title,
-        route: row.shortUrl || '',
+        ...publicRouteModel('Venues', row, routeContext),
         location: row.locationName
     });
 }
 
-function recommendationCard(row) {
+function recommendationCard(row, routeContext) {
     return standardCard({
         id: 'recommendation:' + row._id,
         title: row.displayTitle || row.name || row.offerTitle,
@@ -79,12 +80,12 @@ function recommendationCard(row) {
         description: row.summary || row.offerText,
         image: row.dealImage || row.image,
         alt: row.imageAlt || row.displayTitle || row.name,
-        route: row.affiliateUrl || row.outboundUrl || row.bookingUrl || row.offerUrl || row.website,
+        ...publicRouteModel('AffiliateOffers', row, routeContext),
         location: row.locationName || row.destination
     });
 }
 
-function hotelCard(row) {
+function hotelCard(row, routeContext) {
     return standardCard({
         id: 'hotel:' + row._id,
         title: row.title,
@@ -93,12 +94,12 @@ function hotelCard(row) {
         description: row.guideDetails || row.guideContent,
         image: row.image,
         alt: row.imageAlt || row.title,
-        route: row.canonicalUrl || (row.slug ? '/hotels/' + row.slug : ''),
+        ...publicRouteModel('HotelGuides', row, routeContext),
         location: row.locationName || row.destination
     });
 }
 
-function attractionCard(row) {
+function attractionCard(row, routeContext) {
     return standardCard({
         id: 'attraction:' + row._id,
         title: row.title,
@@ -107,11 +108,7 @@ function attractionCard(row) {
         description: row.shortDescription,
         image: row.heroImage,
         alt: row.title,
-        route: row.website || row.googleMapsUrl || (
-            row.locationSlug && row.slug
-                ? '/destination/' + row.locationSlug + '#' + row.slug
-                : ''
-        ),
+        ...publicRouteModel('NearbyAttractions', row, routeContext),
         location: row.locationName
     });
 }
@@ -129,6 +126,7 @@ function publicAttraction(row) {
 }
 
 export const getHomepageData = webMethod(Permissions.Anyone, async () => {
+    const routeContext = await loadRouteContext({ offers: true });
     const [
         sectionsResult,
         feedResult,
@@ -172,13 +170,13 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
             heading: row.heading || '',
             body: cleanText(row.body || ''),
             primaryCtaLabel: row.primaryCtaLabel || '',
-            primaryCtaUrl: row.primaryCtaUrl || '',
+            primaryCtaRoute: storedLinkModel(row.primaryCtaUrl, routeContext),
             secondaryCtaLabel: row.secondaryCtaLabel || '',
-            secondaryCtaUrl: row.secondaryCtaUrl || '',
+            secondaryCtaRoute: storedLinkModel(row.secondaryCtaUrl, routeContext),
             displayOrder: Number(row.displayOrder || 9999)
         }));
 
-    const feed = (feedResult.items || []).map(feedCard).sort(sortByOrder);
+    const feed = (feedResult.items || []).map(row => feedCard(row, routeContext)).filter(card=>card.discoveryAllowed!==false).sort(sortByOrder);
     const groups = {};
 
     for (const item of feed) {
@@ -190,18 +188,18 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
 
     const featuredVenues = (venueResult.items || [])
         .filter(publicVenue)
-        .map(venueCard)
+        .map(row => venueCard(row, routeContext)).filter(card=>card.discoveryAllowed!==false)
         .slice(0, 6);
 
     const recommendations = recommendationResult.items || [];
 
     const hotels = (hotelResult.items || [])
-        .filter(row => row.title && row.image && row.canonicalUrl)
+        .filter(row => row.title && row.image)
         .sort((a, b) =>
             Number(b.offerCount || 0) - Number(a.offerCount || 0) ||
             String(a.title || '').localeCompare(String(b.title || ''))
         )
-        .map(hotelCard)
+        .map(row => hotelCard(row, routeContext)).filter(card=>card.discoveryAllowed!==false)
         .slice(0, 6);
 
     const food = recommendations
@@ -209,12 +207,12 @@ export const getHomepageData = webMethod(Permissions.Anyone, async () => {
             /food/i.test(String(row.category || '')) &&
             (row.dealImage || row.image)
         )
-        .map(recommendationCard)
+        .map(row => recommendationCard(row, routeContext)).filter(card=>card.discoveryAllowed!==false)
         .slice(0, 6);
 
     const thingsToDo = (attractionResult.items || [])
         .filter(publicAttraction)
-        .map(attractionCard)
+        .map(row => attractionCard(row, routeContext)).filter(card=>card.discoveryAllowed!==false)
         .slice(0, 6);
 
     return {
