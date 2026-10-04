@@ -1,4 +1,0 @@
-(function(){try{
-(()=>{if(window.RTAuth)return;const bar=()=>document.querySelector('#SITE_CONTAINER .wixui-login-social-bar');window.RTAuth={start(){const button=bar()?.querySelector('button[data-testid="handle-button"]');if(button){button.click();let tries=0;const timer=setInterval(()=>{const login=document.querySelector('[data-testid=siteMembersDialogLayout] button[aria-label=\"Already a member? Log In\"]');if(login){clearInterval(timer);login.click()}else if(++tries>=30)clearInterval(timer)},100);return true}return false},member(){const label=bar()?.querySelector('button[data-testid="handle-button"]')?.textContent?.trim()||'';return !!label&&!/^(log in|sign in)$/i.test(label)},name(){return bar()?.querySelector('button[data-testid="handle-button"]')?.textContent?.trim()||'Member'}}})();
-}catch(e){console.warn('SR snippet failed: Spin Raiders member sign-in bridge',e)}})();
-
