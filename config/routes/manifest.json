@@ -42765,7 +42765,7 @@
     },
     {
       "key": "NearbyAttractions:0cd54c57-71e4-4582-b51b-dea0a00b25f7",
-      "path": "/food-and-drink/bistro-the-loch/motherwell",
+      "path": "/food-and-drink/bistro-the-loch-motherwell",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -46025,7 +46025,7 @@
     },
     {
       "key": "NearbyAttractions:593fac6e-dcf7-4199-8154-12396855a0c1",
-      "path": "/food-and-drink/monterey-jacks/motherwell",
+      "path": "/food-and-drink/monterey-jacks-motherwell",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -46285,7 +46285,7 @@
     },
     {
       "key": "NearbyAttractions:612b85b0-8cdc-489c-92e1-4abc06c80343",
-      "path": "/food-and-drink/diner-by-the-lanes/motherwell",
+      "path": "/food-and-drink/diner-by-the-lanes-motherwell",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -47635,7 +47635,7 @@
     },
     {
       "key": "NearbyAttractions:7e2f0c0b-4619-4ad3-a190-c1a4357bc591",
-      "path": "/food-and-drink/sports-bar/motherwell",
+      "path": "/food-and-drink/sports-bar-motherwell",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -48495,7 +48495,7 @@
     },
     {
       "key": "NearbyAttractions:8f93237e-2e5d-455d-a79f-521db32a0f74",
-      "path": "/food-and-drink/boardwalk-bar/clacton-on-sea",
+      "path": "/food-and-drink/boardwalk-bar-clacton-on-sea",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -49044,7 +49044,7 @@
     },
     {
       "key": "NearbyAttractions:9829910e-583d-448f-ae22-bf168f5c23b2",
-      "path": "/food-and-drink/mario-and-dinos/motherwell",
+      "path": "/food-and-drink/mario-and-dinos-motherwell",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -49244,7 +49244,7 @@
     },
     {
       "key": "NearbyAttractions:9d857eaf-578c-4dc3-ba90-985c004bd215",
-      "path": "/food-and-drink/beer-garden/motherwell",
+      "path": "/food-and-drink/beer-garden-motherwell",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54894,7 +54894,7 @@
     },
     {
       "key": "FoodAndDrink:fd-agrah-cleethorpes",
-      "path": "/food-and-drink/agrah/cleethorpes",
+      "path": "/food-and-drink/agrah-cleethorpes",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54904,7 +54904,7 @@
     },
     {
       "key": "FoodAndDrink:fd-farmhouse-beechwood-farm-grimsby",
-      "path": "/food-and-drink/beechwood-farm/grimsby",
+      "path": "/food-and-drink/beechwood-farm-grimsby",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54914,7 +54914,7 @@
     },
     {
       "key": "FoodAndDrink:fd-jug-and-bottle-holton-le-clay",
-      "path": "/food-and-drink/jug-and-bottle/grimsby",
+      "path": "/food-and-drink/jug-and-bottle-grimsby",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54924,7 +54924,7 @@
     },
     {
       "key": "FoodAndDrink:fd-masala-n-malt-grimsby",
-      "path": "/food-and-drink/masala-n-malt/grimsby",
+      "path": "/food-and-drink/masala-malt-grimsby",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54934,7 +54934,7 @@
     },
     {
       "key": "FoodAndDrink:fd-millers-waltham",
-      "path": "/food-and-drink/millers/grimsby",
+      "path": "/food-and-drink/millers-grimsby",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54944,7 +54944,7 @@
     },
     {
       "key": "FoodAndDrink:fd-oriental-express-cleethorpes",
-      "path": "/food-and-drink/oriental-express/cleethorpes",
+      "path": "/food-and-drink/oriental-express-cleethorpes",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54954,7 +54954,7 @@
     },
     {
       "key": "FoodAndDrink:fd-pear-tree-humberston",
-      "path": "/food-and-drink/pear-tree/cleethorpes",
+      "path": "/food-and-drink/pear-tree-cleethorpes",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54964,7 +54964,7 @@
     },
     {
       "key": "FoodAndDrink:fd-pizza-parlour-grimsby",
-      "path": "/food-and-drink/pizza-parlour/grimsby",
+      "path": "/food-and-drink/pizza-parlour-grimsby",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54974,7 +54974,7 @@
     },
     {
       "key": "FoodAndDrink:fd-trawlerman-cleethorpes",
-      "path": "/food-and-drink/trawlerman/cleethorpes",
+      "path": "/food-and-drink/trawlerman-cleethorpes",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54984,7 +54984,7 @@
     },
     {
       "key": "FoodAndDrink:fd-vikings-hungry-horse-goole",
-      "path": "/food-and-drink/vikings-hungry-horse/goole",
+      "path": "/food-and-drink/vikings-hungry-horse-goole",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -54994,7 +54994,7 @@
     },
     {
       "key": "FoodAndDrink:fd-wellow-hungry-horse-cleethorpes",
-      "path": "/food-and-drink/wellow-hungry-horse/cleethorpes",
+      "path": "/food-and-drink/wellow-hungry-horse-cleethorpes",
       "evidence": "Identity-proven source group; display review still blocked",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64886,7 +64886,7 @@
     },
     {
       "key": "AffiliateOffers:006700d7-6b80-4d80-b6f4-70f7bd3b6017",
-      "path": "/food-and-drink/colmans-fish-and-chips/south-shields",
+      "path": "/food-and-drink/colmans-fish-and-chips-south-shields",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64896,7 +64896,7 @@
     },
     {
       "key": "AffiliateOffers:061dce12-8d5e-4d2a-8b82-9ac6a2426d6e",
-      "path": "/food-and-drink/boardwalk-bar-and-grill/clacton-on-sea",
+      "path": "/food-and-drink/boardwalk-bar-and-grill-clacton-on-sea",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64906,7 +64906,7 @@
     },
     {
       "key": "AffiliateOffers:0edb4130-1ee7-44cc-b1b0-a41023bb75a2",
-      "path": "/food-and-drink/jass-fish-and-chips/towyn",
+      "path": "/food-and-drink/jass-fish-and-chips-towyn",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64916,7 +64916,7 @@
     },
     {
       "key": "AffiliateOffers:16165935-b68a-4a9f-97aa-0c12b73c9878",
-      "path": "/food-and-drink/ocean-fish-bar/cleethorpes",
+      "path": "/food-and-drink/ocean-fish-bar-cleethorpes",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64936,7 +64936,7 @@
     },
     {
       "key": "AffiliateOffers:20ba240b-df11-4ae6-b0eb-4c052038b510",
-      "path": "/food-and-drink/the-hope-hotel/southend-on-sea",
+      "path": "/food-and-drink/the-hope-hotel-southend-on-sea",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64946,7 +64946,7 @@
     },
     {
       "key": "AffiliateOffers:20e66071-5b35-4580-ac39-58621d3a4a74",
-      "path": "/food-and-drink/catch/looe",
+      "path": "/food-and-drink/catch-looe",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64956,7 +64956,7 @@
     },
     {
       "key": "AffiliateOffers:25082ea5-c5d2-4a7b-a72b-d539c6cc2d6b",
-      "path": "/food-and-drink/fishers-of-hunstanton/hunstanton",
+      "path": "/food-and-drink/fishers-of-hunstanton-hunstanton",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64966,7 +64966,7 @@
     },
     {
       "key": "AffiliateOffers:27e318fb-1a1b-428d-9a13-1a9ffac1778c",
-      "path": "/food-and-drink/neptunes-beach-cafe/leysdown-on-sea",
+      "path": "/food-and-drink/neptunes-beach-cafe-leysdown-on-sea",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64986,7 +64986,7 @@
     },
     {
       "key": "AffiliateOffers:2a04a90a-5273-4c39-a6ca-21a782249891",
-      "path": "/food-and-drink/rockfish/weymouth",
+      "path": "/food-and-drink/rockfish-weymouth",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -64996,7 +64996,7 @@
     },
     {
       "key": "AffiliateOffers:2a1a7c56-ee22-4942-9407-4407fab78238",
-      "path": "/food-and-drink/the-mermaid-fish-bar/barmouth",
+      "path": "/food-and-drink/the-mermaid-fish-bar-barmouth",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65016,7 +65016,7 @@
     },
     {
       "key": "AffiliateOffers:43201751-d0bd-4bbf-a040-c08d40ca05df",
-      "path": "/food-and-drink/hemsby-beach-cafe/hemsby",
+      "path": "/food-and-drink/hemsby-beach-cafe-hemsby",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65036,7 +65036,7 @@
     },
     {
       "key": "AffiliateOffers:4ba6e34e-672f-4e29-8ba5-413684b3349a",
-      "path": "/food-and-drink/riverhead-coffee/cleethorpes",
+      "path": "/food-and-drink/riverhead-coffee-cleethorpes",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65046,7 +65046,7 @@
     },
     {
       "key": "AffiliateOffers:50dbe627-1520-4e76-9930-ceff7c0831fb",
-      "path": "/food-and-drink/paletta-pizzeria/barry",
+      "path": "/food-and-drink/paletta-pizzeria-barry",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65066,7 +65066,7 @@
     },
     {
       "key": "AffiliateOffers:5bd1128a-6c56-4028-afff-b8fa93cd6a5a",
-      "path": "/food-and-drink/les-and-ritas-fish-bar/rhyl",
+      "path": "/food-and-drink/les-and-ritas-fish-bar-rhyl",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65086,7 +65086,7 @@
     },
     {
       "key": "AffiliateOffers:65308436-12ac-4b45-8c58-60f725352bc3",
-      "path": "/food-and-drink/peters-fish-factory/margate",
+      "path": "/food-and-drink/peters-fish-factory-margate",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65096,7 +65096,7 @@
     },
     {
       "key": "AffiliateOffers:6856f602-086c-46fb-a6a9-92c4bcd4f57f",
-      "path": "/food-and-drink/the-cottage-loaf/llandudno",
+      "path": "/food-and-drink/the-cottage-loaf-llandudno",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65106,7 +65106,7 @@
     },
     {
       "key": "AffiliateOffers:68cbb8f0-e207-44f4-9346-d62d2e4b709c",
-      "path": "/food-and-drink/horatios-bar/brighton",
+      "path": "/food-and-drink/horatios-bar-brighton",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65116,7 +65116,7 @@
     },
     {
       "key": "AffiliateOffers:6ac925aa-68d5-4d5f-8e5a-9b0e65b831df",
-      "path": "/food-and-drink/reel-plaice/ayr",
+      "path": "/food-and-drink/reel-plaice-ayr",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65156,7 +65156,7 @@
     },
     {
       "key": "AffiliateOffers:7919dd57-7914-4db9-8ddd-961641fbf587",
-      "path": "/food-and-drink/1891/rhyl",
+      "path": "/food-and-drink/1891-rhyl",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65166,7 +65166,7 @@
     },
     {
       "key": "AffiliateOffers:7e8310f8-96e1-435b-b3db-5a5324e125d3",
-      "path": "/food-and-drink/henrys-bar/paignton",
+      "path": "/food-and-drink/henrys-bar-paignton",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65176,7 +65176,7 @@
     },
     {
       "key": "AffiliateOffers:7ed84049-57e0-4583-ae22-99101ed0b6a2",
-      "path": "/food-and-drink/the-golden-lion-hotel-bar-and-restaurant/hunstanton",
+      "path": "/food-and-drink/the-golden-lion-hotel-bar-and-restaurant-hunstanton",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65186,7 +65186,7 @@
     },
     {
       "key": "AffiliateOffers:7f26d26d-aeca-4e8e-bc52-a190bc1b543a",
-      "path": "/food-and-drink/the-pelican-diner/hastings",
+      "path": "/food-and-drink/the-pelican-diner-hastings",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65196,7 +65196,7 @@
     },
     {
       "key": "AffiliateOffers:8310c4a0-49b7-4f19-83f0-224a243fb075",
-      "path": "/food-and-drink/the-william-hardwicke/bognor-regis",
+      "path": "/food-and-drink/the-william-hardwicke-bognor-regis",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65206,7 +65206,7 @@
     },
     {
       "key": "AffiliateOffers:83837666-9040-462b-8f39-e6313161edb0",
-      "path": "/food-and-drink/the-jolly-sailors/lowestoft",
+      "path": "/food-and-drink/the-jolly-sailors-lowestoft",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65226,7 +65226,7 @@
     },
     {
       "key": "AffiliateOffers:89a3f7f7-1e1a-4fbb-94d7-3d77cfbf173f",
-      "path": "/food-and-drink/crispys-of-minehead/minehead",
+      "path": "/food-and-drink/crispys-of-minehead-minehead",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65256,7 +65256,7 @@
     },
     {
       "key": "AffiliateOffers:a4a4c44b-1a67-433b-83cf-17b528ba1a68",
-      "path": "/food-and-drink/kays-fish-and-chips/cleveleys",
+      "path": "/food-and-drink/kays-fish-and-chips-cleveleys",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65266,7 +65266,7 @@
     },
     {
       "key": "AffiliateOffers:a9b77b7f-1e8f-4846-9fe5-f260c687b988",
-      "path": "/food-and-drink/deep-blue-south-parade-pier/portsmouth",
+      "path": "/food-and-drink/deep-blue-south-parade-pier-portsmouth",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65426,7 +65426,7 @@
     },
     {
       "key": "AffiliateOffers:rated_bridlington_geccho-s-restaurant",
-      "path": "/food-and-drink/gecchos-restaurant/bridlington",
+      "path": "/food-and-drink/gecchos-restaurant-bridlington",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65436,7 +65436,7 @@
     },
     {
       "key": "AffiliateOffers:rated_bridlington_tandoori-nights",
-      "path": "/food-and-drink/tandoori-nights/bridlington",
+      "path": "/food-and-drink/tandoori-nights-bridlington",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65446,7 +65446,7 @@
     },
     {
       "key": "AffiliateOffers:rated_bridlington_the-latte-lounge",
-      "path": "/food-and-drink/the-latte-lounge/bridlington",
+      "path": "/food-and-drink/the-latte-lounge-bridlington",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65466,7 +65466,7 @@
     },
     {
       "key": "AffiliateOffers:rated_great-yarmouth_wheelwrights-arms-gorleston",
-      "path": "/food-and-drink/wheelwrights-arms-gorleston/great-yarmouth",
+      "path": "/food-and-drink/wheelwrights-arms-gorleston-great-yarmouth",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65486,7 +65486,7 @@
     },
     {
       "key": "AffiliateOffers:rated_ingoldmells_house-of-coffee",
-      "path": "/food-and-drink/house-of-coffee/ingoldmells",
+      "path": "/food-and-drink/house-of-coffee-ingoldmells",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65496,7 +65496,7 @@
     },
     {
       "key": "AffiliateOffers:rated_ingoldmells_pie-palace",
-      "path": "/food-and-drink/pie-palace/ingoldmells",
+      "path": "/food-and-drink/pie-palace-ingoldmells",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65506,7 +65506,7 @@
     },
     {
       "key": "AffiliateOffers:rated_ingoldmells_the-hide-at-herons-mead",
-      "path": "/food-and-drink/the-hide-at-herons-mead/orby",
+      "path": "/food-and-drink/the-hide-at-herons-mead-orby",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65516,7 +65516,7 @@
     },
     {
       "key": "AffiliateOffers:rated_mablethorpe_gerardo-s",
-      "path": "/food-and-drink/gerardos/mablethorpe",
+      "path": "/food-and-drink/gerardos-mablethorpe",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65526,7 +65526,7 @@
     },
     {
       "key": "AffiliateOffers:rated_mablethorpe_mable-s-tea-room",
-      "path": "/food-and-drink/mables-tea-room/mablethorpe",
+      "path": "/food-and-drink/mables-tea-room-mablethorpe",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65536,7 +65536,7 @@
     },
     {
       "key": "AffiliateOffers:rated_mablethorpe_the-dunes",
-      "path": "/food-and-drink/the-dunes/mablethorpe",
+      "path": "/food-and-drink/the-dunes-mablethorpe",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65546,7 +65546,7 @@
     },
     {
       "key": "AffiliateOffers:rated_scarborough_askim-s",
-      "path": "/food-and-drink/askims/scarborough",
+      "path": "/food-and-drink/askims-scarborough",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65556,7 +65556,7 @@
     },
     {
       "key": "AffiliateOffers:rated_scarborough_lifeboat-fish-bar",
-      "path": "/food-and-drink/lifeboat-fish-bar/scarborough",
+      "path": "/food-and-drink/lifeboat-fish-bar-scarborough",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65576,7 +65576,7 @@
     },
     {
       "key": "AffiliateOffers:rated_skegness_no9",
-      "path": "/food-and-drink/no9/skegness",
+      "path": "/food-and-drink/no9-skegness",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65586,7 +65586,7 @@
     },
     {
       "key": "AffiliateOffers:rated_skegness_san-rufo-s",
-      "path": "/food-and-drink/san-rufos/skegness",
+      "path": "/food-and-drink/san-rufos-skegness",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65596,7 +65596,7 @@
     },
     {
       "key": "AffiliateOffers:rated_skegness_the-cosy-corner",
-      "path": "/food-and-drink/the-cosy-corner/skegness",
+      "path": "/food-and-drink/the-cosy-corner-skegness",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65626,7 +65626,7 @@
     },
     {
       "key": "AffiliateOffers:b7d27661-348c-4802-bf94-f2f40d983633",
-      "path": "/food-and-drink/fish-tram-chips/llandudno",
+      "path": "/food-and-drink/fish-tram-chips-llandudno",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65636,7 +65636,7 @@
     },
     {
       "key": "AffiliateOffers:bb3c7342-f671-421b-99a9-f2c30c97e44e",
-      "path": "/food-and-drink/coffee-break/clacton-on-sea",
+      "path": "/food-and-drink/coffee-break-clacton-on-sea",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65646,7 +65646,7 @@
     },
     {
       "key": "AffiliateOffers:bd3c51f0-259a-48f8-a7cb-be593fa6667b",
-      "path": "/food-and-drink/inghams-fish-restaurant/filey",
+      "path": "/food-and-drink/inghams-fish-restaurant-filey",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65656,7 +65656,7 @@
     },
     {
       "key": "AffiliateOffers:bffb9866-2515-4b0e-93a7-b5e6407485b8",
-      "path": "/food-and-drink/dolphin-fish-and-chips-restaurant/eastbourne",
+      "path": "/food-and-drink/dolphin-fish-and-chips-restaurant-eastbourne",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65666,7 +65666,7 @@
     },
     {
       "key": "AffiliateOffers:blackpool-bank",
-      "path": "/food-and-drink/the-bank-bar-and-grill/blackpool",
+      "path": "/food-and-drink/the-bank-bar-and-grill-blackpool",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65686,7 +65686,7 @@
     },
     {
       "key": "AffiliateOffers:blackpool-queen-street",
-      "path": "/food-and-drink/31-queen-street/blackpool",
+      "path": "/food-and-drink/31-queen-street-blackpool",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65696,7 +65696,7 @@
     },
     {
       "key": "AffiliateOffers:blackpool-the-bridge",
-      "path": "/food-and-drink/the-bridge/blackpool",
+      "path": "/food-and-drink/the-bridge-blackpool",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65706,7 +65706,7 @@
     },
     {
       "key": "AffiliateOffers:blackpool-yorkshire-fisheries",
-      "path": "/food-and-drink/yorkshire-fisheries/blackpool",
+      "path": "/food-and-drink/yorkshire-fisheries-blackpool",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65716,7 +65716,7 @@
     },
     {
       "key": "AffiliateOffers:c0075f09-17ef-459c-a539-f71b7b5d93fa",
-      "path": "/food-and-drink/the-ginger-pig-kitchen/weston-super-mare",
+      "path": "/food-and-drink/the-ginger-pig-kitchen-weston-super-mare",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65736,7 +65736,7 @@
     },
     {
       "key": "AffiliateOffers:cb097861-3bd0-48d0-a427-0982d1f68ace",
-      "path": "/food-and-drink/buoy-and-oyster/margate",
+      "path": "/food-and-drink/buoy-and-oyster-margate",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65746,7 +65746,7 @@
     },
     {
       "key": "AffiliateOffers:ce93b26b-f045-460b-8ae4-c18fe9697e4d",
-      "path": "/food-and-drink/steels-cornerhouse-restaurant/cleethorpes",
+      "path": "/food-and-drink/steels-cornerhouse-restaurant-cleethorpes",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65756,7 +65756,7 @@
     },
     {
       "key": "AffiliateOffers:d0f4cf49-c4eb-4872-a930-e2fe28ff9c84",
-      "path": "/food-and-drink/palm-court-restaurant-and-bar/brighton",
+      "path": "/food-and-drink/palm-court-restaurant-and-bar-brighton",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65766,7 +65766,7 @@
     },
     {
       "key": "AffiliateOffers:d0fdf16e-8d14-42ff-9d69-5860ce50f6c5",
-      "path": "/food-and-drink/the-cod-end-fish-and-chip-shop/newquay",
+      "path": "/food-and-drink/the-cod-end-fish-and-chip-shop-newquay",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65776,7 +65776,7 @@
     },
     {
       "key": "AffiliateOffers:d1d3371d-5fda-4bff-bb1e-0010b2ad96ca",
-      "path": "/food-and-drink/harbour-rest-cafe/newquay",
+      "path": "/food-and-drink/harbour-rest-cafe-newquay",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65786,7 +65786,7 @@
     },
     {
       "key": "AffiliateOffers:d1f50717-b622-4f12-bb70-a19e48ff3ebd",
-      "path": "/food-and-drink/seastar-fish-and-chips/bournemouth",
+      "path": "/food-and-drink/seastar-fish-and-chips-bournemouth",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65796,7 +65796,7 @@
     },
     {
       "key": "AffiliateOffers:d741f4aa-2cf5-4bcf-af53-f48455e4dfb8",
-      "path": "/food-and-drink/fish-n-fritz/weymouth",
+      "path": "/food-and-drink/fish-n-fritz-weymouth",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65806,7 +65806,7 @@
     },
     {
       "key": "AffiliateOffers:df26655d-f87a-455e-8116-6dab034733cf",
-      "path": "/food-and-drink/johns-cafe/barry",
+      "path": "/food-and-drink/johns-cafe-barry",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65816,7 +65816,7 @@
     },
     {
       "key": "AffiliateOffers:e0a5a700-ff46-4277-98c7-a89a74f05342",
-      "path": "/food-and-drink/ye-olde-pumphouse/hastings",
+      "path": "/food-and-drink/ye-olde-pumphouse-hastings",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65836,7 +65836,7 @@
     },
     {
       "key": "AffiliateOffers:e6746143-dd39-4a32-a9df-70eabb2b2b32",
-      "path": "/food-and-drink/the-ship-inn/herne-bay",
+      "path": "/food-and-drink/the-ship-inn-herne-bay",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65846,7 +65846,7 @@
     },
     {
       "key": "AffiliateOffers:e6aeec32-7b30-43ab-afde-a22ee5bbec52",
-      "path": "/food-and-drink/the-ship-inn-restaurant/folkestone",
+      "path": "/food-and-drink/the-ship-inn-restaurant-folkestone",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65886,7 +65886,7 @@
     },
     {
       "key": "AffiliateOffers:f46480a4-e5a2-4f7e-bed6-6534b84a85f1",
-      "path": "/food-and-drink/paignton-pier-chippy-co/paignton",
+      "path": "/food-and-drink/paignton-pier-chippy-co-paignton",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -65896,7 +65896,7 @@
     },
     {
       "key": "AffiliateOffers:fadd88c5-01ec-4a40-ad90-976c4548e49b",
-      "path": "/food-and-drink/the-lacon-arms/hemsby",
+      "path": "/food-and-drink/the-lacon-arms-hemsby",
       "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
       "metadataReviewed": true,
       "sourceRouteFields": {
@@ -196118,6 +196118,421 @@
       "from": "/arcade-venues/ukgc-28778-gem-southsea",
       "key": "Venues:ukgc-28778-gem-southsea",
       "evidence": "Retired runtime exact CMS slug input; captured public routing metadata; original source identity preserved"
+    },
+    {
+      "from": "/food-and-drink/bistro-the-loch/motherwell",
+      "key": "NearbyAttractions:0cd54c57-71e4-4582-b51b-dea0a00b25f7",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/monterey-jacks/motherwell",
+      "key": "NearbyAttractions:593fac6e-dcf7-4199-8154-12396855a0c1",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/diner-by-the-lanes/motherwell",
+      "key": "NearbyAttractions:612b85b0-8cdc-489c-92e1-4abc06c80343",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/sports-bar/motherwell",
+      "key": "NearbyAttractions:7e2f0c0b-4619-4ad3-a190-c1a4357bc591",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/boardwalk-bar/clacton-on-sea",
+      "key": "NearbyAttractions:8f93237e-2e5d-455d-a79f-521db32a0f74",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/mario-and-dinos/motherwell",
+      "key": "NearbyAttractions:9829910e-583d-448f-ae22-bf168f5c23b2",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/beer-garden/motherwell",
+      "key": "NearbyAttractions:9d857eaf-578c-4dc3-ba90-985c004bd215",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/agrah/cleethorpes",
+      "key": "FoodAndDrink:fd-agrah-cleethorpes",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/beechwood-farm/grimsby",
+      "key": "FoodAndDrink:fd-farmhouse-beechwood-farm-grimsby",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/jug-and-bottle/grimsby",
+      "key": "FoodAndDrink:fd-jug-and-bottle-holton-le-clay",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/masala-n-malt/grimsby",
+      "key": "FoodAndDrink:fd-masala-n-malt-grimsby",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/millers/grimsby",
+      "key": "FoodAndDrink:fd-millers-waltham",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/oriental-express/cleethorpes",
+      "key": "FoodAndDrink:fd-oriental-express-cleethorpes",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/pear-tree/cleethorpes",
+      "key": "FoodAndDrink:fd-pear-tree-humberston",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/pizza-parlour/grimsby",
+      "key": "FoodAndDrink:fd-pizza-parlour-grimsby",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/trawlerman/cleethorpes",
+      "key": "FoodAndDrink:fd-trawlerman-cleethorpes",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/vikings-hungry-horse/goole",
+      "key": "FoodAndDrink:fd-vikings-hungry-horse-goole",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/wellow-hungry-horse/cleethorpes",
+      "key": "FoodAndDrink:fd-wellow-hungry-horse-cleethorpes",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/colmans-fish-and-chips/south-shields",
+      "key": "AffiliateOffers:006700d7-6b80-4d80-b6f4-70f7bd3b6017",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/boardwalk-bar-and-grill/clacton-on-sea",
+      "key": "AffiliateOffers:061dce12-8d5e-4d2a-8b82-9ac6a2426d6e",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/jass-fish-and-chips/towyn",
+      "key": "AffiliateOffers:0edb4130-1ee7-44cc-b1b0-a41023bb75a2",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/ocean-fish-bar/cleethorpes",
+      "key": "AffiliateOffers:16165935-b68a-4a9f-97aa-0c12b73c9878",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-hope-hotel/southend-on-sea",
+      "key": "AffiliateOffers:20ba240b-df11-4ae6-b0eb-4c052038b510",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/catch/looe",
+      "key": "AffiliateOffers:20e66071-5b35-4580-ac39-58621d3a4a74",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/fishers-of-hunstanton/hunstanton",
+      "key": "AffiliateOffers:25082ea5-c5d2-4a7b-a72b-d539c6cc2d6b",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/neptunes-beach-cafe/leysdown-on-sea",
+      "key": "AffiliateOffers:27e318fb-1a1b-428d-9a13-1a9ffac1778c",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/rockfish/weymouth",
+      "key": "AffiliateOffers:2a04a90a-5273-4c39-a6ca-21a782249891",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-mermaid-fish-bar/barmouth",
+      "key": "AffiliateOffers:2a1a7c56-ee22-4942-9407-4407fab78238",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/hemsby-beach-cafe/hemsby",
+      "key": "AffiliateOffers:43201751-d0bd-4bbf-a040-c08d40ca05df",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/riverhead-coffee/cleethorpes",
+      "key": "AffiliateOffers:4ba6e34e-672f-4e29-8ba5-413684b3349a",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/paletta-pizzeria/barry",
+      "key": "AffiliateOffers:50dbe627-1520-4e76-9930-ceff7c0831fb",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/les-and-ritas-fish-bar/rhyl",
+      "key": "AffiliateOffers:5bd1128a-6c56-4028-afff-b8fa93cd6a5a",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/peters-fish-factory/margate",
+      "key": "AffiliateOffers:65308436-12ac-4b45-8c58-60f725352bc3",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-cottage-loaf/llandudno",
+      "key": "AffiliateOffers:6856f602-086c-46fb-a6a9-92c4bcd4f57f",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/horatios-bar/brighton",
+      "key": "AffiliateOffers:68cbb8f0-e207-44f4-9346-d62d2e4b709c",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/reel-plaice/ayr",
+      "key": "AffiliateOffers:6ac925aa-68d5-4d5f-8e5a-9b0e65b831df",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/1891/rhyl",
+      "key": "AffiliateOffers:7919dd57-7914-4db9-8ddd-961641fbf587",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/henrys-bar/paignton",
+      "key": "AffiliateOffers:7e8310f8-96e1-435b-b3db-5a5324e125d3",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-golden-lion-hotel-bar-and-restaurant/hunstanton",
+      "key": "AffiliateOffers:7ed84049-57e0-4583-ae22-99101ed0b6a2",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-pelican-diner/hastings",
+      "key": "AffiliateOffers:7f26d26d-aeca-4e8e-bc52-a190bc1b543a",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-william-hardwicke/bognor-regis",
+      "key": "AffiliateOffers:8310c4a0-49b7-4f19-83f0-224a243fb075",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-jolly-sailors/lowestoft",
+      "key": "AffiliateOffers:83837666-9040-462b-8f39-e6313161edb0",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/crispys-of-minehead/minehead",
+      "key": "AffiliateOffers:89a3f7f7-1e1a-4fbb-94d7-3d77cfbf173f",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/kays-fish-and-chips/cleveleys",
+      "key": "AffiliateOffers:a4a4c44b-1a67-433b-83cf-17b528ba1a68",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/deep-blue-south-parade-pier/portsmouth",
+      "key": "AffiliateOffers:a9b77b7f-1e8f-4846-9fe5-f260c687b988",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/gecchos-restaurant/bridlington",
+      "key": "AffiliateOffers:rated_bridlington_geccho-s-restaurant",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/tandoori-nights/bridlington",
+      "key": "AffiliateOffers:rated_bridlington_tandoori-nights",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-latte-lounge/bridlington",
+      "key": "AffiliateOffers:rated_bridlington_the-latte-lounge",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/wheelwrights-arms-gorleston/great-yarmouth",
+      "key": "AffiliateOffers:rated_great-yarmouth_wheelwrights-arms-gorleston",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/house-of-coffee/ingoldmells",
+      "key": "AffiliateOffers:rated_ingoldmells_house-of-coffee",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/pie-palace/ingoldmells",
+      "key": "AffiliateOffers:rated_ingoldmells_pie-palace",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-hide-at-herons-mead/orby",
+      "key": "AffiliateOffers:rated_ingoldmells_the-hide-at-herons-mead",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/gerardos/mablethorpe",
+      "key": "AffiliateOffers:rated_mablethorpe_gerardo-s",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/mables-tea-room/mablethorpe",
+      "key": "AffiliateOffers:rated_mablethorpe_mable-s-tea-room",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-dunes/mablethorpe",
+      "key": "AffiliateOffers:rated_mablethorpe_the-dunes",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/askims/scarborough",
+      "key": "AffiliateOffers:rated_scarborough_askim-s",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/lifeboat-fish-bar/scarborough",
+      "key": "AffiliateOffers:rated_scarborough_lifeboat-fish-bar",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/no9/skegness",
+      "key": "AffiliateOffers:rated_skegness_no9",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/san-rufos/skegness",
+      "key": "AffiliateOffers:rated_skegness_san-rufo-s",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-cosy-corner/skegness",
+      "key": "AffiliateOffers:rated_skegness_the-cosy-corner",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/fish-tram-chips/llandudno",
+      "key": "AffiliateOffers:b7d27661-348c-4802-bf94-f2f40d983633",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/coffee-break/clacton-on-sea",
+      "key": "AffiliateOffers:bb3c7342-f671-421b-99a9-f2c30c97e44e",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/inghams-fish-restaurant/filey",
+      "key": "AffiliateOffers:bd3c51f0-259a-48f8-a7cb-be593fa6667b",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/dolphin-fish-and-chips-restaurant/eastbourne",
+      "key": "AffiliateOffers:bffb9866-2515-4b0e-93a7-b5e6407485b8",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-bank-bar-and-grill/blackpool",
+      "key": "AffiliateOffers:blackpool-bank",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/31-queen-street/blackpool",
+      "key": "AffiliateOffers:blackpool-queen-street",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-bridge/blackpool",
+      "key": "AffiliateOffers:blackpool-the-bridge",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/yorkshire-fisheries/blackpool",
+      "key": "AffiliateOffers:blackpool-yorkshire-fisheries",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-ginger-pig-kitchen/weston-super-mare",
+      "key": "AffiliateOffers:c0075f09-17ef-459c-a539-f71b7b5d93fa",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/buoy-and-oyster/margate",
+      "key": "AffiliateOffers:cb097861-3bd0-48d0-a427-0982d1f68ace",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/steels-cornerhouse-restaurant/cleethorpes",
+      "key": "AffiliateOffers:ce93b26b-f045-460b-8ae4-c18fe9697e4d",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/palm-court-restaurant-and-bar/brighton",
+      "key": "AffiliateOffers:d0f4cf49-c4eb-4872-a930-e2fe28ff9c84",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-cod-end-fish-and-chip-shop/newquay",
+      "key": "AffiliateOffers:d0fdf16e-8d14-42ff-9d69-5860ce50f6c5",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/harbour-rest-cafe/newquay",
+      "key": "AffiliateOffers:d1d3371d-5fda-4bff-bb1e-0010b2ad96ca",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/seastar-fish-and-chips/bournemouth",
+      "key": "AffiliateOffers:d1f50717-b622-4f12-bb70-a19e48ff3ebd",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/fish-n-fritz/weymouth",
+      "key": "AffiliateOffers:d741f4aa-2cf5-4bcf-af53-f48455e4dfb8",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/johns-cafe/barry",
+      "key": "AffiliateOffers:df26655d-f87a-455e-8116-6dab034733cf",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/ye-olde-pumphouse/hastings",
+      "key": "AffiliateOffers:e0a5a700-ff46-4277-98c7-a89a74f05342",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-ship-inn/herne-bay",
+      "key": "AffiliateOffers:e6746143-dd39-4a32-a9df-70eabb2b2b32",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-ship-inn-restaurant/folkestone",
+      "key": "AffiliateOffers:e6aeec32-7b30-43ab-afde-a22ee5bbec52",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/paignton-pier-chippy-co/paignton",
+      "key": "AffiliateOffers:f46480a4-e5a2-4f7e-bed6-6534b84a85f1",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/food-and-drink/the-lacon-arms/hemsby",
+      "key": "AffiliateOffers:fadd88c5-01ec-4a40-ad90-976c4548e49b",
+      "evidence": "Former name/town canonical retained as identity-bound compatibility input; user-confirmed one-segment name-town food address 4 October 2026"
+    },
+    {
+      "from": "/destination/cleethorpes/masala-n-malt",
+      "key": "FoodAndDrink:fd-masala-n-malt-grimsby",
+      "evidence": "Existing Wix redirect source read on 4 October 2026; maps through the same retained restaurant identity"
     }
   ],
   "venueRouteKinds": {
@@ -201065,7 +201480,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/agrah/cleethorpes",
+      "canonicalPath": "/food-and-drink/agrah-cleethorpes",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-agrah-cleethorpes",
       "sourceKeys": [
@@ -201088,7 +201503,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/beechwood-farm/grimsby",
+      "canonicalPath": "/food-and-drink/beechwood-farm-grimsby",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-farmhouse-beechwood-farm-grimsby",
       "sourceKeys": [
@@ -201111,7 +201526,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/jug-and-bottle/grimsby",
+      "canonicalPath": "/food-and-drink/jug-and-bottle-grimsby",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-jug-and-bottle-holton-le-clay",
       "sourceKeys": [
@@ -201134,7 +201549,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/masala-n-malt/grimsby",
+      "canonicalPath": "/food-and-drink/masala-malt-grimsby",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-masala-n-malt-grimsby",
       "sourceKeys": [
@@ -201158,7 +201573,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/millers/grimsby",
+      "canonicalPath": "/food-and-drink/millers-grimsby",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-millers-waltham",
       "sourceKeys": [
@@ -201181,7 +201596,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/oriental-express/cleethorpes",
+      "canonicalPath": "/food-and-drink/oriental-express-cleethorpes",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-oriental-express-cleethorpes",
       "sourceKeys": [
@@ -201204,7 +201619,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/pear-tree/cleethorpes",
+      "canonicalPath": "/food-and-drink/pear-tree-cleethorpes",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-pear-tree-humberston",
       "sourceKeys": [
@@ -201227,7 +201642,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/pizza-parlour/grimsby",
+      "canonicalPath": "/food-and-drink/pizza-parlour-grimsby",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-pizza-parlour-grimsby",
       "sourceKeys": [
@@ -201251,7 +201666,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/trawlerman/cleethorpes",
+      "canonicalPath": "/food-and-drink/trawlerman-cleethorpes",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-trawlerman-cleethorpes",
       "sourceKeys": [
@@ -201274,7 +201689,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/vikings-hungry-horse/goole",
+      "canonicalPath": "/food-and-drink/vikings-hungry-horse-goole",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-vikings-hungry-horse-goole",
       "sourceKeys": [
@@ -201297,7 +201712,7 @@
       "relation": "same-entity",
       "approved": true,
       "provenSameEntity": true,
-      "canonicalPath": "/food-and-drink/wellow-hungry-horse/cleethorpes",
+      "canonicalPath": "/food-and-drink/wellow-hungry-horse-cleethorpes",
       "canonicalKind": "food",
       "primaryKey": "FoodAndDrink:fd-wellow-hungry-horse-cleethorpes",
       "sourceKeys": [
@@ -204582,10 +204997,10 @@
   },
   "identity": {
     "contractVersion": "spin-raiders-canonical-v1",
-    "releaseFingerprint": "b40f2cd41be7c7388483889bc0275431c4cc879dde688790a9f8b3670d08cd13",
-    "manifestFingerprint": "8527f5d45d722d1d139c28000301af9679326c78b7797b1955aaff6738ae228c",
-    "rendererFingerprint": "91cc01ecedbd1a456da246d5b60418fcb6e3f4e05654673c333b13171759f249",
-    "sourceFiles": 202,
+    "releaseFingerprint": "d72cfb4ee8bb92d714a8021ef0ef9684df5ce6e4236ca2fb02a4916865149834",
+    "manifestFingerprint": "bcd39d661f1b98278450bdf1e92fb3223ff834a628cadc1a241c6dddb0f63b99",
+    "rendererFingerprint": "b9d303210389f25c8e382a5604cadb23452c783ab35642aba5fd5f883537aa17",
+    "sourceFiles": 231,
     "deploymentBlocked": false
   },
   "nativeBindingCapture": {

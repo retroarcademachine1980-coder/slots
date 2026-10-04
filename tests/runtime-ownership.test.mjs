@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {runtimeOwns} from '../src/public/routes/runtimeOwnership.js';
 test('loader owns only final-renderer routes and documented inbound aliases',()=>{
- for(const input of ['/', '/search?q=arcade', '/map', '/arcade?type=classic','/food-and-drink/masala-n-malt/grimsby','/classic-fruit-machines/barcrest/each-way-nudge','/plan-a-trip','/blog/categories/arcade-guides','/classic-fruit-machine-archive','/hotels/old','/?collection=Venues&place=old'])assert.equal(runtimeOwns(input),true,input);
+ for(const input of ['/', '/search?q=arcade', '/map', '/arcade?type=classic','/food-and-drink/masala-malt-grimsby','/classic-fruit-machines/barcrest/each-way-nudge','/plan-a-trip','/blog/categories/arcade-guides','/classic-fruit-machine-archive','/hotels/old','/?collection=Venues&place=old'])assert.equal(runtimeOwns(input),true,input);
  for(const input of ['/terms','/privacy-policy','/members','/about-us','/search?view=articles','/?view=account','/?report=1','/?raidertube=1','/post/unverified','/imaginary/item/town','https://evil.test/arcade'])assert.equal(runtimeOwns(input),false,input);
 });
 test('transitional root inputs are removable without losing final native routes',()=>{

@@ -239,15 +239,15 @@ test('retained inactive source records are never newly exposed by an identity gr
 const { createDynamicDetailHook }=await import('../src/public/routes/dynamicPageAdapter.js');
 test('reviewed organic business in AffiliateOffers uses its business route, never hotel guessing',()=>{
  const row={_id:'restaurant',category:'Food',affiliate:false,sponsored:false,monetizationStatus:'ORGANIC'};
- const ctx=context({entries:[{key:'AffiliateOffers:restaurant',path:'/food-and-drink/reel-plaice/blackpool',metadataReviewed:true,evidence:'verified original restaurant identity'}],venueRouteKinds:{'AffiliateOffers:restaurant':'food'}});
- assert.equal(resolveRecord('AffiliateOffers',row,ctx).href,'/food-and-drink/reel-plaice/blackpool');
+ const ctx=context({entries:[{key:'AffiliateOffers:restaurant',path:'/food-and-drink/reel-plaice-blackpool',metadataReviewed:true,evidence:'verified original restaurant identity'}],venueRouteKinds:{'AffiliateOffers:restaurant':'food'}});
+ assert.equal(resolveRecord('AffiliateOffers',row,ctx).href,'/food-and-drink/reel-plaice-blackpool');
  assert.equal(resolveRecord('AffiliateOffers',row,context()).code,'offer_guide_unresolved');
 });
 test('dynamic afterRouter prototype can replace dataset404 using exact indexed original source',async()=>{
- const row={_id:'food',title:'Reel Plaice',summary:'Original restaurant details'},route={path:'/food-and-drink/reel-plaice/blackpool'};
+ const row={_id:'food',title:'Reel Plaice',summary:'Original restaurant details'},route={path:'/food-and-drink/reel-plaice-blackpool'};
  const hook=createDynamicDetailHook({kind:'food',prefix:'/food-and-drink',pageName:'verified-food-item',resolve:async()=>({status:200,collection:'AffiliateOffers',row,route}),ok:(page,data)=>({status:200,page,data}),notFound:()=>404,sendStatus:s=>s});
- const result=await hook({path:['reel-plaice','blackpool'],pages:['verified-food-item']},{status:404});assert.equal(result.status,200);assert.equal(result.data.record,row);assert.equal(result.data.collection,'AffiliateOffers');
- assert.equal(await hook({path:['reel-plaice','blackpool'],pages:['different-page']},{status:404}),503);
+ const result=await hook({path:['reel-plaice-blackpool'],pages:['verified-food-item']},{status:404});assert.equal(result.status,200);assert.equal(result.data.record,row);assert.equal(result.data.collection,'AffiliateOffers');
+ assert.equal(await hook({path:['reel-plaice-blackpool'],pages:['different-page']},{status:404}),503);
  const listResponse={status:200,page:'native-food-list'};assert.equal(await hook({path:[]},listResponse),listResponse);
 });
 test('editorial variant index retains uncertainty without claiming same physical identity',async()=>{
@@ -310,14 +310,14 @@ test('one static view registry maps existing category/page identity to semantic 
  for(const key of ['arcades','cinema','fishing','nature-outdoors','bowling','bingo','holiday-parks','places-to-stay','food-drink','museums','historical-sites','theme-parks','zoos','sea-life','piers','beaches','arcade-bars','agc','services'])assert.ok(CATEGORY_PATHS[key].startsWith('/')&&!CATEGORY_PATHS[key].includes('?'));
  assert.equal(VIEW_PATHS.trip,'/plan-a-trip');assert.equal(INDEX_ROUTES.hiddenGemsIndex.prefix,'/hidden-gems');assert.equal(CATEGORY_PATHS['family-arcades'],'/arcade?type=family');
 });
-test('food emits category/name/town and old clean town/name is a one-way alias only',()=>{
- const built=buildCanonical('food',{townSlug:'grimsby',urlName:'masala-n-malt'});assert.equal(built.path,'/food-and-drink/masala-n-malt/grimsby');
+test('food emits the confirmed one-segment address and old town/name is a one-way alias only',()=>{
+ const built=buildCanonical('food',{townSlug:'grimsby',urlName:'masala-n-malt'});assert.equal(built.path,'/food-and-drink/masala-malt-grimsby');
  const ctx=context(),target=resolveRecord('FoodAndDrink',food,ctx);
  const manifest=buildRedirectManifest([{from:'/food-and-drink/grimsby/masala-n-malt',key:'FoodAndDrink:cafe'}],()=>target,{canonicalPaths:Object.keys(ctx.owners)});
  assert.equal(manifest.entries[0].to,built.path);assert.equal(manifest.entries[0].status,301);
 });
 test('food afterRouter prototype redirects old native order instead of serving a duplicate',async()=>{
- const old='/food-and-drink/grimsby/masala-n-malt',to='/food-and-drink/masala-n-malt/grimsby';
+ const old='/food-and-drink/grimsby/masala-n-malt',to='/food-and-drink/masala-malt-grimsby';
  const hook=createDynamicDetailHook({kind:'food',prefix:'/food-and-drink',pageName:'verified-food-item',resolve:async()=>({status:404}),resolveAlias:async path=>({ok:path===old,to,method:'server301'}),redirect:(path,status)=>({path,status}),ok:()=>200,notFound:()=>404,sendStatus:s=>s});
  const result=await hook({path:['grimsby','masala-n-malt']},{status:200,page:'verified-food-item'});assert.deepEqual(result,{path:to,status:'301'});
 });
@@ -332,11 +332,11 @@ test('registered native blog paths remain valid, arbitrary article-shaped links 
  assert.equal(staticNavigation('/post/nonexistent-article').ok,false);
 });
 test('food hook learns the platform-selected item page only from matching runtime pages',async()=>{
- const result={status:200,collection:'FoodAndDrink',row:food,route:{path:'/food-and-drink/masala-n-malt/grimsby',canonicalUrl:'https://www.spin-raiders.com/food-and-drink/masala-n-malt/grimsby'}};
+ const result={status:200,collection:'FoodAndDrink',row:food,route:{path:'/food-and-drink/masala-malt-grimsby',canonicalUrl:'https://www.spin-raiders.com/food-and-drink/masala-malt-grimsby'}};
  const hook=createDynamicDetailHook({kind:'food',prefix:'/food-and-drink',resolve:async()=>result,ok:page=>page,notFound:()=>404,sendStatus:s=>s});
- assert.equal(await hook({path:['masala-n-malt','grimsby'],pages:['Actual Item','Actual List']},{page:'Actual Item'}),'Actual Item');
- assert.equal(await hook({path:['masala-n-malt','grimsby'],pages:['Actual List']},{page:'Guessed Item'}),503);
- assert.equal(await hook({path:['masala-n-malt','grimsby']},{page:'Actual Item'}),503);
+ assert.equal(await hook({path:['masala-malt-grimsby'],pages:['Actual Item','Actual List']},{page:'Actual Item'}),'Actual Item');
+ assert.equal(await hook({path:['masala-malt-grimsby'],pages:['Actual List']},{page:'Guessed Item'}),503);
+ assert.equal(await hook({path:['masala-malt-grimsby']},{page:'Actual Item'}),503);
 });
 test('nationwide operator guide has a deliberate non-town contract and stays directory-disabled',()=>{
  const row={_id:'operator',slug:'hollywood-bowl',directoryReady:false},path='/bowling/hollywood-bowl';

@@ -21,7 +21,7 @@ function setup(path){
  assert.deepEqual(Array.from(w.SR_PLACE_CATEGORIES(adult)),['agc']);
  assert(!w.SR_PLACE_CATEGORIES(cafe).includes('venues'));
  const host=w.document.createElement('div');w.document.body.append(host);const shadow=host.attachShadow({mode:'open'});
- const view=w.SR_SEARCH_VIEW(shadow,{S:w.SR_PUBLIC_DIRECTORY.S,q:'Southport',href:w.SR_PLACE_HREF});ctx.authority.bind(family,'/arcade/funland/southport');ctx.authority.bind(adult,'/agc/adult-only/southport');ctx.authority.bind(cafe,'/food-and-drink/family-cafe/southport');await ctx.authority.annotate([family,adult,cafe]);view.setRecords([family,adult,cafe]);
+ const view=w.SR_SEARCH_VIEW(shadow,{S:w.SR_PUBLIC_DIRECTORY.S,q:'Southport',href:w.SR_PLACE_HREF});ctx.authority.bind(family,'/arcade/funland/southport');ctx.authority.bind(adult,'/agc/adult-only/southport');ctx.authority.bind(cafe,'/food-and-drink/family-cafe-southport');await ctx.authority.annotate([family,adult,cafe]);view.setRecords([family,adult,cafe]);
  shadow.querySelector('[data-cat="venues"]').click();assert.equal(shadow.querySelectorAll('.result-card').length,1);assert.match(shadow.querySelector('[data-results]').textContent,/Funland/);assert.match(shadow.querySelector('[data-results]').textContent,/18\+ in adult gaming area/);
  shadow.querySelector('[data-cat="agc"]').click();assert.equal(shadow.querySelectorAll('.result-card').length,2);assert.match(shadow.querySelector('[data-results]').textContent,/Adult-only/);
  // Both frontend data readers must actually request the flags used above.

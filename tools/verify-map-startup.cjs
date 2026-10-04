@@ -24,7 +24,7 @@ const routes = {
   'Venues:arcade': ['arcade', '/arcade/york-arcade/york', 'business'],
   'NearbyAttractions:cinema': ['cinema', '/cinemas/york-cinema/york', 'business'],
   'HotelGuides:hotel': ['hotel', '/hotel/york-hotel/york', 'business'],
-  'FoodAndDrink:food': ['food', '/food-and-drink/york-cafe/york', 'business'],
+  'FoodAndDrink:food': ['food', '/food-and-drink/york-cafe-york', 'business'],
   'AffiliateOffers:business': ['arcade', '/arcade/york-business/york', 'business'],
   'AffiliateOffers:offer': ['hotel', '/hotel/york-hotel/york', 'offer', 'HotelGuides:hotel'],
 };

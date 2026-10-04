@@ -2,7 +2,7 @@ const fs=require('node:fs'),path=require('node:path');
 module.exports=async function({setup,fixture,pause,assert}){
  const snapshot=JSON.parse(fs.readFileSync(path.join(__dirname,'../../tests/fixtures/masala-public-sources.json'))),sources=snapshot.sources;
  const primary=sources.find(x=>x.collection==='FoodAndDrink'),original=sources.find(x=>x.collection==='NearbyAttractions');
- const url='/food-and-drink/masala-n-malt/grimsby',response=fixture(primary.collection,primary.row._id,url,primary.row);
+ const url='/food-and-drink/masala-malt-grimsby',response=fixture(primary.collection,primary.row._id,url,primary.row);
  response.sourceGroup={groupId:'masala-originals',relation:'same-entity',primaryKey:primary.key,sourceKeys:sources.map(x=>x.key)};
  response.sourceRecords=sources.map(x=>({...x,row:{...x.row,_collection:x.collection}}));
  const c=setup(url,{[url]:response},{fetchQuery:()=>({dataItems:[]})});await pause();const root=c.root('sr-food-page');assert(root,'Final food owner mounted');
