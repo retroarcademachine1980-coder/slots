@@ -251,6 +251,7 @@
 (function(){
   const types = [
     ['fishing','Fishing Lakes','fishing',/fishery|fisheries|fishing|angling/i,/\b(?:fishing(?: lakes?)?|fisheries|fishery|angling)\b/i],
+    ['golf','Golf','golf',/\bgolf\b|golf course|driving range|golf club|links course|pitch and putt/i,/\b(?:golf(?: courses?| clubs?)?|driving ranges?|pitch and putt)\b/i],
     ['cinemas','Cinemas','cinemas',/\bcinema\b|\bcineworld\b|\bodeon\b|\bvue\b/i,/\b(?:cinemas?|cineworld|odeon)\b/i],
     ['bowling','Bowling','bowling',/bowling|tenpin/i,/\b(?:bowling|tenpin)\b/i],
     ['bingo','Bingo','bingo',/bingo/i,/\bbingo\b/i],
