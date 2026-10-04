@@ -1,0 +1,739 @@
+{
+  "schemaVersion": 1,
+  "capture": {
+    "branch": "Original",
+    "revision": "registered-binding-capture-2026-10-02",
+    "evidenceSha256": "5d3a2cdfeef115fa85f9f5a6b6fef75a44d0370154a73c617bab99328165b2eb",
+    "sourceSnapshots": {
+      "original-93-native-pages-before-layout.json": "2b03caafd127f4b1309c6422b30cad35c3065e6e04af0c6b0cafbac1e5d168e0",
+      "original-custom-router-bindings-before-layout.json": "d6ef3758c23e29d4fb0435276f8c3025c0c93f9feaa2c4d7728af5d5223e9870",
+      "original-6301-routers.json": "173b5dd600216c5983f3f9849fa1b465646b3ed1ca6b6e1cf46d2985f3ba3676"
+    },
+    "capturedPageCount": 93,
+    "nativeAcceptance": false,
+    "note": "IDs, names and configs captured after Original port. Final layout/content refs and compiled native hash must be captured separately."
+  },
+  "pages": {
+    "aa2s4": {
+      "pageId": "aa2s4",
+      "title": "Arcade Locations (Item)",
+      "pageUriSEO": "arcade-locations-item"
+    },
+    "b1loq": {
+      "pageId": "b1loq",
+      "title": "arcade-bars-page",
+      "pageUriSEO": "blank-19"
+    },
+    "b4nxh": {
+      "pageId": "b4nxh",
+      "title": "Members",
+      "pageUriSEO": "members"
+    },
+    "b95tj": {
+      "pageId": "b95tj",
+      "title": "hidden-gems-page",
+      "pageUriSEO": "blank-32"
+    },
+    "brat7": {
+      "pageId": "brat7",
+      "title": "Privacy Policy",
+      "pageUriSEO": "privacy-policy"
+    },
+    "cfe9p": {
+      "pageId": "cfe9p",
+      "title": "Search Results",
+      "pageUriSEO": "search"
+    },
+    "cvyf6": {
+      "pageId": "cvyf6",
+      "title": "Retro Slots Blackpool",
+      "pageUriSEO": "retro-slots-blackpool"
+    },
+    "d4i0i": {
+      "pageId": "d4i0i",
+      "title": "places-to-stay-page",
+      "pageUriSEO": "blank-29"
+    },
+    "di2hv": {
+      "pageId": "di2hv",
+      "title": "zoos-page",
+      "pageUriSEO": "blank-22"
+    },
+    "dln8x": {
+      "pageId": "dln8x",
+      "title": "retro-video-games-page",
+      "pageUriSEO": "blank-33"
+    },
+    "dn097": {
+      "pageId": "dn097",
+      "title": "museums-page",
+      "pageUriSEO": "blank-24"
+    },
+    "e01ye": {
+      "pageId": "e01ye",
+      "title": "Dog-Friendly Arcades",
+      "pageUriSEO": "dog-friendly-arcades"
+    },
+    "ernep": {
+      "pageId": "ernep",
+      "title": "retropolis amusement arcade",
+      "pageUriSEO": "retropolis-amusement-arcade"
+    },
+    "fdvpj": {
+      "pageId": "fdvpj",
+      "title": "Fun Casino Review",
+      "pageUriSEO": "funcasino"
+    },
+    "fi3xo": {
+      "pageId": "fi3xo",
+      "title": "William hill vegas",
+      "pageUriSEO": "william-hill-vegas"
+    },
+    "g1li4": {
+      "pageId": "g1li4",
+      "title": "historical-sites-page",
+      "pageUriSEO": "blank-25"
+    },
+    "g7x73": {
+      "pageId": "g7x73",
+      "title": "Wheelchair-Friendly Arcades",
+      "pageUriSEO": "wheelchair-friendly-arcades"
+    },
+    "gek83": {
+      "pageId": "gek83",
+      "title": "All British Casino Review",
+      "pageUriSEO": "all-british-casino"
+    },
+    "gl6j9": {
+      "pageId": "gl6j9",
+      "title": "Ticket Arcades",
+      "pageUriSEO": "ticket-arcades"
+    },
+    "gp4xp": {
+      "pageId": "gp4xp",
+      "title": "Beaches",
+      "pageUriSEO": "beaches"
+    },
+    "gvmnt": {
+      "pageId": "gvmnt",
+      "title": "Video Slots",
+      "pageUriSEO": "video-slots"
+    },
+    "hn63w": {
+      "pageId": "hn63w",
+      "title": "Arcade Venues (Item)",
+      "pageUriSEO": "blank-2"
+    },
+    "hqyya": {
+      "pageId": "hqyya",
+      "title": "Group Page",
+      "pageUriSEO": "group"
+    },
+    "ij13e": {
+      "pageId": "ij13e",
+      "title": "Classic Fruit Machine Archive (List)",
+      "pageUriSEO": "blank-7"
+    },
+    "ill8c": {
+      "pageId": "ill8c",
+      "title": "Online Casinos",
+      "pageUriSEO": "casino-offers"
+    },
+    "iz2ob": {
+      "pageId": "iz2ob",
+      "title": "Mr Vegas Casino Review",
+      "pageUriSEO": "mrvegas-casino-review"
+    },
+    "j0sv4": {
+      "pageId": "j0sv4",
+      "title": "casinos-page",
+      "pageUriSEO": "blank-41"
+    },
+    "jm2fd": {
+      "pageId": "jm2fd",
+      "title": "Terms and conditions",
+      "pageUriSEO": "terms"
+    },
+    "jrgbr": {
+      "pageId": "jrgbr",
+      "title": "UK Amusement Arcades",
+      "pageUriSEO": "uk-amusement-arcades"
+    },
+    "kuj5y": {
+      "pageId": "kuj5y",
+      "title": "family-fun-page",
+      "pageUriSEO": "blank-31"
+    },
+    "l0gb4": {
+      "pageId": "l0gb4",
+      "title": "CasinoCasino Review",
+      "pageUriSEO": "casino-casino"
+    },
+    "l8fi0": {
+      "pageId": "l8fi0",
+      "title": "Blog",
+      "pageUriSEO": "blog"
+    },
+    "lnapm": {
+      "pageId": "lnapm",
+      "title": "Retro Arcades",
+      "pageUriSEO": "retro-arcades"
+    },
+    "lx74m": {
+      "pageId": "lx74m",
+      "title": "bingo-halls-page",
+      "pageUriSEO": "blank-17"
+    },
+    "lyxzf": {
+      "pageId": "lyxzf",
+      "title": "Food and Drink",
+      "pageUriSEO": "blank-1"
+    },
+    "m82yy": {
+      "pageId": "m82yy",
+      "title": "RESPONSIBLE GAMBLING",
+      "pageUriSEO": "responsiblegambling"
+    },
+    "mlsbg": {
+      "pageId": "mlsbg",
+      "title": "classic-fruit-machines-page",
+      "pageUriSEO": "blank-14"
+    },
+    "mmbdr": {
+      "pageId": "mmbdr",
+      "title": "Food and Drink (Item)",
+      "pageUriSEO": "food-and-drink-item"
+    },
+    "mnd6h": {
+      "pageId": "mnd6h",
+      "title": "arcade-page",
+      "pageUriSEO": "blank-16"
+    },
+    "nd4iq": {
+      "pageId": "nd4iq",
+      "title": "piers-page",
+      "pageUriSEO": "blank-42"
+    },
+    "ngnt4": {
+      "pageId": "ngnt4",
+      "title": "map",
+      "pageUriSEO": "map"
+    },
+    "nsqbc": {
+      "pageId": "nsqbc",
+      "title": "Seaside Arcades",
+      "pageUriSEO": "seaside-arcades"
+    },
+    "ornf4": {
+      "pageId": "ornf4",
+      "title": "sea-life-page",
+      "pageUriSEO": "blank-23"
+    },
+    "p9cib": {
+      "pageId": "p9cib",
+      "title": "holiday-parks-page",
+      "pageUriSEO": "blank-18"
+    },
+    "q9kui": {
+      "pageId": "q9kui",
+      "title": "Hotel Guides (Item)",
+      "pageUriSEO": "hotel-guides-item"
+    },
+    "qrhw8": {
+      "pageId": "qrhw8",
+      "title": "theme-parks-page",
+      "pageUriSEO": "blank-21"
+    },
+    "rby8l": {
+      "pageId": "rby8l",
+      "title": "Classic Fruit Machines (Item)",
+      "pageUriSEO": "blank-15"
+    },
+    "s65s6": {
+      "pageId": "s65s6",
+      "title": "blackpool-arcades",
+      "pageUriSEO": "blackpool-arcades"
+    },
+    "s7ubj": {
+      "pageId": "s7ubj",
+      "title": "Post",
+      "pageUriSEO": "post"
+    },
+    "sl761": {
+      "pageId": "sl761",
+      "title": "agc-page",
+      "pageUriSEO": "blank-39"
+    },
+    "sstdf": {
+      "pageId": "sstdf",
+      "title": "hotels-page",
+      "pageUriSEO": "blank-36"
+    },
+    "tirpm": {
+      "pageId": "tirpm",
+      "title": "outdoors-page",
+      "pageUriSEO": "blank-43"
+    },
+    "u20u0": {
+      "pageId": "u20u0",
+      "title": "cinemas-page",
+      "pageUriSEO": "blank-38"
+    },
+    "vvje0": {
+      "pageId": "vvje0",
+      "title": "services-page",
+      "pageUriSEO": "blank-27"
+    },
+    "x2c0z": {
+      "pageId": "x2c0z",
+      "title": "days-out-page",
+      "pageUriSEO": "blank-34"
+    },
+    "x4wr0": {
+      "pageId": "x4wr0",
+      "title": "Seaside",
+      "pageUriSEO": "seaside"
+    },
+    "xu4lh": {
+      "pageId": "xu4lh",
+      "title": "Coin Pusher Arcades",
+      "pageUriSEO": "coin-pusher-arcades"
+    },
+    "yqik8": {
+      "pageId": "yqik8",
+      "title": "tours-page",
+      "pageUriSEO": "blank-26"
+    },
+    "yxeq9": {
+      "pageId": "yxeq9",
+      "title": "plan-a-trip-page",
+      "pageUriSEO": "blank-35"
+    },
+    "z00kr": {
+      "pageId": "z00kr",
+      "title": "Arcades Near Me",
+      "pageUriSEO": "near-me"
+    },
+    "z73my": {
+      "pageId": "z73my",
+      "title": "Forum",
+      "pageUriSEO": "forum"
+    },
+    "z7v2b": {
+      "pageId": "z7v2b",
+      "title": "fishing-lakes-page",
+      "pageUriSEO": "blank-20"
+    },
+    "zbp7j": {
+      "pageId": "zbp7j",
+      "title": "Reel Fruits",
+      "pageUriSEO": "reelfruits"
+    },
+    "zgaq8": {
+      "pageId": "zgaq8",
+      "title": "Classic Fruit Machine Archive (List)",
+      "pageUriSEO": "blank"
+    },
+    "zll98": {
+      "pageId": "zll98",
+      "title": "bowling-page",
+      "pageUriSEO": "blank-40"
+    },
+    "zpkmj": {
+      "pageId": "zpkmj",
+      "title": "About Us",
+      "pageUriSEO": "about-us"
+    },
+    "zrdiw": {
+      "pageId": "zrdiw",
+      "title": "offers-page",
+      "pageUriSEO": "blank-30"
+    },
+    "zsqi7": {
+      "pageId": "zsqi7",
+      "title": "Food and Drink",
+      "pageUriSEO": "food-and-drink-hub"
+    },
+    "zwesd": {
+      "pageId": "zwesd",
+      "title": "attractions-page",
+      "pageUriSEO": "blank-28"
+    },
+    "zwn1e": {
+      "pageId": "zwn1e",
+      "title": "£500 Jackpot Slots",
+      "pageUriSEO": "500-jackpot-slots"
+    },
+    "zwy9e": {
+      "pageId": "zwy9e",
+      "title": "nearby-attractions-page",
+      "pageUriSEO": "blank-37"
+    }
+  },
+  "customRouters": [
+    {
+      "kind": "machine",
+      "routeRole": "canonical",
+      "routerId": "routers-mur2njor",
+      "prefix": "classic-fruit-machines",
+      "pageId": "mlsbg",
+      "pageName": "classic-fruit-machines-page",
+      "routerFunctionName": "classic_fruit_machines_Router",
+      "siteMapFunctionName": "classic_fruit_machines_SiteMap"
+    },
+    {
+      "kind": "arcade",
+      "routeRole": "canonical",
+      "routerId": "routers-mur2xqiw",
+      "prefix": "arcade",
+      "pageId": "mnd6h",
+      "pageName": "arcade-page",
+      "routerFunctionName": "arcade_Router",
+      "siteMapFunctionName": "arcade_SiteMap"
+    },
+    {
+      "kind": "bingo",
+      "routeRole": "canonical",
+      "routerId": "routers-mur2xvxn",
+      "prefix": "bingo-halls",
+      "pageId": "lx74m",
+      "pageName": "bingo-halls-page",
+      "routerFunctionName": "bingo_halls_Router",
+      "siteMapFunctionName": "bingo_halls_SiteMap"
+    },
+    {
+      "kind": "holidayPark",
+      "routeRole": "canonical",
+      "routerId": "routers-mur2y57t",
+      "prefix": "holiday-parks",
+      "pageId": "p9cib",
+      "pageName": "holiday-parks-page",
+      "routerFunctionName": "holiday_parks_Router",
+      "siteMapFunctionName": "holiday_parks_SiteMap"
+    },
+    {
+      "kind": "arcadeBar",
+      "routeRole": "canonical",
+      "routerId": "routers-mur2yabv",
+      "prefix": "arcade-bars",
+      "pageId": "b1loq",
+      "pageName": "arcade-bars-page",
+      "routerFunctionName": "arcade_bars_Router",
+      "siteMapFunctionName": "arcade_bars_SiteMap"
+    },
+    {
+      "kind": "fishing",
+      "routeRole": "canonical",
+      "routerId": "routers-mur305ln",
+      "prefix": "fishing-lakes",
+      "pageId": "z7v2b",
+      "pageName": "fishing-lakes-page",
+      "routerFunctionName": "fishing_lakes_Router",
+      "siteMapFunctionName": "fishing_lakes_SiteMap"
+    },
+    {
+      "kind": "themePark",
+      "routeRole": "canonical",
+      "routerId": "routers-mur30aua",
+      "prefix": "theme-parks",
+      "pageId": "qrhw8",
+      "pageName": "theme-parks-page",
+      "routerFunctionName": "theme_parks_Router",
+      "siteMapFunctionName": "theme_parks_SiteMap"
+    },
+    {
+      "kind": "zoo",
+      "routeRole": "canonical",
+      "routerId": "routers-mur30fty",
+      "prefix": "zoos",
+      "pageId": "di2hv",
+      "pageName": "zoos-page",
+      "routerFunctionName": "zoos_Router",
+      "siteMapFunctionName": "zoos_SiteMap"
+    },
+    {
+      "kind": "seaLife",
+      "routeRole": "canonical",
+      "routerId": "routers-mur30ks7",
+      "prefix": "sea-life",
+      "pageId": "ornf4",
+      "pageName": "sea-life-page",
+      "routerFunctionName": "sea_life_Router",
+      "siteMapFunctionName": "sea_life_SiteMap"
+    },
+    {
+      "kind": "museum",
+      "routeRole": "canonical",
+      "routerId": "routers-mur311xk",
+      "prefix": "museums",
+      "pageId": "dn097",
+      "pageName": "museums-page",
+      "routerFunctionName": "museums_Router",
+      "siteMapFunctionName": "museums_SiteMap"
+    },
+    {
+      "kind": "historicSite",
+      "routeRole": "canonical",
+      "routerId": "routers-mur32sx4",
+      "prefix": "historical-sites",
+      "pageId": "g1li4",
+      "pageName": "historical-sites-page",
+      "routerFunctionName": "historical_sites_Router",
+      "siteMapFunctionName": "historical_sites_SiteMap"
+    },
+    {
+      "kind": "tour",
+      "routeRole": "canonical",
+      "routerId": "routers-mur33sl6",
+      "prefix": "tours",
+      "pageId": "yqik8",
+      "pageName": "tours-page",
+      "routerFunctionName": "tours_Router",
+      "siteMapFunctionName": "tours_SiteMap"
+    },
+    {
+      "kind": "service",
+      "routeRole": "canonical",
+      "routerId": "routers-mur33xu1",
+      "prefix": "services",
+      "pageId": "vvje0",
+      "pageName": "services-page",
+      "routerFunctionName": "services_Router",
+      "siteMapFunctionName": "services_SiteMap"
+    },
+    {
+      "kind": "attraction",
+      "routeRole": "canonical",
+      "routerId": "routers-mur342hb",
+      "prefix": "attractions",
+      "pageId": "zwesd",
+      "pageName": "attractions-page",
+      "routerFunctionName": "attractions_Router",
+      "siteMapFunctionName": "attractions_SiteMap"
+    },
+    {
+      "kind": "staysIndex",
+      "routeRole": "canonical",
+      "routerId": "routers-mur347ci",
+      "prefix": "places-to-stay",
+      "pageId": "d4i0i",
+      "pageName": "places-to-stay-page",
+      "routerFunctionName": "places_to_stay_Router",
+      "siteMapFunctionName": "places_to_stay_SiteMap"
+    },
+    {
+      "kind": "offersIndex",
+      "routeRole": "canonical",
+      "routerId": "routers-mur37zm1",
+      "prefix": "offers",
+      "pageId": "zrdiw",
+      "pageName": "offers-page",
+      "routerFunctionName": "offers_Router",
+      "siteMapFunctionName": "offers_SiteMap"
+    },
+    {
+      "kind": "familyFunIndex",
+      "routeRole": "canonical",
+      "routerId": "routers-mur38516",
+      "prefix": "family-fun",
+      "pageId": "kuj5y",
+      "pageName": "family-fun-page",
+      "routerFunctionName": "family_fun_Router",
+      "siteMapFunctionName": "family_fun_SiteMap"
+    },
+    {
+      "kind": "hiddenGemsIndex",
+      "routeRole": "canonical",
+      "routerId": "routers-mur38ast",
+      "prefix": "hidden-gems",
+      "pageId": "b95tj",
+      "pageName": "hidden-gems-page",
+      "routerFunctionName": "hidden_gems_Router",
+      "siteMapFunctionName": "hidden_gems_SiteMap"
+    },
+    {
+      "kind": "retroIndex",
+      "routeRole": "canonical",
+      "routerId": "routers-mur38gkn",
+      "prefix": "retro-video-games",
+      "pageId": "dln8x",
+      "pageName": "retro-video-games-page",
+      "routerFunctionName": "retro_video_games_Router",
+      "siteMapFunctionName": "retro_video_games_SiteMap"
+    },
+    {
+      "kind": "daysOutIndex",
+      "routeRole": "canonical",
+      "routerId": "routers-mur392td",
+      "prefix": "days-out",
+      "pageId": "x2c0z",
+      "pageName": "days-out-page",
+      "routerFunctionName": "days_out_Router",
+      "siteMapFunctionName": "days_out_SiteMap"
+    },
+    {
+      "kind": "tripIndex",
+      "routeRole": "canonical",
+      "routerId": "routers-mur398jm",
+      "prefix": "plan-a-trip",
+      "pageId": "yxeq9",
+      "pageName": "plan-a-trip-page",
+      "routerFunctionName": "plan_a_trip_Router",
+      "siteMapFunctionName": "plan_a_trip_SiteMap"
+    },
+    {
+      "kind": null,
+      "routeRole": "legacy-alias",
+      "routerId": "routers-mur39dpn",
+      "prefix": "hotels",
+      "pageId": "sstdf",
+      "pageName": "hotels-page",
+      "routerFunctionName": "hotels_Router",
+      "siteMapFunctionName": "hotels_SiteMap"
+    },
+    {
+      "kind": null,
+      "routeRole": "legacy-alias",
+      "routerId": "routers-mur39iwt",
+      "prefix": "nearby-attractions",
+      "pageId": "zwy9e",
+      "pageName": "nearby-attractions-page",
+      "routerFunctionName": "nearby_attractions_Router",
+      "siteMapFunctionName": "nearby_attractions_SiteMap"
+    },
+    {
+      "kind": "cinema",
+      "routeRole": "canonical",
+      "routerId": "routers-mur3timl",
+      "prefix": "cinemas",
+      "pageId": "u20u0",
+      "pageName": "cinemas-page",
+      "routerFunctionName": "cinemas_Router",
+      "siteMapFunctionName": "cinemas_SiteMap"
+    },
+    {
+      "kind": "agc",
+      "routeRole": "canonical",
+      "routerId": "routers-mur3vv6x",
+      "prefix": "agc",
+      "pageId": "sl761",
+      "pageName": "agc-page",
+      "routerFunctionName": "agc_Router",
+      "siteMapFunctionName": "agc_SiteMap"
+    },
+    {
+      "kind": "bowling",
+      "routeRole": "canonical",
+      "routerId": "routers-mur3w435",
+      "prefix": "bowling",
+      "pageId": "zll98",
+      "pageName": "bowling-page",
+      "routerFunctionName": "bowling_Router",
+      "siteMapFunctionName": "bowling_SiteMap"
+    },
+    {
+      "kind": "casino",
+      "routeRole": "canonical",
+      "routerId": "routers-mur3wd62",
+      "prefix": "casinos",
+      "pageId": "j0sv4",
+      "pageName": "casinos-page",
+      "routerFunctionName": "casinos_Router",
+      "siteMapFunctionName": "casinos_SiteMap"
+    },
+    {
+      "kind": "pier",
+      "routeRole": "canonical",
+      "routerId": "routers-mur3xuxj",
+      "prefix": "piers",
+      "pageId": "nd4iq",
+      "pageName": "piers-page",
+      "routerFunctionName": "piers_Router",
+      "siteMapFunctionName": "piers_SiteMap"
+    },
+    {
+      "kind": "outdoors",
+      "routeRole": "canonical",
+      "routerId": "routers-mur3y4zw",
+      "prefix": "outdoors",
+      "pageId": "tirpm",
+      "pageName": "outdoors-page",
+      "routerFunctionName": "outdoors_Router",
+      "siteMapFunctionName": "outdoors_SiteMap"
+    }
+  ],
+  "staticPaths": {
+    "/terms": "jm2fd",
+    "/video-slots": "gvmnt",
+    "/map": "ngnt4",
+    "/reelfruits": "zbp7j",
+    "/near-me": "z00kr",
+    "/retro-slots-blackpool": "cvyf6",
+    "/beaches": "gp4xp",
+    "/wheelchair-friendly-arcades": "g7x73",
+    "/coin-pusher-arcades": "xu4lh",
+    "/group": "hqyya",
+    "/funcasino": "fdvpj",
+    "/mrvegas-casino-review": "iz2ob",
+    "/search": "cfe9p",
+    "/blog": "l8fi0",
+    "/ticket-arcades": "gl6j9",
+    "/casino-offers": "ill8c",
+    "/casino-casino": "l0gb4",
+    "/seaside": "x4wr0",
+    "/about-us": "zpkmj",
+    "/members": "b4nxh",
+    "/forum": "z73my",
+    "/william-hill-vegas": "fi3xo",
+    "/seaside-arcades": "nsqbc",
+    "/responsiblegambling": "m82yy",
+    "/blackpool-arcades": "s65s6",
+    "/retro-arcades": "lnapm",
+    "/food-and-drink-hub": "zsqi7",
+    "/retropolis-amusement-arcade": "ernep",
+    "/privacy-policy": "brat7",
+    "/dog-friendly-arcades": "e01ye",
+    "/500-jackpot-slots": "zwn1e",
+    "/post": "s7ubj",
+    "/all-british-casino": "gek83",
+    "/": "jrgbr",
+    "/food-and-drink": "lyxzf",
+    "/classic-fruit-machines": "mlsbg",
+    "/arcade": "mnd6h",
+    "/bingo-halls": "lx74m",
+    "/holiday-parks": "p9cib",
+    "/arcade-bars": "b1loq",
+    "/fishing-lakes": "z7v2b",
+    "/theme-parks": "qrhw8",
+    "/zoos": "di2hv",
+    "/sea-life": "ornf4",
+    "/museums": "dn097",
+    "/historical-sites": "g1li4",
+    "/tours": "yqik8",
+    "/services": "vvje0",
+    "/attractions": "zwesd",
+    "/places-to-stay": "d4i0i",
+    "/offers": "zrdiw",
+    "/family-fun": "kuj5y",
+    "/hidden-gems": "b95tj",
+    "/retro-video-games": "dln8x",
+    "/days-out": "x2c0z",
+    "/plan-a-trip": "yxeq9",
+    "/cinemas": "u20u0",
+    "/agc": "sl761",
+    "/bowling": "zll98",
+    "/casinos": "j0sv4",
+    "/piers": "nd4iq",
+    "/outdoors": "tirpm"
+  },
+  "dynamicPages": {
+    "destination": "aa2s4",
+    "food": "mmbdr",
+    "hotel": "q9kui",
+    "blogPost": "s7ubj",
+    "legacyArcade": "hn63w",
+    "legacyMachine": "rby8l",
+    "legacyMachineIndex": "ij13e",
+    "legacyMachineList": "zgaq8"
+  }
+}

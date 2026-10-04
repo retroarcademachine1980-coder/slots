@@ -1,0 +1,19 @@
+{
+  "testApproved": true,
+  "localTestEvidence": "LOCAL COMPILER FIXTURE ONLY - NOT A RELEASE",
+  "promotionApproved": false,
+  "assetCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "codeAppId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+  "nativeBuildHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "testIdentity": {
+    "revision": "99",
+    "branchId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+  },
+  "expectedFingerprint": {
+    "contractVersion": "spin-raiders-canonical-v1",
+    "releaseFingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "manifestFingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "rendererFingerprint": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "transitionalIndexInputs": true
+}

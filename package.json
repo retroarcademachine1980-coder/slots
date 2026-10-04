@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "@wix/cli": "^1.0.0",
+    "@wix/eslint-plugin-cli": "1.0.2",
+    "eslint": "8.57.1",
+    "react": "16.14.0",
+    "jsdom": "26.1.0",
+    "eslint-plugin-spin-raiders": "file:tools/eslint-plugin-spin-raiders"
+  },
+  "scripts": {
+    "postinstall": "wix sync-types",
+    "dev": "wix dev",
+    "lint": "eslint . --ext .js,.cjs,.mjs",
+    "test": "node --experimental-vm-modules --import ./tools/register-wix-test-loader.mjs --test tests/*.test.mjs",
+    "wix": "wix",
+    "test:ui": "node tools/verify-ui.cjs",
+    "test:lint-policy": "node tools/verify-lint-policy.cjs",
+    "check": "npm run lint && node tools/check-source-syntax.mjs && npm test && npm run test:ui && npm run test:lint-policy",
+    "release:check": "node tools/verify-release-gates.mjs"
+  }
+}

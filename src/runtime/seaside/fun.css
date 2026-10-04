@@ -1,0 +1,89 @@
+:host{--paper:#f3f5ff;--navy:#092b47;--deep:#071e37;--red:#e92f68;--yellow:#ffda38;background:#0d1928}
+:host main{background:radial-gradient(circle at 10% 10%,#0d1928,transparent 38%),radial-gradient(circle at 92% 50%,#0d1928,transparent 35%),#0d1928}
+:host .header{background:#0d1928;border-bottom:4px solid #31d5d4;box-shadow:0 5px 0 #ffda38}
+:host .sectionbar{border-bottom:0;margin-bottom:24px;gap:16px}
+:host .sectionbar h2,:host .centretitle{letter-spacing:.02em;text-shadow:2px 2px 0 #31d5d440}
+:host .sectionbar h2:before{content:'✦';display:inline-block;color:#dcebf6;margin-right:10px}
+:host .btn{border:2px solid #092b47;border-radius:9px;box-shadow:0 4px 0 #092b47;min-height:46px}
+:host .btn.red{border-color:#092b47;background:#0d1928}
+:host .btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #092b47}
+:host .btn:active{transform:translateY(2px);box-shadow:0 2px 0 #092b47}
+:host .card.raider-card{border:2px solid #092b47;border-top:5px solid #31d5d4;border-radius:15px;box-shadow:4px 5px 0 #092b47;background:#0d1928;overflow:hidden}
+:host .grid>.card:nth-child(4n+2){border-top-color:#ffda38}:host .grid>.card:nth-child(4n+3){border-top-color:#ff6b92}:host .grid>.card:nth-child(4n+4){border-top-color:#a779ef}
+:host .raider-card .cardbody{background:#0d1928;padding:18px}:host .card-town .cardbody{background:#0d1928}
+:host .raider-card .card-ribbon{display:flex;align-items:center;gap:7px;background:#0d1928;color:#dcebf6;border-radius:0 9px 0 0;font-size:13px}
+.fun-icon{display:inline-block;width:30px;height:30px;flex:none;vertical-align:middle;margin-right:7px;overflow:visible}
+.card-ribbon .fun-icon{width:24px;height:24px;margin:0}
+:host .raider-card .card-actions{background:#0d1928;border-top:2px solid #092b47}
+:host .detail{background:#0d1928;border:2px solid #092b47;border-top:7px solid #e92f68;border-radius:18px;box-shadow:6px 7px 0 #c7d4ee;padding:clamp(20px,3vw,38px);margin-top:30px}
+:host .detail h1{font-size:clamp(32px,3.5vw,58px);line-height:1.08}
+:host .facts>div{background:#0d1928;border:1px solid #a9d8d3;border-radius:9px;padding:12px}
+:host .facts dt{color:#dcebf6}:host .facts dd{font-weight:600;line-height:1.5}
+:host .facility-pills li{background:#0d1928;border:1px solid #e6c95e;border-radius:8px;color:#dcebf6;padding:9px 12px}
+:host .venue-guide-panel{border:2px solid #c2cedd;border-left:6px solid #31bcb8;border-radius:14px;background:#0d1928;box-shadow:3px 4px 0 #dce3ef}
+:host .venue-guide-panel:nth-of-type(3n+2){border-left-color:#ee5987}:host .venue-guide-panel:nth-of-type(3n){border-left-color:#9971d8}
+:host .venue-guide-panel h2{padding-bottom:10px;color:#dcebf6}:host .venue-guide-panel h2:before{content:'✦';color:#dcebf6;margin-right:10px}
+:host .local-map-panel,:host .map-discovery{background:#0d1928;border:2px solid #092b47;border-top:7px solid #31c9c3;border-radius:18px;padding:26px;margin-top:35px;margin-bottom:35px;box-shadow:6px 6px 0 #c9d7e8}
+:host .local-map-panel>.sectionbar h2,:host .map-discovery>h2{color:#dcebf6}
+:host .chip,:host [data-local-type]{display:inline-flex;align-items:center;gap:5px;border:2px solid #b6cbd8;border-radius:9px;background:#0d1928;min-height:44px;padding:8px 13px;font-weight:700}
+:host .chip[aria-pressed=true],:host [data-local-type][aria-pressed=true]{background:#0d1928;border-color:#092b47;color:#dcebf6;box-shadow:0 3px 0 #31c9c3}
+:host .fullmap,:host .fun-local-map{border:3px solid #092b47;border-radius:14px;overflow:hidden;background:#0d1928}
+:host .fun-local-map{height:510px;min-height:400px}:host .fun-local-map>p,:host .fun-local-map>button{margin:24px}
+:host .local-map-list{max-height:510px;padding:4px 8px 10px 3px}
+:host .local-map-venue{border:2px solid #b4c9d6;border-left:5px solid #e92f68;background:#0d1928;border-radius:13px;box-shadow:3px 3px 0 #cddbe4;margin-bottom:15px;padding:18px}
+:host .local-map-type{color:#dcebf6;font-size:12px;letter-spacing:.08em}
+:host .sr-pin-legend{background:#0d1928;color:#dcebf6;border-top:3px solid #ffda38;align-content:center}
+:host .sr-pin-legend i{border:2px solid #fff;width:14px;height:14px}
+.sr-fun-map-icon{background:transparent;border:0}.sr-fun-map-icon>span{display:grid;place-items:center;width:40px;height:40px;border:3px solid white;border-radius:12px;background:var(--pin,#0d1928);box-shadow:0 3px 8px #071e3766}.sr-fun-map-icon .fun-icon{width:30px;height:30px;margin:0;filter:drop-shadow(0 1px 1px #071e3788)}
+:host .leaflet-popup-content-wrapper{background:#0d1928;border:3px solid #092b47;border-radius:12px;box-shadow:4px 4px 0 #092b47}
+:host .stats.sr-full-directory{background:#0d1928;color:#dcebf6;border-bottom:5px solid #ffda38}
+:host .sr-directory-summary>a{color:#dcebf6}:host .sr-directory-summary h2{color:#dcebf6}:host .stats.sr-full-directory .sr-directory-date{color:#dcebf6}
+:host .sr-directory-categories>a{background:#0d1928;border:1px solid #4b6c85;color:#dcebf6;border-radius:10px;justify-content:flex-start;font-size:15px}:host .sr-directory-categories>a>span{margin-left:auto}:host .sr-directory-categories>a:last-child{background:#ffda38;color:#dcebf6}
+:host .machines{background:#0d1928;border-top:5px solid #31d5d4;border-bottom:5px solid #ffda38}:host .machines .sectionbar h2{color:#dcebf6}
+:host .finder{background:#0d1928;border:2px solid #092b47;box-shadow:4px 4px 0 #092b47;border-radius:13px}
+:host .guide-link{border:2px solid #092b47;border-left:7px solid #e92f68;box-shadow:3px 3px 0 #d8ddee;background:#0d1928}
+:host .guide-link:nth-child(2){border-left-color:#31c9c3}:host .guide-link:nth-child(3){border-left-color:#a779ef}
+:host .footer{background:#0d1928;border-top:5px solid #31d5d4}
+@media(prefers-reduced-motion:reduce){:host .btn:hover,:host .btn:active,:host .card:hover{transform:none;transition:none}}
+
+/* Compact missing-photo cards: never stretch blank content to a neighbour's height. */
+:host .grid{align-items:start}:host .grid>.raider-card{height:auto;min-height:0;align-self:start}:host .raider-card.no-photo .cardbody{min-height:0;flex:0 0 auto;padding-top:24px}:host .raider-card.no-photo .card-extra{margin-top:20px}:host .raider-card.no-photo .card-eyebrow{padding-right:48px}:host .raider-card .card-facts{line-height:1.5}:host .raider-card .card-photo-link{aspect-ratio:16/10}:host .fullmap iframe{height:100%;min-height:430px}
+/* Seaside facility illustrations and compact practical venue layout. */
+:host main{background:linear-gradient(180deg,#0d1928 0,#0d1928 550px,#0d1928 100%)}
+:host .venue-rating[data-rating-policy]{background:#0d1928!important;color:#dcebf6!important;border:0!important;border-left:4px solid #ffbe23!important;border-radius:8px!important;box-shadow:none!important;height:auto!important;min-height:38px!important;max-height:none!important;font-family:inherit!important}
+:host .venue-rating.rating-empty{background:#0d1928!important;color:#dcebf6!important;border-left-color:#98cbdc!important}
+:host .venue-rating .rating-public-line{font-family:inherit!important;letter-spacing:0}
+:host .venue-ratings-guide{background:#0d1928;padding:10px 14px;margin:10px 0;border:1px solid #efd676;border-radius:10px;font-size:17px;line-height:1.5}
+:host .venue-ratings-guide strong{color:#dcebf6}:host .venue-ratings-guide small{display:inline;margin-left:10px;color:#dcebf6}
+:host #venue-overview.detail[data-seaside]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:20px;padding:24px;background:#0d1928;border:1px solid #aaceda;border-top:5px solid #2cbccc;box-shadow:3px 4px 0 #d5e8ed}
+:host .seaside-venue-heading{grid-column:1/-1}:host .seaside-venue-heading h1{margin:4px 0;font-size:clamp(30px,3vw,48px)}:host .seaside-venue-heading .kicker{margin:0}
+:host #venue-overview.detail .seaside-venue-photo{width:100%;height:auto;max-height:360px;object-fit:contain!important;object-position:center!important;align-self:start;border:0;border-radius:12px;box-shadow:none;background:#0d1928}
+:host .seaside-venue-summary{align-self:start}:host .seaside-venue-summary p{font-size:18px;line-height:1.5;margin:0 0 12px}:host .seaside-venue-summary .ctas{gap:8px;margin-top:16px}:host .seaside-venue-summary .btn{font-size:15px;padding:10px 14px;box-shadow:0 2px 0 #164a66;flex:1 1 130px}
+:host .seaside-practical{grid-column:1/-1;display:flex;flex-direction:column;gap:12px}:host .seaside-practical .facility-heading{order:0;margin:0;font-size:25px}:host .seaside-practical .facility-pills{order:1}:host .seaside-practical .facts{order:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;padding:0;background:none}:host .seaside-practical .facts>div{padding:10px 12px}:host .seaside-practical .facts dd{font-size:16px;font-weight:500;line-height:1.5}
+:host .seaside-no-photo .seaside-venue-summary{grid-column:1/-1}
+:host .facility-pills{display:flex;flex-wrap:wrap;gap:12px;margin:0;padding:12px 0;list-style:none}:host .facility-pills li{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;flex:0 1 110px;min-width:85px;padding:6px;border:0;border-radius:0;background:transparent;text-align:center;font-size:15px;font-weight:700;line-height:1.2}:host .facility-pills li:before{content:none!important}
+.facility-art{display:inline-block;width:78px;height:78px;flex:none;border-radius:50%;background-image:url("https://static.wixstatic.com/media/3a517e_b4cc2d04fb674513b5428a0401e6714e~mv2.png/v1/fit/w_724,h_543,q_82,enc_auto/3a517e_b4cc2d04fb674513b5428a0401e6714e~mv2.png");background-size:556.923% 476.316%;background-repeat:no-repeat}
+.facility-vector{background:radial-gradient(circle at 30% 20%,#0d1928,#0d1928);border:3px solid #60b947;display:inline-flex;align-items:center;justify-content:center}.facility-vector .fun-icon{width:54px;height:54px;margin:0}
+:host .card-facts{gap:7px;display:flex;flex-wrap:wrap;margin:12px 0}:host .card-facts li{display:flex;align-items:center;gap:5px;font-size:13px;line-height:1.3}:host .card-facts li:before{content:none!important}:host .card-facts .facility-art{width:34px;height:34px}:host .card-facts .facility-vector .fun-icon{width:24px;height:24px}
+:host .raider-card .card-photo-link{aspect-ratio:16/10;background:#0d1928}:host .raider-card .card-photo-link img{object-fit:contain!important;object-position:center!important;transform:none!important}:host .card-media{background:#0d1928}:host .raider-card .cardbody{padding:14px 16px}:host .raider-card .card-extra{margin-top:8px!important}:host .raider-card.no-photo .cardbody{padding-top:18px}
+@media(max-width:700px){:host #venue-overview.detail[data-seaside]{grid-template-columns:1fr;padding:16px;gap:16px}:host .seaside-practical .facts{grid-template-columns:1fr 1fr}:host .facility-pills{gap:8px}:host .facility-pills li{flex-basis:90px;font-size:14px}:host .facility-art{width:66px;height:66px}:host .seaside-venue-photo{max-height:300px!important}}
+@media(max-width:420px){:host .seaside-practical .facts{grid-template-columns:1fr}}
+.fa-family{background-position:8.249% 0.816%}
+.fa-bingo{background-position:34.848% 0.816%}
+.fa-toilets{background-position:61.195% 0.816%}
+.fa-atm{background-position:87.710% 0.816%}
+.fa-cafe{background-position:8.249% 31.702%}
+.fa-refreshments{background-position:34.848% 31.702%}
+.fa-snacks{background-position:61.195% 31.702%}
+.fa-food{background-position:87.710% 31.702%}
+.fa-access{background-position:8.249% 62.238%}
+.fa-baby{background-position:34.848% 62.238%}
+.fa-wifi{background-position:61.195% 62.238%}
+.fa-parking{background-position:87.710% 62.238%}
+.fa-seating{background-position:8.249% 92.657%}
+.fa-prizes{background-position:34.848% 92.657%}
+.fa-change{background-position:61.195% 92.657%}
+.fa-tickets{background-position:87.710% 92.657%}
+
+:host .seaside-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}:host .seaside-choice{padding:22px;border:2px solid #0c3c58;border-radius:22px;background:#0d1928;color:#dcebf6;text-decoration:none;box-shadow:0 5px 0 #0c3c58}:host .seaside-choice:nth-child(3n+2){background:#0d1928}:host .seaside-choice:nth-child(3n){background:#0d1928}:host .seaside-choice .fun-icon{width:70px;height:70px}:host .seaside-choice h3{font-size:25px;margin:8px 0}:host .seaside-choice p{font-size:17px;margin:6px 0 14px}:host .seaside-choice span{font-weight:700}:host .seaside-choice:hover{transform:translateY(-3px)}@media(max-width:650px){:host .seaside-choices{grid-template-columns:repeat(2,1fr);gap:12px}:host .seaside-choice{padding:14px}:host .seaside-choice h3{font-size:21px}}
+:host #venue-overview[data-category-theme="bowling"]{background:linear-gradient(135deg,#0d1928,#0d1928 65%)!important;border-top-color:#955be5!important}:host #venue-overview[data-category-theme="park"]{background:linear-gradient(135deg,#0d1928,#0d1928 65%)!important;border-top-color:#3aab76!important}:host #venue-overview[data-category-theme="family"]{background:linear-gradient(135deg,#0d1928,#0d1928 65%)!important;border-top-color:#ffcc32!important}:host #venue-overview[data-category-theme="cinema"]{background:linear-gradient(135deg,#0d1928,#0d1928 65%)!important;border-top-color:#ee6797!important}:host #venue-overview[data-category-theme] h1{display:flex;align-items:center;gap:14px}:host #venue-overview[data-category-theme] h1>.fun-icon{width:48px;height:48px;flex:none}:host .seaside-venue-summary{min-width:0}:host .seaside-practical{min-width:0}:host .seaside-practical .facts dd{overflow-wrap:anywhere}
