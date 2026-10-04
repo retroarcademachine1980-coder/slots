@@ -39,9 +39,15 @@ const ROUTES = freeze({
   service: place('/services'),
   attraction: place('/attractions'),
   destination: { prefix: '/destination', fields: ['nativeTitleSlug'], collection: 'Locations' },
-  food: { prefix: '/food-and-drink', fields: ['urlName', 'townSlug'], collection: 'FoodAndDrink', collections: ['FoodAndDrink', 'Venues', 'NearbyAttractions', 'AffiliateOffers'] },
+  food: { prefix: '/food-and-drink', fields: ['urlName', 'townSlug'], joined: true, collection: 'FoodAndDrink', collections: ['FoodAndDrink', 'Venues', 'NearbyAttractions', 'AffiliateOffers'] },
   machineIndex: { prefix: '/classic-fruit-machines', fields: [], collection: null }
 });
+// Exact user-confirmed entity address (4 October 2026). All other food records use name-town.
+const CONFIRMED_CANONICALS = freeze([freeze({
+  kind: 'food',
+  params: freeze({ urlName: 'masala-n-malt', townSlug: 'grimsby' }),
+  path: '/food-and-drink/masala-malt-grimsby'
+})]);
 const REQUIRED_ROUTE_FIELDS = freeze({
   Venues: ['_id', 'slug', 'locationSlug', 'venueType', 'familyFEC', 'familyEntertainmentCentre', 'amusementArcade', 'adultGamingCentre'],
   NearbyAttractions: ['_id', 'slug', 'locationSlug', 'category'],
@@ -72,10 +78,22 @@ function isLegacyPath(path) { return typeof path === 'string' && FORBIDDEN.test(
 function buildCanonical(kind, fields = {}) {
   const spec = Object.hasOwn(ROUTES, kind) ? ROUTES[kind] : null;
   if (!spec) return blocked('unregistered_route_kind', { kind });
+  if (spec.joined && fields.joinedSlug !== undefined) {
+    // Reviewed inventory address. When the source row also carries its own name/town
+    // fields they must still produce this exact address; otherwise the metadata changed.
+    if (!isSemanticSlug(fields.joinedSlug)) return blocked('invalid_or_missing_route_field', { kind, field: 'joinedSlug' });
+    const path = spec.prefix + '/' + fields.joinedSlug;
+    if (spec.fields.every(field => fields[field] !== undefined)) {
+      const own = buildCanonical(kind, Object.fromEntries(spec.fields.map(field => [field, fields[field]])));
+      if (!own.ok || own.path !== path) return blocked('route_source_metadata_changed', { kind, field: 'joinedSlug' });
+    }
+    return freeze({ ok: true, kind, path });
+  }
   for (const field of spec.fields) {
     if (!isSemanticSlug(fields[field])) return blocked('invalid_or_missing_route_field', { kind, field });
   }
-  const path = spec.prefix + (spec.fields.length ? '/' + spec.fields.map(field => fields[field]).join('/') : '');
+  const confirmed = CONFIRMED_CANONICALS.find(entry => entry.kind === kind && spec.fields.every(field => entry.params[field] === fields[field]));
+  const path = confirmed ? confirmed.path : spec.prefix + (spec.fields.length ? '/' + spec.fields.map(field => fields[field]).join(spec.joined ? '-' : '/') : '');
   return freeze({ ok: true, kind, path });
 }
 function parseCanonical(input) {
@@ -84,7 +102,16 @@ function parseCanonical(input) {
   let path = input;
   if (input.startsWith(SITE_ORIGIN + '/')) path = input.slice(SITE_ORIGIN.length);
   if (!path.startsWith('/') || path.startsWith('//') || isLegacyPath(path)) return blocked('noncanonical_path');
+  const confirmed = CONFIRMED_CANONICALS.find(entry => entry.path === path);
+  if (confirmed) return freeze({ ...buildCanonical(confirmed.kind, confirmed.params), params: confirmed.params });
   for (const [kind, spec] of Object.entries(ROUTES)) {
+    if (spec.joined) {
+      // One-segment name-town address. The split is not structurally unique, so the
+      // record is resolved through the reviewed inventory binding, never by guessing.
+      const rest = path.startsWith(spec.prefix + '/') ? path.slice(spec.prefix.length + 1) : '';
+      if (rest && !rest.includes('/') && isSemanticSlug(rest) && rest.includes('-')) return freeze({ ok: true, kind, path, params: { joinedSlug: rest } });
+      continue;
+    }
     const segments = path.slice(spec.prefix.length + 1).split('/');
     if (!spec.fields.length && path === spec.prefix) return buildCanonical(kind);
     if (!spec.fields.length || !path.startsWith(spec.prefix + '/') || segments.length !== spec.fields.length) continue;
@@ -773,5 +800,5 @@ function createBrowserRouteClient({ fetch, origin = SITE_ORIGIN, apiMode = 'prod
 }
 
 if(Object.prototype.hasOwnProperty.call(window,'SR_ROUTES'))throw new Error('Duplicate route authority');
-Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"release-manager-test",indexAliasesActive:false,expectedReleaseFingerprint:"b40f2cd41be7c7388483889bc0275431c4cc879dde688790a9f8b3670d08cd13",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
+Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"release-manager-test",indexAliasesActive:false,expectedReleaseFingerprint:"d72cfb4ee8bb92d714a8021ef0ef9684df5ce6e4236ca2fb02a4916865149834",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
 })();

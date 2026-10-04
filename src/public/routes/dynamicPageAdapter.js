@@ -9,7 +9,14 @@ export function createDynamicDetailHook({ kind, prefix, pageName, resolve, resol
     if (!parts.length) return response; // Preserve the current native list page.
     if (parts.some(part => typeof part !== 'string' || /[/?#\\%]/.test(part))) return notFound();
     const path = prefix + '/' + parts.join('/'), parsed = parseCanonical(path);
-    if (!parsed.ok || parsed.kind !== kind) return notFound();
+    if (!parsed.ok || parsed.kind !== kind) {
+      // A retired address form under this prefix may still be an identity-bound legacy input.
+      if (resolveAlias && redirect) {
+        const alias = await resolveAlias(path);
+        if (alias.ok && alias.method === 'server301' && parseCanonical(alias.to).ok) return redirect(alias.to, '301');
+      }
+      return notFound();
+    }
     const result = await resolve(path);
     if (result.status === 404) {
       if (resolveAlias && redirect) {

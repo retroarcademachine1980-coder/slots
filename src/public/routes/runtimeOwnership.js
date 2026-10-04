@@ -9,7 +9,7 @@ export const RUNTIME_OWNERSHIP = Object.freeze({
   legacyCollections:LEGACY_ROUTING_INPUTS.collections,
   staticPaths: Object.freeze([...new Set(['/', '/search', '/map', '/blog', ...Object.values(CATEGORY_PATHS).map(path=>path.split('?')[0]), ...Object.values(VIEW_PATHS), ...Object.values(INDEX_ROUTES).map(route=>route.prefix), '/classic-fruit-machines'])]),
   nativeBlogPaths: Object.freeze(Object.keys(NATIVE_BLOG_PATHS)),
-  canonicalPatterns: Object.freeze(Object.entries(ROUTES).filter(([,route])=>route.fields.length).map(([kind,route])=>Object.freeze({kind,prefix:route.prefix,fields:route.fields}))),
+  canonicalPatterns: Object.freeze(Object.entries(ROUTES).filter(([,route])=>route.fields.length).map(([kind,route])=>Object.freeze({kind,prefix:route.prefix,fields:route.fields,segments:route.joined?1:route.fields.length}))),
   legacyPrefixes: LEGACY_ROUTING_INPUTS.prefixes,
   exactLegacyRecordPaths:LEGACY_ROUTING_INPUTS.exactPaths,
   legacyIndexPaths: Object.freeze(['/classic-fruit-machine-archive','/classic-fruit-machine-archive-1']),
@@ -32,7 +32,7 @@ export function classifyRuntimeOwnership(value, registry, { transitionalIndexInp
   if(transitionalIndexInputs&&path==='/destination-recommendations'&&q.get('view')==='offers')return true;
   if(registry.staticPaths.includes(path)||registry.nativeBlogPaths.includes(path))return true;
   const rules=registry.segmentRules, semantic=segment=>segment.length<=rules.maxLength&&new RegExp(rules.slug).test(segment)&&![rules.uuid,rules.opaqueHex,rules.placeholder].some(pattern=>new RegExp(pattern).test(segment));
-  if(registry.canonicalPatterns.some(route=>path.startsWith(route.prefix+'/')&&path.slice(route.prefix.length+1).split('/').length===route.fields.length&&path.slice(route.prefix.length+1).split('/').every(semantic)))return true;
+  if(registry.canonicalPatterns.some(route=>path.startsWith(route.prefix+'/')&&path.slice(route.prefix.length+1).split('/').length===(route.segments||route.fields.length)&&path.slice(route.prefix.length+1).split('/').every(semantic)))return true;
   if(registry.exactLegacyRecordPaths.includes(path))return true;
   if(registry.legacyIndexPaths.includes(path))return true;
   if(registry.legacyPrefixes.some(prefix=>path.startsWith(prefix+'/')))return true;
