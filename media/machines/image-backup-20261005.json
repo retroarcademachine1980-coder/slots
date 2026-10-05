@@ -1,0 +1,1842 @@
+{
+ "photo-random-spinner": {
+  "title": "Random Spinner",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_3c7ecb2c5a4b4e288854e8102762b16a~mv2.jpg/v1/crop/x_0,y_177,w_710,h_399/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3c7ecb2c5a4b4e288854e8102762b16a~mv2.jpg/v1/crop/x_0,y_177,w_710,h_399/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_3c7ecb2c5a4b4e288854e8102762b16a~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "photo-ring-a-bell": {
+  "title": "Ring-a-Bell",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_568bb64ce8b54dcaa471e0be13b005f5~mv2.jpg/v1/crop/x_48,y_964,w_642,h_361/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_568bb64ce8b54dcaa471e0be13b005f5~mv2.jpg/v1/crop/x_48,y_964,w_642,h_361/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_568bb64ce8b54dcaa471e0be13b005f5~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "andy-capp-1991-blue-edition-live": {
+  "title": "Andy Capp",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_7db92e9fbea8427086f8e522fa9b90cd~mv2.png",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_7db92e9fbea8427086f8e522fa9b90cd~mv2.png",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_a1d8c05b2e7c45aaaa2557775d745d50~mv2.png",
+  "logoImage": "https://static.wixstatic.com/media/3a517e_7db92e9fbea8427086f8e522fa9b90cd~mv2.png",
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-shanghai-suprise": {
+  "title": "Shanghai Surprise",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_b1404af1a4ed4767b147d4691ee60fdd~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_7b1981b21ee24707ba9efce1a1c3bb20~mv2.webp",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_d02633bfcefa4d7495df7b629e46a782~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "archive-blackjack-club": {
+  "title": "Blackjack Club",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_8dd1147eeb73464bbfb64ab80f414e16~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_8dd1147eeb73464bbfb64ab80f414e16~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_d5146d9b0ae047bf841b8aaae5381a17~mv2.png",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "archive-andy-loves-flo": {
+  "title": "Andy Loves Flo",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_c423b975cf9d4f588b9159efab63cfa3~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_c423b975cf9d4f588b9159efab63cfa3~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_e1dafa8e9ecf499fbc8b0d87a2a0ef88~mv2.png",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "photo-deluxe-super-bar-x": {
+  "title": "Deluxe Super Bar-X",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_05874b3e2365483aa6481f06dbcc7fb0~mv2.png",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_05874b3e2365483aa6481f06dbcc7fb0~mv2.png",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_05874b3e2365483aa6481f06dbcc7fb0~mv2.png",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "photo-bar-x-ten": {
+  "title": "Bar-X Ten",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_9ac0f98f8f164cf49a9e16dc3120ccd2~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_9ac0f98f8f164cf49a9e16dc3120ccd2~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_1d565acbf48d4d968b874575f6cc468e~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "photo-bar-x-5": {
+  "title": "Bar-X 5",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_a40a2eafe6284adb8742c7466d1d5209~mv2.png",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_a40a2eafe6284adb8742c7466d1d5209~mv2.png",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_a40a2eafe6284adb8742c7466d1d5209~mv2.png",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "andys-great-escape-barcrest-1991": {
+  "title": "Andy's Great Escape",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_3225849000ae484391c6e0af5587141f~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3225849000ae484391c6e0af5587141f~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_ad710c64b82a49379f2fbc5a9b21ef3f~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmdace-3ccc2f9f": {
+  "title": "Road Hog",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_27dd6a9bdd53404c9eef36538c5da611~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_27dd6a9bdd53404c9eef36538c5da611~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_013bc1675c14490d9fb53e7436c7013a~mv2.jpg",
+  "logoImage": "https://static.wixstatic.com/media/3a517e_8698399ce34e496bb885eacfd9fbe160~mv2.jpg",
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-008412fd": {
+  "title": "Twice as Nice",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-e5c83077": {
+  "title": "Vortex",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_b3910b34162a44c28a02e1d4ed6a2f00~mv2.jpg/v1/crop/x_0,y_997,w_567,h_319/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_b3910b34162a44c28a02e1d4ed6a2f00~mv2.jpg/v1/crop/x_0,y_997,w_567,h_319/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_b3910b34162a44c28a02e1d4ed6a2f00~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-da4437c6": {
+  "title": "The Adventures of Jungle Jim",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_6e2ea444fd5d4d58a85b94d8f759be8c~mv2.jpg/v1/crop/x_56,y_1041,w_599,h_337/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_6e2ea444fd5d4d58a85b94d8f759be8c~mv2.jpg/v1/crop/x_56,y_1041,w_599,h_337/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_6e2ea444fd5d4d58a85b94d8f759be8c~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-e33fd4f1": {
+  "title": "The Nickelodeon",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_655e773eebc3489aa97bec116aa01616~mv2.jpg/v1/crop/x_0,y_945,w_710,h_399/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_655e773eebc3489aa97bec116aa01616~mv2.jpg/v1/crop/x_0,y_945,w_710,h_399/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_655e773eebc3489aa97bec116aa01616~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-c450a5a0": {
+  "title": "The Simpsons Duff Beer Guide",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_b74a7373af5648f5859ecba6256b1e01~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_b74a7373af5648f5859ecba6256b1e01~mv2.jpg",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-a9488c22": {
+  "title": "Throw A... Wobbler",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_6af1e13334ec40709685040411a489e3~mv2.jpg/v1/crop/x_24,y_290,w_633,h_356/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_6af1e13334ec40709685040411a489e3~mv2.jpg/v1/crop/x_24,y_290,w_633,h_356/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_6af1e13334ec40709685040411a489e3~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-2d3d27ef": {
+  "title": "Top Slot",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-95f0a785": {
+  "title": "Secret 7s",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-d41a4c4a": {
+  "title": "Snakes & Ladders",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-8ae5b58b": {
+  "title": "Sunset Boulevard",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_f297936d8673461cb9eac0b7770babaf~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_f297936d8673461cb9eac0b7770babaf~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_013bc1675c14490d9fb53e7436c7013a~mv2.jpg",
+  "logoImage": "https://static.wixstatic.com/media/3a517e_063f25c789084ea993f360ae3ca8a1b6~mv2.jpg",
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-7b79545a": {
+  "title": "Supanotes",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-e716eff3": {
+  "title": "Pound Power",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-75669fa6": {
+  "title": "Pound Strike",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-da1fac77": {
+  "title": "Poundaround",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-e88826aa": {
+  "title": "Premier Club",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-cecc757c": {
+  "title": "Prize National",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-09863f2c": {
+  "title": "Red Hot Reels",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_69899bf0b03047189bd6ff30cd648235~mv2.jpg/v1/crop/x_280,y_1024,w_340,h_191/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_69899bf0b03047189bd6ff30cd648235~mv2.jpg/v1/crop/x_280,y_1024,w_340,h_191/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_69899bf0b03047189bd6ff30cd648235~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-08a70213": {
+  "title": "Moonshot",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-1c2f5913": {
+  "title": "Neptune's Treasure",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_29cb27905cb941c2bbc3bb3f50d5483c~mv2.jpg/v1/crop/x_467,y_600,w_231,h_130/fill/w_960,h_540,al_c,q_90/real-machine-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_29cb27905cb941c2bbc3bb3f50d5483c~mv2.jpg/v1/crop/x_467,y_600,w_231,h_130/fill/w_960,h_540,al_c,q_90/real-machine-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_29cb27905cb941c2bbc3bb3f50d5483c~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-82df197f": {
+  "title": "Nifty Fifty",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-464df3c7": {
+  "title": "Note Steppa",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-c13300a4": {
+  "title": "Nudge Explosion",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-10c92b9f": {
+  "title": "Pot of Gold",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_611158bf340f4783b1da572831ce5d34~mv2.jpg/v1/crop/x_155,y_589,w_309,h_174/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_611158bf340f4783b1da572831ce5d34~mv2.jpg/v1/crop/x_155,y_589,w_309,h_174/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_611158bf340f4783b1da572831ce5d34~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-647d9e1e": {
+  "title": "Kung Fu",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_fe0c894316b54ccaac218942a49840f4~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_fe0c894316b54ccaac218942a49840f4~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_304ec0cfa89346b1862539fe59ea5b61~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-ee6e4880": {
+  "title": "Lucky Money",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-4ebffd96": {
+  "title": "Money Matters",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-55f37dd1": {
+  "title": "Money Mountain",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-443ec7a3": {
+  "title": "Golden Oldie",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-4adb09e9": {
+  "title": "Hawaii",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-4075e615": {
+  "title": "Hi Flyer",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-8c59b269": {
+  "title": "Hi Ho Silver",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-3958ee99": {
+  "title": "Invincible",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_45eef99e07aa439ea52b5d495b07a64d~mv2.jpg/v1/crop/x_29,y_450,w_621,h_350/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_45eef99e07aa439ea52b5d495b07a64d~mv2.jpg/v1/crop/x_29,y_450,w_621,h_350/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_45eef99e07aa439ea52b5d495b07a64d~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-8509dcf1": {
+  "title": "Crazy Cash Point",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_2b5b65b30fea4079abe4fa34e7a86131~mv2.jpg/v1/crop/x_122,y_925,w_295,h_166/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_2b5b65b30fea4079abe4fa34e7a86131~mv2.jpg/v1/crop/x_122,y_925,w_295,h_166/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_2b5b65b30fea4079abe4fa34e7a86131~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-ed4e948e": {
+  "title": "Criss Cross Cash",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-03d9b2e9": {
+  "title": "Criss X Cash",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-229b8d85": {
+  "title": "Dancing Diamonds",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-a09335d7": {
+  "title": "Doctor Who The Timelord",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_1b1231bed13f4e9ca57ab50058d60286~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_1b1231bed13f4e9ca57ab50058d60286~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_a79ecaedeb4642a2ac85265529db84e9~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-729ac490": {
+  "title": "Double Your Money",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-42c35762": {
+  "title": "Each Way Nudger Mk3",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_3a5481b9e0e3402399f697a395514007~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3a5481b9e0e3402399f697a395514007~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_7ae79047ab554ed182d0643f34c3c4df~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-f2793329": {
+  "title": "Egyptian Gold",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_b6e5b210ad46440294b450dce14d2d37~mv2.jpg/v1/crop/x_267,y_1123,w_386,h_217/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_b6e5b210ad46440294b450dce14d2d37~mv2.jpg/v1/crop/x_267,y_1123,w_386,h_217/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_b6e5b210ad46440294b450dce14d2d37~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-faf4a5af": {
+  "title": "Fields of Gold",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-7140e881": {
+  "title": "Fireball",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-fa4b1470": {
+  "title": "Flip A Note",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-943b4c65": {
+  "title": "Funhouse",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-90dcac45": {
+  "title": "Ghost Trapper",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-ad1b0ff2": {
+  "title": "Go For It",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-4ce406d2": {
+  "title": "Go Pound Go",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-c65118f1": {
+  "title": "Classic Nudge Nudge Wink Wink",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-0b09469a": {
+  "title": "Club Casino Crazy",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_373dd08030514cde98248d6a0741e5d5~mv2.jpg/v1/crop/x_70,y_722,w_449,h_253/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_373dd08030514cde98248d6a0741e5d5~mv2.jpg/v1/crop/x_70,y_722,w_449,h_253/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_373dd08030514cde98248d6a0741e5d5~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-8f349adf": {
+  "title": "Club Cops 'N' Robbers",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-ddf4baa2": {
+  "title": "Club National",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-9067f7eb": {
+  "title": "Club Play it Again",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-80e00f5f": {
+  "title": "Club Supreme",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-0134db4b": {
+  "title": "Club Xtra",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-6c85eb30": {
+  "title": "Connect 4",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_b9224038fbf6411191033807744d199c~mv2.jpg/v1/crop/x_62,y_256,w_577,h_324/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_b9224038fbf6411191033807744d199c~mv2.jpg/v1/crop/x_62,y_256,w_577,h_324/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_b9224038fbf6411191033807744d199c~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-9592759b": {
+  "title": "Connection",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-15ce6a57": {
+  "title": "Box 13",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-36f821b1": {
+  "title": "Break the Bank",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-4e8b6072": {
+  "title": "Bullionaire",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-ad621bb0": {
+  "title": "Cash Arena",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-7a68234e": {
+  "title": "Cash Crown",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-4a5a7161": {
+  "title": "Cash Run",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-65c3ad5d": {
+  "title": "Cash Scope",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-0205eba7": {
+  "title": "Cash Step",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-1bc0c2bb": {
+  "title": "Cash Towers",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-a8db4110": {
+  "title": "Cash Trade",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-05d7cf7d": {
+  "title": "Casino Rainbow Riches",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-4d949c75": {
+  "title": "5 Alive",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-acf73542": {
+  "title": "7's Wild",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-23fa7220": {
+  "title": "Aladdin's Cave",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-7368ce05": {
+  "title": "Big Top",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_4e0e607e09c047d3a2bd99ef660889b1~mv2.webp/v1/fill/w_1376,h_768/file.webp",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_4e0e607e09c047d3a2bd99ef660889b1~mv2.webp/v1/fill/w_1376,h_768/file.webp",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fmd-beef9cef": {
+  "title": "Blue Double Chip",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "fd5f7f09-4cf8-42b6-837b-d9d7ecfe06fd": {
+  "title": "Apollo 9",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_0061e5cac9ce4370abf411369f62bb02~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_0061e5cac9ce4370abf411369f62bb02~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_3c860e87fac8436f959d91fe6639714d~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-donkey-kong": {
+  "title": "Donkey Kong",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_c2525dac15524c608791ff90953f6a75~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_c2525dac15524c608791ff90953f6a75~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_b8d70163a08046dbb41a12ba9be8907c~mv2.jpg",
+  "logoImage": "https://static.wixstatic.com/media/3a517e_c2525dac15524c608791ff90953f6a75~mv2.jpg",
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-fruit-explosion": {
+  "title": "Fruit Explosion",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_6a23b3b638734dfea70d56677c924f85~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_6a23b3b638734dfea70d56677c924f85~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_39985981648a4cf585eb08c3087cb140~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-hurricane": {
+  "title": "Hurricane",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_9c2ff427dc564a068918d63419d33532~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_9c2ff427dc564a068918d63419d33532~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_4002d378bd0d4d0db11ea9a9779d4b08~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-on-the-buses": {
+  "title": "On The Buses",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_d2bfcc7ab5fd40b68161a48fe402e171~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_d2bfcc7ab5fd40b68161a48fe402e171~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_a7a4011bc628476597f8fc9355ad1af4~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-spartacash": {
+  "title": "Spartacash",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_61d239acd5c04e23871bd7345ec097d5~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_61d239acd5c04e23871bd7345ec097d5~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_08df7b25c12b48bea8e8de183a407bd4~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-max-a-million": {
+  "title": "Max a Million",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_4ae93c72248d47f785efdd3d1132b57b~mv2.jpg/v1/crop/x_162,y_1045,w_470,h_264/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_4ae93c72248d47f785efdd3d1132b57b~mv2.jpg/v1/crop/x_162,y_1045,w_470,h_264/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_4ae93c72248d47f785efdd3d1132b57b~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-sevens-and-melons": {
+  "title": "Sevens & Melons",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_15dfa2e34d8b481a934a50ce977b0492~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_15dfa2e34d8b481a934a50ce977b0492~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_8c4d970737114fb39c3ea3f2e796add8~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-peep-show": {
+  "title": "Peep Show",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_20fdc10ef49c41ecb6efbde31ebcd29d~mv2.jpg/v1/crop/x_41,y_276,w_599,h_337/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_20fdc10ef49c41ecb6efbde31ebcd29d~mv2.jpg/v1/crop/x_41,y_276,w_599,h_337/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_20fdc10ef49c41ecb6efbde31ebcd29d~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-viva-espana": {
+  "title": "Viva Espana",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_6c41200d497b4b749ddbcd0bbee09cd2~mv2.jpg/v1/crop/x_0,y_555,w_401,h_226/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_6c41200d497b4b749ddbcd0bbee09cd2~mv2.jpg/v1/crop/x_0,y_555,w_401,h_226/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_6c41200d497b4b749ddbcd0bbee09cd2~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-adders-and-ladders": {
+  "title": "Adders & Ladders",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_16363146c9bc4b1584308da3505e9f5f~mv2.jpg/v1/crop/x_386,y_612,w_324,h_182/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_16363146c9bc4b1584308da3505e9f5f~mv2.jpg/v1/crop/x_386,y_612,w_324,h_182/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_16363146c9bc4b1584308da3505e9f5f~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-sz-super-hi-lo": {
+  "title": "Super Hi Lo",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-sz-swop-shop": {
+  "title": "Swop Shop",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-sz-terminator": {
+  "title": "Terminator",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_3e7109b7321343f8b6b8c2beb98be48d~mv2.jpg/v1/crop/x_80,y_920,w_578,h_325/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3e7109b7321343f8b6b8c2beb98be48d~mv2.jpg/v1/crop/x_80,y_920,w_578,h_325/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_3e7109b7321343f8b6b8c2beb98be48d~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-sz-top-strike": {
+  "title": "Top Strike",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-sz-vertigo": {
+  "title": "Vertigo",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-sz-wheel-of-fortune": {
+  "title": "Wheel Of Fortune",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme5-stax-of-cash": {
+  "title": "Stax Of Cash",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme5-primetime": {
+  "title": "Primetime",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme5-reel-bonus": {
+  "title": "Reel Bonus",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme4-note-shoot": {
+  "title": "Note Shoot",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_c7553fe9720a45e286d1ab120d8faf05~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_c7553fe9720a45e286d1ab120d8faf05~mv2.jpg",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme4-nudge-quest": {
+  "title": "Nudge Quest",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme4-over-the-moon": {
+  "title": "Over The Moon",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme4-pontoon-club": {
+  "title": "Pontoon Club",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme4-pound-sterling": {
+  "title": "Pound Sterling",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme4-power-lines": {
+  "title": "Power Lines",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-lucky-las-vegas": {
+  "title": "Lucky Las Vegas",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-graffiti": {
+  "title": "Graffiti",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-grand-national": {
+  "title": "Grand National",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_3650362ddece46b8ae508152a48c330d~mv2.jpg/v1/crop/x_359,y_465,w_339,h_191/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3650362ddece46b8ae508152a48c330d~mv2.jpg/v1/crop/x_359,y_465,w_339,h_191/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_3650362ddece46b8ae508152a48c330d~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-hi-de-hi": {
+  "title": "Hi De Hi",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-hi-note": {
+  "title": "Hi Note",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-im-a-celebrity": {
+  "title": "I'm A Celebrity",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-jackpot-jump": {
+  "title": "Jackpot Jump",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme3-juicy-fruits": {
+  "title": "Juicy Fruits",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme2-gamball": {
+  "title": "Gamball",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme2-club-x": {
+  "title": "Club X",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme2-double-up": {
+  "title": "Double Up",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-cash-lab": {
+  "title": "Cash Lab",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_4cc6141539954465a842eaf82e70e38a~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_4cc6141539954465a842eaf82e70e38a~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-cat-and-mouse": {
+  "title": "Cat & Mouse",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_9e16998cbee7421cabe233d70cee36d3~mv2.jpg/v1/crop/x_118,y_280,w_425,h_239/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_9e16998cbee7421cabe233d70cee36d3~mv2.jpg/v1/crop/x_118,y_280,w_425,h_239/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_9e16998cbee7421cabe233d70cee36d3~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-clockwork-oranges": {
+  "title": "Clockwork Oranges",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_84156c14c4ae4b5fa8c6149e33d0064f~mv2.jpg/v1/crop/x_180,y_947,w_457,h_257/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_84156c14c4ae4b5fa8c6149e33d0064f~mv2.jpg/v1/crop/x_180,y_947,w_457,h_257/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_84156c14c4ae4b5fa8c6149e33d0064f~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-cloud-999": {
+  "title": "Cloud 999",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_fa871044f4b1483681ce7e183167eb78~mv2.jpg/v1/crop/x_66,y_964,w_586,h_329/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_fa871044f4b1483681ce7e183167eb78~mv2.jpg/v1/crop/x_66,y_964,w_586,h_329/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_fa871044f4b1483681ce7e183167eb78~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-10-x-10": {
+  "title": "10 X 10",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-action-bank": {
+  "title": "Action Bank",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-berserk": {
+  "title": "Berserk",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-blue-moon": {
+  "title": "Blue Moon",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_3d9b7ee5fd1649b79073b57bbfc08c36~mv2.jpg/v1/crop/x_84,y_1038,w_513,h_289/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3d9b7ee5fd1649b79073b57bbfc08c36~mv2.jpg/v1/crop/x_84,y_1038,w_513,h_289/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_3d9b7ee5fd1649b79073b57bbfc08c36~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mfme-cash-bowl": {
+  "title": "Cash Bowl",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "toc-captain-scarlet": {
+  "title": "Captain Scarlet",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "toc-cash-buster": {
+  "title": "Cash Buster",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_79685a5c85ba4b8ab8139a0861049989~mv2.jpg/v1/crop/x_394,y_866,w_277,h_156/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_79685a5c85ba4b8ab8139a0861049989~mv2.jpg/v1/crop/x_394,y_866,w_277,h_156/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_79685a5c85ba4b8ab8139a0861049989~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "toc-hot-shot": {
+  "title": "Hot Shot",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_4d23a44a10ba451ba63109668e6bf9ec~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_4d23a44a10ba451ba63109668e6bf9ec~mv2.jpg/v1/fill/w_1376,h_768/file.jpg",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "toc-robin-hood": {
+  "title": "Robin Hood",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_35890665f2944b1bac6dc962d942ebb4~mv2.jpg/v1/crop/x_0,y_237,w_408,h_229/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_35890665f2944b1bac6dc962d942ebb4~mv2.jpg/v1/crop/x_0,y_237,w_408,h_229/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_35890665f2944b1bac6dc962d942ebb4~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mecca-quids-in": {
+  "title": "Quids In",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "mecca-top-of-the-bill": {
+  "title": "Top Of The Bill",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-arabian-nights": {
+  "title": "Arabian Nights",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_50be064834bb45968e4b4ea808c93265~mv2.jpg/v1/crop/x_379,y_467,w_261,h_147/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_50be064834bb45968e4b4ea808c93265~mv2.jpg/v1/crop/x_379,y_467,w_261,h_147/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_50be064834bb45968e4b4ea808c93265~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-nudge-shuffle": {
+  "title": "Nudge Shuffle",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-party-animal": {
+  "title": "Party Animal",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_6ecd4346d71647d9a900f905e01f75ca~mv2.jpg/v1/crop/x_0,y_269,w_655,h_369/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_6ecd4346d71647d9a900f905e01f75ca~mv2.jpg/v1/crop/x_0,y_269,w_655,h_369/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_6ecd4346d71647d9a900f905e01f75ca~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-cash-lines": {
+  "title": "Cash Lines",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-jackpot-gems": {
+  "title": "Jackpot Gems",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-heaven-and-hell": {
+  "title": "Heaven & Hell",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-pink-pussy": {
+  "title": "Pink Pussy",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-flashback": {
+  "title": "Flashback",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-hi-lo-karate": {
+  "title": "Hi Lo Karate",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_10c69afe801e4ab39eb70950b340aa95~mv2.jpg/v1/crop/x_0,y_280,w_490,h_276/fill/w_960,h_540,al_c,q_90/hi-lo-karate.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_10c69afe801e4ab39eb70950b340aa95~mv2.jpg/v1/crop/x_0,y_280,w_490,h_276/fill/w_960,h_540,al_c,q_90/hi-lo-karate.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_10c69afe801e4ab39eb70950b340aa95~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-big-bucks": {
+  "title": "Big Bucks",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_868d776806d540c9aa4c959fa55d1efd~mv2.jpg/v1/crop/x_442,y_923,w_231,h_130/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_868d776806d540c9aa4c959fa55d1efd~mv2.jpg/v1/crop/x_442,y_923,w_231,h_130/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_868d776806d540c9aa4c959fa55d1efd~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-caesars-palace": {
+  "title": "Caesars Palace",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_abe6e1eecc484582b231fd2883451d68~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_abe6e1eecc484582b231fd2883451d68~mv2.jpg",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-cash-raider": {
+  "title": "Cash Raider",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-euphoria": {
+  "title": "Euphoria",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "flyer-classic-pot-of-gold": {
+  "title": "Classic Pot Of Gold",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "archive-gladiators": {
+  "title": "Gladiators",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_39252fa1b5dc44338fd91e9c6b35fac6~mv2.jpg/v1/crop/x_136,y_241,w_345,h_194/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_39252fa1b5dc44338fd91e9c6b35fac6~mv2.jpg/v1/crop/x_136,y_241,w_345,h_194/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_39252fa1b5dc44338fd91e9c6b35fac6~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "archive-big-banker": {
+  "title": "Big Banker",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_f7a0d20622c94b4abd3b8d4c09308784~mv2.jpg/v1/crop/x_24,y_861,w_570,h_320/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_f7a0d20622c94b4abd3b8d4c09308784~mv2.jpg/v1/crop/x_24,y_861,w_570,h_320/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_f7a0d20622c94b4abd3b8d4c09308784~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-action-pack-barcrest": {
+  "title": "Action Pack",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-double-impact": {
+  "title": "Double Impact",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_8de5f2a2dacd4bb7b7ae2c68f2a1b1bd~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_8de5f2a2dacd4bb7b7ae2c68f2a1b1bd~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_f5f8c2f024264215b1c6623e471e37ef~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-colossus": {
+  "title": "Colossus",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_a9c81a7871224921b8e9a4120e910d9f~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_a9c81a7871224921b8e9a4120e910d9f~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_9f03b30d28b8449e81e2abcdd5c18a63~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-cash-is-king": {
+  "title": "Cash Is King",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_bd9afe254bbd4808b04f190226a0a1b2~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_bd9afe254bbd4808b04f190226a0a1b2~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_0dd8155d49a64f7994ad92a4884a795e~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-cash-gordon": {
+  "title": "Cash Gordon",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_9f128872ed7748fcb147afab851c0d04~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_9f128872ed7748fcb147afab851c0d04~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_00db5e4b1da54d058edfd7bfe9cefa00~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-cash-flow": {
+  "title": "Cash Flow",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_6a95f767805642d8ab626cf904e9da1f~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_6a95f767805642d8ab626cf904e9da1f~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_b9281e03b89d497ea1837ba49ebeb52c~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-body-match": {
+  "title": "Body Match",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_b92355f4ed094f4497af6d816b551640~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_b92355f4ed094f4497af6d816b551640~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_390abda23bb349d6bda8ecb453d0bda6~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-beaver-las-vegas": {
+  "title": "Beaver Las Vegas",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_f850d8067c504fa4a74d1b9aa747ff72~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_f850d8067c504fa4a74d1b9aa747ff72~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_f63a80d99f384e20b7557fb272b6d8e5~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-bear-x": {
+  "title": "Bear X",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_eee37985af4c4033b40079ae0f42df39~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_eee37985af4c4033b40079ae0f42df39~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_82d9f089e65d489cb21319d96f784494~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-the-simpsons": {
+  "title": "The Simpsons",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_e8ef4567e67e4583a977065cf8b503bd~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_e8ef4567e67e4583a977065cf8b503bd~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_a850809431ba4694befe43aa4dc71c7f~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-temple-of-treasures": {
+  "title": "Temple of Treasure",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_79ffc265fd1144a68a1c153d8b7a8272~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_79ffc265fd1144a68a1c153d8b7a8272~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_47a6a7e660df454b80c13cd144444c78~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-super-pots": {
+  "title": "Super Pots",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_3750afe905ca49bbb305ae0a23ecd669~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_3750afe905ca49bbb305ae0a23ecd669~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_25bd739986d64777a0705570789997f7~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-spiker-the-biker": {
+  "title": "Spiker the Biker",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_6016a0fd5e2a4ad88e373a6c47e73c5e~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_6016a0fd5e2a4ad88e373a6c47e73c5e~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_3e9d17b064fe45d7ace7ac3754463fd9~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-revolution": {
+  "title": "Revolution",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_0c583b7160a04ed49ac005133f03074c~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_0c583b7160a04ed49ac005133f03074c~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_2d42ce23b7d1496aa55570e13ee8f475~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-red-hot-wheels": {
+  "title": "Red Hot Wheels",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_d8d67a316d664ab882223ef9012379f1~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_d8d67a316d664ab882223ef9012379f1~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_d4b695bd7a1642efaf3dbf8d04b70886~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-rampage": {
+  "title": "Rampage",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_8c5c3e848861484ead10c47dd08c715d~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_8c5c3e848861484ead10c47dd08c715d~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_0babaa88a2a84317a114a4d08f125ffb~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-kings-ransom": {
+  "title": "Kings Ransom",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_bca3556c2ef6471cb040a2e445517e99~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_bca3556c2ef6471cb040a2e445517e99~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_d01dda1372354c47ae57391910b59c38~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-hot-stuff": {
+  "title": "Hot Stuff",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_ea1b490068f945da9d4b87b465ac974f~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_ea1b490068f945da9d4b87b465ac974f~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_25a43d8480ca486d8e81b4615652f4d5~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-high-voltage": {
+  "title": "High Voltage",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_d29551d9ce0d4ff59476210de0c0ab40~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_d29551d9ce0d4ff59476210de0c0ab40~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_54b0b72e1f2f4a958cfd98f91f976984~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-high-flyer": {
+  "title": "High Flyer",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_8487c57be9e3434fb6a45609fe8d7391~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_8487c57be9e3434fb6a45609fe8d7391~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_d2d72dfcce1745a2a6f452f08e304e53~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-golden-x": {
+  "title": "Golden X",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_8d54a41a946d4d29928ff8138208ffe8~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_8d54a41a946d4d29928ff8138208ffe8~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_7c69788544f04e67886005ca79a1d3b2~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-find-the-lady": {
+  "title": "Find The Lady",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_9fd920c8930c445bbaeb44b5c6e0b838~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_9fd920c8930c445bbaeb44b5c6e0b838~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_b456453d007d4dc596602c8f220f9c3c~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-fight-night": {
+  "title": "Fight Night",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_fc77ff26fd14417985b63c73a6748ed8~mv2.jpg/v1/crop/x_0,y_0,w_1280,h_720/marquee.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_fc77ff26fd14417985b63c73a6748ed8~mv2.jpg/v1/crop/x_0,y_0,w_1280,h_720/marquee.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_fc77ff26fd14417985b63c73a6748ed8~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-double-cash": {
+  "title": "Double Cash",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_8b412b2962fc4e8ba36c5732539663a0~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_8b412b2962fc4e8ba36c5732539663a0~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_a0df8fc3c3204f929628ebc90a6df875~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-fruit-crazy-3-player": {
+  "title": "Fruit Crazy 3 Player",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_52fbc71ab5e84761ae310386f4024045~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_52fbc71ab5e84761ae310386f4024045~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_b9d9d9cd2f6f42a19dd5901346ea60f0~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-monte-carlo-or-bust": {
+  "title": "Monte Carlo Or Bust",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_1953b416c0644ed48ec762bf2f7d52d6~mv2.png",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_1953b416c0644ed48ec762bf2f7d52d6~mv2.png",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_f67f09c8fcc34da39fb3cec76ad4d428~mv2.jpg",
+  "logoImage": "",
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-sonic-the-hedgehog": {
+  "title": "Sonic the Hedgehog",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_05d0578955234207bd4da6e875e97ab0~mv2.jpg/v1/crop/x_375,y_405,w_309,h_174/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_05d0578955234207bd4da6e875e97ab0~mv2.jpg/v1/crop/x_375,y_405,w_309,h_174/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_05d0578955234207bd4da6e875e97ab0~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-duty-free": {
+  "title": "Duty Free",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_f0ccd5b05574471ab040ded7f309da64~mv2.jpg/v1/crop/x_86,y_569,w_353,h_199/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_f0ccd5b05574471ab040ded7f309da64~mv2.jpg/v1/crop/x_86,y_569,w_353,h_199/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_f0ccd5b05574471ab040ded7f309da64~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "classic-luxor": {
+  "title": "Luxor",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_2c5821e1d25c436eaa36001cc844eb9e~mv2.jpg/v1/crop/x_20,y_207,w_521,h_293/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_2c5821e1d25c436eaa36001cc844eb9e~mv2.jpg/v1/crop/x_20,y_207,w_521,h_293/fill/w_960,h_540,al_c,q_90/original-logo.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_2c5821e1d25c436eaa36001cc844eb9e~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "aa72fc4f-1815-41e4-84f4-cb152dd5c42c": {
+  "title": "EastEnders: The Queen Vic",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_e19079ffd10f4ac995afe63868daa5a0~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_e19079ffd10f4ac995afe63868daa5a0~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_18d3d221f22a4113b2308cf163116f7c~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "7271d85d-e2f9-4fa9-a054-32073735753e": {
+  "title": "Pinball Nudger",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "8210604a-5f48-4c9a-b807-a5b32221b73d": {
+  "title": "Frenzy",
+  "cardImage": "https://static.wixstatic.com/media/3a517e_06e2cc16a74a4f4a88d8fefaa23847e1~mv2.jpg",
+  "cardMarqueeImage": "https://static.wixstatic.com/media/3a517e_06e2cc16a74a4f4a88d8fefaa23847e1~mv2.jpg",
+  "fullCabinetImage": "https://static.wixstatic.com/media/3a517e_8bd2468a30df42d6b4626c65add3ec98~mv2.jpg",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ },
+ "5e08112f-fdd1-40d3-b42a-e0f7402562ac": {
+  "title": "Big Brother",
+  "cardImage": null,
+  "cardMarqueeImage": "",
+  "fullCabinetImage": "",
+  "logoImage": null,
+  "imageAltText": null,
+  "fullCabinetAltText": null,
+  "cardMarqueeAltText": null
+ }
+}
