@@ -80,7 +80,7 @@
     return el;
   }
 
-  var record = null, asked = false, tries = 0, built = null;
+  var record = null, asked = false, tries = 0, built = null, attempts = 0;
   function host() {
     var d = document.getElementById('sr-location-directory');
     var r = d && (d.shadowRoot || d);
@@ -88,10 +88,11 @@
   }
   function tick() {
     if (location.pathname !== navPath) return clearInterval(timer);
-    if (++tries > 450) return clearInterval(timer);
+    if (++tries > 900) return clearInterval(timer);
     var S = window.SR_SEASIDE;
     if (!asked && S && typeof S.archiveQuery === 'function') {
       asked = true;
+      attempts++;
       S.archiveQuery({
         fields: ['title', 'slug', 'overview', 'pageIntro', 'heroKicker', 'arcadeScene', 'visitorInfo', 'raiderDestinationSummary'],
         filter: { slug: { $eq: slug } },
@@ -99,7 +100,11 @@
       }, null, false, 'Locations').then(function (q) {
         var d = (q && q.dataItems || [])[0];
         record = d ? d.data : false;
-      }, function () { record = false; });
+      }, function () {
+        /* archive timed out or failed: try again a few times before giving up */
+        if (attempts < 5) setTimeout(function () { asked = false; }, 1500 * attempts);
+        else record = false;
+      });
     }
     if (record === false) return clearInterval(timer);
     var r = host();
