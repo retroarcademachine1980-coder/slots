@@ -4,13 +4,17 @@ var G={"/arcade": {"h2": "Your guide to UK amusement arcades", "html": "<h2>Brig
 var p=(location.pathname||'/').replace(/\/+$/,'')||'/';
 if(!Object.prototype.hasOwnProperty.call(G,p))return;
 var g=G[p],n=0;
+function build(){return '<style>.sr-hub-guide{max-width:900px;margin:0 auto;padding:40px 20px 56px;font-family:Arial,Helvetica,sans-serif;line-height:1.7;color:#1b2a3a}.sr-hub-guide h2{font-family:"Barlow Condensed",Arial,sans-serif;font-weight:800;font-size:34px;line-height:1.2;margin:28px 0 10px;color:#0d2340}.sr-hub-guide h3{font-family:"Barlow Condensed",Arial,sans-serif;font-weight:700;font-size:24px;margin:22px 0 6px;color:#0d2340}.sr-hub-guide p{font-size:17px;margin:12px 0}.sr-hub-guide ul{padding-left:22px;font-size:17px}.sr-hub-guide li{margin:6px 0}</style>'+(/^\s*<h2/.test(g.html)?'':'<h2>'+g.h2+'</h2>')+g.html;}
 function place(){
-  var r=document.getElementById('sr-seaside-root');r=r&&r.shadowRoot;if(!r)return false;
-  var inner=r.querySelector('#sr-home-approved-20260921');var root=(inner&&inner.shadowRoot)||r;
-  var main=root.querySelector('main');if(!main||!main.querySelector('section'))return false;
+  var root=null,x=document.getElementById('sr-extended-pages');
+  var ar=document.getElementById('sr-approved-archive');
+  if(x&&x.shadowRoot&&x.shadowRoot.querySelector('main'))root=x.shadowRoot;
+  else if(ar&&ar.shadowRoot&&ar.shadowRoot.childElementCount>0){var sr=ar.shadowRoot;if(sr.querySelector('.sr-hub-guide'))return true;var s0=document.createElement('section');s0.className='sr-hub-guide';s0.innerHTML=build();sr.appendChild(s0);return true;}
+  else{var r=document.getElementById('sr-seaside-root');r=r&&r.shadowRoot;if(!r)return false;var inner=r.querySelector('#sr-home-approved-20260921');root=(inner&&inner.shadowRoot)||r;}
+  var main=root.querySelector('main');if(!main||!main.firstElementChild)return false;
   if(main.querySelector('.sr-hub-guide'))return true;
   var s=document.createElement('section');s.className='section wrap sr-hub-guide';
-  s.innerHTML='<style>.sr-hub-guide{max-width:900px;margin:0 auto;padding:40px 20px 56px;font-family:Arial,Helvetica,sans-serif;line-height:1.7;color:#1b2a3a}.sr-hub-guide h2{font-family:"Barlow Condensed",Arial,sans-serif;font-weight:800;font-size:34px;line-height:1.2;margin:28px 0 10px;color:#0d2340}.sr-hub-guide h3{font-family:"Barlow Condensed",Arial,sans-serif;font-weight:700;font-size:24px;margin:22px 0 6px;color:#0d2340}.sr-hub-guide p{font-size:17px;margin:12px 0}.sr-hub-guide ul{padding-left:22px;font-size:17px}.sr-hub-guide li{margin:6px 0}</style>'+(/^\s*<h2/.test(g.html)?'':'<h2>'+g.h2+'</h2>')+g.html;
+  s.innerHTML=build();
   var promos=main.querySelector('.cpromos');var anchor=promos&&promos.closest('.wrap');
   if(anchor&&anchor.parentNode===main)main.insertBefore(s,anchor);else main.appendChild(s);
   return true;
