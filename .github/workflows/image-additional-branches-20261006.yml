@@ -1,0 +1,40 @@
+name: Additional branch photo review
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/image-additional-branches-20261006.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: additional-branch-review-20261006
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install review dependencies
+        run: python -m pip install requests beautifulsoup4 Pillow
+      - name: Read selected branch names and inspect public photo sources
+        env:
+          WIX_CLI_API_KEY: ${{ secrets.WIX_CLI_API_KEY }}
+          PYTHONUNBUFFERED: '1'
+        run: python tools/image_additional_branches_20261006.py
+      - name: Save review material
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: additional-branch-review-20261006
+          path: additional-branch-review/
+          retention-days: 7
+          if-no-files-found: warn
