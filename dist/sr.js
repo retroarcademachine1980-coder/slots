@@ -2303,7 +2303,7 @@ window.SR_SEARCH_VIEW_CSS += `.categories{flex-wrap:wrap}.more-categories{flex-b
           )
           .join(
             "",
-          )}</fieldset><fieldset><legend>Distance</legend><label class="range-label"><input type="range" name="distance" min="1" max="100" value="25" disabled aria-label="Distance in miles"><output>Within 25 miles</output></label><button type="button" class="button reset" data-locate>Use my location</button><p class="small-status" data-location-status>Choose your location to filter by distance.</p></fieldset><fieldset><legend>Rating</legend>${[4, 3, 2, 1].map((e) => `<label><input type="radio" name="rating" value="${e}"><span class="stars">${"★".repeat(e)}</span> & up</label>`).join("")}</fieldset><fieldset><legend>Facilities</legend>${[
+          )}</fieldset><fieldset><legend>Distance</legend><label class="range-label"><input type="range" name="distance" min="1" max="100" value="25" aria-label="Distance in miles"><output>Within 25 miles</output></label><button type="button" class="button reset" data-locate>Use my location</button><p class="small-status" data-location-status>Move the slider or tap “Use my location” to filter by distance.</p></fieldset><fieldset><legend>Rating</legend>${[4, 3, 2, 1].map((e) => `<label><input type="radio" name="rating" value="${e}"><span class="stars">${"★".repeat(e)}</span> & up</label>`).join("")}</fieldset><fieldset><legend>Facilities</legend>${[
           ["disabledAccess", "Disabled Access"],
           ["parking", "On-site Parking"],
           ["familyFriendly", "Family Friendly"],
@@ -2482,9 +2482,9 @@ window.SR_SEARCH_VIEW_CSS += `.categories{flex-wrap:wrap}.more-categories{flex-b
         k.addEventListener("reset", () => {
           ((g = null),
             (b = !1),
-            (k.elements.distance.disabled = !0),
+            (k.elements.distance.disabled = !1),
             (e.querySelector("[data-location-status]").textContent =
-              "Choose your location to filter by distance."),
+              "Move the slider or tap “Use my location” to filter by distance."),
             setTimeout(() => {
               (L(),
                 (e.querySelector("output").textContent =
@@ -2497,6 +2497,7 @@ window.SR_SEARCH_VIEW_CSS += `.categories{flex-wrap:wrap}.more-categories{flex-b
             }, 0));
         }),
         k.elements.distance.addEventListener("input", () => {
+          if (!g) { const loc = e.querySelector("[data-locate]"); loc && loc.click(); }
           b = !1;
           srNear();
           const z = e.querySelector("[data-location-status]");
@@ -2599,7 +2600,7 @@ window.SR_SEARCH_VIEW_CSS += `.categories{flex-wrap:wrap}.more-categories{flex-b
               g || L(),
               (function () {
                 if (o) return;
-                const t = p.filter((e) => "stays" === d(e) && x(e) && window.SR_ROUTE_UI.ready(e) && window.SR_ROUTE_UI.discoverable(e)).slice(0, 4);
+                const t = p.filter((e) => "stays" === d(e) && x(e) && g && null != q(e) && q(e) <= 25 && window.SR_ROUTE_UI.ready(e) && window.SR_ROUTE_UI.discoverable(e)).slice(0, 4);
                 e.querySelector("[data-side-results]").innerHTML = t.length
                   ? `<section class="side-panel"><div class="side-heading"><h2>Places to stay</h2><a href="/search?q=${encodeURIComponent(s)}&category=stays">View all →</a></div><div class="side-cards">${t.map((e) => `<a class="side-card" href="${r(R(e))}"${e.affiliateUrl ? ' rel="sponsored noopener"' : ""}><img src="${r(x(e))}" alt="${r(l(e))}" loading="lazy"><h3>${r(l(e))}</h3>${window.SR_ROUTE_UI.notice(e)}<p>${r(e.ctaLabel || e.ctaText || "View stay →")}</p>${e.affiliateUrl ? '<p class="ad-note">Ad · Affiliate link</p>' : ""}</a>`).join("")}</div></section>`
                   : "";
@@ -4293,7 +4294,7 @@ window.SR_EXTENDED_CSS += "@media(max-width:760px){.hero.art{height:auto;min-hei
     ['beaches','Beaches','beaches',/beach/i,/\bbeach(?:es)?\b/i],
     ['tours','Tours & Experiences','tours',/tour|experience|sightseeing/i,/\b(?:tours?|experiences?|sightseeing)\b/i],
     ['outdoors','Nature & Outdoors','nature',/nature|outdoor|garden|forest|woodland|reserve|walk|hiking|country park|national park|lake/i,/\b(?:nature(?: reserves?)?|outdoors?|national parks?|country parks?|walking|hiking|gardens?|forests?)\b/i],
-    ['services','Service Stations','services',/service station|motorway services/i,/\b(?:service stations?|motorway services)\b/i],
+    ['services','Service Stations','services',/service station|motorway services|^services?$|\bservices$/i,/\b(?:service stations?|motorway services)\b/i],
     ['venues','Arcades','arcades',/arcade|retro video/i,/\b(?:arcades?|retro video games?)\b/i],
     ['attractions','Attractions & Family Fun','attractions',/attraction|family fun/i,/\b(?:attractions?|family fun|things to do|days out)\b/i]
   ];
@@ -4304,7 +4305,7 @@ window.SR_EXTENDED_CSS += "@media(max-width:760px){.hero.art{height:auto;min-hei
   window.SR_PLACE_CATEGORIES = row => {
     const primary = window.SR_CLASSIFY_PLACE(row);
     const result = [primary];
-    if (row._collection === 'Venues') {
+    if (row._collection === 'Venues' && primary !== 'services') {
       const familyArcade = row.familyFEC === true || row.familyEntertainmentCentre === true ||
         (row.amusementArcade === true && row.familyFriendly === true) ||
         /family amusement|family entertainment/i.test(row.venueType || '');

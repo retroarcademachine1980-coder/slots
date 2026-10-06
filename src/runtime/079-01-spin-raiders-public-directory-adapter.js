@@ -270,7 +270,7 @@
     ['beaches','Beaches','beaches',/beach/i,/\bbeach(?:es)?\b/i],
     ['tours','Tours & Experiences','tours',/tour|experience|sightseeing/i,/\b(?:tours?|experiences?|sightseeing)\b/i],
     ['outdoors','Nature & Outdoors','nature',/nature|outdoor|garden|forest|woodland|reserve|walk|hiking|country park|national park|lake/i,/\b(?:nature(?: reserves?)?|outdoors?|national parks?|country parks?|walking|hiking|gardens?|forests?)\b/i],
-    ['services','Service Stations','services',/service station|motorway services/i,/\b(?:service stations?|motorway services)\b/i],
+    ['services','Service Stations','services',/service station|motorway services|^services?$|\bservices$/i,/\b(?:service stations?|motorway services)\b/i],
     ['venues','Arcades','arcades',/arcade|retro video/i,/\b(?:arcades?|retro video games?)\b/i],
     ['attractions','Attractions & Family Fun','attractions',/attraction|family fun/i,/\b(?:attractions?|family fun|things to do|days out)\b/i]
   ];
@@ -281,7 +281,7 @@
   window.SR_PLACE_CATEGORIES = row => {
     const primary = window.SR_CLASSIFY_PLACE(row);
     const result = [primary];
-    if (row._collection === 'Venues') {
+    if (row._collection === 'Venues' && primary !== 'services') {
       const familyArcade = row.familyFEC === true || row.familyEntertainmentCentre === true ||
         (row.amusementArcade === true && row.familyFriendly === true) ||
         /family amusement|family entertainment/i.test(row.venueType || '');
