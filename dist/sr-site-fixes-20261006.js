@@ -17,6 +17,10 @@
     var rn = 0, rt = setInterval(function () { robots(); if (++rn > 60) clearInterval(rt); }, 500);
   }
 
+  if (path === '/search') {
+    try { var q0 = (new URLSearchParams(location.search).get('q') || '').toLowerCase().trim(); var sp0 = { 'medieval towns': '/post/uk-medieval-towns' };
+      if (Object.prototype.hasOwnProperty.call(sp0, q0)) { location.replace(sp0[q0]); return; } } catch (e) {}
+  }
   var S = '/search?q=';
   var HUBS = {
     '/arcade': S + 'arcades', '/agc': S + 'adult%20gaming%20centres', '/arcade-bars': S + 'arcade%20bars',
@@ -33,7 +37,9 @@
     '/classic-fruit-machine-images': '/classic-fruit-machines', '/classic-fruit-machine-archive-1': '/classic-fruit-machine-archive',
     '/fruit-machine-manufacturers': '/classic-fruit-machines', '/classic-machine-archive-queue': '/classic-fruit-machines',
     '/classic-machine-sightings': '/classic-fruit-machines' };
-  var HOST = /^(https?:)?\/\/(www\.)?spin-raiders\.com/i;
+  /* Category tiles that used to open a search: send them to the real guide page. */
+  var SEARCH_PAGES = { 'medieval towns': '/post/uk-medieval-towns' };
+  var HOST =/^(https?:)?\/\/(www\.)?spin-raiders\.com/i;
   var hubsLive = null;
 
   function target(p) {
@@ -49,6 +55,10 @@
     if (rel.charAt(0) !== '/' || rel.charAt(1) === '/') return;
     var mm = rel.match(/^([^?#]*)(.*)$/);
     var base = (mm[1].replace(/\/+$/, '') || '/');
+    if (base === '/search') {
+      var q = ''; try { q = (new URLSearchParams(mm[2].replace(/^\?/, '').split('#')[0]).get('q') || '').toLowerCase().trim(); } catch (e) {}
+      if (Object.prototype.hasOwnProperty.call(SEARCH_PAGES, q)) { a.setAttribute('href', SEARCH_PAGES[q]); return; }
+    }
     var to = target(base);
     if (to !== base) a.setAttribute('href', to + (to.indexOf('?') < 0 ? mm[2] : ''));
   }
