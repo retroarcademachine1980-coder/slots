@@ -2600,7 +2600,7 @@ window.SR_SEARCH_VIEW_CSS += `.categories{flex-wrap:wrap}.more-categories{flex-b
               g || L(),
               (function () {
                 if (o) return;
-                const t = p.filter((e) => "stays" === d(e) && x(e) && g && null != q(e) && q(e) <= 25 && window.SR_ROUTE_UI.ready(e) && window.SR_ROUTE_UI.discoverable(e)).slice(0, 4);
+                const t = p.filter((e) => "stays" === d(e) && x(e) && (g && null != q(e) ? q(e) <= 25 : !!s && String(c(e) || "").toLowerCase().trim() === String(s).toLowerCase().trim()) && window.SR_ROUTE_UI.ready(e) && window.SR_ROUTE_UI.discoverable(e)).slice(0, 4);
                 e.querySelector("[data-side-results]").innerHTML = t.length
                   ? `<section class="side-panel"><div class="side-heading"><h2>Places to stay</h2><a href="/search?q=${encodeURIComponent(s)}&category=stays">View all →</a></div><div class="side-cards">${t.map((e) => `<a class="side-card" href="${r(R(e))}"${e.affiliateUrl ? ' rel="sponsored noopener"' : ""}><img src="${r(x(e))}" alt="${r(l(e))}" loading="lazy"><h3>${r(l(e))}</h3>${window.SR_ROUTE_UI.notice(e)}<p>${r(e.ctaLabel || e.ctaText || "View stay →")}</p>${e.affiliateUrl ? '<p class="ad-note">Ad · Affiliate link</p>' : ""}</a>`).join("")}</div></section>`
                   : "";
