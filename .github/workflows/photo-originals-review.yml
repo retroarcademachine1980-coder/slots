@@ -1,0 +1,80 @@
+name: Review original image pixels
+on:
+  push:
+    branches: [photo-clearance-20261006-audit]
+    paths: [.github/workflows/photo-originals-review.yml]
+permissions:
+  contents: read
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Install image tools
+        run: python -m pip install requests Pillow
+      - name: Read existing Wix image files without changing them
+        run: |
+          python - <<'PY'
+          import concurrent.futures as cf
+          import io,json
+          from pathlib import Path
+          import requests
+          from PIL import Image,ImageOps
+          out=Path('original-review');out.mkdir()
+          items=[
+          ('JWT Waterloo original','3a517e_0eca25d7d96341db977052c5d79cc492~mv2.jpg'),
+          ('JWT Westcliffe original','3a517e_53a2d3b10cd141cc8e66e9e116f62004~mv2.jpg'),
+          ('Funstation Birmingham StarCity','3a517e_f3b49e64c3a940a5b6d7c235e972102d~mv2.jpg'),
+          ('Continue Chichester','3a517e_ce8fe474a6f248108d0c111831647b0e~mv2.jpeg'),
+          ('Cassino Chichester','3a517e_f2c516bff653469e8255604f765bb464~mv2.jpg'),
+          ('Hollywood Bowl Shrewsbury','3a517e_211c490e2c084862b61b99a92896a5e1~mv2.jpg'),
+          ('Admiral Sicey','3a517e_da6bb2d2a7ab47ee8e4d6e11ea8fbb75~mv2.jpeg'),
+          ('Funland Hayling','3a517e_89740f7bdc61465f93c8bab24d7929cc~mv2.jpg'),
+          ('Gamebox Shoreditch','3a517e_333b84c085184429bea60719367ea9f7~mv2.jpg'),
+          ('Warwick Castle','3a517e_b28206a677c242aba4ce35412e9c9c50~mv2.jpg'),
+          ('Royal Botanic Edinburgh','3a517e_c0f650eb297748e686669809596a0ad2~mv2.jpg'),
+          ('National Coal Museum','3a517e_991cdfb350e048368cffbafe2563128b~mv2.jpg'),
+          ('Lane7 Bullring','3a517e_5de69f6117f24f3783a2fdc60eefa593~mv2.webp'),
+          ('Roxy Bristol','3a517e_ab5af626696c4fae846a1dfe704f8bd3~mv2.webp'),
+          ('Roxy Manchester Deansgate','3a517e_4de4b6a1c52e4e248c0aae0ef9d2b2b0~mv2.webp'),
+          ('Roxy Liverpool Hanover','3a517e_653a39d7ad164ad5a923da50d7fe1f06~mv2.webp'),
+          ('Roxy York','3a517e_7f192c2d56a940b39b63ba6305eb4bad~mv2.webp'),
+          ('Roxy St Mary Axe','3a517e_20bd0e09e92f408993c0e77ee53ebfa6~mv2.webp'),
+          ('Roxy Leicester','3a517e_c9d31384f8434778955406f660ba01eb~mv2.webp'),
+          ('Oriel Science','3a517e_7755c756641842ebaefab84b43623913~mv2.png'),
+          ('W5 Climbit','3a517e_5a3401c0367b49de8bf5286eba98941a~mv2.jpg'),
+          ('Cambridge Science','3a517e_f0d64b3099d5469196e3e894621a5705~mv2.jpeg'),
+          ('Science Oxford','3a517e_75bccd99ff454051998bd8f875e5a24b~mv2.jpg'),
+          ('Eureka Wirral','3a517e_2a83bc2c84d74319965a4d421d484a17~mv2.png'),
+          ('Gravity Castleford candidate','3a517e_2298d58395c94f3ebfa8c897bd68beda~mv2.jpg'),
+          ('Gravity Wandsworth candidate','3a517e_5cd120f623bb4a9387c985b765c3204b~mv2.webp'),
+          ('Admiral Soho existing','3a517e_c1497d756797486da213c6ca50563bf3~mv2.jpg'),
+          ('Admiral East Kilbride existing','3a517e_2320a6dac93d4258844000cc28057efb~mv2.jpg'),
+          ('Admiral Govan existing','3a517e_be58dd07efa541cbbbf2e211e4184cd3~mv2.jpg'),
+          ('TMG Blyth existing','3a517e_5893548b4f4443739497fa97a4ea4a5f~mv2.jpg'),
+          ('Cleveland Melton existing','3a517e_d8b88e651fc5442d8c948ae96c070b8f~mv2.jpg')]
+          def load(pair):
+              name,mid=pair
+              result={'name':name,'media_id':mid}
+              try:
+                  url='https://static.wixstatic.com/media/'+mid
+                  response=requests.get(url,timeout=25)
+                  response.raise_for_status()
+                  if len(response.content)>25000000:raise ValueError('image too large')
+                  im=ImageOps.exif_transpose(Image.open(io.BytesIO(response.content))).convert('RGB')
+                  result.update(width=im.width,height=im.height,url=url)
+                  im.thumbnail((1200,900))
+                  file=mid+'.jpg';im.save(out/file,quality=90)
+                  result['file']=file
+              except Exception as e:result['error']=str(e)
+              return result
+          with cf.ThreadPoolExecutor(max_workers=6) as p: results=list(p.map(load,items))
+          (out/'manifest.json').write_text(json.dumps(results,indent=2))
+          print(json.dumps({'downloaded':sum('file' in r for r in results),'requested':len(results)}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original-image-review
+          path: original-review/
+          retention-days: 7
