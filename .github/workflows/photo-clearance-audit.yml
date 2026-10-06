@@ -1,0 +1,36 @@
+name: Read-only photo clearance evidence
+
+on:
+  push:
+    branches: [photo-clearance-20261006-audit]
+    paths:
+      - research/photo-clearance/**
+      - .github/workflows/photo-clearance-audit.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: photo-clearance-read-only
+  cancel-in-progress: false
+
+jobs:
+  collect-public-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image inspection dependencies
+        run: python -m pip install requests beautifulsoup4 Pillow
+      - name: Validate audit script
+        run: python -m py_compile research/photo-clearance/audit.py
+      - name: Gather public image evidence only
+        run: python research/photo-clearance/audit.py
+      - name: Preserve evidence and error report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-clearance-evidence
+          path: photo-evidence/
+          retention-days: 7
+          if-no-files-found: warn
