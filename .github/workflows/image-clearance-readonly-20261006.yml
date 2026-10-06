@@ -1,13 +1,8 @@
 name: Read-only image clearance audit
 
-# The initial addition runs this isolated audit once. No site publish or CMS writes.
-# Ordinary application commits and scheduled cinema updates do not trigger it.
+# Manual-only diagnostic. No site publishing or CMS writes.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/image-clearance-readonly-20261006.yml'
 
 permissions:
   contents: read
