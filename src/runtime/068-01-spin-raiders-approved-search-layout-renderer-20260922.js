@@ -93,7 +93,7 @@
           .map((e) => "<span>" + r(e) + "</span>")
           .join(
             "",
-          )}</div>${i ? '<p class="ad-note">Ad · Affiliate link</p>' : ""}</div></article>`;
+          )}</div></div></article>`;
       }
       e.innerHTML =
         "<style>" +
@@ -134,6 +134,7 @@
           r = e.querySelector("[data-sort]").value;
         ((m = p.filter(
           (e) =>
+            (!e._id || e._routesLoading || window.SR_ROUTE_UI.ready(e)) &&
             (!o || v.includes(w(e))) &&
             (!a.length || window.SR_PLACE_CATEGORIES(e).some(category => a.includes(category))) &&
             (!i || (C(e)?.score || 0) >= i) &&
@@ -406,7 +407,7 @@
                 if (o) return;
                 const t = p.filter((e) => "stays" === d(e) && x(e) && (g && null != q(e) ? q(e) <= 25 : !!s && String(c(e) || "").toLowerCase().trim() === String(s).toLowerCase().trim()) && window.SR_ROUTE_UI.ready(e) && window.SR_ROUTE_UI.discoverable(e)).slice(0, 4);
                 e.querySelector("[data-side-results]").innerHTML = t.length
-                  ? `<section class="side-panel"><div class="side-heading"><h2>Places to stay</h2><a href="/search?q=${encodeURIComponent(s)}&category=stays">View all →</a></div><div class="side-cards">${t.map((e) => `<a class="side-card" href="${r(R(e))}"${e.affiliateUrl ? ' rel="sponsored noopener"' : ""}><img src="${r(x(e))}" alt="${r(l(e))}" loading="lazy"><h3>${r(l(e))}</h3>${window.SR_ROUTE_UI.notice(e)}<p>${r(e.ctaLabel || e.ctaText || "View stay →")}</p>${e.affiliateUrl ? '<p class="ad-note">Ad · Affiliate link</p>' : ""}</a>`).join("")}</div></section>`
+                  ? `<section class="side-panel"><div class="side-heading"><h2>Places to stay</h2><a href="/search?q=${encodeURIComponent(s)}&category=stays">View all →</a></div><div class="side-cards">${t.map((e) => `<a class="side-card" href="${r(R(e))}"${e.affiliateUrl ? ' rel="sponsored noopener"' : ""}><img src="${r(x(e))}" alt="${r(l(e))}" loading="lazy"><h3>${r(l(e))}</h3>${window.SR_ROUTE_UI.notice(e)}<p>${r(e.ctaLabel || e.ctaText || "View stay →")}</p></a>`).join("")}</div></section>`
                   : "";
               })(),
               N());
