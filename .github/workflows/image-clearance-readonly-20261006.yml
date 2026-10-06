@@ -1,0 +1,42 @@
+name: Read-only image clearance audit
+
+# The initial addition runs this isolated audit once. No site publish or CMS writes.
+# Ordinary application commits and scheduled cinema updates do not trigger it.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/image-clearance-readonly-20261006.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: image-clearance-readonly-20261006
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image inspection dependencies
+        run: python -m pip install requests beautifulsoup4 Pillow
+      - name: Read current image records and prepare review thumbnails
+        env:
+          WIX_CLI_API_KEY: ${{ secrets.WIX_CLI_API_KEY }}
+          PYTHONUNBUFFERED: '1'
+        run: python tools/image_clearance_readonly_20261006.py
+      - name: Preserve audit output, including any read failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-clearance-readonly-20261006
+          path: image-clearance-review/
+          retention-days: 7
+          if-no-files-found: warn
