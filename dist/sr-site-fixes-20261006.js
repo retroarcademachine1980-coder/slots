@@ -62,7 +62,27 @@
     var to = target(base);
     if (to !== base) a.setAttribute('href', to + (to.indexOf('?') < 0 ? mm[2] : ''));
   }
+  function fixMasalaName(root) {
+    if (path !== '/') return;
+    var food = window.SR_HOME_SELECTION && window.SR_HOME_SELECTION.food;
+    if (Array.isArray(food)) food.forEach(function (row) {
+      if (row._id !== '541e7ebd-3e48-441e-9e21-c24b2233a0f0') return;
+      row.title = 'Masala n Malt';
+      if (typeof row.alt === 'string') row.alt = row.alt.replace(/Masala (?:&|and) Malt/g, 'Masala n Malt');
+    });
+    var headings = root.querySelectorAll('.card-copy h3');
+    for (var i = 0; i < headings.length; i++) {
+      if (headings[i].textContent.trim() === 'Masala & Malt') headings[i].textContent = 'Masala n Malt';
+    }
+    var images = root.querySelectorAll('img[alt]');
+    for (var j = 0; j < images.length; j++) {
+      var alt = images[j].getAttribute('alt');
+      var corrected = alt.replace(/Masala (?:&|and) Malt/g, 'Masala n Malt');
+      if (corrected !== alt) images[j].setAttribute('alt', corrected);
+    }
+  }
   function sweep(root) {
+    fixMasalaName(root);
     var links = root.querySelectorAll('a[href]');
     for (var i = 0; i < links.length; i++) fix(links[i]);
     var all = root.querySelectorAll('*');
