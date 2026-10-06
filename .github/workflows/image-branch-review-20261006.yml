@@ -2,10 +2,6 @@ name: Official branch image review
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/image-branch-review-20261006.yml'
 
 permissions:
   contents: read
