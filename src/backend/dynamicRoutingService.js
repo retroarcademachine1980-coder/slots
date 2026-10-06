@@ -8,7 +8,7 @@ import { resolveRoutePath, resolveLegacyAlias } from 'backend/canonicalRoutesApi
 const context=createRouteContext(routeManifest);
 export const foodCustomizeQuery=createDynamicQueryHook({kind:'food',prefix:'/food-and-drink',context,queryFor:collection=>wixData.query(collection)});
 export async function foodBeforeRouter(request) {
- const parts=Array.isArray(request.path)?request.path:[];
+ const parts=(Array.isArray(request.path)?request.path:[]).filter(part=>part!=='');
  if(!parts.length)return next();
  if(parts.some(part=>typeof part!=='string'||/[/?#\\%]/.test(part)))return notFound();
  const path='/food-and-drink/'+parts.join('/');

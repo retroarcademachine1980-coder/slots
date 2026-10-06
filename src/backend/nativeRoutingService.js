@@ -9,7 +9,7 @@ import { loadRouteContext } from 'backend/canonicalRouteService';
 export async function canonicalRouter(kind, request) {
     const spec = Object.hasOwn(ROUTES, kind) ? ROUTES[kind] : Object.hasOwn(INDEX_ROUTES, kind) ? INDEX_ROUTES[kind] : null;
     if (!spec) return notFound();
-    const context = await loadRouteContext(), parts = Array.isArray(request.path) ? request.path : [];
+    const context = await loadRouteContext(), parts = (Array.isArray(request.path) ? request.path : []).filter(part => part !== '');
     if (parts.some(part => typeof part !== 'string' || /[/?#\\%]/.test(part))) return notFound();
     const path = spec.prefix + (parts.length ? '/' + parts.join('/') : '');
     return createNativeRouter({ context, manifest: { entries: [], issues: [], complete: false },

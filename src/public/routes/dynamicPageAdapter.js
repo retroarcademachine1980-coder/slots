@@ -5,7 +5,7 @@ import { parseCanonical } from 'public/routes/canonicalRoutes';
  */
 export function createDynamicDetailHook({ kind, prefix, pageName, resolve, resolveAlias, redirect, ok, notFound, sendStatus }) {
   return async function afterRouter(request, response) {
-    const parts = Array.isArray(request.path) ? request.path : [];
+    const parts = (Array.isArray(request.path) ? request.path : []).filter(part => part !== '');
     if (!parts.length) return response; // Preserve the current native list page.
     if (parts.some(part => typeof part !== 'string' || /[/?#\\%]/.test(part))) return notFound();
     const path = prefix + '/' + parts.join('/'), parsed = parseCanonical(path);
