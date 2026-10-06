@@ -8,9 +8,13 @@
   var path = (location.pathname || '/').replace(/\/+$/, '') || '/';
 
   if (/^\/arcade-venues\//.test(path)) {
-    var m = document.querySelector('meta[name="robots"]');
-    if (!m) { m = document.createElement('meta'); m.name = 'robots'; document.head.appendChild(m); }
-    m.content = 'noindex, follow';
+    var robots = function () {
+      var m = document.querySelector('meta[name="robots"]');
+      if (!m) { m = document.createElement('meta'); m.name = 'robots'; document.head.appendChild(m); }
+      if (m.content !== 'noindex, follow') m.content = 'noindex, follow';
+    };
+    robots();
+    var rn = 0, rt = setInterval(function () { robots(); if (++rn > 60) clearInterval(rt); }, 500);
   }
 
   var S = '/search?q=';
@@ -69,13 +73,13 @@
     }, true);
   }
   /* One cached probe tells us whether the hub pages are live yet. */
-  var KEY = 'sr-hubs-live-v1';
+  var KEY = 'sr-hubs-live-v2';
   try { var c = sessionStorage.getItem(KEY); if (c) hubsLive = c === '1'; } catch (e) {}
   if (hubsLive === null) {
     fetch('/zoos', { method: 'GET', credentials: 'omit', cache: 'no-store' }).then(function (r) {
       hubsLive = r.status === 200;
-    }).catch(function () { hubsLive = true; }).then(function () {
-      try { sessionStorage.setItem(KEY, hubsLive ? '1' : '0'); } catch (e) {}
+    }).catch(function () { hubsLive = false; }).then(function () {
+      try { if (hubsLive) sessionStorage.setItem(KEY, '1'); } catch (e) {}
       try { sweep(document); } catch (e) {}
     });
   }
