@@ -13,9 +13,9 @@ function target(href){
   if(u.searchParams.get('favourites'))return null;
   if(u.searchParams.get('view')==='articles')return '/blog';
   if(BYHUB[q])return BYHUB[q][location.pathname.replace(/\/+$/,'')]||'/post/uk-zoos-wildlife-parks';
+  if(u.searchParams.get('category')==='stays')return '/post/uk-family-hotels';
   if(M[q])return M[q];
-  var town=q.replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-  if(u.searchParams.get('category')==='stays'&&M[q])return M[q];
+  if(location.pathname.indexOf('/retro-video-games')===0)return '/post/explore-the-best-retro-arcade-experiences';
   return null}
  if(p==='/map'&&q){return q==='fishing'?'/post/uk-fishing-lakes':'/map'}
  if(p==='/fishing-lakes'&&(t||q))return '/post/uk-fishing-lakes';
