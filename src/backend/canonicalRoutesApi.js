@@ -58,7 +58,7 @@ export async function resolveLegacyAlias(input) {
     return indexAlias;
   }
   const context = await loadRouteContext({ offers: true });
-  const routes = new Map();
+  const routes = new Map(), rows = new Map();
   // Resolve only the requested alias target, not every legacy record on each visit.
   const parsed = parseLegacyInput(input);
   if (!parsed.ok) return parsed;
@@ -68,11 +68,18 @@ export async function resolveLegacyAlias(input) {
   for (const key of keys) {
     const separator = key.indexOf(':'), collection = key.slice(0, separator), id = key.slice(separator + 1);
     if (!SOURCES.has(collection)) continue;
-    try { const row = await wixData.get(collection, id); routes.set(key, resolveRecord(collection, row, context, { surface: 'redirect' })); }
+    try { const row = await wixData.get(collection, id); rows.set(key, row); routes.set(key, resolveRecord(collection, row, context, { surface: 'redirect' })); }
     catch { routes.set(key, { ok: false, code: 'record_source_unavailable' }); }
   }
   if (candidates.length && routes.size === 1) {
     const result = [...routes.values()][0];
+    if (!result?.ok && result?.code === 'record_not_public') {
+      // A hidden or closed venue's old address goes to its town page when that page exists.
+      const row = [...rows.values()][0] || {};
+      const town = String(row.locationSlug || row.destinationSlug || row.townSlug || '').toLowerCase();
+      const to = town ? '/destination/' + town : '';
+      if (to && context.owners[to]?.length === 1) return { ok: true, from: input, to, status: 301, method: 'server301', key: keys[0] };
+    }
     if (!result?.ok) return { ...result, inputMapped: true, status: result.code === 'record_not_public' ? 404 : 503 };
   }
   const manifest = buildRedirectManifest(candidates, key => routes.get(key), { canonicalPaths: Object.keys(context.owners) });

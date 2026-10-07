@@ -22,8 +22,17 @@ export async function legacyPathRouter(prefix, request) {
     // Temporary preserved native index shell; final renderer owns the content.
     // Cleanup build removes this branch after captured backward rules are retired.
     if (!parts.length && routeManifest.deploymentPhase === 'transition' && ['/classic-fruit-machine-archive','/classic-fruit-machine-archive-1'].includes(prefix)) return next();
-    const path = exactExceptionalRequest ? exceptional : prefix + (parts.length ? '/' + parts.map(encodeURIComponent).join('/') : '');
-    const result = await resolveLegacyAlias(path);
+    // Wix may hand the segment over raw (earl's) or still percent-encoded (%E2%80%93). Try the
+    // decoded-then-encoded form, the strict form (apostrophes as %27) and the raw form.
+    const decode = part => { try { return decodeURIComponent(part); } catch { return part; } };
+    const strict = part => encodeURIComponent(decode(part)).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+    const forms = exactExceptionalRequest ? [exceptional] : [...new Set([
+      prefix + (parts.length ? '/' + parts.map(part => encodeURIComponent(decode(part))).join('/') : ''),
+      prefix + (parts.length ? '/' + parts.map(strict).join('/') : ''),
+      prefix + (parts.length ? '/' + parts.map(encodeURIComponent).join('/') : '')
+    ])];
+    let result = { ok: false };
+    for (const path of forms) { result = await resolveLegacyAlias(path); if (result.ok || result.inputMapped) break; }
     if (!result.ok) return result.status === 503 || result.inputMapped ? sendStatus(String(result.status || 503)) : notFound();
     if (result.method !== 'server301' || !(parseCanonical(result.to).ok || staticNavigation(result.to).ok)) return sendStatus('503');
     return redirect(SITE_ORIGIN + result.to, '301');

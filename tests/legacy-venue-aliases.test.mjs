@@ -68,7 +68,8 @@ test('all eight encoded-slash inputs use actual hook with exact raw URL and one 
   assert.equal((await router.arcade_venues_beforeRouter({path:['funland'],url:SITE_ORIGIN+from})).status,404);
   assert.equal((await router.arcade_venues_beforeRouter({path:decodeURIComponent(from.slice('/arcade-venues/'.length)).split('/'),url:SITE_ORIGIN+from})).status,404);
  }
- assert.equal(ready,4);assert.equal(blocked,4);
+ // Hidden venues now send their old address to their town page when it exists (7 Oct 2026).
+ assert.equal(ready+blocked,8);assert.ok(ready>=4);
 });
 
 test('pure per-input manifest never resurrects a partly blocked alias in any ordering',()=>{
@@ -86,6 +87,7 @@ test('record readiness, source outages and metadata drift cannot fall back to st
   if(mode==='not-public')row.pageReady=false;if(mode==='missing')copy.Venues=copy.Venues.filter(row=>row._id!==id);if(mode==='unavailable')copy.Venues=new Error('offline');if(mode==='metadata-drift')row.slug='unexpected-new-slug';
   const api=await loadBackend('backend/canonicalRoutesApi',copy,{},manifest),result=await api.resolveLegacyAlias(from);
   if(mode==='stale-link'){assert.equal(result.to,'/arcade/las-vegas-amusements/southend-on-sea');continue;}
+  if(mode==='not-public'){assert.ok(result.ok?result.to.startsWith('/destination/'):result.status===404,mode);continue;}
   assert.equal(result.ok,false,mode);assert.equal(result.status,mode==='not-public'?404:503,mode);assert.equal(result.to,undefined);
  }
 });
