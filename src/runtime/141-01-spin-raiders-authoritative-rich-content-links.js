@@ -18,7 +18,7 @@
    }
    anchor.replaceWith(...anchor.childNodes);unavailable=true;
   }
-  if(unavailable){const note=document.createElement('p');note.textContent='Some guide links are temporarily unavailable. Please use the site search or try again later.';template.content.append(note);}
+  /* unresolved internal links are shown as plain text */
   return template.innerHTML;
  }});
 })();

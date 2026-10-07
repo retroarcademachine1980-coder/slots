@@ -151,6 +151,17 @@
     };
   })();
 
+  /* Coordinates for towns that were missing them, so "nearest" fallbacks work there too. */
+  (function addCoords() {
+    var X = { 'thornaby': [54.533, -1.300], 'talybont': [52.775, -4.098], 'crook': [54.716, -1.746], 'strood': [51.393, 0.478], 'moreton': [53.401, -3.112],
+      'watton': [52.571, 0.828], 'shaw': [53.577, -2.093], 'redhill': [51.240, -0.170], 'wymondham': [52.570, 1.116], 'newbridge': [51.666, -3.143], 'hyde': [53.451, -2.079],
+      'willenhall': [52.585, -2.059], 'normanton': [53.700, -1.416], 'ripley': [53.050, -1.405], 'ocean edge leisure park': [54.039, -2.894], 'romney sands holiday village': [50.973, 0.959],
+      'southerness holiday village': [54.876, -3.598], 'summerfields holiday park': [52.676, 1.718], 'littleborough': [53.644, -2.096], 'bluewater': [51.439, 0.271],
+      'minster on sea': [51.420, 0.811], 'donington park': [52.830, -1.375], 'heathrow airport': [51.470, -0.454], 'manchester airport': [53.358, -2.272], 'attleborough': [52.518, 1.019],
+      'norris green': [53.445, -2.928], 'handsworth': [52.505, -1.930], 'kingswood': [51.458, -2.505], 'norbury': [51.411, -0.121], 'sydenham': [51.427, -0.054], 'saltburn': [54.582, -0.974] };
+    var C = window.SR_TRIP_COORDS = window.SR_TRIP_COORDS || {};
+    Object.keys(X).forEach(function (k) { if (!C[k]) C[k] = X[k]; var h = k.replace(/ /g, '-'); if (!C[h]) C[h] = X[k]; });
+  })();
   /* ---------- query parsing ---------- */
   var NEAR = /\b(?:near ?me|nearby|near here|close to me|close by|closest|nearest|around me|around here|local to me|in my area|my area|near to me)\b/;
   var STOP = /\b(?:the|a|an|in|at|on|near|around|by|best|good|great|top|cheap|cheapest|nice|lovely|decent|proper|where|wheres|can|i|we|get|find|some|any|places?|to|go|for|sell|sells|selling|serve|serves|serving|do|does|they|with|open|today|tonight|now|me|my|us|of|is|are|there|what|which|and|or|please|show|looking|want|fancy|near|uk|area|local|family friendly|family|kids|cheap)\b/g;
@@ -162,7 +173,7 @@
       var c = window.SR_TRIP_COORDS[k]; list[slugify(k)] = { slug: slugify(k), name: k.replace(/\b[a-z]/g, function (m) { return m.toUpperCase(); }), lat: c[0], lng: c[1] };
     });
     towns = list;
-    if (!(window.SR_SEASIDE && window.SR_SEASIDE.archiveQuery)) { townsReady = null; return Promise.resolve(list); }
+    if (!((window.SR_SEASIDE && window.SR_SEASIDE.archiveQuery) || (window.SR_PUBLIC_DIRECTORY && window.SR_PUBLIC_DIRECTORY.S && window.SR_PUBLIC_DIRECTORY.S.archiveQuery))) { townsReady = null; return Promise.resolve(list); }
     townsReady = query('Locations', {}, ['title', 'slug', 'latitude', 'longitude', 'region', 'county']).then(function (rows) {
       rows.forEach(function (r) {
         var s = r.slug || slugify(r.title); if (!s) return;
@@ -219,7 +230,7 @@
       !/^(duplicate|merged|deleted|archived|quarantin|suppress|permanently closed|closed|rejected|hold)/i.test([r.status, r.locationStatus, r.currentVenueStatus].filter(Boolean).join(' '));
   };
   function query(c, filter, fields) {
-    var S = window.SR_SEASIDE, out = [];
+    var S = (window.SR_SEASIDE && window.SR_SEASIDE.archiveQuery) ? window.SR_SEASIDE : (window.SR_PUBLIC_DIRECTORY && window.SR_PUBLIC_DIRECTORY.S), out = [];
     function page(offset) {
       return S.archiveQuery({ fields: fields || FIELDS, filter: filter || {}, sort: [{ fieldName: '_id', order: 'ASC' }], paging: { limit: 1000, offset: offset } }, null, false, c)
         .then(function (res) {
@@ -406,7 +417,7 @@
   /* ---------- main ---------- */
   async function smart(q, opts) {
     opts = opts || {};
-    if (!q || !window.SR_SEASIDE || !window.SR_SEASIDE.archiveQuery) return null;
+    if (!q || !((window.SR_SEASIDE && window.SR_SEASIDE.archiveQuery) || (window.SR_PUBLIC_DIRECTORY && window.SR_PUBLIC_DIRECTORY.S && window.SR_PUBLIC_DIRECTORY.S.archiveQuery))) return null;
     await loadTowns();
     var p = parse(q);
     if (!p.types.length && !p.near) return null;          /* plain name / town searches use the normal search */

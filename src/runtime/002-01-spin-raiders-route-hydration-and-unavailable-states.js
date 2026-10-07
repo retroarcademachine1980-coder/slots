@@ -7,9 +7,9 @@
 
  const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  window.SR_ROUTE_UI={
-  unavailable(row,{className='card',image='',title,town}={}){
-   const name=title||row.displayTitle||row.title||row.name||'This place';
-   return `<article class="${escape(className)}" data-route-unavailable="true"><div class="photo card-image">${image?`<img src="${escape(image)}" alt="${escape(row.imageAltText||row.imageAlt||name)}" loading="lazy">`:''}</div><div class="copy card-copy"><h3>${escape(name)}</h3><p>${escape(town||row.locationName||row.destination||'')}</p><p role="status">This guide is temporarily unavailable. Please try again later.</p></div></article>`;
+  unavailable(row,{className='card'}={}){
+   /* A place whose page isn't available is left out instead of showing a broken card. */
+   return `<article class="${escape(className)}" data-route-unavailable="true" hidden style="display:none"></article>`;
   },
   key(row){const route=window.SR_ROUTES.outcome(row);return route.ok?(route.targetKey||route.key):(row._collection+':'+row._id);},
   notice(row){const notice=window.SR_ROUTES.outcome(row).contentNotice;return typeof notice==='string'&&notice.trim()?'<p class="sr-record-notice" role="status">'+escape(notice)+'</p>':'';},

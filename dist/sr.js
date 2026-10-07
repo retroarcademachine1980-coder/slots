@@ -866,7 +866,7 @@ Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:
    }
    anchor.replaceWith(...anchor.childNodes);unavailable=true;
   }
-  if(unavailable){const note=document.createElement('p');note.textContent='Some guide links are temporarily unavailable. Please use the site search or try again later.';template.content.append(note);}
+  /* unresolved internal links are shown as plain text */
   return template.innerHTML;
  }});
 })();
@@ -936,7 +936,7 @@ Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:
   },
   card(row,badge,index){
    const route=row._id?window.SR_ROUTES.outcome(row):window.SR_ROUTES.navigation(row.href),tag=route.ok?'a':'article';
-   if(route.discoveryAllowed===false)return '';
+   if(route.discoveryAllowed===false||(!route.ok&&!row._routesLoading))return '';
    const attributes=route.ok?' href="'+esc(route.href)+'"'+(row.ad?' rel="sponsored noopener"':''):' data-route-unavailable="true"'+(row._routesLoading?' aria-busy="true"':'');
    return `<${tag} class="card"${attributes}><img src="${esc(row.image)}" alt="${esc(row.alt||row.title)}" loading="lazy"><span class="badge b${index}">${esc(badge)}</span><div class="card-copy"><h3>${esc(row.title)}</h3><p>${esc(row.town||row.description)}</p>${row._id?window.SR_ROUTE_UI.notice(row):''}${route.ok?'':`<p role="status">${row._routesLoading?'Loading guide…':'Guide temporarily unavailable'}</p>`}</div><span class="arrow" aria-hidden="true">${route.ok?'→':''}</span></${tag}>`;
   }
@@ -6312,7 +6312,7 @@ ${uniq.length?`<div class="grid${uniq.length<3?' one':''}">${(uniq.length<3?uniq
 <aside>${mapSrc||d.address?`<div class="card">${mapSrc?`<iframe class="map" title="Map showing ${E(name)}" src="${E(mapSrc)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`:''}<h3>${E(name)}</h3><p>${E(d.address||town)}</p>${maps?`<a href="${E(maps)}" target="_blank" rel="noopener">Get directions →</a>`:''}</div>`:''}
 ${d.openingHoursSummary||d.phone?`<div class="card"><h3>Opening hours</h3>${d.openingHoursSummary?`<p>${E(d.openingHoursSummary)}</p>`:''}${d.phone?`<p><strong>Phone:</strong> <a href="tel:${E(tel)}">${E(d.phone)}</a></p>`:''}</div>`:''}
 ${Array.isArray(d.facilities)&&d.facilities.length?`<div class="card"><h3>Facilities</h3><ul class="fac">${d.facilities.map(x=>`<li>${E(x)}</li>`).join('')}</ul></div>`:''}
-${near.length?`<div class="card near"><h3>Nearby places</h3>${near.map(n=>window.SR_ROUTE_UI.ready(n)?`<a href="${E(window.SR_PLACE_HREF(n))}">${n.heroImage?`<img src="${E(img(n.heroImage,160,120))}" alt="" loading="lazy">`:'<img alt="">'}<span><b>${E(n.title)}</b><small>${E(String(n.category||'').split('·').pop().trim())}</small></span></a>`:window.SR_ROUTE_UI.unavailable(n,{className:'card',image:img(n.heroImage,160,120),title:n.title})).join('')}</div>`:''}</aside>
+${near.filter(n=>window.SR_ROUTE_UI.ready(n)).length?`<div class="card near"><h3>Nearby places</h3>${near.filter(n=>window.SR_ROUTE_UI.ready(n)).map(n=>window.SR_ROUTE_UI.ready(n)?`<a href="${E(window.SR_PLACE_HREF(n))}">${n.heroImage?`<img src="${E(img(n.heroImage,160,120))}" alt="" loading="lazy">`:'<img alt="">'}<span><b>${E(n.title)}</b><small>${E(String(n.category||'').split('·').pop().trim())}</small></span></a>`:window.SR_ROUTE_UI.unavailable(n,{className:'card',image:img(n.heroImage,160,120),title:n.title})).join('')}</div>`:''}</aside>
 <div class="promo"><a href="/destination/${E(tslug)}"><b>Plan your perfect food stop</b>More places to eat and drink in ${E(town)}.<br><span>Explore ${E(town)} →</span></a><a href="/destination/${E(tslug)}"><b>Latest food &amp; drink offers</b>Hand-picked deals and days out.<br><span>View offers →</span></a><a href="/destination/${E(tslug)}"><b>Explore nearby places</b>Make a day of it with brilliant places to visit.<br><span>Find things to do →</span></a></div></div>`;
  const TT=name+', '+town+' | Spin Raiders';ctx.setTitle(TT)}
 window.SR_DETAIL_PAGES.register({collection:'FoodAndDrink',kinds:['food'],async render(result,ctx){
