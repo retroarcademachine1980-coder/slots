@@ -4,6 +4,7 @@
       "use strict";
       const e = new URLSearchParams(location.search),
         t =
+          ({"/seaside-arcades":"seaside-arcades","/coin-pusher-arcades":"coin-pusher-arcades","/ticket-arcades":"ticket-arcades","/dog-friendly-arcades":"dog-friendly-arcades","/wheelchair-friendly-arcades":"wheelchair-friendly-arcades","/500-jackpot-slots":"500-jackpot-slots","/blackpool-arcades":"blackpool-arcades"}[location.pathname.replace(/\/$/,"")]) ||
           window.SR_CATEGORY_FROM_PATH() ||
           ({cinemas:"cinema",nature:"nature-outdoors",outdoors:"nature-outdoors","fishing-lakes":"fishing"}[e.get("explore")] || e.get("explore")) ||
           ("agc" === e.get("view") || "agc" === e.get("category")
@@ -17,7 +18,14 @@
                 e.has("place")
               ? ""
               : "discover"),
-        a = window.SR_EXTENDED_CONFIG || {};
+        a = Object.assign(window.SR_EXTENDED_CONFIG || {}, (()=>{const V=e=>String(e.venueType||"")+" "+String(e.category||""),adult=e=>/adult|\bagc\b|18\+|slots|merkur|admiral|luxury leisure|cashino|quicksilver/i.test(V(e)+" "+(e.title||"")),fam=e=>{if(e._collection!=="Venues")return!1;const v=V(e);const f=/family|amusement|\bfec\b|arcade|pier|seaside/i.test(v)||e.familyFEC===!0;const pure=adult(e)&&!/family|amusement|\bfec\b|pier|retro|classic amusements|holiday|theme/i.test(v)&&e.familyFEC!==!0;return f&&!pure&&!/^\s*(bingo|casino|service|holiday park|holiday|theme)\s*$/i.test(String(e.venueType||""))},anyArc=e=>e._collection==="Venues"&&(fam(e)||adult(e)),famS=e=>fam(e)&&!/bowl|airtastic|trampolin|soft play|ninja|clip|laser|golf|kart|bingo|jump|escape/i.test(V(e)+" "+(e.title||"")),inTown=(e,t)=>[e.locationSlug,e.locationName,e.destination].some(v=>String(v||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")===t),T=["All Arcades","Family Friendly","Pier Arcades","Classic Machines","Bowling & Arcade","Retro Video Games"],W=["Amusement","Arcade","Family","Pier"];return{
+"seaside-arcades":{title:"Seaside Arcades",listTitle:"Seaside and family arcades",strap:"Bright lights on the prom",intro:"Every family and seaside amusement arcade we list across the UK – 2p pushers, cranes, ticket games and the classics – including the ones with a separate 18+ area.",words:W,topics:T,only:famS},
+"coin-pusher-arcades":{title:"Coin Pusher Arcades",listTitle:"Arcades with coin pushers",strap:"2p and 10p pushers galore",intro:"Arcades where you’ll find coin pushers – the 2p and 10p falls that every seaside trip needs. Most family amusement arcades have a row of them, so start here and check each venue guide for what’s inside.",words:W,topics:T,only:famS},
+"ticket-arcades":{title:"Ticket & Prize Arcades",listTitle:"Arcades with ticket and prize games",strap:"Win tickets, swap for prizes",intro:"Family arcades with ticket games, redemption counters and prize machines. Rack up tickets on the cranes and pushers, then trade them in – or save them for your next visit.",words:W,topics:T,only:famS},
+"dog-friendly-arcades":{title:"Dog-Friendly Arcades",listTitle:"Dog-friendly arcades",strap:"Bring the dog along",intro:"Arcades and amusement venues listed as dog friendly. Rules change and many venues only allow assistance dogs, so check with the venue before you go.",words:W.concat(["Adult Gaming"]),topics:T,only:e=>anyArc(e)&&e.dogFriendly===!0},
+"wheelchair-friendly-arcades":{title:"Wheelchair-Friendly Arcades",listTitle:"Arcades with an accessible entrance",strap:"Step-free fun",intro:"Arcades and amusement venues listed with an accessible entrance. Layouts vary inside, so check the venue guide or contact the venue if you need specific access details.",words:W.concat(["Adult Gaming"]),topics:T,only:e=>anyArc(e)&&e.disabledAccess===!0},
+"500-jackpot-slots":{title:"£500 Jackpot Slots",listTitle:"Adult gaming centres",strap:"Where the big jackpots are",intro:"Adult gaming centres are where you’ll find the £500 jackpot fruit machines and slots. Browse Merkur, Admiral, Luxury Leisure and the independent AGCs across the UK. 18+ only.",words:["Adult Gaming","AGC"],topics:["Merkur","Admiral","Luxury Leisure","Independent AGCs","Classic Machines","Modern Slots"],adult:!0,only:e=>e._collection==="Venues"&&adult(e)},
+"blackpool-arcades":{title:"Blackpool Arcades",listTitle:"Arcades in Blackpool",strap:"The home of the seaside arcade",intro:"Every Blackpool arcade we list, from the family amusements along the Golden Mile and on the piers to the town’s adult gaming centres.",words:W.concat(["Adult Gaming"]),topics:T,only:e=>anyArc(e)&&inTown(e,"blackpool")}}})());
       if (!a[t]) return;
       window.SR_EXTENDED_ACTIVE = !0;
       let s = 0;
@@ -173,6 +181,8 @@
                 "Classic Machines": "classic|retro|fruit",
                 "Modern Slots": "adult gaming|slots",
                 "Classic Arcades": "classic|retro",
+                "Pier Arcades": "pier",
+                "Bowling & Arcade": "bowl",
                 "Theme Parks": "theme park|pleasure beach|adventure park|alton towers|thorpe park|legoland|drayton manor|chessington|paultons|flamingo land|lightwater|gulliver|fantasy island|m&d|funfair|rides",
                 Arcades: "arcade|amusement",
                 "Seaside Stays": "hotel|guest house",
@@ -362,6 +372,7 @@
                         s.has(t) ||
                         (r.exclude && h(e).includes(r.exclude.toLowerCase())) ||
                         (r.agcOnly && (/family|pier|bowl|bingo|holiday|theme park|amusement arcade|amusement venue|amusement centre/i.test(String(e.venueType || "")) && !/adult|18\+/i.test(String(e.venueType || "")))) ||
+                        (r.only && !r.only(e)) ||
                         (r.nature && !["outdoors","beaches","fishing"].includes(window.SR_CLASSIFY_PLACE(e))) ||
                         (r.title === "Cinemas" && window.SR_CLASSIFY_PLACE(e) !== "cinemas") ||
                         (r.offers && (!window.SR_CANONICAL.offerLive(e) || !(window.SR_CANONICAL.hotelHref(e) || e._offerOut))) ||

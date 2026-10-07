@@ -9,6 +9,7 @@
 (function () {
   'use strict';
   if (window.SR_SMART_SEARCH) return;
+  if (location.pathname.replace(/\/+$/, '') === '/near-me') { location.replace('/search?q=' + encodeURIComponent('near me')); return; }
 
   /* ---------- text helpers ---------- */
   var norm = function (v) {
