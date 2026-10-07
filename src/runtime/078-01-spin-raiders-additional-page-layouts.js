@@ -95,18 +95,18 @@
             +e.publicRating > 0 &&
             +e.publicReviewCount > 0;
         function k(e, t = 0) {
-          if(!window.SR_ROUTE_UI.ready(e))return window.SR_ROUTE_UI.unavailable(e,{image:f(e),title:p(e),town:y(e)});
+          if(!(r.offers&&e._offerOut)&&!window.SR_ROUTE_UI.ready(e))return window.SR_ROUTE_UI.unavailable(e,{image:f(e),title:p(e),town:y(e)});
           if (r.offers)
             return (function (e) {
               const t = f(e),
-                a = window.SR_PLACE_HREF(e),
+                a = e._offerOut || window.SR_PLACE_HREF(e),
                 s = e.offerText || e.offerTitle || e.shortDescription || "",
                 o =
                   e.discountText ||
                   e.offerBadge ||
                   e.dealBadge ||
                   "PARTNER OFFER";
-              return `<article class="card"><a class="photo" href="${d(g(e))}">${t ? `<img src="${d(t)}" alt="${d(e.imageAltText || e.imageAlt || p(e))}" loading="lazy">` : ""}<span class="badge">${d(o)}</span><span class="offer-town">⌖ ${d(y(e) || "UK")}</span></a><div class="copy"><h3><a href="${d(g(e))}">${d(p(e))}</a></h3><p class="offer-description">${d(s)}</p><a class="offer-cta" href="${d(a)}" aria-label="View hotel guide for ${d(p(e))}">→</a><div class="offer-tags"><span>${d(/hotel|stay/i.test(e.category || "") ? "Places to Stay" : e.category || "Days Out")}</span>${!0 === e.familyFriendly ? "<span>Family Friendly</span>" : ""}</div><p class="ad">Ad · Check terms and availability.</p></div></article>`;
+              return `<article class="card"><a class="photo" href="${d(a)}"${e._offerOut ? ' target="_blank" rel="sponsored noopener"' : ''}>${t ? `<img src="${d(t)}" alt="${d(e.imageAltText || e.imageAlt || p(e))}" loading="lazy">` : ""}<span class="badge">${d(o)}</span><span class="offer-town">⌖ ${d(y(e) || "UK")}</span></a><div class="copy"><h3><a href="${d(a)}"${e._offerOut ? ' target="_blank" rel="sponsored noopener"' : ''}>${d(p(e))}</a></h3><p class="offer-description">${d(s)}</p><a class="offer-cta" href="${d(a)}"${e._offerOut ? ' target="_blank" rel="sponsored noopener"' : ''} aria-label="${e._offerOut ? "View offer" : "View hotel guide"} for ${d(p(e))}">→</a><div class="offer-tags"><span>${d(/hotel|stay/i.test(e.category || "") ? "Places to Stay" : e.category || "Days Out")}</span>${!0 === e.familyFriendly ? "<span>Family Friendly</span>" : ""}</div><p class="ad">Ad · Check terms and availability.</p></div></article>`;
             })(e);
           const a = f(e);
           return `<article class="card"><a href="${d(g(e))}" class="photo">${a ? `<img src="${d(a)}" alt="${d(e.exteriorImageAlt || e.imageAltText || e.imageAlt || p(e))}" loading="lazy">` : "<span>Photo being added</span>"}${r.nature ? "" : '<span class="badge">' + d(e.category || e.venueType || r.title) + "</span>"}</a><button class="save" data-save="${d(R(e))}" aria-pressed="${E.includes(R(e))}" aria-label="Save ${d(p(e))}">${E.includes(R(e)) ? "♥" : "♡"}</button><div class="copy"><h3><a href="${d(g(e))}">${d(p(e))}</a></h3><p>${d(y(e))}</p><p class="rating">${x(e) ? "<b>★ " + Number(e.publicRating).toFixed(1) + "</b> (" + Number(e.publicReviewCount).toLocaleString("en-GB") + " reviews)" : "No public rating yet."}</p><div class="tags">${[
@@ -173,6 +173,8 @@
                 "Classic Machines": "classic|retro|fruit",
                 "Modern Slots": "adult gaming|slots",
                 "Classic Arcades": "classic|retro",
+                "Theme Parks": "theme park|pleasure beach|adventure park|alton towers|thorpe park|legoland|drayton manor|chessington|paultons|flamingo land|lightwater|gulliver|fantasy island|m&d|funfair|rides",
+                Arcades: "arcade|amusement",
                 "Seaside Stays": "hotel|guest house",
                 "Family Hotels": "hotel",
                 "EV Charging": "service",
@@ -348,7 +350,7 @@
                         "FoodAndDrink",
                         "AffiliateOffers",
                       ],
-                a = r.offers ? await window.SR_CANONICAL.offerOutcomes(i) : await Promise.allSettled(t.map((t) => i.rows(t, e).then(rows=>window.SR_ROUTE_UI.businessRows(rows,t)))),
+                a = r.offers ? await (async (rd) => { const C = window.SR_CANONICAL, outs = await Promise.allSettled(["HotelGuides", "HotelOffers", "AffiliateOffers"].map((c) => rd.rows(c))), guides = outs[0].status === "fulfilled" ? outs[0].value.filter((g) => g.active !== false) : []; return outs.map((o, ix) => o.status !== "fulfilled" ? o : { status: "fulfilled", value: ix === 0 ? [] : o.value.map((row) => C.normalizeOffer(row, guides)).filter((row) => C.offerLive(row)).map((row) => C.hotelHref(row) ? row : (row._collection === "AffiliateOffers" && (window.SR_ROUTES.outcome(row).recordRole !== "business" || row.affiliate === true) && C.outbound(row) ? { ...row, _offerOut: C.outbound(row) } : null)).filter(Boolean) }); })(i) : await Promise.allSettled(t.map((t) => i.rows(t, e).then(rows=>window.SR_ROUTE_UI.businessRows(rows,t)))),
                 s = new Set();
               S = a
                   .flatMap((e) => ("fulfilled" === e.status ? e.value : []))
@@ -362,7 +364,7 @@
                         (r.agcOnly && (/family|pier|bowl|bingo|holiday|theme park|amusement arcade|amusement venue|amusement centre/i.test(String(e.venueType || "")) && !/adult|18\+/i.test(String(e.venueType || "")))) ||
                         (r.nature && !["outdoors","beaches","fishing"].includes(window.SR_CLASSIFY_PLACE(e))) ||
                         (r.title === "Cinemas" && window.SR_CLASSIFY_PLACE(e) !== "cinemas") ||
-                        (r.offers && (!window.SR_CANONICAL.offerLive(e) || !window.SR_CANONICAL.hotelHref(e))) ||
+                        (r.offers && (!window.SR_CANONICAL.offerLive(e) || !(window.SR_CANONICAL.hotelHref(e) || e._offerOut))) ||
                         ((e.validUntil || e.offerValidUntil) &&
                           new Date(
                             (e.validUntil || e.offerValidUntil) + " 23:59:59",

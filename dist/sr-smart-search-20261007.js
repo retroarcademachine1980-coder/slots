@@ -350,12 +350,21 @@
   function loadOffers() {
     if (offersReady) return offersReady;
     var C = window.SR_CANONICAL, D = window.SR_PUBLIC_DIRECTORY && window.SR_PUBLIC_DIRECTORY.D;
-    if (!C || !C.offerOutcomes || !D) return Promise.resolve([]);
-    offersReady = C.offerOutcomes(D).then(function (outs) {
+    if (!C || !C.normalizeOffer || !D || !D.rows) return Promise.resolve([]);
+    offersReady = Promise.allSettled(['HotelGuides', 'HotelOffers', 'AffiliateOffers'].map(function (c) { return D.rows(c); })).then(function (outs) {
+      var guides = outs[0].status === 'fulfilled' ? outs[0].value.filter(function (g) { return g.active !== false; }) : [];
       var seen = {};
-      return outs.flatMap(function (o) { return o.status === 'fulfilled' ? o.value : []; }).filter(function (r) {
-        var href = C.hotelHref(r); if (!href || !(r.dealPrice || r.offerTitle)) return false;
-        var k = href + '|' + C.outbound(r); if (seen[k]) return false; seen[k] = 1; return true;
+      return outs.slice(1).flatMap(function (o) { return o.status === 'fulfilled' ? o.value : []; }).map(function (r) {
+        r = C.normalizeOffer(r, guides);
+        if (!C.offerLive(r)) return null;
+        var h = C.hotelHref(r);
+        if (h) return Object.assign(r, { _dealHref: h });
+        var role; try { role = window.SR_ROUTES.outcome(r).recordRole; } catch (e) { role = ''; }
+        if (r._collection === 'AffiliateOffers' && (role !== 'business' || r.affiliate === true) && C.outbound(r)) return Object.assign(r, { _dealHref: C.outbound(r), _external: true });
+        return null;
+      }).filter(function (r) {
+        if (!r || !(r.dealPrice || r.offerTitle || r.discountText || r.offerBadge)) return false;
+        var k = r._dealHref + '|' + C.outbound(r); if (seen[k]) return false; seen[k] = 1; return true;
       });
     }).catch(function () { return []; });
     return offersReady;
@@ -382,13 +391,13 @@
     '.srsd-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:6px}.srsd-p{font-weight:900}.srsd-cta{background:#ffd23f;color:#0b2545;font-weight:900;font-size:12px;padding:7px 10px;border-radius:8px;white-space:nowrap}' +
     '@media(max-width:640px){.srsd-row{grid-auto-columns:78%}}';
   function dealCard(r) {
-    var C = window.SR_CANONICAL, u = C.hotelHref(r); if (!u) return '';
+    var u = r._dealHref; if (!u) return '';
     var pic = '', raw = r.dealImage || (r.image && r.image.url) || r.image || r.heroImage;
     try { var S = window.SR_SEASIDE; pic = S && S.fit && S.img ? S.fit(S.img(raw), 560) : String(raw || ''); } catch (e) { pic = ''; }
     var t = r.displayTitle || r.name || r.title || '';
     var save = String(r.offerBadge || r.discountText || '').replace(/^SAVE UP TO/i, 'Save');
     var cat = String(r.category || '').replace(/^THINGS TO DO OFFER\s*•\s*/i, '').replace(/\bOFFER\b/i, '').trim() || 'Deal';
-    return '<a class="srsd-card" href="' + escapeHtml(u) + '"><div class="srsd-img">' + (pic ? '<img src="' + escapeHtml(pic) + '" alt="' + escapeHtml(r.imageAlt || t) + '" loading="lazy">' : '') +
+    return '<a class="srsd-card" href="' + escapeHtml(u) + '"' + (r._external ? ' target="_blank" rel="sponsored noopener"' : '') + '><div class="srsd-img">' + (pic ? '<img src="' + escapeHtml(pic) + '" alt="' + escapeHtml(r.imageAlt || t) + '" loading="lazy">' : '') +
       (save ? '<span class="srsd-save">' + escapeHtml(save) + '</span>' : '') + '</div><div class="srsd-body"><span class="srsd-cat">' + escapeHtml(cat) + '</span><h3 class="srsd-t">' + escapeHtml(t) + '</h3>' +
       (r.offerTitle ? '<p class="srsd-o">' + escapeHtml(r.offerTitle) + '</p>' : '') + '<div class="srsd-foot"><span class="srsd-p">' + escapeHtml(String(r.dealPrice || '').replace(/^FROM\s*/i, 'From ')) + '</span><span class="srsd-cta">View deal →</span></div></div></a>';
   }
@@ -520,7 +529,8 @@
       deals = deals.slice(0, 12);
     } catch (e) { deals = []; }
     var heading = label(p.types, p.town, p.near && here);
-    var sub = deals.length ? 'Deals shown first.' : '';
+    if (deals.length && /^(Nothing listed|We haven’t listed)/.test(note)) note = 'Current deals for that are at the top. We haven’t listed places for it here yet, so below is what else is nearby.';
+    var sub = deals.length && !/deals/i.test(note) ? 'Deals shown first.' : '';
     if (here && p.near) sub = (sub ? sub + ' ' : '') + 'Nearest to you first.';
     return { rows: found.map(decorate), deals: deals, failed: failed, heading: heading, note: [note, sub].filter(Boolean).join(' '), parsed: p };
   }
