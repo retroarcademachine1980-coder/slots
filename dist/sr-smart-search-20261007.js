@@ -152,7 +152,7 @@
 
   /* ---------- query parsing ---------- */
   var NEAR = /\b(?:near ?me|nearby|near here|close to me|close by|closest|nearest|around me|around here|local to me|in my area|my area|near to me)\b/;
-  var STOP = /\b(?:the|a|an|in|at|on|near|around|by|best|good|great|top|cheap|cheapest|nice|lovely|decent|proper|where|wheres|can|i|we|get|find|some|any|places?|to|go|for|sell|sells|selling|serve|serves|serving|do|does|they|with|open|today|tonight|now|me|my|us|of|is|are|there|what|which|and|or|please|show|looking|want|fancy|near|uk|area|local|family friendly|kids|cheap)\b/g;
+  var STOP = /\b(?:the|a|an|in|at|on|near|around|by|best|good|great|top|cheap|cheapest|nice|lovely|decent|proper|where|wheres|can|i|we|get|find|some|any|places?|to|go|for|sell|sells|selling|serve|serves|serving|do|does|they|with|open|today|tonight|now|me|my|us|of|is|are|there|what|which|and|or|please|show|looking|want|fancy|near|uk|area|local|family friendly|family|kids|cheap)\b/g;
   var towns = null, townsReady = null;
   function loadTowns() {
     if (townsReady) return townsReady;
@@ -160,6 +160,8 @@
     Object.keys(window.SR_TRIP_COORDS || {}).forEach(function (k) {
       var c = window.SR_TRIP_COORDS[k]; list[slugify(k)] = { slug: slugify(k), name: k.replace(/\b[a-z]/g, function (m) { return m.toUpperCase(); }), lat: c[0], lng: c[1] };
     });
+    towns = list;
+    if (!(window.SR_SEASIDE && window.SR_SEASIDE.archiveQuery)) { townsReady = null; return Promise.resolve(list); }
     townsReady = query('Locations', {}, ['title', 'slug', 'latitude', 'longitude', 'region', 'county']).then(function (rows) {
       rows.forEach(function (r) {
         var s = r.slug || slugify(r.title); if (!s) return;
