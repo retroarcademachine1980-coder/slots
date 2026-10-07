@@ -111,6 +111,7 @@
       rows = (rows || []).filter(function (e) {
         var v = String(e.venueType || '');
         if (!U.discoverable(e) || !U.ready(e) || !title(e)) return false;
+        if (/airtastic|trampolin|soft play|ninja|clip ?n ?climb|jump|escape room|laser|kart/i.test(v + ' ' + title(e))) return false;
         if (!INCLUDE.test(v) || PURE_AGC.test(v) || /^(bingo|casino|service|holiday|holiday park|theme)$/i.test(v.trim())) return false;
         var k = U.key(e); if (seen[k]) return false; seen[k] = 1; return true;
       }).sort(function (a, b) { return (photo(b) ? 1 : 0) - (photo(a) ? 1 : 0) || title(a).localeCompare(title(b)); });

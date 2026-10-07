@@ -115,7 +115,8 @@
         var family = /family|amusement|\bfec\b|arcade|pier|seaside|fun ?park|leisure/i.test(vt) || r.familyFEC === true || r.familyEntertainmentCentre === true || (r.amusementArcade === true && r.familyFriendly === true);
         var pureAgc = adult && !/family|amusement|\bfec\b|pier|retro|classic amusements|holiday|theme/i.test(vt) && r.familyFEC !== true;
         if (adult || r.adultGamingCentre === true) out.push('agc');
-        if (family && !pureAgc && !/^\s*(bingo|casino|service|holiday park|holiday|theme)\s*$/i.test(String(r.venueType || ''))) out.push('familyarcade');
+        var notArcade = /airtastic|trampolin|soft play|ninja|clip ?n ?climb|jump|escape room|laser|kart/i.test(vt + ' ' + title(r));
+        if (family && !pureAgc && !notArcade && !/^\s*(bingo|casino|service|holiday park|holiday|theme)\s*$/i.test(String(r.venueType || ''))) out.push('familyarcade');
       }
       if (out.indexOf('fishing') >= 0 && /fish (?:and |& )?chip/.test(smallText)) out.splice(out.indexOf('fishing'), 1);
       if (!out.length && r._collection !== 'Venues') out.push('attractions');
