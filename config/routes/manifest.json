@@ -42764,14 +42764,11 @@
       }
     },
     {
-      "key": "NearbyAttractions:0cd54c57-71e4-4582-b51b-dea0a00b25f7",
+      "key": "FoodAndDrink:fd-bistro-the-loch-motherwell",
       "path": "/food-and-drink/bistro-the-loch-motherwell",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "NearbyAttractions:0ceb6239-99ce-483e-bf40-a12cde3e809b",
@@ -46024,14 +46021,11 @@
       }
     },
     {
-      "key": "NearbyAttractions:593fac6e-dcf7-4199-8154-12396855a0c1",
+      "key": "FoodAndDrink:fd-monterey-jacks-motherwell",
       "path": "/food-and-drink/monterey-jacks-motherwell",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "NearbyAttractions:59b654b4-1455-4bd0-a1e2-53b98e4e8308",
@@ -46284,14 +46278,11 @@
       }
     },
     {
-      "key": "NearbyAttractions:612b85b0-8cdc-489c-92e1-4abc06c80343",
+      "key": "FoodAndDrink:fd-diner-by-the-lanes-motherwell",
       "path": "/food-and-drink/diner-by-the-lanes-motherwell",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "NearbyAttractions:61724031-0a30-499d-9073-ed395d037d8d",
@@ -47634,14 +47625,11 @@
       }
     },
     {
-      "key": "NearbyAttractions:7e2f0c0b-4619-4ad3-a190-c1a4357bc591",
+      "key": "FoodAndDrink:fd-sports-bar-motherwell",
       "path": "/food-and-drink/sports-bar-motherwell",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "NearbyAttractions:7e3ad0ff-273e-45be-9c82-382711580973",
@@ -48494,14 +48482,11 @@
       }
     },
     {
-      "key": "NearbyAttractions:8f93237e-2e5d-455d-a79f-521db32a0f74",
+      "key": "FoodAndDrink:fd-boardwalk-bar-clacton-on-sea",
       "path": "/food-and-drink/boardwalk-bar-clacton-on-sea",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "NearbyAttractions:8fb19525-9a20-419e-959f-8904f753875b",
@@ -49043,14 +49028,11 @@
       }
     },
     {
-      "key": "NearbyAttractions:9829910e-583d-448f-ae22-bf168f5c23b2",
+      "key": "FoodAndDrink:fd-mario-and-dinos-motherwell",
       "path": "/food-and-drink/mario-and-dinos-motherwell",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "NearbyAttractions:98408232-be46-478d-bcc2-fc7fba06a97e",
@@ -49243,14 +49225,11 @@
       }
     },
     {
-      "key": "NearbyAttractions:9d857eaf-578c-4dc3-ba90-985c004bd215",
+      "key": "FoodAndDrink:fd-beer-garden-motherwell",
       "path": "/food-and-drink/beer-garden-motherwell",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "NearbyAttractions:9dc7673f-42b5-4217-ac32-337b96f3b250",
@@ -64885,44 +64864,32 @@
       }
     },
     {
-      "key": "AffiliateOffers:006700d7-6b80-4d80-b6f4-70f7bd3b6017",
+      "key": "FoodAndDrink:fd-colmans-fish-and-chips-south-shields",
       "path": "/food-and-drink/colmans-fish-and-chips-south-shields",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:061dce12-8d5e-4d2a-8b82-9ac6a2426d6e",
+      "key": "FoodAndDrink:fd-boardwalk-bar-and-grill-clacton-on-sea",
       "path": "/food-and-drink/boardwalk-bar-and-grill-clacton-on-sea",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:0edb4130-1ee7-44cc-b1b0-a41023bb75a2",
+      "key": "FoodAndDrink:fd-jass-fish-and-chips-towyn",
       "path": "/food-and-drink/jass-fish-and-chips-towyn",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:16165935-b68a-4a9f-97aa-0c12b73c9878",
+      "key": "FoodAndDrink:fd-ocean-fish-bar-cleethorpes",
       "path": "/food-and-drink/ocean-fish-bar-cleethorpes",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:1ea5c5c0-18d6-4757-accc-d4841cb7461c",
@@ -64935,44 +64902,32 @@
       }
     },
     {
-      "key": "AffiliateOffers:20ba240b-df11-4ae6-b0eb-4c052038b510",
+      "key": "FoodAndDrink:fd-the-hope-hotel-southend-on-sea",
       "path": "/food-and-drink/the-hope-hotel-southend-on-sea",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:20e66071-5b35-4580-ac39-58621d3a4a74",
+      "key": "FoodAndDrink:fd-catch-looe",
       "path": "/food-and-drink/catch-looe",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:25082ea5-c5d2-4a7b-a72b-d539c6cc2d6b",
+      "key": "FoodAndDrink:fd-fishers-of-hunstanton-hunstanton",
       "path": "/food-and-drink/fishers-of-hunstanton-hunstanton",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:27e318fb-1a1b-428d-9a13-1a9ffac1778c",
+      "key": "FoodAndDrink:fd-neptunes-beach-cafe-leysdown-on-sea",
       "path": "/food-and-drink/neptunes-beach-cafe-leysdown-on-sea",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:2807824a-9930-4ab3-acb8-dc27c40000cd",
@@ -64985,24 +64940,18 @@
       }
     },
     {
-      "key": "AffiliateOffers:2a04a90a-5273-4c39-a6ca-21a782249891",
+      "key": "FoodAndDrink:fd-rockfish-weymouth",
       "path": "/food-and-drink/rockfish-weymouth",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:2a1a7c56-ee22-4942-9407-4407fab78238",
+      "key": "FoodAndDrink:fd-the-mermaid-fish-bar-barmouth",
       "path": "/food-and-drink/the-mermaid-fish-bar-barmouth",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:3b2dad6e-19b8-4b63-9264-45a1abd0ab2e",
@@ -65015,14 +64964,11 @@
       }
     },
     {
-      "key": "AffiliateOffers:43201751-d0bd-4bbf-a040-c08d40ca05df",
+      "key": "FoodAndDrink:fd-hemsby-beach-cafe-hemsby",
       "path": "/food-and-drink/hemsby-beach-cafe-hemsby",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:4507e401-2af1-4909-af3a-93e19c4633e7",
@@ -65035,24 +64981,18 @@
       }
     },
     {
-      "key": "AffiliateOffers:4ba6e34e-672f-4e29-8ba5-413684b3349a",
+      "key": "FoodAndDrink:fd-riverhead-coffee-cleethorpes",
       "path": "/food-and-drink/riverhead-coffee-cleethorpes",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:50dbe627-1520-4e76-9930-ceff7c0831fb",
+      "key": "FoodAndDrink:fd-paletta-pizzeria-barry",
       "path": "/food-and-drink/paletta-pizzeria-barry",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:59de5267-7587-4242-86af-ffb0b0953fc5",
@@ -65065,14 +65005,11 @@
       }
     },
     {
-      "key": "AffiliateOffers:5bd1128a-6c56-4028-afff-b8fa93cd6a5a",
+      "key": "FoodAndDrink:fd-les-and-ritas-fish-bar-rhyl",
       "path": "/food-and-drink/les-and-ritas-fish-bar-rhyl",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:600efdb6-9553-4495-837b-a60d93c9e5a4",
@@ -65085,44 +65022,32 @@
       }
     },
     {
-      "key": "AffiliateOffers:65308436-12ac-4b45-8c58-60f725352bc3",
+      "key": "FoodAndDrink:fd-peters-fish-factory-margate",
       "path": "/food-and-drink/peters-fish-factory-margate",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:6856f602-086c-46fb-a6a9-92c4bcd4f57f",
+      "key": "FoodAndDrink:fd-the-cottage-loaf-llandudno",
       "path": "/food-and-drink/the-cottage-loaf-llandudno",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:68cbb8f0-e207-44f4-9346-d62d2e4b709c",
+      "key": "FoodAndDrink:fd-horatios-bar-brighton",
       "path": "/food-and-drink/horatios-bar-brighton",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:6ac925aa-68d5-4d5f-8e5a-9b0e65b831df",
+      "key": "FoodAndDrink:fd-reel-plaice-ayr",
       "path": "/food-and-drink/reel-plaice-ayr",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:6dfb88b0-4053-4ee9-93a6-8deff5e93c9a",
@@ -65155,64 +65080,46 @@
       }
     },
     {
-      "key": "AffiliateOffers:7919dd57-7914-4db9-8ddd-961641fbf587",
+      "key": "FoodAndDrink:fd-1891-rhyl",
       "path": "/food-and-drink/1891-rhyl",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:7e8310f8-96e1-435b-b3db-5a5324e125d3",
+      "key": "FoodAndDrink:fd-henrys-bar-paignton",
       "path": "/food-and-drink/henrys-bar-paignton",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:7ed84049-57e0-4583-ae22-99101ed0b6a2",
+      "key": "FoodAndDrink:fd-the-golden-lion-hotel-bar-and-restaurant-hunstanton",
       "path": "/food-and-drink/the-golden-lion-hotel-bar-and-restaurant-hunstanton",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:7f26d26d-aeca-4e8e-bc52-a190bc1b543a",
+      "key": "FoodAndDrink:fd-the-pelican-diner-hastings",
       "path": "/food-and-drink/the-pelican-diner-hastings",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:8310c4a0-49b7-4f19-83f0-224a243fb075",
+      "key": "FoodAndDrink:fd-the-william-hardwicke-bognor-regis",
       "path": "/food-and-drink/the-william-hardwicke-bognor-regis",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:83837666-9040-462b-8f39-e6313161edb0",
+      "key": "FoodAndDrink:fd-the-jolly-sailors-lowestoft",
       "path": "/food-and-drink/the-jolly-sailors-lowestoft",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:88d2cd8c-a84a-4ff2-8909-a2c001c6b149",
@@ -65225,14 +65132,11 @@
       }
     },
     {
-      "key": "AffiliateOffers:89a3f7f7-1e1a-4fbb-94d7-3d77cfbf173f",
+      "key": "FoodAndDrink:fd-crispys-of-minehead-minehead",
       "path": "/food-and-drink/crispys-of-minehead-minehead",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:8cf56811-a916-44d1-b6c9-00d398a1675f",
@@ -65255,24 +65159,18 @@
       }
     },
     {
-      "key": "AffiliateOffers:a4a4c44b-1a67-433b-83cf-17b528ba1a68",
+      "key": "FoodAndDrink:fd-kays-fish-and-chips-cleveleys",
       "path": "/food-and-drink/kays-fish-and-chips-cleveleys",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:a9b77b7f-1e8f-4846-9fe5-f260c687b988",
+      "key": "FoodAndDrink:fd-deep-blue-south-parade-pier-portsmouth",
       "path": "/food-and-drink/deep-blue-south-parade-pier-portsmouth",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:acc_pensarn_castle-cove-holiday-park",
@@ -65425,34 +65323,25 @@
       }
     },
     {
-      "key": "AffiliateOffers:rated_bridlington_geccho-s-restaurant",
+      "key": "FoodAndDrink:fd-gecchos-restaurant-bridlington",
       "path": "/food-and-drink/gecchos-restaurant-bridlington",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_bridlington_tandoori-nights",
+      "key": "FoodAndDrink:fd-tandoori-nights-bridlington",
       "path": "/food-and-drink/tandoori-nights-bridlington",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_bridlington_the-latte-lounge",
+      "key": "FoodAndDrink:fd-the-latte-lounge-bridlington",
       "path": "/food-and-drink/the-latte-lounge-bridlington",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:rated_great-yarmouth_hippodrome-circus",
@@ -65465,14 +65354,11 @@
       }
     },
     {
-      "key": "AffiliateOffers:rated_great-yarmouth_wheelwrights-arms-gorleston",
+      "key": "FoodAndDrink:fd-wheelwrights-arms-gorleston-great-yarmouth",
       "path": "/food-and-drink/wheelwrights-arms-gorleston-great-yarmouth",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:rated_ingoldmells_captain-jack-s-show-bar",
@@ -65485,84 +65371,60 @@
       }
     },
     {
-      "key": "AffiliateOffers:rated_ingoldmells_house-of-coffee",
+      "key": "FoodAndDrink:fd-house-of-coffee-ingoldmells",
       "path": "/food-and-drink/house-of-coffee-ingoldmells",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_ingoldmells_pie-palace",
+      "key": "FoodAndDrink:fd-pie-palace-ingoldmells",
       "path": "/food-and-drink/pie-palace-ingoldmells",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_ingoldmells_the-hide-at-herons-mead",
+      "key": "FoodAndDrink:fd-the-hide-at-herons-mead-orby",
       "path": "/food-and-drink/the-hide-at-herons-mead-orby",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_mablethorpe_gerardo-s",
+      "key": "FoodAndDrink:fd-gerardos-mablethorpe",
       "path": "/food-and-drink/gerardos-mablethorpe",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_mablethorpe_mable-s-tea-room",
+      "key": "FoodAndDrink:fd-mables-tea-room-mablethorpe",
       "path": "/food-and-drink/mables-tea-room-mablethorpe",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_mablethorpe_the-dunes",
+      "key": "FoodAndDrink:fd-the-dunes-mablethorpe",
       "path": "/food-and-drink/the-dunes-mablethorpe",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_scarborough_askim-s",
+      "key": "FoodAndDrink:fd-askims-scarborough",
       "path": "/food-and-drink/askims-scarborough",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_scarborough_lifeboat-fish-bar",
+      "key": "FoodAndDrink:fd-lifeboat-fish-bar-scarborough",
       "path": "/food-and-drink/lifeboat-fish-bar-scarborough",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:rated_skegness_altitude44",
@@ -65575,34 +65437,25 @@
       }
     },
     {
-      "key": "AffiliateOffers:rated_skegness_no9",
+      "key": "FoodAndDrink:fd-no9-skegness",
       "path": "/food-and-drink/no9-skegness",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_skegness_san-rufo-s",
+      "key": "FoodAndDrink:fd-san-rufos-skegness",
       "path": "/food-and-drink/san-rufos-skegness",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:rated_skegness_the-cosy-corner",
+      "key": "FoodAndDrink:fd-the-cosy-corner-skegness",
       "path": "/food-and-drink/the-cosy-corner-skegness",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:hayling-rec-chichester-lakeside",
@@ -65625,54 +65478,39 @@
       }
     },
     {
-      "key": "AffiliateOffers:b7d27661-348c-4802-bf94-f2f40d983633",
+      "key": "FoodAndDrink:fd-fish-tram-chips-llandudno",
       "path": "/food-and-drink/fish-tram-chips-llandudno",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:bb3c7342-f671-421b-99a9-f2c30c97e44e",
+      "key": "FoodAndDrink:fd-coffee-break-clacton-on-sea",
       "path": "/food-and-drink/coffee-break-clacton-on-sea",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:bd3c51f0-259a-48f8-a7cb-be593fa6667b",
+      "key": "FoodAndDrink:fd-inghams-fish-restaurant-filey",
       "path": "/food-and-drink/inghams-fish-restaurant-filey",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:bffb9866-2515-4b0e-93a7-b5e6407485b8",
+      "key": "FoodAndDrink:fd-dolphin-fish-and-chips-restaurant-eastbourne",
       "path": "/food-and-drink/dolphin-fish-and-chips-restaurant-eastbourne",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:blackpool-bank",
+      "key": "FoodAndDrink:fd-the-bank-bar-and-grill-blackpool",
       "path": "/food-and-drink/the-bank-bar-and-grill-blackpool",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:blackpool-funny-girls",
@@ -65685,44 +65523,32 @@
       }
     },
     {
-      "key": "AffiliateOffers:blackpool-queen-street",
+      "key": "FoodAndDrink:fd-31-queen-street-blackpool",
       "path": "/food-and-drink/31-queen-street-blackpool",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:blackpool-the-bridge",
+      "key": "FoodAndDrink:fd-the-bridge-blackpool",
       "path": "/food-and-drink/the-bridge-blackpool",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:blackpool-yorkshire-fisheries",
+      "key": "FoodAndDrink:fd-yorkshire-fisheries-blackpool",
       "path": "/food-and-drink/yorkshire-fisheries-blackpool",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:c0075f09-17ef-459c-a539-f71b7b5d93fa",
+      "key": "FoodAndDrink:fd-the-ginger-pig-kitchen-weston-super-mare",
       "path": "/food-and-drink/the-ginger-pig-kitchen-weston-super-mare",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:c9804084-04cc-4abd-b2df-ec9565ff6a28",
@@ -65735,94 +65561,67 @@
       }
     },
     {
-      "key": "AffiliateOffers:cb097861-3bd0-48d0-a427-0982d1f68ace",
+      "key": "FoodAndDrink:fd-buoy-and-oyster-margate",
       "path": "/food-and-drink/buoy-and-oyster-margate",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:ce93b26b-f045-460b-8ae4-c18fe9697e4d",
+      "key": "FoodAndDrink:fd-steels-cornerhouse-restaurant-cleethorpes",
       "path": "/food-and-drink/steels-cornerhouse-restaurant-cleethorpes",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:d0f4cf49-c4eb-4872-a930-e2fe28ff9c84",
+      "key": "FoodAndDrink:fd-palm-court-restaurant-and-bar-brighton",
       "path": "/food-and-drink/palm-court-restaurant-and-bar-brighton",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:d0fdf16e-8d14-42ff-9d69-5860ce50f6c5",
+      "key": "FoodAndDrink:fd-the-cod-end-fish-and-chip-shop-newquay",
       "path": "/food-and-drink/the-cod-end-fish-and-chip-shop-newquay",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:d1d3371d-5fda-4bff-bb1e-0010b2ad96ca",
+      "key": "FoodAndDrink:fd-harbour-rest-cafe-newquay",
       "path": "/food-and-drink/harbour-rest-cafe-newquay",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:d1f50717-b622-4f12-bb70-a19e48ff3ebd",
+      "key": "FoodAndDrink:fd-seastar-fish-and-chips-bournemouth",
       "path": "/food-and-drink/seastar-fish-and-chips-bournemouth",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:d741f4aa-2cf5-4bcf-af53-f48455e4dfb8",
+      "key": "FoodAndDrink:fd-fish-n-fritz-weymouth",
       "path": "/food-and-drink/fish-n-fritz-weymouth",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:df26655d-f87a-455e-8116-6dab034733cf",
+      "key": "FoodAndDrink:fd-johns-cafe-barry",
       "path": "/food-and-drink/johns-cafe-barry",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:e0a5a700-ff46-4277-98c7-a89a74f05342",
+      "key": "FoodAndDrink:fd-ye-olde-pumphouse-hastings",
       "path": "/food-and-drink/ye-olde-pumphouse-hastings",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:e33ba0ed-4741-452e-a015-010cb84a882b",
@@ -65835,24 +65634,18 @@
       }
     },
     {
-      "key": "AffiliateOffers:e6746143-dd39-4a32-a9df-70eabb2b2b32",
+      "key": "FoodAndDrink:fd-the-ship-inn-herne-bay",
       "path": "/food-and-drink/the-ship-inn-herne-bay",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:e6aeec32-7b30-43ab-afde-a22ee5bbec52",
+      "key": "FoodAndDrink:fd-the-ship-inn-restaurant-folkestone",
       "path": "/food-and-drink/the-ship-inn-restaurant-folkestone",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:e78ea58f-592a-4c73-9ca6-171e5f19e9a0",
@@ -65885,24 +65678,18 @@
       }
     },
     {
-      "key": "AffiliateOffers:f46480a4-e5a2-4f7e-bed6-6534b84a85f1",
+      "key": "FoodAndDrink:fd-paignton-pier-chippy-co-paignton",
       "path": "/food-and-drink/paignton-pier-chippy-co-paignton",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
-      "key": "AffiliateOffers:fadd88c5-01ec-4a40-ad90-976c4548e49b",
+      "key": "FoodAndDrink:fd-the-lacon-arms-hemsby",
       "path": "/food-and-drink/the-lacon-arms-hemsby",
-      "evidence": "Complete read-only live business metadata 2026-10-02; original row retained",
+      "evidence": "Food & Drink page record created 7 October 2026 for the reviewed business at this address; original source row retained unchanged",
       "metadataReviewed": true,
-      "sourceRouteFields": {
-        "urlName": null,
-        "townSlug": null
-      }
+      "sourceRouteFields": {}
     },
     {
       "key": "AffiliateOffers:hayling-aff-ltv-cobnor",
@@ -203867,6 +203654,1639 @@
       ],
       "renderPolicy": {
         "primaryKey": "AffiliateOffers:local_6cf436a1-3793-4645-aad7-4f3bd807be7f",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-bistro-the-loch-motherwell",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/bistro-the-loch-motherwell",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-bistro-the-loch-motherwell",
+      "sourceKeys": [
+        "FoodAndDrink:fd-bistro-the-loch-motherwell",
+        "NearbyAttractions:0cd54c57-71e4-4582-b51b-dea0a00b25f7"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-bistro-the-loch-motherwell",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-monterey-jacks-motherwell",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/monterey-jacks-motherwell",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-monterey-jacks-motherwell",
+      "sourceKeys": [
+        "FoodAndDrink:fd-monterey-jacks-motherwell",
+        "NearbyAttractions:593fac6e-dcf7-4199-8154-12396855a0c1"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-monterey-jacks-motherwell",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-diner-by-the-lanes-motherwell",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/diner-by-the-lanes-motherwell",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-diner-by-the-lanes-motherwell",
+      "sourceKeys": [
+        "FoodAndDrink:fd-diner-by-the-lanes-motherwell",
+        "NearbyAttractions:612b85b0-8cdc-489c-92e1-4abc06c80343"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-diner-by-the-lanes-motherwell",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-sports-bar-motherwell",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/sports-bar-motherwell",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-sports-bar-motherwell",
+      "sourceKeys": [
+        "FoodAndDrink:fd-sports-bar-motherwell",
+        "NearbyAttractions:7e2f0c0b-4619-4ad3-a190-c1a4357bc591"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-sports-bar-motherwell",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-boardwalk-bar-clacton-on-sea",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/boardwalk-bar-clacton-on-sea",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-boardwalk-bar-clacton-on-sea",
+      "sourceKeys": [
+        "FoodAndDrink:fd-boardwalk-bar-clacton-on-sea",
+        "NearbyAttractions:8f93237e-2e5d-455d-a79f-521db32a0f74"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-boardwalk-bar-clacton-on-sea",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-mario-and-dinos-motherwell",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/mario-and-dinos-motherwell",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-mario-and-dinos-motherwell",
+      "sourceKeys": [
+        "FoodAndDrink:fd-mario-and-dinos-motherwell",
+        "NearbyAttractions:9829910e-583d-448f-ae22-bf168f5c23b2"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-mario-and-dinos-motherwell",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-beer-garden-motherwell",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/beer-garden-motherwell",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-beer-garden-motherwell",
+      "sourceKeys": [
+        "FoodAndDrink:fd-beer-garden-motherwell",
+        "NearbyAttractions:9d857eaf-578c-4dc3-ba90-985c004bd215"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-beer-garden-motherwell",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-colmans-fish-and-chips-south-shields",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/colmans-fish-and-chips-south-shields",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-colmans-fish-and-chips-south-shields",
+      "sourceKeys": [
+        "FoodAndDrink:fd-colmans-fish-and-chips-south-shields",
+        "AffiliateOffers:006700d7-6b80-4d80-b6f4-70f7bd3b6017"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-colmans-fish-and-chips-south-shields",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-boardwalk-bar-and-grill-clacton-on-sea",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/boardwalk-bar-and-grill-clacton-on-sea",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-boardwalk-bar-and-grill-clacton-on-sea",
+      "sourceKeys": [
+        "FoodAndDrink:fd-boardwalk-bar-and-grill-clacton-on-sea",
+        "AffiliateOffers:061dce12-8d5e-4d2a-8b82-9ac6a2426d6e"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-boardwalk-bar-and-grill-clacton-on-sea",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-jass-fish-and-chips-towyn",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/jass-fish-and-chips-towyn",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-jass-fish-and-chips-towyn",
+      "sourceKeys": [
+        "FoodAndDrink:fd-jass-fish-and-chips-towyn",
+        "AffiliateOffers:0edb4130-1ee7-44cc-b1b0-a41023bb75a2"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-jass-fish-and-chips-towyn",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-ocean-fish-bar-cleethorpes",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/ocean-fish-bar-cleethorpes",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-ocean-fish-bar-cleethorpes",
+      "sourceKeys": [
+        "FoodAndDrink:fd-ocean-fish-bar-cleethorpes",
+        "AffiliateOffers:16165935-b68a-4a9f-97aa-0c12b73c9878"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-ocean-fish-bar-cleethorpes",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-hope-hotel-southend-on-sea",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-hope-hotel-southend-on-sea",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-hope-hotel-southend-on-sea",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-hope-hotel-southend-on-sea",
+        "AffiliateOffers:20ba240b-df11-4ae6-b0eb-4c052038b510"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-hope-hotel-southend-on-sea",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-catch-looe",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/catch-looe",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-catch-looe",
+      "sourceKeys": [
+        "FoodAndDrink:fd-catch-looe",
+        "AffiliateOffers:20e66071-5b35-4580-ac39-58621d3a4a74"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-catch-looe",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-fishers-of-hunstanton-hunstanton",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/fishers-of-hunstanton-hunstanton",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-fishers-of-hunstanton-hunstanton",
+      "sourceKeys": [
+        "FoodAndDrink:fd-fishers-of-hunstanton-hunstanton",
+        "AffiliateOffers:25082ea5-c5d2-4a7b-a72b-d539c6cc2d6b"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-fishers-of-hunstanton-hunstanton",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-neptunes-beach-cafe-leysdown-on-sea",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/neptunes-beach-cafe-leysdown-on-sea",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-neptunes-beach-cafe-leysdown-on-sea",
+      "sourceKeys": [
+        "FoodAndDrink:fd-neptunes-beach-cafe-leysdown-on-sea",
+        "AffiliateOffers:27e318fb-1a1b-428d-9a13-1a9ffac1778c"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-neptunes-beach-cafe-leysdown-on-sea",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-rockfish-weymouth",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/rockfish-weymouth",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-rockfish-weymouth",
+      "sourceKeys": [
+        "FoodAndDrink:fd-rockfish-weymouth",
+        "AffiliateOffers:2a04a90a-5273-4c39-a6ca-21a782249891"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-rockfish-weymouth",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-mermaid-fish-bar-barmouth",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-mermaid-fish-bar-barmouth",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-mermaid-fish-bar-barmouth",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-mermaid-fish-bar-barmouth",
+        "AffiliateOffers:2a1a7c56-ee22-4942-9407-4407fab78238"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-mermaid-fish-bar-barmouth",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-hemsby-beach-cafe-hemsby",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/hemsby-beach-cafe-hemsby",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-hemsby-beach-cafe-hemsby",
+      "sourceKeys": [
+        "FoodAndDrink:fd-hemsby-beach-cafe-hemsby",
+        "AffiliateOffers:43201751-d0bd-4bbf-a040-c08d40ca05df"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-hemsby-beach-cafe-hemsby",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-riverhead-coffee-cleethorpes",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/riverhead-coffee-cleethorpes",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-riverhead-coffee-cleethorpes",
+      "sourceKeys": [
+        "FoodAndDrink:fd-riverhead-coffee-cleethorpes",
+        "AffiliateOffers:4ba6e34e-672f-4e29-8ba5-413684b3349a"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-riverhead-coffee-cleethorpes",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-paletta-pizzeria-barry",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/paletta-pizzeria-barry",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-paletta-pizzeria-barry",
+      "sourceKeys": [
+        "FoodAndDrink:fd-paletta-pizzeria-barry",
+        "AffiliateOffers:50dbe627-1520-4e76-9930-ceff7c0831fb"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-paletta-pizzeria-barry",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-les-and-ritas-fish-bar-rhyl",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/les-and-ritas-fish-bar-rhyl",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-les-and-ritas-fish-bar-rhyl",
+      "sourceKeys": [
+        "FoodAndDrink:fd-les-and-ritas-fish-bar-rhyl",
+        "AffiliateOffers:5bd1128a-6c56-4028-afff-b8fa93cd6a5a"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-les-and-ritas-fish-bar-rhyl",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-peters-fish-factory-margate",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/peters-fish-factory-margate",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-peters-fish-factory-margate",
+      "sourceKeys": [
+        "FoodAndDrink:fd-peters-fish-factory-margate",
+        "AffiliateOffers:65308436-12ac-4b45-8c58-60f725352bc3"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-peters-fish-factory-margate",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-cottage-loaf-llandudno",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-cottage-loaf-llandudno",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-cottage-loaf-llandudno",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-cottage-loaf-llandudno",
+        "AffiliateOffers:6856f602-086c-46fb-a6a9-92c4bcd4f57f"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-cottage-loaf-llandudno",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-horatios-bar-brighton",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/horatios-bar-brighton",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-horatios-bar-brighton",
+      "sourceKeys": [
+        "FoodAndDrink:fd-horatios-bar-brighton",
+        "AffiliateOffers:68cbb8f0-e207-44f4-9346-d62d2e4b709c"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-horatios-bar-brighton",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-reel-plaice-ayr",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/reel-plaice-ayr",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-reel-plaice-ayr",
+      "sourceKeys": [
+        "FoodAndDrink:fd-reel-plaice-ayr",
+        "AffiliateOffers:6ac925aa-68d5-4d5f-8e5a-9b0e65b831df"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-reel-plaice-ayr",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-1891-rhyl",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/1891-rhyl",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-1891-rhyl",
+      "sourceKeys": [
+        "FoodAndDrink:fd-1891-rhyl",
+        "AffiliateOffers:7919dd57-7914-4db9-8ddd-961641fbf587"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-1891-rhyl",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-henrys-bar-paignton",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/henrys-bar-paignton",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-henrys-bar-paignton",
+      "sourceKeys": [
+        "FoodAndDrink:fd-henrys-bar-paignton",
+        "AffiliateOffers:7e8310f8-96e1-435b-b3db-5a5324e125d3"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-henrys-bar-paignton",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-golden-lion-hotel-bar-and-restaurant-hunstanton",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-golden-lion-hotel-bar-and-restaurant-hunstanton",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-golden-lion-hotel-bar-and-restaurant-hunstanton",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-golden-lion-hotel-bar-and-restaurant-hunstanton",
+        "AffiliateOffers:7ed84049-57e0-4583-ae22-99101ed0b6a2"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-golden-lion-hotel-bar-and-restaurant-hunstanton",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-pelican-diner-hastings",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-pelican-diner-hastings",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-pelican-diner-hastings",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-pelican-diner-hastings",
+        "AffiliateOffers:7f26d26d-aeca-4e8e-bc52-a190bc1b543a"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-pelican-diner-hastings",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-william-hardwicke-bognor-regis",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-william-hardwicke-bognor-regis",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-william-hardwicke-bognor-regis",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-william-hardwicke-bognor-regis",
+        "AffiliateOffers:8310c4a0-49b7-4f19-83f0-224a243fb075"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-william-hardwicke-bognor-regis",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-jolly-sailors-lowestoft",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-jolly-sailors-lowestoft",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-jolly-sailors-lowestoft",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-jolly-sailors-lowestoft",
+        "AffiliateOffers:83837666-9040-462b-8f39-e6313161edb0"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-jolly-sailors-lowestoft",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-crispys-of-minehead-minehead",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/crispys-of-minehead-minehead",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-crispys-of-minehead-minehead",
+      "sourceKeys": [
+        "FoodAndDrink:fd-crispys-of-minehead-minehead",
+        "AffiliateOffers:89a3f7f7-1e1a-4fbb-94d7-3d77cfbf173f"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-crispys-of-minehead-minehead",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-kays-fish-and-chips-cleveleys",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/kays-fish-and-chips-cleveleys",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-kays-fish-and-chips-cleveleys",
+      "sourceKeys": [
+        "FoodAndDrink:fd-kays-fish-and-chips-cleveleys",
+        "AffiliateOffers:a4a4c44b-1a67-433b-83cf-17b528ba1a68"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-kays-fish-and-chips-cleveleys",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-deep-blue-south-parade-pier-portsmouth",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/deep-blue-south-parade-pier-portsmouth",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-deep-blue-south-parade-pier-portsmouth",
+      "sourceKeys": [
+        "FoodAndDrink:fd-deep-blue-south-parade-pier-portsmouth",
+        "AffiliateOffers:a9b77b7f-1e8f-4846-9fe5-f260c687b988"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-deep-blue-south-parade-pier-portsmouth",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-gecchos-restaurant-bridlington",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/gecchos-restaurant-bridlington",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-gecchos-restaurant-bridlington",
+      "sourceKeys": [
+        "FoodAndDrink:fd-gecchos-restaurant-bridlington",
+        "AffiliateOffers:rated_bridlington_geccho-s-restaurant"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-gecchos-restaurant-bridlington",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-tandoori-nights-bridlington",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/tandoori-nights-bridlington",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-tandoori-nights-bridlington",
+      "sourceKeys": [
+        "FoodAndDrink:fd-tandoori-nights-bridlington",
+        "AffiliateOffers:rated_bridlington_tandoori-nights"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-tandoori-nights-bridlington",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-latte-lounge-bridlington",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-latte-lounge-bridlington",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-latte-lounge-bridlington",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-latte-lounge-bridlington",
+        "AffiliateOffers:rated_bridlington_the-latte-lounge"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-latte-lounge-bridlington",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-wheelwrights-arms-gorleston-great-yarmouth",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/wheelwrights-arms-gorleston-great-yarmouth",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-wheelwrights-arms-gorleston-great-yarmouth",
+      "sourceKeys": [
+        "FoodAndDrink:fd-wheelwrights-arms-gorleston-great-yarmouth",
+        "AffiliateOffers:rated_great-yarmouth_wheelwrights-arms-gorleston"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-wheelwrights-arms-gorleston-great-yarmouth",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-house-of-coffee-ingoldmells",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/house-of-coffee-ingoldmells",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-house-of-coffee-ingoldmells",
+      "sourceKeys": [
+        "FoodAndDrink:fd-house-of-coffee-ingoldmells",
+        "AffiliateOffers:rated_ingoldmells_house-of-coffee"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-house-of-coffee-ingoldmells",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-pie-palace-ingoldmells",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/pie-palace-ingoldmells",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-pie-palace-ingoldmells",
+      "sourceKeys": [
+        "FoodAndDrink:fd-pie-palace-ingoldmells",
+        "AffiliateOffers:rated_ingoldmells_pie-palace"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-pie-palace-ingoldmells",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-hide-at-herons-mead-orby",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-hide-at-herons-mead-orby",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-hide-at-herons-mead-orby",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-hide-at-herons-mead-orby",
+        "AffiliateOffers:rated_ingoldmells_the-hide-at-herons-mead"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-hide-at-herons-mead-orby",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-gerardos-mablethorpe",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/gerardos-mablethorpe",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-gerardos-mablethorpe",
+      "sourceKeys": [
+        "FoodAndDrink:fd-gerardos-mablethorpe",
+        "AffiliateOffers:rated_mablethorpe_gerardo-s"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-gerardos-mablethorpe",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-mables-tea-room-mablethorpe",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/mables-tea-room-mablethorpe",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-mables-tea-room-mablethorpe",
+      "sourceKeys": [
+        "FoodAndDrink:fd-mables-tea-room-mablethorpe",
+        "AffiliateOffers:rated_mablethorpe_mable-s-tea-room"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-mables-tea-room-mablethorpe",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-dunes-mablethorpe",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-dunes-mablethorpe",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-dunes-mablethorpe",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-dunes-mablethorpe",
+        "AffiliateOffers:rated_mablethorpe_the-dunes"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-dunes-mablethorpe",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-askims-scarborough",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/askims-scarborough",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-askims-scarborough",
+      "sourceKeys": [
+        "FoodAndDrink:fd-askims-scarborough",
+        "AffiliateOffers:rated_scarborough_askim-s"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-askims-scarborough",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-lifeboat-fish-bar-scarborough",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/lifeboat-fish-bar-scarborough",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-lifeboat-fish-bar-scarborough",
+      "sourceKeys": [
+        "FoodAndDrink:fd-lifeboat-fish-bar-scarborough",
+        "AffiliateOffers:rated_scarborough_lifeboat-fish-bar"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-lifeboat-fish-bar-scarborough",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-no9-skegness",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/no9-skegness",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-no9-skegness",
+      "sourceKeys": [
+        "FoodAndDrink:fd-no9-skegness",
+        "AffiliateOffers:rated_skegness_no9"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-no9-skegness",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-san-rufos-skegness",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/san-rufos-skegness",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-san-rufos-skegness",
+      "sourceKeys": [
+        "FoodAndDrink:fd-san-rufos-skegness",
+        "AffiliateOffers:rated_skegness_san-rufo-s"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-san-rufos-skegness",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-cosy-corner-skegness",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-cosy-corner-skegness",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-cosy-corner-skegness",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-cosy-corner-skegness",
+        "AffiliateOffers:rated_skegness_the-cosy-corner"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-cosy-corner-skegness",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-fish-tram-chips-llandudno",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/fish-tram-chips-llandudno",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-fish-tram-chips-llandudno",
+      "sourceKeys": [
+        "FoodAndDrink:fd-fish-tram-chips-llandudno",
+        "AffiliateOffers:b7d27661-348c-4802-bf94-f2f40d983633"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-fish-tram-chips-llandudno",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-coffee-break-clacton-on-sea",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/coffee-break-clacton-on-sea",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-coffee-break-clacton-on-sea",
+      "sourceKeys": [
+        "FoodAndDrink:fd-coffee-break-clacton-on-sea",
+        "AffiliateOffers:bb3c7342-f671-421b-99a9-f2c30c97e44e"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-coffee-break-clacton-on-sea",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-inghams-fish-restaurant-filey",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/inghams-fish-restaurant-filey",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-inghams-fish-restaurant-filey",
+      "sourceKeys": [
+        "FoodAndDrink:fd-inghams-fish-restaurant-filey",
+        "AffiliateOffers:bd3c51f0-259a-48f8-a7cb-be593fa6667b"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-inghams-fish-restaurant-filey",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-dolphin-fish-and-chips-restaurant-eastbourne",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/dolphin-fish-and-chips-restaurant-eastbourne",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-dolphin-fish-and-chips-restaurant-eastbourne",
+      "sourceKeys": [
+        "FoodAndDrink:fd-dolphin-fish-and-chips-restaurant-eastbourne",
+        "AffiliateOffers:bffb9866-2515-4b0e-93a7-b5e6407485b8"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-dolphin-fish-and-chips-restaurant-eastbourne",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-bank-bar-and-grill-blackpool",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-bank-bar-and-grill-blackpool",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-bank-bar-and-grill-blackpool",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-bank-bar-and-grill-blackpool",
+        "AffiliateOffers:blackpool-bank"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-bank-bar-and-grill-blackpool",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-31-queen-street-blackpool",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/31-queen-street-blackpool",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-31-queen-street-blackpool",
+      "sourceKeys": [
+        "FoodAndDrink:fd-31-queen-street-blackpool",
+        "AffiliateOffers:blackpool-queen-street"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-31-queen-street-blackpool",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-bridge-blackpool",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-bridge-blackpool",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-bridge-blackpool",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-bridge-blackpool",
+        "AffiliateOffers:blackpool-the-bridge"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-bridge-blackpool",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-yorkshire-fisheries-blackpool",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/yorkshire-fisheries-blackpool",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-yorkshire-fisheries-blackpool",
+      "sourceKeys": [
+        "FoodAndDrink:fd-yorkshire-fisheries-blackpool",
+        "AffiliateOffers:blackpool-yorkshire-fisheries"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-yorkshire-fisheries-blackpool",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-ginger-pig-kitchen-weston-super-mare",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-ginger-pig-kitchen-weston-super-mare",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-ginger-pig-kitchen-weston-super-mare",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-ginger-pig-kitchen-weston-super-mare",
+        "AffiliateOffers:c0075f09-17ef-459c-a539-f71b7b5d93fa"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-ginger-pig-kitchen-weston-super-mare",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-buoy-and-oyster-margate",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/buoy-and-oyster-margate",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-buoy-and-oyster-margate",
+      "sourceKeys": [
+        "FoodAndDrink:fd-buoy-and-oyster-margate",
+        "AffiliateOffers:cb097861-3bd0-48d0-a427-0982d1f68ace"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-buoy-and-oyster-margate",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-steels-cornerhouse-restaurant-cleethorpes",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/steels-cornerhouse-restaurant-cleethorpes",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-steels-cornerhouse-restaurant-cleethorpes",
+      "sourceKeys": [
+        "FoodAndDrink:fd-steels-cornerhouse-restaurant-cleethorpes",
+        "AffiliateOffers:ce93b26b-f045-460b-8ae4-c18fe9697e4d"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-steels-cornerhouse-restaurant-cleethorpes",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-palm-court-restaurant-and-bar-brighton",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/palm-court-restaurant-and-bar-brighton",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-palm-court-restaurant-and-bar-brighton",
+      "sourceKeys": [
+        "FoodAndDrink:fd-palm-court-restaurant-and-bar-brighton",
+        "AffiliateOffers:d0f4cf49-c4eb-4872-a930-e2fe28ff9c84"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-palm-court-restaurant-and-bar-brighton",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-cod-end-fish-and-chip-shop-newquay",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-cod-end-fish-and-chip-shop-newquay",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-cod-end-fish-and-chip-shop-newquay",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-cod-end-fish-and-chip-shop-newquay",
+        "AffiliateOffers:d0fdf16e-8d14-42ff-9d69-5860ce50f6c5"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-cod-end-fish-and-chip-shop-newquay",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-harbour-rest-cafe-newquay",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/harbour-rest-cafe-newquay",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-harbour-rest-cafe-newquay",
+      "sourceKeys": [
+        "FoodAndDrink:fd-harbour-rest-cafe-newquay",
+        "AffiliateOffers:d1d3371d-5fda-4bff-bb1e-0010b2ad96ca"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-harbour-rest-cafe-newquay",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-seastar-fish-and-chips-bournemouth",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/seastar-fish-and-chips-bournemouth",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-seastar-fish-and-chips-bournemouth",
+      "sourceKeys": [
+        "FoodAndDrink:fd-seastar-fish-and-chips-bournemouth",
+        "AffiliateOffers:d1f50717-b622-4f12-bb70-a19e48ff3ebd"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-seastar-fish-and-chips-bournemouth",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-fish-n-fritz-weymouth",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/fish-n-fritz-weymouth",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-fish-n-fritz-weymouth",
+      "sourceKeys": [
+        "FoodAndDrink:fd-fish-n-fritz-weymouth",
+        "AffiliateOffers:d741f4aa-2cf5-4bcf-af53-f48455e4dfb8"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-fish-n-fritz-weymouth",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-johns-cafe-barry",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/johns-cafe-barry",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-johns-cafe-barry",
+      "sourceKeys": [
+        "FoodAndDrink:fd-johns-cafe-barry",
+        "AffiliateOffers:df26655d-f87a-455e-8116-6dab034733cf"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-johns-cafe-barry",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-ye-olde-pumphouse-hastings",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/ye-olde-pumphouse-hastings",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-ye-olde-pumphouse-hastings",
+      "sourceKeys": [
+        "FoodAndDrink:fd-ye-olde-pumphouse-hastings",
+        "AffiliateOffers:e0a5a700-ff46-4277-98c7-a89a74f05342"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-ye-olde-pumphouse-hastings",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-ship-inn-herne-bay",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-ship-inn-herne-bay",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-ship-inn-herne-bay",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-ship-inn-herne-bay",
+        "AffiliateOffers:e6746143-dd39-4a32-a9df-70eabb2b2b32"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-ship-inn-herne-bay",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-ship-inn-restaurant-folkestone",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-ship-inn-restaurant-folkestone",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-ship-inn-restaurant-folkestone",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-ship-inn-restaurant-folkestone",
+        "AffiliateOffers:e6aeec32-7b30-43ab-afde-a22ee5bbec52"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-ship-inn-restaurant-folkestone",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-paignton-pier-chippy-co-paignton",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/paignton-pier-chippy-co-paignton",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-paignton-pier-chippy-co-paignton",
+      "sourceKeys": [
+        "FoodAndDrink:fd-paignton-pier-chippy-co-paignton",
+        "AffiliateOffers:f46480a4-e5a2-4f7e-bed6-6534b84a85f1"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-paignton-pier-chippy-co-paignton",
+        "preserveSourceRecords": true,
+        "uniqueContentReviewRequired": true,
+        "sourceContentMergeMustBeAdditive": true,
+        "contentVerified": true,
+        "contentVerificationStage": "local-source-preservation-tests",
+        "contentEvidenceSha256": "880d51c4594fbf0151d1f16ed1da8a1d83399ac3e9b207607bd4fdb7bc620e22",
+        "nativePreservationAccepted": false
+      }
+    },
+    {
+      "groupId": "food:FoodAndDrink:fd-the-lacon-arms-hemsby",
+      "relation": "same-entity",
+      "approved": true,
+      "provenSameEntity": true,
+      "canonicalPath": "/food-and-drink/the-lacon-arms-hemsby",
+      "canonicalKind": "food",
+      "primaryKey": "FoodAndDrink:fd-the-lacon-arms-hemsby",
+      "sourceKeys": [
+        "FoodAndDrink:fd-the-lacon-arms-hemsby",
+        "AffiliateOffers:fadd88c5-01ec-4a40-ad90-976c4548e49b"
+      ],
+      "renderPolicy": {
+        "primaryKey": "FoodAndDrink:fd-the-lacon-arms-hemsby",
         "preserveSourceRecords": true,
         "uniqueContentReviewRequired": true,
         "sourceContentMergeMustBeAdditive": true,
