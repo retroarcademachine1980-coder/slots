@@ -11,13 +11,14 @@
     var P = new URLSearchParams(location.search);
     var q0 = (P.get('q') || '').trim();
     if (!q0) return;
+    var KEEP = /^(near|nearby|nearest|closest|close|around|local|here|food|eat|burgers?|chippy|chippie|chips|fish|pizzas?|pizzeria|cafes?|coffee|pubs?|bars?|inns?|curry|indian|chinese|thai|sushi|kebabs?|takeaways?|carvery|roast|breakfast|brunch|desserts?|museums?|bowling|cinemas?|arcades?|amusements|agcs?|bingo|casinos?|golf|zoos?|aquariums?|castles?|piers?|beach|beaches|hotels?|parks?|play|trampoline|karting|escape|laser|retro|pinball|stay|things|places)$/;
     var ALIAS = { skeggy: 'skegness', saint: 'st', gt: 'great', yarmuth: 'yarmouth', brid: 'bridlington', scarbados: 'scarborough', 'b&b': 'places to stay', bnb: 'places to stay' };
     function phrase(q) {
       var s = ' ' + q.toLowerCase().replace(/\s+/g, ' ').trim() + ' ';
       s = s.replace(/ fish (and|n|'n') chips /g, ' fish & chips ').replace(/ food and drink /g, ' food & drink ').replace(/ bed and breakfasts? /g, ' places to stay ');
       s = s.replace(/ (hotels?|accommodation|guest ?houses?|b ?& ?b'?s?|bnbs?|holiday lets?|holiday cottages?|cottages|somewhere to stay|where to stay) /g, ' places to stay ');
-      s = s.replace(/^ (things|stuff|what) to do (in|at|near|around) /, ' ').replace(/^ (days? out|attractions|places to visit) (in|at|near|around) /, ' ');
-      s = s.replace(/ places to stay (in|at|near|around) /g, ' places to stay ');
+      s = s.replace(/^ (things|stuff|what) to do (in|at|near(?! me)|around(?! me)) /, ' ').replace(/^ (days? out|attractions|places to visit) (in|at|near(?! me)|around(?! me)) /, ' ');
+      s = s.replace(/ places to stay (in|at|near(?! me)|around(?! me)) /g, ' places to stay ');
       return s.trim();
     }
     if (!P.get('sf')) {
@@ -48,6 +49,7 @@
       var out = [], changed = false;
       for (var i = 0; i < words.length; i++) {
         var w = words[i];
+        if (KEEP.test(w)) { out.push(w); continue; }
         if (ALIAS[w]) { out.push(ALIAS[w]); changed = true; continue; }
         if (i + 1 < words.length && V[w + words[i + 1]] && !(V[w] && V[words[i + 1]])) { out.push(w + words[i + 1]); i++; changed = true; continue; }
         if (w.length < 4 || V[w] || w === '&') { out.push(w); continue; }

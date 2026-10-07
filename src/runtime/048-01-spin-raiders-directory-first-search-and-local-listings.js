@@ -266,6 +266,15 @@
           favourites: p.has("favourites"),
         });
         if (!q && !category) {window.SR_RUNTIME?.ready("search",searchNavigation);return;}
+        if (q && !p.has("favourites")) {
+          for (let i = 0; i < 40 && !window.SR_SMART_SEARCH; i++) await new Promise((r) => setTimeout(r, 100));
+          if (window.SR_SMART_SEARCH) {
+            try {
+              const sm = await window.SR_SMART_SEARCH(q, { root });
+              if (sm) { view.setRecords(sm.rows, sm.failed || 0); return; }
+            } catch (err) { console.warn("SR smart search failed", err); }
+          }
+        }
         try {
           if (p.has("favourites")) {
             let ids = [];
