@@ -13,7 +13,7 @@
   },
   key(row){const route=window.SR_ROUTES.outcome(row);return route.ok?(route.targetKey||route.key):(row._collection+':'+row._id);},
   notice(row){const notice=window.SR_ROUTES.outcome(row).contentNotice;return typeof notice==='string'&&notice.trim()?'<p class="sr-record-notice" role="status">'+escape(notice)+'</p>':'';},
-  discoverable(row){return window.SR_ROUTES.outcome(row).discoveryAllowed!==false;},
+  discoverable(row){const route=window.SR_ROUTES.outcome(row);return route.ok&&route.discoveryAllowed!==false;},
   businessRows(rows,collection,{discovery=true}={}){
    if(discovery)rows=rows.filter(row=>window.SR_ROUTES.outcome(row).discoveryAllowed!==false);
    if(collection!=='AffiliateOffers')return rows;

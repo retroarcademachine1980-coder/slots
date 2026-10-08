@@ -56,7 +56,7 @@
             const t = [e.category, e.venueType, e.title, e.brand]
               .join(" ")
               .toLowerCase();
-            return e._collection === "HotelGuides"
+            return e._collection === "FoodAndDrink" ? "food" : /service station|motorway services|^services?$/.test(String(e.category||e.venueType||"").toLowerCase()) ? "service" : e._collection === "HotelGuides"
               ? "hotel"
               : /merkur/.test(t)
               ? "merkur"
@@ -91,7 +91,7 @@
                                         : "other";
           },
           d = (e) => e.displayTitle || e.title || e.name || "Place",
-          p = (e) => e.locationName || e.destination || "",
+          p = (e) => e.locationName || e.destination || e.town || "",
           u = (e) => e._collection + ":" + e._id,
           m = (e) => {
             const t = a.safePhoto?.({
@@ -408,7 +408,8 @@
               }
             }
           }));
-        void (async () => {
+        async function mountMap(){
+        if(b||location.pathname!=="/map"||!i.isConnected)return;
         try {
           (window.L ||
             (await new Promise((e, t) => {
@@ -418,10 +419,11 @@
                 (a.integrity =
                   "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="),
                 (a.crossOrigin = ""),
-                (a.onload = () => { clearTimeout(timer); e(); }),
+                (a.onload = () => { clearTimeout(timer); e(); if(mapFailed)mountMap(); }),
                 (a.onerror = () => { clearTimeout(timer); t(new Error("Map library failed")); }),
                 document.head.append(a));
             })),
+            (mapFailed=false),
             (b = L.map(s.querySelector(".map-canvas"), {
               zoomControl: !0,
             }).setView([54.4, -3.4], 6)),
@@ -442,11 +444,14 @@
           mapFailed = true;
         }
         _();
-        })();
+        }
+        void mountMap();
         const T = [
             "title",
             "name",
             "displayTitle",
+            "displayName",
+            "town",
             "slug",
             "locationSlug",
             "canonicalUrl",
@@ -505,7 +510,9 @@
                   if (
                     (i.dataItems.forEach((t) => {
                       const a = { ...t.data, _id: t.id, _collection: e };
-                      if(!window.SR_ROUTE_UI.discoverable(a)||e==="AffiliateOffers"&&!window.SR_ROUTE_UI.businessRows([a],e).length)return;
+                      const route=window.SR_ROUTES.outcome(a);
+                      if(route.discoveryAllowed===false||['record_not_public','record_not_ready'].includes(route.code)||e==="AffiliateOffers"&&route.recordRole==='offer')return;
+                      if(!route.ok&&route.code==='route_service_unavailable')B=Math.max(B,1);
                       null == a.latitude &&
                         g.has(a.slug) &&
                         ([a.latitude, a.longitude] = g.get(a.slug));

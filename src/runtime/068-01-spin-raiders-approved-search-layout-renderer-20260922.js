@@ -11,14 +11,16 @@
           favourites: o = !1,
         } = t,
         r = a.e,
-        l = (e) => e.displayTitle || e.title || e.name || "",
+        l = (e) => e.displayTitle || e.title || e.displayName || e.name || "",
         c = (e) => e.locationName || e.destination || e.town || "",
         d = (e) => window.SR_CLASSIFY_PLACE(e),
         u = [["", "All Results", "all"],
           ...["venues","stays","food","attractions","cinemas","outdoors","fishing"].map(key=>window.SR_PLACE_TYPES.find(t=>t[0]===key).slice(0,3)),
           ...window.SR_PLACE_TYPES.filter(t=>!["venues","stays","food","attractions","cinemas","outdoors","fishing"].includes(t[0])).map(t=>t.slice(0,3)),
           ["machines","Fruit Machines","fruit-machines"],["destinations","Destinations","map"]];
-      const sidePlace = window.SR_PARSE_PLACE_SEARCH(s).category ? window.SR_PARSE_PLACE_SEARCH(s).query : '';
+      const searchIntent=window.SR_PARSE_PLACE_SEARCH(s);
+      let requestedLocation=false;
+      const sidePlace=searchIntent.category?searchIntent.query:'';
       const categoryButton=([key,label,icon])=>`<button data-cat="${key}" aria-pressed="${i===key}">${window.SR_ICON(icon,40)}<span>${label}</span></button>`;
       const categoryNavigation=u.slice(0,8).map(categoryButton).join("")+`<details class="more-categories"${u.slice(8).some(t=>t[0]===i)?" open":""}><summary>More categories</summary><div>${u.slice(8).map(categoryButton).join("")}</div></details>`;
       let p = [],
@@ -120,7 +122,7 @@
           )
           .join(
             "",
-          )}</fieldset><button class="button" type="submit">▽ Apply filters</button><button class="button reset" type="reset">↻ Reset filters</button></form></details><section aria-label="Search results"><div class="results-grid" data-results><div class="empty"><h2>${s ? "Finding places for your next day out…" : "Where would you like to go?"}</h2></div></div><nav class="pagination" aria-label="Results pages" data-pagination></nav></section><aside><section class="side-panel"><div class="side-heading"><h2>⌖ Results on map</h2><a href="/map?q=${encodeURIComponent(s)}">View larger map →</a></div><iframe class="map-frame" src="https://www.google.com/maps?q=${encodeURIComponent(s || "United Kingdom")}&output=embed" title="Map of ${r(s || "the UK")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section><div data-side-results></div><section class="plan-panel"><h2>Plan ${sidePlace ? "more in " + r(sidePlace) : "your next adventure"}</h2><p>Bring together places to visit, food and drink, and somewhere to stay.</p><a class="button yellow" href="${window.SR_ROUTES.viewPaths["trip"]}">Plan your day →</a></section></aside></div><a class="articles-link" href="/search?q=${encodeURIComponent(s)}&view=articles">Search articles and blog posts →</a></div></main>`;
+          )}</fieldset><button class="button" type="submit">▽ Apply filters</button><button class="button reset" type="reset">↻ Reset filters</button></form></details><section aria-label="Search results"><div class="results-grid" data-results><div class="empty"><h2>${s ? "Finding places for your next day out…" : "Where would you like to go?"}</h2></div></div><nav class="pagination" aria-label="Results pages" data-pagination></nav></section><aside><section class="side-panel"><div class="side-heading"><h2>⌖ Results on map</h2><a href="/map?q=${encodeURIComponent(s)}">View larger map →</a></div><iframe class="map-frame" src="https://www.google.com/maps?q=${encodeURIComponent(searchIntent.category ? (searchIntent.query && !searchIntent.nearMe ? searchIntent.query : "United Kingdom") : (s || "United Kingdom"))}&output=embed" title="Map of ${r(s || "the UK")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section><div data-side-results></div><section class="plan-panel"><h2>Plan ${sidePlace ? "more in " + r(sidePlace) : "your next adventure"}</h2><p>Bring together places to visit, food and drink, and somewhere to stay.</p><a class="button yellow" href="${window.SR_ROUTES.viewPaths["trip"]}">Plan your day →</a></section></aside></div><a class="articles-link" href="/search?q=${encodeURIComponent(s)}&view=articles">Search articles and blog posts →</a></div></main>`;
       const k = e.querySelector("[data-filters]"),
         F = e.querySelector("[data-results]"),
         M = e.querySelector("[data-message]");
@@ -135,6 +137,7 @@
         ((m = p.filter(
           (e) =>
             (!e._id || e._routesLoading || window.SR_ROUTE_UI.ready(e)) &&
+            (!g || b || !searchIntent.nearMe || window.SR_MATCH_PLACE_SEARCH(e,searchIntent)) &&
             (!o || v.includes(w(e))) &&
             (!a.length || window.SR_PLACE_CATEGORIES(e).some(category => a.includes(category))) &&
             (!i || (C(e)?.score || 0) >= i) &&
@@ -157,7 +160,7 @@
             !b &&
             m.sort((e, t) => (q(e) ?? 1e9) - (q(t) ?? 1e9)),
           "relevance" === r &&
-            m.sort(
+            (!g || b) && m.sort(
               (e, t) =>
                 Number("541e7ebd-3e48-441e-9e21-c24b2233a0f0" === t._id) -
                 Number("541e7ebd-3e48-441e-9e21-c24b2233a0f0" === e._id),
@@ -228,14 +231,15 @@
               ],
             },
             out = await Promise.allSettled(
-              ["Venues", "NearbyAttractions", "HotelGuides"].map(
+              ["Venues", "NearbyAttractions", "HotelGuides", "FoodAndDrink", "AffiliateOffers"].map(
                 (c) => api.rows(c, f),
               ),
             ),
             have = new Set(p.map(w)),
             add = out
               .flatMap((r) => ("fulfilled" === r.status ? r.value : []))
-              .filter((x) => !have.has(w(x)));
+              .filter((x) => !have.has(w(x)) && window.SR_MATCH_PLACE_SEARCH(x,searchIntent));
+          if(!currentView())return;
           if (add.length) {
             p = p.concat(add);
             N();
@@ -245,7 +249,7 @@
         }
       }
       function L() {
-        if (!s) return;
+        if (!s || searchIntent.nearMe) return;
         const t = String(s).toLowerCase().trim(),
           a = t.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
         let i = (window.SR_TRIP_COORDS || {})[a];
@@ -380,6 +384,7 @@
             ? ((t.textContent = "Finding your location…"),
               navigator.geolocation.getCurrentPosition(
                 (e) => {
+                  if(!currentView())return;
                   ((g = [e.coords.latitude, e.coords.longitude]),
                     (b = !1),
                     (srNearKey = ""),
@@ -391,7 +396,7 @@
                     N());
                 },
                 () =>
-                  (t.textContent =
+                  currentView() && (t.textContent =
                     "Location access was unavailable. Search by town instead."),
                 { timeout: 1e4, maximumAge: 6e4 },
               ))
@@ -411,6 +416,7 @@
                   : "";
               })(),
               N());
+            if(!o&&!n&&searchIntent.nearMe&&!requestedLocation){requestedLocation=true;e.querySelector("[data-locate]").click();}
             window.SR_RUNTIME?.ready(n?"destination":"search",viewNavigation);
           },
           error() {

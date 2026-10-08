@@ -365,8 +365,8 @@
               S = a
                   .flatMap((e) => ("fulfilled" === e.status ? e.value : []))
                   .filter((e) => {
-                    if(!window.SR_ROUTE_UI.discoverable(e))return false;
-                    const t = window.SR_ROUTE_UI.key(e) + (r.offers ? "|" + window.SR_CANONICAL.outbound(e) : "");
+                    if(!(r.offers&&e._offerOut)&&!window.SR_ROUTE_UI.discoverable(e))return false;
+                    const t = r.offers ? window.SR_CANONICAL.offerKey(e) : window.SR_ROUTE_UI.key(e);
                     return (
                       !(
                         s.has(t) ||
