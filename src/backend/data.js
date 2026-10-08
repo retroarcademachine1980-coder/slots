@@ -10,6 +10,9 @@ export function Venues_beforeUpdate(item) { return before('Venues', item); }
 export function Locations_beforeInsert(item) { return before('Locations', item); }
 export function Locations_beforeUpdate(item) { return before('Locations', item); }
 
+export function FoodAndDrink_beforeInsert(item) { return before('FoodAndDrink', item); }
+export function FoodAndDrink_beforeUpdate(item) { return before('FoodAndDrink', item); }
+
 export function NearbyAttractions_beforeInsert(item) { return before('NearbyAttractions', item); }
 export function NearbyAttractions_beforeUpdate(item) { return before('NearbyAttractions', item); }
 

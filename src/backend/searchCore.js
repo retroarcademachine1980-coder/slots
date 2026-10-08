@@ -1,9 +1,15 @@
 import { publicRouteModel, loadRouteContext, routeSummary } from 'backend/canonicalRouteService';
 // Wix deployment sync: clean rebuild 2026-09-22
 import wixData from 'wix-data';
-import { normalizeSearch } from 'backend/searchText';
+import { normalizeSearch, buildUnifiedSearchText } from 'backend/searchText';
 
 const SOURCES = [
+    {
+        collection: 'FoodAndDrink', kind: 'food',
+        title: ['title','displayName'], subtitle: ['town','locationName','postcode'], category: ['category'],
+        description: ['shortDescription'], image: ['heroImage'], alt: ['imageAlt','title'],
+        location: ['town','locationName']
+    },
     {
         collection: 'Locations', kind: 'location',
         title: ['title'], subtitle: ['county','region'], category: ['locationType'],
@@ -169,6 +175,8 @@ async function loadAliases() {
 async function queryForms(input) {
     const clean = normalizeSearch(input);
     const forms = [clean];
+    if (/^(coffee|coffee shop|coffee shops|cafe|cafes)$/.test(clean)) forms.push('coffee','cafe','café','espresso');
+    if (/^burgers?$/.test(clean)) forms.push('burger');
     const aliases = await loadAliases();
 
     for (const entry of aliases) {
@@ -185,12 +193,16 @@ async function queryForms(input) {
     return unique(forms);
 }
 
-function makeMatch(collection, forms) {
+function makeMatch(source, forms) {
+    const { collection } = source;
+    const fields = unique(['unifiedSearchText', ...source.title, ...source.location, ...source.category, ...source.description]);
     let match = null;
     for (const form of forms) {
         if (!form || form.length < 2) continue;
-        const part = wixData.query(collection).contains('unifiedSearchText', form);
-        match = match ? match.or(part) : part;
+        for (const field of fields) {
+            const part = wixData.query(collection).contains(field, form);
+            match = match ? match.or(part) : part;
+        }
     }
     return match;
 }
@@ -200,7 +212,7 @@ function scoreRow(row, source, input, forms) {
     const title = normalizeSearch(first(row, source.title));
     const location = normalizeSearch(first(row, source.location));
     const category = normalizeSearch(first(row, source.category));
-    const haystack = String(row.unifiedSearchText || '');
+    const haystack = normalizeSearch(row.unifiedSearchText || buildUnifiedSearchText(source.collection, row));
     const terms = q.split(' ').filter(Boolean);
 
     let score = 0;
@@ -248,7 +260,7 @@ function makeCard(row, source, score, routeContext) {
 }
 
 async function searchSource(source, input, forms, routeContext) {
-    const match = makeMatch(source.collection, forms);
+    const match = makeMatch(source, forms);
     if (!match) return [];
 
     try {

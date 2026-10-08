@@ -18,7 +18,7 @@
   if(!ctx.current())return;
   const seen=new Set,records=outcomes.flatMap(r=>r.status==='fulfilled'?r.value:[]).filter(r=>{const key=window.SR_ROUTE_UI.key(r);if(seen.has(key))return false;seen.add(key);return true});
   if(outcomes.every(r=>r.status==='rejected')){view.error();throw Error('Destination records unavailable');}
-  if(records.filter(r=>window.SR_ROUTE_UI.ready(r)).length<6){for(let i=0;i<30&&!window.SR_SMART_SEARCH;i++)await new Promise(r=>setTimeout(r,100));if(window.SR_SMART_SEARCH){try{const sm=await window.SR_SMART_SEARCH('things to do and places to eat in '+q,{root});if(sm&&sm.rows&&sm.rows.length){const have=new Set(records.map(r=>window.SR_ROUTE_UI.key(r)));records.push(...sm.rows.filter(r=>!have.has(window.SR_ROUTE_UI.key(r))));}}catch(e){}}if(!ctx.current())return;}view.setRecords(records,outcomes.filter(r=>r.status==='rejected').length);ctx.commit();
+  if(records.filter(r=>window.SR_ROUTE_UI.ready(r)).length<6){for(let i=0;i<(document.querySelector('script[src*="sr-smart-search"]')?30:0)&&!window.SR_SMART_SEARCH;i++)await new Promise(r=>setTimeout(r,100));if(window.SR_SMART_SEARCH){try{const sm=await window.SR_SMART_SEARCH('things to do and places to eat in '+q,{root});if(sm&&sm.rows&&sm.rows.length){const have=new Set(records.map(r=>window.SR_ROUTE_UI.key(r)));records.push(...sm.rows.filter(r=>!have.has(window.SR_ROUTE_UI.key(r))));}}catch(e){}}if(!ctx.current())return;}view.setRecords(records,outcomes.filter(r=>r.status==='rejected').length);ctx.commit();
  }});
 })();
 

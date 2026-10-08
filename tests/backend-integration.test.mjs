@@ -33,8 +33,8 @@ async function load(file,override={},capture={},manifestInput=manifest){
  }
  const mod=await get(file,ROOT);await mod.link((s,r)=>get(s,r.identifier));await mod.evaluate();return mod.namespace;
 }
-test('backend search retains all14sources after retiring inline route builders',async()=>{
- const m=await load('backend/searchCore');const sources=m.listPublicSearchSources();assert.equal(sources.length,14);assert.ok(sources.some(s=>s.collection==='HotelGuides'));
+test('backend search retains all 15 sources after retiring inline route builders',async()=>{
+ const m=await load('backend/searchCore');const sources=m.listPublicSearchSources();assert.equal(sources.length,15);assert.ok(sources.some(s=>s.collection==='HotelGuides'));assert.ok(sources.some(s=>s.collection==='FoodAndDrink'));
  const result=await m.runUnifiedSearchInternal('Blackpool');assert.equal(result.results.find(c=>c.sourceCollection==='HotelGuides').route,'/hotel/imperial/blackpool');
  assert.equal(result.results.find(c=>c.sourceCollection==='Venues').route,'/arcade/arcade-club/blackpool');
  assert.equal(result.results.find(c=>c.sourceCollection==='NearbyAttractions').route,'/cinemas/cinema/blackpool');
@@ -152,4 +152,12 @@ test('historical route SEO cannot be reindexed by the master page or imply a liv
  const capture={},m=await load('public/seo',{},capture);
  await m.applyPageSeo(['arcade','old','town'],{view:'detail',record:{_id:'x',title:'Former Arcade',directoryReady:true},route:{kind:'arcade',path:'/arcade/old/town',canonicalUrl:'https://www.spin-raiders.com/arcade/old/town',routeType:'historical',indexable:false,contentNotice:'Closed. Historical information retained.'}});
  assert.ok(capture.seo.metaTags.flat().some(tag=>tag.name==='robots'&&tag.content.includes('noindex')));assert.equal(capture.seo.structuredData[0][0]['@type'],'Article');
+});
+
+test('Food records without a prebuilt search index appear for coffee and burger queries',async()=>{
+ const cafe={_id:'cafe',title:'Harbour Café',town:'York',locationName:'York',slug:'harbour-cafe',townSlug:'york',category:'Café',active:true,heroImage:'cafe.jpg'},burger={...cafe,_id:'burger',title:'Burger Kitchen',slug:'burger-kitchen',category:'Restaurant'};
+ const foodManifest={...manifest,entries:[...manifest.entries,{key:'FoodAndDrink:cafe',path:'/food-and-drink/harbour-cafe-york',evidence:'fixture'},{key:'FoodAndDrink:burger',path:'/food-and-drink/burger-kitchen-york',evidence:'fixture'}],endpoints:{...manifest.endpoints,food:{...ready,pageName:'food-page'}}};
+ const m=await load('backend/searchCore',{FoodAndDrink:[cafe,burger]}, {},foodManifest);
+ const coffee=await m.runUnifiedSearchInternal('coffee'),burgers=await m.runUnifiedSearchInternal('burgers');
+ assert(coffee.results.some(row=>row.sourceCollection==='FoodAndDrink'&&row.sourceId==='cafe'));assert(burgers.results.some(row=>row.sourceCollection==='FoodAndDrink'&&row.sourceId==='burger'));
 });

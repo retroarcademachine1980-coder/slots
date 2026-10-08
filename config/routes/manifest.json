@@ -206417,9 +206417,9 @@
   },
   "identity": {
     "contractVersion": "spin-raiders-canonical-v1",
-    "releaseFingerprint": "d72cfb4ee8bb92d714a8021ef0ef9684df5ce6e4236ca2fb02a4916865149834",
-    "manifestFingerprint": "bcd39d661f1b98278450bdf1e92fb3223ff834a628cadc1a241c6dddb0f63b99",
-    "rendererFingerprint": "b9d303210389f25c8e382a5604cadb23452c783ab35642aba5fd5f883537aa17",
+    "releaseFingerprint": "ef9c4ec4ec9aea2a659adf1a31d3e4ac89e257fe0e86ca8142114174bfccf93f",
+    "manifestFingerprint": "b752aff7c36b1940855bfed47f2d02fdad1d32fbf6e535f09048975ebbaf8601",
+    "rendererFingerprint": "4d4ff4be0308a18787032900a0518db1882001c6b954546194cf29cdd15a397a",
     "sourceFiles": 231,
     "deploymentBlocked": false
   },

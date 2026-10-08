@@ -24,6 +24,10 @@
         );
       const fields = [
         "title",
+        "displayName",
+        "town",
+        "shortDescription",
+        "unifiedSearchText",
         "shortUrl",
         "canonicalUrl",
         "canonicalHotelUrl",
@@ -221,7 +225,7 @@
         return words.length
           ? {
               $and: words.map((w) => ({
-                $or: cols.map((k) => ({ [k]: { $contains: w } })),
+                $or: (window.SR_SEARCH_WORD_FORMS?.(w)||[w]).flatMap(form=>cols.map(k=>({[k]:{$contains:form}}))),
               })),
             }
           : {};
@@ -267,7 +271,7 @@
         });
         if (!q && !category) {window.SR_RUNTIME?.ready("search",searchNavigation);return;}
         if (q && !p.has("favourites")) {
-          for (let i = 0; i < (document.querySelector('script[src*="sr-smart-search"]') ? 120 : 20) && !window.SR_SMART_SEARCH; i++) await new Promise((r) => setTimeout(r, 100));
+          for (let i = 0; i < (document.querySelector('script[src*="sr-smart-search"]') ? 120 : 0) && !window.SR_SMART_SEARCH; i++) await new Promise((r) => setTimeout(r, 100));
           if (window.SR_SMART_SEARCH) {
             try {
               const sm = await window.SR_SMART_SEARCH(q, { root });
@@ -311,7 +315,7 @@
             !words.length && category === "machines"
               ? ["ClassicFruitMachines"]
               : !words.length && category && category !== "destinations"
-                ? ["Venues", "HotelGuides", "NearbyAttractions"]
+                ? ["Venues", "HotelGuides", "NearbyAttractions", "FoodAndDrink", "AffiliateOffers"]
                 : collections;
           const outcomes = await Promise.allSettled(
             requested.map((c) =>
@@ -327,6 +331,9 @@
                           "title",
                           "name",
                           "displayTitle",
+                          "displayName",
+                          "town",
+                          "shortDescription",
                           "locationName",
                           "destination",
                           "postcode",

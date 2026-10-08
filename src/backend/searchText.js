@@ -1,4 +1,5 @@
 const FIELD_MAP = {
+    FoodAndDrink: ['title','displayName','slug','town','locationName','locationSlug','postcode','category','shortDescription','description','cuisine','searchTerms','tags','features'],
     Venues: ['title','slug','operator','brand','locationName','locationSlug','postcode','venueType','shortDescription','seoTitle','seoDescription','mapSearchText','mapPrimaryCategory','machineTypesSummary','amenitiesSummary','historySummary','searchTerms','mapTags','machineTypes','formerNames','features','facilities'],
     Locations: ['title','slug','county','region','locationType','shortDescription','seoTitle','seoDescription','archiveSearchText','discoveryHeading','raiderDestinationSummary','overview','searchTerms','knownFor','bestFor','featuredVenueNames','venueTypes'],
     NearbyAttractions: ['title','slug','locationName','locationSlug','category','postcode','shortDescription','sourceName','searchTerms','tags','facilities'],

@@ -87,6 +87,12 @@
           ),
         s = [
           "title",
+          "displayName",
+          "town",
+          "unifiedSearchText",
+          "sourceDealId",
+          "dealId",
+          "provider",
           "shortUrl",
           "canonicalUrl",
           "canonicalHotelUrl",
@@ -275,7 +281,7 @@
     ['attractions','Attractions & Family Fun','attractions',/attraction|family fun/i,/\b(?:attractions?|family fun|things to do|days out)\b/i]
   ];
   window.SR_PLACE_TYPES=types;
-  window.SR_CLASSIFY_PLACE = row => row._collection==='HotelGuides'?'stays':row._collection==='ClassicFruitMachines'?'machines':row._collection==='Locations'?'destinations':(types.find(t=>t[3].test([row.category,row.venueType].filter(Boolean).join(' ')))||types.find(t=>t[3].test([row.title,row.name].filter(Boolean).join(' ')))||[row._collection==='Venues'?'venues':'attractions'])[0];
+  window.SR_CLASSIFY_PLACE = row => row._collection==='FoodAndDrink'?'food':row._collection==='HotelGuides'?'stays':row._collection==='ClassicFruitMachines'?'machines':row._collection==='Locations'?'destinations':(types.find(t=>t[3].test([row.category,row.venueType].filter(Boolean).join(' ')))||types.find(t=>t[3].test([row.title,row.name].filter(Boolean).join(' ')))||[row._collection==='Venues'?'venues':'attractions'])[0];
   // A family arcade with a separate adult room belongs in both filters.
   // Keep the single primary category for its existing label and age information.
   window.SR_PLACE_CATEGORIES = row => {
@@ -290,10 +296,19 @@
     }
     return result;
   };
+  const normalize = value => String(value||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+  window.SR_SEARCH_WORD_FORMS = word => /^(coffee|coffeeshop|cafe|cafes)$/.test(normalize(word)) ? ['coffee','cafe','café','espresso'] : /^burgers?$/.test(normalize(word)) ? ['burger'] : [word];
   window.SR_PARSE_PLACE_SEARCH = value => {
-    let text=String(value||'').trim(), type=types.find(t=>t[4].test(text));
-    if(/\b(?:fruit machines?|slots?)\b/i.test(text))return {category:'machines',query:text.replace(/\b(?:fruit machines?|slots?)\b/ig,' ')};
-    return {category:type?.[0]||'',query:type?text.replace(type[4],' ').replace(/\b(?:in|near|around)\b/ig,' ').replace(/\s+/g,' ').trim():text};
+    const raw=String(value||'').trim(), nearMe=/\b(?:near me|nearest|nearby|closest|around me)\b/i.test(raw);
+    let text=raw.replace(/\b(?:near me|nearest|nearby|closest|around me)\b/ig,' ').replace(/\s+/g,' ').trim();
+    const type=types.find(t=>t[4].test(text));
+    if(/\b(?:fruit machines?|slots?)\b/i.test(text))return {category:'machines',query:text.replace(/\b(?:fruit machines?|slots?)\b/ig,' ').trim(),nearMe};
+    return {category:type?.[0]||(/\b(?:coffee|burger|burgers|espresso)\b/i.test(text)?'food':''),query:type?text.replace(type[4],' ').replace(/\b(?:in|near|around)\b/ig,' ').replace(/\s+/g,' ').trim():text,nearMe};
+  };
+  window.SR_MATCH_PLACE_SEARCH = (row,intent) => {
+    if(intent.category && !window.SR_PLACE_CATEGORIES(row).includes(intent.category))return false;
+    const text=normalize([row.title,row.displayName,row.displayTitle,row.name,row.category,row.venueType,row.town,row.locationName,row.destination,row.shortDescription,row.unifiedSearchText].filter(Boolean).join(' '));
+    return normalize(intent.query).split(' ').filter(Boolean).every(word=>window.SR_SEARCH_WORD_FORMS(word).some(form=>text.includes(normalize(form))));
   };
   // Only emit registered canonical contracts. CMS values are migrated separately after preview.
   window.SR_CANONICAL = {
@@ -306,6 +321,16 @@
       const raw = value && typeof value === 'object' ? value.$date : value;
       const expires = raw ? Date.parse(/^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw + 'T23:59:59Z' : raw) : NaN;
       return !raw || (Number.isFinite(expires) && expires >= now);
+    },
+    offerKey(row) {
+      const outbound=this.outbound(row);
+      try {
+        const u=new URL(outbound), id=u.pathname.match(/\/(?:deal|deals)\/(?:[^/]+\/)*(\d+)(?:\/|$)/i)?.[1] || u.searchParams.get('dealId') || u.searchParams.get('deal_id');
+        if(id)return u.hostname.toLowerCase().replace(/^www\./,'')+':'+id;
+        if(row.sourceDealId||row.dealId)return (row.provider||u.hostname)+':'+(row.sourceDealId||row.dealId);
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'].forEach(key=>u.searchParams.delete(key));
+        u.hash='';u.searchParams.sort();return u.href;
+      } catch {return row._collection+':'+row._id;}
     },
     normalizeOffer(row, guides) {
       const matches = guides.filter(g => g.active !== false && (g._id === row.hotelGuideId || (Array.isArray(g.offerIds) && g.offerIds.includes(row._id))));
