@@ -275,7 +275,7 @@
           if (window.SR_SMART_SEARCH) {
             try {
               const sm = await window.SR_SMART_SEARCH(q, { root });
-              if (sm) { view.setRecords(sm.rows, sm.failed || 0); return; }
+              if (sm) { view.setRecords(sm.rows, sm.failed || 0, {nearMeHandled:!!sm.parsed?.near}); return; }
             } catch (err) { console.warn("SR smart search failed", err); }
           }
         }

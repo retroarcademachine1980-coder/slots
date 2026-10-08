@@ -26,7 +26,7 @@ function projectValue(field,value) {
 }
 export function projectPublicDetail(collection,row,policy) {
   if(!row||typeof row!=='object')return null;
-  const fields=collection==='Locations'?['_id','title','seoTitle','seoDescription','shortDescription','description','pageIntro','heroImage','mainImage','county','latitude','longitude','pageReady','directoryReady','guideReady']:PUBLIC_DETAIL_FIELDS;
+  const fields=collection==='Locations'?['_id','title','seoTitle','seoDescription','shortDescription','description','pageIntro','overview','heroKicker','arcadeScene','visitorInfo','raiderDestinationSummary','heroImage','mainImage','county','latitude','longitude','pageReady','directoryReady','guideReady']:PUBLIC_DETAIL_FIELDS;
   const denied=new Set(policy?.withheldFields||[]);
   if(policy?.offerActionsAllowed===false)for(const field of ['bookingUrl','affiliateUrl','offerUrl','outboundUrl','offerTitle','offerText','offerValidUntil','validUntil'])denied.add(field);
   const out={}; for(const field of fields)if(!denied.has(field)&&Object.hasOwn(row,field)){
