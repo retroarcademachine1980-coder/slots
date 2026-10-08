@@ -121,4 +121,19 @@ await test('test-only approval cannot activate production even on matching finge
   const outsideTest = await choose({ config: testConfig, essential: e });
   assert.equal(outsideTest.runtime, 'blocked');
 });
+
+await test('Original Test Site can use an explicit null branch with exact native and backend identity', async () => {
+  const original = structuredClone(essential);
+  original.commonConfig = { siteRevision: '6330' };
+  const originalConfig = { ...config, promotionApproved: false, acceptanceEvidence: null,
+    testIdentity: { revision: '6330', branchId: null } };
+  const paths = [];
+  assert.equal((await choose({ essential: original, config: originalConfig,
+    readFingerprint: async path => { paths.push(path); return fingerprint; } })).runtime, 'candidate-test');
+  assert.deepEqual(paths, ['/_functions/canonicalFingerprint?rc=test-site']);
+  original.commonConfig.siteRevision = '6329';
+  assert.equal((await choose({ essential: original, config: originalConfig })).runtime, 'blocked');
+  assert(!validateCandidateConfig({ ...originalConfig, testIdentity: { revision: '6330' } }));
+});
+
 console.log(`${passed} release identity tests passed. Browser injection/promotion remain UNTESTED.`);

@@ -18,6 +18,8 @@ node tools/release/compile-loader.mjs /path/to/verified-config.json /path/to/inl
 
 The compiler rejects inline HTML over Wix's 15,000-character limit. It checks the preserved loader capture's SHA256. Test and production authorization are distinct; test approval activates only the exact candidate test tuple. All native/backend/API identities must match. Promotion requires a separate acceptance record, then the same tested build is promoted.
 
+The 8 October capture preserves production6329 and loader revision104, including every approved supplemental script and the homepage arcade strip. The current Wix Original Test Site has an explicit null branch ID; its exact revision, native build hash and backend identity remain required. The inline guard is losslessly packed to fit the embed limit, verified byte-for-byte at compilation and inserted as an ordinary inline script without eval or another network dependency.
+
 Approval artifact paths/content stay in the local release record. The public embed contains only immutable approval booleans plus public build identifiers/hashes. The source config is still validated before compilation. Synthetic fixture configs in `fixtures` are for local tests only and must never be deployed.
 
 `dist/sr.release-loader.min.js` is independent of the final inline config. Upload it with the same immutable commit as both runtime entries, their shared sibling chunks, and stylesheet. It receives the already-verified runtime selection and config from the inline guard. The inline guard contains enough verified identity logic and the original resource plan to preserve the current production build even if the candidate-loader asset fails.
