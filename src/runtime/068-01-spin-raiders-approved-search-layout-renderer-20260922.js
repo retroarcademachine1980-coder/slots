@@ -20,7 +20,8 @@
           ["machines","Fruit Machines","fruit-machines"],["destinations","Destinations","map"]];
       const searchIntent=window.SR_PARSE_PLACE_SEARCH(s);
       let requestedLocation=false;
-      const sidePlace=searchIntent.category?searchIntent.query:'';
+      const locationTerm=(searchIntent.category?searchIntent.query:s||'').replace(/\b(?:coffee(?: shops?)?|coffeeshops?|caf[eé]s?|espresso|burgers?|in|near|around)\b/ig,' ').replace(/\s+/g,' ').trim();
+      const sidePlace='';
       const categoryButton=([key,label,icon])=>`<button data-cat="${key}" aria-pressed="${i===key}">${window.SR_ICON(icon,40)}<span>${label}</span></button>`;
       const categoryNavigation=u.slice(0,8).map(categoryButton).join("")+`<details class="more-categories"${u.slice(8).some(t=>t[0]===i)?" open":""}><summary>More categories</summary><div>${u.slice(8).map(categoryButton).join("")}</div></details>`;
       let p = [],
@@ -122,7 +123,7 @@
           )
           .join(
             "",
-          )}</fieldset><button class="button" type="submit">▽ Apply filters</button><button class="button reset" type="reset">↻ Reset filters</button></form></details><section aria-label="Search results"><div class="results-grid" data-results><div class="empty"><h2>${s ? "Finding places for your next day out…" : "Where would you like to go?"}</h2></div></div><nav class="pagination" aria-label="Results pages" data-pagination></nav></section><aside><section class="side-panel"><div class="side-heading"><h2>⌖ Results on map</h2><a href="/map?q=${encodeURIComponent(s)}">View larger map →</a></div><iframe class="map-frame" src="https://www.google.com/maps?q=${encodeURIComponent(searchIntent.category ? (searchIntent.query && !searchIntent.nearMe ? searchIntent.query : "United Kingdom") : (s || "United Kingdom"))}&output=embed" title="Map of ${r(s || "the UK")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section><div data-side-results></div><section class="plan-panel"><h2>Plan ${sidePlace ? "more in " + r(sidePlace) : "your next adventure"}</h2><p>Bring together places to visit, food and drink, and somewhere to stay.</p><a class="button yellow" href="${window.SR_ROUTES.viewPaths["trip"]}">Plan your day →</a></section></aside></div><a class="articles-link" href="/search?q=${encodeURIComponent(s)}&view=articles">Search articles and blog posts →</a></div></main>`;
+          )}</fieldset><button class="button" type="submit">▽ Apply filters</button><button class="button reset" type="reset">↻ Reset filters</button></form></details><section aria-label="Search results"><div class="results-grid" data-results><div class="empty"><h2>${s ? "Finding places for your next day out…" : "Where would you like to go?"}</h2></div></div><nav class="pagination" aria-label="Results pages" data-pagination></nav></section><aside><section class="side-panel"><div class="side-heading"><h2>⌖ Area map</h2><a href="/map?q=${encodeURIComponent(s)}">View larger map →</a></div><iframe class="map-frame" src="https://www.google.com/maps?q=United%20Kingdom&output=embed" title="Map of the United Kingdom" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section><div data-side-results></div><section class="plan-panel"><h2>Plan ${sidePlace ? "more in " + r(sidePlace) : "your next adventure"}</h2><p>Bring together places to visit, food and drink, and somewhere to stay.</p><a class="button yellow" href="${window.SR_ROUTES.viewPaths["trip"]}">Plan your day →</a></section></aside></div><a class="articles-link" href="/search?q=${encodeURIComponent(s)}&view=articles">Search articles and blog posts →</a></div></main>`;
       const k = e.querySelector("[data-filters]"),
         F = e.querySelector("[data-results]"),
         M = e.querySelector("[data-message]");
@@ -249,8 +250,8 @@
         }
       }
       function L() {
-        if (!s || searchIntent.nearMe) return;
-        const t = String(s).toLowerCase().trim(),
+        if (!locationTerm || searchIntent.nearMe) return;
+        const t = locationTerm.toLowerCase(),
           a = t.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
         let i = (window.SR_TRIP_COORDS || {})[a];
         if (!i) {
@@ -268,12 +269,15 @@
           }
         }
         if (!i) return;
+        const frame=e.querySelector('.map-frame');
+        if(frame){frame.src='https://www.google.com/maps?q='+encodeURIComponent(locationTerm+', United Kingdom')+'&output=embed';frame.title='Map of '+locationTerm+', United Kingdom';}
+        const planHeading=e.querySelector('.plan-panel h2');if(planHeading)planHeading.textContent='Plan more in '+locationTerm;
         ((g = i), (b = !0), (k.elements.distance.disabled = !1));
         const n = e.querySelector("[data-location-status]");
         n &&
           (n.textContent =
             "Distances are measured from " +
-            s +
+            locationTerm +
             ". Tap “Use my location” to measure from where you are.");
       }
       return (
@@ -403,7 +407,7 @@
             : (t.textContent = "Location is unavailable in this browser.");
         }),
         {
-          setRecords(t, a = 0) {
+          setRecords(t, a = 0, searchState = {}) {
             if(!currentView())return;
             ((p = t),
               (y = a),
@@ -416,7 +420,7 @@
                   : "";
               })(),
               N());
-            if(!o&&!n&&searchIntent.nearMe&&!requestedLocation){requestedLocation=true;e.querySelector("[data-locate]").click();}
+            if(!o&&!n&&searchIntent.nearMe&&!requestedLocation&&!searchState.nearMeHandled){requestedLocation=true;e.querySelector("[data-locate]").click();}
             window.SR_RUNTIME?.ready(n?"destination":"search",viewNavigation);
           },
           error() {

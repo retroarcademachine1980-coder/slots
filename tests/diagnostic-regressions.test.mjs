@@ -10,6 +10,28 @@ function setup(url='/search?q=coffee'){
  w.eval(source(79));return {w,errors,close:()=>w.close()};
 }
 const tick=()=>new Promise(resolve=>setTimeout(resolve,20));
+test('Shared frame yields to machine and Vault owners, then returns after navigation',async()=>{
+ for(const id of ['sr-approved-archive','raidertube-root']){
+  const c=setup('/search?q=coffee'),w=c.w;
+  w.SR_SHELL={css:'',head:()=>'<header>Shared header</header>',foot:()=>'<footer>Shared footer</footer>',wire:()=>{}};
+  w.eval(source(37));await tick();assert(w.document.getElementById('sr-brand-header'));
+  const owner=w.document.createElement('div');owner.id=id;w.document.body.append(owner);
+  await new Promise(resolve=>setTimeout(resolve,120));
+  assert.equal(w.document.getElementById('sr-brand-header'),null);assert.equal(w.document.getElementById('sr-brand-footer'),null);assert(!w.document.documentElement.classList.contains('sr-brand-active'));
+  owner.remove();w.history.pushState({},'','/search?q=bowling');w.dispatchEvent(new w.PopStateEvent('popstate'));
+  await new Promise(resolve=>setTimeout(resolve,120));assert(w.document.getElementById('sr-brand-header'));assert.equal(c.errors.length,0,c.errors.join('\n'));c.close();
+ }
+});
+test('Search map uses only recognised UK towns and does not treat coffee as a location',()=>{
+ for(const [q,expected]of [['coffee','United Kingdom'],['burger','United Kingdom'],['bowling near me','United Kingdom'],['coffee York','York, United Kingdom'],['York','York, United Kingdom']]){
+  const c=setup('/search?q='+encodeURIComponent(q)),w=c.w;
+  w.SR_ICON=()=>'';w.SR_ROUTE_UI={ready:()=>true,discoverable:()=>true,notice:()=>''};w.SR_ROUTES={viewPaths:{trip:'/plan-a-trip'},href:row=>row.path};w.SR_SEARCH_VIEW_CSS='';w.SR_TRIP_COORDS={york:[53.96,-1.08]};
+  w.eval(source(68));const host=w.document.createElement('div');w.document.body.append(host);const root=host.attachShadow({mode:'open'});
+  w.SR_SEARCH_VIEW(root,{S:{e:String},q}).setRecords([]);
+  assert.equal(new URL(root.querySelector('.map-frame').src).searchParams.get('q'),expected);
+  assert.equal(root.querySelector('.plan-panel h2').textContent,expected.startsWith('York')?'Plan more in York':'Plan your next adventure');c.close();
+ }
+});
 test('Food search matches coffee aliases, burgers and all location words without dropping the activity',()=>{
  const c=setup(),w=c.w;
  const cafe={_collection:'FoodAndDrink',title:'Harbour Café',town:'York',category:'Café'};
@@ -20,6 +42,19 @@ test('Food search matches coffee aliases, burgers and all location words without
  assert(!w.SR_MATCH_PLACE_SEARCH(cafe,w.SR_PARSE_PLACE_SEARCH('burger near me')));
  for(const q of ['bowling near me','nearest bowling','bowling nearby']){const intent=w.SR_PARSE_PLACE_SEARCH(q);assert(intent.nearMe);assert.equal(intent.category,'bowling');assert.equal(intent.query,'');assert(!w.SR_MATCH_PLACE_SEARCH(cafe,intent));}
  c.close();
+});
+test('Preserved expanded search keeps coffee, burger, bowling and cinema results relevant',async()=>{
+ for(const [q,id]of [['coffee','cafe'],['burger','burger'],['bowling','bowl'],['cinema','cinema']]){
+  const c=setup(),w=c.w;
+  const records=[{_id:'cafe',_collection:'FoodAndDrink',title:'Harbour Coffee',category:'Cafe',town:'York'},{_id:'burger',_collection:'FoodAndDrink',title:'Burger Kitchen',category:'Burgers',town:'York'},{_id:'bowl',_collection:'NearbyAttractions',title:'York Bowling',category:'Bowling',locationName:'York'},{_id:'cinema',_collection:'NearbyAttractions',title:'York Cinema',category:'Cinema',locationName:'York'}];
+  w.SR_ROUTE_UI={ready:()=>true,discoverable:()=>true,key:r=>r._collection+':'+r._id};w.SR_ROUTES={outcome:()=>({ok:true,recordRole:'business'})};w.SR_SEASIDE={archiveQuery:async(_q,_a,_b,col)=>({dataItems:records.filter(r=>r._collection===col).map(r=>({id:r._id,data:r}))})};
+  w.eval(source(143));const result=await w.SR_SMART_SEARCH(q,{});assert.deepEqual(Array.from(result.rows,r=>r._id),[id]);c.close();
+ }
+});
+test('Published town-guide prose and read-more control survive in the maintained runtime',()=>{
+ const c=setup(),w=c.w;w.eval(source(143));const prose='<p>'+('Original destination account. '.repeat(170))+'</p>';
+ const guide=w.SR_TOWN_GUIDE({title:'York',overview:prose,pageIntro:'Approved introduction',arcadeScene:'The original arcade scene information remains visible.'.repeat(2)});
+ assert(guide.textContent.includes('Approved introduction'));assert.equal(guide.querySelector('.body').innerHTML,prose);assert.equal(guide.querySelector('.more').getAttribute('aria-expanded'),'false');guide.querySelector('.more').click();assert.equal(guide.querySelector('.more').getAttribute('aria-expanded'),'true');c.close();
 });
 test('Duplicate provider deals collapse while different offers at an identical price stay distinct',()=>{
  const c=setup(),C=c.w.SR_CANONICAL;
