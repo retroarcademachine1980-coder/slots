@@ -71,6 +71,7 @@ export function sameTuple(a, b) {
   return !!a && !!b && a.revision === String(b.revision) && a.branchId === (b.branchId || null);
 }
 export const PRESERVED_BUILDS = Object.freeze([
+  { revision: '6329', branchId: null, codeAppId: '679b5e55-a136-42ba-b835-f056bbcc45dd', nativeBuildHash: 'cb4b088047e089eb9e4e09ec69a8d4c820e2d621c1be1614e552682c079acbbe' },
   { revision: '6300', branchId: null, codeAppId: '64c3a2dd-5a54-43c5-8bfe-58a9e809b4eb', nativeBuildHash: '04891fbc3eeb173cc984fed4ab64716503bd8f9dc531ac2a4f1dbddab00effca' },
   { revision: '50', branchId: '1a171085-b7f9-4143-b1c5-27fc5b67fd9d', codeAppId: 'e61b26d6-27b9-4d14-a276-2ee4a3875db0', nativeBuildHash: 'a4bea53cf3903428ab0e15856ce378de9c4cc7039e2643a68d9bd2fcd5b082c1' }
 ]);
@@ -85,7 +86,7 @@ export function validateCandidateConfig(config) {
     ['releaseFingerprint', 'manifestFingerprint', 'rendererFingerprint'].every(key => hash(config.expectedFingerprint[key])) &&
     hash(config.nativeBuildHash) && /^[a-f0-9-]{36}$/.test(config.codeAppId || '') &&
     /^\d+$/.test(String(config.testIdentity?.revision || '')) &&
-    /^[a-f0-9-]{36}$/.test(config.testIdentity?.branchId || '');
+    (config.testIdentity?.branchId === null || /^[a-f0-9-]{36}$/.test(config.testIdentity?.branchId || ''));
 }
 export function fingerprintMatches(actual, expected) {
   return actual?.complete === true && actual.deployable === true && expected?.contractVersion === CONTRACT_VERSION &&

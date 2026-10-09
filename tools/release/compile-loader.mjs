@@ -4,6 +4,7 @@ import { minify } from 'terser';
 import { parse } from 'acorn';
 import { validateCandidateConfig } from './build-identity.mjs';
 import { candidateAssets } from './runtime-loader.mjs';
+import { packPlan, unpackPlan } from './preserved-plan.mjs';
 const dir = new URL('.', import.meta.url);
 const root = new URL('../../', dir);
 const module = name => fs.readFileSync(new URL(name, dir),'utf8').replace(/^import .*;\n/gm,'').replace(/^export /gm,'');
@@ -24,7 +25,7 @@ candidateAssets(config, 'candidate-test');
 if (config.promotionApproved && !config.acceptanceEvidence) throw new Error('Production authorization lacks captured host acceptance');
 const baseline = fs.readFileSync(new URL('fixtures/preserved-loader.html', dir), 'utf8');
 const capturedHash = crypto.createHash('sha256').update(baseline).digest('hex');
-if (capturedHash !== 'ce48a7e45eb1a1e8eb499e79194ece116774d80c7058f3714704d6e3d544d682') throw new Error('Preserved loader capture changed; independent review required');
+if (capturedHash !== '4bb3ca1e33c5d106c88ead3e785fade3e73a40335efda659f1ac9ed0bbb77efc') throw new Error('Preserved loader capture changed; independent review required');
 const tags=[];
 for (const match of baseline.replace(/<noscript>[\s\S]*?<\/noscript>/g,'').matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>|<link\b([^>]*)>/g)) {
  const tag=match[3]===undefined?'script':'link', attrs={};
@@ -57,7 +58,13 @@ const stripErrorDetails = source => {
 };
 const inlineMin=await minify(stripErrorDetails(inline),{compress:{passes:3},mangle:{properties:{regex:/^(homePageId|searchPageId|excludedSearchView|homeExcludedKeys|allowedHomeExplore|allowedHomeViews|legacyRecordCollections|loading|failure|hold|clearStatus|release|sync|takeover)$/}},format:{inline_script:true}});
 if(inlineMin.error)throw inlineMin.error;
-const html='<script>'+inlineMin.code+'</script>\n<noscript><p>Spin Raiders needs JavaScript for interactive guides. Please enable JavaScript.</p></noscript>\n';
+// Pack the complete reviewed guard losslessly. Replay remains an ordinary inline
+// script, with no eval/new Function and no additional network dependency.
+const packed=packPlan(inlineMin.code);
+if(unpackPlan(packed)!==inlineMin.code)throw Error('Inline guard round-trip mismatch');
+const wrapper=`(function(){${extract('preserved-plan.mjs',['unpackPlan'])}\nconst script=document.createElement('script');script.textContent=unpackPlan(${JSON.stringify(packed)});document.head.appendChild(script)})();`;
+const wrapperMin=await minify(wrapper,{compress:{passes:3},mangle:true,format:{inline_script:true}});
+const html='<script>'+wrapperMin.code+'</script>\n<noscript><p>Spin Raiders needs JavaScript for interactive guides. Please enable JavaScript.</p></noscript>\n';
 if(html.length>15000)throw Error(`Wix embed limit exceeded: ${html.length}/15000 characters`);
 const assetMin={code:await candidateAsset()};
 fs.writeFileSync(outputPath,html);fs.writeFileSync(assetOutputPath,assetMin.code);

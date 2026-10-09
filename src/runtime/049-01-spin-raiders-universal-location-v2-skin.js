@@ -9,6 +9,7 @@
   (old||native)?.before(host);if(!host.isConnected)document.body.append(host);
   const root=host.attachShadow({mode:'open'});
   const view=window.SR_SEARCH_VIEW(root,{S,q,locationMode:true,href:api.href});
+  const guide=window.SR_TOWN_GUIDE?.(result.row);if(guide){const prose=guide.querySelector('.body');if(prose&&window.SR_ROUTE_HTML)prose.innerHTML=await window.SR_ROUTE_HTML.prepare(prose.innerHTML);if(!ctx.current())return;root.querySelector('.results-heading')?.before(guide);}
   ctx.setTitle(q+' — places to visit, eat and stay | Spin Raiders');
   ctx.className('sr-location-ready');
   const style=ctx.own(document.createElement('style'));style.id='sr-location-design-isolation';style.textContent='html.sr-location-ready,html.sr-location-ready body{background:white!important}html.sr-location-ready #sr-seaside-root,html.sr-location-ready #sr-seaside-related,html.sr-location-ready #SITE_CONTAINER,html.sr-location-ready #raidertube-global-button,html.sr-location-ready #sr-report-action{display:none!important}#sr-location-directory{display:block!important;width:100%;position:relative}';document.head.append(style);

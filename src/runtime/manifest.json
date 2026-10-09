@@ -887,6 +887,12 @@
       "number": 139,
       "name": "Spin Raiders canonical machine detail owner",
       "file": "139-01-spin-raiders-canonical-machine-detail-owner.js"
+    },
+    {
+      "id": "143.1",
+      "number": 143,
+      "name": "Spin Raiders approved live additions",
+      "file": "143-01-spin-raiders-approved-live-additions.js"
     }
   ]
 }
