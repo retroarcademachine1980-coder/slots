@@ -1,0 +1,34 @@
+[
+  {
+    "path": "/seaside",
+    "pageId": "x4wr0",
+    "title": "Seaside",
+    "heading": true,
+    "file": "dist/sr-hub-native-seaside-20261012.html",
+    "words": 517
+  },
+  {
+    "path": "/places-to-stay",
+    "pageId": "d4i0i",
+    "title": "Places to Stay",
+    "heading": true,
+    "file": "dist/sr-hub-native-places-to-stay-20261012.html",
+    "words": 532
+  },
+  {
+    "path": "/days-out",
+    "pageId": "x2c0z",
+    "title": "Days Out",
+    "heading": true,
+    "file": "dist/sr-hub-native-days-out-20261012.html",
+    "words": 527
+  },
+  {
+    "path": "/food-and-drink",
+    "pageId": "lyxzf",
+    "title": "Food & Drink",
+    "heading": false,
+    "file": "dist/sr-hub-native-food-and-drink-20261012.html",
+    "words": 521
+  }
+]
