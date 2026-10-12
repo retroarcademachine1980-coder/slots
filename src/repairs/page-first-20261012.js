@@ -5,6 +5,7 @@
   window.SR_PAGE_FIRST_20261012 = true;
   var welcomes = /* WELCOME_DATA */ {};
   var photoCorrections = /* PHOTO_DATA */ {};
+  var resortOpenings = /* DETAIL_DATA */ {};
   var pathsToCategory = {'/food-and-drink':'food-drink','/arcade':'arcades','/fishing-lakes':'fishing','/outdoors':'nature-outdoors','/cinemas':'cinema'};
   var styleText = '.sr-page-intro{box-sizing:border-box;padding:22px max(20px,calc((100vw - 1320px)/2));background:#fff;color:#102744;border-bottom:1px solid #d8e6f2;font-family:Arial,sans-serif}.sr-page-intro h1,.sr-page-intro ::slotted(h1){font-family:"Roboto Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(27px,3.1vw,40px);line-height:1.1;color:#102744;margin:0 0 8px}.sr-page-intro p{margin:0;max-width:1100px;font-size:17px;line-height:1.55;color:#243b53}.sr-page-intro .sr-information-source{font-size:12px;margin-top:6px}.sr-first-description{font-size:17px;line-height:1.6;color:#243b53;margin:16px 0;max-width:75ch}.tile.sr-real-photo{position:relative;display:block;overflow:hidden;isolation:isolate;aspect-ratio:16/10;background:#0c355e;border-radius:12px}.tile.sr-real-photo:before{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(3,24,42,.88));z-index:1;pointer-events:none}.tile.sr-real-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tile.sr-real-photo>strong{position:absolute;left:14px;right:14px;bottom:13px;z-index:2;font-family:"Roboto Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(19px,1.8vw,27px);line-height:1.15;color:#fff;text-shadow:0 1px 3px #0008}.tile.sr-real-photo>.sr-tile-icon{position:absolute;inset:15px 0 45px;display:grid;place-items:center;background:linear-gradient(135deg,#c9f3ff,#e6defd)}.sr-photo-credits{margin-top:9px;font-size:12px;line-height:1.5;color:#516579}.sr-photo-credits summary{cursor:pointer}.sr-photo-credits p{font-size:12px;margin:4px 0}.sr-photo-credits a{color:#175fad;text-decoration:underline}@media(max-width:650px){.sr-page-intro{padding:17px 18px}.sr-page-intro p{font-size:16px;line-height:1.5}.sr-first-description{font-size:16px}.tile.sr-real-photo>strong{font-size:21px}}';
   var observed = new WeakSet(), queued = false;
@@ -85,6 +86,21 @@
     lead.dataset.srFirstDescription='1';lead.classList.add('sr-first-description');
     var target=heading.parentElement, address=target.querySelector('.where,.tag');if(address)address.after(lead);else heading.after(lead);
   }
+  function venueFirstView(root) {
+    if(root.host?.id!=='sr-shell-page')return;
+    var hero=root.querySelector('section.vh'), heading=hero&&hero.querySelector('h1'),about=root.querySelector('main .about'),first=about&&about.querySelector('p');
+    if(!hero||!heading||!first||root.querySelector('[data-sr-venue-purpose]'))return;
+    var special=resortOpenings[route()],text=first.textContent.replace(/\s+/g,' ').trim(),sentences=text.match(/[^.!?]+[.!?]+(?:\s|$)/g)||[],brief=text.split(' ').length<=90?text:sentences.slice(0,2).join(' ').trim();
+    if(!special){if(!brief||brief.split(' ').length>110)brief=text.split(' ').slice(0,90).join(' ')+'…';if(text.split(' ').length<15)return;}
+    var opening=document.createElement('section');opening.className='sr-page-intro';opening.dataset.srVenuePurpose='1';
+    if(special)heading.textContent=special.title;
+    heading.style.cssText='position:static;color:#102744;font:900 clamp(27px,3.1vw,40px)/1.1 "Roboto Condensed",Arial;margin:0 0 10px;text-shadow:none';
+    opening.append(heading);var paragraph=document.createElement('p');
+    if(special){var fragment=document.createElement('template');fragment.innerHTML=special.body;paragraph=fragment.content.querySelector('p').cloneNode(true);var guide=document.createElement('section');guide.className='sr-resort-story';guide.style.cssText='grid-column:1/-1;line-height:1.65;padding:24px 0;max-width:1000px';guide.innerHTML=special.body;var oldOpening=guide.querySelector('p');if(oldOpening)oldOpening.remove();var main=root.querySelector('main');main.prepend(guide);var oldTitle=about.querySelector('h2');if(oldTitle)oldTitle.textContent=special.sectionTitle;
+      var image=hero.querySelector('img.vhi');if(image&&special.photo){image.removeAttribute('srcset');image.removeAttribute('sizes');image.dataset.srImageSource=special.photo.src;image.src=special.photo.src+'/v1/fit/w_1600,h_1100,q_88,enc_auto/resort.webp';image.alt=special.photo.alt;}
+    }else{paragraph.textContent=brief;}
+    opening.append(paragraph);hero.before(opening);
+  }
   function importedPhotoCredits(root) {
     root.querySelectorAll('img').forEach(function(img){
       if(img.closest('.sr-real-photo')||img.dataset.srPhotoCredit)return;
@@ -110,7 +126,7 @@
     queued=false;var roots=[document];
     for(var i=0;i<roots.length;i++){
       var root=roots[i];root.querySelectorAll('*').forEach(function(e){if(e.shadowRoot)roots.push(e.shadowRoot);});
-      installStyle(root);introduction(root);restoreTilePhotos(root);currentDestinationPhotos(root);detailLead(root);directHeroLead(root);importedPhotoCredits(root);
+      installStyle(root);introduction(root);restoreTilePhotos(root);currentDestinationPhotos(root);detailLead(root);venueFirstView(root);directHeroLead(root);importedPhotoCredits(root);
       if(!observed.has(root)){observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
     }
   }

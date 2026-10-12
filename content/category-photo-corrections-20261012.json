@@ -162,5 +162,13 @@
   "Classic Fruit Machines": {
     "src": "https://static.wixstatic.com/media/3a517e_36eefd9f515b4f9183c46d4ef64eff48~mv2.png",
     "alt": "A real row of classic fruit machines, including Andy Capp, Royal Flush and Bullion Bars"
+  },
+  "Ayr": {
+    "src": "https://static.wixstatic.com/media/3a517e_a85d7c2d65c046eca514b484b8e834f2~mv2.jpg",
+    "alt": "Ayr beach, photographed in April 2024",
+    "source": "https://commons.wikimedia.org/wiki/File:Ayr_Beach_-_geograph.org.uk_-_7753823.jpg",
+    "credit": "Billy McCrorie",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
   }
 }
