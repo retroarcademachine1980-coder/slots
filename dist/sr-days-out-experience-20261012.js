@@ -11,11 +11,20 @@
     ['Days out','/days-out',[['All days out','/days-out'],['Seaside','/seaside'],['Beaches','/beaches'],['Piers','/piers'],['Nature & outdoors','/outdoors'],['Fishing','/fishing-lakes'],['Hidden gems','/hidden-gems'],['Trip builder','/plan-a-trip'],['Raiders map','/map'],['Video vault','/?raidertube=1']]],
     ['Attractions','/attractions',[['All attractions','/attractions'],['Theme parks','/theme-parks'],['Family fun','/family-fun'],['Zoos & wildlife','/zoos'],['Sea life','/sea-life'],['Museums','/museums'],['Historic places','/historical-sites'],['Tours & experiences','/tours'],['Cinemas','/cinemas'],['Bowling','/bowling']]],
     ['Food & drink','/food-and-drink',[['Food & drink','/food-and-drink'],['Arcade bars & clubs','/arcade-bars']]],
-    ['Places to stay','/places-to-stay',[['All places to stay','/places-to-stay'],['Holiday parks & hotels','/holiday-parks']]],
+    ['Stays','/places-to-stay',[['All places to stay','/places-to-stay'],['Holiday parks','/holiday-parks']]],
     ['Offers','/offers',[['Amazing offers','/offers'],['UK casino deals','/casino-offers']]],
     ['Arcades','/arcade',[['All arcades','/arcade'],['Seaside arcades','/seaside-arcades'],['Retro video games','/retro-video-games'],['Classic fruit machine arcades','/classic-arcades'],['Adult gaming centres','/agc'],['Bingo','/bingo-halls']]],
     ['Fruit machines','/classic-fruit-machines',[['Fruit Machine Archive','/classic-fruit-machines'],['Browse manufacturers','/classic-fruit-machines#makers'],['Browse eras & styles','/classic-fruit-machines#eras'],['All machine descriptions','/classic-fruit-machines#all-machines']]]
   ];
+  var megaMenus = {
+    'Days out': {copy:'Find your kind of day: sea air, a quieter escape or somewhere new.',sections:[['By the sea',[['Seaside','/seaside'],['Beaches','/beaches'],['Piers','/piers']]],['Open-air discoveries',[['Nature & outdoors','/outdoors'],['Fishing','/fishing-lakes'],['Hidden gems','/hidden-gems']]],['Plan & explore',[['Trip builder','/plan-a-trip'],['Raiders map','/map'],['Video vault','/?raidertube=1']]]]},
+    'Attractions': {copy:'Pick the bit everyone is looking forward to, then build the day around it.',sections:[['Rides & wildlife',[['Theme parks','/theme-parks'],['Family fun','/family-fun'],['Zoos & wildlife','/zoos'],['Sea life','/sea-life']]],['Stories & discoveries',[['Museums','/museums'],['Historic places','/historical-sites'],['Tours & experiences','/tours']]],['Indoor fun',[['Cinemas','/cinemas'],['Bowling','/bowling']]]]},
+    'Food & drink': {copy:'Make the food stop part of the day, from a quick bite to an evening out.',sections:[['Find a food stop',[['Food & drink guides','/food-and-drink'],['Arcade bars & clubs','/arcade-bars']]],['Make a day of it',[['Days out','/days-out'],['Seaside','/seaside'],['Places to stay','/places-to-stay']]]]},
+    'Stays': {copy:'Find a base for your next short break and leave time to enjoy the evening.',sections:[['Places to stay',[['Hotel & stay guides','/places-to-stay'],['Holiday parks','/holiday-parks']]],['Explore around your stay',[['Days out','/days-out'],['Seaside','/seaside'],['Food & drink','/food-and-drink']]]]},
+    'Offers': {copy:'Browse current partner offers and read the details before choosing your dates.',sections:[['Days out & breaks',[['Amazing offers','/offers'],['Hotel guides','/places-to-stay'],['Food & drink guides','/food-and-drink'],['Attraction guides','/attractions']]],['More partner offers',[['UK casino deals','/casino-offers']]]]},
+    'Arcades': {copy:'Find a play stop that suits you, from seaside games to classic favourites.',sections:[['Arcade discoveries',[['Seaside arcades','/seaside-arcades'],['Retro video games','/retro-video-games'],['Classic fruit machine arcades','/classic-arcades']]],['Adult gaming',[['Adult gaming centres','/agc'],['Bingo','/bingo-halls']]],['The machine archive',[['Fruit Machine Archive','/classic-fruit-machines'],['Browse manufacturers','/classic-fruit-machines#makers'],['Browse eras & styles','/classic-fruit-machines#eras']]]]},
+    'Fruit machines': {copy:'Explore the archive, choose a manufacturer and open each machine’s own story.',sections:[['Browse the archive',[['Browse manufacturers','/classic-fruit-machines#makers'],['Browse eras & styles','/classic-fruit-machines#eras'],['All machine descriptions','/classic-fruit-machines#all-machines']]],['Find classic games',[['Classic fruit machine arcades','/classic-arcades'],['Seaside arcades','/seaside-arcades'],['Retro video games','/retro-video-games']]]]}
+  };
   var topics = {'All Attractions':'/attractions','Theme Parks':'/theme-parks','Zoos & Wildlife':'/zoos','Museums':'/museums','Museums & Galleries':'/museums','Historic Sites':'/historical-sites','Historical Sites':'/historical-sites','Family Fun':'/family-fun','Tours':'/tours','Tours & Experiences':'/tours','Nature & Outdoors':'/outdoors','All Seaside':'/seaside','Piers & Promenades':'/piers','Beaches':'/beaches','Arcades':'/arcade','Family Arcades':'/arcade','All Arcades':'/arcade','Food & Drink':'/food-and-drink','Places to Stay':'/places-to-stay','Hidden Gems':'/hidden-gems','Plan a Trip':'/plan-a-trip','Sea Life Centres':'/sea-life','Sea Life':'/sea-life','Cinemas':'/cinemas','Bowling':'/bowling','Retro Video Games':'/retro-video-games','Classic Fruit Machines':'/classic-fruit-machines','AGC (Adult Gaming)':'/agc','AGC (Adult Gaming Centres)':'/agc','Arcade Bars':'/arcade-bars'};
   var experiences = {
     coast: ['A proper breath of sea air','Beach time, a waterfront wander and something tasty afterwards. Pick a resort or a quieter stretch of coast, then leave room for the little discoveries.', [['☀','Beach days','Build sandcastles, wander the shore or just sit and watch the sea.','/beaches'],['⚓','Piers & promenades','A walk with a view, with stops along the way.','/piers'],['♨','Chips, cafés & treats','Give your seaside food stop a place in the plan.','/food-and-drink']]],
@@ -33,18 +42,29 @@
   css += '@media(max-width:1100px){nav.menu[data-sr-flat-menu]{display:none!important}header .burger{display:block!important}}@media(min-width:1101px){header .burger{display:none!important}}.search-hero h1{margin:0;font:900 clamp(38px,6vw,76px)/1.04 \"Roboto Condensed\",Arial;color:#fff}.search-hero h1 span:last-child{color:#ffe05b}.sr-source-records[data-sr-reader-sources]{padding:24px;background:#f5f9fd;border-radius:18px}.sr-source-records[data-sr-reader-sources]>h2{font:900 27px/1.2 \"Roboto Condensed\",Arial;margin:0 0 16px}.sr-source-records[data-sr-reader-sources] h3{font-size:21px}.sr-reader-page main .about{font:400 17px/1.8 Inter,Arial,sans-serif;max-width:850px}.sr-reader-page main .head{padding:24px;background:#eef7ff;border-radius:22px;margin-bottom:24px}.sr-reader-page main .grid{border-radius:22px;overflow:hidden}.sr-guide-index{grid-column:1/-1}';
 
   css += `
-nav.menu[data-sr-hover-menu]{display:flex;align-items:center;justify-content:center;flex:1;gap:2px;min-width:0}
-nav.menu[data-sr-hover-menu] .sr-nav-group{display:flex;align-items:center;position:relative}
-nav.menu[data-sr-hover-menu] .sr-nav-parent{font:800 15px/1.3 'Roboto Condensed',Arial;color:white;padding:24px 2px 24px 8px;white-space:nowrap;border:0;gap:0}
-nav.menu[data-sr-hover-menu] .sr-nav-parent:after{display:none}
-.sr-nav-toggle{border:0;background:transparent;color:#8edbff;cursor:pointer;font:800 18px Arial;padding:18px 6px 18px 2px;min-height:44px}
-nav.menu[data-sr-hover-menu] .sr-nav-panel{display:none;position:absolute;top:100%;left:0;transform:none;grid-template-columns:1fr;min-width:250px;width:max-content;max-width:calc(100vw - 32px);max-height:76vh;overflow:auto;background:white;color:#0b2545;padding:10px;border-radius:0 0 14px 14px;box-shadow:0 14px 32px #0005;z-index:100}
-nav.menu[data-sr-hover-menu] .sr-nav-group:nth-child(-n+2) .sr-nav-panel{grid-template-columns:1fr 1fr}
-nav.menu[data-sr-hover-menu] .sr-nav-group:nth-last-of-type(-n+3) .sr-nav-panel{left:auto;right:0}
-nav.menu[data-sr-hover-menu] .sr-nav-group:hover .sr-nav-panel,nav.menu[data-sr-hover-menu] .sr-menu-open .sr-nav-panel{display:grid}
-nav.menu[data-sr-hover-menu] .sr-nav-panel a{display:flex;padding:12px 14px;min-height:44px;color:#0b2545;font:800 16px/1.3 'Roboto Condensed',Arial;text-decoration:none;border-radius:8px;white-space:nowrap}
-nav.menu[data-sr-hover-menu] .sr-nav-panel a:hover,nav.menu[data-sr-hover-menu] .sr-nav-panel a:focus-visible{background:#e9f4ff;color:#075ba5}
-nav.menu[data-sr-hover-menu] a:focus-visible,.sr-nav-toggle:focus-visible{outline:3px solid #ffe05b;outline-offset:-3px}
+header[data-sr-mega-header]{overflow:visible!important;z-index:100}
+header[data-sr-mega-header]>.nav{position:static;gap:20px}
+header[data-sr-mega-header]>.nav>a.button{background:none;box-shadow:none;border:0;border-radius:0;padding:12px 2px;color:#c1eaff;font:700 14px/1.4 Inter,Arial}
+header[data-sr-mega-header]>.nav>a.button:hover{color:white;text-decoration:underline;text-underline-offset:5px}
+nav.menu[data-sr-hover-menu]{display:flex;align-items:center;justify-content:center;flex:1;gap:5px;min-width:0;position:static}
+nav.menu[data-sr-hover-menu] .sr-nav-group{display:flex;align-items:center;position:static;padding:0 4px}
+nav.menu[data-sr-hover-menu] .sr-nav-parent{display:flex;align-items:center;height:72px;font:700 14px/1.4 Inter,Arial;color:white;padding:0 10px;white-space:nowrap;border:0;border-bottom:3px solid transparent;gap:7px}
+nav.menu[data-sr-hover-menu] .sr-nav-parent:after{display:block;content:'';width:5px;height:5px;border:solid #8edbff;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);margin:0 0 3px 2px}
+nav.menu[data-sr-hover-menu] .sr-menu-open>.sr-nav-parent{color:#ffdf45;border-bottom-color:#ffdf45}
+nav.menu[data-sr-hover-menu] .sr-nav-panel{display:none!important;position:absolute;top:100%;left:0!important;right:0!important;transform:none;width:100%;min-width:0;max-width:none;max-height:calc(100dvh - 90px);overflow:auto;box-sizing:border-box;background:white;color:#0b2545;padding:30px clamp(24px,4vw,64px);border-top:3px solid #00b4d8;border-radius:0 0 16px 16px;box-shadow:0 18px 32px #0b25452b;z-index:100}
+nav.menu[data-sr-hover-menu] .sr-menu-open .sr-nav-panel{display:block!important}
+.sr-mega-layout{display:grid;grid-template-columns:minmax(185px,.85fr) repeat(var(--sr-mega-columns,3),minmax(165px,1fr));gap:clamp(24px,3vw,44px);max-width:1440px;margin:0 auto}
+.sr-mega-intro{padding-right:24px;border-right:1px solid #dce7f2}
+.sr-mega-intro .sr-mega-kicker,.sr-mega-column h3,.sr-mega-feature>p{font:800 11px/1.5 Inter,Arial;letter-spacing:.08em;text-transform:uppercase;color:#16729e;margin:0 0 12px}
+.sr-mega-intro h2{font:900 30px/1.1 'Roboto Condensed',Arial;margin:0 0 12px;color:#0b2545}
+.sr-mega-intro p{font:400 14px/1.65 Inter,Arial;color:#526981;margin:0 0 12px}
+nav.menu[data-sr-hover-menu] .sr-nav-panel a{display:block;padding:11px 0;min-height:44px;box-sizing:border-box;color:#183d62;font:600 15px/1.5 Inter,Arial;text-decoration:none;border:0;border-radius:0;background:none;white-space:normal}
+nav.menu[data-sr-hover-menu] .sr-nav-panel a:hover,nav.menu[data-sr-hover-menu] .sr-nav-panel a:focus-visible{color:#007ba3;background:none;text-decoration:underline;text-underline-offset:5px}
+nav.menu[data-sr-hover-menu] .sr-mega-intro>a{color:#006e9b;font-weight:800}
+.sr-mega-feature img{display:block;width:100%;height:130px;object-fit:cover;border-radius:8px}
+nav.menu[data-sr-hover-menu] .sr-mega-feature>a{font:800 19px/1.25 'Roboto Condensed',Arial;padding-bottom:5px}
+.sr-mega-feature small{font:400 12px/1.5 Inter,Arial;color:#526981}
+nav.menu[data-sr-hover-menu] a:focus-visible{outline:2px solid #00a1c4;outline-offset:4px}
 nav.menu[data-sr-hover-menu] .sr-nav-group:last-of-type .sr-nav-parent{color:#ffe05b}
 nav[aria-label='Mobile'][data-sr-grouped-mobile]{display:block;background:white;color:#0b2545;max-height:78vh;overflow:auto;padding:12px 18px}
 nav[aria-label='Mobile'][data-sr-grouped-mobile]>details>summary{color:#0b2545;font:900 19px 'Roboto Condensed',Arial;cursor:pointer;min-height:48px;padding:14px 4px}
@@ -68,8 +88,10 @@ main[data-sr-agc-entrance]>.hero .hero-search{position:absolute;left:32px;bottom
 .hero[data-sr-classic-row] .hero-controls{max-width:920px;margin-top:28px}
 #makers,#eras,#all-machines{scroll-margin-top:88px}
 @media(max-width:1100px){nav.menu[data-sr-hover-menu]{display:none!important}header .burger{display:block!important}}
+@media(min-width:1101px) and (max-width:1280px){header[data-sr-mega-header]>.nav{gap:10px}nav.menu[data-sr-hover-menu]{gap:1px}nav.menu[data-sr-hover-menu] .sr-nav-parent{padding:0 6px;font-size:13px}header[data-sr-mega-header] .brand{font-size:23px}header[data-sr-mega-header]>.nav>a.button{font-size:12px}}
 @media(max-width:760px){main[data-sr-agc-entrance]>.hero{padding:24px 20px 16px;display:flex;flex-direction:column}main[data-sr-agc-entrance]>.hero .hero-copy{width:100%;padding:0 0 22px}main[data-sr-agc-entrance]>.hero .hero-image{position:relative!important;inset:auto!important;order:2;width:100%;height:260px;border-radius:14px;overflow:hidden}main[data-sr-agc-entrance]>.hero .hero-search{position:relative;inset:auto;width:100%;order:3;margin-top:18px}.hero[data-sr-classic-row]{padding:24px 18px}.hero[data-sr-classic-row] .hero-copy{width:100%;padding:0}.hero[data-sr-classic-row] .hero-photos{position:relative;top:auto;width:100%;height:280px;margin:22px 0 0;border-radius:14px}.hero[data-sr-classic-row] .hero-controls{margin-top:18px}.hero[data-sr-classic-row] h1{font-size:38px}}
 `;
+  css += `.topics[data-sr-category-links]{gap:22px;background:#fff!important;border-bottom:1px solid #dce7f2}.topics[data-sr-category-links]>a{padding:10px 0;background:none;border:0;border-radius:0;font:600 14px/1.5 Inter,Arial}.topics[data-sr-category-links]>a:hover{color:#007ba3;text-decoration:underline;text-underline-offset:5px}.topics[data-sr-category-links]>a[aria-current="page"]{color:#0b2545;background:none;text-decoration:underline;text-decoration-color:#00b4d8;text-underline-offset:8px}.sr-category-library nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 32px}.sr-category-library a{padding:7px 0;background:none;border:0;border-radius:0;font:500 14px/1.5 Inter,Arial}.sr-category-library a:hover{color:#007ba3;text-decoration:underline;text-underline-offset:5px}.sr-guide-index{gap:8px 22px}.sr-guide-index a{padding:5px 0;background:none;border-radius:0;font-weight:600;text-decoration:underline!important;text-decoration-color:#b6c9dd;text-underline-offset:4px}.sr-continue-day nav{gap:12px 24px}.sr-continue-day a{background:none;border:0;border-radius:0;padding:6px 0;color:#174b7c;text-decoration:underline;text-underline-offset:5px}@media(max-width:650px){.sr-category-library nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px}}`;
   function link(label, href) {
     var a = document.createElement('a'); a.textContent = label; a.href = href;
     if (location.pathname.replace(/\/$/,'') === href) a.setAttribute('aria-current','page');
@@ -83,18 +105,23 @@ main[data-sr-agc-entrance]>.hero .hero-search{position:absolute;left:32px;bottom
   function navigation(root) {
     var nav = root.querySelector('nav[aria-label="Main"]');
     if (nav && !nav.hasAttribute('data-sr-hover-menu')) {
-      nav.removeAttribute('data-sr-flat-menu');nav.dataset.srHoverMenu='1';
-      nav.replaceChildren.apply(nav,menuGroups.map(function(item){
+      nav.removeAttribute('data-sr-flat-menu');nav.dataset.srHoverMenu='1';nav.dataset.srMegaMenu='1';
+      var header=nav.closest('header');if(header)header.dataset.srMegaHeader='1';
+      nav.replaceChildren.apply(nav,menuGroups.map(function(item,index){
         var group=document.createElement('div');group.className='dd sr-nav-group';
         var anchor=link(item[0],item[1]);anchor.className='sr-nav-parent';
-        var toggle=document.createElement('button');toggle.type='button';toggle.className='sr-nav-toggle';toggle.textContent='⌄';toggle.setAttribute('aria-label','Show '+item[0]+' menu');toggle.setAttribute('aria-expanded','false');
-        var panel=document.createElement('div');panel.className='panel sr-nav-panel';panel.setAttribute('aria-label',item[0]+' categories');item[2].forEach(function(entry){panel.append(link(entry[0],entry[1]));});
-        function expanded(open){group.classList.toggle('sr-menu-open',open);toggle.setAttribute('aria-expanded',String(open));}
-        toggle.addEventListener('click',function(){expanded(!group.classList.contains('sr-menu-open'));});
+        var panel=document.createElement('div');panel.className='panel sr-nav-panel';panel.id='sr-mega-menu-'+index;panel.hidden=true;panel.setAttribute('role','region');panel.setAttribute('aria-label',item[0]+' menu');anchor.setAttribute('aria-expanded','false');anchor.setAttribute('aria-controls',panel.id);
+        var data=megaMenus[item[0]],layout=document.createElement('div');layout.className='sr-mega-layout';
+        var intro=document.createElement('div');intro.className='sr-mega-intro';var kicker=document.createElement('p');kicker.className='sr-mega-kicker';kicker.textContent='Explore Spin Raiders';var title=document.createElement('h2');title.textContent=item[0]==='Fruit machines'?'Fruit Machine Archive':item[0]==='Stays'?'Places to stay':item[0];var copy=document.createElement('p');copy.textContent=data.copy;var all=link(item[2][0][0]+' →',item[2][0][1]);intro.append(kicker,title,copy,all);layout.append(intro);
+        data.sections.forEach(function(section){var column=document.createElement('section');column.className='sr-mega-column';var heading=document.createElement('h3');heading.textContent=section[0];column.append(heading);section[1].forEach(function(entry){column.append(link(entry[0],entry[1]));});layout.append(column);});
+        var octoberFood=item[0]==='Food & drink'&&Date.now()>=Date.parse('2026-10-01T00:00:00Z')&&Date.now()<Date.parse('2026-11-01T00:00:00Z');
+        if(octoberFood){var feature=document.createElement('section');feature.className='sr-mega-feature';var label=document.createElement('p');label.textContent='October’s food & drink pick';var image=document.createElement('img');image.src='https://static.wixstatic.com/media/3a517e_809ead30953140cc948d147392fd0498~mv2.jpg/v1/fill/w_420,h_260,al_c,q_85,enc_auto/masala-malt.webp';image.alt='Masala & Malt restaurant in Abbeygate, Grimsby';image.loading='lazy';var featureLink=link('Masala & Malt →','/food-and-drink/masala-malt-grimsby');var town=document.createElement('small');town.textContent='Grimsby · Food & Drink of the Month · Ad';feature.append(label,image,featureLink,town);layout.append(feature);}
+        panel.style.setProperty('--sr-mega-columns',String(data.sections.length+(octoberFood?1:0)));panel.append(layout);
+        function expanded(open){if(open)nav.querySelectorAll('.sr-nav-group').forEach(function(other){if(other===group)return;other.classList.remove('sr-menu-open');other.querySelector('.sr-nav-parent').setAttribute('aria-expanded','false');other.querySelector('.sr-nav-panel').hidden=true;});group.classList.toggle('sr-menu-open',open);anchor.setAttribute('aria-expanded',String(open));panel.hidden=!open;}
         group.addEventListener('mouseenter',function(){expanded(true);});group.addEventListener('mouseleave',function(){expanded(false);});
         group.addEventListener('focusin',function(){expanded(true);});group.addEventListener('focusout',function(event){if(!group.contains(event.relatedTarget))expanded(false);});
-        group.addEventListener('keydown',function(event){if(event.key==='Escape'){expanded(false);toggle.focus();}});
-        group.append(anchor,toggle,panel);return group;
+        group.addEventListener('keydown',function(event){if(event.key==='Escape'){event.preventDefault();anchor.focus();expanded(false);}else if(event.target===anchor&&event.key==='ArrowDown'){event.preventDefault();expanded(true);panel.querySelector('a')?.focus();}});
+        group.append(anchor,panel);return group;
       }));
       // Preserve the old browse hook: the full choices are now in the category menus.
       var marker=document.createElement('span');marker.dataset.srBrowse='1';marker.hidden=true;nav.append(marker);

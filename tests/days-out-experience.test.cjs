@@ -10,7 +10,7 @@ function page(route, hostId, html) {
   dom.window.document.body.append(host); const root = host.attachShadow({ mode: 'open' }); root.innerHTML = html;
   return { dom, root };
 }
-test('Shared navigation restores grouped hover menus, the fruit archive and every original category', () => {
+test('Desktop mega menus open on hover, retain every category and close correctly from the keyboard', () => {
   const {dom,root} = page('/', 'sr-brand-header', '<header><nav class="menu" aria-label="Main"><div class="dd"><a href="/seaside">Days Out</a><div class="panel"><a href="/arcade">Arcades</a></div></div><details data-sr-browse><summary>Browse</summary></details></nav><button class="nav-search">Search</button><a class="button" href="/plan-a-trip">Plan</a><details class="burger"><summary>Menu</summary><nav aria-label="Mobile"><details><summary>Days out</summary></details></nav></details></header>');
   const search = root.querySelector('.nav-search'); let clicked = 0; search.onclick = () => clicked++;
   dom.window.eval(script);
@@ -18,10 +18,17 @@ test('Shared navigation restores grouped hover menus, the fruit archive and ever
   assert.equal(nav.querySelectorAll(':scope > .sr-nav-group').length,7);
   assert.equal(nav.querySelector('a').getAttribute('href'),'/days-out');
   assert.equal(nav.querySelectorAll('.sr-nav-panel').length,7);
-  assert.equal(nav.querySelector('a[href="/classic-fruit-machines"]').textContent,'Fruit machines');
+  assert.equal(nav.querySelector('.sr-nav-parent[href="/classic-fruit-machines"]').textContent,'Fruit machines');
   assert.equal(nav.querySelector('.sr-nav-panel a[href="/classic-fruit-machines"]').textContent,'Fruit Machine Archive');
   for(const href of ['/bingo-halls','/arcade-bars','/sea-life','/classic-arcades','/?raidertube=1','/casino-offers'])assert.ok(nav.querySelector('a[href="'+href+'"]'),href);
-  const toggle=nav.querySelector('button');toggle.click();assert.equal(toggle.getAttribute('aria-expanded'),'true');assert.ok(toggle.parentElement.classList.contains('sr-menu-open'));toggle.click();assert.equal(toggle.getAttribute('aria-expanded'),'false');
+  assert.equal(nav.querySelector('button'),null,'Desktop categories use hover links without separate dropdown buttons');
+  assert.equal(nav.dataset.srMegaMenu,'1');
+  const groups=nav.querySelectorAll('.sr-nav-group'),parent=groups[0].querySelector('.sr-nav-parent'),panel=groups[0].querySelector('.sr-nav-panel');
+  groups[0].dispatchEvent(new dom.window.MouseEvent('mouseenter'));assert.equal(parent.getAttribute('aria-expanded'),'true');assert.equal(panel.hidden,false);assert.equal(panel.querySelectorAll('.sr-mega-column').length,3);
+  groups[1].dispatchEvent(new dom.window.MouseEvent('mouseenter'));assert.equal(panel.hidden,true);assert.equal(nav.querySelectorAll('.sr-menu-open').length,1);
+  groups[1].dispatchEvent(new dom.window.MouseEvent('mouseleave'));assert.equal(nav.querySelectorAll('.sr-menu-open').length,0);
+  parent.focus();parent.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));assert.equal(root.activeElement,panel.querySelector('a'));
+  panel.querySelector('a').dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(panel.hidden,true);assert.equal(parent.getAttribute('aria-expanded'),'false');assert.equal(root.activeElement,parent);
   assert.equal(root.querySelectorAll('nav[aria-label="Mobile"] details').length,7);
   search.click(); assert.equal(clicked,1); assert.equal(root.querySelector('.button').getAttribute('href'),'/plan-a-trip');
   dom.window.close();
