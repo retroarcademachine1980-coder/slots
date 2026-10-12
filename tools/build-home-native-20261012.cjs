@@ -49,6 +49,8 @@ css.walkRules(rule => {
 });
 css.append({ selector: '#sr-home-native-source > .home-value', nodes: [{ prop: 'width', value: 'min(1376px,calc(100% - 32px))' }, { prop: 'margin', value: '24px auto' }] });
 css.append({ selector: scope + '.home-guide .home-about-grid>article:has(.home-picks:empty)', nodes: [{ prop: 'display', value: 'block' }] });
+// In light DOM, Wix heading and paragraph colours override inherited card white.
+css.append({ selector: '[data-sr-native-home] :is(.card-copy,.dest) :is(h3,p)', nodes: [{ prop: 'color', value: '#fff' }] });
 css.append({ selector: 'body:has(#sr-home-native-source) #SITE_CONTAINER', nodes: [{ prop: 'display', value: 'none!important' }] });
 
 fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
