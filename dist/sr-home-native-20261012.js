@@ -36,12 +36,12 @@
     if (!host || !inner || !existingGuide || !existingValue || !guide || !value) return false;
 
     var currentPicks = existingGuide.querySelectorAll('.home-picks');
-    var nativePicks = guide.querySelectorAll('.home-picks');
+    var nativePicks = source.querySelectorAll('.home-picks');
     if (currentPicks.length !== nativePicks.length) return false;
     var legacyKinds = ['arcades', 'destinations', 'attractions', 'food', 'hotels'];
     if (currentPicks.length !== legacyKinds.length) return false;
     currentPicks.forEach(function (picks, index) {
-      var target = guide.querySelector('[data-sr-picks="' + legacyKinds[index] + '"]');
+      var target = source.querySelector('[data-sr-picks="' + legacyKinds[index] + '"]');
       if (target) target.replaceChildren.apply(target, Array.from(picks.childNodes));
     });
     var destinationTips = {'/destination/skegness':'Beach, pier & fairground fun','/destination/southport':'A waterfront wander','/destination/great-yarmouth':'Explore the Golden Mile'};
@@ -49,6 +49,24 @@
       var caption = card.querySelector('p');
       if (caption && destinationTips[card.getAttribute('href')]) caption.textContent = destinationTips[card.getAttribute('href')];
     });
+    var liveHighlights = Array.from(inner.querySelectorAll('main > section')).find(function (section) {
+      var title = section.querySelector('h2');
+      return title && /highlights/i.test(title.textContent);
+    });
+    var featured = guide.querySelector('#sr-monthly-highlights .highlights');
+    if (liveHighlights && featured) {
+      var offers = [], arcadeFeatures = [];
+      liveHighlights.querySelectorAll('.highlights > .card').forEach(function (card) {
+        var href = card.getAttribute('href') || '';
+        var badge = card.querySelector('.badge');
+        if (/^\/(arcade|agc)\//.test(href) || badge && /ARCADE/.test(badge.textContent)) arcadeFeatures.push(card);
+        else offers.push(card);
+      });
+      if (offers.length) featured.replaceChildren.apply(featured, offers);
+      var arcades = value.querySelector('[data-sr-picks="arcades"]');
+      if (arcades) arcadeFeatures.forEach(function (card) { arcades.appendChild(card); });
+      liveHighlights.remove();
+    }
     host.appendChild(guide);
     host.appendChild(value);
     forward(home, 'sr-home-guide');
@@ -64,6 +82,9 @@
       var title = section.querySelector('h2');
       if (title && /Explore by destination/.test(title.textContent)) section.remove();
     });
+    // The value slot was nested in the old destination section; keep it in the main flow.
+    var main = inner.querySelector('main');
+    if (main) main.appendChild(valueSlot);
     var shortcuts = inner.querySelector('nav[aria-label="Choose your day out"]');
     if (shortcuts) shortcuts.remove();
     var oldHeading = inner.querySelector('.hero > h1.sr-only');

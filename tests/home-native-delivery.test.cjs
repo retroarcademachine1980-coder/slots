@@ -20,7 +20,7 @@ function runtime(dom) {
   home.id = 'sr-home-approved-20260921';
   outer.append(home);
   const inner = home.attachShadow({ mode: 'open' });
-  inner.innerHTML = '<main><section class="hero"><h1 class="sr-only">Big days out. Brilliant discoveries.</h1></section><section class="home-guide">' + Array.from(d.querySelectorAll('.home-picks')).map((_, i) => '<div class="home-picks"><a href="/destination/blackpool" data-identity="' + i + '">Real card ' + i + '</a></div>').join('') + '</section><section><section class="home-value">Original value text</section></section></main>';
+  inner.innerHTML = '<main><section class="hero"><h1 class="sr-only">Big days out. Brilliant discoveries.</h1></section><section class="home-guide">' + Array.from(d.querySelectorAll('.home-picks')).map((_, i) => '<div class="home-picks"><a href="/destination/blackpool" data-identity="' + i + '">Real card ' + i + '</a></div>').join('') + '</section><section class="section wrap"><h2>This month’s highlights</h2><div class="highlights"><a class="card" data-offer href="/attractions/example/town">An offer</a><a class="card" data-monthly-arcade href="/arcade/example/town"><span class="badge">ARCADE OF THE MONTH</span>Arcade pick</a></div></section><section><section class="home-value">Original value text</section></section></main>';
   d.body.prepend(host);
   return { host, outer, home, inner };
 }
@@ -34,6 +34,9 @@ test('Initial response has useful visible prose, one H1 and clean category/desti
   assert.ok(d.querySelector('#sr-home-native-source').textContent.trim().split(/\s+/).length > 450);
   assert.deepEqual(Array.from(d.querySelectorAll('[data-sr-home-kind]')).map(e => e.dataset.srHomeKind), ['destinations', 'attractions', 'food', 'hotels', 'arcades']);
   assert.equal(d.querySelectorAll('.sr-discovery-grid > a').length, 6);
+  assert.ok(d.querySelector('#sr-monthly-highlights').compareDocumentPosition(d.querySelector('.sr-discovery-grid')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
+  assert.equal(d.querySelectorAll('#sr-monthly-highlights .card').length, 3);
+  assert.ok(d.querySelector('#sr-home-native-value .sr-arcades-last [data-sr-picks="arcades"]'));
   for (const section of d.querySelectorAll('.home-about-grid > article')) {
     assert.ok(section.querySelector(':scope > h2'), 'Major homepage sections need an H2 before card H3s.');
   }
@@ -62,6 +65,8 @@ test('After route hydration the same light-DOM prose is projected into its exist
   let ready;
   dom.window.SR_HOME_ROUTES_READY = new Promise(resolve => { ready = resolve; });
   const realCard = inner.querySelector('[data-identity="0"]');
+  const offerCard = inner.querySelector('[data-offer]');
+  const monthlyArcade = inner.querySelector('[data-monthly-arcade]');
   let clicked = 0;
   realCard.addEventListener('click', e => { e.preventDefault(); clicked++; });
   dom.window.eval(bridge);
@@ -76,12 +81,16 @@ test('After route hydration the same light-DOM prose is projected into its exist
   assert.equal(inner.querySelector('h1'), null);
   assert.equal(inner.querySelector('.home-guide'), null);
   assert.equal(inner.querySelector('.home-value'), null);
-  assert.equal(guide.querySelector('[data-identity="0"]'), realCard);
+  assert.equal(value.querySelector('[data-identity="0"]'), realCard);
   realCard.click();
   assert.equal(clicked, 1, 'Reuse live card nodes and their existing event listeners.');
   assert.ok(guide.textContent.includes('what shall we do?'));
   assert.ok(prose.includes('what shall we do?'));
-  assert.equal(guide.querySelector('[data-sr-picks="arcades"] [data-identity="0"]'), realCard, 'Arcade cards must remain in their section after editorial reordering.');
+  assert.equal(value.querySelector('[data-sr-picks="arcades"] [data-identity="0"]'), realCard, 'Arcade cards must appear at the bottom after editorial reordering.');
+  assert.ok(inner.querySelector('main > slot[name="sr-home-value"]'), 'The bottom guide and arcade section need a live slot even after removing the old destination block.');
+  assert.equal(guide.querySelector('#sr-monthly-highlights [data-offer]'),offerCard);
+  assert.equal(value.querySelector('[data-sr-picks="arcades"] [data-monthly-arcade]'),monthlyArcade);
+  assert.equal(inner.querySelector('.highlights'),null,'Do not leave a second highlights section lower down.');
   assert.equal(guide.querySelector('[data-sr-picks="destinations"] [data-identity="1"]').textContent, 'Real card 1');
   const forwarding = home.querySelector('slot[name="sr-home-guide"]');
   assert.equal(forwarding.assignedElements()[0], guide);

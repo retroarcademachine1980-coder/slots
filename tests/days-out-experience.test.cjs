@@ -57,3 +57,14 @@ test('Guide source blocks show unique useful prose once and retain citations wit
   assert.equal(root.querySelector('main>a').textContent,'View customer reviews →');
   dom.window.close();
 });
+test('The existing public source renderer receives rich review text without changing its source records', async () => {
+  const {dom,root}=page('/food-and-drink/a-place','sr-food-page','<main>Food guide</main>');
+  let received;
+  dom.window.SR_RENDER_SOURCE_RECORDS=async (_root,result)=>{received=result;return true;};
+  const result={sourceRecords:[{key:'FoodAndDrink:food',row:{shortDescription:'A food stop',review:'<h2>A useful visit guide</h2><p>Details.</p>'}}]};
+  dom.window.eval(script);
+  await dom.window.SR_RENDER_SOURCE_RECORDS(root,result,{});
+  assert.equal(received.sourceRecords[0].row.fullDescription,result.sourceRecords[0].row.review);
+  assert.equal(result.sourceRecords[0].row.fullDescription,undefined,'Do not mutate the canonical source record');
+  dom.window.close();
+});

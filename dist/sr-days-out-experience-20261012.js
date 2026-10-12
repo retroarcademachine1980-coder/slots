@@ -104,7 +104,7 @@
       copy.querySelectorAll('p,li').forEach(function(e){var key=normalize(e.textContent);if(!key||seenText.has(key))e.remove();else seenText.add(key);});
       copy.querySelectorAll('ul,ol').forEach(function(e){if(!e.querySelector('li'))e.remove();});
       if(!copy.querySelector('p,li'))return;
-      if(root.host && root.host.id==='sr-food-page' && section.getAttribute('data-source-field')==='review'){
+      if(root.host && root.host.id==='sr-food-page' && /^(review|fullDescription|detailedReview)$/.test(section.getAttribute('data-source-field'))){
         var about=root.querySelector('main .about');
         if(about){var label=copy.querySelector(':scope > h4');if(label)label.remove();about.replaceChildren.apply(about,Array.from(copy.childNodes));about.dataset.srExpandedReview='1';return;}
       }
@@ -134,8 +134,26 @@
     var footer=root.querySelector('footer');if(!footer||root.querySelector('.sr-category-library'))return;
     var section=document.createElement('section');section.className='sr-category-library';var h=document.createElement('h2');h.textContent='More ways to spend your day';var nav=document.createElement('nav');nav.setAttribute('aria-label','All categories');browse.forEach(function(item){nav.append(link(item[0],item[1]));});section.append(h,nav);footer.before(section);
   }
+  function includePublicReviews() {
+    var original=window.SR_RENDER_SOURCE_RECORDS;
+    if(typeof original!=='function'||original.srReaderReviews)return;
+    var wrapped=async function(root,result,options){
+      var view=result;
+      if(result&&Array.isArray(result.sourceRecords)){
+        view=Object.assign({},result,{sourceRecords:result.sourceRecords.map(function(source){
+          if(!source||!source.row||typeof source.row.review!=='string'||!source.row.review.trim())return source;
+          var row=Object.assign({},source.row);
+          if(!row.fullDescription)row.fullDescription=row.review;
+          else if(row.fullDescription!==row.review&&!row.detailedReview)row.detailedReview=row.review;
+          return Object.assign({},source,{row:row});
+        })});
+      }
+      return original.call(this,root,view,options);
+    };
+    wrapped.srReaderReviews=true;window.SR_RENDER_SOURCE_RECORDS=wrapped;
+  }
   var seen=new WeakSet(),scheduled=false,scans=0;
-  function scan(){scheduled=false;var roots=[document];for(var i=0;i<roots.length;i++){var r=roots[i];r.querySelectorAll('*').forEach(function(e){if(e.shadowRoot)roots.push(e.shadowRoot);});style(r);navigation(r);discovery(r);destination(r);detail(r);readableSources(r);foodClaims(r);categoryLibrary(r);relatedCategories(r);if(!seen.has(r)){seen.add(r);new MutationObserver(schedule).observe(r,{childList:true,subtree:true});}}}
+  function scan(){scheduled=false;includePublicReviews();var roots=[document];for(var i=0;i<roots.length;i++){var r=roots[i];r.querySelectorAll('*').forEach(function(e){if(e.shadowRoot)roots.push(e.shadowRoot);});style(r);navigation(r);discovery(r);destination(r);detail(r);readableSources(r);foodClaims(r);categoryLibrary(r);relatedCategories(r);if(!seen.has(r)){seen.add(r);new MutationObserver(schedule).observe(r,{childList:true,subtree:true});}}}
   function schedule(){if(scheduled)return;scheduled=true;setTimeout(scan,120);}
   if(document.body)scan();else document.addEventListener('DOMContentLoaded',scan,{once:true});
   var timer=setInterval(function(){scan();if(++scans>=80)clearInterval(timer);},500);
