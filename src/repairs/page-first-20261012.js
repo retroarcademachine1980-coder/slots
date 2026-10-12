@@ -1,9 +1,9 @@
 /* Make the existing guide clear on arrival, and use the original photographs beneath artwork tiles. */
 (function () {
   'use strict';
-  if (window.SR_PAGE_FIRST_20261012_V3) return;
-  window.SR_PAGE_FIRST_20261012_V3 = true;
-  document.documentElement.dataset.srPageFirstVersion='20261012-3';
+  if (window.SR_PAGE_FIRST_20261012_V4) return;
+  window.SR_PAGE_FIRST_20261012_V4 = true;
+  document.documentElement.dataset.srPageFirstVersion='20261012-4';
   var welcomes = /* WELCOME_DATA */ {};
   var photoCorrections = /* PHOTO_DATA */ {};
   var resortOpenings = /* DETAIL_DATA */ {};
@@ -113,11 +113,27 @@
     if(!banner||!heading||root.querySelector('[data-sr-food-purpose]'))return;
     var intro=document.createElement('section');intro.className='sr-page-intro';intro.dataset.srFoodPurpose='1';intro.append(heading);
     var lead=root.querySelector('[data-sr-first-description]');if(lead)intro.append(lead);
-    else {var tag=root.querySelector('main .head .tag');if(tag&&tag.textContent.trim()){var paragraph=document.createElement('p');paragraph.textContent=tag.textContent;intro.append(paragraph);}}
+    else {var tag=root.querySelector('main .head .tag');if(tag&&tag.textContent.trim())intro.append(tag);}
     banner.before(intro);
     // Supplier listings and researched guides must not imply a personal visit.
     var labels=['Food & drink guides','Restaurants & cafés','Local discoveries','Plan your food stop'];
     banner.querySelectorAll('.ticks span').forEach(function(span,index){if(labels[index])span.textContent=labels[index];});
+  }
+  function placeFirstView(root){
+    if(!/^sr-(place-page|hotel-guide|venue-page)/.test(root.host?.id||''))return;
+    var hero=root.querySelector('main > .hero'),heading=hero&&hero.querySelector('.panel h1');
+    if(!hero||!heading||root.querySelector('[data-sr-place-purpose]'))return;
+    var intro=document.createElement('section');intro.className='sr-page-intro';intro.dataset.srPlacePurpose='1';intro.append(heading);
+    var lead=root.querySelector('[data-sr-first-description]');if(lead)intro.append(lead);
+    hero.before(intro);
+  }
+  function machineFirstView(root){
+    if(root.host?.id!=='sr-approved-archive')return;
+    var grid=root.querySelector('.mh-grid'),info=grid&&grid.querySelector('.mh-info'),heading=info&&info.querySelector('h1');
+    if(!grid||!heading||root.querySelector('[data-sr-machine-purpose]'))return;
+    var intro=document.createElement('section');intro.className='sr-page-intro sr-machine-intro';intro.dataset.srMachinePurpose='1';intro.style.padding='20px 0';intro.append(heading);
+    var maker=info.querySelector('.mh-sub'),lead=info.querySelector('.mh-desc');if(maker)intro.append(maker);if(lead)intro.append(lead);
+    grid.before(intro);
   }
   function importedPhotoCredits(root) {
     root.querySelectorAll('img').forEach(function(img){
@@ -144,7 +160,7 @@
     queued=false;var roots=[document];
     for(var i=0;i<roots.length;i++){
       var root=roots[i];root.querySelectorAll('*').forEach(function(e){if(e.shadowRoot)roots.push(e.shadowRoot);});
-      installStyle(root);introduction(root);restoreTilePhotos(root);currentDestinationPhotos(root);cleanOfferLinks(root);detailLead(root);venueFirstView(root);foodFirstView(root);directHeroLead(root);importedPhotoCredits(root);
+      installStyle(root);introduction(root);restoreTilePhotos(root);currentDestinationPhotos(root);cleanOfferLinks(root);detailLead(root);venueFirstView(root);foodFirstView(root);placeFirstView(root);machineFirstView(root);directHeroLead(root);importedPhotoCredits(root);
       if(!observed.has(root)){observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
     }
   }
