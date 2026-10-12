@@ -5,7 +5,7 @@
     "title": "Seaside",
     "heading": true,
     "file": "dist/sr-hub-native-seaside-20261012.html",
-    "words": 517
+    "words": 550
   },
   {
     "path": "/places-to-stay",
@@ -13,7 +13,7 @@
     "title": "Places to Stay",
     "heading": true,
     "file": "dist/sr-hub-native-places-to-stay-20261012.html",
-    "words": 532
+    "words": 568
   },
   {
     "path": "/days-out",
@@ -21,7 +21,7 @@
     "title": "Days Out",
     "heading": true,
     "file": "dist/sr-hub-native-days-out-20261012.html",
-    "words": 527
+    "words": 556
   },
   {
     "path": "/food-and-drink",
@@ -29,6 +29,6 @@
     "title": "Food & Drink",
     "heading": false,
     "file": "dist/sr-hub-native-food-and-drink-20261012.html",
-    "words": 521
+    "words": 546
   }
 ]

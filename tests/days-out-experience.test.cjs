@@ -10,6 +10,14 @@ function page(route, hostId, html) {
   dom.window.document.body.append(host); const root = host.attachShadow({ mode: 'open' }); root.innerHTML = html;
   return { dom, root };
 }
+test('Category guide openings are lively readable text and preserve the rest of the original guide',()=>{
+  const openings=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/guide-openings-20261012.json'),'utf8'));
+  assert.equal(Object.keys(openings).length,28);
+  for(const [route,opening] of Object.entries(openings)){
+    const {dom,root}=page(route,'sr-seaside-root','<main><h1>Original banner heading</h1><section class="sr-hub-guide"><h1 id="article-opening">Old article heading</h1><p>Old opening</p><h2>Original facts</h2><p>Keep this factual paragraph and its <a href="/destination/blackpool">destination link</a>.</p></section></main>');
+    dom.window.eval(script);const guide=root.querySelector('.sr-hub-guide');assert.equal(guide.querySelector('h1'),null,route);assert.equal(guide.querySelector('h2').textContent,opening[0],route);assert.equal(guide.querySelector('p').textContent,opening[1],route);assert.equal(root.querySelector('main > h1').textContent,'Original banner heading');assert.equal(guide.querySelector('#article-opening').tagName,'H2');assert.ok(guide.querySelector('a[href="/destination/blackpool"]'));assert.ok(guide.textContent.includes('Keep this factual paragraph'));dom.window.eval(script);assert.equal(guide.querySelectorAll('p').length,2);dom.window.close();
+  }
+});
 test('Desktop mega menus open on hover, retain every category and close correctly from the keyboard', () => {
   const {dom,root} = page('/', 'sr-brand-header', '<header><nav class="menu" aria-label="Main"><div class="dd"><a href="/seaside">Days Out</a><div class="panel"><a href="/arcade">Arcades</a></div></div><details data-sr-browse><summary>Browse</summary></details></nav><button class="nav-search">Search</button><a class="button" href="/plan-a-trip">Plan</a><details class="burger"><summary>Menu</summary><nav aria-label="Mobile"><details><summary>Days out</summary></details></nav></details></header>');
   const search = root.querySelector('.nav-search'); let clicked = 0; search.onclick = () => clicked++;

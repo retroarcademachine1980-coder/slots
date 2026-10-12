@@ -4,6 +4,15 @@ const root = path.resolve(__dirname, '..');
 const original = fs.readFileSync(path.join(root, 'dist/sr-hub-guides-20261006.js'), 'utf8');
 const start = original.indexOf('var G=') + 6;
 const guides = JSON.parse(original.slice(start, original.indexOf(';\nvar p=', start)));
+const openings = JSON.parse(fs.readFileSync(path.join(root, 'content/guide-openings-20261012.json'), 'utf8'));
+function livelyGuide(route) {
+  const opening = openings[route];
+  if (!opening || !guides[route]) throw new Error('Missing guide opening: ' + route);
+  const escape = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return guides[route].html.replace(/<(\/?)h1\b/g, '<$1h2')
+    .replace(/<h2\b[^>]*>[\s\S]*?<\/h2>/, '<h2>' + escape(opening[0]) + '</h2>')
+    .replace(/<p\b[^>]*>[\s\S]*?<\/p>/, '<p>' + escape(opening[1]) + '</p>');
+}
 const pages = [
   {
     path: '/seaside', pageId: 'x4wr0', title: 'Seaside', heading: true,
@@ -25,7 +34,7 @@ const pages = [
 for (const page of pages) {
   if (!guides[page.path]) throw new Error('Missing existing guide: ' + page.path);
   const heading = page.heading ? '<h1 id="sr-hub-native-heading">' + page.title + '</h1>' : '';
-  const fragment = '<div id="sr-hub-native-source" data-sr-hub-path="' + page.path + '">' + heading + '<section id="sr-hub-native-guide" data-sr-native-hub class="sr-hub-guide">' + guides[page.path].html + page.extra + '</section></div>';
+  const fragment = '<div id="sr-hub-native-source" data-sr-hub-path="' + page.path + '">' + heading + '<section id="sr-hub-native-guide" data-sr-native-hub class="sr-hub-guide">' + livelyGuide(page.path) + page.extra + '</section></div>';
   if (fragment.length > 14000) throw new Error('Wix embed limit exceeded.');
   const file = 'dist/sr-hub-native-' + page.path.slice(1) + '-20261012.html';
   fs.writeFileSync(path.join(root, file), fragment + '\n');
