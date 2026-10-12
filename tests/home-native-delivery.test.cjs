@@ -60,7 +60,7 @@ test('Initial response has useful visible prose, one H1 and clean category/desti
   dom.window.close();
 });
 
-test('After route hydration the same light-DOM prose is projected into its existing positions once', async () => {
+test('Approved prose and offers appear immediately; validated live card nodes follow without losing their events', async () => {
   const dom = fixture();
   const d = dom.window.document;
   const { host, outer, home, inner } = runtime(dom);
@@ -76,7 +76,10 @@ test('After route hydration the same light-DOM prose is projected into its exist
   realCard.addEventListener('click', e => { e.preventDefault(); clicked++; });
   dom.window.eval(bridge);
   await new Promise(resolve => setImmediate(resolve));
-  assert.ok(inner.querySelector('.home-guide'), 'Do not take loading cards before canonical routes finish.');
+  assert.equal(inner.querySelector('.home-guide'),null,'Do not show the old arcade-first guide while routes are loading.');
+  assert.equal(guide.parentNode,host,'The readable opening must already be in its final position.');
+  assert.equal(inner.querySelector('[data-sr-pending-home-cards]').hidden,true,'Keep pending canonical cards out of the visible page.');
+  assert.equal(guide.querySelectorAll('#sr-monthly-highlights .card').length,3,'The approved monthly features must be visible without waiting for route hydration.');
   ready();
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(guide.parentNode, host);

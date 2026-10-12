@@ -10,7 +10,6 @@
     source.remove();
     return;
   }
-  var pending = false;
   var attempts = 0;
   var timer;
   var observer;
@@ -35,14 +34,23 @@
     var value = source.querySelector('#sr-home-native-value');
     if (!host || !inner || !existingGuide || !existingValue || !guide || !value) return false;
 
-    var currentPicks = existingGuide.querySelectorAll('.home-picks');
+    var currentPicks = Array.from(existingGuide.querySelectorAll('.home-picks'));
     var nativePicks = source.querySelectorAll('.home-picks');
     if (currentPicks.length !== nativePicks.length) return false;
     var legacyKinds = ['arcades', 'destinations', 'attractions', 'food', 'hotels'];
     if (currentPicks.length !== legacyKinds.length) return false;
+    // Render the approved opening and offers immediately. Pending route lookups
+    // update their original card containers before the live nodes are moved.
+    var waiting = page.createElement('div');
+    waiting.dataset.srPendingHomeCards = '1';
+    waiting.hidden = true;
+    var targets = currentPicks.map(function (_, index) {
+      return source.querySelector('[data-sr-picks="' + legacyKinds[index] + '"]');
+    });
     currentPicks.forEach(function (picks, index) {
-      var target = source.querySelector('[data-sr-picks="' + legacyKinds[index] + '"]');
-      if (target) target.replaceChildren.apply(target, Array.from(picks.childNodes));
+      if (legacyKinds[index] === 'destinations') {
+        targets[index].replaceChildren.apply(targets[index], Array.from(picks.childNodes));
+      } else waiting.append(picks);
     });
     var destinationTips = {'/destination/skegness':'Beach, pier & fairground fun','/destination/southport':'A waterfront wander','/destination/great-yarmouth':'Explore the Golden Mile'};
     guide.querySelectorAll('[data-sr-picks="destinations"] a').forEach(function (card) {
@@ -54,19 +62,25 @@
       return title && /highlights/i.test(title.textContent);
     });
     var featured = guide.querySelector('#sr-monthly-highlights .highlights');
-    if (liveHighlights && featured) {
+    if (liveHighlights) waiting.append(liveHighlights);
+    inner.append(waiting);
+    Promise.resolve(window.SR_HOME_ROUTES_READY).then(function () {
+      if (location.pathname !== '/' || !host.isConnected || !guide.isConnected) return;
+      currentPicks.forEach(function (picks, index) {
+        if (legacyKinds[index] === 'destinations' || !targets[index]) return;
+        targets[index].replaceChildren.apply(targets[index], Array.from(picks.childNodes));
+      });
       var offers = [], arcadeFeatures = [];
-      liveHighlights.querySelectorAll('.highlights > .card').forEach(function (card) {
-        var href = card.getAttribute('href') || '';
-        var badge = card.querySelector('.badge');
+      if (liveHighlights) liveHighlights.querySelectorAll('.highlights > .card').forEach(function (card) {
+        var href = card.getAttribute('href') || '', badge = card.querySelector('.badge');
         if (/^\/(arcade|agc)\//.test(href) || badge && /ARCADE/.test(badge.textContent)) arcadeFeatures.push(card);
         else offers.push(card);
       });
-      if (offers.length && !featured.hasAttribute('data-sr-owned-highlights')) featured.replaceChildren.apply(featured, offers);
+      if (featured && offers.length && !featured.hasAttribute('data-sr-owned-highlights')) featured.replaceChildren.apply(featured, offers);
       var arcades = value.querySelector('[data-sr-picks="arcades"]');
       if (arcades) arcadeFeatures.forEach(function (card) { arcades.appendChild(card); });
-      liveHighlights.remove();
-    }
+      waiting.remove();
+    }, function () { waiting.remove(); });
     host.appendChild(guide);
     host.appendChild(value);
     forward(home, 'sr-home-guide');
@@ -96,17 +110,10 @@
   }
 
   function attempt() {
-    if (pending) return;
     var host = page.getElementById('sr-seaside-root');
     var home = host && host.shadowRoot && host.shadowRoot.querySelector('#sr-home-approved-20260921');
     if (!home || !home.shadowRoot) return;
-    pending = true;
-    Promise.resolve(window.SR_HOME_ROUTES_READY).then(function () {
-      pending = false;
-      mount();
-    }, function () {
-      pending = false;
-    });
+    mount();
   }
 
   observer = new MutationObserver(attempt);
