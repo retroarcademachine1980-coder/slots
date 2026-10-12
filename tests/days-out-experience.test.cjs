@@ -68,3 +68,12 @@ test('The existing public source renderer receives rich review text without chan
   assert.equal(result.sourceRecords[0].row.fullDescription,undefined,'Do not mutate the canonical source record');
   dom.window.close();
 });
+test('The approved food guide is visible when the published route omits its CMS review field', () => {
+  const {dom,root}=page('/food-and-drink/reel-plaice-ayr','sr-food-page','<div class="wrap"><main><h1>Reel Plaice, Ayr</h1><p class="tag">A food stop.</p><div class="about"><p>A food stop.</p></div></main></div>');
+  dom.window.eval(script);
+  const about=root.querySelector('.about');
+  assert.ok(about.textContent.trim().split(/\s+/).length>400);
+  assert.ok(about.querySelector('a[href="/destination/ayr"]'));
+  assert.equal(root.querySelectorAll('.sr-guide-index').length,1);
+  dom.window.close();
+});
