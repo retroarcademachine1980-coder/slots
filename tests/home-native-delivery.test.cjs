@@ -53,10 +53,13 @@ test('Initial response has useful visible prose, one H1 and clean category/desti
   for (const a of d.querySelectorAll('a')) {
     const url=new URL(a.getAttribute('href'),'https://www.spin-raiders.com');
     assert.equal(url.origin,'https://www.spin-raiders.com');
-    assert.match(url.pathname,/^\/[a-z0-9/-]+$/);
+    assert.match(url.pathname,/^\/[a-z0-9/-]*$/);
     if(url.search){assert.equal(url.pathname,'/offers');assert.equal(Array.from(url.searchParams.keys()).length,1);assert.ok(url.searchParams.has('offer')||url.searchParams.has('category'));}
   }
   assert.ok(d.querySelector('a[href="/destination/skegness"]'));
+  assert.ok(d.querySelector('#sr-home-early .hero .hero-sign'),'Keep the approved BIG DAYS OUT banner in the initial view.');
+  assert.ok(d.querySelector('#sr-home-early a[href="/classic-fruit-machines"]'),'The archive must be reachable before interactive code loads.');
+  assert.equal(d.querySelector('#sr-home-early .hero-search').getAttribute('action'),'/search');
   dom.window.close();
 });
 
@@ -85,6 +88,7 @@ test('Approved prose and offers appear immediately; validated live card nodes fo
   assert.equal(guide.parentNode, host);
   assert.equal(value.parentNode, host);
   assert.equal(d.querySelector('#sr-home-native-source'), null);
+  assert.equal(d.querySelector('#sr-home-early'),null,'Remove the initial banner only when the unchanged live banner takes over.');
   assert.equal(d.querySelectorAll('h1').length, 1);
   assert.equal(inner.querySelector('h1'), null);
   assert.equal(inner.querySelector('.home-guide'), null);

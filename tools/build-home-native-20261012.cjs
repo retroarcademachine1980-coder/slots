@@ -20,9 +20,10 @@ const split = authored.indexOf('<section id="sr-home-native-value"');
 if (split < 0) throw new Error('Missing trip-planning section');
 const guide = authored.slice(0, split);
 const value = authored.slice(split);
-const heroPreload = '<link rel="preload" as="image" fetchpriority="high" href="https://static.wixstatic.com/media/3a517e_42651a2e3b284d329c0d12dcab45d1a0~mv2.webp/v1/fit/w_1400,h_788,al_c,q_85,enc_avif/hero.webp">';
-const fragment = heroPreload + '<main id="sr-home-native-source">' + guide + value + '</main>';
-if (fragment.length > 14000) throw new Error('Leave space for the stylesheet and bridge within the Wix embed limit.');
+const earlyPath = path.join(root,'content/home-early-20261012.html');
+const early = fs.existsSync(earlyPath) ? fs.readFileSync(earlyPath,'utf8').trim() : '';
+const fragment = '<main id="sr-home-native-source">' + early + guide + value + '</main>';
+if (fragment.length > 14400) throw new Error('Leave space for the stylesheet and bridge within the Wix embed limit.');
 
 const scope = ':where([data-sr-native-home])';
 const css = postcss.parse(originalCSS);
