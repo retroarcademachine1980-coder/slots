@@ -38,8 +38,16 @@
     var currentPicks = existingGuide.querySelectorAll('.home-picks');
     var nativePicks = guide.querySelectorAll('.home-picks');
     if (currentPicks.length !== nativePicks.length) return false;
+    var legacyKinds = ['arcades', 'destinations', 'attractions', 'food', 'hotels'];
+    if (currentPicks.length !== legacyKinds.length) return false;
     currentPicks.forEach(function (picks, index) {
-      nativePicks[index].replaceChildren.apply(nativePicks[index], Array.from(picks.childNodes));
+      var target = guide.querySelector('[data-sr-picks="' + legacyKinds[index] + '"]');
+      if (target) target.replaceChildren.apply(target, Array.from(picks.childNodes));
+    });
+    var destinationTips = {'/destination/skegness':'Beach, pier & fairground fun','/destination/southport':'A waterfront wander','/destination/great-yarmouth':'Explore the Golden Mile'};
+    guide.querySelectorAll('[data-sr-picks="destinations"] a').forEach(function (card) {
+      var caption = card.querySelector('p');
+      if (caption && destinationTips[card.getAttribute('href')]) caption.textContent = destinationTips[card.getAttribute('href')];
     });
     host.appendChild(guide);
     host.appendChild(value);
@@ -51,6 +59,13 @@
     valueSlot.name = 'sr-home-value';
     existingGuide.replaceWith(guideSlot);
     existingValue.replaceWith(valueSlot);
+    // Destination cards already appear in the new discovery guide.
+    inner.querySelectorAll('main > section.section.wrap').forEach(function (section) {
+      var title = section.querySelector('h2');
+      if (title && /Explore by destination/.test(title.textContent)) section.remove();
+    });
+    var shortcuts = inner.querySelector('nav[aria-label="Choose your day out"]');
+    if (shortcuts) shortcuts.remove();
     var oldHeading = inner.querySelector('.hero > h1.sr-only');
     if (oldHeading) oldHeading.remove();
     source.remove();

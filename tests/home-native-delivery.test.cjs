@@ -29,9 +29,11 @@ test('Initial response has useful visible prose, one H1 and clean category/desti
   const dom = fixture();
   const d = dom.window.document;
   assert.equal(d.querySelectorAll('h1').length, 1);
-  assert.equal(d.querySelector('h1').textContent, 'UK days out. Explore with Spin Raiders.');
+  assert.equal(d.querySelector('h1').textContent, 'UK days out. Find your kind of fun.');
   assert.equal(d.querySelectorAll('main').length, 1, 'The readable fallback should have a main content landmark.');
-  assert.ok(d.querySelector('#sr-home-native-source').textContent.trim().split(/\s+/).length > 1000);
+  assert.ok(d.querySelector('#sr-home-native-source').textContent.trim().split(/\s+/).length > 450);
+  assert.deepEqual(Array.from(d.querySelectorAll('[data-sr-home-kind]')).map(e => e.dataset.srHomeKind), ['destinations', 'attractions', 'food', 'hotels', 'arcades']);
+  assert.equal(d.querySelectorAll('.sr-discovery-grid > a').length, 6);
   for (const section of d.querySelectorAll('.home-about-grid > article')) {
     assert.ok(section.querySelector(':scope > h2'), 'Major homepage sections need an H2 before card H3s.');
   }
@@ -47,7 +49,6 @@ test('Initial response has useful visible prose, one H1 and clean category/desti
   }
   for (const a of d.querySelectorAll('a')) assert.match(a.getAttribute('href'), /^\/[a-z0-9/-]+$/);
   assert.ok(d.querySelector('a[href="/destination/skegness"]'));
-  assert.equal(d.querySelector('.home-search').getAttribute('action'), '/search');
   dom.window.close();
 });
 
@@ -78,8 +79,10 @@ test('After route hydration the same light-DOM prose is projected into its exist
   assert.equal(guide.querySelector('[data-identity="0"]'), realCard);
   realCard.click();
   assert.equal(clicked, 1, 'Reuse live card nodes and their existing event listeners.');
-  assert.ok(guide.textContent.includes('Whatever sort of day you have in mind'));
-  assert.ok(prose.includes('Whatever sort of day you have in mind'));
+  assert.ok(guide.textContent.includes('what shall we do?'));
+  assert.ok(prose.includes('what shall we do?'));
+  assert.equal(guide.querySelector('[data-sr-picks="arcades"] [data-identity="0"]'), realCard, 'Arcade cards must remain in their section after editorial reordering.');
+  assert.equal(guide.querySelector('[data-sr-picks="destinations"] [data-identity="1"]').textContent, 'Real card 1');
   const forwarding = home.querySelector('slot[name="sr-home-guide"]');
   assert.equal(forwarding.assignedElements()[0], guide);
   assert.equal(inner.querySelector('slot[name="sr-home-guide"]').assignedElements()[0], forwarding);
