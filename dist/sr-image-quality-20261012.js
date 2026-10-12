@@ -1,7 +1,8 @@
 /* Spin Raiders: responsive images and reference-matched dynamic town signs; measured type proportions. */
 (() => {
   'use strict';
-  if (window.SR_IMAGE_QUALITY_V1) return;
+  if (window.SR_IMAGE_QUALITY_20261012) return;
+  window.SR_IMAGE_QUALITY_20261012 = true;
   window.SR_IMAGE_QUALITY_V1 = true;
   const roots = new Set();
   const responsiveSources = new WeakMap();

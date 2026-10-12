@@ -39,3 +39,6 @@ test('A photograph loaded after the first scan corrects its cover-crop pixel req
 test('Existing author-provided responsive images keep their source set',()=>{
   const {dom,start}=setup('<section data-sr-native-home><img src="https://static.wixstatic.com/media/photo.jpg" srcset="small.jpg 320w, large.jpg 1280w" sizes="50vw"></section>');const image=dom.window.document.querySelector('img');imageSize(image,300,200,1200,800);start();assert.equal(image.srcset,'small.jpg 320w, large.jpg 1280w');assert.equal(image.sizes,'50vw');dom.window.close();
 });
+test('An older cached helper does not block the new image delivery pass',()=>{
+  const {dom,start}=setup('<section data-sr-native-home><img src="https://static.wixstatic.com/media/photo.jpg/v1/fit/w_1200,h_1200,q_85,enc_auto/photo.webp"></section>');dom.window.SR_IMAGE_QUALITY_V1=true;const image=dom.window.document.querySelector('img');imageSize(image,320,240,1200,900);start();assert.equal(image.dataset.srResponsiveImage,'1');assert.ok(image.srcset);dom.window.close();
+});
