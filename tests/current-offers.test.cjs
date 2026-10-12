@@ -3,12 +3,13 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const {JSDOM}=require('jsdom');
 const script=fs.readFileSync(require('node:path').join(__dirname,'../dist/sr-current-offers-20261012.js'),'utf8');
-function setup(path,rows,now){
+function setup(path,rows,now,routeRoles=false){
  const dom=new JSDOM('<body></body>',{url:'https://www.spin-raiders.com'+path,runScripts:'outside-only',pretendToBeVisual:true});
  const el=dom.window.document.createElement('div');el.id=path.startsWith('/destination/')?'sr-location-directory':'sr-extended-pages';dom.window.document.body.append(el);const root=el.attachShadow({mode:'open'});root.innerHTML='<main><section class="hero"></section><div class="results-heading"><h1>Explore York</h1></div></main>';
  dom.window.SR_CANONICAL={offerLive:r=>r.active!==false,normalizeOffer:r=>r,outbound:r=>r.affiliateUrl||'',hotelHref:r=>r._collection==='HotelOffers'?'/hotel/'+r._id+'/york':''};
  dom.window.SR_PUBLIC_DIRECTORY={D:{rows:async name=>rows.filter(r=>r._collection===name)}};
  if(now)dom.window.Date.now=()=>Date.parse(now);
+ if(routeRoles){dom.window.SR_ROUTES={outcome:r=>({recordRole:r.role||'unknown'})};dom.window.SR_ROUTE_UI={businessRows:(rows,col)=>{if(col!=='AffiliateOffers')return rows;if(rows.some(r=>!['business','offer'].includes(r.role)))throw Error('Business source classification unavailable');return rows.filter(r=>r.role==='business');}};}
  dom.window.eval(script);return {dom,root};
 }
 test('Town offer section retains food and attraction offers, keeps guide links and hides expired records',async()=>{
@@ -19,6 +20,12 @@ test('Town offer section retains food and attraction offers, keeps guide links a
  assert.ok(root.querySelector('a[href="/hotel/hotel/york"]'));
  assert.ok(root.querySelector('a[href="/offers?offer=food"]'));
  root.querySelector('[data-offer-category="food"]').click();assert.equal(root.querySelectorAll('.sr-current-card').length,1);assert.equal(root.querySelector('.sr-current-card h3').textContent,'food');
+ dom.window.close();
+});
+test('An unclassified promotion does not discard verified partner businesses or become a venue result',async()=>{
+ const {dom}=setup('/destination/york',[],'2026-10-12T00:00:00Z',true);await new Promise(r=>setTimeout(r,25));
+ const records=[{_id:'verified-venue',role:'business'},{_id:'ticket-offer',role:'offer'},{_id:'new-unclassified-promotion'}];
+ const result=dom.window.SR_ROUTE_UI.businessRows(records,'AffiliateOffers');assert.equal(result.length,1);assert.equal(result[0]._id,'verified-venue');assert.equal(dom.window.SR_ROUTE_UI.businessRows(records,'Venues'),records);
  dom.window.close();
 });
 test('Christmas-market planning filters the town inventory without mislabelling stays or activity packages as food',async()=>{

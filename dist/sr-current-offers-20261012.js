@@ -86,6 +86,17 @@
   function install() {
     var C=window.SR_CANONICAL,D=window.SR_PUBLIC_DIRECTORY?.D;
     if(!C||!D){if(++installing<200)setTimeout(install,150);return;}
+    var UI=window.SR_ROUTE_UI,Routes=window.SR_ROUTES;
+    if(UI&&Routes&&!UI.srKnownPartnerBusinesses){
+      UI.srKnownPartnerBusinesses=true;
+      var businessRows=UI.businessRows.bind(UI);
+      UI.businessRows=function(rows,collection,options){
+        if(collection!=='AffiliateOffers')return businessRows(rows,collection,options);
+        var known=rows.filter(function(row){return ['business','offer'].includes(Routes.outcome(row).recordRole);});
+        if(known.length!==rows.length)console.warn('Unclassified partner records excluded from business results:',rows.length-known.length);
+        return businessRows(known,collection,options);
+      };
+    }
     if(!D.srOfferReadCache){D.srOfferReadCache=true;var read=D.rows.bind(D),requests=new Map();D.rows=function(collection,filters){if(!/^(HotelGuides|HotelOffers|AffiliateOffers)$/.test(collection))return read(collection,filters);var key=collection+'|'+JSON.stringify(filters||{});if(!requests.has(key)){var promise=read(collection,filters).catch(function(error){requests.delete(key);throw error;});requests.set(key,promise);}return requests.get(key);};}
     if(!C.srAllOfferKinds){
       C.srAllOfferKinds=true;var previous=C.offerLive.bind(C);
