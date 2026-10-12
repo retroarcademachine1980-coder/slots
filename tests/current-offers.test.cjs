@@ -19,7 +19,7 @@ test('Town offer section retains food and attraction offers, keeps guide links a
  assert.equal(root.querySelectorAll('.sr-current-card').length,3);
  const offers=root.querySelector('[data-sr-current-town-offers]');assert.equal(offers.previousElementSibling.className,'categories');assert.equal(offers.nextElementSibling.className,'content');assert.ok(root.querySelector('#town-story'));
  assert.ok(root.querySelector('a[href="/hotel/hotel/york"]'));
- assert.ok(root.querySelector('a[href="/offers?offer=food"]'));
+ assert.ok(root.querySelector('a[href="/offers#offer=food"]'));
  root.querySelector('[data-offer-category="food"]').click();assert.equal(root.querySelectorAll('.sr-current-card').length,1);assert.equal(root.querySelector('.sr-current-card h3').textContent,'food');
  dom.window.close();
 });
@@ -46,4 +46,10 @@ test('An offer card opens its own details with the original affiliate link and d
  const {dom,root}=setup('/offers?offer=winter-fair',[row]);await new Promise(r=>setTimeout(r,25));
  const article=root.querySelector('[data-sr-current-offer-detail]');assert.ok(article);const a=article.querySelector('.booking');assert.equal(a.getAttribute('href'),row.affiliateUrl);assert.equal(a.getAttribute('rel'),'sponsored noopener');assert.ok(article.textContent.includes('Spin Raiders may earn a commission'));
  dom.window.close();
+});
+test('Copied offer fragments and changing categories keep the selected detail and original commission URL',async()=>{
+ const row=id=>({_id:id,_collection:'AffiliateOffers',title:id,category:id==='meal'?'Food & Drink Offer':'Christmas Fair',affiliate:true,active:true,affiliateUrl:'https://www.awin1.com/cread.php?awinaffid=3089397&ued=https%3A%2F%2Fmerchant.example%2F'+id,summary:'Current booking details.'});
+ const {dom,root}=setup('/offers#offer=meal',[row('meal'),row('fair')]);await new Promise(r=>setTimeout(r,25));let article=root.querySelector('[data-sr-current-offer-detail]');assert.equal(article.dataset.srOfferId,'meal');assert.ok(article.compareDocumentPosition(root.querySelector('.hero'))&dom.window.Node.DOCUMENT_POSITION_FOLLOWING);assert.equal(article.querySelector('.booking').getAttribute('href'),row('meal').affiliateUrl);
+ dom.window.location.hash='#offer=fair';await new Promise(r=>setTimeout(r,25));assert.equal(root.querySelectorAll('[data-sr-current-offer-detail]').length,1);assert.equal(root.querySelector('[data-sr-current-offer-detail]').dataset.srOfferId,'fair');
+ dom.window.location.hash='#category=food';await new Promise(r=>setTimeout(r,25));assert.equal(root.querySelector('[data-sr-current-offer-detail]'),null);assert.equal(root.querySelectorAll('.sr-current-card').length,1);assert.equal(root.querySelector('.sr-current-card h3').textContent,'meal');dom.window.close();
 });

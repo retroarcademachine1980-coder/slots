@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Kynance Cove",
+    "id": "kynance-cove",
+    "location": "The Lizard, Cornwall",
+    "body": "<p>If the colour of the sea makes you do a double take, you have found the right sort of day out. Kynance Cove is a tidal beach on Cornwall’s Lizard peninsula, with white sand and striking rock stacks. The National Trust car park is above the cove; reaching the beach involves a walk with steep sections and steps.</p><p>Choose your visit around the tide, rather than treating the beach as a patch of sand that stays the same all afternoon. The Trust warns about being cut off by the water and confirms there are no lifeguards. A photograph is lovely; a sensible route back is lovelier.</p><p>There are toilets at the car park and cove, plus a café whose opening depends on the weather. Parking is limited during busy periods. Check the current parking arrangements, access guide and seasonal dog restrictions before setting off. Allow time for the walk back uphill and leave the cliff edges to the seabirds.</p>",
+    "sources": [["National Trust visitor information", "https://www.nationaltrust.org.uk/visit/cornwall/kynance-cove"]]
+  },
+  {
+    "name": "Puzzlewood",
+    "id": "puzzlewood",
+    "location": "Forest of Dean, Gloucestershire",
+    "body": "<p>Some woods are a nice walk. Puzzlewood looks as though somebody might have left a fantasy adventure behind a tree. This ancient woodland in the Forest of Dean has twisting paths, mossy rocks, gorges and wooden bridges. The fun is in taking your time and noticing what appears around the next bend.</p><p>This is a walking attraction with uneven ground, rather than a smooth park path. Puzzlewood’s own access information describes narrow routes and more than 200 uneven, potentially slippery steps. Wheelchairs, mobility aids and pushchairs cannot safely use the woodland paths. Read that guidance before promising the outing to your group.</p><p>Check the current opening days and ticket arrangements on the official site, especially outside the main season or after poor weather. Wear footwear suited to the paths and give yourself room to enjoy the woodland without rushing. The venue has visitor information about its history and filming connections too — useful conversation material for the person who says they recognise every tree.</p>",
+    "sources": [["Puzzlewood", "https://www.puzzlewood.net/"], ["Access and visitor FAQs", "https://www.puzzlewood.net/index.php/frequently-asked-questions/frequently-asked-questions"]]
+  },
+  {
+    "name": "Portmeirion",
+    "id": "portmeirion",
+    "location": "North Wales",
+    "body": "<p>A colourful village, a piazza, estuary views and woodland gardens: Portmeirion gives a wander plenty of things to wander towards. The village’s shops, cafés and buildings are part of the visit, while the gardens offer a change of scene when you fancy stretching the day beyond the first photographs.</p><p>Have a look at the official village and garden information before deciding what to explore. The woodland includes places with names such as the Ghost Garden and Chinese Lake. That is considerably more promising than a plan which just says ‘walk about for a bit’.</p><p>Check admission, opening arrangements and the access guide for your chosen date. Some areas are harder to access because of the terrain, so work out which parts suit your group. A meal, a garden walk and time in the village can make a satisfying outing without racing between every stop. If you are considering a stay, check the particular hotel or cottage booking separately and read what is included.</p>",
+    "sources": [["Portmeirion visitor information", "https://portmeirion.wales/visit"], ["Woodland gardens", "https://portmeirion.wales/visit/explore/the-gardens"]]
+  },
+  {
+    "name": "Robin Hood’s Bay",
+    "id": "robin-hoods-bay",
+    "location": "North Yorkshire coast",
+    "body": "<p>Here is a seaside wander with a proper hill attached. Robin Hood’s Bay’s lower village sits below the visitor parking, so the walk down is part of the outing — and the walk back is the moment everyone suddenly remembers the snack they packed.</p><p>The village’s visitor information places both public car parks at the top of the steep hill: the smaller one near the descent and the larger former railway-station car park. Plan to leave the car up there and explore on foot. Narrow streets and the gradient make it especially useful to check the route beforehand if you have a buggy or mobility requirements.</p><p>Give the village time instead of treating it as a quick photograph stop. Choose a food break, browse what catches your eye and leave some energy for the return uphill. If you add the shore to your visit, check the tide and local signs first. For a wider Yorkshire break, pair the outing with the existing Whitby guide and choose the stops that suit your day.</p>",
+    "sources": [["Village parking and local transport", "https://www.robin-hoods-bay.co.uk/about-rhb/parking-local-transport"]],
+    "related": ["Explore Whitby", "/destination/whitby"]
+  },
+  {
+    "name": "Finchale Priory",
+    "id": "finchale-priory",
+    "location": "Near Durham",
+    "body": "<p>If your favourite kind of history is the sort you can wander through, Finchale Priory deserves a place in the plan. The surviving ruins tell the story of St Godric’s church and the later medieval priory. There is plenty to look at without turning the day into a classroom exercise.</p><p>English Heritage explains that Finchale became an outpost of Durham Cathedral and a retreat for its monks, before its suppression in 1538. Look at the remaining spaces and imagine the building in use. Even monks, it seems, appreciated getting away for a change of scene.</p><p>Use the official directions and current opening information before you travel. Historic ruins have outdoor surfaces and changing weather to consider, so choose footwear and a pace that suit your group. Give yourselves time to look closely rather than hurrying from entrance to exit. This can be the main stop for a quieter outing or part of a wider Durham day, with a food break worked into the plan.</p>",
+    "sources": [["English Heritage", "https://www.english-heritage.org.uk/visit/places/finchale-priory/"], ["History of the priory", "https://www.english-heritage.org.uk/visit/places/finchale-priory/history/"]]
+  },
+  {
+    "name": "Isle of Iona",
+    "id": "isle-of-iona",
+    "location": "Off the Isle of Mull, Scotland",
+    "body": "<p>An island day starts with the journey, and Iona is an outing worth giving a little breathing space. The foot-ferry crossing from Fionnphort on Mull leads to an island where the abbey and nunnery are important stops. Decide what you want to explore before trying to squeeze every possibility into the time between boats.</p><p>Historic Environment Scotland’s own guide explains the abbey’s long religious history and the stone crosses associated with the site. Open its current visit-planning page for the admission options and arrangements for your date. An island walk and entry to a managed historic attraction are different parts of the plan.</p><p>Check current ferry services and weather conditions with the operator, including the return journey. Leave a sensible margin rather than discovering your fastest walking speed on the way back to the landing. Bring clothing for the conditions and sort out any access requirements ahead of the trip. If you want to add another island excursion, check that booking’s timings separately; enthusiasm cannot persuade a timetable to wait.</p>",
+    "sources": [["Iona Abbey and Nunnery visitor planning", "https://www.historicenvironment.scot/visit/all/iona-abbey-and-nunnery/plan-your-visit/"], ["VisitScotland island visit information", "https://www.visitscotland.com/info/tours/mull-and-the-isle-of-iona-abbey-7e060311"]]
+  }
+]

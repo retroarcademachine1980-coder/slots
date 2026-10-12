@@ -17,3 +17,16 @@ test('Food guides use their real canonical route and a failed source leaves exis
  const {dom,root}=setup('/food-and-drink',[{title:'A real food stop',kind:'food',href:'/food-and-drink/a-real-food-stop-town'}]);root.querySelector('.outline').click();await new Promise(r=>setTimeout(r,25));assert.equal(root.querySelector('.sr-browse-card a').getAttribute('href'),'/food-and-drink/a-real-food-stop-town');dom.window.close();
  const failed=setup('/beaches',[]);failed.dom.window.SR_PUBLIC_DIRECTORY.D.rows=async()=>{throw Error('Unavailable');};failed.root.querySelector('.outline').click();await new Promise(r=>setTimeout(r,25));assert.ok(failed.root.querySelector('[data-browse-count]').textContent.includes('could not load'));assert.ok(failed.root.querySelector('.sr-hub-guide'));failed.dom.window.close();
 });
+test('The real public prose supports animal browsing, and public-readiness restrictions still exclude unavailable records',async()=>{
+ const {dom,root}=setup('/zoos',[]);let requestedFields;
+ dom.window.SR_PUBLIC_DIRECTORY.S.archiveQuery=async(query,_signal,_count,collection)=>{requestedFields=query.fields;return {dataItems:[{id:'lion-zoo',data:{title:'Wildlife Park',kind:'zoos',href:'/zoos/wildlife-park/town',fullDescription:'Watch lions and giraffes at this wildlife park.'}},{id:'not-ready',data:{title:'Unavailable lions',kind:'zoos',href:'/zoos/unavailable/town',directoryReady:false}}]};};
+ root.querySelector('.tile strong').textContent='Lions';root.querySelector('.tile').setAttribute('href','/search?q=Lions');
+ // Copying the selected fragment is also a normal supported entry point.
+ dom.window.location.hash='#sr-all-places=Lions';await new Promise(r=>setTimeout(r,35));assert.ok(requestedFields.includes('fullDescription'));assert.equal(root.querySelectorAll('.sr-browse-card').length,1);assert.equal(root.querySelector('.sr-browse-card h3').textContent,'Wildlife Park');dom.window.close();
+});
+test('Each named hidden-gem choice opens its own useful section and the featured venues remain in its catalogue',async()=>{
+ const {dom,root}=setup('/hidden-gems',[{title:'Bodnant Garden',kind:'outdoors',href:'/outdoors/bodnant-garden/colwyn-bay'},{title:'Popular Theme Park',kind:'theme',href:'/theme-parks/example/town'}]);
+ const tile=root.querySelector('.tile');tile.querySelector('strong').textContent='Puzzlewood';tile.setAttribute('href','/search?q=Puzzlewood');
+ await new Promise(r=>setTimeout(r,140));assert.equal(root.querySelectorAll('.sr-discovery').length,6);assert.equal(tile.getAttribute('href'),'/hidden-gems#sr-discovery-puzzlewood');tile.click();assert.equal(dom.window.location.hash,'#sr-discovery-puzzlewood');const guide=root.querySelector('#sr-discovery-puzzlewood');assert.ok(guide.textContent.includes('uneven'));assert.equal(guide.dataset.scrolled,'1');assert.ok(guide.querySelector('a[href="https://www.puzzlewood.net/"]'));
+ root.querySelector('.outline').click();await new Promise(r=>setTimeout(r,25));assert.equal(root.querySelectorAll('.sr-browse-card').length,1);assert.equal(root.querySelector('.sr-browse-card h3').textContent,'Bodnant Garden');dom.window.close();
+});
