@@ -29,7 +29,9 @@
   function text(r){return [title(r),r.locationName,r.destination,r.town,r.region,r.county,r.category,r.venueType,r.shortDescription,r.description,r.sourceFacts,(r.tags||[]).join(' ')].join(' ').replace(/<[^>]*>/g,' ').toLowerCase();}
   function eligible(r){
     if(!window.SR_ROUTE_UI.ready(r)||!window.SR_ROUTE_UI.discoverable(r))return false;
-    if(config.coastal)return /coast|seaside|beach|island/i.test([r.locationType,r.category,(r.tags||[]).join(' ')].join(' '));
+    // The existing public projection omits locationType. Apply the verified
+    // coastal filter in the CMS query, before that projection, instead.
+    if(config.coastal)return true;
     if(config.retro)return /retro|video arcade|pinball|arcade club|free play|free-play|gaming bar/i.test([r.title,r.venueType,r.category].join(' '));
     if(config.family)return r.familyFEC===true||/family|amusement|seaside|pier/i.test(r.venueType||'')&&!/^adult gaming|^agc/i.test(r.venueType||'');
     if(config.hidden)return r.hiddenGem===true||/hidden gem|quirky|unusual|little.known/i.test(text(r));
@@ -48,7 +50,8 @@
     search=section.querySelector('input');grid=section.querySelector('.sr-browse-cards');count=section.querySelector('[data-browse-count]');pages=section.querySelector('.sr-browse-pages');
     section.querySelector('form').addEventListener('submit',function(e){e.preventDefault();select(search.value);});search.addEventListener('input',function(){chosen=search.value;page=1;paint();});section.querySelector('form').addEventListener('reset',function(){chosen='';page=1;setTimeout(paint,0);});pages.addEventListener('click',function(e){var b=e.target.closest('button[data-browse-page]');if(!b)return;page=+b.dataset.browsePage;paint();scroll();});
     var D=window.SR_PUBLIC_DIRECTORY.D,UI=window.SR_ROUTE_UI;
-    Promise.allSettled(config.collections.map(function(c){return D.rows(c).then(function(rows){return UI.businessRows(rows,c);});})).then(function(results){if(!section.isConnected)return;var successful=results.filter(function(r){return r.status==='fulfilled';});if(!successful.length)throw Error('Category data unavailable');var seen=new Set();loaded=successful.flatMap(function(r){return r.value;}).filter(eligible).filter(function(r){var k=UI.key(r);if(seen.has(k))return false;seen.add(k);return true;}).sort(function(a,b){return title(a).localeCompare(title(b));});if(results.some(function(r){return r.status==='rejected';}))count.textContent='Some guides could not load. Reload to try again.';paint();}).catch(function(){count.textContent='The guides could not load this time. Reload the page to try again; the featured guides above are still available.';});
+    var filter=config.coastal?{$or:['Seaside','Coastal','Beach','Island'].map(function(v){return {locationType:{$contains:v}};})}:{};
+    Promise.allSettled(config.collections.map(function(c){return D.rows(c,filter).then(function(rows){return UI.businessRows(rows,c);});})).then(function(results){if(!section.isConnected)return;var successful=results.filter(function(r){return r.status==='fulfilled';});if(!successful.length)throw Error('Category data unavailable');var seen=new Set();loaded=successful.flatMap(function(r){return r.value;}).filter(eligible).filter(function(r){var k=UI.key(r);if(seen.has(k))return false;seen.add(k);return true;}).sort(function(a,b){return title(a).localeCompare(title(b));});if(results.some(function(r){return r.status==='rejected';}))count.textContent='Some guides could not load. Reload to try again.';paint();}).catch(function(){count.textContent='The guides could not load this time. Reload the page to try again; the featured guides above are still available.';});
   }
   function anchor(value){return path+'#sr-all-places'+(value?'='+encodeURIComponent(value):'');}
   function fromHash(){var m=location.hash.match(/^#sr-all-places(?:=(.*))?$/);if(!m||!owner)return;read();select(m[1]?decodeURIComponent(m[1]):'');}
