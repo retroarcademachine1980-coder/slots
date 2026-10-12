@@ -1,9 +1,9 @@
 /* Make the existing guide clear on arrival, and use the original photographs beneath artwork tiles. */
 (function () {
   'use strict';
-  if (window.SR_PAGE_FIRST_20261012_V4) return;
-  window.SR_PAGE_FIRST_20261012_V4 = true;
-  document.documentElement.dataset.srPageFirstVersion='20261012-4';
+  if (window.SR_PAGE_FIRST_20261012_V5) return;
+  window.SR_PAGE_FIRST_20261012_V5 = true;
+  document.documentElement.dataset.srPageFirstVersion='20261012-5';
   var welcomes = /* WELCOME_DATA */ {};
   var photoCorrections = /* PHOTO_DATA */ {};
   var resortOpenings = /* DETAIL_DATA */ {};
@@ -11,6 +11,7 @@
   var styleText = '.sr-page-intro{box-sizing:border-box;padding:22px max(20px,calc((100vw - 1320px)/2));background:#fff;color:#102744;border-bottom:1px solid #d8e6f2;font-family:Arial,sans-serif}.sr-page-intro h1,.sr-page-intro ::slotted(h1){font-family:"Roboto Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(27px,3.1vw,40px);line-height:1.1;color:#102744;margin:0 0 8px}.sr-page-intro p{margin:0;max-width:1100px;font-size:17px;line-height:1.55;color:#243b53}.sr-page-intro .sr-information-source{font-size:12px;margin-top:6px}.sr-first-description{font-size:17px;line-height:1.6;color:#243b53;margin:16px 0;max-width:75ch}.tile.sr-real-photo{position:relative;display:block;overflow:hidden;isolation:isolate;aspect-ratio:16/10;background:#0c355e;border-radius:12px}.tile.sr-real-photo:before{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(3,24,42,.88));z-index:1;pointer-events:none}.tile.sr-real-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tile.sr-real-photo>strong{position:absolute;left:14px;right:14px;bottom:13px;z-index:2;font-family:"Roboto Condensed",Arial,sans-serif;font-weight:900;font-size:clamp(19px,1.8vw,27px);line-height:1.15;color:#fff;text-shadow:0 1px 3px #0008}.tile.sr-real-photo>.sr-tile-icon{position:absolute;inset:15px 0 45px;display:grid;place-items:center;background:linear-gradient(135deg,#c9f3ff,#e6defd)}.sr-photo-credits{margin-top:9px;font-size:12px;line-height:1.5;color:#516579}.sr-photo-credits summary{cursor:pointer}.sr-photo-credits p{font-size:12px;margin:4px 0}.sr-photo-credits a{color:#175fad;text-decoration:underline}@media(max-width:650px){.sr-page-intro{padding:17px 18px}.sr-page-intro p{font-size:16px;line-height:1.5}.sr-first-description{font-size:16px}.tile.sr-real-photo>strong{font-size:21px}}';
   var observed = new WeakSet(), queued = false;
   styleText += '.sr-resort-story p,.sr-resort-story li{font:400 17px/1.7 Inter,Arial,sans-serif;margin:0 0 18px;color:#243b53}.sr-resort-story h2{font:900 clamp(24px,2.2vw,31px)/1.2 "Roboto Condensed",Arial,sans-serif;margin:24px 0 12px}.sr-resort-story a{color:#126baf;text-decoration:underline}';
+  styleText += '.sr-machine-intro{background:transparent!important;border-bottom:1px solid #ffffff35;color:#eaf5ff}.sr-machine-intro h1{font:900 clamp(27px,3.1vw,40px)/1.1 "Roboto Condensed",Arial,sans-serif!important;color:#ffe65d!important;margin:0 0 10px;text-shadow:none}.sr-machine-intro p{color:#eaf5ff!important}';
   function route() { return location.pathname.replace(/\/+$/, '') || '/'; }
   function installStyle(root) {
     var existing=root.querySelector('#sr-page-first-style');if(existing){if(existing.textContent!==styleText)existing.textContent=styleText;return;}
