@@ -17,7 +17,9 @@ function extract(start, end) {
 
 let guide = extract('<section class="section wrap home-guide">', '</section>\\n<section') + '</section>';
 guide = guide.replace('<section class="section wrap home-guide">', '<section id="sr-home-native-guide" data-sr-native-home slot="sr-home-guide" class="section wrap home-guide">');
-guide = guide.replace('<h2>You search it. <em>We show you it.</em></h2>', '<h1>UK days out. <em>All under one roof.</em></h1>');
+guide = guide.replace('<h2>You search it. <em>We show you it.</em></h2>', '<h1>UK days out. <em>Explore with Spin Raiders.</em></h1>');
+guide = guide.replace('<p>Maybe you are only travelling', '<p>Spin Raiders brings UK days out together, from seaside arcades and attractions to somewhere to eat and a place to stay. Maybe you are only travelling');
+guide = guide.replace(/(<article><)h3(>[^<]+<\/)h3(>)/g, '$1h2$2h2$3');
 for (const kind of ['arcades', 'attractions', 'food', 'hotels']) guide = guide.replace('${P("' + kind + '")}', '');
 const destinationStart = guide.indexOf('${$.filter');
 const destinationEnd = guide.indexOf('</div><a class="home-more" href="/days-out">', destinationStart);
@@ -26,14 +28,16 @@ const destinations = [
   ['skegness', 'Skegness', '89bd10a9088945cdbb81c3578d88dd20~mv2.webp', 'Traditional fun'],
   ['southport', 'Southport', 'a1e264880a0c4160ab30060e0aa0ff07~mv2.png', 'Coastal charm'],
   ['great-yarmouth', 'Great Yarmouth', 'a74df586e37c42cd869bc13672ca13d7~mv2.webp', 'Seaside classics'],
-].map(([slug, title, image, badge]) => '<a class="dest" href="/destination/' + slug + '"><img src="https://static.wixstatic.com/media/3a517e_' + image + '/v1/fill/w_480,h_340,al_c,q_55,enc_avif/' + slug + '.webp" alt="' + title + '" loading="lazy"><div><h3>' + title + '</h3><p>' + badge + '</p></div></a>').join('');
+].map(([slug, title, image, badge]) => '<a class="dest" href="/destination/' + slug + '"><img src="https://static.wixstatic.com/media/3a517e_' + image + '/v1/fill/w_480,h_340,al_c,q_55,enc_avif/' + slug + '.webp" alt="' + title + ' destination guide" width="480" height="340" loading="lazy"><div><h3>' + title + '</h3><p>' + badge + '</p></div></a>').join('');
 guide = guide.slice(0, destinationStart) + destinations + guide.slice(destinationEnd);
 guide = guide.replace('${g("search")}', '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 6 6"/></svg>');
 
 let value = extract('<section class="home-value">', '</div></section>\\n<div class="promos">') + '</div></section>';
 value = value.replace('<section class="home-value">', '<section id="sr-home-native-value" data-sr-native-home slot="sr-home-value" class="home-value">');
+value = value.replace('We want the page to be useful before you click anything.', 'Practical guides for better UK days out.');
 if ((guide + value).includes('${')) throw new Error('Unresolved production-template expression.');
-const fragment = '<div id="sr-home-native-source">' + guide + value + '</div>';
+const heroPreload = '<link rel="preload" as="image" fetchpriority="high" href="https://static.wixstatic.com/media/3a517e_42651a2e3b284d329c0d12dcab45d1a0~mv2.webp/v1/fit/w_1400,h_788,al_c,q_85,enc_avif/hero.webp">';
+const fragment = heroPreload + '<main id="sr-home-native-source">' + guide + value + '</main>';
 if (fragment.length > 14000) throw new Error('Leave space for the stylesheet and bridge within the Wix embed limit.');
 
 const scope = ':where([data-sr-native-home])';
@@ -42,6 +46,7 @@ css.walkRules(rule => {
   if (rule.parent.type === 'atrule' && /keyframes$/i.test(rule.parent.name)) return;
   rule.selectors = rule.selectors.flatMap(selector => {
     selector = selector.replace(/\.home-guide h2/g, '.home-guide :is(h1,h2)');
+    selector = selector.replace(/(\.home-about-grid[^,]*?article[^,]*?)h3/g, '$1:is(h2,h3)');
     if (selector === ':host') return [scope];
     if (selector === '*') return [scope, scope + ' *'];
     return /^[.\[:#]/.test(selector) ? [scope + selector, scope + ' ' + selector] : [scope + ' ' + selector];

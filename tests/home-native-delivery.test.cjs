@@ -29,10 +29,22 @@ test('Initial response has useful visible prose, one H1 and clean category/desti
   const dom = fixture();
   const d = dom.window.document;
   assert.equal(d.querySelectorAll('h1').length, 1);
-  assert.equal(d.querySelector('h1').textContent, 'UK days out. All under one roof.');
+  assert.equal(d.querySelector('h1').textContent, 'UK days out. Explore with Spin Raiders.');
+  assert.equal(d.querySelectorAll('main').length, 1, 'The readable fallback should have a main content landmark.');
   assert.ok(d.querySelector('#sr-home-native-source').textContent.trim().split(/\s+/).length > 1000);
-  assert.equal(d.querySelectorAll('h2').length, 2);
-  assert.ok(d.querySelectorAll('h3').length >= 9);
+  for (const section of d.querySelectorAll('.home-about-grid > article')) {
+    assert.ok(section.querySelector(':scope > h2'), 'Major homepage sections need an H2 before card H3s.');
+  }
+  let previousLevel = 0;
+  for (const heading of d.querySelectorAll('h1,h2,h3')) {
+    const level = Number(heading.tagName.slice(1));
+    assert.ok(level <= previousLevel + 1, 'Initial HTML must not skip a heading level.');
+    previousLevel = level;
+  }
+  for (const image of d.querySelectorAll('.dest img')) {
+    assert.ok(Number(image.getAttribute('width')) > 0 && Number(image.getAttribute('height')) > 0);
+    assert.ok(image.getAttribute('alt').includes('destination guide'));
+  }
   for (const a of d.querySelectorAll('a')) assert.match(a.getAttribute('href'), /^\/[a-z0-9/-]+$/);
   assert.ok(d.querySelector('a[href="/destination/skegness"]'));
   assert.equal(d.querySelector('.home-search').getAttribute('action'), '/search');
