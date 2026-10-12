@@ -17,3 +17,16 @@ test('A venue’s real opening paragraph is moved into its first view once, with
 test('Policy pages are not turned into jokey category pages',()=>{
   const {dom,root}=fixture('/privacy-policy','<main><section class="chero"><h1>Privacy Policy</h1><p>Privacy terms.</p></section></main>');dom.window.eval(script);assert.equal(root.querySelector('.sr-page-intro'),null);assert.equal(root.querySelector('h1').textContent,'Privacy Policy');dom.window.close();
 });
+test('A category without a photograph keeps its choice, with sharp vector artwork and a real text label',()=>{
+  const {dom,root}=fixture('/zoos','<main><section><div class="tiles"><a class="tile art" href="/zoos#lions" style="background-image:url(smudge.webp)"></a></div></section></main>');
+  dom.window.SR_CATEGORY_PAGES={zoos:{rows:[{items:['Lions']}],rowImages:[[null]]}};
+  dom.window.SR_CATEGORY_ICONS={paw:'<circle cx="16" cy="16" r="10"/>',compass:'<circle cx="16" cy="16" r="12"/>'};
+  dom.window.eval(script);const tile=root.querySelector('.tile');assert.equal(tile.getAttribute('href'),'/zoos#lions');assert.ok(tile.querySelector('svg'));assert.equal(tile.querySelector('strong').textContent,'Lions');assert.equal(tile.style.backgroundImage,'');assert.equal(tile.classList.contains('art'),false);dom.window.close();
+});
+test('A featured destination gets its current real photograph, alt text and visible photographer credit',()=>{
+  const {dom,root}=fixture('/beaches','<main><section><a class="card" href="/destination/blackpool"><img src="smudge.webp" srcset="old.webp 960w"><div><h3>Blackpool</h3></div></a></section></main>');
+  dom.window.eval(script);const img=root.querySelector('img');assert.ok(img.src.includes('5d9814f8d51447f39c6194e2e6730805'));assert.ok(img.alt.includes('Blackpool beach'));assert.equal(img.getAttribute('srcset'),null);assert.ok(root.querySelector('.sr-photo-credits').textContent.includes('Steve Daniels'));dom.window.close();
+});
+test('Photographer credits sit after a whole card grid, preserving its layout and crediting every image',()=>{
+  const {dom,root}=fixture('/beaches','<main><section><div class="cards"><a class="card" href="/destination/blackpool"><img src="old.webp"><h3>Blackpool</h3></a><a class="card" href="/destination/skegness"><img src="old.webp"><h3>Skegness</h3></a></div></section></main>');dom.window.eval(script);const grid=root.querySelector('.cards');assert.equal(grid.children.length,2);assert.equal(grid.nextElementSibling.tagName,'DETAILS');assert.ok(grid.nextElementSibling.textContent.includes('Steve Daniels'));assert.ok(grid.nextElementSibling.textContent.includes('Aethonatic'));dom.window.close();
+});

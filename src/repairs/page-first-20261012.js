@@ -35,9 +35,10 @@
     main.insertBefore(intro,hero);
   }
   function photoCredits(grid, entries) {
-    if (!entries.length || grid.parentElement.querySelector('.sr-photo-credits')) return;
-    var details=document.createElement('details');details.className='sr-photo-credits';var summary=document.createElement('summary');summary.textContent='Photograph credits';details.append(summary);
-    entries.forEach(function(entry){var p=document.createElement('p');var a=document.createElement('a');a.href=entry.source;a.textContent=entry.alt;var license=document.createElement('a');license.href=entry.licenseUrl;license.textContent=entry.license;p.append(a,document.createTextNode(' · '+entry.credit+' · '),license,document.createTextNode(' · display crop'));details.append(p);});grid.after(details);
+    if (!entries.length) return;
+    var details=grid.nextElementSibling;
+    if(!details||!details.matches('details.sr-photo-credits')){details=document.createElement('details');details.className='sr-photo-credits';var summary=document.createElement('summary');summary.textContent='Photograph credits';details.append(summary);grid.after(details);}
+    entries.forEach(function(entry){if(Array.from(details.querySelectorAll('a')).some(function(a){return a.href===entry.source;}))return;var p=document.createElement('p');var a=document.createElement('a');a.href=entry.source;a.textContent=entry.alt;var license=document.createElement('a');license.href=entry.licenseUrl;license.textContent=entry.license;p.append(a,document.createTextNode(' · '+entry.credit+' · '),license,document.createTextNode(' · display crop'));details.append(p);});
   }
   function restoreTilePhotos(root) {
     var path=route(), id=pathsToCategory[path]||path.slice(1), model=window.SR_CATEGORY_PAGES&&window.SR_CATEGORY_PAGES[id];
@@ -47,14 +48,30 @@
       grid.querySelectorAll(':scope > a.tile').forEach(function(tile,index){
         if(tile.dataset.srOriginalPhoto==='1')return;
         var label=row.items[index];if(typeof label!=='string')return;
-        var correction=path==='/beaches'&&photoCorrections[label], source=correction&&correction.src||model.rowImages&&model.rowImages[rowIndex]&&model.rowImages[rowIndex][index];
+        var correction=photoCorrections[label], source=correction&&correction.src||model.rowImages&&model.rowImages[rowIndex]&&model.rowImages[rowIndex][index];
         var alt=correction&&correction.alt||model.rowImageAlts&&model.rowImageAlts[rowIndex]&&model.rowImageAlts[rowIndex][index]||label;
-        // The original model's photograph takes precedence over its compressed artwork sheet.
-        if(!source||!/^https:\/\/static\.wixstatic\.com\/media\//.test(source))return;
-        var img=document.createElement('img');img.src=source.split('/v1/')[0]+'/v1/fill/w_640,h_400,q_85,enc_auto/photo.webp';img.alt=alt;img.width=640;img.height=400;img.loading='lazy';img.decoding='async';
-        var name=document.createElement('strong');name.textContent=label;tile.replaceChildren(img,name);tile.classList.remove('art');tile.classList.add('sr-real-photo');tile.style.removeProperty('background-image');tile.style.removeProperty('aspect-ratio');tile.dataset.srOriginalPhoto='1';
+        // Separate real photographs and HTML labels. A category without a verified
+        // photo uses the site's crisp vector artwork rather than a blurry art sheet.
+        var visual;
+        if(source&&/^https:\/\/static\.wixstatic\.com\/media\//.test(source)){
+          visual=document.createElement('img');visual.src=source.split('/v1/')[0]+'/v1/fill/w_640,h_400,q_85,enc_auto/photo.webp';visual.alt=alt;visual.width=640;visual.height=400;visual.loading='lazy';visual.decoding='async';
+        }else{
+          var icons=window.SR_CATEGORY_ICONS;if(!icons)return;
+          var key=/machine|agc|slots/i.test(label)?'arcade':/game|retro/i.test(label)?'game':/fish|aquarium|reptile/i.test(label)?'fish':/lion|elephant|giraffe|animal|wildlife|primat|cat|penguin|bird|safari|zoo/i.test(label)?'paw':/castle|roman|histor|medieval|monument|battlefield/i.test(label)?'castle':/museum|gallery|science|heritage/i.test(label)?'museum':/food|dining|cafe|drink|pub/i.test(label)?'food':/hotel|stay|cottage|camp|lodge/i.test(label)?'bed':/water|boat|beach|coast/i.test(label)?'beach':/ride|park|family fun/i.test(label)?'coaster':/walk|garden|nature|forest|wood/i.test(label)?'tree':'compass';
+          visual=document.createElement('span');visual.className='sr-tile-icon';visual.setAttribute('aria-hidden','true');visual.innerHTML='<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="72" height="72">'+(icons[key]||icons.compass)+'</svg>';
+        }
+        var name=document.createElement('strong');name.textContent=label;tile.replaceChildren(visual,name);tile.classList.remove('art');tile.classList.add('sr-real-photo');tile.style.removeProperty('background-image');tile.style.removeProperty('aspect-ratio');tile.dataset.srOriginalPhoto='1';
         if(correction&&correction.credit)credits.push(correction);
       });photoCredits(grid,credits);
+    });
+  }
+  function currentDestinationPhotos(root) {
+    root.querySelectorAll('a[href^="/destination/"]').forEach(function(a){
+      var heading=a.querySelector('h3,h2,strong'), label=heading&&heading.textContent.trim(), correction=photoCorrections[label], img=a.querySelector('img');
+      if(!correction||!img||a.classList.contains('tile'))return;
+      if(img.dataset.srCurrentPlacePhoto===correction.src)return;
+      img.removeAttribute('srcset');img.removeAttribute('sizes');img.dataset.srImageSource=correction.src;
+      img.src=correction.src+'/v1/fill/w_960,h_720,q_85,enc_auto/place.webp';img.alt=correction.alt||label;img.dataset.srCurrentPlacePhoto=correction.src;
     });
   }
   function detailLead(root) {
@@ -74,6 +91,8 @@
       var src=(img.getAttribute('data-sr-image-source')||img.getAttribute('src')||'').split('/v1/')[0];
       var entry=Object.values(photoCorrections).find(function(p){return p.src===src&&p.credit;});
       if(!entry)return;img.dataset.srPhotoCredit='1';
+      var grid=img.closest('.cards,.highlights,.home-picks,.sr-browse-cards,.grid');
+      if(grid){photoCredits(grid,[entry]);return;}
       var container=img.parentElement;if(!container)return;
       var caption=document.createElement('p');caption.className='sr-photo-credits';var a=document.createElement('a');a.href=entry.source;a.textContent=entry.alt;
       var license=document.createElement('a');license.href=entry.licenseUrl;license.textContent=entry.license;
@@ -91,7 +110,7 @@
     queued=false;var roots=[document];
     for(var i=0;i<roots.length;i++){
       var root=roots[i];root.querySelectorAll('*').forEach(function(e){if(e.shadowRoot)roots.push(e.shadowRoot);});
-      installStyle(root);introduction(root);restoreTilePhotos(root);detailLead(root);directHeroLead(root);importedPhotoCredits(root);
+      installStyle(root);introduction(root);restoreTilePhotos(root);currentDestinationPhotos(root);detailLead(root);directHeroLead(root);importedPhotoCredits(root);
       if(!observed.has(root)){observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
     }
   }

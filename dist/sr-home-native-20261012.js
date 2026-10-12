@@ -33,6 +33,9 @@
     var guide = source.querySelector('#sr-home-native-guide');
     var value = source.querySelector('#sr-home-native-value');
     if (!host || !inner || !existingGuide || !existingValue || !guide || !value) return false;
+    // Keep the useful first view until the approved navigation has arrived too.
+    // Otherwise the legacy cramped menu can flash between the two layouts.
+    if (source.querySelector('#sr-home-early') && !inner.querySelector('nav[data-sr-hover-menu]')) return false;
 
     var currentPicks = Array.from(existingGuide.querySelectorAll('.home-picks'));
     var nativePicks = source.querySelectorAll('.home-picks');

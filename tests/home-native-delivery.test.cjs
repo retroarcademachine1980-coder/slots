@@ -21,6 +21,7 @@ function runtime(dom) {
   outer.append(home);
   const inner = home.attachShadow({ mode: 'open' });
   inner.innerHTML = '<main><section class="hero"><h1 class="sr-only">Big days out. Brilliant discoveries.</h1></section><section class="home-guide">' + Array.from(d.querySelectorAll('.home-picks')).map((_, i) => '<div class="home-picks"><a href="/destination/blackpool" data-identity="' + i + '">Real card ' + i + '</a></div>').join('') + '</section><section class="section wrap"><h2>This month’s highlights</h2><div class="highlights"><a class="card" data-offer href="/attractions/example/town">An offer</a><a class="card" data-monthly-arcade href="/arcade/example/town"><span class="badge">ARCADE OF THE MONTH</span>Arcade pick</a></div></section><section><section class="home-value">Original value text</section></section></main>';
+  const nav=d.createElement('nav');nav.dataset.srHoverMenu='1';inner.prepend(nav);
   d.body.prepend(host);
   return { host, outer, home, inner };
 }
