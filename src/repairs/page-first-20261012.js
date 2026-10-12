@@ -1,9 +1,9 @@
 /* Make the existing guide clear on arrival, and use the original photographs beneath artwork tiles. */
 (function () {
   'use strict';
-  if (window.SR_PAGE_FIRST_20261012_V2) return;
-  window.SR_PAGE_FIRST_20261012_V2 = true;
-  document.documentElement.dataset.srPageFirstVersion='20261012-2';
+  if (window.SR_PAGE_FIRST_20261012_V3) return;
+  window.SR_PAGE_FIRST_20261012_V3 = true;
+  document.documentElement.dataset.srPageFirstVersion='20261012-3';
   var welcomes = /* WELCOME_DATA */ {};
   var photoCorrections = /* PHOTO_DATA */ {};
   var resortOpenings = /* DETAIL_DATA */ {};
@@ -107,6 +107,18 @@
     }else{paragraph.textContent=brief;}
     opening.append(paragraph);hero.before(opening);
   }
+  function foodFirstView(root){
+    if(root.host?.id!=='sr-food-page')return;
+    var banner=root.querySelector('.banner'),heading=root.querySelector('main .head h1');
+    if(!banner||!heading||root.querySelector('[data-sr-food-purpose]'))return;
+    var intro=document.createElement('section');intro.className='sr-page-intro';intro.dataset.srFoodPurpose='1';intro.append(heading);
+    var lead=root.querySelector('[data-sr-first-description]');if(lead)intro.append(lead);
+    else {var tag=root.querySelector('main .head .tag');if(tag&&tag.textContent.trim()){var paragraph=document.createElement('p');paragraph.textContent=tag.textContent;intro.append(paragraph);}}
+    banner.before(intro);
+    // Supplier listings and researched guides must not imply a personal visit.
+    var labels=['Food & drink guides','Restaurants & cafés','Local discoveries','Plan your food stop'];
+    banner.querySelectorAll('.ticks span').forEach(function(span,index){if(labels[index])span.textContent=labels[index];});
+  }
   function importedPhotoCredits(root) {
     root.querySelectorAll('img').forEach(function(img){
       if(img.closest('.sr-real-photo')||img.dataset.srPhotoCredit)return;
@@ -132,7 +144,7 @@
     queued=false;var roots=[document];
     for(var i=0;i<roots.length;i++){
       var root=roots[i];root.querySelectorAll('*').forEach(function(e){if(e.shadowRoot)roots.push(e.shadowRoot);});
-      installStyle(root);introduction(root);restoreTilePhotos(root);currentDestinationPhotos(root);cleanOfferLinks(root);detailLead(root);venueFirstView(root);directHeroLead(root);importedPhotoCredits(root);
+      installStyle(root);introduction(root);restoreTilePhotos(root);currentDestinationPhotos(root);cleanOfferLinks(root);detailLead(root);venueFirstView(root);foodFirstView(root);directHeroLead(root);importedPhotoCredits(root);
       if(!observed.has(root)){observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
     }
   }
