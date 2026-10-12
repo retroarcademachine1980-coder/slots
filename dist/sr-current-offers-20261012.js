@@ -75,7 +75,7 @@
       var root=document.getElementById('sr-location-directory')?.shadowRoot,slug=path.split('/').pop();if(!root)return;
       var heading=root.querySelector('.results-heading');if(!heading)return;
       var local=rows.filter(function(row){return [row.locationSlug,row.destinationSlug,row.locationName,row.destination].some(function(value){return normal(value)===slug;});});
-      if(local.length){list(root,local,local[0].locationName || local[0].destination || slug.replace(/-/g,' '),heading);mounted=true;}
+      if(local.length){var start=root.querySelector('main>.categories') || root.querySelector('main>.search-hero') || heading;list(root,local,local[0].locationName || local[0].destination || slug.replace(/-/g,' '),start);mounted=true;}
     }else if(path==='/offers'){
       var root=document.getElementById('sr-extended-pages')?.shadowRoot;if(!root)return;var hero=root.querySelector('main>.hero');if(!hero)return;
       list(root,rows,'',hero);mounted=true;detail(root,rows);

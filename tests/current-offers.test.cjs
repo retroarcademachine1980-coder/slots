@@ -5,7 +5,7 @@ const {JSDOM}=require('jsdom');
 const script=fs.readFileSync(require('node:path').join(__dirname,'../dist/sr-current-offers-20261012.js'),'utf8');
 function setup(path,rows,now,routeRoles=false){
  const dom=new JSDOM('<body></body>',{url:'https://www.spin-raiders.com'+path,runScripts:'outside-only',pretendToBeVisual:true});
- const el=dom.window.document.createElement('div');el.id=path.startsWith('/destination/')?'sr-location-directory':'sr-extended-pages';dom.window.document.body.append(el);const root=el.attachShadow({mode:'open'});root.innerHTML='<main><section class="hero"></section><div class="results-heading"><h1>Explore York</h1></div></main>';
+ const el=dom.window.document.createElement('div');el.id=path.startsWith('/destination/')?'sr-location-directory':'sr-extended-pages';dom.window.document.body.append(el);const root=el.attachShadow({mode:'open'});root.innerHTML=path.startsWith('/destination/')?'<main><section class="search-hero"><h1>Explore York</h1></section><nav class="categories"></nav><div class="content"><article id="town-story">The full town guide</article><div class="results-heading"><h2>Results for York</h2></div></div></main>':'<main><section class="hero"></section><div class="results-heading"><h1>Explore York</h1></div></main>';
  dom.window.SR_CANONICAL={offerLive:r=>r.active!==false,normalizeOffer:r=>r,outbound:r=>r.affiliateUrl||'',hotelHref:r=>r._collection==='HotelOffers'?'/hotel/'+r._id+'/york':''};
  dom.window.SR_PUBLIC_DIRECTORY={D:{rows:async name=>rows.filter(r=>r._collection===name)}};
  if(now)dom.window.Date.now=()=>Date.parse(now);
@@ -17,6 +17,7 @@ test('Town offer section retains food and attraction offers, keeps guide links a
  const {dom,root}=setup('/destination/york',[row('hotel','HotelOffers'),row('food','AffiliateOffers',{category:'Food & Drink Offer'}),row('show','AffiliateOffers',{category:'Attraction Offer'}),row('expired','AffiliateOffers',{offerValidUntil:{$date:'2020-01-01'}}),row('disabled','AffiliateOffers',{active:false}),row('not-a-partner','AffiliateOffers',{affiliate:false,affiliateUrl:'https://example.com'})]);
  await new Promise(r=>setTimeout(r,25));
  assert.equal(root.querySelectorAll('.sr-current-card').length,3);
+ const offers=root.querySelector('[data-sr-current-town-offers]');assert.equal(offers.previousElementSibling.className,'categories');assert.equal(offers.nextElementSibling.className,'content');assert.ok(root.querySelector('#town-story'));
  assert.ok(root.querySelector('a[href="/hotel/hotel/york"]'));
  assert.ok(root.querySelector('a[href="/offers?offer=food"]'));
  root.querySelector('[data-offer-category="food"]').click();assert.equal(root.querySelectorAll('.sr-current-card').length,1);assert.equal(root.querySelector('.sr-current-card h3').textContent,'food');
