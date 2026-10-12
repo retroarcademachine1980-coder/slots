@@ -50,7 +50,12 @@ test('Initial response has useful visible prose, one H1 and clean category/desti
     assert.ok(Number(image.getAttribute('width')) > 0 && Number(image.getAttribute('height')) > 0);
     assert.ok(image.getAttribute('alt').includes('destination guide'));
   }
-  for (const a of d.querySelectorAll('a')) assert.match(a.getAttribute('href'), /^\/[a-z0-9/-]+$/);
+  for (const a of d.querySelectorAll('a')) {
+    const url=new URL(a.getAttribute('href'),'https://www.spin-raiders.com');
+    assert.equal(url.origin,'https://www.spin-raiders.com');
+    assert.match(url.pathname,/^\/[a-z0-9/-]+$/);
+    if(url.search){assert.equal(url.pathname,'/offers');assert.equal(Array.from(url.searchParams.keys()).length,1);assert.ok(url.searchParams.has('offer')||url.searchParams.has('category'));}
+  }
   assert.ok(d.querySelector('a[href="/destination/skegness"]'));
   dom.window.close();
 });
@@ -88,7 +93,9 @@ test('After route hydration the same light-DOM prose is projected into its exist
   assert.ok(prose.includes('what shall we do?'));
   assert.equal(value.querySelector('[data-sr-picks="arcades"] [data-identity="0"]'), realCard, 'Arcade cards must appear at the bottom after editorial reordering.');
   assert.ok(inner.querySelector('main > slot[name="sr-home-value"]'), 'The bottom guide and arcade section need a live slot even after removing the old destination block.');
-  assert.equal(guide.querySelector('#sr-monthly-highlights [data-offer]'),offerCard);
+  assert.equal(guide.querySelector('#sr-monthly-highlights [data-offer]'),null,'Keep the selected winter offers instead of the old circus selection.');
+  assert.equal(guide.querySelectorAll('#sr-monthly-highlights .card').length,3);
+  assert.ok(guide.querySelector('#sr-monthly-highlights a[href="/hotel/premier-inn-blackpool-north-pier/blackpool"]'));
   assert.equal(value.querySelector('[data-sr-picks="arcades"] [data-monthly-arcade]'),monthlyArcade);
   assert.equal(inner.querySelector('.highlights'),null,'Do not leave a second highlights section lower down.');
   assert.equal(guide.querySelector('[data-sr-picks="destinations"] [data-identity="1"]').textContent, 'Real card 1');

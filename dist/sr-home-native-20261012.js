@@ -62,7 +62,7 @@
         if (/^\/(arcade|agc)\//.test(href) || badge && /ARCADE/.test(badge.textContent)) arcadeFeatures.push(card);
         else offers.push(card);
       });
-      if (offers.length) featured.replaceChildren.apply(featured, offers);
+      if (offers.length && !featured.hasAttribute('data-sr-owned-highlights')) featured.replaceChildren.apply(featured, offers);
       var arcades = value.querySelector('[data-sr-picks="arcades"]');
       if (arcades) arcadeFeatures.forEach(function (card) { arcades.appendChild(card); });
       liveHighlights.remove();
