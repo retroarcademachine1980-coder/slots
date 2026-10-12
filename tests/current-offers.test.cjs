@@ -3,11 +3,12 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const {JSDOM}=require('jsdom');
 const script=fs.readFileSync(require('node:path').join(__dirname,'../dist/sr-current-offers-20261012.js'),'utf8');
-function setup(path,rows){
+function setup(path,rows,now){
  const dom=new JSDOM('<body></body>',{url:'https://www.spin-raiders.com'+path,runScripts:'outside-only',pretendToBeVisual:true});
  const el=dom.window.document.createElement('div');el.id=path.startsWith('/destination/')?'sr-location-directory':'sr-extended-pages';dom.window.document.body.append(el);const root=el.attachShadow({mode:'open'});root.innerHTML='<main><section class="hero"></section><div class="results-heading"><h1>Explore York</h1></div></main>';
  dom.window.SR_CANONICAL={offerLive:r=>r.active!==false,normalizeOffer:r=>r,outbound:r=>r.affiliateUrl||'',hotelHref:r=>r._collection==='HotelOffers'?'/hotel/'+r._id+'/york':''};
  dom.window.SR_PUBLIC_DIRECTORY={D:{rows:async name=>rows.filter(r=>r._collection===name)}};
+ if(now)dom.window.Date.now=()=>Date.parse(now);
  dom.window.eval(script);return {dom,root};
 }
 test('Town offer section retains food and attraction offers, keeps guide links and hides expired records',async()=>{
@@ -19,6 +20,18 @@ test('Town offer section retains food and attraction offers, keeps guide links a
  assert.ok(root.querySelector('a[href="/offers?offer=food"]'));
  root.querySelector('[data-offer-category="food"]').click();assert.equal(root.querySelectorAll('.sr-current-card').length,1);assert.equal(root.querySelector('.sr-current-card h3').textContent,'food');
  dom.window.close();
+});
+test('Christmas-market planning filters the town inventory without mislabelling stays or activity packages as food',async()=>{
+ const row=(id,extra)=>({_id:id,_collection:'AffiliateOffers',title:id,locationSlug:'york',locationName:'York',affiliate:true,active:true,affiliateUrl:'https://www.awin1.com/'+id,...extra});
+ const rows=[row('pavilion',{category:'THINGS TO DO OFFER • STAY',offerTitle:'Overnight stay for 2 with breakfast & a welcome drink'}),row('hotel-tea',{title:'Hotel afternoon tea',category:'Food & Drink Offer',offerTitle:'Afternoon tea for 2'}),row('darts',{category:'THINGS TO DO OFFER • ACTIVITY',offerTitle:'Darts with a drink each'})];
+ const {dom,root}=setup('/destination/york',rows,'2026-10-12T00:00:00Z');
+ await new Promise(r=>setTimeout(r,25));
+ const market=root.querySelector('.sr-festive-plan');assert.ok(market.textContent.includes('closed every Tuesday'));assert.ok(market.querySelector('a[href="https://visityork.org/christmas/york-christmas-market"]'));
+ market.querySelector('[data-offer-category="stays"]').click();assert.equal(root.querySelectorAll('.sr-current-card').length,1);assert.equal(root.querySelector('.sr-current-card h3').textContent,'pavilion');assert.ok(root.querySelector('.sr-current-card strong').textContent.includes('offer details'));
+ root.querySelector('.sr-current-category-filters [data-offer-category="food"]').click();assert.equal(root.querySelectorAll('.sr-current-card').length,1);assert.equal(root.querySelector('.sr-current-card h3').textContent,'Hotel afternoon tea');assert.equal(root.querySelector('.sr-festive-plan'),market);
+ root.querySelector('.sr-current-category-filters [data-offer-category="attractions"]').click();assert.equal(root.querySelector('.sr-current-card h3').textContent,'darts');
+ dom.window.close();
+ const ended=setup('/destination/york',rows,'2027-01-10T00:00:00Z');await new Promise(r=>setTimeout(r,25));assert.equal(ended.root.querySelector('.sr-festive-plan'),null);assert.equal(ended.root.querySelectorAll('.sr-current-card').length,3);ended.dom.window.close();
 });
 test('An offer card opens its own details with the original affiliate link and disclosure',async()=>{
  const row={_id:'winter-fair',_collection:'AffiliateOffers',title:'Winter fair',category:'Christmas Fair',affiliate:true,active:true,affiliateUrl:'https://www.awin1.com/cread.php?awinaffid=3089397',summary:'Venue and date details.'};
