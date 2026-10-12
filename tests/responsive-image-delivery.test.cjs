@@ -22,7 +22,7 @@ test('Wide venue photographs retain enough pixels for a tall cover crop without 
   const {dom,start}=setup();const host=dom.window.document.createElement('div');host.id='sr-seaside-root';dom.window.document.body.append(host);
   const root=host.attachShadow({mode:'open'});root.innerHTML='<img style="object-fit:cover" src="https://static.wixstatic.com/media/real-photo~mv2.png/v1/fit/w_1200,h_1000,q_90/file.webp">';
   const image=root.querySelector('img');imageSize(image,310,295,1200,675);start();
-  assert.equal(image.sizes,'525px');assert.match(image.src,/w_640,h_533,q_82,enc_auto/);assert.ok(image.srcset.includes('2560w'));assert.equal(image.decoding,'async');assert.equal(image.width,1200);assert.equal(image.height,675);
+  assert.equal(image.sizes,'525px');assert.match(image.src,/w_640,h_360,q_82,enc_auto/);assert.ok(image.srcset.includes('2560w'));assert.equal(image.decoding,'async');assert.equal(image.width,1200);assert.equal(image.height,675);
   dom.window.close();
 });
 test('Readable light-DOM homepage photos receive retina variants while unrelated app images remain untouched',()=>{
@@ -41,4 +41,10 @@ test('Existing author-provided responsive images keep their source set',()=>{
 });
 test('An older cached helper does not block the new image delivery pass',()=>{
   const {dom,start}=setup('<section data-sr-native-home><img src="https://static.wixstatic.com/media/photo.jpg/v1/fit/w_1200,h_1200,q_85,enc_auto/photo.webp"></section>');dom.window.SR_IMAGE_QUALITY_V1=true;const image=dom.window.document.querySelector('img');imageSize(image,320,240,1200,900);start();assert.equal(image.dataset.srResponsiveImage,'1');assert.ok(image.srcset);dom.window.close();
+});
+test('Portrait originals use a tall fit box so a short supplier box cannot shrink them below the card width',()=>{
+  const {dom,start}=setup('<section data-sr-native-home><img style="object-fit:cover" src="https://static.wixstatic.com/media/portrait.jpg/v1/fit/w_1000,h_700,q_85,enc_auto/photo.webp"></section>');const image=dom.window.document.querySelector('img');imageSize(image,331,186,375,500);start();assert.equal(image.sizes,'331px');assert.match(image.src,/w_480,h_640,q_82,enc_auto/);dom.window.close();
+});
+test('An existing source set from the previous site helper can be corrected without overriding an author-provided set',()=>{
+  const {dom,start}=setup('<section data-sr-native-home><img data-sr-responsive-image="1" srcset="old.webp 480w" style="object-fit:cover" src="https://static.wixstatic.com/media/portrait.jpg/v1/fit/w_480,h_336,q_82,enc_auto/image.webp"></section>');dom.window.SR_IMAGE_QUALITY_20261012=true;const image=dom.window.document.querySelector('img');imageSize(image,331,186,174,232);start();assert.match(image.src,/w_480,h_640,q_82,enc_auto/);assert.ok(image.srcset.includes('2560w'));dom.window.close();
 });

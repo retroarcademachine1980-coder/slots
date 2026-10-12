@@ -1,8 +1,8 @@
 /* Spin Raiders: responsive images and reference-matched dynamic town signs; measured type proportions. */
 (() => {
   'use strict';
-  if (window.SR_IMAGE_QUALITY_20261012) return;
-  window.SR_IMAGE_QUALITY_20261012 = true;
+  if (window.SR_IMAGE_QUALITY_VERSION === '20261012-fit-v2') return;
+  window.SR_IMAGE_QUALITY_VERSION = '20261012-fit-v2';
   window.SR_IMAGE_QUALITY_V1 = true;
   const roots = new Set();
   const responsiveSources = new WeakMap();
@@ -60,8 +60,8 @@
     if (box.width < 80 || box.height < 40) return;
     const previous = responsiveSources.get(img);
     const current = img.getAttribute('src') || '';
-    if (img.srcset && !previous) return;
-    const base = previous && previous.fallback === current ? previous.base : current;
+    if (img.srcset && !previous && !img.dataset.srResponsiveImage) return;
+    const base = previous && previous.fallback === current ? previous.base : img.dataset.srImageSource || current;
     const match = base.match(/^(https:\/\/static\.wixstatic\.com\/media\/[^/?#]+\.(?:jpe?g|png|webp|avif))(?:\/v1\/(fit|fill)\/([^/]+)\/[^?#]*)?(?:[?#].*)?$/i);
     if (!match) return;
     const args = match[3] || 'w_1600,h_1600';
@@ -76,7 +76,7 @@
     const quality = isHero ? 88 : 82;
     const widths = [320,480,640,768,1024,1280,1600,1920,2560];
     function variant(width) {
-      const height = Math.max(1,Math.round(originalHeight * width / originalWidth));
+      const height = Math.max(1,match[2] === 'fill' ? Math.round(originalHeight * width / originalWidth) : Math.ceil(width / ratio));
       let options = args.replace(/w_\d+/,'w_' + width).replace(/h_\d+/,'h_' + height).replace(/(?:^|,)q_\d+/g,'');
       options = options.replace(/(?:^|,)enc_(?:auto|avif|webp|jpg|png)/g,'');
       options += ',q_' + quality + ',enc_auto';
@@ -99,6 +99,7 @@
       img.height = img.naturalHeight;
     }
     img.dataset.srResponsiveImage = '1';
+    img.dataset.srImageSource = base;
     responsiveSources.set(img,{base,fallback,ratio});
     if (!previous) img.addEventListener('load',schedule);
   }

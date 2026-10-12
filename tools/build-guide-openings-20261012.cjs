@@ -4,6 +4,12 @@ const root = path.resolve(__dirname, '..');
 const openings = JSON.parse(fs.readFileSync(path.join(root, 'content/guide-openings-20261012.json'), 'utf8'));
 const target = path.join(root, 'dist/sr-days-out-experience-20261012.js');
 let source = fs.readFileSync(target, 'utf8');
+const foodSource = fs.readFileSync(path.join(root,'content/reel-plaice-guide-20261012.html'),'utf8');
+source = source.replace(/var approvedGuides = (\{[^\n]+\});/, function(_,json) {
+  const guides=JSON.parse(json);
+  guides['/food-and-drink/reel-plaice-ayr']=foodSource;
+  return 'var approvedGuides = ' + JSON.stringify(guides) + ';';
+});
 const beginning = '  // BEGIN GUIDE OPENINGS 20261012';
 const ending = '  // END GUIDE OPENINGS 20261012';
 const fragment = `${beginning}
