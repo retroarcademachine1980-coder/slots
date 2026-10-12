@@ -1,8 +1,9 @@
 /* Make the existing guide clear on arrival, and use the original photographs beneath artwork tiles. */
 (function () {
   'use strict';
-  if (window.SR_PAGE_FIRST_20261012) return;
-  window.SR_PAGE_FIRST_20261012 = true;
+  if (window.SR_PAGE_FIRST_20261012_V2) return;
+  window.SR_PAGE_FIRST_20261012_V2 = true;
+  document.documentElement.dataset.srPageFirstVersion='20261012-2';
   var welcomes = /* WELCOME_DATA */ {};
   var photoCorrections = /* PHOTO_DATA */ {};
   var resortOpenings = /* DETAIL_DATA */ {};
@@ -12,7 +13,7 @@
   styleText += '.sr-resort-story p,.sr-resort-story li{font:400 17px/1.7 Inter,Arial,sans-serif;margin:0 0 18px;color:#243b53}.sr-resort-story h2{font:900 clamp(24px,2.2vw,31px)/1.2 "Roboto Condensed",Arial,sans-serif;margin:24px 0 12px}.sr-resort-story a{color:#126baf;text-decoration:underline}';
   function route() { return location.pathname.replace(/\/+$/, '') || '/'; }
   function installStyle(root) {
-    if (root.querySelector('#sr-page-first-style')) return;
+    var existing=root.querySelector('#sr-page-first-style');if(existing){if(existing.textContent!==styleText)existing.textContent=styleText;return;}
     var style = document.createElement('style');style.id='sr-page-first-style';style.textContent=styleText;
     (root === document ? document.head : root).append(style);
   }

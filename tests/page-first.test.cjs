@@ -39,3 +39,6 @@ test('A resort’s wider day-out guide and photograph lead its theme-park route 
 test('Internal offer selections use fragments while external affiliate tracking stays byte-for-byte intact',()=>{
  const {dom,root}=fixture('/destination/york','<main><a href="/offers?category=food&town=York">Food offers</a><a href="https://www.awin1.com/cread.php?awinaffid=3089397&ued=https%3A%2F%2Fmerchant.example%2Foffers%3Fx%3D1">Book</a></main>');const tracked=root.querySelectorAll('a')[1].getAttribute('href');dom.window.eval(script);assert.equal(root.querySelector('a').getAttribute('href'),'/offers#category=food&town=York');assert.equal(root.querySelectorAll('a')[1].getAttribute('href'),tracked);dom.window.close();
 });
+test('A previous helper flag cannot prevent the current introduction and stylesheet from being applied',()=>{
+ const {dom,root}=fixture('/beaches','<style id="sr-page-first-style">.old-style{color:red}</style><main><section class="chero"><h1>Beaches</h1></section></main>');dom.window.SR_PAGE_FIRST_20261012=true;dom.window.eval(script);assert.ok(root.querySelector('.sr-page-intro'));assert.ok(root.querySelector('#sr-page-first-style').textContent.includes('.sr-resort-story p'));assert.equal(dom.window.document.documentElement.dataset.srPageFirstVersion,'20261012-2');dom.window.close();
+});
