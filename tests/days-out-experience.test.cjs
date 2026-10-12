@@ -10,16 +10,38 @@ function page(route, hostId, html) {
   dom.window.document.body.append(host); const root = host.attachShadow({ mode: 'open' }); root.innerHTML = html;
   return { dom, root };
 }
-test('Shared navigation has direct days-out categories and preserves search and trip controls', () => {
+test('Shared navigation restores grouped hover menus, the fruit archive and every original category', () => {
   const {dom,root} = page('/', 'sr-brand-header', '<header><nav class="menu" aria-label="Main"><div class="dd"><a href="/seaside">Days Out</a><div class="panel"><a href="/arcade">Arcades</a></div></div><details data-sr-browse><summary>Browse</summary></details></nav><button class="nav-search">Search</button><a class="button" href="/plan-a-trip">Plan</a><details class="burger"><summary>Menu</summary><nav aria-label="Mobile"><details><summary>Days out</summary></details></nav></details></header>');
   const search = root.querySelector('.nav-search'); let clicked = 0; search.onclick = () => clicked++;
   dom.window.eval(script);
   const nav = root.querySelector('nav[aria-label="Main"]');
-  assert.equal(nav.querySelectorAll(':scope > a').length,6);
+  assert.equal(nav.querySelectorAll(':scope > .sr-nav-group').length,7);
   assert.equal(nav.querySelector('a').getAttribute('href'),'/days-out');
-  assert.equal(nav.querySelectorAll('.dd,details,.panel').length,0);
-  assert.equal(root.querySelector('nav[aria-label="Mobile"] details'),null);
+  assert.equal(nav.querySelectorAll('.sr-nav-panel').length,7);
+  assert.equal(nav.querySelector('a[href="/classic-fruit-machines"]').textContent,'Fruit machines');
+  assert.equal(nav.querySelector('.sr-nav-panel a[href="/classic-fruit-machines"]').textContent,'Fruit Machine Archive');
+  for(const href of ['/bingo-halls','/arcade-bars','/sea-life','/classic-arcades','/?raidertube=1','/casino-offers'])assert.ok(nav.querySelector('a[href="'+href+'"]'),href);
+  const toggle=nav.querySelector('button');toggle.click();assert.equal(toggle.getAttribute('aria-expanded'),'true');assert.ok(toggle.parentElement.classList.contains('sr-menu-open'));toggle.click();assert.equal(toggle.getAttribute('aria-expanded'),'false');
+  assert.equal(root.querySelectorAll('nav[aria-label="Mobile"] details').length,7);
   search.click(); assert.equal(clicked,1); assert.equal(root.querySelector('.button').getAttribute('href'),'/plan-a-trip');
+  dom.window.close();
+});
+test('AGC has a clear entrance photograph on the right and machine choices open the archive', () => {
+  const {dom,root}=page('/agc','sr-extended-pages','<main><section class="hero"><div class="hero-image" style="background-image:url(roadworks.jpg)"></div><div class="hero-copy"><h1>AGC</h1></div><form class="hero-search"></form></section><nav class="topics"><button data-topic="Classic Machines"><span>777</span>Classic Machines</button><button data-topic="Modern Slots">Modern Slots</button></nav><aside class="filters"><label><input name="topic" value="Classic Machines" type="checkbox">Classic Machines</label></aside></main>');
+  dom.window.eval(script);
+  assert.equal(root.querySelector('main').dataset.srAgcEntrance,'1');
+  assert.ok(root.querySelector('[data-sr-agc-photo]').src.includes('d1cb49916ad44bb18041dc2bbc3680f3'));
+  assert.equal(root.querySelector('.topics a').getAttribute('href'),'/classic-fruit-machines');
+  assert.equal(root.querySelector('[data-topic="Modern Slots"]').tagName,'BUTTON');
+  dom.window.close();
+});
+test('Archive banner uses one real machine-row photo and leaves each machine card linked to its own guide', () => {
+  const {dom,root}=page('/classic-fruit-machines','sr-approved-archive','<main><section class="hero"><div class="hero-photos" data-hero-photos><img src="one.jpg"></div></section><section><a class="card" href="/classic-fruit-machines/barcrest/andy-capp-1991-blue-edition"><img src="andy.jpg"><h3>Andy Capp</h3></a></section></main>');
+  dom.window.eval(script);
+  assert.equal(root.querySelectorAll('[data-hero-photos] img').length,1);
+  assert.ok(root.querySelector('[data-sr-classic-row-photo]').src.includes('36eefd9f515b4f9183c46d4ef64eff48'));
+  assert.equal(root.querySelector('[data-hero-photos] a'),null);
+  assert.equal(root.querySelector('a.card').getAttribute('href'),'/classic-fruit-machines/barcrest/andy-capp-1991-blue-edition');
   dom.window.close();
 });
 test('Category discovery comes before the catalogue and keeps the existing form and filter events', () => {
