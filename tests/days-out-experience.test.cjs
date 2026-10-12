@@ -49,10 +49,11 @@ test('Guide source blocks show unique useful prose once and retain citations wit
   dom.window.eval(script);
   const source=root.querySelector('.sr-source-records');
   assert.ok(!/Original record/.test(source.textContent));
-  assert.equal(source.textContent.match(/Useful details about the visit/g).length,1);
+  assert.equal(root.querySelector('.about').textContent,'Useful details about the visit.');
+  assert.equal(root.textContent.match(/Useful details about the visit/g).length,1);
   assert.equal(source.querySelectorAll('a').length,1);
   assert.equal(root.querySelector('.banner').textContent,'');
-  assert.ok(root.querySelector('.tag').hidden);
+  assert.ok(!root.querySelector('.tag').hidden, 'Keep the short introduction when the body has a distinct useful guide.');
   assert.equal(root.querySelector('main>a').textContent,'View customer reviews →');
   dom.window.close();
 });
