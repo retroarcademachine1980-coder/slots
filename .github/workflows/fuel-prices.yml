@@ -1,7 +1,11 @@
 name: Refresh government forecourt prices
 on:
-  # Enable recurring updates after the government's public download accepts CI access.
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - tools/refresh-fuel-prices.py
+      - .github/workflows/fuel-prices.yml
 permissions:
   contents: write
 concurrency:
@@ -16,12 +20,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install public-download runtime
-        run: |
-          python -m pip install --disable-pip-version-check --quiet playwright==1.64.0
-          if ! command -v google-chrome >/dev/null; then
-            python -m playwright install --with-deps chromium
-          fi
       - name: Refresh the public government snapshot
         run: python tools/refresh-fuel-prices.py
       - name: Publish successful dated data
