@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Refresh the public government snapshot
-        run: python tools/refresh-fuel-prices.py
+        run: python tools/refresh-fuel-prices.py ${{ github.event_name != 'schedule' && '--force' || '' }}
       - name: Publish successful dated data
         run: |
           git config user.name 'Spin Raiders Listings'
