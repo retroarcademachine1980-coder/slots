@@ -1,10 +1,11 @@
-"""Publish only dated public Fuel Finder prices; never change reviews or CMS.
+"""Publish dated Fuel Finder data from FuelCosts' documented open public API.
 
-The CI downloader uses the ordinary anonymous government CSV-download button.
-It does not inspect application internals, decrypt responses or use credentials.
-Local runs must supply a CSV downloaded through the normal browser flow.
+Use an identifiable bot, cache requests, validate complete snapshots and attribute
+both sources. Government CSV files can also be validated offline with --csv.
+Never change reviews or CMS; never infer an absent fuel grade or hide data age.
 """
-import argparse,csv,hashlib,io,json,math,os,re,shutil,sys,tempfile
+import argparse,csv,hashlib,io,json,math,os,re,sys,tempfile,time
+from urllib.request import Request,urlopen
 from collections import defaultdict
 from datetime import datetime,timezone
 from pathlib import Path
@@ -16,6 +17,9 @@ OUT=Path(__file__).resolve().parents[1]/'dist/fuel-prices'
 STAGE='starting'
 GRADES=('E10','E5','B7S','B7P')
 COLUMNS=['id','name','brand','postcode','address','town','latitude','longitude','fuels']
+API='https://fuelcosts.co.uk/api/stations'
+API_SOURCE='https://fuelcosts.co.uk/fuel-finder'
+USER_AGENT='SpinRaidersFuelUpdater/1.0 (+https://www.spin-raiders.com/about-us)'
 REQUIRED={'forecourts.node_id','forecourts.trading_name','forecourts.brand_name','forecourts.location.postcode','forecourts.location.city','forecourts.temporary_closure','forecourts.permanent_closure'}|{'forecourts.fuel_price.'+grade for grade in GRADES}|{'forecourts.price_submission_timestamp.'+grade for grade in GRADES}|{'forecourts.price_change_effective_timestamp.'+grade for grade in GRADES}
 
 def iso(value):
@@ -78,44 +82,89 @@ def write_data(manifest,chunks,output=OUT):
   target=output/(name+'.json');temporary=target.with_suffix('.tmp')
   temporary.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8');temporary.replace(target)
 
-def download_csv(directory):
+def api_date(value):
+ try:
+  parsed=datetime.fromisoformat(value.replace('Z','+00:00'))
+  return parsed.astimezone(timezone.utc) if parsed.tzinfo else None
+ except (ValueError,TypeError,AttributeError):return None
+
+def parse_api_pages(pages,now=None,min_rows=5000):
+ now=now or datetime.now(timezone.utc)
+ if not pages:raise ValueError('No public API pages')
+ metadata=pages[0].get('meta',{});total=metadata.get('total');per_page=metadata.get('perPage');total_pages=metadata.get('totalPages')
+ if not isinstance(total,int) or isinstance(total,bool) or not min_rows<=total<=15000 or not isinstance(per_page,int) or not 1<=per_page<=500 or total_pages!=math.ceil(total/per_page) or len(pages)!=total_pages:raise ValueError('Incomplete public API pagination')
+ versions=[];seen=set();areas=defaultdict(list);towns=defaultdict(set);names={};closed=0;invalid=0
+ for index,page in enumerate(pages,1):
+  meta=page.get('meta',{});stations=page.get('stations');filters=meta.get('filters',{})
+  published=api_date(meta.get('lastUpdated',{}).get('prices'))
+  if meta.get('page')!=index or meta.get('total')!=total or meta.get('perPage')!=per_page or meta.get('totalPages')!=total_pages or not isinstance(stations,list) or len(stations)!=(per_page if index<total_pages else total-per_page*(total_pages-1)):raise ValueError('Public API pagination changed')
+  if filters.get('lat') is not None or filters.get('lon') is not None or filters.get('fuel') is not None or filters.get('brand') is not None:raise ValueError('Public API returned a filtered dataset')
+  if not published or published>now or (now-published).total_seconds()>3*3600:raise ValueError('Public API snapshot is stale or in the future')
+  versions.append(published)
+  for row in stations:
+   identity=row.get('node_id');location=row.get('location',{});prices=row.get('prices')
+   if not isinstance(identity,str) or not re.fullmatch(r'[0-9a-f]{64}',identity) or identity in seen:raise ValueError('Duplicate or invalid forecourt identity')
+   seen.add(identity)
+   closure=[row.get('is_temporarily_closed'),row.get('is_permanently_closed'),row.get('isActive')]
+   if any(type(value) is not bool for value in closure):raise ValueError('Unknown API closure status')
+   if closure[0] or closure[1] or not closure[2]:closed+=1;continue
+   if not isinstance(location,dict) or not isinstance(prices,list):raise ValueError('Public station schema changed')
+   postcode=re.sub(r'\s+','',str(location.get('postcode','')).upper());match=re.match(r'^([A-Z]{1,2})\d',postcode)
+   if not match:invalid+=1;continue
+   fuels={};grade_map={'E10':'E10','E5':'E5','B7_STANDARD':'B7S','B7_PREMIUM':'B7P'}
+   for item in prices:
+    grade=grade_map.get(item.get('fuel_type'))
+    if not grade:continue
+    if grade in fuels:raise ValueError('Duplicate price grade')
+    price=item.get('price');reported=api_date(item.get('price_last_updated'));effective=api_date(item.get('price_change_effective_timestamp'))
+    if isinstance(price,bool) or not isinstance(price,(int,float)) or not math.isfinite(price) or not 80<=price<=400 or not reported or not effective or reported>now or effective>now:invalid+=1;continue
+    fuels[grade]=[price,iso(reported),iso(effective)]
+   if not fuels:continue
+   name=str(row.get('trading_name','')).strip();town=str(location.get('city','')).strip()
+   if not name:invalid+=1;continue
+   address=', '.join(filter(None,[str(location.get('address_line_1','')).strip(),str(location.get('address_line_2','')).strip()]))
+   latitude=location.get('latitude');longitude=location.get('longitude')
+   if not isinstance(latitude,(int,float)) or not isinstance(longitude,(int,float)) or not math.isfinite(latitude) or not math.isfinite(longitude) or not -90<=latitude<=90 or not -180<=longitude<=180:latitude=longitude=None
+   area=match[1];areas[area].append([identity,name,str(row.get('brand_name','')).strip(),str(location.get('postcode','')).strip(),address,town,latitude,longitude,fuels]);key=norm(town)
+   if key:towns[key].add(area);names.setdefault(key,town)
+ if max(versions)!=min(versions):raise ValueError('Source changed during pagination; prior complete snapshot retained')
+ count=sum(map(len,areas.values()))
+ if len(seen)!=total or count<min_rows or invalid>total*.01:raise ValueError('Incomplete or invalid public forecourt data')
+ published=iso(min(versions));rows={area:sorted(values,key=lambda item:item[0]) for area,values in areas.items()}
+ revision=hashlib.sha256(json.dumps(rows,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+ manifest={'schemaVersion':1,'dataKind':'fuelcosts-fuel-finder-public-api','revision':revision,'sourceUrl':SOURCE,'providerUrl':API_SOURCE,'licenseUrl':LICENSE,'attribution':'Fuel price data from FuelCosts.co.uk and UK Government Fuel Finder. Contains public sector information licensed under the Open Government Licence v3.0.','publishedAt':published,'checkedAt':iso(now),'stationCount':count,'closedExcluded':closed,'invalidExcluded':invalid,'columns':COLUMNS,'areas':sorted(areas),'towns':{key:[names[key],sorted(value)] for key,value in sorted(towns.items())}}
+ return manifest,{area:{'schemaVersion':1,'revision':revision,'publishedAt':published,'stations':values} for area,values in rows.items()}
+
+def download_api_pages(directory):
  global STAGE
- if os.environ.get('GITHUB_ACTIONS')!='true':raise RuntimeError('Browser downloader is CI-only; use --csv for a locally downloaded file')
- from playwright.sync_api import sync_playwright
- with sync_playwright() as playwright:
-  STAGE='launching CI browser'
-  options={'channel':'chrome'} if shutil.which('google-chrome') else {}
-  browser=playwright.chromium.launch(headless=True,**options)
-  try:
-   page=browser.new_page(accept_downloads=True,locale='en-GB')
-   STAGE='opening public government download page'
-   page.goto(PORTAL,wait_until='domcontentloaded',timeout=30000)
-   STAGE='waiting for public download controls'
-   page.get_by_role('heading',name='Ways to access latest Fuel Finder data',exact=True).wait_for(timeout=30000)
-   STAGE='downloading public CSV'
-   with page.expect_download(timeout=60000) as awaited:
-    page.get_by_role('link',name='Download the CSV file',exact=True).click()
-   download=awaited.value
-   match=re.fullmatch(r'UpdatedFuelPrice-(\d{13})\.csv',download.suggested_filename)
-   if not match:raise ValueError('Government download filename changed')
-   path=Path(directory)/download.suggested_filename;download.save_as(path)
-   published=datetime.fromtimestamp(int(match[1])/1000,timezone.utc)
-   return path,published
-  finally:browser.close()
+ pages=[];count=1;index=1
+ while index<=count:
+  STAGE='reading public forecourt API page '+str(index)
+  request=Request(API+'?sort=price&perPage=500&page='+str(index),headers={'User-Agent':USER_AGENT,'Accept':'application/json'})
+  with urlopen(request,timeout=45) as response:
+   if 'json' not in response.headers.get('Content-Type','').lower():raise ValueError('Public API did not return JSON')
+   raw=response.read(5*1024*1024+1)
+   if len(raw)>5*1024*1024:raise ValueError('Unexpected public API page size')
+  page=json.loads(raw);pages.append(page);count=page.get('meta',{}).get('totalPages',0)
+  if not isinstance(count,int) or not 1<=count<=40:raise ValueError('Unexpected public API page count')
+  (Path(directory)/('page-'+str(index)+'.json')).write_bytes(raw);index+=1
+  if index<=count:time.sleep(.3)
+ return pages
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--csv');parser.add_argument('--published-at');parser.add_argument('--output',type=Path,default=OUT);parser.add_argument('--force',action='store_true');args=parser.parse_args()
  if not args.csv and not args.force:
   try:
    previous=json.loads((args.output/'manifest.json').read_text(encoding='utf-8'));checked=datetime.fromisoformat(previous['checkedAt'].replace('Z','+00:00'))
-   if (datetime.now(timezone.utc)-checked).total_seconds()<2*3600:print('Fuel Finder: recently checked; current dated data retained');return 0
+   if (datetime.now(timezone.utc)-checked).total_seconds()<45*60:print('Fuel Finder: recently checked; current dated data retained');return 0
   except (OSError,ValueError,KeyError):pass
  with tempfile.TemporaryDirectory(prefix='spin-raiders-fuel-') as directory:
   if args.csv:
    if not args.published_at:raise ValueError('--published-at required with --csv')
    path=Path(args.csv);published=datetime.fromisoformat(args.published_at.replace('Z','+00:00'))
-  else:path,published=download_csv(directory)
-  manifest,chunks=parse_csv(path,published);write_data(manifest,chunks,args.output)
+   manifest,chunks=parse_csv(path,published)
+  else:manifest,chunks=parse_api_pages(download_api_pages(directory))
+  write_data(manifest,chunks,args.output)
   print(json.dumps({'source':'Fuel Finder','publishedAt':manifest['publishedAt'],'stations':manifest['stationCount'],'areas':len(chunks),'closedExcluded':manifest['closedExcluded'],'invalidExcluded':manifest['invalidExcluded']}))
  return 0
 
