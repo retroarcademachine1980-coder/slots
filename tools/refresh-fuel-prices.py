@@ -13,6 +13,7 @@ SOURCE='https://www.gov.uk/guidance/access-the-latest-fuel-prices-and-forecourt-
 PORTAL='https://www.developer.fuel-finder.service.gov.uk/access-latest-fuelprices'
 LICENSE='https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'
 OUT=Path(__file__).resolve().parents[1]/'dist/fuel-prices'
+STAGE='starting'
 GRADES=('E10','E5','B7S','B7P')
 COLUMNS=['id','name','brand','postcode','address','town','latitude','longitude','fuels']
 REQUIRED={'forecourts.node_id','forecourts.trading_name','forecourts.brand_name','forecourts.location.postcode','forecourts.location.city','forecourts.temporary_closure','forecourts.permanent_closure'}|{'forecourts.fuel_price.'+grade for grade in GRADES}|{'forecourts.price_submission_timestamp.'+grade for grade in GRADES}|{'forecourts.price_change_effective_timestamp.'+grade for grade in GRADES}
@@ -78,15 +79,20 @@ def write_data(manifest,chunks,output=OUT):
   temporary.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8');temporary.replace(target)
 
 def download_csv(directory):
+ global STAGE
  if os.environ.get('GITHUB_ACTIONS')!='true':raise RuntimeError('Browser downloader is CI-only; use --csv for a locally downloaded file')
  from playwright.sync_api import sync_playwright
  with sync_playwright() as playwright:
+  STAGE='launching CI browser'
   options={'channel':'chrome'} if shutil.which('google-chrome') else {}
   browser=playwright.chromium.launch(headless=True,**options)
   try:
    page=browser.new_page(accept_downloads=True,locale='en-GB')
+   STAGE='opening public government download page'
    page.goto(PORTAL,wait_until='domcontentloaded',timeout=30000)
+   STAGE='waiting for public download controls'
    page.get_by_role('heading',name='Ways to access latest Fuel Finder data',exact=True).wait_for(timeout=30000)
+   STAGE='downloading public CSV'
    with page.expect_download(timeout=60000) as awaited:
     page.get_by_role('link',name='Download the CSV file',exact=True).click()
    download=awaited.value
@@ -116,4 +122,6 @@ def main():
 if __name__=='__main__':
  try:sys.exit(main())
  except Exception as error:
-  print('Fuel Finder refresh failed ('+type(error).__name__+'); prior dated files retained.',file=sys.stderr);sys.exit(1)
+  message=str(error).splitlines()[0]
+  message=re.sub(r'(https?://[^\s?]+)\?[^\s]+',r'\1?[redacted]',message)
+  print('Fuel Finder refresh failed at '+STAGE+' ('+type(error).__name__+'): '+message[:250]+'. Prior dated files retained.',file=sys.stderr);sys.exit(1)
