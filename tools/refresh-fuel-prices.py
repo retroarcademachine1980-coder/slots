@@ -33,6 +33,9 @@ def date(value):
 def norm(value):
  return re.sub(r'[^a-z0-9]+',' ',value.casefold()).strip()
 
+def text(value):
+ return value.strip() if isinstance(value,str) else ''
+
 def parse_csv(path,published_at,now=None,min_rows=5000):
  now=now or datetime.now(timezone.utc)
  if not published_at.tzinfo:raise ValueError('Publication time requires timezone')
@@ -109,7 +112,7 @@ def parse_api_pages(pages,now=None,min_rows=5000):
    if any(type(value) is not bool for value in closure):raise ValueError('Unknown API closure status')
    if closure[0] or closure[1] or not closure[2]:closed+=1;continue
    if not isinstance(location,dict) or not isinstance(prices,list):raise ValueError('Public station schema changed')
-   postcode=re.sub(r'\s+','',str(location.get('postcode','')).upper());match=re.match(r'^([A-Z]{1,2})\d',postcode)
+   postcode=re.sub(r'\s+','',text(location.get('postcode')).upper());match=re.match(r'^([A-Z]{1,2})\d',postcode)
    if not match:invalid+=1;continue
    fuels={};grade_map={'E10':'E10','E5':'E5','B7_STANDARD':'B7S','B7_PREMIUM':'B7P'}
    for item in prices:
@@ -120,12 +123,12 @@ def parse_api_pages(pages,now=None,min_rows=5000):
     if isinstance(price,bool) or not isinstance(price,(int,float)) or not math.isfinite(price) or not 80<=price<=400 or not reported or not effective or reported>now or effective>now:invalid+=1;continue
     fuels[grade]=[price,iso(reported),iso(effective)]
    if not fuels:continue
-   name=str(row.get('trading_name','')).strip();town=str(location.get('city','')).strip()
+   name=text(row.get('trading_name'));town=text(location.get('city'))
    if not name:invalid+=1;continue
-   address=', '.join(filter(None,[str(location.get('address_line_1','')).strip(),str(location.get('address_line_2','')).strip()]))
+   address=', '.join(filter(None,[text(location.get('address_line_1')),text(location.get('address_line_2'))]))
    latitude=location.get('latitude');longitude=location.get('longitude')
    if not isinstance(latitude,(int,float)) or not isinstance(longitude,(int,float)) or not math.isfinite(latitude) or not math.isfinite(longitude) or not -90<=latitude<=90 or not -180<=longitude<=180:latitude=longitude=None
-   area=match[1];areas[area].append([identity,name,str(row.get('brand_name','')).strip(),str(location.get('postcode','')).strip(),address,town,latitude,longitude,fuels]);key=norm(town)
+   area=match[1];areas[area].append([identity,name,text(row.get('brand_name')),text(location.get('postcode')),address,town,latitude,longitude,fuels]);key=norm(town)
    if key:towns[key].add(area);names.setdefault(key,town)
  if max(versions)!=min(versions):raise ValueError('Source changed during pagination; prior complete snapshot retained')
  count=sum(map(len,areas.values()))
