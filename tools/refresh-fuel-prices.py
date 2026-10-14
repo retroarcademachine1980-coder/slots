@@ -10,7 +10,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 
 SOURCE='https://www.gov.uk/guidance/access-the-latest-fuel-prices-and-forecourt-data-via-api-or-email'
-PORTAL='https://www.developer.fuel-finder.service.gov.uk/access-latest-fuelprices'
+PORTAL='https://www.developer.fuel-finder.service.gov.uk/fuel-finder/access-latest-fuelprices'
 LICENSE='https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'
 OUT=Path(__file__).resolve().parents[1]/'dist/fuel-prices'
 STAGE='starting'
