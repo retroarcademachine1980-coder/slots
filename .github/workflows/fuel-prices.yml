@@ -1,13 +1,7 @@
 name: Refresh government forecourt prices
 on:
-  schedule:
-    - cron: '23 */3 * * *'
+  # Enable recurring updates after the government's public download accepts CI access.
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - tools/refresh-fuel-prices.py
-      - .github/workflows/fuel-prices.yml
 permissions:
   contents: write
 concurrency:
