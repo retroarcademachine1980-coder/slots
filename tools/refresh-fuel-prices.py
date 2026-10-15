@@ -33,6 +33,20 @@ def date(value):
 def norm(value):
  return re.sub(r'[^a-z0-9]+',' ',value.casefold()).strip()
 
+def station_key(value,brand=''):
+ value=norm(value);brand=norm(brand)
+ if brand and value.startswith(brand+' '):value=value[len(brand)+1:]
+ value=re.sub(r'\b(north|south|east|west)bound\b',r'\1',value)
+ return re.sub(r'\s+',' ',re.sub(r'\b(services?|area)\b',' ',value)).strip()
+
+def station_index(areas):
+ index=defaultdict(set)
+ for area,rows in areas.items():
+  for row in rows:
+   for key in {norm(row[1]),station_key(row[1],row[2])}:
+    if key:index[key].add(area)
+ return {key:sorted(value) for key,value in sorted(index.items())}
+
 def text(value):
  return value.strip() if isinstance(value,str) else ''
 
@@ -77,6 +91,7 @@ def parse_csv(path,published_at,now=None,min_rows=5000):
  revision=hashlib.sha256(raw).hexdigest();published=iso(published_at)
  manifest={'schemaVersion':1,'dataKind':'govuk-fuel-finder-public-csv','revision':revision,'sourceUrl':SOURCE,'licenseUrl':LICENSE,'attribution':'Contains public sector information licensed under the Open Government Licence v3.0.','publishedAt':published,'checkedAt':iso(now),'stationCount':station_count,'closedExcluded':closed,'invalidExcluded':invalid,'columns':COLUMNS,'areas':sorted(areas),'towns':{key:[names[key],sorted(value)] for key,value in sorted(towns.items())}}
  chunks={area:{'schemaVersion':1,'revision':revision,'publishedAt':published,'stations':sorted(rows,key=lambda item:item[0])} for area,rows in areas.items()}
+ manifest['stationNames']=station_index(areas)
  return manifest,chunks
 
 def write_data(manifest,chunks,output=OUT):
@@ -136,6 +151,7 @@ def parse_api_pages(pages,now=None,min_rows=5000):
  published=iso(min(versions));rows={area:sorted(values,key=lambda item:item[0]) for area,values in areas.items()}
  revision=hashlib.sha256(json.dumps(rows,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
  manifest={'schemaVersion':1,'dataKind':'fuelcosts-fuel-finder-public-api','revision':revision,'sourceUrl':SOURCE,'providerUrl':API_SOURCE,'licenseUrl':LICENSE,'attribution':'Fuel price data from FuelCosts.co.uk and UK Government Fuel Finder. Contains public sector information licensed under the Open Government Licence v3.0.','publishedAt':published,'checkedAt':iso(now),'stationCount':count,'closedExcluded':closed,'invalidExcluded':invalid,'columns':COLUMNS,'areas':sorted(areas),'towns':{key:[names[key],sorted(value)] for key,value in sorted(towns.items())}}
+ manifest['stationNames']=station_index(rows)
  return manifest,{area:{'schemaVersion':1,'revision':revision,'publishedAt':published,'stations':values} for area,values in rows.items()}
 
 def download_api_pages(directory):
