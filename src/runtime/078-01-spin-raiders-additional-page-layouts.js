@@ -154,11 +154,35 @@
           T = c.querySelector("[data-town]"),
           F = c.querySelector("[data-sort]"),
           I = (e, t) => {
-            const a = h(e);
+            if (/^(?:Moto|Welcome Break|Roadchef|Extra)$/.test(t)) {
+              const namedBrand = [e.brand, e.operator, e.arcadeBrand].filter(value => typeof value === "string").join(" ");
+              const structuredBrand = /\bmoto\b|\bwelcome\s+break\b|\broadchef\b|\bextra(?:\s+(?:motorway|msa|services?))?\b/i.test(namedBrand);
+              const brandEvidence = structuredBrand ? namedBrand : [namedBrand, p(e), e.shortDescription].filter(value => typeof value === "string").join(" ");
+              const pattern = {Moto: "\\bmoto\\b", "Welcome Break": "\\bwelcome\\s+break\\b", Roadchef: "\\broadchef\\b", Extra: "\\bextra(?:\\s+(?:motorway|msa|services?))?\\b"}[t];
+              if (t === "Extra" && !structuredBrand) return /\bextra\s+(?:motorway|msa|services?)\b/i.test(brandEvidence);
+              return new RegExp(pattern, "i").test(brandEvidence);
+            }
+            if(t === "EV Charging"){
+              const evidence=[e.shortDescription,...(Array.isArray(e.features)?e.features:[]),...(Array.isArray(e.facilities)?e.facilities:[])].filter(value=>typeof value === "string").join(" ");
+              const charging="(?:ev|electric(?: vehicle)?)\\s+charg(?:ing|ers?)";
+              if(new RegExp("\\b(?:no|without)\\s+(?:on[- ]site\\s+)?"+charging+"\\b|\\b"+charging+"\\s+(?:(?:is|are|points?|available)\\s+){0,2}(?:not\\s+available|unavailable|off[- ]site|nearby)\\b","i").test(evidence))return false;
+              return new RegExp("\\b"+charging+"\\b","i").test(evidence);
+            }
+            const featureTopic = /^(?:Cocktails|Pinball|Social Gaming|Live Events|Retro Games|Walking & Hiking|Nature Reserves|Forests & Woodlands|Parks & Gardens|Countryside|Water Activities|Viewpoints)$/.test(t);
+            const details = featureTopic ? [e.shortDescription, ...(Array.isArray(e.features) ? e.features : []), ...(Array.isArray(e.facilities) ? e.facilities : [])].filter(value => typeof value === "string").join(" ") : "";
+            const a = h(e) + " " + details;
+            if (t === "Cocktails" && /\b(?:no|without)\s+(?:\w+\s+){0,2}cocktails?\b|\bcocktails?\s+(?:are\s+)?(?:not|unavailable)\b/i.test(details)) return false;
             if (/^All /.test(t)) return !0;
             return new RegExp(
               {
                 Beaches: "beach",
+                Cocktails: "cocktails?",
+                Pinball: "pinball",
+                "Retro Games": "retro|classic arcade|video games?",
+                "Social Gaming": "social gaming|games bar|gaming bar|shuffleboard|darts|beer pong|karaoke|arcade bar",
+                "Live Events": "live (?:music|events?|entertainment)|watch parties|f1 screenings?|dj sets?",
+                Countryside: "countryside|country park|mountain|moorland|heathland|country estate",
+                Viewpoints: "viewpoint|view point|lookout|viewing platform|panoramic|summit",
                 "Places to Stay": "hotel|stay|accommodation|holiday",
                 "Days Out": "attraction|day out",
                 "Short Breaks": "hotel|holiday|break",
@@ -187,7 +211,6 @@
                 Arcades: "arcade|amusement",
                 "Seaside Stays": "hotel|guest house",
                 "Family Hotels": "hotel",
-                "EV Charging": "service",
                 "All Services": "service",
                 "Machine Archive": "classic|fruit",
               }[t] ||

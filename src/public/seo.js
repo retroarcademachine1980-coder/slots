@@ -47,7 +47,8 @@ function first(...values) {
 }
 
 function wixImageUrl(src) {
-    const s = String(src || '');
+    const value = src && typeof src === 'object' ? src.url || src.src : src;
+    const s = String(value || '');
     if (!s) return '';
     if (/^https?:\/\//.test(s)) return s;
     // wix:image://v1/<id>/<name>#... -> static URL
@@ -165,10 +166,12 @@ async function townPage(resolved) {
     const image = wixImageUrl(item.heroImage || item.mainImage);
     const url = `${SITE}/destination/${slug}`;
     const intro = clean(item.pageIntro);
-    // Towns with no real write-up yet are kept out of Google until they have one.
-    // A shorter intro is enough when the town also has several places listed (Blackpool, Leeds, Glasgow...).
+    // Judge the complete town write-up, including the story displayed below the banner.
+    // A short introduction must not exclude an otherwise substantial visitor guide.
     const words = intro ? intro.split(' ').length : 0;
-    let thin = words < 40;
+    const story = clean(item.overview);
+    const storyWords = story ? story.split(' ').length : 0;
+    let thin = words < 40 && words + storyWords < 500;
     if (thin && words >= 25) {
         try {
             const [venues, places] = await Promise.all([
@@ -226,6 +229,7 @@ const HOME_DESC = 'Your next big day out starts here. Plan UK road trips, family
 
 // General (non-arcade) pages: days-out wording. Arcade and AGC pages keep their own arcade titles.
 export const GENERAL_PAGE_SEO = {
+    'plan-a-trip': ['Plan a UK Day Out: Stops, Travel & Fuel Costs | Spin Raiders', 'Build your UK day out with attractions, food and places to stay. Choose stops, plan the journey and estimate fuel costs with dated prices.'],
     seaside: ['UK Seaside Days Out: Towns, Beaches & Piers | Spin Raiders', 'Plan a UK seaside day out: resort towns, beaches, piers, fish and chips and family fun, with places to eat and stay nearby. Your next big day out starts here.'],
     beaches: ['Best UK Beaches for a Family Day Out | Spin Raiders', 'Find UK beaches for a family day out, with what is nearby: food, attractions, places to stay and seaside fun. Your next big day out starts here.'],
     piers: ['UK Piers & Promenades: Seaside Days Out | Spin Raiders', 'Plan a seaside day out around the UK\'s piers and promenades, with food, attractions and family fun nearby. Your next big day out starts here.'],
@@ -290,6 +294,9 @@ async function canonicalDetailPage(resolved) {
 }
 export async function applyPageSeo(pathParts, routerData) {
     try {
+        const parts = (pathParts || []).map(String);
+        // The planner is a tool page, so it has no detail record to read for SEO.
+        if (parts.length === 1 && parts[0] === 'plan-a-trip') return await generalPage('plan-a-trip');
         if (routerData?.view === 'index' && [...Object.values(ROUTES), ...Object.values(INDEX_ROUTES)].some(route => route.prefix === routerData.route?.path)) {
             await wixSeoFrontend.setLinks([...existingLinks, { rel: 'canonical', href: SITE + routerData.route.path }]);
             return; // Preserve exact native/router landing title, description and artwork.
@@ -297,7 +304,6 @@ export async function applyPageSeo(pathParts, routerData) {
         if (routerData?.view === 'detail' && routerData.record && parseCanonical(routerData.route?.path).ok) {
             return canonicalDetailPage({ row: routerData.record, route: routerData.route });
         }
-        const parts = (pathParts || []).map(String);
         if (!parts.length || (parts.length === 1 && parts[0] === 'home')) return await homePage();
         const path = '/' + parts.join('/'), canonical = parseCanonical(path);
         if (canonical.ok && canonical.kind !== 'machineIndex') {

@@ -113,7 +113,9 @@
             savedVideos: Array.isArray(v) ? v : [],
             trip: y,
           };
-        ((document.title = m + " | Spin Raiders"),
+        ((location.pathname.replace(/\/$/, "") === window.SR_ROUTES.viewPaths.trip
+            ? undefined
+            : (document.title = m + " | Spin Raiders")),
           "trip" === t
             ? window.SR_TRIP_BUILDER(T)
             : window.SR_ACCOUNT_VIEW(t, T));

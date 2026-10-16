@@ -2,7 +2,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-const root=path.resolve(new URL('../',import.meta.url).pathname);
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 const manifestPath=process.argv[2];
 if(!manifestPath)throw Error('Pass the fully reconciled candidate manifest JSON path');

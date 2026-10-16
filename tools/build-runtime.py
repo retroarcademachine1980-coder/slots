@@ -4,8 +4,9 @@ import json,pathlib,subprocess,sys
 root=pathlib.Path(__file__).resolve().parent.parent
 fingerprint=[arg for arg in sys.argv[1:] if arg.startswith('--fingerprint=')]
 assert len(fingerprint)<=1 and len(fingerprint)==len(sys.argv[1:]), 'Only --fingerprint=<sha256> is supported'
-subprocess.run(['node',str(root/'tools/build-browser-route-client.mjs')]+fingerprint,cwd=root,check=True)
-subprocess.run(['node',str(root/'tools/build-browser-route-client.mjs'),'--release-manager-test']+fingerprint,cwd=root,check=True)
+node_alias=['node','--import',(root/'tools/register-wix-test-loader.mjs').as_uri()]
+subprocess.run(node_alias+[str(root/'tools/build-browser-route-client.mjs')]+fingerprint,cwd=root,check=True)
+subprocess.run(node_alias+[str(root/'tools/build-browser-route-client.mjs'),'--release-manager-test']+fingerprint,cwd=root,check=True)
 source=root/'src/runtime';manifest=json.loads((source/'manifest.json').read_text());seen=set();parts=[manifest['header']]
 for module in manifest['modules']:
  assert module['id'] not in seen,'Duplicate runtime module identity';seen.add(module['id'])
