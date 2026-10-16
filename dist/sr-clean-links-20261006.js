@@ -13,7 +13,7 @@ function target(href){
   if(u.searchParams.get('favourites'))return null;
   if(u.searchParams.get('view')==='articles')return '/blog';
   if(BYHUB[q])return BYHUB[q][location.pathname.replace(/\/+$/,'')]||'/post/uk-zoos-wildlife-parks';
-  if(u.searchParams.get('category')==='stays')return '/post/uk-family-hotels';
+  if(u.searchParams.get('category')==='stays')return null;
   if(M[q])return M[q];
   if(location.pathname.indexOf('/retro-video-games')===0)return '/post/explore-the-best-retro-arcade-experiences';
   return null}
