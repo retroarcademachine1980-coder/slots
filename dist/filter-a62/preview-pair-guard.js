@@ -315,7 +315,7 @@ async function startReleaseLoader({ window, document, config, ownsRoute, preserv
  (async()=>{const inputs=await waitForNativeInputs(document);const selection=await selectRuntime({...inputs,config,subtle:window.crypto.subtle,readFingerprint:async path=>{
  const u=new URL(path,'https://www.spin-raiders.com');u.searchParams.delete('rc');u.searchParams.set('siteRevision',config.testIdentity.revision);u.searchParams.set('branchId',config.testIdentity.branchId);
  return createFingerprintReader((_,options)=>window.fetch(u.pathname+u.search,options))('/_functions/canonicalFingerprint');
- }});if(selection.runtime!=='candidate-test')throw Error('The exact candidate native/backend pair was not verified');
+ }});if(selection.runtime!=='candidate-test')throw Error('candidate_selection:'+selection.reason);
  load('https://cdn.jsdelivr.net/gh/retroarcademachine1980-coder/slots@'+config.assetCommit+'/dist/filter-a62/sr.core.test.js');
- })().catch(()=>{const view=createStatusView(document,location);view.failure(navigationKey(location),'candidate_pair_not_verified');});
+ })().catch(error=>{console.warn('Spin Raiders preview pair check:',error.message);const view=createStatusView(document,location);view.failure(navigationKey(location),'candidate_pair_not_verified');});
 })();
