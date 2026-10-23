@@ -170,6 +170,22 @@ def download_api_pages(directory):
   if index<=count:time.sleep(.3)
  return pages
 
+
+def download_consistent_snapshot(directory):
+ # A retailer update can land between API pages. Start again from page one;
+ # never combine revisions or weaken the existing completeness checks.
+ for attempt in range(1, 4):
+  attempt_directory = Path(directory) / ('attempt-' + str(attempt))
+  attempt_directory.mkdir()
+  try:
+   return parse_api_pages(download_api_pages(attempt_directory))
+  except ValueError as error:
+   if str(error) != 'Source changed during pagination; prior complete snapshot retained' or attempt == 3:
+    raise
+   print('Fuel Finder source changed during download; retrying the complete snapshot (' + str(attempt) + '/3).', file=sys.stderr)
+   time.sleep(2)
+
+
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--csv');parser.add_argument('--published-at');parser.add_argument('--output',type=Path,default=OUT);parser.add_argument('--force',action='store_true');args=parser.parse_args()
  if not args.csv and not args.force:
@@ -182,7 +198,7 @@ def main():
    if not args.published_at:raise ValueError('--published-at required with --csv')
    path=Path(args.csv);published=datetime.fromisoformat(args.published_at.replace('Z','+00:00'))
    manifest,chunks=parse_csv(path,published)
-  else:manifest,chunks=parse_api_pages(download_api_pages(directory))
+  else:manifest,chunks=download_consistent_snapshot(directory)
   write_data(manifest,chunks,args.output)
   print(json.dumps({'source':'Fuel Finder','publishedAt':manifest['publishedAt'],'stations':manifest['stationCount'],'areas':len(chunks),'closedExcluded':manifest['closedExcluded'],'invalidExcluded':manifest['invalidExcluded']}))
  return 0
@@ -193,3 +209,4 @@ if __name__=='__main__':
   message=str(error).splitlines()[0]
   message=re.sub(r'(https?://[^\s?]+)\?[^\s]+',r'\1?[redacted]',message)
   print('Fuel Finder refresh failed at '+STAGE+' ('+type(error).__name__+'): '+message[:250]+'. Prior dated files retained.',file=sys.stderr);sys.exit(1)
+
