@@ -9,6 +9,8 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const slug = text => String(text).toLowerCase().replace(/&/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
   const icon = () => window.SR_LI ? window.SR_LI('arr') : '→';
+  const categoryIcons={'Arcade Guides':'arcades','UK Arcades':'arcades','Destinations & Trip Planning':'plan-a-trip','Retro & Classic Machines':'fruit-machines','Fruit Machines & Slots':'fruit-machines','Online Casinos & Offers':'casinos','Spin Raiders Updates':'news','Gambling Industry News':'shield'};
+  const categoryIcon = (name,size) => typeof window.SR_GI==='function' ? window.SR_GI(categoryIcons[name]||'news',size) : '';
   function postPath(value) {
     try { const url = new URL(value, location.origin); return url.origin === location.origin && /^\/post\/[^/?#]+\/?$/.test(url.pathname) ? url.pathname.replace(/\/$/,'') : ''; }
     catch (_) { return ''; }
@@ -84,7 +86,7 @@
     const nav=main.querySelector('.bcat'), tiles=main.querySelector('.ct'), popular=main.querySelector('.cl');
     data.categories.filter(name=>counts.get(name)>0).forEach(name=>{
       if(nav&&!Array.from(nav.querySelectorAll('[data-c]')).some(b=>b.dataset.c===name)){
-        const button=document.createElement('button');button.dataset.c=name;button.append(name+' ');
+        const button=document.createElement('button');button.dataset.c=name;button.innerHTML=categoryIcon(name,30);button.append(name+' ');
         const count=document.createElement('small');count.textContent=counts.get(name);button.append(count);nav.append(button);
       }
       if(tiles&&!Array.from(tiles.querySelectorAll('[data-c]')).some(b=>b.dataset.c===name)){
@@ -93,7 +95,7 @@
         button.innerHTML='<div class="ph">'+(post?picture(post,320,200):'<span class="sr-blog-text-cover">'+esc(name)+'</span>')+'</div><b>'+esc(name)+' →</b><small>'+counts.get(name)+' articles</small>';tiles.append(button);
       }
       if(popular&&!Array.from(popular.querySelectorAll('[data-c]')).some(b=>b.dataset.c===name)){
-        const button=document.createElement('button');button.dataset.c=name;button.innerHTML='<span>'+esc(name)+'</span><i>'+counts.get(name)+'</i> →';popular.append(button);
+        const button=document.createElement('button');button.dataset.c=name;button.innerHTML=categoryIcon(name,28)+'<span>'+esc(name)+'</span><i>'+counts.get(name)+'</i> →';popular.append(button);
       }
     });
     function render() {
