@@ -36,6 +36,27 @@ main[data-sr-destination-restored]>.search-hero .town-banner-sign[data-sr-approv
       else line = next;
     }
     if (line) lines.push(line);
+    // Balance the same words across the minimum fitting line count, so the
+    // final plank does not end with a stranded single word such as "pride".
+    const words = text.split(' '), count = lines.length, memo = new Map();
+    function balance(start, remaining) {
+      if (!remaining) return start === words.length ? {cost:0, lines:[]} : null;
+      const key = start + ':' + remaining;
+      if (memo.has(key)) return memo.get(key);
+      let best = null;
+      for (let end = start + 1; end <= words.length - remaining + 1; end++) {
+        const candidate = words.slice(start,end).join(' '), length = measure(candidate);
+        if (length > width * .827 && end > start + 1) break;
+        const rest = balance(end, remaining - 1);
+        if (!rest) continue;
+        const cost = Math.pow(width * .827 - length, 2) + rest.cost;
+        if (!best || cost < best.cost) best = {cost, lines:[candidate,...rest.lines]};
+      }
+      memo.set(key,best);
+      return best;
+    }
+    const balanced = balance(0,count);
+    if (balanced) lines.splice(0,lines.length,...balanced.lines);
     const groups = [];
     for (let i = 0; i < lines.length; i += 2) groups.push(lines.slice(i, i + 2));
     return groups;
