@@ -1,4 +1,5 @@
-(function(){'use strict';// Temporary release tooling. Remove after the verified candidate is promoted.
+(function(){'use strict';
+// Temporary release tooling. Remove after the verified candidate is promoted.
 // Never select a release using location.search or caller-supplied CMS fields.
 const SITE_ID = '517c2402-3182-4b3f-a2f1-be5611e7e22f';
 const CONTRACT_VERSION = 'spin-raiders-canonical-v1';
@@ -308,14 +309,34 @@ async function startReleaseLoader({ window, document, config, ownsRoute, preserv
   return boot;
 }
 
- const config={"testApproved":true,"localTestEvidence":true,"promotionApproved":false,"expectedFingerprint":{"contractVersion":"spin-raiders-canonical-v1","releaseFingerprint":"4388cb7305abfc2b44e7edd8b679162c0bd070f2f8622f8d2120a703c87a5deb","manifestFingerprint":"d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9","rendererFingerprint":"b8a2f05d7d30cbf0752208f8e3a56db087e472bf8e44a512deede39ac8d88e37","sourceFiles":299,"deploymentBlocked":false},"nativeBuildHash":"bab55e66599b318efb992e1df46bd11cec57e2d4d94f7bbcb0373c2c10af9c37","codeAppId":"6e31793c-ae5f-48aa-a125-fcb10f3b94cf","testIdentity":{"revision":"2","branchId":"753b2e0f-5f69-4b1e-a6c5-d9f214ae7122"},"assetCommit":"3bfcba9064d92ecffc9f5b9b1ef056cd6ea033ef"};
- function load(src){const script=document.createElement('script');script.src=src;script.async=true;script.fetchPriority='high';document.head.append(script);}
- const hint=new URLSearchParams(location.search);
- if(hint.get('branchId')!==config.testIdentity.branchId||hint.get('siteRevision')!==config.testIdentity.revision){load("https://cdn.jsdelivr.net/gh/retroarcademachine1980-coder/slots@ef3373799a9d721c6c5eb19647d856ff1a1252e5/dist/sr.core-20261014-crown.min.js");return;}
- (async()=>{const inputs=await waitForNativeInputs(document);const selection=await selectRuntime({...inputs,config,subtle:window.crypto.subtle,readFingerprint:async path=>{
- const u=new URL(path,'https://www.spin-raiders.com');u.searchParams.delete('rc');u.searchParams.set('siteRevision',config.testIdentity.revision);u.searchParams.set('branchId',config.testIdentity.branchId);
- return createFingerprintReader((_,options)=>window.fetch(u.pathname+u.search,options))('/_functions/canonicalFingerprint');
- }});if(selection.runtime!=='candidate-test')throw Error('candidate_selection:'+selection.reason);
- load('https://cdn.jsdelivr.net/gh/retroarcademachine1980-coder/slots@'+config.assetCommit+'/dist/filter-4388/sr.core.test.js');
- })().catch(error=>{console.warn('Spin Raiders preview pair check:',error.message);const view=createStatusView(document,location);view.failure(navigationKey(location),'candidate_pair_not_verified');});
+const config={"testApproved":true,"localTestEvidence":"work/original-6340-test-guard-verification-20261027.json","promotionApproved":false,"expectedFingerprint":{"contractVersion":"spin-raiders-canonical-v1","releaseFingerprint":"4388cb7305abfc2b44e7edd8b679162c0bd070f2f8622f8d2120a703c87a5deb","manifestFingerprint":"d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9","rendererFingerprint":"b8a2f05d7d30cbf0752208f8e3a56db087e472bf8e44a512deede39ac8d88e37","sourceFiles":299,"deploymentBlocked":false},"nativeBuildHash":"299f331d0c7cacbe091b4c11408e32f6aac06379657097fd752c0f6ecbecee07","codeAppId":"e959b18b-873c-4dc7-ac9d-5f8cc129c7ec","testIdentity":{"revision":"6340","branchId":null},"assetCommit":"8f8e1edd5d7f73baa2ab02f725215fd0cceef70a"};
+const productionCore='https://cdn.jsdelivr.net/gh/retroarcademachine1980-coder/slots@ef3373799a9d721c6c5eb19647d856ff1a1252e5/dist/sr.core-20261014-crown.min.js';
+function load(src){const s=document.createElement('script');s.src=src;s.async=true;s.fetchPriority='high';document.head.append(s);}
+function diagnostic(reason,inputs){
+  let projection=null;try{if(inputs)projection=nativeBuildProjection(inputs.model);}catch(error){}
+  nativeBuildHash(inputs?.model,window.crypto.subtle).catch(()=>null).then(observed=>{
+    if(!document.body)return;const panel=document.createElement('details');panel.id='sr-original-6340-test-build';panel.style.cssText='margin:16px;padding:12px;background:white;color:#112b45;border:1px solid #b9cddd;font:14px/1.5 Arial';
+    const title=document.createElement('summary');title.textContent='Test build information';panel.append(title);
+    const explanation=document.createElement('p');explanation.textContent=reason==='verified'?'Original-site test build verified. This information is shown only on the test version.':'Test build could not be verified. The live website has not been changed.';panel.append(explanation);
+    const pre=document.createElement('pre');pre.style.cssText='white-space:pre-wrap;overflow-wrap:anywhere';pre.textContent=JSON.stringify({reason,tuple:inputs?earlyIdentity(inputs.essential):null,observedNativeHash:observed,expectedNativeHash:config.nativeBuildHash,projection},null,2);panel.append(pre);document.body.append(panel);
+  });
+}
+(async()=>{
+  let inputs;
+  try{inputs=await waitForNativeInputs(document);}catch(error){
+    const hint=new URLSearchParams(location.search);
+    if(hint.get('rc')==='test-site'||hint.get('siteRevision')==='6340'){const view=createStatusView(document,location);view.failure(navigationKey(location),'native_identity_unavailable');return;}
+    load(productionCore);return;
+  }
+  if(!sameTuple(earlyIdentity(inputs.essential),config.testIdentity)){load(productionCore);return;}
+  try{
+    const selection=await selectRuntime({...inputs,config,subtle:window.crypto.subtle,readFingerprint:async path=>{
+      const u=new URL(path,'https://www.spin-raiders.com');u.searchParams.delete('rc');u.searchParams.delete('branchId');u.searchParams.set('siteRevision','6340');
+      return createFingerprintReader((_,options)=>window.fetch(u.pathname+u.search,options))('/_functions/canonicalFingerprint');
+    }});
+    if(selection.runtime!=='candidate-test')throw Error(selection.reason);
+    load('https://cdn.jsdelivr.net/gh/retroarcademachine1980-coder/slots@'+config.assetCommit+'/dist/filter-4388/sr.core.test.js');
+    diagnostic('verified',inputs);
+  }catch(error){const view=createStatusView(document,location);view.failure(navigationKey(location),'test_pair_not_verified');diagnostic(String(error.message),inputs);}
+})();
 })();
