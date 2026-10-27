@@ -1,4 +1,0 @@
-(function(){try{
-window.SR_C=window.SR_C||[];if(!window.SR_C.some(function(x){return x&&x[0]==="Coral Island Casino";})){window.SR_C.push(["Coral Island Casino","Blackpool","Coral Island","https://static.wixstatic.com/media/3a517e_1e96a745e7ed40779bf4c965c5bfeb30~mv2.png/v1/fit/w_1400,h_1400,q_70,enc_auto/file.webp","Coral Island Casino, Coral Island, Central Promenade, Blackpool FY1 5DW"]);}window.SR_CX=window.SR_CX||{};window.SR_CX["coral-island-casino"]={dn:"Coral Island Casino",op:"Coral Island",a:"Coral Island, Central Promenade, Blackpool, FY1 5DW",h:"Casino-specific hours are not separately verified; check the official casino page before travel",g:["Live Table Games","Casino Slots"],f:[],age:"18+",st:"CURRENT - OPERATIONAL",site:"https://coralislandcasino.co.uk/contact-us"};
-}catch(e){console.warn('SR snippet failed: Spin Raiders Proper Casinos 04',e)}})();
-
