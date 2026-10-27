@@ -803,7 +803,7 @@ function createBrowserRouteClient({ fetch, origin = SITE_ORIGIN, apiMode = 'prod
 }
 
 if(Object.prototype.hasOwnProperty.call(window,'SR_ROUTES'))throw new Error('Duplicate route authority');
-Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:function(path,options){if(typeof path!=='string'||!path.startsWith('/_functions/canonical'))throw new Error('Unexpected branch verification endpoint');var u=new URL(path,"https://www.spin-raiders.com");u.searchParams.set('siteRevision',"2");u.searchParams.set('branchId',"753b2e0f-5f69-4b1e-a6c5-d9f214ae7122");return window.fetch(u.pathname+u.search,options)},origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"4388cb7305abfc2b44e7edd8b679162c0bd070f2f8622f8d2120a703c87a5deb",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
+Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:function(path,options){if(typeof path!=='string'||!path.startsWith('/_functions/canonical'))throw new Error('Unexpected original test verification endpoint');var u=new URL(path,"https://www.spin-raiders.com");u.searchParams.set('siteRevision',"6340");u.searchParams.delete('branchId');return window.fetch(u.pathname+u.search,options)},origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"4388cb7305abfc2b44e7edd8b679162c0bd070f2f8622f8d2120a703c87a5deb",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
 })();
 /* [2] Spin Raiders route hydration and unavailable states */
 (function(){'use strict';
