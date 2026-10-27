@@ -1,0 +1,1 @@
+Delivery assets for the existing Spin Raiders website. Original homepage foundation restoration, 27 October 2026. Asset-only branch: do not merge this reduced tree into the native source branch. Native/core fingerprints and AdSense configuration are unchanged. Preservation tests and owner-review backups are in the restoration workspace.
