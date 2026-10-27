@@ -51,13 +51,42 @@
       picks.forEach(function (pick,index) { targets[index].replaceChildren.apply(targets[index],Array.from(pick.childNodes)); });
       waiting.remove();
       var grid = highlights.querySelector('.highlights');
-      if (grid && !grid.querySelector('[data-sr-owner-monthly="masala"]')) {
+      if (grid) {
+        function tidy() {
+          var matches = Array.from(grid.querySelectorAll('a.card')).filter(function (a) { return /\/food-and-drink\/masala-malt-grimsby(?:[?#]|$)/.test(a.getAttribute('href') || ''); });
+          var nativeCard = matches.find(function (a) { return !a.hasAttribute('data-sr-added-monthly'); });
+          if (nativeCard) {
+            matches.filter(function (a) { return a !== nativeCard && a.hasAttribute('data-sr-added-monthly'); }).forEach(function (a) { a.remove(); });
+            var badge = nativeCard.querySelector('.badge');
+            if (badge && badge.textContent !== 'RESTAURANT OF THE MONTH') badge.textContent = 'RESTAURANT OF THE MONTH';
+          }
+          var row = destinations.querySelector('.destinations');
+          if (!row) return;
+          Array.from(row.children).filter(function (a) { return a.matches('a.dest'); }).forEach(function (a) {
+            var wrap = page.createElement('div'); wrap.className = 'sr-destination-photo-card'; a.before(wrap); wrap.appendChild(a);
+          });
+          row.querySelectorAll('.sr-photo-credits').forEach(function (credit) {
+            if (credit.closest('[data-sr-original-photo-info]')) return;
+            if (credit.querySelector('a[href*="creativecommons.org/publicdomain/zero/"]')) { credit.remove(); return; }
+            var previous = credit.previousElementSibling;
+            var wrap = credit.closest('.sr-destination-photo-card') || previous && previous.matches('.sr-destination-photo-card') && previous;
+            if (!wrap) return;
+            var details = page.createElement('details'); details.dataset.srOriginalPhotoInfo = '1'; details.className = 'sr-original-photo-info';
+            var summary = page.createElement('summary'); summary.textContent = 'Photo information'; details.appendChild(summary); details.appendChild(credit); wrap.appendChild(details);
+          });
+        }
+        if (!Array.from(grid.querySelectorAll('a.card')).some(function (a) { return /\/food-and-drink\/masala-malt-grimsby(?:[?#]|$)/.test(a.getAttribute('href') || ''); })) {
         var card = page.createElement('a'); card.className = 'card'; card.href = '/food-and-drink/masala-malt-grimsby'; card.dataset.srOwnerMonthly = 'masala';
+        card.dataset.srAddedMonthly = '1';
         card.innerHTML = '<img src="https://static.wixstatic.com/media/3a517e_809ead30953140cc948d147392fd0498~mv2.jpg" alt="Masala n Malt, Grimsby" width="1536" height="710" loading="lazy"><span class="badge">RESTAURANT OF THE MONTH</span><div class="card-copy"><h3>Masala n Malt, Grimsby</h3><p>Our first Hidden Gem. Read Jamie’s full review · 4.9/5.</p><span class="arrow" aria-hidden="true">→</span></div>';
         grid.prepend(card);
-        var style = page.createElement('style'); style.textContent = '@media(min-width:1100px){.highlights:has([data-sr-owner-monthly]){grid-template-columns:repeat(5,minmax(0,1fr))}}'; inner.appendChild(style);
+        }
+        var style = page.createElement('style'); style.textContent = '.sr-destination-photo-card{position:relative;min-width:0}.sr-destination-photo-card>.dest{display:block;height:100%}.sr-original-photo-info{position:absolute;right:6px;top:6px;z-index:3;background:#fffffff2;border-radius:5px;color:#0b2545;padding:4px 7px;font:11px/1.4 Arial;max-width:calc(100% - 12px)}.sr-original-photo-info summary{cursor:pointer}.sr-original-photo-info .sr-photo-credits{margin:6px 0;font:11px/1.4 Arial}@media(min-width:1100px){.highlights:has([data-sr-added-monthly]){grid-template-columns:repeat(5,minmax(0,1fr))}}'; inner.appendChild(style);
         var note = highlights.querySelector('.heading p');
         if (note) note.textContent = 'Our October picks stay in the spotlight through November, with Masala n Malt as Restaurant of the Month.';
+        tidy();
+        var cardObserver = new MutationObserver(tidy); cardObserver.observe(grid,{childList:true,subtree:true});
+        var row = destinations.querySelector('.destinations'); if (row) cardObserver.observe(row,{childList:true,subtree:true});
       }
       requestAnimationFrame(function () { requestAnimationFrame(reveal); });
     }, function () { waiting.remove(); reveal(); });
