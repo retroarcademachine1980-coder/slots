@@ -1,0 +1,16 @@
+{
+  "purpose": "Existing original site test version 6340 only",
+  "productionPromotionApproved": false,
+  "testIdentity": {
+    "revision": "6340",
+    "branchId": null
+  },
+  "nativeCodeAppId": "e959b18b-873c-4dc7-ac9d-5f8cc129c7ec",
+  "nativeBuildHash": "9c39c41143f4d446a6f2dc89e4829e152ac5b4aaf04eeddf734451fdaf69c1ca",
+  "releaseFingerprint": "4388cb7305abfc2b44e7edd8b679162c0bd070f2f8622f8d2120a703c87a5deb",
+  "coreCommit": "8f8e1edd5d7f73baa2ab02f725215fd0cceef70a",
+  "guardCommit": "a109aec21203b6ff3dd92a25133d0829873c0aab",
+  "coreSHA256": "7428be5ec3f8ceab3f58031c6bc123fa31a4a4a699f291f0f07f54b616047498",
+  "guardSHA256": "ab2d4de15dfe4e940d2e01260873e668938c755b407a9195913dbb16a02d91bd",
+  "retainedProductionCoreCommit": "ef3373799a9d721c6c5eb19647d856ff1a1252e5"
+}
