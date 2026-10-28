@@ -6,6 +6,8 @@ Never change reviews or CMS; never infer an absent fuel grade or hide data age.
 """
 import argparse,csv,hashlib,io,json,math,os,re,sys,tempfile,time
 from urllib.request import Request,urlopen
+from urllib.error import HTTPError,URLError
+from http.client import RemoteDisconnected,IncompleteRead
 from collections import defaultdict
 from datetime import datetime,timezone
 from pathlib import Path
@@ -154,16 +156,29 @@ def parse_api_pages(pages,now=None,min_rows=5000):
  manifest['stationNames']=station_index(rows)
  return manifest,{area:{'schemaVersion':1,'revision':revision,'publishedAt':published,'stations':values} for area,values in rows.items()}
 
+def read_api_page(request):
+ # Retry only temporary transport/service failures, never invalid source data.
+ for attempt in range(1,4):
+  try:
+   with urlopen(request,timeout=45) as response:
+    if 'json' not in response.headers.get('Content-Type','').lower():raise ValueError('Public API did not return JSON')
+    raw=response.read(5*1024*1024+1)
+    if len(raw)>5*1024*1024:raise ValueError('Unexpected public API page size')
+   return raw
+  except HTTPError as error:
+   if error.code not in (429,500,502,503,504) or attempt==3:raise
+  except (URLError,RemoteDisconnected,IncompleteRead,TimeoutError,ConnectionResetError):
+   if attempt==3:raise
+  print('Fuel Finder temporary connection failure; retrying this page ('+str(attempt)+'/3).',file=sys.stderr)
+  time.sleep(attempt*2)
+
 def download_api_pages(directory):
  global STAGE
  pages=[];count=1;index=1
  while index<=count:
   STAGE='reading public forecourt API page '+str(index)
   request=Request(API+'?sort=price&perPage=500&page='+str(index),headers={'User-Agent':USER_AGENT,'Accept':'application/json'})
-  with urlopen(request,timeout=45) as response:
-   if 'json' not in response.headers.get('Content-Type','').lower():raise ValueError('Public API did not return JSON')
-   raw=response.read(5*1024*1024+1)
-   if len(raw)>5*1024*1024:raise ValueError('Unexpected public API page size')
+  raw=read_api_page(request)
   page=json.loads(raw);pages.append(page);count=page.get('meta',{}).get('totalPages',0)
   if not isinstance(count,int) or not 1<=count<=40:raise ValueError('Unexpected public API page count')
   (Path(directory)/('page-'+str(index)+'.json')).write_bytes(raw);index+=1
@@ -209,4 +224,3 @@ if __name__=='__main__':
   message=str(error).splitlines()[0]
   message=re.sub(r'(https?://[^\s?]+)\?[^\s]+',r'\1?[redacted]',message)
   print('Fuel Finder refresh failed at '+STAGE+' ('+type(error).__name__+'): '+message[:250]+'. Prior dated files retained.',file=sys.stderr);sys.exit(1)
-
