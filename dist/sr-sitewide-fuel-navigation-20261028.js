@@ -23,7 +23,7 @@
    root.querySelectorAll('.masthead nav.menu').forEach(function(nav){add(nav,'desktop')});
    root.querySelectorAll('.masthead .burger>nav').forEach(function(nav){add(nav,'mobile')});
    root.querySelectorAll('nav[aria-label="Footer"],nav[aria-label="All categories"]').forEach(function(nav){add(nav,'footer')});
-   if(!root.querySelector('#sr-site-fuel-link-style')){var style=document.createElement('style');style.id='sr-site-fuel-link-style';style.textContent='.masthead .menu>.sr-site-fuel-link{white-space:nowrap;color:#fff;font-weight:800;text-decoration:none}.masthead .menu>.sr-site-fuel-link:hover,.masthead .menu>.sr-site-fuel-link:focus-visible{color:#ffe455}.masthead .burger>nav>.sr-site-fuel-link{color:#0b3150!important;background:#ffe455;border-radius:7px;font-weight:800;padding:12px 16px;margin:4px 0 12px}';(root===document?document.head:root).append(style);}
+   if(!root.querySelector('#sr-site-fuel-link-style')){var style=document.createElement('style');style.id='sr-site-fuel-link-style';style.textContent='.masthead .menu>.sr-site-fuel-link{white-space:nowrap;color:#fff;font:800 14px/1.3 Inter,Arial,sans-serif;text-decoration:none}.masthead .menu>.sr-site-fuel-link:hover,.masthead .menu>.sr-site-fuel-link:focus-visible{color:#ffe455}.masthead .burger>nav>.sr-site-fuel-link{color:#0b3150!important;background:#ffe455;border-radius:7px;font:800 17px/1.4 Inter,Arial,sans-serif!important;padding:12px 16px;margin:4px 0 12px}';(root===document?document.head:root).append(style);}
   });
   if(!destination()&&!/^\/plan-a-trip\/?$/.test(location.pathname))return;
   var p=panel(all);if(!p)return;p.id='fuel-prices';p.style.scrollMarginTop='100px';
