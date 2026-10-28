@@ -10,7 +10,7 @@
  function jump(e){e.scrollIntoView({block:'start',behavior:'auto'});var h=e.querySelector('h2');if(h){h.tabIndex=-1;h.focus({preventScroll:true});}}
  function add(nav,kind){
   var a=nav.querySelector(':scope > a[data-sr-fuel-navigation]');
-  if(!a){a=document.createElement('a');a.dataset.srFuelNavigation=kind;a.textContent='Fuel prices';a.className=kind==='desktop'?'sr-nav-parent sr-site-fuel-link':'sr-site-fuel-link';
+  if(!a){a=document.createElement('a');a.dataset.srFuelNavigation=kind;a.textContent='Fuel prices';a.className='sr-site-fuel-link';
    a.addEventListener('click',function(event){if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;var url=new URL(a.href,location.origin);if(url.pathname!==location.pathname.replace(/\/$/,'')&&!(url.pathname==='/plan-a-trip'&&location.pathname==='/plan-a-trip/'))return;var p=panel(roots());if(!p)return;event.preventDefault();history.replaceState(history.state,'',url.pathname+url.search+url.hash);var menu=a.closest('details.burger');if(menu)menu.open=false;jump(p);});
    if(kind==='mobile')nav.prepend(a);else nav.append(a);
   }
@@ -23,10 +23,14 @@
    root.querySelectorAll('.masthead nav.menu').forEach(function(nav){add(nav,'desktop')});
    root.querySelectorAll('.masthead .burger>nav').forEach(function(nav){add(nav,'mobile')});
    root.querySelectorAll('nav[aria-label="Footer"],nav[aria-label="All categories"]').forEach(function(nav){add(nav,'footer')});
-   if(!root.querySelector('#sr-site-fuel-link-style')){var style=document.createElement('style');style.id='sr-site-fuel-link-style';style.textContent='.masthead .menu>.sr-site-fuel-link{white-space:nowrap;color:#fff;font-weight:800;text-decoration:none}.masthead .menu>.sr-site-fuel-link:hover,.masthead .menu>.sr-site-fuel-link:focus-visible{color:#ffe455}.masthead .burger>nav>.sr-site-fuel-link{color:#ffe455;font-weight:800;border-bottom:1px solid #ffffff30;padding-bottom:12px;margin-bottom:8px}';(root===document?document.head:root).append(style);}
+   if(!root.querySelector('#sr-site-fuel-link-style')){var style=document.createElement('style');style.id='sr-site-fuel-link-style';style.textContent='.masthead .menu>.sr-site-fuel-link{white-space:nowrap;color:#fff;font-weight:800;text-decoration:none}.masthead .menu>.sr-site-fuel-link:hover,.masthead .menu>.sr-site-fuel-link:focus-visible{color:#ffe455}.masthead .burger>nav>.sr-site-fuel-link{color:#0b3150!important;background:#ffe455;border-radius:7px;font-weight:800;padding:12px 16px;margin:4px 0 12px}';(root===document?document.head:root).append(style);}
   });
   if(!destination()&&!/^\/plan-a-trip\/?$/.test(location.pathname))return;
   var p=panel(all);if(!p)return;p.id='fuel-prices';p.style.scrollMarginTop='100px';
+  if(/^\/plan-a-trip\/?$/.test(location.pathname)){
+   var builder=p.closest('.builder');if(builder)builder.after(p);
+   var heading=p.querySelector('h2');if(heading&&heading.textContent!=='Compare petrol and diesel prices')heading.textContent='Compare petrol and diesel prices';
+  }
   if(location.hash==='#fuel-prices'&&!jumped.has(p)){jumped.add(p);requestAnimationFrame(function(){requestAnimationFrame(function(){jump(p)})});}
  }
  function schedule(){if(!queued){queued=true;setTimeout(scan,100)}}
