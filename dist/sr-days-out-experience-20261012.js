@@ -187,8 +187,8 @@ main[data-sr-agc-entrance]>.hero .hero-search{position:absolute;left:32px;bottom
   }
   function photoInformation(root) {
     root.querySelectorAll('.body article,main .about').forEach(function(article) {
-      article.querySelectorAll('h2,h3,h4,p').forEach(function(marker) {
-        if(marker.closest('details')||!/^(photo information|photograph credits|photo credits)$/i.test(marker.textContent.trim()))return;
+      Array.from(article.querySelectorAll('h2,h3,h4,p')).concat(Array.from(article.childNodes).filter(function(node){return node.nodeType===3;})).forEach(function(marker) {
+        if((marker.nodeType===1?marker:marker.parentElement).closest('details')||!/^(photo information|photograph credits|photo credits)$/i.test(marker.textContent.trim()))return;
         var blocks=[],next=marker.nextElementSibling;
         while(next&&blocks.length<6&&!/^H[1-6]$/.test(next.tagName)) {
           if(!/^(P|UL|OL)$/.test(next.tagName))break;
