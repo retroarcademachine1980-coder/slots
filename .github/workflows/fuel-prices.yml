@@ -1,7 +1,7 @@
 name: Refresh government forecourt prices
 on:
   schedule:
-    - cron: '41 * * * *'
+    - cron: '11,26,41,56 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
