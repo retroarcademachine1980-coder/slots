@@ -174,10 +174,12 @@ def read_api_page(request):
 
 def download_api_pages(directory):
  global STAGE
+ # Keep cached pages from earlier downloads out of this complete attempt.
+ snapshot_key=str(time.time_ns())
  pages=[];count=1;index=1
  while index<=count:
   STAGE='reading public forecourt API page '+str(index)
-  request=Request(API+'?sort=price&perPage=500&page='+str(index),headers={'User-Agent':USER_AGENT,'Accept':'application/json'})
+  request=Request(API+'?sort=price&perPage=500&page='+str(index)+'&_sr_snapshot='+snapshot_key,headers={'User-Agent':USER_AGENT,'Accept':'application/json','Cache-Control':'no-cache'})
   raw=read_api_page(request)
   page=json.loads(raw);pages.append(page);count=page.get('meta',{}).get('totalPages',0)
   if not isinstance(count,int) or not 1<=count<=40:raise ValueError('Unexpected public API page count')
@@ -224,3 +226,5 @@ if __name__=='__main__':
   message=str(error).splitlines()[0]
   message=re.sub(r'(https?://[^\s?]+)\?[^\s]+',r'\1?[redacted]',message)
   print('Fuel Finder refresh failed at '+STAGE+' ('+type(error).__name__+'): '+message[:250]+'. Prior dated files retained.',file=sys.stderr);sys.exit(1)
+
+
