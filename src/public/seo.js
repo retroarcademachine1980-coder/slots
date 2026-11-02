@@ -58,6 +58,8 @@ function wixImageUrl(src) {
 
 function venueSchemaType(item) {
     const t = `${item.venueType || ''} ${item.officialVenueLabel || ''} ${item.title || ''}`.toLowerCase();
+    // A Gamebox hosted inside a bowling venue is still the separately described gaming attraction.
+    if (/\bimmersive\s+gamebox\b/i.test(clean(item.title))) return 'EntertainmentBusiness';
     if (/bowl/.test(t)) return 'BowlingAlley';
     if (/cinema|odeon|vue |cineworld/.test(t)) return 'MovieTheater';
     if (/casino/.test(t)) return 'Casino';

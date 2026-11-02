@@ -16,6 +16,8 @@ module.exports = {
         '@wix/cli/no-wix-extraneous-dependencies': 'off',
         'spin-raiders/no-extraneous-site-dependencies': 'error',
         'spin-raiders/no-relative-site-imports': 'error',
+        // Upstream 1.0.2 checks pages/ and public/ without normalizing Windows separators.
+        'spin-raiders/no-private-backend-site-imports': 'error',
         'no-undef': 'error',
         'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }]
       }

@@ -2,7 +2,7 @@
 const {JSDOM,VirtualConsole}=require('jsdom');
 const fs=require('node:fs'),assert=require('node:assert/strict'),path=require('node:path');
 const ROOT=path.resolve(__dirname,'..'),ORIGIN='https://www.spin-raiders.com';
-const combined=fs.readFileSync(path.join(ROOT,'dist/sr.js'),'utf8'),matches=[...combined.matchAll(/\/\* \[(\d+)\] [^\n]* \*\/\n/g)],merged=Object.fromEntries(matches.map((m,i)=>[m[1],combined.slice(m.index+m[0].length,matches[i+1]?.index||combined.length)]));
+const combined=fs.readFileSync(path.join(ROOT,'dist/sr.js'),'utf8'),matches=[...combined.matchAll(/\/\* \[(\d+)\] [^\r\n]* \*\/\r?\n/g)],merged=Object.fromEntries(matches.map((m,i)=>[m[1],combined.slice(m.index+m[0].length,matches[i+1]?.index||combined.length)]));
 const parts=Object.fromEntries(['117','123','124','132','138','142'].map(name=>{assert(merged[name],'missing actual renderer '+name);return[name,merged[name]]}));
 const support=merged['2'];
 const rich=merged['141'];

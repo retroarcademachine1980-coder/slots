@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import vm from 'node:vm';
+import { createOutputLinkFixture } from '../tools/test-support/output-link-fixture.mjs';
 import { MAX_MODULE_BYTES, CHUNK_DIRECTORY, generateRouteManifestFiles, writeRouteManifestFiles, buildRouteManifest } from '../tools/build-route-manifest.mjs';
 
 const rootModule = 'routeManifest.generated.js';
@@ -118,15 +119,15 @@ test('output symlinks, non-regular generated targets and traversal are rejected 
   fs.writeFileSync(path.join(outside, 'sentinel'), 'untouched');
   const symlinkOutput = path.join(folder, 'symlink-output');
   fs.mkdirSync(symlinkOutput);
-  fs.symlinkSync(outside, path.join(symlinkOutput, CHUNK_DIRECTORY));
+  createOutputLinkFixture(outside, path.join(symlinkOutput, CHUNK_DIRECTORY));
   assert.throws(() => writeRouteManifestFiles(generated, { outputDirectory: symlinkOutput }), /symlink output/);
   const rootOutput = path.join(folder, 'root-output');
   fs.mkdirSync(rootOutput);
-  fs.symlinkSync(path.join(outside, 'sentinel'), path.join(rootOutput, rootModule));
+  createOutputLinkFixture(path.join(outside, 'sentinel'), path.join(rootOutput, rootModule));
   assert.throws(() => writeRouteManifestFiles(generated, { outputDirectory: rootOutput }), /non-regular generated file/);
   const staleOutput = path.join(folder, 'stale-output');
   fs.mkdirSync(path.join(staleOutput, CHUNK_DIRECTORY), { recursive: true });
-  fs.symlinkSync(path.join(outside, 'sentinel'), path.join(staleOutput, CHUNK_DIRECTORY, 'routeManifest.generated.part99999.js'));
+  createOutputLinkFixture(path.join(outside, 'sentinel'), path.join(staleOutput, CHUNK_DIRECTORY, 'routeManifest.generated.part99999.js'));
   assert.throws(() => writeRouteManifestFiles(generated, { outputDirectory: staleOutput }), /non-regular generated file/);
   assert.equal(fs.existsSync(path.join(staleOutput, rootModule)), false);
   assert.throws(() => writeRouteManifestFiles(new Map([['../escape.js', 'no']]), { outputDirectory: rootOutput }), /Unexpected generated output path/);

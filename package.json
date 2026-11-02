@@ -16,6 +16,6 @@
     "test:ui": "node tools/verify-ui.cjs",
     "test:lint-policy": "node tools/verify-lint-policy.cjs",
     "check": "npm run lint && node tools/check-source-syntax.mjs && npm test && npm run test:ui && npm run test:lint-policy",
-    "release:check": "node tools/verify-release-gates.mjs"
+    "release:check": "node --import ./tools/register-wix-test-loader.mjs tools/verify-release-gates.mjs"
   }
 }

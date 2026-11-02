@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { createOutputLinkFixture } from '../tools/test-support/output-link-fixture.mjs';
 import { readNativeBindings, validateNativeBindings, writeNativeOutputs } from '../tools/native-bindings.mjs';
 import { generateNativeHandlers, buildNativeHandlers } from '../tools/generate-native-handlers.mjs';
 import { generateNativeNavigation, buildNativeNavigation } from '../tools/generate-native-navigation.mjs';
@@ -268,13 +269,13 @@ test('output writes reject traversal, symlinks and non-regular files before repl
   put(outputRoot, 'src/backend/routers.js', 'prior routers');
   const target = put(folder, 'outside.txt', 'untouched');
   fs.mkdirSync(path.join(outputRoot, 'docs'));
-  fs.symlinkSync(target, path.join(outputRoot, 'docs/captured-native-handlers.json'));
+  createOutputLinkFixture(target, path.join(outputRoot, 'docs/captured-native-handlers.json'));
   const input = put(folder, 'reviewed.json', JSON.stringify(fixture()));
   assert.throws(() => buildNativeHandlers({ input, outputRoot }), /non-regular native output/);
   assert.equal(fs.readFileSync(path.join(outputRoot, 'src/backend/routers.js'), 'utf8'), 'prior routers');
   assert.equal(fs.readFileSync(target, 'utf8'), 'untouched');
   assert.throws(() => writeNativeOutputs(new Map([['../escape.js', 'no']]), { outputRoot }), /Unexpected native output/);
-  const linked = path.join(folder, 'linked'); fs.symlinkSync(outputRoot, linked);
+  const linked = path.join(folder, 'linked'); createOutputLinkFixture(outputRoot, linked);
   assert.throws(() => buildNativeNavigation({ input, outputRoot: linked }), /symlink native output/);
 });
 

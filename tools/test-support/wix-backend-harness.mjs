@@ -1,7 +1,8 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
-const ROOT=path.resolve(new URL('../../src',import.meta.url).pathname);
+import {fileURLToPath} from 'node:url';
+const ROOT=fileURLToPath(new URL('../../src',import.meta.url));
 export async function loadBackend(file,override={},capture={},manifestInput={}){
  const data=override;
  function query(collection){const filters=[];const q={};for(const method of ['limit','ascending','descending','contains','ne','or'])q[method]=()=>q;

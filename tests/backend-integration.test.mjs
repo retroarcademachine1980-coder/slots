@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
-const ROOT=path.resolve(new URL('../src',import.meta.url).pathname);
+import {fileURLToPath} from 'node:url';
+const ROOT=fileURLToPath(new URL('../src',import.meta.url));
 const hotel={_id:'h',title:'Imperial Blackpool',slug:'imperial',locationSlug:'blackpool',locationName:'Blackpool',active:true,offerIds:['o'],image:'hotel.jpg',canonicalUrl:'/hotels/old',unifiedSearchText:'imperial blackpool'};
 const venue={_id:'v',title:'Arcade Club Blackpool',slug:'arcade-club',locationSlug:'blackpool',locationName:'Blackpool',venueType:'Arcade',heroImage:'v.jpg',shortUrl:'/?place=v',unifiedSearchText:'arcade club blackpool',latitude:53,longitude:-3};
 const attraction={_id:'a',title:'Cinema Blackpool',slug:'cinema',locationSlug:'blackpool',locationName:'Blackpool',category:'Cinema',heroImage:'a.jpg',website:'https://external.test',unifiedSearchText:'cinema blackpool',latitude:53,longitude:-3};
@@ -152,6 +153,18 @@ test('historical route SEO cannot be reindexed by the master page or imply a liv
  const capture={},m=await load('public/seo',{},capture);
  await m.applyPageSeo(['arcade','old','town'],{view:'detail',record:{_id:'x',title:'Former Arcade',directoryReady:true},route:{kind:'arcade',path:'/arcade/old/town',canonicalUrl:'https://www.spin-raiders.com/arcade/old/town',routeType:'historical',indexable:false,contentNotice:'Closed. Historical information retained.'}});
  assert.ok(capture.seo.metaTags.flat().some(tag=>tag.name==='robots'&&tag.content.includes('noindex')));assert.equal(capture.seo.structuredData[0][0]['@type'],'Article');
+});
+
+test('hosted Immersive Gamebox is not misidentified as its bowling host in published SEO',async()=>{
+ const capture={},m=await load('public/seo',{},capture);
+ const route={kind:'attraction',path:'/attractions/immersive-gamebox/watford',canonicalUrl:'https://www.spin-raiders.com/attractions/immersive-gamebox/watford',indexable:true};
+ await m.applyPageSeo(['attractions','immersive-gamebox','watford'],{view:'detail',record:{title:'Immersive Gamebox Hollywood Bowl Watford Woodside',venueType:'Bowling',directoryReady:true,seoTitle:'Immersive Gamebox Watford: Games & Group Visits | Spin Raiders'},route});
+ assert.equal(capture.seo.structuredData[0][0]['@type'],'EntertainmentBusiness');
+ assert.equal(capture.seo.title[0],'Immersive Gamebox Watford: Games & Group Visits | Spin Raiders');
+ assert.equal(capture.seo.links[0].find(link=>link.rel==='canonical').href,route.canonicalUrl);
+ const bowlingCapture={},bowling=await load('public/seo',{},bowlingCapture);
+ await bowling.applyPageSeo(['attractions','immersive-gamebox','watford'],{view:'detail',record:{title:'Hollywood Bowl Watford Woodside',venueType:'Bowling',directoryReady:true},route});
+ assert.equal(bowlingCapture.seo.structuredData[0][0]['@type'],'BowlingAlley');
 });
 
 test('Food records without a prebuilt search index appear for coffee and burger queries',async()=>{

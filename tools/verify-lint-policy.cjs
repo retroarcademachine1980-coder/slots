@@ -6,14 +6,16 @@ fs.mkdirSync(path.join(root,'src/backend'),{recursive:true});fs.mkdirSync(path.j
 fs.writeFileSync(path.join(root,'package.json'),'{}');
 fs.writeFileSync(path.join(root,'src/backend/example.web.js'),'export const test = 1;');
 fs.writeFileSync(path.join(root,'src/backend/private.js'),'export const test = 1;');
-const engine=new ESLint({cwd:root,useEslintrc:false,plugins:{'@wix/cli':wix,'spin-raiders':plugin},overrideConfig:{parserOptions:{ecmaVersion:'latest',sourceType:'module'},plugins:['@wix/cli','spin-raiders'],rules:{'@wix/cli/no-invalid-backend-import':'error','@wix/cli/no-forbidden-relative-imports':'error','spin-raiders/no-extraneous-site-dependencies':'error','spin-raiders/no-relative-site-imports':'error'}}});
+const engine=new ESLint({cwd:root,useEslintrc:false,plugins:{'@wix/cli':wix,'spin-raiders':plugin},overrideConfig:{parserOptions:{ecmaVersion:'latest',sourceType:'module'},plugins:['@wix/cli','spin-raiders'],rules:{'@wix/cli/no-invalid-backend-import':'error','@wix/cli/no-forbidden-relative-imports':'error','spin-raiders/no-extraneous-site-dependencies':'error','spin-raiders/no-relative-site-imports':'error','spin-raiders/no-private-backend-site-imports':'error'}}});
 async function errors(source,file='backend/test.js'){return(await engine.lintText(source,{filePath:path.join(root,'src',file)}))[0].messages.filter(message=>message.severity===2);}
 (async()=>{try{
  for(const name of ['wix-data','wix-fetch','wix-http-functions','wix-location-frontend','wix-router','wix-seo-frontend','wix-web-module','wix-window-frontend'])assert.equal((await errors(`import x from '${name}';export {x};`)).length,0,name);
  for(const name of ['wix-not-a-platform-module','wix-data/private','lodash'])assert((await errors(`import x from '${name}';export {x};`)).some(message=>message.ruleId==='spin-raiders/no-extraneous-site-dependencies'),name+' must not be exempt');
  assert.equal((await errors("import {test} from 'backend/example.web'; export {test};",'public/client.js')).length,0,'.web modules are supported');
- assert((await errors("import {test} from 'backend/private.js'; export {test};",'public/client.js')).some(message=>message.ruleId==='@wix/cli/no-invalid-backend-import'),'private backend import must still fail');
- assert((await errors("import {test} from '../backend/private.js'; export {test};",'pages/page.js')).some(message=>message.ruleId==='@wix/cli/no-forbidden-relative-imports'),'official relative-boundary guard stays enabled');
+ assert((await errors("import {test} from 'backend/private.js'; export {test};",'public/client.js')).some(message=>['@wix/cli/no-invalid-backend-import','spin-raiders/no-private-backend-site-imports'].includes(message.ruleId)),'private backend import must still fail');
+ assert((await errors("import {test} from '../backend/private.js'; export {test};",'pages/page.js')).some(message=>['@wix/cli/no-forbidden-relative-imports','spin-raiders/no-relative-site-imports'].includes(message.ruleId)),'relative-boundary guard stays enabled on every host');
+ for(const source of ["export {test} from 'backend/private.js';","export * from 'backend/private.js';","const x=import('backend/private.js');","const x=require('backend/private.js');"])
+  assert((await errors(source,'public/client.js')).some(message=>message.ruleId==='spin-raiders/no-private-backend-site-imports'),'every private import form must fail');
  assert((await errors("import {test} from './sibling.js'; export {test};",'public/client.js')).some(message=>message.ruleId==='spin-raiders/no-relative-site-imports'),'unsupported same-folder site imports must fail');
  assert(!fs.existsSync(path.join(root,'src/velo.dependencies.json')),'test must not invent site dependencies');
  console.log('PASS exact8 Velo built-ins; unknown/npm/subpath imports still rejected; public/private boundary and supported .web imports verified; no fabricated dependencies');
