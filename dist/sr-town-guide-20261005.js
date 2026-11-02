@@ -12,9 +12,11 @@
   function guideHref(value) {
     value = String(value || '').trim();
     if (!value || /[\u0000-\u0020\u007f\\]/.test(value)) return '';
+    if (/^#[A-Za-z][\w:.-]*$/.test(value)) return value;
     try {
       var parsed = new URL(value, location.origin);
       if (parsed.username || parsed.password || !/^https?:$/.test(parsed.protocol)) return '';
+      if (parsed.origin === location.origin && parsed.pathname === location.pathname && !parsed.search && /^#[A-Za-z][\w:.-]*$/.test(parsed.hash)) return parsed.hash;
       if (/^\/(?!\/)/.test(value)) return parsed.origin === location.origin ? value : '';
       return /^https?:\/\//i.test(value) ? parsed.href : '';
     } catch (error) { return ''; }
@@ -135,4 +137,3 @@
   }
   var timer = setInterval(tick, 100);
 })();
-
