@@ -80,11 +80,22 @@ export function knownPreservedTuple(essential) {
   return PRESERVED_BUILDS.some(tuple => sameTuple(earlyIdentity(essential), tuple));
 }
 function hash(value) { return typeof value === 'string' && /^[a-f0-9]{64}$/.test(value); }
+// Wix can omit member-page filenames for anonymous readers of the same build.
+// Admit only explicitly captured full projections; never drop those fields from identity.
+function candidateHashes(config) {
+  if (!hash(config?.nativeBuildHash)) return null;
+  if (!Object.hasOwn(config, 'nativeBuildHashes')) return [config.nativeBuildHash];
+  const values = config.nativeBuildHashes;
+  if (!Array.isArray(values) || values.length < 1 || values.length > 2 ||
+      !Array.from(values).every(hash) || new Set(values).size !== values.length ||
+      !values.includes(config.nativeBuildHash)) return null;
+  return values;
+}
 export function validateCandidateConfig(config) {
   return config?.testApproved === true && config.localTestEvidence &&
     config.expectedFingerprint?.contractVersion === CONTRACT_VERSION &&
     ['releaseFingerprint', 'manifestFingerprint', 'rendererFingerprint'].every(key => hash(config.expectedFingerprint[key])) &&
-    hash(config.nativeBuildHash) && /^[a-f0-9-]{36}$/.test(config.codeAppId || '') &&
+    candidateHashes(config) !== null && /^[a-f0-9-]{36}$/.test(config.codeAppId || '') &&
     /^\d+$/.test(String(config.testIdentity?.revision || '')) &&
     (config.testIdentity?.branchId === null || /^[a-f0-9-]{36}$/.test(config.testIdentity?.branchId || ''));
 }
@@ -109,7 +120,7 @@ export async function selectRuntime({ essential, model, config, readFingerprint,
     return { runtime: 'preserved', reason: 'exact_preserved_native_and_backend' };
   }
   if (!validateCandidateConfig(config)) return { runtime: 'blocked', reason: 'unapproved_candidate_config' };
-  if (projection.codeAppId !== config.codeAppId || nativeHash !== config.nativeBuildHash) {
+  if (projection.codeAppId !== config.codeAppId || !candidateHashes(config).includes(nativeHash)) {
     return { runtime: 'blocked', reason: 'native_build_mismatch' };
   }
   onCandidateNative?.();

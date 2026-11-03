@@ -136,4 +136,41 @@ await test('Original Test Site can use an explicit null branch with exact native
   assert(!validateCandidateConfig({ ...originalConfig, testIdentity: { revision: '6330' } }));
 });
 
+await test('two captured full native variants require the same backend and test tuple', async () => {
+  const anonymous = structuredClone(model);
+  delete anonymous.siteFeaturesConfigs.router.pagesMap.home.pageJsonFileName;
+  const anonymousHash = await nativeBuildHash(anonymous, webcrypto.subtle);
+  const paired = { ...config, promotionApproved: false, acceptanceEvidence: null,
+    nativeBuildHashes: [config.nativeBuildHash, anonymousHash] };
+  for (const captured of [model, anonymous]) {
+    assert.equal((await choose({ model: captured, config: paired })).runtime, 'candidate-test');
+    assert.equal((await choose({ model: captured, config: paired,
+      readFingerprint: async () => ({ ...fingerprint, rendererFingerprint: 'd'.repeat(64) }) })).runtime, 'blocked');
+    const outside = structuredClone(essential); outside.commonConfig.siteRevision = '100';
+    assert.equal((await choose({ model: captured, config: paired, essential: outside })).runtime, 'blocked');
+  }
+  // Omitting metadata alone never authorizes an uncaptured variant.
+  assert.equal((await choose({ model: anonymous })).runtime, 'blocked');
+  for (const tamper of ['page', 'backend', 'route']) {
+    const changed = structuredClone(anonymous);
+    if (tamper === 'page') changed.siteFeaturesConfigs.router.pagesMap.home.title = 'Changed';
+    if (tamper === 'backend') changed.siteFeaturesConfigs.platform.bootstrapData.wixCodeBootstrapData.wixCodeModel.appData.codeAppId = branch;
+    if (tamper === 'route') changed.siteFeaturesConfigs.router.routes['./extra'] = { pageId: 'home' };
+    let reads = 0;
+    assert.equal((await choose({ model: changed, config: paired, readFingerprint: async () => { ++reads; return fingerprint; } })).runtime, 'blocked');
+    assert.equal(reads, 0);
+  }
+});
+await test('native variant lists reject malformed, duplicate, excessive or missing primary hashes', async () => {
+  for (const values of [null, undefined, [], [config.nativeBuildHash, ,], 'a'.repeat(64), ['unknown'],
+    [config.nativeBuildHash, config.nativeBuildHash], ['d'.repeat(64)],
+    [config.nativeBuildHash, 'd'.repeat(64), 'e'.repeat(64)]]) {
+    const invalid = { ...config, nativeBuildHashes: values };
+    assert(!validateCandidateConfig(invalid));
+    assert.equal((await choose({ config: invalid })).reason, 'unapproved_candidate_config');
+  }
+  assert(validateCandidateConfig({ ...config, nativeBuildHashes: [config.nativeBuildHash] }));
+  assert(!validateCandidateConfig({ ...config, nativeBuildHash: null, nativeBuildHashes: ['d'.repeat(64)] }));
+});
+
 console.log(`${passed} release identity tests passed. Browser injection/promotion remain UNTESTED.`);
