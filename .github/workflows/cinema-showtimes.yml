@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Refresh authorised operator feeds
         id: refresh
         continue-on-error: true
