@@ -802,7 +802,7 @@ function createBrowserRouteClient({ fetch, origin = SITE_ORIGIN, apiMode = 'prod
 }
 
 if(Object.prototype.hasOwnProperty.call(window,'SR_ROUTES'))throw new Error('Duplicate route authority');
-Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"a003b100d7f39087a3ed16e225ade89995e7c7a4627e194ea4340cf104e7bab8",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
+Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"4de3c8a0f8b48d2e1e4e90aa7919d7de1c161c0061601feaba36f87656246595",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
 })();
 
 /* [2] Spin Raiders route hydration and unavailable states */
@@ -5006,7 +5006,10 @@ window.SR_TRIP_PAGES_CSS += "[data-more-categories]{width:100%;min-height:44px;f
             ),
           );
           if (K === "all") {
-            g = d.town.slice(0, 2);
+            // A named town must not lose its own card to other towns mentioning it.
+            const townQuery = t.toLocaleLowerCase("en-GB").replace(/\s+/g, " ").trim();
+            const namedTowns = d.town.filter(row => String(row.displayTitle || row.title || row.name || "").toLocaleLowerCase("en-GB").replace(/\s+/g, " ").trim() === townQuery);
+            g = (namedTowns.length ? namedTowns : d.town).slice(0, 2);
             const f = ["stay", "eat", "do", "arcade"];
             for (let t = 0; g.length < 24 && t < 30; t++)
               for (const e of f) d[e][t] && g.length < 24 && g.push(d[e][t]);
@@ -5190,9 +5193,7 @@ window.SR_TRIP_PAGES_CSS += "[data-more-categories]{width:100%;min-height:44px;f
                   ),
                   a =
                     location.origin +
-                    l("trip") +
-                    "&shared=" +
-                    encodeURIComponent(e);
+                    l("trip", { shared: e });
                 if (a.length > 24e3)
                   return void w(
                     "This trip is too large for a share link. Export the plan instead.",

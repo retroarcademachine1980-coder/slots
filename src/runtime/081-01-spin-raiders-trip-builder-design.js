@@ -302,7 +302,10 @@
             ),
           );
           if (K === "all") {
-            g = d.town.slice(0, 2);
+            // A named town must not lose its own card to other towns mentioning it.
+            const townQuery = t.toLocaleLowerCase("en-GB").replace(/\s+/g, " ").trim();
+            const namedTowns = d.town.filter(row => String(row.displayTitle || row.title || row.name || "").toLocaleLowerCase("en-GB").replace(/\s+/g, " ").trim() === townQuery);
+            g = (namedTowns.length ? namedTowns : d.town).slice(0, 2);
             const f = ["stay", "eat", "do", "arcade"];
             for (let t = 0; g.length < 24 && t < 30; t++)
               for (const e of f) d[e][t] && g.length < 24 && g.push(d[e][t]);
@@ -486,9 +489,7 @@
                   ),
                   a =
                     location.origin +
-                    l("trip") +
-                    "&shared=" +
-                    encodeURIComponent(e);
+                    l("trip", { shared: e });
                 if (a.length > 24e3)
                   return void w(
                     "This trip is too large for a share link. Export the plan instead.",
