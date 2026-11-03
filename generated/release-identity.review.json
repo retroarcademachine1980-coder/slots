@@ -1,8 +1,8 @@
 {
   "contractVersion": "spin-raiders-canonical-v1",
-  "releaseFingerprint": "f3614e2878b614fec34b85a4f8682cbb3d244cc5c8961b15763afbfc1188a83e",
+  "releaseFingerprint": "6456372e8916abfb791b084cb24c98d3a43a2c46f4feee929ea2e598f6f70fde",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "rendererFingerprint": "a528f597c6e1c9f9f9758734782a9441508306a0e6270cfc831daf0b0844b9e1",
+  "rendererFingerprint": "523208047f2062913e5926c586167d5262a0ca82a855de9714b10a8f967d7da5",
   "sourceFiles": 299,
   "deploymentBlocked": false
 }

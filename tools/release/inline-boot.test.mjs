@@ -45,3 +45,22 @@ test('native route transition releases stale page hold before old DOM is replace
 });
 
 test('stale isolated native page ID is not reintroduced by the emergency fallback',()=>{assert.equal(ownsNativePage('zcvbk',new URL('/classic-fruit-machines','https://www.spin-raiders.com'),registry),false);assert.equal(ownsNativePage(machinePageId,new URL('/classic-fruit-machines','https://www.spin-raiders.com'),registry),true);});
+
+test('current supplements never start on preserved or rejected identities',async()=>{
+ for(const runtime of ['preserved','blocked']){
+  const d=fixture(),w=d.window;let common=0,preserved=0;
+  const result=await bootInline({window:w,document:w.document,config:{},pageRegistry:registry,
+   candidateBootstrap:()=>{++common;},preservedBootstrap:()=>{++preserved;},
+   readInputs:async()=>({}),select:async()=>({runtime})});
+  assert.equal(result.runtime,runtime);assert.equal(common,0);assert.equal(preserved,runtime==='preserved'?1:0);w.close();
+ }
+});
+test('failed current supplement replay gives recovery without starting either core',async()=>{
+ const d=fixture('/classic-fruit-machines',machinePageId),w=d.window;let calls=0;
+ const result=await bootInline({window:w,document:w.document,config:{},pageRegistry:registry,
+  candidateBootstrap:()=>{++calls;throw Error('supplement failure');},preservedBootstrap:()=>{throw Error('wrong runtime');},
+  readInputs:async()=>({}),select:async({onCandidateNative})=>{onCandidateNative();return {runtime:'candidate-test'};}});
+ assert.equal(result.reason,'candidate_loader_failed');assert.equal(calls,1);
+ assert.equal(w.document.getElementById('sr-runtime-status').getAttribute('data-state'),'failed');
+ assert.equal(w.document.querySelectorAll('script[src]').length,0);w.close();
+});

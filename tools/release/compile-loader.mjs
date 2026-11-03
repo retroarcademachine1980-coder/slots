@@ -7,7 +7,7 @@ import { candidateAssets } from './runtime-loader.mjs';
 import { packPlan, unpackPlan } from './preserved-plan.mjs';
 const dir = new URL('.', import.meta.url);
 const root = new URL('../../', dir);
-const module = name => fs.readFileSync(new URL(name, dir),'utf8').replace(/^import .*;\n/gm,'').replace(/^export /gm,'');
+const module = name => fs.readFileSync(new URL(name, dir),'utf8').replace(/\r\n/g,'\n').replace(/^import .*;\n/gm,'').replace(/^export /gm,'');
 const registry = fs.readFileSync(new URL('generated/runtime-ownership.js',root),'utf8');
 async function candidateAsset(){
  const source=`(function(){${registry}\n${module('runtime-loader.mjs')}\nObject.defineProperty(window,'SR_CANDIDATE_BOOT',{value:async function(context){if(!['candidate-test','candidate-production'].includes(context.selection.runtime))throw Error('Invalid runtime');return startReleaseLoader({window,document,config:context.config,ownsRoute:loc=>window.SR_RUNTIME_OWNERSHIP.owns('https://www.spin-raiders.com'+loc.pathname+loc.search,{transitionalIndexInputs:context.config.transitionalIndexInputs!==false}),preservedBootstrap:()=>{throw Error('Wrong build')},readInputs:async()=>({}),select:async options=>{options.onCandidateNative();context.onTakeover();return context.selection;}});},writable:false,configurable:false});})();`;
@@ -25,7 +25,7 @@ candidateAssets(config, 'candidate-test');
 if (config.promotionApproved && !config.acceptanceEvidence) throw new Error('Production authorization lacks captured host acceptance');
 const baseline = fs.readFileSync(new URL('fixtures/preserved-loader.html', dir), 'utf8');
 const capturedHash = crypto.createHash('sha256').update(baseline).digest('hex');
-if (capturedHash !== '4bb3ca1e33c5d106c88ead3e785fade3e73a40335efda659f1ac9ed0bbb77efc') throw new Error('Preserved loader capture changed; independent review required');
+if (capturedHash !== '672084e53ee5333e1e244516c870156c8060c88e86c9b33b8b9891240f7d5cd4') throw new Error('Preserved loader capture changed; independent review required');
 const tags=[];
 for (const match of baseline.replace(/<noscript>[\s\S]*?<\/noscript>/g,'').matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>|<link\b([^>]*)>/g)) {
  const tag=match[3]===undefined?'script':'link', attrs={};
@@ -45,14 +45,20 @@ const compactSource = source => {
  const edits=[];const walk=node=>{if(!node||typeof node!=='object')return;if(node.type==='Literal'&&typeof node.value==='string'&&prefixes.some(p=>node.value.startsWith(p)))edits.push({start:node.start,end:node.end,text:'('+compactLiteral(node.value)+')'});for(const [k,v]of Object.entries(node)){if(k==='start'||k==='end')continue;if(Array.isArray(v))v.forEach(walk);else if(v&&typeof v==='object')walk(v);}};
  walk(parse(source,{ecmaVersion:'latest'}));for(const edit of edits.sort((a,b)=>b.start-a.start))source=source.slice(0,edit.start)+edit.text+source.slice(edit.end);return source;
 };
-const bootStatements=tags.map(spec=>spec.text?compactSource(spec.text):`put(${JSON.stringify(spec.tag)},{${Object.entries(spec.attrs).map(([k,v])=>JSON.stringify(k)+':'+compactLiteral(v)).join(',')}});`).join('\n');
-const baselineBoot=`function preservedBootstrap(){const P0=${JSON.stringify(prefixes[0])},P1=${JSON.stringify(prefixes[1])};function put(tag,attrs){const n=document.createElement(tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);document.head.appendChild(n)}${bootStatements}}`;
+const preservedCore = 'https://cdn.jsdelivr.net/gh/retroarcademachine1980-coder/slots@ef3373799a9d721c6c5eb19647d856ff1a1252e5/dist/sr.core-20261014-crown.min.js';
+const coreSpec = tags.filter(spec => spec.tag === 'script' && spec.attrs.src === preservedCore);
+const holdSpec = tags.filter(spec => spec.text.includes("s.id='sr-hold'") && spec.text.includes('4000'));
+if (coreSpec.length !== 1 || holdSpec.length !== 1 || tags.some(spec => spec.attrs.src?.includes('preview-pair-guard'))) throw new Error('Current loader capture must have exactly one preserved core and timed hold');
+const commonTags = tags.filter(spec => spec !== coreSpec[0] && spec !== holdSpec[0]);
+const statements = specs => specs.map(spec=>spec.text?compactSource(spec.text):`put(${JSON.stringify(spec.tag)},{${Object.entries(spec.attrs).map(([k,v])=>JSON.stringify(k)+':'+compactLiteral(v)).join(',')}});`).join('\n');
+const bootstrap = (name, specs) => `function ${name}(){const P0=${JSON.stringify(prefixes[0])},P1=${JSON.stringify(prefixes[1])};function put(tag,attrs){const n=document.createElement(tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);document.head.appendChild(n)}${statements(specs)}}`;
+const baselineBoot = bootstrap('preservedBootstrap', tags) + '\n' + bootstrap('candidateBootstrap', commonTags);
 const compactPageRegistry='{'+Object.entries(pageRegistry).map(([key,value])=>JSON.stringify(key)+':'+(Array.isArray(value)&&value.length&&value.every(v=>typeof v==='string'&&!v.includes(','))?JSON.stringify(value.join(','))+'.split(",")':JSON.stringify(value))).join(',')+'}';
 // Approval artifacts stay in the local release record; no private paths or report
 // contents are embedded into the public page. These immutable booleans carry the
 // compiler-validated gate, while exact build and API fingerprints remain public.
 const runtimeConfig={...config,localTestEvidence:Boolean(config.localTestEvidence),acceptanceEvidence:Boolean(config.acceptanceEvidence)};
-const inline=`(function(){const OWNER='release-loader';\n${module('build-identity.mjs')}\n${primitives}\n${module('inline-boot.mjs')}\n${baselineBoot}\nbootInline({window,document,config:${JSON.stringify(runtimeConfig)},pageRegistry:${compactPageRegistry},preservedBootstrap}).catch(()=>{});})();`;
+const inline=`(function(){const OWNER='release-loader';\n${module('build-identity.mjs')}\n${primitives}\n${module('inline-boot.mjs')}\n${baselineBoot}\nbootInline({window,document,config:${JSON.stringify(runtimeConfig)},pageRegistry:${compactPageRegistry},preservedBootstrap,candidateBootstrap}).catch(()=>{});})();`;
 const stripErrorDetails = source => {
  const edits=[];const walk=node=>{if(!node||typeof node!=='object')return;if(node.type==='NewExpression'&&node.callee?.name==='Error'&&node.arguments.length)edits.push({start:node.arguments[0].start,end:node.arguments.at(-1).end});for(const[k,v]of Object.entries(node)){if(k==='start'||k==='end')continue;if(Array.isArray(v))v.forEach(walk);else if(v&&typeof v==='object')walk(v);}};walk(parse(source,{ecmaVersion:'latest'}));for(const edit of edits.sort((a,b)=>b.start-a.start))source=source.slice(0,edit.start)+source.slice(edit.end);return source;
 };

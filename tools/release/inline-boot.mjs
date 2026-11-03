@@ -43,7 +43,7 @@ export function createEmergencyView(window, document, registry, options = {}, na
   return { sync, failure() { failed = true; sync(); }, takeover: stop, release() { stop(); view.release(); } };
 }
 
-export async function bootInline({ window, document, config, pageRegistry, preservedBootstrap, select = selectRuntime, readInputs = waitForNativeInputs }) {
+export async function bootInline({ window, document, config, pageRegistry, preservedBootstrap, candidateBootstrap = () => {}, select = selectRuntime, readInputs = waitForNativeInputs }) {
   if (window.__SR_RELEASE_BOOT__) return window.__SR_RELEASE_BOOT__;
   const boot = (async () => {
     let inputs, emergency;
@@ -55,6 +55,9 @@ export async function bootInline({ window, document, config, pageRegistry, prese
     if (selection.runtime === 'preserved') { emergency?.release(); await preservedBootstrap(); return selection; }
     if (selection.runtime === 'blocked') { emergency?.failure(); return selection; }
     try {
+      // Keep the current page supplements on the candidate as well as the old core.
+      // The compiler excludes only the preserved core and its timed legacy hold.
+      await candidateBootstrap();
       await loadResource(document, 'script', { src: 'https://cdn.jsdelivr.net/gh/retroarcademachine1980-coder/slots@' + config.assetCommit + '/dist/sr.release-loader.min.js', async: '', fetchpriority: 'high' });
       emergency?.sync();
       if (typeof window.SR_CANDIDATE_BOOT !== 'function') throw new Error('Candidate loader did not initialize');
