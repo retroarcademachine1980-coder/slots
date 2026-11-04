@@ -1,0 +1,20 @@
+{
+  "capturedAt": "2026-11-04T13:04:21.292Z",
+  "source": "https://www.spin-raiders.com/_functions/canonicalRoute?path=%2Fbingo-halls%2Fpats-10p-prize-bingo%2Fblackpool",
+  "collection": "Venues",
+  "row": {
+    "_id": "venue-blackpool-pats-prize-bingo",
+    "title": "Pat's 10p Prize Bingo",
+    "familyFriendly": true,
+    "adultGamingCentre": false
+  },
+  "route": {
+    "ok": true,
+    "kind": "bingo",
+    "key": "Venues:venue-blackpool-pats-prize-bingo",
+    "path": "/bingo-halls/pats-10p-prize-bingo/blackpool",
+    "href": "/bingo-halls/pats-10p-prize-bingo/blackpool",
+    "canonicalUrl": "https://www.spin-raiders.com/bingo-halls/pats-10p-prize-bingo/blackpool",
+    "recordRole": "business"
+  }
+}

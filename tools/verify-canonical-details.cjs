@@ -113,12 +113,26 @@ const cases=[];function test(name,fn){cases.push([name,fn]);}
   const p='/zoos/map-test/test-town',record=fixture('NearbyAttractions','map-test',p,{title:'Map Test',address:'Verified address',googleMapsUrl:'javascript:alert(1)',latitude:50.656694,longitude:-1.220694,sourceFacts:'<p>Original guide</p>'});const c=setup(p,{[p]:record});await pause();const root=c.root('sr-place-page'),link=root.querySelector('.map-open');assert.equal(link.href,'https://www.google.com/maps/search/?api=1&query=50.656694,-1.220694');assert(!root.querySelector('a[href^="javascript:"]'));assert.equal(root.querySelector('iframe.map').src,'https://maps.google.com/maps?q=50.656694,-1.220694&z=16&output=embed');c.close();
  });
 
+
+ test('The actual family prize-bingo record is not labelled adult-only; explicit age policies remain accurate and escaped',async()=>{
+  const actual=JSON.parse(fs.readFileSync(path.join(ROOT,'tests/fixtures/family-prize-bingo.json'),'utf8'));
+  assert.equal(actual.collection,'Venues');assert.equal(actual.row._id,'venue-blackpool-pats-prize-bingo');assert.equal(actual.row.familyFriendly,true);assert.equal(actual.row.adultGamingCentre,false);assert.equal(actual.route.kind,'bingo');
+  const c=setup('/about',{}, {parts:[]});await pause();
+  const pat={...actual.row,_collection:actual.collection,testRoute:actual.route},unknown={_id:'unknown-bingo',_collection:'Venues',testRoute:{ok:true,kind:'bingo'}},adult={_id:'adult-bingo',_collection:'Venues',ageRestriction:'18+ only — valid photo ID required.',testRoute:{ok:true,kind:'bingo'}},flagged={_id:'flagged-bingo',_collection:'Venues',adultGamingCentre:true,familyFriendly:false,testRoute:{ok:true,kind:'bingo'}},mixed={_id:'mixed-policy',_collection:'Venues',familyFriendly:true,adultGamingCentre:true,ageRestriction:'Family floor; separate 18+ gaming lounge.',testRoute:{ok:true,kind:'arcade'}},unsafe={_id:'policy-markup',_collection:'Venues',ageRestriction:'Children welcome <img src=x onerror=bad()>',testRoute:{ok:true,kind:'bingo'}};
+  await c.w.SR_ROUTES.annotate([pat,unknown,adult,flagged,mixed,unsafe]);
+  assert.equal(c.w.SR_ROUTE_UI.ageNotice(pat),'',"Pat's family prize bingo must not inherit an 18+ label from its route");assert.equal(c.w.SR_ROUTES.href(pat),actual.route.href);assert.equal(c.w.SR_ROUTE_UI.ageNotice(unknown),'','unknown bingo restrictions must not be invented');
+  const node=c.w.document.createElement('div');
+  node.innerHTML=c.w.SR_ROUTE_UI.ageNotice(adult);assert.equal(node.textContent,adult.ageRestriction);
+  node.innerHTML=c.w.SR_ROUTE_UI.ageNotice(flagged);assert.equal(node.textContent,'18+ · Adult gaming');
+  node.innerHTML=c.w.SR_ROUTE_UI.ageNotice(mixed);assert.equal(node.textContent,mixed.ageRestriction);
+  node.innerHTML=c.w.SR_ROUTE_UI.ageNotice(unsafe);assert.equal(node.textContent,unsafe.ageRestriction);assert(!node.querySelector('img,script'));assert.equal(node.querySelectorAll('small').length,1);c.close();
+ });
  test('Family venue nearby cards distinguish adult venues and mixed adult areas without changing the choices',async()=>{
   const p='/bowling/family-centre/test-town',source=fixture('Venues','family-centre',p,{title:'Family Centre',familyFriendly:true,latitude:51,longitude:0,heroImage:'https://example.test/family.jpg',detailedReview:'<p>Original family guide.</p>'});
   const nearby=[
    fixture('Venues','adult-centre','/agc/adult-centre/test-town',{title:'Adult Centre'}),
    fixture('Venues','casino','/casinos/casino/test-town',{title:'Casino'}),
-   fixture('Venues','bingo','/bingo-halls/bingo/test-town',{title:'Bingo'}),
+   fixture('Venues','bingo','/bingo-halls/bingo/test-town',{title:'Family Prize Bingo',familyFriendly:true,adultGamingCentre:false}),
    fixture('Venues','family-arcade','/arcade/family-arcade/test-town',{title:'Admiral Family Arcade',adultGamingCentre:false,familyFriendly:true}),
    fixture('Venues','mixed-arcade','/arcade/mixed-arcade/test-town',{title:'Mixed Arcade',adultGamingCentre:true,familyFriendly:true})
   ];
@@ -128,15 +142,15 @@ const cases=[];function test(name,fn){cases.push([name,fn]);}
   await pause();const root=c.root('sr-shell-page'),cards=[...root.querySelectorAll('.near .nc')];
   assert.equal(cards.length,5);assert.deepEqual(cards.map(n=>n.getAttribute('href')),nearby.map(n=>n.route.path));
   cards.forEach((card,i)=>{assert.equal(card.querySelector('b').textContent,nearby[i].row.title);assert.equal(card.querySelector('img').src,nearby[i].row.heroImage);assert.match(card.querySelector('small').textContent,/miles/);});
-  for(const card of cards.slice(0,3))assert.equal(card.querySelector('.sr-age-note')?.textContent,'18+ · Adult gaming');
+  for(const card of cards.slice(0,2))assert.equal(card.querySelector('.sr-age-note')?.textContent,'18+ · Adult gaming');assert.equal(cards[2].querySelector('.sr-age-note'),null);
   assert.equal(cards[3].querySelector('.sr-age-note'),null);assert.equal(cards[4].querySelector('.sr-age-note')?.textContent,'18+ · Adult gaming area');
   assert(root.textContent.includes('Original family guide.'));const fav=root.querySelector('.fav');fav.click();assert.equal(fav.getAttribute('aria-pressed'),'true');
   assert.equal(c.queries.length,1);assert.equal(c.queries[0].q.paging.limit,6);assert.equal(c.warnings.length,0,c.warnings.join('\n'));
-  c.load();await pause();assert.equal(root.querySelectorAll('.sr-age-note').length,4);await c.navigate('/about');assert(!c.root('sr-shell-page'));c.close();
+  c.load();await pause();assert.equal(root.querySelectorAll('.sr-age-note').length,3);await c.navigate('/about');assert(!c.root('sr-shell-page'));c.close();
  });
  test('Food nearby choices retain categories and canonical links with consistent adult labels',async()=>{
   const p='/food-and-drink/family-cafe-test-town',source=fixture('FoodAndDrink','family-cafe',p,{title:'Family Cafe',displayName:'Family Cafe',town:'Test Town',townSlug:'test-town',urlName:'family-cafe',heroImage:'https://example.test/food.jpg'});
-  const nearby=[fixture('NearbyAttractions','adult','/agc/adult/test-town',{title:'Adult Centre',category:'Adult Gaming Centres',heroImage:'https://example.test/adult.jpg'}),fixture('NearbyAttractions','family','/arcade/family/test-town',{title:'Family Arcade',category:'Family Arcades',heroImage:'https://example.test/arcade.jpg',adultGamingCentre:false}),fixture('NearbyAttractions','mixed','/arcade/mixed/test-town',{title:'Mixed Arcade',category:'Arcades',heroImage:'https://example.test/mixed.jpg',adultGamingCentre:true})];
+  const nearby=[fixture('NearbyAttractions','adult','/agc/adult/test-town',{title:'Adult Centre',category:'Adult Gaming Centres',heroImage:'https://example.test/adult.jpg'}),fixture('NearbyAttractions','family','/arcade/family/test-town',{title:'Family Arcade',category:'Family Arcades',heroImage:'https://example.test/arcade.jpg',adultGamingCentre:false}),fixture('NearbyAttractions','mixed','/arcade/mixed/test-town',{title:'Mixed Arcade',category:'Arcades',heroImage:'https://example.test/mixed.jpg',adultGamingCentre:true,familyFriendly:true})];
   const responses=Object.fromEntries([[p,source],...nearby.map(n=>[n.route.path,n])]);
   const c=setup(p,responses,{fetchQuery:collection=>{assert.equal(collection,'NearbyAttractions');return {dataItems:[...nearby.map(n=>({id:n.row._id,data:n.row})),{id:'unresolved-adult',data:{title:'Unresolved Adult',adultGamingCentre:true,category:'Adult Gaming Centres'}}]};}});
   await pause();const root=c.root('sr-food-page'),cards=[...root.querySelectorAll('.near a')];
@@ -148,7 +162,7 @@ const cases=[];function test(name,fn){cases.push([name,fn]);}
  });
  test('Age notices require a resolved classification or explicit adult-area flag, never a brand-name guess',async()=>{
   const c=setup('/about',{}, {parts:[]});await pause();
-  const entries=[{_id:'unresolved',_collection:'Venues',adultGamingCentre:true},{_id:'family',_collection:'Venues',title:'Casino Admiral Family Fun',adultGamingCentre:false,testRoute:{ok:true,kind:'arcade'}},{_id:'string-flag',_collection:'Venues',adultGamingCentre:'true',testRoute:{ok:true,kind:'arcade'}},{_id:'mixed',_collection:'Venues',adultGamingCentre:true,testRoute:{ok:true,kind:'arcade'}}];
+  const entries=[{_id:'unresolved',_collection:'Venues',adultGamingCentre:true},{_id:'family',_collection:'Venues',title:'Casino Admiral Family Fun',adultGamingCentre:false,testRoute:{ok:true,kind:'arcade'}},{_id:'string-flag',_collection:'Venues',adultGamingCentre:'true',testRoute:{ok:true,kind:'arcade'}},{_id:'mixed',_collection:'Venues',adultGamingCentre:true,familyFriendly:true,testRoute:{ok:true,kind:'arcade'}}];
   await c.w.SR_ROUTES.annotate(entries);assert.equal(c.w.SR_ROUTE_UI.ageNotice(entries[0]),'');assert.equal(c.w.SR_ROUTE_UI.ageNotice(entries[1]),'');assert.equal(c.w.SR_ROUTE_UI.ageNotice(entries[2]),'');
   const node=c.w.document.createElement('div');node.innerHTML=c.w.SR_ROUTE_UI.ageNotice(entries[3]);assert.equal(node.textContent,'18+ · Adult gaming area');assert.equal(node.querySelectorAll('small').length,1);assert(!node.querySelector('a,img,script'));c.close();
  });

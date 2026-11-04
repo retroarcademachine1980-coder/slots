@@ -16,8 +16,11 @@
   ageNotice(row){
    const route=window.SR_ROUTES.outcome(row);
    if(!route.ok)return '';
-   const adultVenue=['agc','casino','bingo'].includes(route.kind);
-   return adultVenue||row.adultGamingCentre===true?'<small class="sr-age-note">'+(adultVenue?'18+ · Adult gaming':'18+ · Adult gaming area')+'</small>':'';
+   const policy=typeof row.ageRestriction==='string'?row.ageRestriction.trim():'';
+   const adultVenue=['agc','casino'].includes(route.kind);
+   const familyVenue=row.familyFriendly===true||row.familyFEC===true||row.familyEntertainmentCentre===true;
+   const label=policy||(adultVenue?'18+ · Adult gaming':row.adultGamingCentre===true?(familyVenue?'18+ · Adult gaming area':'18+ · Adult gaming'):'');
+   return label?'<small class="sr-age-note">'+escape(label)+'</small>':'';
   },
   discoverable(row){const route=window.SR_ROUTES.outcome(row);return route.ok&&route.discoveryAllowed!==false;},
   businessRows(rows,collection,{discovery=true}={}){
