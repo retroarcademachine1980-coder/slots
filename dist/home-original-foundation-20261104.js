@@ -52,14 +52,37 @@
       waiting.remove();
       var grid = highlights.querySelector('.highlights');
       if (grid) {
+
+        function monthlyCard(oldHref, choice) {
+          var card = grid.querySelector('a.card[href="'+choice.href+'"]') || grid.querySelector('a.card[href="'+oldHref+'"]');
+          if (!card || card.dataset.srNovemberPick === choice.key && card.getAttribute('href') === choice.href) return;
+          var photo = card.querySelector('img'), badge = card.querySelector('.badge'), title = card.querySelector('h3'), copy = card.querySelector('.card-copy');
+          if (!photo || !badge || !title || !copy) return;
+          card.setAttribute('href',choice.href);
+          card.dataset.srNovemberPick = choice.key;
+          photo.setAttribute('src',choice.image);
+          photo.setAttribute('alt',choice.alt);
+          ['srcset','sizes','width','height','data-sr-responsive-image'].forEach(function (name) { photo.removeAttribute(name); });
+          photo.setAttribute('data-sr-image-source',choice.image);
+          badge.textContent = choice.badge;
+          title.textContent = choice.title;
+          var town = copy.querySelector('p:not(.sr-card-summary)');
+          if (!town) { town = page.createElement('p'); title.after(town); }
+          town.textContent = choice.town;
+          var summary = copy.querySelector('.sr-card-summary');
+          if (!summary) { summary = page.createElement('p'); summary.className = 'sr-card-summary'; copy.appendChild(summary); }
+          summary.textContent = choice.description;
+        }
         function tidy() {
+          monthlyCard('/food-and-drink/reel-plaice-ayr', {key:'pizza-parlour',href:'/food-and-drink/pizza-parlour-grimsby',title:'Pizza Parlour, Grimsby',town:'Grimsby',badge:'TAKEAWAY OF THE MONTH',image:'https://static.wixstatic.com/media/3a517e_7312bc3bee4e42b5a836af20596b3f2b~mv2.jpg',alt:'Pizza Parlour, Grimsby, from our takeaway review',description:'The kebab calzone was the one for me. Read our full takeaway review and the reasons for my 4.8/5 Raider Score.'});
+          monthlyCard('/arcade/silcocks-amusements-and-late-lounge/southport', {key:'retro-slots',href:'/arcade/retro-slots/blackpool',title:'Retro Slots Blackpool',town:'Blackpool',badge:'ARCADE OF THE MONTH',image:'https://static.wixstatic.com/media/3a517e_98f35c1aba72494b8741c7456780983d~mv2.webp',alt:'Retro Slots Blackpool, venue-supplied photograph',description:'A little corner of classic fruit-machine nostalgia near Central Pier. The main floor welcomes families, with a separate 18+ gaming area. Read the venue guide.'});
           var matches = Array.from(grid.querySelectorAll('a.card')).filter(function (a) { return /\/food-and-drink\/masala-malt-grimsby(?:[?#]|$)/.test(a.getAttribute('href') || ''); });
           var nativeCard = matches.find(function (a) { return !a.hasAttribute('data-sr-added-monthly'); });
           if (nativeCard) {
             matches.filter(function (a) { return a !== nativeCard && a.hasAttribute('data-sr-added-monthly'); }).forEach(function (a) { a.remove(); });
             var badge = nativeCard.querySelector('.badge');
             if (badge && !/\bb[0-3]\b/.test(badge.className)) badge.classList.add('b0');
-            if (badge && badge.textContent !== 'RESTAURANT OF THE MONTH') badge.textContent = 'RESTAURANT OF THE MONTH';
+            if (badge && badge.textContent !== 'INDIAN RESTAURANT OF THE MONTH') badge.textContent = 'INDIAN RESTAURANT OF THE MONTH';
           }
           var row = destinations.querySelector('.destinations');
           if (!row) return;
@@ -79,12 +102,12 @@
         if (!Array.from(grid.querySelectorAll('a.card')).some(function (a) { return /\/food-and-drink\/masala-malt-grimsby(?:[?#]|$)/.test(a.getAttribute('href') || ''); })) {
         var card = page.createElement('a'); card.className = 'card'; card.href = '/food-and-drink/masala-malt-grimsby'; card.dataset.srOwnerMonthly = 'masala';
         card.dataset.srAddedMonthly = '1';
-        card.innerHTML = '<img src="https://static.wixstatic.com/media/3a517e_809ead30953140cc948d147392fd0498~mv2.jpg" alt="Masala n Malt, Grimsby" width="1536" height="710" loading="lazy"><span class="badge b0">RESTAURANT OF THE MONTH</span><div class="card-copy"><h3>Masala n Malt, Grimsby</h3><p>Our first Hidden Gem. Read Jamie’s full review · 4.9/5.</p><span class="arrow" aria-hidden="true">→</span></div>';
+        card.innerHTML = '<img src="https://static.wixstatic.com/media/3a517e_809ead30953140cc948d147392fd0498~mv2.jpg" alt="Masala n Malt, Grimsby" width="1536" height="710" loading="lazy"><span class="badge b0">INDIAN RESTAURANT OF THE MONTH</span><div class="card-copy"><h3>Masala n Malt, Grimsby</h3><p>Our first Hidden Gem. Read Jamie’s full review · 4.9/5.</p><span class="arrow" aria-hidden="true">→</span></div>';
         grid.prepend(card);
         }
         var style = page.createElement('style'); style.textContent = '.sr-destination-photo-card{position:relative;min-width:0}.sr-destination-photo-card>.dest{display:block;height:100%}.sr-original-photo-info{position:absolute;right:6px;top:6px;z-index:3;background:#fffffff2;border-radius:5px;color:#0b2545;padding:4px 7px;font:11px/1.4 Arial;max-width:calc(100% - 12px)}.sr-original-photo-info summary{cursor:pointer}.sr-original-photo-info .sr-photo-credits{margin:6px 0;font:11px/1.4 Arial}@media(min-width:1100px){.highlights:has([data-sr-added-monthly]){grid-template-columns:repeat(5,minmax(0,1fr))}}'; inner.appendChild(style);
         var note = highlights.querySelector('.heading p');
-        if (note) note.textContent = 'Our October picks stay in the spotlight through November, with Masala n Malt as Restaurant of the Month.';
+        if (note) note.textContent = 'November’s picks: Masala n Malt is Indian Restaurant of the Month, Pizza Parlour is Takeaway of the Month, and Retro Slots Blackpool is Arcade of the Month.';
         tidy();
         var cardObserver = new MutationObserver(tidy); cardObserver.observe(grid,{childList:true,subtree:true});
         var row = destinations.querySelector('.destinations'); if (row) cardObserver.observe(row,{childList:true,subtree:true});
