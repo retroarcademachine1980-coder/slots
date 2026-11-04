@@ -22,10 +22,11 @@ export function createNativeRouter({ context, manifest, readById, ok, notFound, 
     if (result.status !== 200) return sendStatus(result.status);
     const endpoint = context.endpoints[result.route.kind];
     if (!endpoint?.pageName) return sendStatus(503);
+    const description = result.row.seoDescription || result.row.shortDescription || '';
     return ok(endpoint.pageName, { view: 'detail', collection: result.collection, record: result.row, sourceRecords: result.sourceRecords, sourceGroup: result.sourceGroup, route: result.route }, {
       links: [{rel:'canonical',href:result.route.canonicalUrl}],
       title: result.row.seoTitle || result.row.title || '',
-      description: result.row.seoDescription || result.row.shortDescription || '',
+      metaTags: description ? [{ name: 'description', content: description }] : [],
       noIndex: result.route.indexable === false || [result.row.directoryReady, result.row.pageReady, result.row.guideReady].includes(false)
     });
   }

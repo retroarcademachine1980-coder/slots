@@ -31,11 +31,12 @@ export function createDynamicDetailHook({ kind, prefix, pageName, resolve, resol
     // appear in this router's request.pages when supplied by the Wix runtime.
     const selectedPage = pageName || (Array.isArray(request.pages) && request.pages.includes(response?.page) ? response.page : null);
     if (!selectedPage || (Array.isArray(request.pages) && !request.pages.includes(selectedPage))) return sendStatus(503);
+    const description = result.row.seoDescription || result.row.shortDescription || result.row.summary || '';
     return ok(selectedPage, { view: 'detail', collection: result.collection, record: result.row,
       sourceRecords: result.sourceRecords, sourceGroup: result.sourceGroup, route: result.route }, {
       links: [{rel:'canonical',href:result.route.canonicalUrl}],
       title: result.row.seoTitle || result.row.title || result.row.displayTitle || '',
-      description: result.row.seoDescription || result.row.shortDescription || result.row.summary || '',
+      metaTags: description ? [{ name: 'description', content: description }] : [],
       noIndex: result.route.indexable === false || [result.row.directoryReady, result.row.pageReady, result.row.guideReady].includes(false)
     });
   };
