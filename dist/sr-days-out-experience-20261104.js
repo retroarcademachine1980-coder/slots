@@ -379,4 +379,3 @@ main[data-sr-agc-entrance]>.hero .hero-search{position:absolute;left:32px;bottom
   var timer=setInterval(function(){scan();if(++scans>=80)clearInterval(timer);},500);
   addEventListener('pageshow',scan);addEventListener('popstate',schedule);
 })();
-
