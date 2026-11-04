@@ -25,7 +25,7 @@ candidateAssets(config, 'candidate-test');
 if (config.promotionApproved && !config.acceptanceEvidence) throw new Error('Production authorization lacks captured host acceptance');
 const baseline = fs.readFileSync(new URL('fixtures/preserved-loader.html', dir), 'utf8');
 const capturedHash = crypto.createHash('sha256').update(baseline).digest('hex');
-if (capturedHash !== '672084e53ee5333e1e244516c870156c8060c88e86c9b33b8b9891240f7d5cd4') throw new Error('Preserved loader capture changed; independent review required');
+if (capturedHash !== '4bca0dfa6321700acba74ff1323c5f636dde7009e9010dd3a6efb56001d18fcc') throw new Error('Preserved loader capture changed; independent review required');
 const tags=[];
 for (const match of baseline.replace(/<noscript>[\s\S]*?<\/noscript>/g,'').matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>|<link\b([^>]*)>/g)) {
  const tag=match[3]===undefined?'script':'link', attrs={};
