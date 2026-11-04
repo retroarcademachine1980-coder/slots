@@ -1,7 +1,7 @@
 {
-  "gitTree": "0621d624942706cfd4424675c7ee1cf9175db3a3",
+  "gitTree": "a71fe65835b671a55acb4176ae6a79e015f68fe9",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "c84581df42644698de69a20a489c5462b163e7cedecf5217bd058456c54b1354",
+  "sourceFingerprint": "c14b8d718ea771cb03c2aae579bd9e7ecfe3b929045c41f87cfea755147b34a6",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -506,7 +506,7 @@
     },
     {
       "name": "src/public/routes/nativeRouterAdapter.js",
-      "sha256": "e0d9b82d9c7206ba60d8701a58decb04fa464454a826c3b7eaea43d678eb849c"
+      "sha256": "c094557d4fb344fe3f83b8008a340495d61703aa21e29ed3c75567a61495cf0e"
     },
     {
       "name": "src/public/routes/nativeStaticPaths.js",
