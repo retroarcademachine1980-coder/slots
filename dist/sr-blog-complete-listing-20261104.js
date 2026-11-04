@@ -141,7 +141,7 @@
     root.append(style);
     main.querySelectorAll('[data-c=""] small').forEach(s=>s.textContent=String(data.posts.length)+(s.closest('.ct')?' articles':''));
     const nav=main.querySelector('.bcat'), tiles=main.querySelector('.ct'), popular=main.querySelector('.cl');
-    main.querySelectorAll('[data-c]').forEach(button=>{const name=button.dataset.c;if(!counts.has(name))return;const small=button.querySelector('small');if(small)small.textContent=String(counts.get(name))+(button.closest('.ct')?' articles':'');});
+    main.querySelectorAll('[data-c]').forEach(button=>{const name=button.dataset.c;if(!counts.has(name))return;const count=button.querySelector('small')||(button.closest('.cl')&&button.querySelector('i'));if(count)count.textContent=String(counts.get(name))+(button.closest('.ct')?' articles':'');});
     data.categories.filter(name=>counts.get(name)>0).forEach(name=>{
       if(nav&&!Array.from(nav.querySelectorAll('[data-c]')).some(b=>b.dataset.c===name)){
         const button=document.createElement('button');button.dataset.c=name;button.innerHTML=categoryIcon(name,30);button.append(name+' ');
