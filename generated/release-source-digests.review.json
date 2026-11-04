@@ -1,7 +1,7 @@
 {
-  "gitTree": "a71fe65835b671a55acb4176ae6a79e015f68fe9",
+  "gitTree": "00f001c114eabcb0e4fe40f4bf71a6ca6b8cf8a6",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "c14b8d718ea771cb03c2aae579bd9e7ecfe3b929045c41f87cfea755147b34a6",
+  "sourceFingerprint": "4feb5b3129d51feb40414bdd080d3630841822a8714cda8854c4120867e4fe3c",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -478,7 +478,7 @@
     },
     {
       "name": "src/public/routes/dynamicPageAdapter.js",
-      "sha256": "a814a802d685d489b7701e4b356c6b337538c95bf1e818a79aebec0acaa3297c"
+      "sha256": "47df68d294a1f2500cdbca1390ee52b61c9e4a3e35cf46e4049857ee3db9e615"
     },
     {
       "name": "src/public/routes/dynamicQueryAdapter.js",
@@ -506,7 +506,7 @@
     },
     {
       "name": "src/public/routes/nativeRouterAdapter.js",
-      "sha256": "c094557d4fb344fe3f83b8008a340495d61703aa21e29ed3c75567a61495cf0e"
+      "sha256": "1da01b2731ac80c234e0eec45af79f74a93b15b29110cce069cb48e860428081"
     },
     {
       "name": "src/public/routes/nativeStaticPaths.js",
@@ -1174,7 +1174,7 @@
     },
     {
       "name": "tools/release/compile-loader.mjs",
-      "sha256": "46168b95ff782efc9186d8091711797add5f28f43634ba895f86cc87584462d3"
+      "sha256": "7060258d257e6e102f1efdbd3019eaa447cc3629e44a845dea0a92815f1660f8"
     },
     {
       "name": "tools/release/fixtures/preserved-loader.html",
