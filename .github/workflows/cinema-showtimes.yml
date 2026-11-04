@@ -38,3 +38,7 @@ jobs:
       - name: Report failed sources
         if: steps.refresh.outcome == 'failure'
         run: exit 1
+
+  fuel-safety-net:
+    name: Refresh due fuel data alongside cinema listings
+    uses: ./.github/workflows/fuel-prices.yml

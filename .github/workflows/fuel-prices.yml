@@ -3,6 +3,7 @@ on:
   schedule:
     - cron: '11,26,41,56 * * * *'
   workflow_dispatch:
+  workflow_call:
   push:
     branches: [main]
     paths:
