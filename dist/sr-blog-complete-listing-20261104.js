@@ -92,7 +92,7 @@
     const ranked=others.map(p=>{
       const commonWords=[...words(p)].filter(w=>!stop.has(w)&&currentWords.has(w)&&(wordFrequency.get(w)||0)<=posts.length*.2).length;
       const commonTags=p.tags.filter(t=>currentTags.has(t)&&(tagFrequency.get(t)||0)<=Math.max(3,posts.length*.12)).length;
-      return {post:p,score:commonTags*6+commonWords*3+(commonTags+commonWords>0&&p.categories.some(c=>current.categories.includes(c))?2:0)};
+      return {post:p,score:commonTags*6+(commonWords>=2?commonWords*3:0)+((commonTags>0||commonWords>=2)&&p.categories.some(c=>current.categories.includes(c))?2:0)};
     }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||new Date(b.post.date)-new Date(a.post.date)||a.post.id.localeCompare(b.post.id));
     const related=reviewedRelated[current.id]?reviewedRelated[current.id].map(id=>others.find(p=>p.id===id)).filter(Boolean):ranked.slice(0,4).map(x=>x.post);
     const fallback=group==='tourism'?tourismSeeds.map(id=>others.find(p=>p.id===id)).filter(Boolean):others;
