@@ -63,6 +63,15 @@
       if(!Array.isArray(categories.categories)) throw new Error('Invalid blog categories');
       if((categories.metaData?.total||categories.categories.length)>categories.categories.length) throw new Error('Incomplete blog categories');
       const names=new Map(categories.categories.map(c=>[c.id,c.label]));
+      const bounds=new Map();
+      posts.forEach(p=>{
+        const key=photo(p),m=p.media?.wixMedia?.image;
+        if(!key||!Number.isInteger(m?.width)||!Number.isInteger(m?.height)||m.width<1||m.height<1)return;
+        const old=bounds.get(key);
+        bounds.set(key,{width:Math.min(m.width,old?.width||m.width),height:Math.min(m.height,old?.height||m.height)});
+      });
+      window.SR_BLOG_IMAGE_BOUNDS=bounds;
+      window.dispatchEvent(new CustomEvent('sr:blog-image-bounds'));
       const normalized=posts.map(p=>({id:p.id,title:String(p.title||''),excerpt:String(p.excerpt||''),path:postPath(p.url?.path||''),image:photo(p),date:p.firstPublishedDate,tags:Array.isArray(p.tagIds)?p.tagIds:[],categories:(p.categoryIds||[]).map(id=>names.get(id)).filter(Boolean)}));
       if(normalized.some(p=>!p.path||!p.title||!Number.isFinite(new Date(p.date).getTime()))) throw new Error('Invalid published article record');
       return {posts:normalized,categories:categories.categories.map(c=>String(c.label||'')).filter(Boolean)};
