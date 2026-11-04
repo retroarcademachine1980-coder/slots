@@ -223,7 +223,7 @@ main[data-sr-agc-entrance]>.hero .hero-search{position:absolute;left:32px;bottom
     var source=root.querySelector('.sr-source-records');
     if(!source||source.hasAttribute('data-sr-reader-sources'))return;
     source.dataset.srReaderSources='1';
-    var normalize=function(value){return String(value||'').replace(/\s+/g,' ').trim().toLowerCase();};
+    var normalize=function(value){return String(value||'').replace(/\s+/g,' ').replace(/\s+([,.;:!?])/g,'$1').trim().toLowerCase();};
     var contentText=function(node){
       var blocks=Array.from(node.querySelectorAll('p,li,h1,h2,h3,h4,figcaption'));
       return normalize(blocks.length?blocks.map(function(e){return e.textContent;}).join(' '):node.textContent);
@@ -258,6 +258,19 @@ main[data-sr-agc-entrance]>.hero .hero-search{position:absolute;left:32px;bottom
         else seenText.add(key);
       });
       copy.querySelectorAll('ul,ol').forEach(function(e){if(!e.querySelector('li'))e.remove();});
+      var fieldLabel=copy.querySelector(':scope > h4');
+      copy.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(function(heading){
+        if(heading===fieldLabel)return;
+        var level=Number(heading.tagName.slice(1)),node=heading.nextSibling,hasContent=false;
+        while(node){
+          if(node.nodeType===1&&/^H[1-6]$/.test(node.tagName)&&Number(node.tagName.slice(1))<=level)break;
+          if(node.nodeType===3&&node.textContent.trim()){hasContent=true;break;}
+          if(node.nodeType===1&&!/^H[1-6]$/.test(node.tagName)&&
+             (node.textContent.trim()||node.matches('img,video,iframe')||node.querySelector('img,video,iframe'))){hasContent=true;break;}
+          node=node.nextSibling;
+        }
+        if(!hasContent)heading.remove();
+      });
       if(!copy.querySelector('p,li'))return;
       var old=copy.querySelector('h4'),heading=document.createElement('h3');
       heading.textContent=labels[section.getAttribute('data-source-field')]||'More about your visit';
@@ -366,3 +379,4 @@ main[data-sr-agc-entrance]>.hero .hero-search{position:absolute;left:32px;bottom
   var timer=setInterval(function(){scan();if(++scans>=80)clearInterval(timer);},500);
   addEventListener('pageshow',scan);addEventListener('popstate',schedule);
 })();
+
