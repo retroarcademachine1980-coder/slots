@@ -1,0 +1,14 @@
+{
+  "deployable": true,
+  "issues": [],
+  "identity": {
+    "contractVersion": "spin-raiders-canonical-v1",
+    "releaseFingerprint": "88d65782c857899ea20e0fbe12b30693bd315a7108aaa827ef4dbeeeab0161fd",
+    "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
+    "rendererFingerprint": "a0801b0fe06e395281afbb202a40b9dda823bb9ee22ceae9cb144d2116d5bc2c",
+    "stage": "testable",
+    "productionAccepted": false,
+    "complete": true,
+    "deployable": true
+  }
+}

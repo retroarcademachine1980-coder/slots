@@ -200339,7 +200339,7 @@
     },
     "AffiliateOffers:local_344266b7-3400-4c6d-9e98-640f3eecac78": {
       "routeType": "historical",
-      "notice": "This record refers to the former amusements at Colwyn Bay\u2019s Victoria Pier. The old structure was dismantled and a shorter boardwalk rebuilt. No current arcade or booking availability is represented here.",
+      "notice": "This record refers to the former amusements at Colwyn Bay’s Victoria Pier. The old structure was dismantled and a shorter boardwalk rebuilt. No current arcade or booking availability is represented here.",
       "offerActionsAllowed": false,
       "withheldFields": [
         "openingHours",
@@ -200433,7 +200433,7 @@
     },
     "NearbyAttractions:97b30978-6a21-4d1f-8f2d-65f6e6e399c4": {
       "routeType": "operator",
-      "notice": "An overview of Hollywood Bowl\u2019s arcades across the UK. Facilities and opening times vary by centre.",
+      "notice": "An overview of Hollywood Bowl’s arcades across the UK. Facilities and opening times vary by centre.",
       "offerActionsAllowed": false,
       "withheldFields": [
         "openingHours",
@@ -205798,7 +205798,7 @@
       "preservedContentRef": "SR_CATEGORY_PAGES.arcades",
       "seo": {
         "title": "Arcades",
-        "description": "Iconic arcades, classic games and family fun at the UK\u2019s best seaside destinations.",
+        "description": "Iconic arcades, classic games and family fun at the UK’s best seaside destinations.",
         "noIndex": false,
         "links": [
           {
@@ -205978,7 +205978,7 @@
       "preservedContentRef": "SR_CATEGORY_PAGES.historical-sites",
       "seo": {
         "title": "Historical Sites",
-        "description": "Castles, historic houses, ancient ruins and landmarks you won\u2019t want to miss.",
+        "description": "Castles, historic houses, ancient ruins and landmarks you won’t want to miss.",
         "noIndex": false,
         "links": [
           {
@@ -206086,7 +206086,7 @@
       "pageName": "agc-page",
       "preservedPageId": "wt9f7",
       "seo": {
-        "title": "AGCs \u2013 Adult Gaming Centres Near You | Spin Raiders",
+        "title": "AGCs – Adult Gaming Centres Near You | Spin Raiders",
         "description": "Find UK adult gaming centres (AGCs), including Admiral, MERKUR and independent arcades. Browse venues by town, with photos and practical visitor information.",
         "noIndex": true,
         "links": [
@@ -206102,7 +206102,7 @@
           },
           {
             "property": "og:title",
-            "content": "AGCs \u2013 Adult Gaming Centres Near You | Spin Raiders"
+            "content": "AGCs – Adult Gaming Centres Near You | Spin Raiders"
           },
           {
             "property": "og:description",
@@ -206423,9 +206423,9 @@
   },
   "identity": {
     "contractVersion": "spin-raiders-canonical-v1",
-    "releaseFingerprint": "3ff79f890cdd6144e18167b22f37aef4a67628e8cc6aad493cd433dba1cf6856",
+    "releaseFingerprint": "88d65782c857899ea20e0fbe12b30693bd315a7108aaa827ef4dbeeeab0161fd",
     "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-    "rendererFingerprint": "4a7bbc62b6a54b29705195e8619d02a50bd2d908084835e05979be6eb475072f",
+    "rendererFingerprint": "a0801b0fe06e395281afbb202a40b9dda823bb9ee22ceae9cb144d2116d5bc2c",
     "sourceFiles": 299,
     "deploymentBlocked": false
   },

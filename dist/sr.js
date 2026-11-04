@@ -802,7 +802,7 @@ function createBrowserRouteClient({ fetch, origin = SITE_ORIGIN, apiMode = 'prod
 }
 
 if(Object.prototype.hasOwnProperty.call(window,'SR_ROUTES'))throw new Error('Duplicate route authority');
-Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"3ff79f890cdd6144e18167b22f37aef4a67628e8cc6aad493cd433dba1cf6856",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
+Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"88d65782c857899ea20e0fbe12b30693bd315a7108aaa827ef4dbeeeab0161fd",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
 })();
 
 /* [2] Spin Raiders route hydration and unavailable states */
@@ -6603,6 +6603,7 @@ aside{display:flex;flex-direction:column;gap:16px;position:sticky;top:90px}
 .box{background:#fff;border-radius:16px;padding:18px;box-shadow:0 10px 26px #0b254514;font-size:14px;line-height:1.55;color:#223a57}
 .box h2{font-size:16px;margin:0 0 8px;color:#0b2545}.box p{margin:0 0 8px}
 .map{width:100%;aspect-ratio:4/3;border:0;border-radius:12px;display:block;background:#dfe9f5}
+.map-open{display:inline-block;margin-top:10px;font-weight:700;line-height:1.5}
 .more{display:block;text-align:center;background:#0b2545;color:#fff;text-decoration:none;font-weight:900;padding:14px;border-radius:12px}
 .src{font-size:12px;color:#7a8ca3;margin-top:14px}
 .loading{padding:80px 20px;text-align:center;color:#5a6f88;font-size:16px}
@@ -6632,7 +6633,7 @@ ${Array.isArray(d.facilities)&&d.facilities.length?`<div class="facts">${d.facil
 ${gallery.length?`<section class="visit-gallery" aria-label="Cinema photographs"><h2>${d.brand==='Vue'?'A look around the cinema':'Inside the cinema adventure'}</h2><p>${d.brand==='Vue'?'Venue photographs; dates and credits appear below':E(d.imageCredit||d.reviewAuthor||'Venue')} · ${gallery.length} photos. Select a photo to view it full size.</p><div class="gallery-grid">${gallery.map(p=>`<figure><a href="${E(img(p.originalSrc||p.src))}" target="_blank" rel="noopener"><img src="${E(img(p.src))}" alt="${E(p.alt||p.title||t)}" loading="lazy" width="640" height="480"></a><figcaption>${E(p.title||p.alt||'')}${p.credit||p.sourceUrl?`<div class="credit">${photoCredit(p)}</div>`:''}</figcaption></figure>`).join('')}</div></section>`:''}
 <div class="body">${body?`<article>${body}${d.sourceName?`<p class="src">Sources: ${E(d.sourceName)}${d.verifiedDate?' · checked '+E(new Date(d.verifiedDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})):''}</p>`:''}</article>`:`<article><p>${E(d.shortDescription||'More details coming soon.')}</p></article>`}
 <aside>${cinemaRecord&&d.brand==='Vue'?`<div class="box"><h2>What’s on at this Vue?</h2><p>Use the branch’s official listings for today’s films, available seats and final ticket prices.</p><a class="btn main" href="${E(web)}" target="_blank" rel="noopener">Check live listings at Vue →</a><p class="src">Showtimes are on Vue’s website. They are not automatically imported here.</p></div>`:''}${(d.openingHoursSummary||d.address||d.phone)?`<div class="box"><h2>Plan your visit</h2>${d.openingHoursSummary?`<p>${E(d.openingHoursSummary)}</p>`:''}${d.address?`<p><strong>Address:</strong> ${E(d.address)}</p>`:''}${d.phone?`<p><strong>Phone:</strong> <a href="tel:${E(tel)}">${E(d.phone)}</a></p>`:''}</div>`:''}
-${mapSrc?`<div class="box"><iframe class="map" title="Map showing ${E(t)}" src="${E(mapSrc)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>`:''}
+${mapSrc?`<div class="box"><h2>Location</h2><iframe class="map" title="Map showing ${E(t)}" src="${E(mapSrc)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>${maps?`<a class="map-open" href="${E(maps)}" target="_blank" rel="noopener">Open location map →</a>`:''}</div>`:''}
 ${tslug?`<a class="more" href="/destination/${E(tslug)}">More to do in ${E(town||tslug)} →</a>`:''}</aside></div></div>`;
  const customTitle=typeof d.seoTitle==='string'?d.seoTitle.trim():'';
  const TT=customTitle||t+(town?', '+town:'')+' | Spin Raiders';ctx.setTitle(TT);
