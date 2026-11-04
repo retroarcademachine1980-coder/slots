@@ -70,7 +70,8 @@ const packed=packPlan(inlineMin.code);
 if(unpackPlan(packed)!==inlineMin.code)throw Error('Inline guard round-trip mismatch');
 const wrapper=`(function(){${extract('preserved-plan.mjs',['unpackPlan'])}\nconst script=document.createElement('script');script.textContent=unpackPlan(${JSON.stringify(packed)});document.head.appendChild(script)})();`;
 const wrapperMin=await minify(wrapper,{compress:{passes:3},mangle:true,format:{inline_script:true}});
-const html='<script>'+wrapperMin.code+'</script>\n<noscript><p>Spin Raiders needs JavaScript for interactive guides. Please enable JavaScript.</p></noscript>\n';
+// This embed belongs in HEAD; body text in noscript would close it for crawlers.
+const html='<script>'+wrapperMin.code+'</script>\n\n';
 if(html.length>15000)throw Error(`Wix embed limit exceeded: ${html.length}/15000 characters`);
 const assetMin={code:await candidateAsset()};
 fs.writeFileSync(outputPath,html);fs.writeFileSync(assetOutputPath,assetMin.code);

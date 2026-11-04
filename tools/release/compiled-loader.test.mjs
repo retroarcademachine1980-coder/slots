@@ -25,6 +25,9 @@ function installPreservedInputs(w,capture='production-6300-projection.json'){con
 test('compiler produces one size-compliant inline guard and pinned candidate asset',()=>{
  execFileSync(process.execPath,[fileURLToPath(new URL('compile-loader.mjs',root)),fixture('compiler-config.json'),target('compiler-fixture.html'),target('compiler-fixture-asset.js')]);
  const html=read('compiler-fixture.html');assert.ok(html.length<=15000);assert.equal([...html.matchAll(/<script>/g)].length,1);assert.equal([...html.matchAll(/<\/script>/g)].length,1);assert.match(read('compiler-fixture-asset.js'),/SR_CANDIDATE_BOOT/);
+ const crawler=new JSDOM('<!doctype html><html><head>'+html+'<title>Visitor guide</title><meta name="description" content="Plan a seaside day"><link rel="canonical" href="https://www.spin-raiders.com/"></head><body><main>Guide</main></body></html>');
+ assert.equal(crawler.window.document.head.querySelector('meta[name="description"]')?.content,'Plan a seaside day','Loader markup must not close the head for non-JavaScript crawlers');
+ assert.equal(crawler.window.document.head.querySelector('link[rel="canonical"]')?.href,'https://www.spin-raiders.com/');crawler.window.close();
 });
 for(const path of ['/','/search','/destination/blackpool'])test('compiled preserved replay matches original captured resources: '+path,async()=>{
  const actual=createPage(path),expected=createPage(path),w=actual.window;installPreservedInputs(w);w.fetch=()=>{throw Error('Preserved build must not request candidate fingerprint')};
