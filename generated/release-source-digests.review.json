@@ -1,7 +1,7 @@
 {
-  "gitTree": "a909500e547dc5daf9db307505a3b8a176b3db18",
+  "gitTree": "93ee76b5065d02a8b31b5d4bc3e605192800f839",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "02eae882634352b5076522bbc71168292621d201d7dcffe1e270859e7369882d",
+  "sourceFingerprint": "384ca39b81f689c2f3a76faaa6f39238fe38c5be65b6ae4ce59b17d16fd89341",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -542,7 +542,7 @@
     },
     {
       "name": "src/public/seo.js",
-      "sha256": "2f2f351bcb297717681312bc227a273596e20153c9ae34db35a7a4042c9190ff"
+      "sha256": "55c1c7f3a60ffccf738d4c84514451cc165a60989876ba089e66f09e8e4f42a3"
     },
     {
       "name": "src/runtime/002-01-spin-raiders-route-hydration-and-unavailable-states.js",
