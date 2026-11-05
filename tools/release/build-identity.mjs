@@ -75,7 +75,9 @@ export const PRESERVED_BUILDS = Object.freeze([
   { revision: '2', branchId: '2b33cc8e-4df1-4761-b1ca-b94bd9a3ff85', codeAppId: '242ee0b7-2935-4ebc-bfe0-db1dcfb727a5', nativeBuildHash: '525d35df43b69dd8a64f6f751396e542e5e2a01c7a7864a484933b55f0606b2b' },
   { revision: '6329', branchId: null, codeAppId: '679b5e55-a136-42ba-b835-f056bbcc45dd', nativeBuildHash: 'cb4b088047e089eb9e4e09ec69a8d4c820e2d621c1be1614e552682c079acbbe' },
   { revision: '6300', branchId: null, codeAppId: '64c3a2dd-5a54-43c5-8bfe-58a9e809b4eb', nativeBuildHash: '04891fbc3eeb173cc984fed4ab64716503bd8f9dc531ac2a4f1dbddab00effca' },
-  { revision: '50', branchId: '1a171085-b7f9-4143-b1c5-27fc5b67fd9d', codeAppId: 'e61b26d6-27b9-4d14-a276-2ee4a3875db0', nativeBuildHash: 'a4bea53cf3903428ab0e15856ce378de9c4cc7039e2643a68d9bd2fcd5b082c1' }
+  { revision: '50', branchId: '1a171085-b7f9-4143-b1c5-27fc5b67fd9d', codeAppId: 'e61b26d6-27b9-4d14-a276-2ee4a3875db0', nativeBuildHash: 'a4bea53cf3903428ab0e15856ce378de9c4cc7039e2643a68d9bd2fcd5b082c1' },
+  {"revision":"2","branchId":"599d9d7c-96cb-46dc-b284-5e0b18c72d5e","codeAppId":"45a1b33e-5d60-403a-a12b-1751dcaafacd","nativeBuildHash":"2e18ca852da59b1ffe3f6dec8a5179ea830196cdcec82ff702546787d44e2289"},
+  {"branchId":"599d9d7c-96cb-46dc-b284-5e0b18c72d5e","revision":"2","codeAppId":"45a1b33e-5d60-403a-a12b-1751dcaafacd","nativeBuildHash":"ead89350699d2a515faac9d9c12ba62d7717de949d04e9a0727659de3a5ee723"}
 ]);
 // An early tuple is a preload hint only. It cannot authorize runtime execution.
 export function knownPreservedTuple(essential) {

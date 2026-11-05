@@ -35,7 +35,7 @@ for(const path of ['/','/search','/destination/blackpool'])test('compiled preser
  assert.deepEqual(resources(w),resources(expected.window));assert.equal(w.document.querySelectorAll('[src*="sr.release-loader"]').length,0);assert.equal(w.document.getElementById('sr-runtime-status'),null);assert.equal(w.document.getElementById('sr-hold')?.textContent,expected.window.document.getElementById('sr-hold')?.textContent);await Promise.all([closePage(actual),closePage(expected)]);
 });
 
-for(const capture of ['production-2-anonymous-projection.json','production-2-owner-projection.json']) test('current public build retains every captured helper without candidate reads: '+capture,async()=>{
+for(const capture of ['production-2-anonymous-projection.json','production-2-owner-projection.json','production-2-nov5-anonymous-projection.json','production-2-nov5-owner-projection.json']) test('current public build retains every captured helper without candidate reads: '+capture,async()=>{
  const actual=createPage('/destination/grimsby'),expected=createPage('/destination/grimsby'),w=actual.window;
  installPreservedInputs(w,capture);let reads=0;w.fetch=()=>{++reads;throw Error('Preserved build must not request candidate');};
  w.eval(read('compiler-fixture.html').match(/<script>([\s\S]*?)<\/script>/)[1]);
