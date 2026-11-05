@@ -6,11 +6,12 @@ import { createDynamicDetailHook } from 'public/routes/dynamicPageAdapter';
 import { routeManifest } from 'public/routes/routeManifest.generated';
 import { resolveRoutePath, resolveLegacyAlias } from 'backend/canonicalRoutesApi';
 const context=createRouteContext(routeManifest);
-// Opt-in private server diagnostics. No record values, credentials, visitor
-// identity or exception messages are logged; this flag never changes routing.
+// Temporary isolated-test server diagnostics. Native routing may omit the
+// incoming query flag, so trace hook invocation independently of request query.
+// No record values, credentials, visitor identity or exception messages are
+// logged. Remove this diagnostic before production acceptance.
 function traceFoodRouter(request,phase,response) {
  try {
-  if(request?.query?.srFoodTrace!=='20261105')return;
   console.info('SR_FOOD_ROUTER_TRACE',JSON.stringify({phase,
    prefix:request.prefix==='food-and-drink'?'food-and-drink':'unexpected',
    pathParts:Array.isArray(request.path)?request.path.length:0,

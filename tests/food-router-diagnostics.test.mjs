@@ -8,14 +8,14 @@ const request=traced=>({prefix:'food-and-drink',path:[slug],pages:['Food and Dri
 const response=()=>({status:200,page:'Food and Drink (Item)',data:{boundDataset:'PRIVATE_DATA_NEVER_LOG'},head:{links:[{rel:'author',href:'/about-us'}],metaTags:[{name:'robots',content:'noindex,nofollow'}]}});
 async function withLogs(run,throwing=false){const original=console.info,logs=[];console.info=(...args)=>{logs.push(args);if(throwing)throw Error('logger unavailable');};try{return await run(logs);}finally{console.info=original;}}
 
-test('normal food routing remains silent and preserves native dataset response and synchronous query contract',async()=>withLogs(async logs=>{
+test('temporary test trace works without a query flag and preserves native response and synchronous query contract',async()=>withLogs(async logs=>{
  const m=await loadBackend('backend/dynamicRoutingService',{FoodAndDrink:[record]}, {},manifest),req=request(false),native=response();
  assert.equal((await m.foodBeforeRouter(req)).status,'next');
  const query=m.foodCustomizeQuery(req,'/{routeSlug}',{});assert.equal(typeof query.find,'function');assert.equal(query.then,undefined);assert.equal((await query.find()).items[0]._id,record._id);
- const data=native.data;const result=await m.foodAfterRouter(req,native);assert.equal(result,native);assert.equal(result.data,data);assert.equal(result.head.title,record.seoTitle);assert.equal(logs.length,0);
+ const data=native.data;const result=await m.foodAfterRouter(req,native);assert.equal(result,native);assert.equal(result.data,data);assert.equal(result.head.title,record.seoTitle);assert.equal(logs.length,5);
 }));
 
-test('opt-in diagnostics show actual hook order and head availability without record or visitor values',async()=>withLogs(async logs=>{
+test('temporary diagnostics show actual hook order and head availability without record or visitor values',async()=>withLogs(async logs=>{
  const m=await loadBackend('backend/dynamicRoutingService',{FoodAndDrink:[record]}, {},manifest),req=request(true),native=response();
  await m.foodBeforeRouter(req);const query=m.foodCustomizeQuery(req,'/{routeSlug}',{});assert.equal(query.then,undefined);await m.foodAfterRouter(req,native);
  const rows=logs.map(args=>{assert.equal(args[0],'SR_FOOD_ROUTER_TRACE');return JSON.parse(args[1]);});
@@ -24,7 +24,7 @@ test('opt-in diagnostics show actual hook order and head availability without re
  const all=JSON.stringify(logs);for(const value of ['PRIVATE_EMAIL_NEVER_LOG','PRIVATE_DATA_NEVER_LOG',record.seoTitle,record.seoDescription])assert.equal(all.includes(value),false);
 }));
 
-test('logging service failure cannot break an opted-in native page response',async()=>withLogs(async()=>{
+test('logging service failure cannot break a native page response',async()=>withLogs(async()=>{
  const m=await loadBackend('backend/dynamicRoutingService',{FoodAndDrink:[record]}, {},manifest),native=response();
  assert.equal((await m.foodBeforeRouter(request(true))).status,'next');assert.equal(typeof m.foodCustomizeQuery(request(true),'/{routeSlug}',{}).find,'function');assert.equal(await m.foodAfterRouter(request(true),native),native);
 },true));
