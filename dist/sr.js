@@ -802,7 +802,7 @@ function createBrowserRouteClient({ fetch, origin = SITE_ORIGIN, apiMode = 'prod
 }
 
 if(Object.prototype.hasOwnProperty.call(window,'SR_ROUTES'))throw new Error('Duplicate route authority');
-Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"4c849ddda262eb5f5d16cc64a6537594d97cc05fd91587e5815544a74364b73c",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
+Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"production",indexAliasesActive:false,expectedReleaseFingerprint:"31fa27d5d654e1ad15fe6041c9322fab5e1a44e90c10ce854dac58cce1d0b7a1",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
 })();
 
 /* [2] Spin Raiders route hydration and unavailable states */
