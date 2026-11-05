@@ -8,8 +8,9 @@ export function createNativeRouter({ context, manifest, readById, ok, notFound, 
     if (landing) {
       const endpoint = context.endpoints[landing.kind];
       if (!endpoint?.native || !endpoint?.renderer || !endpoint.evidence || !endpoint.revision || !landing.pageName || !(landing.preservedPageId || landing.preservedContentRef) || !landing.seo) return sendStatus(503);
-      const seo = landing.seo.description && Array.isArray(landing.seo.metaTags) && !landing.seo.metaTags.some(tag => String(tag.name || '').toLowerCase() === 'description')
-        ? { ...landing.seo, metaTags: [{ name: 'description', content: landing.seo.description }, ...landing.seo.metaTags] }
+      const metaTags = Array.isArray(landing.seo.metaTags) ? landing.seo.metaTags : [];
+      const seo = landing.seo.description && !metaTags.some(tag => String(tag.name || '').toLowerCase() === 'description')
+        ? { ...landing.seo, metaTags: [{ name: 'description', content: landing.seo.description }, ...metaTags] }
         : landing.seo;
       return ok(landing.pageName, { view: 'index', route: { kind: landing.kind, path }, metadata: landing.metadata || {} }, seo);
     }

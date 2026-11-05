@@ -29,13 +29,18 @@ test('the four observed category failures send a standard description alongside 
   }
 });
 
-test('existing explicit descriptions and default-only landing metadata retain their original precedence', async () => {
+test('explicit descriptions retain precedence and description-only landings get a standard tag', async () => {
   for (const explicit of [false, true]) {
     const path = '/cinemas', landing = structuredClone(manifest.landings[path]);
     if (explicit) landing.seo.metaTags.unshift({ name: 'description', content: 'A deliberately selected description.' });
     else delete landing.seo.metaTags;
     const router = createNativeRouter({ context: { landings: { [path]: landing }, endpoints: manifest.endpoints }, manifest, ok: (page, data, head) => ({ page, data, head }) });
     const response = await router.canonical(path);
-    assert.equal(response.head, landing.seo);
+    if (explicit) assert.equal(response.head, landing.seo);
+    else {
+      assert.deepEqual(response.head.metaTags, [{ name: 'description', content: landing.seo.description }]);
+      const inverse = { ...response.head };delete inverse.metaTags;
+      assert.deepEqual(inverse, landing.seo);
+    }
   }
 });
