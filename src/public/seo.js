@@ -20,6 +20,9 @@ const SITE = 'https://www.spin-raiders.com';
 const BRAND = 'Spin Raiders';
 // Wix documents reading links before onReady and preserving unrelated link tags.
 const existingLinks = (wixSeoFrontend.links || []).filter(link => link.rel !== 'canonical');
+// Read configured tags before onReady, as required by Wix. setMetaTags replaces
+// earlier metadata, so page updates must retain unrelated tags and sharing art.
+const existingMetaTags = wixSeoFrontend.metaTags || [];
 
 function clean(value) {
     return String(value || '')
@@ -115,7 +118,8 @@ async function apply({ title, description, image, url, noindex, schema }) {
         tags.push({ property: 'og:image', content: image });
         tags.push({ name: 'twitter:image', content: image });
     }
-    tags.push({ name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' });
+    const sharingImage = image || existingMetaTags.find(tag => tag.property === 'og:image' || tag.name === 'twitter:image')?.content;
+    tags.push({ name: 'twitter:card', content: sharingImage ? 'summary_large_image' : 'summary' });
     if (url) {
         tags.push({ property: 'og:url', content: url });
         tasks.push(wixSeoFrontend.setLinks([...existingLinks, { rel: 'canonical', href: url }]));
@@ -123,8 +127,21 @@ async function apply({ title, description, image, url, noindex, schema }) {
     tags.push({ property: 'og:site_name', content: BRAND });
     tags.push({ property: 'og:type', content: 'website' });
     tags.push({ property: 'og:locale', content: 'en_GB' });
-    if (noindex) tags.push({ name: 'robots', content: 'noindex, follow' });
-    tasks.push(wixSeoFrontend.setMetaTags(tags));
+    if (noindex) {
+        const directives = existingMetaTags.filter(tag => tag.name === 'robots')
+            .flatMap(tag => String(tag.content || '').split(',').map(value => value.trim().toLowerCase()))
+            .filter(value => value && !['index', 'all', 'follow'].includes(value));
+        if (!directives.includes('none')) directives.unshift('noindex');
+        if (!directives.includes('none') && !directives.includes('nofollow')) directives.push('follow');
+        tags.push({ name: 'robots', content: [...new Set(directives)].join(', ') });
+    }
+    const key = tag => tag.name ? 'name:' + tag.name : tag.property ? 'property:' + tag.property : '';
+    const replaced = new Set(tags.map(key));
+    const retained = existingMetaTags.filter(tag => !replaced.has(key(tag)) &&
+        // An explicit record photograph must not inherit another image's size
+        // or caption. With no replacement, keep the configured artwork intact.
+        !(image && (/^og:image(?::|$)/.test(tag.property || '') || /^twitter:image(?::|$)/.test(tag.name || ''))));
+    tasks.push(wixSeoFrontend.setMetaTags([...retained, ...tags]));
     if (schema && schema.length) tasks.push(wixSeoFrontend.setStructuredData(schema.map(strip)));
     await Promise.all(tasks);
 }
