@@ -27,17 +27,31 @@ export function createDynamicDetailHook({ kind, prefix, pageName, resolve, resol
       return notFound();
     }
     if (result.status !== 200) return sendStatus(result.status);
+    const description = result.row.seoDescription || result.row.shortDescription || result.row.summary || '';
+    const noIndex = result.route.indexable === false || [result.row.directoryReady, result.row.pageReady, result.row.guideReady].includes(false);
+    // The data-binding router has already prepared this successful page. Preserve
+    // its response identity, dataset payload and unrelated head options; only add
+    // the resolved metadata. Rebuilding it would discard native dataset state.
+    if (response?.status === 200 && response.data != null) {
+      const head = response.head || {};
+      response.head = { ...head,
+        title: result.row.seoTitle || result.row.title || result.row.displayTitle || head.title || '',
+        links: [...(Array.isArray(head.links) ? head.links.filter(link => link.rel !== 'canonical') : []), { rel: 'canonical', href: result.route.canonicalUrl }],
+        metaTags: [...(Array.isArray(head.metaTags) ? head.metaTags.filter(tag => !description || tag.name !== 'description') : []), ...(description ? [{ name: 'description', content: description }] : [])],
+        noIndex: head.noIndex === true || noIndex
+      };
+      return response;
+    }
     // Never guess a page name from URL/title. Use configured proof or the native response page, required to
     // appear in this router's request.pages when supplied by the Wix runtime.
     const selectedPage = pageName || (Array.isArray(request.pages) && request.pages.includes(response?.page) ? response.page : null);
     if (!selectedPage || (Array.isArray(request.pages) && !request.pages.includes(selectedPage))) return sendStatus(503);
-    const description = result.row.seoDescription || result.row.shortDescription || result.row.summary || '';
     return ok(selectedPage, { view: 'detail', collection: result.collection, record: result.row,
       sourceRecords: result.sourceRecords, sourceGroup: result.sourceGroup, route: result.route }, {
       links: [{rel:'canonical',href:result.route.canonicalUrl}],
       title: result.row.seoTitle || result.row.title || result.row.displayTitle || '',
       metaTags: description ? [{ name: 'description', content: description }] : [],
-      noIndex: result.route.indexable === false || [result.row.directoryReady, result.row.pageReady, result.row.guideReady].includes(false)
+      noIndex
     });
   };
 }
