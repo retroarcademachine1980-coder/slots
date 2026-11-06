@@ -12,7 +12,7 @@ export function createNativeRouter({ context, manifest, readById, ok, notFound, 
       const seo = landing.seo.description && !metaTags.some(tag => String(tag.name || '').toLowerCase() === 'description')
         ? { ...landing.seo, metaTags: [{ name: 'description', content: landing.seo.description }, ...metaTags] }
         : landing.seo;
-      return ok(landing.pageName, { view: 'index', route: { kind: landing.kind, path }, metadata: landing.metadata || {} }, seo);
+      return ok(landing.pageName, { view: 'index', route: { kind: landing.kind, path }, metadata: { ...(landing.metadata || {}), introduction: landing.seo.description || '' } }, seo);
     }
     const result = await resolveNativePath(path, context, readById);
     if (result.status === 404) {

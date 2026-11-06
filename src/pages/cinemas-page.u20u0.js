@@ -9,6 +9,14 @@ function plainHtml(value) {
     if (/<(?:p|h[1-6]|ul|ol|div|blockquote)\b/i.test(value)) return value;
     return value.split(/\n\s*\n/).map(part => '<p>' + part.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p>').join('\n');
 }
+export function cinemaIndexContent(result, path) {
+    if (result?.view !== 'index' || path !== '/cinemas' || result.route?.path !== path || result.route.kind !== 'cinema') return null;
+    if (result.status !== undefined && result.status !== 200) return null;
+    const title = text(result.metadata?.sourceTitle);
+    const introduction = text(result.metadata?.introduction);
+    if (!title || !introduction) return null;
+    return { title, bodyHtml: plainHtml(introduction) };
+}
 export function cinemaArticleContent(result, path) {
     const row = result?.record || result?.row;
     if (result?.status !== undefined && result.status !== 200) return null;
@@ -23,7 +31,7 @@ export function cinemaArticleContent(result, path) {
 export async function renderCinemaArticle({ select, path, routerData, load }) {
     try {
         // Both payloads must pass the same collection/key/path/kind checks.
-        const content = cinemaArticleContent(routerData, path) || cinemaArticleContent(await load(path), path);
+        const content = cinemaIndexContent(routerData, path) || cinemaArticleContent(routerData, path) || cinemaArticleContent(await load(path), path);
         if (!content) return false;
         const title = select('#srNativeGuideTitle');
         const article = select('#srNativeGuideArticle');

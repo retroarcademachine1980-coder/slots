@@ -25,7 +25,7 @@ async function moduleFor({ routerData, load = async () => fixture(), select = ()
         for (const [key, value] of Object.entries(deps[spec])) this.setExport(key, value);
     }, { context }));
     await mod.evaluate();
-    return { content: mod.namespace.cinemaArticleContent, handler };
+    return { content: mod.namespace.cinemaArticleContent, indexContent: mod.namespace.cinemaIndexContent, render: mod.namespace.renderCinemaArticle, handler };
 }
 test('native cinema keeps the full updated guide and original record intact', async () => {
     const { content } = await moduleFor(), data = fixture(), before = JSON.stringify(data);
@@ -71,5 +71,23 @@ test('failed lookup and wrong fallback preserve existing visible content', async
         assert.equal(await handler(), false);
         assert.equal(elements['#srNativeGuideTitle'].text, 'Existing heading');
         assert.equal(elements['#srNativeGuideArticle'].html, 'Existing guide');
+    }
+});
+
+test('cinemas index renders its original landing heading and introduction without a detail lookup', async () => {
+    const elements = { '#srNativeGuideTitle': {text:'Heading 1'}, '#srNativeGuideArticle': {html:'Template paragraph'} };
+    const m = await moduleFor();
+    const index = { view:'index', route:{kind:'cinema',path:'/cinemas'}, metadata:{sourceTitle:'Original category heading',introduction:'Original introduction & visitor choices.'} };
+    const before = JSON.stringify(index);
+    assert.equal(await m.render({select:id=>elements[id],path:'/cinemas',routerData:index,load:async()=>{throw Error('Index must not call detail-only API');}}),true);
+    assert.equal(elements['#srNativeGuideTitle'].text,index.metadata.sourceTitle);
+    assert.equal(elements['#srNativeGuideArticle'].html,'<p>Original introduction &amp; visitor choices.</p>');
+    assert.equal(JSON.stringify(index),before);
+});
+test('cinemas index rejects wrong kind, path, view, error and missing introduction', async () => {
+    const {indexContent} = await moduleFor();
+    for(const change of [d=>d.route.kind='unrelated',d=>d.route.path+='-other',d=>d.view='detail',d=>d.status=503,d=>delete d.metadata.introduction]){
+        const d={view:'index',route:{kind:'cinema',path:'/cinemas'},metadata:{sourceTitle:'Original category',introduction:'Original introduction.'}};
+        change(d);assert.equal(indexContent(d,'/cinemas'),null);
     }
 });

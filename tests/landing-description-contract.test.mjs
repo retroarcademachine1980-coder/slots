@@ -18,6 +18,8 @@ for (const [path, landing] of Object.entries(manifest.landings)) {
     assert.deepEqual(response.head.metaTags?.filter(tag => String(tag.name || '').toLowerCase() === 'description'),
       [{ name: 'description', content: landing.seo.description }]);
     assert.equal(response.page, landing.pageName);
+    assert.equal(response.data.metadata.introduction, landing.seo.description);
+    for (const [key,value] of Object.entries(landing.metadata || {})) assert.deepEqual(response.data.metadata[key], value);
     assert.equal(response.head.title, landing.seo.title);
     assert.deepEqual(response.head.links, landing.seo.links);
     assert.equal(response.head.noIndex, landing.seo.noIndex);

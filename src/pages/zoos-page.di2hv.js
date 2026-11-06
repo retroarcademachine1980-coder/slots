@@ -9,6 +9,14 @@ function plainHtml(value) {
     if (/<(?:p|h[1-6]|ul|ol|div|blockquote)\b/i.test(value)) return value;
     return value.split(/\n\s*\n/).map(part => '<p>' + part.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p>').join('\n');
 }
+export function wildlifeIndexContent(result, path) {
+    if (result?.view !== 'index' || path !== '/zoos' || result.route?.path !== path || result.route.kind !== 'zoo') return null;
+    if (result.status !== undefined && result.status !== 200) return null;
+    const title = text(result.metadata?.sourceTitle);
+    const introduction = text(result.metadata?.introduction);
+    if (!title || !introduction) return null;
+    return { title, bodyHtml: plainHtml(introduction) };
+}
 export function wildlifeArticleContent(result, path) {
     const row = result?.record || result?.row;
     if (result?.status !== undefined && result.status !== 200) return null;
@@ -23,7 +31,7 @@ export function wildlifeArticleContent(result, path) {
 export async function renderWildlifeArticle({ select, path, routerData, load }) {
     try {
         // Both payloads must pass the same collection/key/path/kind checks.
-        const content = wildlifeArticleContent(routerData, path) || wildlifeArticleContent(await load(path), path);
+        const content = wildlifeIndexContent(routerData, path) || wildlifeArticleContent(routerData, path) || wildlifeArticleContent(await load(path), path);
         if (!content) return false;
         const title = select('#srNativeGuideTitle');
         const article = select('#srNativeGuideArticle');
