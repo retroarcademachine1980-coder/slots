@@ -3,9 +3,9 @@
   "issues": [],
   "identity": {
     "contractVersion": "spin-raiders-canonical-v1",
-    "releaseFingerprint": "6a3da4c27be21b7fee4d30ba6034de64ed7f4a92c0de15a2e1889b7b735e4c2c",
+    "releaseFingerprint": "94e3321171ada178be49ddbe7a8ed5fa00e6aacce26af52672cafcba11b1c112",
     "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-    "rendererFingerprint": "30f6cfd74b9c18f19ba32d3c869df6d7c2b6e7db941cc0b2d95e4f84b2ef04ed",
+    "rendererFingerprint": "d9186d4b5920623a83bfe32b27a7652f3b7031fefcaa96a1cb6c0e0c5ed4cd90",
     "stage": "testable",
     "productionAccepted": false,
     "complete": true,
