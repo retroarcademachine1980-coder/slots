@@ -1,7 +1,7 @@
 {
-  "gitTree": "c0a68fd83e2837077a17f27d984684e89a103ded",
+  "gitTree": "995209a21828561aa451c16fb600478d97a1c019",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "5313bd5bbaffe2f7b32f439b89fcf03b87ef49859e2a455f000b8262fc8c4666",
+  "sourceFingerprint": "b5461c37861624505836d7fbda0918bcbb2500dfc8e15d74796a84da35ae3373",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -358,7 +358,7 @@
     },
     {
       "name": "src/pages/cinemas-page.u20u0.js",
-      "sha256": "4cb043e87d192088aa27e5dcf8b7a61c395f8d4634cce6a203857b0d86f713f0"
+      "sha256": "10d5f7e120921714dd3ba876a8c5986236b57cfabdf3c6b7b4df1d385d27cbfe"
     },
     {
       "name": "src/pages/classic-fruit-machines-page.mlsbg.js",
