@@ -1,7 +1,7 @@
 {
-  "gitTree": "2a5076259326d51856ee4c55c6a3993231c2ac4d",
+  "gitTree": "8886fc4c90127ef1e6b4199ba7f46a3034ca2da2",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "6eb66a485ed6826ad34666df6c5e88b372b71132dbb940040bc680d6f1f62ea4",
+  "sourceFingerprint": "0a3d0dc550c6a4b4a9d151f94380fc3b9ec0e266df333f4429eb96542b52a9b2",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -190,7 +190,7 @@
     },
     {
       "name": "src/pages/Food and Drink (Item).mmbdr.js",
-      "sha256": "4cb043e87d192088aa27e5dcf8b7a61c395f8d4634cce6a203857b0d86f713f0"
+      "sha256": "e428a863bb0a4cb6c2f5e77b36430a9fa1cd649d0d6d5f523f4b40742c3c3fec"
     },
     {
       "name": "src/pages/Food and Drink.lyxzf.js",
@@ -467,6 +467,10 @@
     {
       "name": "src/public/discovery-ui.js",
       "sha256": "b15dbf43399da46a27ffb7ec85ff68154547915da4cf8d9fbb5e158f2b5e7365"
+    },
+    {
+      "name": "src/public/food-article.js",
+      "sha256": "d71a35c48ece3d5b49ca2e4e0efa512f9934876e7c1010e64b364ba884e3c5d9"
     },
     {
       "name": "src/public/routes/browserRouteClient.js",
