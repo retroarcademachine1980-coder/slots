@@ -321,7 +321,9 @@ export async function applyPageSeo(pathParts, routerData) {
             return; // Preserve exact native/router landing title, description and artwork.
         }
         if (routerData?.view === 'detail' && routerData.record && parseCanonical(routerData.route?.path).ok) {
-            return canonicalDetailPage({ row: routerData.record, route: routerData.route });
+            // Await inside this try so asynchronous metadata failures reach the
+            // same non-fatal handler as looked-up detail pages below.
+            return await canonicalDetailPage({ row: routerData.record, route: routerData.route });
         }
         if (!parts.length || (parts.length === 1 && parts[0] === 'home')) return await homePage();
         const path = '/' + parts.join('/'), canonical = parseCanonical(path);
