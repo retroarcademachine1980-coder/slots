@@ -1,0 +1,41 @@
+name: Preview Wix site (no publish)
+
+# Builds a PRIVATE PREVIEW of the code on main. It never publishes and never
+# changes the live site. Added 12 Nov 2026 because the Wix editor stopped
+# picking up commits from main (its backend files are still at the state
+# before d686704a), so editor-built test versions run old backend code.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: wix-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WIX_CLI_API_KEY: ${{ secrets.WIX_CLI_API_KEY }}
+    steps:
+      - name: Check Wix key
+        shell: bash
+        run: |
+          if [ -z "$WIX_CLI_API_KEY" ]; then echo "WIX_CLI_API_KEY is not configured."; exit 1; fi
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --ignore-scripts
+      - name: Show CLI version and config
+        run: |
+          npx wix --version || true
+          cat wix.config.json
+          git rev-parse HEAD
+      - name: Authenticate Wix CLI
+        run: npx wix login --api-key "$WIX_CLI_API_KEY"
+      - name: Build preview from checked-out code (does not publish)
+        env:
+          CI: "true"
+        run: timeout 600s npx wix preview --source local
