@@ -1,7 +1,7 @@
 {
-  "gitTree": "9253831559d6416c35a071e255abc59122673df2",
+  "gitTree": "9daffd0e3a28904e71129b630a0eb577aec282e0",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "ec2f71a33b01ac0010f6be03a306e8b4c7a7fe322d9e130f77f13454c384ab3d",
+  "sourceFingerprint": "5793f12c6528e8b48fefa2d48b724e6611fae8741c0fcc6afb1abaf789c815a4",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -1198,7 +1198,7 @@
     },
     {
       "name": "tools/release/runtime-loader.mjs",
-      "sha256": "e250398a748369b1d60d41236f6cca33ef5934ecad8dff950d2ca23ce0f55208"
+      "sha256": "74055a6920a19fcb5ebe4867ae3fed420f962edc535c9169fbc84adb7811367f"
     },
     {
       "name": "tools/split-bundle.py",
