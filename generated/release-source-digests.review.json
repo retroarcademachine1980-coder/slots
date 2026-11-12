@@ -1,7 +1,7 @@
 {
-  "gitTree": "d82c357dbbdfefb90692fe9d398291af8392af79",
+  "gitTree": "c388ed7f68b6983f1a7c2a28f6a5b348898b0474",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "cedf38e37ae689a7d383d40036f71c19649d1d5daba87e91579727e7d370a51b",
+  "sourceFingerprint": "dd7643062d00e3b54c552176b0c812f5fe02202b5234496ae9a649585ee84a6f",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -22,11 +22,11 @@
     },
     {
       "name": "src/backend/canonicalRouteService.js",
-      "sha256": "b17d478d55a1303101bbd443d4ab6127fc0f4da947f88d03c622663fee6ea142"
+      "sha256": "41cc9ed4fce3699dddc263232e91caef709118425c155ea54220f1206b7cf2b5"
     },
     {
       "name": "src/backend/canonicalRoutesApi.js",
-      "sha256": "c6096d6997143ca2715c20cc2d56905d191151cf45de7c8b0ff2e28962cdcbc0"
+      "sha256": "ab5133b5c8d97c9b4c69560b2140aa9fefe59030bd69f98c5bf91a2552aac70f"
     },
     {
       "name": "src/backend/data.js",
@@ -58,7 +58,7 @@
     },
     {
       "name": "src/backend/nativeRoutingService.js",
-      "sha256": "f7c460d38d38250eb962b48ea0d4f8e291145caa85172ed9159ccc7900912265"
+      "sha256": "fd806747c0abaf9868a5383532bf49e11ceb36361674a52d9a7643ac4f84908a"
     },
     {
       "name": "src/backend/pageData.web.js",
