@@ -1,7 +1,7 @@
 {
-  "gitTree": "5d092729abe846ce19ed92d0b977e3282863347f",
+  "gitTree": "d82c357dbbdfefb90692fe9d398291af8392af79",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "d8a873817a96f8927541d3a605ec9945b4b7041923a5d87c96fbb5b6403baf56",
+  "sourceFingerprint": "cedf38e37ae689a7d383d40036f71c19649d1d5daba87e91579727e7d370a51b",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -350,7 +350,7 @@
     },
     {
       "name": "src/pages/bowling-page.zll98.js",
-      "sha256": "1a124f58787e096d83e6bd1ffc0aa79df9d4c6652a7c54d026fb59fac435c67d"
+      "sha256": "82f26b6ad632abb7ba98fd5cb9abcef3249c7678a4a49078110a3c8cf5a57b75"
     },
     {
       "name": "src/pages/casinos-page.j0sv4.js",
@@ -358,7 +358,7 @@
     },
     {
       "name": "src/pages/cinemas-page.u20u0.js",
-      "sha256": "1c41dcce95f42b9526efb64028b7587d592ec2e533e661bb213926cbfb7efc69"
+      "sha256": "7270cfdf4741f3d98a808bc04be0f30b8c392c68550b35817c46270b33a1cb28"
     },
     {
       "name": "src/pages/classic-fruit-machines-page.mlsbg.js",
@@ -402,7 +402,7 @@
     },
     {
       "name": "src/pages/museums-page.dn097.js",
-      "sha256": "f37d50f302daee25d0540fcf383f45b9df20bdd037ad7c06ab0eeb84f3c58ae0"
+      "sha256": "6789c71434fd4b31075317e9b8a0b6516d5549b1594f0c4773595e509533d8b2"
     },
     {
       "name": "src/pages/nearby-attractions-page.zwy9e.js",
@@ -438,7 +438,7 @@
     },
     {
       "name": "src/pages/sea-life-page.ornf4.js",
-      "sha256": "bf0111f60a3114d94b18993c05941203ed7383a3c0c268ffa9a1ad3f07e8796a"
+      "sha256": "b1710e38c49451eff2e1e90887d7bdf4008a77de6ece5597288f4c3f36bc9512"
     },
     {
       "name": "src/pages/services-page.vvje0.js",
@@ -454,7 +454,7 @@
     },
     {
       "name": "src/pages/zoos-page.di2hv.js",
-      "sha256": "7b703158d6e9a8cbc054573b2ef2e6210d98db1e8d4b2dc76677b737b1bc567b"
+      "sha256": "4edf7d8487e1a8e5d957e8b8f1ea93ea7c0145992120aa1dd63432c7dc7c7f81"
     },
     {
       "name": "src/pages/£500 Jackpot Slots.zwn1e.js",
@@ -474,7 +474,7 @@
     },
     {
       "name": "src/public/native-guide-article.js",
-      "sha256": "fce18f9d9e9a2d95e8c222199e7726af4a4f93556094ba1bcb65d25e9514fda4"
+      "sha256": "4d6f4032bbc129c3635fa766a7cf0373b47e43e9147796f29396913dcaf2b878"
     },
     {
       "name": "src/public/routes/browserRouteClient.js",
@@ -483,6 +483,10 @@
     {
       "name": "src/public/routes/canonicalRoutes.js",
       "sha256": "82a91f26dedbabdfe25600458fe4c20108f889795987028aa620a023454de0dd"
+    },
+    {
+      "name": "src/public/routes/categoryGuideArticles.js",
+      "sha256": "cea86e6872a66faf10bbee8a49adaae0eaf09c6faf27933eef9cb9a8f38a4a47"
     },
     {
       "name": "src/public/routes/dynamicPageAdapter.js",
@@ -514,7 +518,7 @@
     },
     {
       "name": "src/public/routes/nativeRouterAdapter.js",
-      "sha256": "3676754f865f3b3e73b29fa4b1437ea8e4e2537aa71702900ffcf179d0187281"
+      "sha256": "6146fb6330fa949e189250d40e9b53a0f2c43b92a7f9791c65a4556d344a64b3"
     },
     {
       "name": "src/public/routes/nativeStaticPaths.js",
