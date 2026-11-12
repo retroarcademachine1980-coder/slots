@@ -43,6 +43,42 @@ test('CMS readiness and canonical retrieval are awaited before writing the full 
     release(); assert.equal(await result, true);
     assert.deepEqual(events, [path]); assert.equal(elements['#text1'].html, fixture().sourceRecords[0].row.sourceFacts);
 });
+
+test('server rendering can return the identity-bound review without waiting on a client dataset', async () => {
+    const elements = { '#title': {}, '#description': {}, '#text1': { html: 'Existing article' } };
+    let datasetReads = 0;
+    const result = await renderFoodArticle({
+        environment: 'backend',
+        select: id => {
+            if (id === '#dynamicDataset') { datasetReads++; throw Error('Client dataset is not available in this server cycle'); }
+            return elements[id];
+        },
+        path,
+        load: async actual => { assert.equal(actual, path); return fixture(); }
+    });
+    assert.equal(result, true);
+    assert.equal(datasetReads, 0);
+    assert.equal(elements['#text1'].html, fixture().sourceRecords[0].row.sourceFacts);
+});
+
+test('server rendering still refuses a review belonging to a different food page', async () => {
+    const data = fixture(); data.route.path += '-other';
+    const elements = { '#text1': { html: 'Existing article' } };
+    let datasetReads = 0;
+    const result = await renderFoodArticle({
+        environment: 'backend',
+        select: id => {
+            if (id === '#dynamicDataset') { datasetReads++; throw Error('No client dataset during server rendering'); }
+            return elements[id];
+        },
+        path,
+        routerData: data,
+        load: async () => data
+    });
+    assert.equal(result, false);
+    assert.equal(datasetReads, 0);
+    assert.equal(elements['#text1'].html, 'Existing article');
+});
 test('valid router data avoids an extra fetch; missing body preserves the existing native text', async () => {
     const data = fixture(); data.sourceRecords = [];
     const elements = { '#title': {}, '#description': {}, '#text1': { html: 'Existing article' } };
@@ -67,7 +103,7 @@ test('the real Food Item page returns the article promise to the Wix server-rend
     context.$w = select;
     const deps = {
         'wix-location-frontend': { default: { prefix: 'food-and-drink', path: ['fixture-cafe'] } },
-        'wix-window-frontend': { getRouterData: () => { throw Error('No native router data'); } },
+        'wix-window-frontend': { getRouterData: () => { throw Error('No native router data'); }, rendering: { env: 'backend' } },
         'backend/canonicalPages.web': { getCanonicalPage: async () => fixture() },
         'public/food-article': { renderFoodArticle: async options => { calls.push(options); return await pending; } }
     };
@@ -82,5 +118,6 @@ test('the real Food Item page returns the article promise to the Wix server-rend
     const rendering = handler().then(value => { finished = true; return value; });
     await Promise.resolve();
     assert.equal(finished, false); assert.equal(calls[0].path, path); assert.equal(calls[0].select, select);
+    assert.equal(calls[0].environment, 'backend');
     release(true); assert.equal(await rendering, true); assert.equal(finished, true);
 });

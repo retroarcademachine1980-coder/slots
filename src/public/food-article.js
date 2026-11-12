@@ -36,11 +36,13 @@ export function foodArticleContent(result, path) {
         bodyHtml: body ? html(body) : ''
     };
 }
-export async function renderFoodArticle({ select, path, routerData, load }) {
+export async function renderFoodArticle({ select, path, routerData, load, environment = 'browser' }) {
     try {
-        // Wait until existing CMS connections have applied their values, so they
-        // cannot replace the full review with their shorter listing fields.
-        await select('#dynamicDataset').onReadyAsync();
+        // Browser connections must finish before assigning the full review, so
+        // their shorter listing fields cannot subsequently replace it. The
+        // server already has an identity-bound router/canonical source and must
+        // not depend on a client dataset completing its readiness cycle.
+        if (environment !== 'backend') await select('#dynamicDataset').onReadyAsync();
         const direct = foodArticleContent(routerData, path);
         const content = direct || foodArticleContent(await load(path), path);
         if (!content) return false;
