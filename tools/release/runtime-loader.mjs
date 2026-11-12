@@ -115,9 +115,25 @@ export function waitForNativeInputs(document, { MutationObserverImpl = globalThi
     const check = () => {
       const essential = document.getElementById('wix-essential-viewer-model');
       const full = document.getElementById('wix-viewer-model');
-      if (!document.body || !essential?.textContent || !full?.textContent) return false;
+      if (!document.body || !full?.textContent) return false;
       try {
-        const result = { essential: JSON.parse(essential.textContent), model: JSON.parse(full.textContent) };
+        const model = JSON.parse(full.textContent);
+        let identity;
+        if (essential) identity = JSON.parse(essential.textContent);
+        else {
+          // Observed Wix documents can retain only the complete model script.
+          // Recover only its duplicated fields from the same complete DOM model;
+          // selectRuntime still requires the full native hash and backend match.
+          const site = model?.site, common = model?.commonConfig;
+          const revision = String(common?.siteRevision ?? '');
+          const branchId = common?.branchId ?? null;
+          if (site?.metaSiteId !== '517c2402-3182-4b3f-a2f1-be5611e7e22f' ||
+              site.externalBaseUrl !== 'https://www.spin-raiders.com' ||
+              !/^\d+$/.test(revision) || String(site.siteRevision) !== revision ||
+              (branchId !== null && !/^[a-f0-9-]{36}$/.test(branchId))) return false;
+          identity = { site: { externalBaseUrl: site.externalBaseUrl }, commonConfig: { siteRevision: revision, branchId } };
+        }
+        const result = { essential: identity, model };
         observer?.disconnect(); clearTimeout(timer); resolve(result); return true;
       } catch { return false; }
     };

@@ -46,6 +46,21 @@ for(const capture of ['production-2-anonymous-projection.json','production-2-own
  await Promise.all([closePage(actual),closePage(expected)]);
 });
 
+test('compiled preserved guard replays exact resources when only the complete model remains',async()=>{
+ const actual=createPage('/destination/grimsby'),expected=createPage('/destination/grimsby'),w=actual.window;
+ installPreservedInputs(w,'production-2-nov5-anonymous-projection.json');
+ const node=w.document.getElementById('wix-viewer-model'),model=JSON.parse(node.textContent);
+ Object.assign(model.site,{externalBaseUrl:'https://www.spin-raiders.com',siteRevision:2});
+ model.commonConfig={siteRevision:'2',branchId:'599d9d7c-96cb-46dc-b284-5e0b18c72d5e'};
+ node.textContent=JSON.stringify(model);w.document.getElementById('wix-essential-viewer-model').remove();
+ let reads=0;w.fetch=()=>{++reads;throw Error('Preserved input must not request candidate');};
+ w.eval(read('compiler-fixture.html').match(/<script>([\s\S]*?)<\/script>/)[1]);
+ assert.equal((await w.__SR_RELEASE_BOOT__).runtime,'preserved');assert.equal(reads,0);
+ baselineExpected(expected.window);assert.deepEqual(resources(w),resources(expected.window));
+ assert.equal(w.document.querySelectorAll('[src*="sr.release-loader"]').length,0);
+ await Promise.all([closePage(actual),closePage(expected)]);
+});
+
 test('compiled candidate guard hands over once to explicit test entry and owner readiness',async()=>{
  const { nativeBuildHash }=await import('./build-identity.mjs');
  const base=JSON.parse(read('fixtures/production-6300-projection.json'));

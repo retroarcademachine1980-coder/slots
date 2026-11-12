@@ -1,5 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import { selectRuntime } from './build-identity.mjs';
 import { navigationKey, candidateAssets, createFingerprintReader, createLifecycle, loadResource, waitForNativeInputs, startReleaseLoader, FONT_HREF } from './runtime-loader.mjs';
 
 test('navigation key includes query and normalizes trailing slash',()=>{
@@ -58,6 +61,35 @@ test('resource load errors and timeout reject rather than pretending ready',asyn
 test('initial native scripts are parsed from DOM and observer stops',async()=>{
  const nodes={'wix-essential-viewer-model':{textContent:'{"a":1}'},'wix-viewer-model':{textContent:'{"b":2}'}};
  assert.deepEqual(await waitForNativeInputs({body:{},getElementById:id=>nodes[id]}),{essential:{a:1},model:{b:2}});
+});
+
+function fullNativeFixture() {
+ const p=JSON.parse(fs.readFileSync(new URL('./fixtures/production-2-nov5-anonymous-projection.json',import.meta.url),'utf8'));
+ return {site:{metaSiteId:p.metaSiteId,siteId:p.siteId,externalBaseUrl:'https://www.spin-raiders.com',siteRevision:2},commonConfig:{siteRevision:'2',branchId:'599d9d7c-96cb-46dc-b284-5e0b18c72d5e'},siteFeaturesConfigs:{router:{pagesMap:p.pages,routes:p.routes,mainPageId:p.mainPageId,pageIdToPrefix:p.pageIdToPrefix},platform:{bootstrapData:{wixCodeBootstrapData:{wixCodeModel:{appData:{codeAppId:p.codeAppId}}},platformAPIData:{routersConfigMap:p.routerBindings}}}}};
+}
+function fullOnlyDocument(model, essential) {
+ const nodes={'wix-viewer-model':{textContent:JSON.stringify(model)}};
+ if(essential!==undefined)nodes['wix-essential-viewer-model']={textContent:essential};
+ return {body:{},documentElement:{},getElementById:id=>nodes[id]};
+}
+class IdleObserver { observe(){} disconnect(){} }
+
+test('missing essential script can use the complete same-site model without weakening build identity',async()=>{
+ const model=fullNativeFixture();
+ const inputs=await waitForNativeInputs(fullOnlyDocument(model),{MutationObserverImpl:IdleObserver,timeoutMs:10});
+ assert.deepEqual(inputs.model,model);
+ assert.deepEqual(inputs.essential,{site:{externalBaseUrl:'https://www.spin-raiders.com'},commonConfig:{siteRevision:'2',branchId:'599d9d7c-96cb-46dc-b284-5e0b18c72d5e'}});
+ const args={...inputs,config:{},subtle:crypto.webcrypto.subtle,readFingerprint:async()=>{throw Error('Preserved input must not read candidate endpoint');}};
+ assert.equal((await selectRuntime(args)).runtime,'preserved');
+ const unknown=structuredClone(inputs);unknown.model.siteFeaturesConfigs.router.pagesMap.brat7.pageJsonFileName+='-UNKNOWN';
+ assert.equal((await selectRuntime({...args,...unknown})).runtime,'blocked');
+});
+
+test('missing essential script rejects partial, foreign or conflicting model identity',async()=>{
+ const invalid=[{},fullNativeFixture(),fullNativeFixture(),fullNativeFixture(),fullNativeFixture(),fullNativeFixture()];
+ invalid[1].site.externalBaseUrl='https://other.example';invalid[2].site.metaSiteId='00000000-0000-0000-0000-000000000000';invalid[3].commonConfig.siteRevision='6376';invalid[4].commonConfig.branchId='unverified';delete invalid[5].commonConfig;
+ await Promise.all(invalid.map(model=>assert.rejects(waitForNativeInputs(fullOnlyDocument(model),{MutationObserverImpl:IdleObserver,timeoutMs:5}),/Native identity unavailable/)));
+ await assert.rejects(waitForNativeInputs(fullOnlyDocument(fullNativeFixture(),'{broken'),{MutationObserverImpl:IdleObserver,timeoutMs:5}),/Native identity unavailable/);
 });
 test('unknown builds do not inject either runtime or hide native content',async()=>{
  let legacy=0;const window={fetch:async()=>{},crypto:{}};
