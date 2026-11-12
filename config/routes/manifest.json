@@ -206423,10 +206423,10 @@
   },
   "identity": {
     "contractVersion": "spin-raiders-canonical-v1",
-    "releaseFingerprint": "75a1ecfa76e7e68b11b15a0987897c09a91d47a7bd95408cb98a6c6b6c847fef",
+    "releaseFingerprint": "23bc99f9b96f159e4cbbcbda7a57dedce97a8a7eae5946646aa56b0f2945300f",
     "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-    "rendererFingerprint": "869c8986633d93f02cb687a349c5fc1da3fc304f4bfe1b05e8beceff607f51c8",
-    "sourceFiles": 300,
+    "rendererFingerprint": "795f109472e7538d53da4affedbe98194418ca2c9e88ebc79b57ccb5cb4d98ee",
+    "sourceFiles": 301,
     "deploymentBlocked": false
   },
   "nativeBindingCapture": {
