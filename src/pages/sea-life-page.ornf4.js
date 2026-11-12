@@ -2,9 +2,8 @@ import wixLocation from 'wix-location-frontend';
 import { getRouterData } from 'wix-window-frontend';
 import { getCanonicalPage } from 'backend/canonicalPages.web';
 
-// Existing Original editor H1 #srNativeGuideTitle, verified 12 November.
-// An aquarium detail must receive its own name, never the index placeholder.
-// The separate native article control remains a pending template requirement.
+// Existing Original controls verified 12 November: visible H1 and normal
+// paragraph #srNativeGuideBody. Each detail keeps its own complete source guide.
 export function seaLifeTitleContent(result, path) {
     if (result?.status !== undefined && result.status !== 200) return null;
     if (result?.route?.kind !== 'seaLife' || result.route.path !== path) return null;
@@ -19,14 +18,29 @@ export function seaLifeTitleContent(result, path) {
     const title = row.displayTitle || row.title || row.name;
     return typeof title === 'string' && title.trim() ? title.trim() : null;
 }
+function html(value) {
+    if (/<(?:p|h[1-6]|ul|ol|div|blockquote)\b/i.test(value)) return value;
+    return value.split(/\n\s*\n/).map(part => '<p>' + part.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p>').join('\n');
+}
+export function seaLifeGuideContent(result, path) {
+    const title = seaLifeTitleContent(result, path);
+    if (!title) return null;
+    const row = result.record || result.row;
+    const values = result.view === 'index' ? [result.metadata?.introduction]
+        : ['sourceFacts', 'fullDescription', 'detailedReview', 'guideContent', 'description'].map(field => row[field]);
+    const body = values.find(value => typeof value === 'string' && value.trim());
+    return body ? { title, bodyHtml: html(body.trim()) } : null;
+}
 $w.onReady(async function () {
     let routerData;
     try { routerData = getRouterData(); } catch { /* Editor views can omit router data. */ }
     const path = '/' + [wixLocation.prefix, ...(wixLocation.path || [])].filter(Boolean).join('/');
     try {
-        const title = seaLifeTitleContent(routerData, path) || seaLifeTitleContent(await getCanonicalPage(path), path);
-        if (title) $w('#srNativeGuideTitle').text = title;
-        return Boolean(title);
+        const content = seaLifeGuideContent(routerData, path) || seaLifeGuideContent(await getCanonicalPage(path), path);
+        if (!content) return false;
+        $w('#srNativeGuideTitle').text = content.title;
+        $w('#srNativeGuideBody').html = content.bodyHtml;
+        return true;
     } catch {
         return false;
     }
