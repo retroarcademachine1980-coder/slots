@@ -1,7 +1,7 @@
 {
-  "gitTree": "b1a7e314ce8de12d26d65e11bef93838b3e3e1ee",
+  "gitTree": "1c2df4ebf959364e04336a56096894f3e831ff10",
   "manifestFingerprint": "d4581aafc597e0ab2e45e7debcd3388daefebb69ca5753626d480158928640f9",
-  "sourceFingerprint": "82dea61ca13d87584f73a271293e4d88870231c184f20fc97ab5b4f1d1e6f743",
+  "sourceFingerprint": "94bf83e15366455644723573f299446d5f23b8c5ee1980b8b3989d27433fc4d5",
   "runtimeManifestSHA256": "d6aa2c4007559d36ee0256cf110edc390a92e0297e506d68f2935c7166a48716",
   "entries": [
     {
@@ -350,7 +350,7 @@
     },
     {
       "name": "src/pages/bowling-page.zll98.js",
-      "sha256": "4cb043e87d192088aa27e5dcf8b7a61c395f8d4634cce6a203857b0d86f713f0"
+      "sha256": "1a124f58787e096d83e6bd1ffc0aa79df9d4c6652a7c54d026fb59fac435c67d"
     },
     {
       "name": "src/pages/casinos-page.j0sv4.js",
