@@ -9,9 +9,13 @@ import { loadRouteContext } from 'backend/canonicalRouteService';
 export async function canonicalRouter(kind, request) {
     const spec = Object.hasOwn(ROUTES, kind) ? ROUTES[kind] : Object.hasOwn(INDEX_ROUTES, kind) ? INDEX_ROUTES[kind] : null;
     if (!spec) return notFound();
-    const context = await loadRouteContext(), parts = (Array.isArray(request.path) ? request.path : []).filter(part => part !== '');
+    const parts = (Array.isArray(request.path) ? request.path : []).filter(part => part !== '');
     if (parts.some(part => typeof part !== 'string' || /[/?#\\%]/.test(part))) return notFound();
     const path = spec.prefix + (parts.length ? '/' + parts.join('/') : '');
+    const parsed = parseCanonical(path);
+    // Scope only recognised detail routes. Category/other index pages still
+    // require their original complete discovery context.
+    const context = await loadRouteContext(parsed.ok && ROUTES[parsed.kind]?.fields.length ? { path } : {});
     return createNativeRouter({ context, manifest: { entries: [], issues: [], complete: false },
         resolveAlias:resolveLegacyAlias, readById: (collection, id) => wixData.get(collection, id), ok, notFound, sendStatus:status=>sendStatus(String(status)), redirect }).canonical(path);
 }

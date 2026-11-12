@@ -45,8 +45,8 @@ export async function resolveRouteRequests(input, suppliedContext, { surface = '
   return { ok: true, results, complete: results.every(result => result.ok) };
 }
 export async function resolveRoutePath(path) {
-  const context = await loadRouteContext();
   if (!parseCanonical(path).ok) return { status: 404, issue: 'invalid_canonical_path' };
+  const context = await loadRouteContext({ path });
   return resolveNativePath(path, context, (collection, id) => wixData.get(collection, id));
 }
 export async function resolveLegacyAlias(input) {

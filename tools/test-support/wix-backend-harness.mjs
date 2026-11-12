@@ -5,9 +5,9 @@ import {fileURLToPath} from 'node:url';
 const ROOT=fileURLToPath(new URL('../../src',import.meta.url));
 export async function loadBackend(file,override={},capture={},manifestInput={}){
  const data=override;
- function query(collection){const filters=[];const q={};for(const method of ['limit','ascending','descending','contains','ne','or'])q[method]=()=>q;
+ function query(collection){capture.queries ||= [];capture.queries.push(collection);const filters=[];const q={};for(const method of ['limit','ascending','descending','contains','ne','or'])q[method]=()=>q;
   q.eq=(field,value)=>{if(field!=='featured')filters.push(row=>row[field]===value);return q;};
-  q.hasSome=(field,values)=>{filters.push(row=>values.includes(row[field]));return q;};
+  q.hasSome=(field,values)=>{capture.querySelections ||= [];capture.querySelections.push({collection,field,values:[...values]});filters.push(row=>values.includes(row[field]));return q;};
   q.find=async()=>{if(data[collection] instanceof Error)throw data[collection];return {items:(data[collection]||[]).filter(row=>filters.every(f=>f(row))),hasNext:()=>false};};q.count=async()=>data[collection]?.length||0;return q;
  }
  const context=vm.createContext({console,URL,URLSearchParams,Date,Set,Map,Promise});const cache=new Map();

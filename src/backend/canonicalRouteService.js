@@ -4,8 +4,13 @@ import { createRouteContext, resolveRecord, parseCanonical, gateCanonical } from
 import { routeManifest } from 'public/routes/routeManifest.generated';
 const baseContext = createRouteContext(routeManifest);
 /** Per-request guide join. No mutable cross-request global route context. */
-export async function loadRouteContext({ offers = false } = {}) {
-  const approvedGroups = (routeManifest.sourceGroups || []).filter(group => group.approved === true && (group.relation === 'same-entity' || (group.relation === 'editorial-index' && group.editorialScopeApproved === true)) && group.renderPolicy?.contentVerified === true);
+export async function loadRouteContext({ offers = false, path } = {}) {
+  // A single canonical detail needs only the current primary records for its
+  // own source group. Keep the complete registry below: unrelated ownership,
+  // overlap, readiness and policy checks must not disappear with this scope.
+  // Unscoped discovery/offer callers retain their existing complete reads.
+  const targetKeys = typeof path === 'string' ? new Set(baseContext.owners[path] || []) : null;
+  const approvedGroups = (routeManifest.sourceGroups || []).filter(group => group.approved === true && (group.relation === 'same-entity' || (group.relation === 'editorial-index' && group.editorialScopeApproved === true)) && group.renderPolicy?.contentVerified === true && (!targetKeys || group.sourceKeys?.some(key => targetKeys.has(key))));
   if (!offers && !approvedGroups.length) return baseContext;
   const guides = [], groupRecords = {}, sourceIssues = [];
   if (offers) {
