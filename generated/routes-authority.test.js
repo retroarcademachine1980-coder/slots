@@ -800,5 +800,5 @@ function createBrowserRouteClient({ fetch, origin = SITE_ORIGIN, apiMode = 'prod
 }
 
 if(Object.prototype.hasOwnProperty.call(window,'SR_ROUTES'))throw new Error('Duplicate route authority');
-Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"release-manager-test",indexAliasesActive:false,expectedReleaseFingerprint:"9b8d37773ff5dc88bf045f0d5be96ca670b6d9594a0a63e5f4a0233557c934f6",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
+Object.defineProperty(window,'SR_ROUTES',{value:createBrowserRouteClient({fetch:window.fetch.bind(window),origin:SITE_ORIGIN,apiMode:"release-manager-test",indexAliasesActive:false,expectedReleaseFingerprint:"68a318c8c59185c5f2d6f8fc5500284b6c8861938f55c74f8dc7f806f05254e7",onIssue:issue=>console.warn('Canonical route unavailable',issue.code)}),writable:false,configurable:false});
 })();
