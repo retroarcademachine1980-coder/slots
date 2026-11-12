@@ -13,7 +13,7 @@ export function wildlifeIndexContent(result, path) {
     if (result?.view !== 'index' || path !== '/zoos' || result.route?.path !== path || result.route.kind !== 'zoo') return null;
     if (result.status !== undefined && result.status !== 200) return null;
     const title = text(result.metadata?.sourceTitle);
-    const introduction = text(result.metadata?.introduction);
+    const introduction = text(result.metadata?.articleHtml) || text(result.metadata?.introduction);
     if (!title || !introduction) return null;
     return { title, bodyHtml: plainHtml(introduction) };
 }

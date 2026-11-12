@@ -13,7 +13,7 @@ export function bowlingArticleContent(result, path) {
     if (result?.status !== undefined && result.status !== 200) return null;
     if (result?.route?.kind !== 'bowling' || result.route.path !== path) return null;
     if (result.view === 'index') {
-        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.introduction);
+        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.articleHtml) || text(result.metadata?.introduction);
         return path === '/bowling' && title && body ? { title, bodyHtml: html(body) } : null;
     }
     if (result.view !== undefined && result.view !== 'detail') return null;

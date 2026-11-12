@@ -10,7 +10,7 @@ export function nativeGuideContent(result, path, kind) {
     if (!Object.hasOwn(INDEX_PATHS, kind) || result?.route?.kind !== kind || result.route.path !== path) return null;
     if (result.status !== undefined && result.status !== 200) return null;
     if (result.view === 'index') {
-        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.introduction);
+        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.articleHtml) || text(result.metadata?.introduction);
         return path === INDEX_PATHS[kind] && title && body ? { title, bodyHtml: html(body) } : null;
     }
     if (result.view !== undefined && result.view !== 'detail') return null;

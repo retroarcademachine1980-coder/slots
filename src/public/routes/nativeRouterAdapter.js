@@ -1,6 +1,7 @@
 import { resolveNativePath } from 'public/routes/nativeRouteResolver';
 import { redirectFor } from 'public/routes/legacyRedirects';
 import { SITE_ORIGIN } from 'public/routes/canonicalRoutes';
+import { categoryGuideArticle } from 'public/routes/categoryGuideArticles';
 /** All Wix-specific methods are injected to keep policy tests real and deterministic. */
 export function createNativeRouter({ context, manifest, readById, ok, notFound, redirect, sendStatus, resolveAlias }) {
   async function canonical(path) {
@@ -12,7 +13,8 @@ export function createNativeRouter({ context, manifest, readById, ok, notFound, 
       const seo = landing.seo.description && !metaTags.some(tag => String(tag.name || '').toLowerCase() === 'description')
         ? { ...landing.seo, metaTags: [{ name: 'description', content: landing.seo.description }, ...metaTags] }
         : landing.seo;
-      return ok(landing.pageName, { view: 'index', route: { kind: landing.kind, path }, metadata: { ...(landing.metadata || {}), introduction: landing.seo.description || '' } }, seo);
+      const articleHtml = categoryGuideArticle(path, landing.kind);
+      return ok(landing.pageName, { view: 'index', route: { kind: landing.kind, path }, metadata: { ...(landing.metadata || {}), introduction: landing.seo.description || '', ...(articleHtml ? { articleHtml } : {}) } }, seo);
     }
     const result = await resolveNativePath(path, context, readById);
     if (result.status === 404) {

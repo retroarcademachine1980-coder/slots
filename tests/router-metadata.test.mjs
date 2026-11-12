@@ -24,7 +24,9 @@ test('the four observed category failures send a standard description alongside 
     assert.equal(response.head.title, original.seo.title);
     assert.deepEqual(response.head.links, original.seo.links);
     assert.equal(response.head.noIndex, original.seo.noIndex);
-    assert.deepEqual(response.data, { view: 'index', route: { kind: landing.kind, path }, metadata: { ...(landing.metadata || {}), introduction: landing.seo.description || '' } });
+    const { articleHtml, ...metadata } = response.data.metadata;
+    assert(articleHtml === undefined || typeof articleHtml === 'string' && articleHtml.includes('<p>'));
+    assert.deepEqual({ ...response.data, metadata }, { view: 'index', route: { kind: landing.kind, path }, metadata: { ...(landing.metadata || {}), introduction: landing.seo.description || '' } });
     assert.deepEqual(landing, original, 'a request must not mutate the shared landing definition');
   }
 });

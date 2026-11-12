@@ -26,7 +26,7 @@ export function seaLifeGuideContent(result, path) {
     const title = seaLifeTitleContent(result, path);
     if (!title) return null;
     const row = result.record || result.row;
-    const values = result.view === 'index' ? [result.metadata?.introduction]
+    const values = result.view === 'index' ? [result.metadata?.articleHtml, result.metadata?.introduction]
         : ['sourceFacts', 'fullDescription', 'detailedReview', 'guideContent', 'description'].map(field => row[field]);
     const body = values.find(value => typeof value === 'string' && value.trim());
     return body ? { title, bodyHtml: html(body.trim()) } : null;
