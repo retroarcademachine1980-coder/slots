@@ -34,7 +34,11 @@ export function seaLifeGuideContent(result, path) {
 // With no guide text for this address, never leave editor placeholder copy on the page.
 function clearGuide() {
     for (const id of ['#srNativeGuideTitle', '#srNativeGuideBody']) {
-        try { const control = $w(id); control.text = ''; control.collapse(); } catch { /* control not on this template */ }
+        let control;
+        try { control = $w(id); } catch { continue; }
+        try { control.collapse(); } catch { /* not collapsible here */ }
+        try { control.html = '<p> </p>'; } catch { /* keep going */ }
+        try { control.text = ' '; } catch { /* control not on this template */ }
     }
 }
 $w.onReady(async function () {

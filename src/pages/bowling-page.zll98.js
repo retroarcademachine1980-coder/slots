@@ -32,7 +32,11 @@ export function bowlingArticleContent(result, path) {
 // With no guide text for this address, never leave editor placeholder copy on the page.
 function clearGuide(select) {
     for (const id of ['#srNativeGuideTitle', '#srNativeGuideArticle']) {
-        try { const control = select(id); control.text = ''; control.collapse(); } catch { /* control not on this template */ }
+        let control;
+        try { control = select(id); } catch { continue; }
+        try { control.collapse(); } catch { /* not collapsible here */ }
+        try { control.html = '<p> </p>'; } catch { /* keep going */ }
+        try { control.text = ' '; } catch { /* control not on this template */ }
     }
 }
 export async function renderBowlingArticle({ select, path, routerData, load }) {
