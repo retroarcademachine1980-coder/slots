@@ -1,0 +1,83 @@
+diff --git a/config/routes/manifest.json b/config/routes/manifest.json
+index fc76302..f87966a 100644
+--- a/config/routes/manifest.json
++++ b/config/routes/manifest.json
+@@ -206082,7 +206082,7 @@
+       "seo": {
+         "title": "AGCs – Adult Gaming Centres Near You | Spin Raiders",
+         "description": "Find UK adult gaming centres (AGCs), including Admiral, MERKUR and independent arcades. Browse venues by town, with photos and practical visitor information.",
+-        "noIndex": true,
++        "noIndex": false,
+         "links": [
+           {
+             "rel": "canonical",
+@@ -206092,7 +206092,7 @@
+         "metaTags": [
+           {
+             "name": "robots",
+-            "content": "noindex"
++            "content": "index, follow"
+           },
+           {
+             "property": "og:title",
+@@ -206417,8 +206417,8 @@
+   },
+   "identity": {
+     "contractVersion": "spin-raiders-canonical-v1",
+-    "releaseFingerprint": "c6569fe524fcd74f5c3b0d317d457b5978a240d99e98091fa6e8bdcb0fc26443",
+-    "manifestFingerprint": "b752aff7c36b1940855bfed47f2d02fdad1d32fbf6e535f09048975ebbaf8601",
++    "releaseFingerprint": "c0d03293e16b45a963f39a14b7b4e2abb8d1361f4ed00236065585068c5d81df",
++    "manifestFingerprint": "d469c71eb4340ef825229cbcfc09419c49c3d649ed8290b2e911b2a21d366444",
+     "rendererFingerprint": "2604c0850a3ff321669c3fef96823baad57842fb3c078e4fd0d2ca139bb3f879",
+     "sourceFiles": 232,
+     "deploymentBlocked": false
+diff --git a/generated/release-identity.review.json b/generated/release-identity.review.json
+index c715f7d..56ff6af 100644
+--- a/generated/release-identity.review.json
++++ b/generated/release-identity.review.json
+@@ -1,7 +1,7 @@
+ {
+   "contractVersion": "spin-raiders-canonical-v1",
+-  "releaseFingerprint": "c6569fe524fcd74f5c3b0d317d457b5978a240d99e98091fa6e8bdcb0fc26443",
+-  "manifestFingerprint": "b752aff7c36b1940855bfed47f2d02fdad1d32fbf6e535f09048975ebbaf8601",
++  "releaseFingerprint": "c0d03293e16b45a963f39a14b7b4e2abb8d1361f4ed00236065585068c5d81df",
++  "manifestFingerprint": "d469c71eb4340ef825229cbcfc09419c49c3d649ed8290b2e911b2a21d366444",
+   "rendererFingerprint": "2604c0850a3ff321669c3fef96823baad57842fb3c078e4fd0d2ca139bb3f879",
+   "sourceFiles": 232,
+   "deploymentBlocked": false
+diff --git a/tests/backend-integration.test.mjs b/tests/backend-integration.test.mjs
+index d28846a..a846252 100644
+--- a/tests/backend-integration.test.mjs
++++ b/tests/backend-integration.test.mjs
+@@ -102,6 +102,31 @@ test('captured native arcade handler renders exact original record and sitemap e
+  const sitemap=await m.arcade_SiteMap();assert.equal(sitemap.length,1);assert.equal(sitemap[0].url,'/arcade/arcade-club/blackpool');
+  assert.equal((await m.arcade_Router({path:['unknown','blackpool']})).status,404);
+ });
++test('reviewed AGC landing is indexable in both native HTML and its sitemap',async()=>{
++ const reviewed=JSON.parse(await fs.readFile(new URL('../config/routes/manifest.json',import.meta.url),'utf8'));
++ const landing=reviewed.landings['/agc'];
++ const config={...manifest,entries:[],endpoints:{agc:{...ready,pageName:landing.pageName}},landings:{'/agc':landing}};
++ const m=await load('backend/routers',{}, {},config);
++ const response=await m.agc_Router({path:[]});
++ assert.equal(response.status,200);
++ assert.equal(response.page,'agc-page');
++ assert.equal(response.head.noIndex,false);
++ assert.ok(!response.head.metaTags.some(tag=>tag.name==='robots'&&/noindex/i.test(tag.content)));
++ assert.deepEqual(Array.from(response.head.links,link=>link.href),['https://www.spin-raiders.com/agc']);
++ const sitemap=await m.agc_SiteMap();
++ assert.equal(sitemap.length,1);
++ assert.equal(sitemap[0].url,'/agc');
++ assert.equal(sitemap[0].pageName,'agc-page');
++});
++test('native sitemap still excludes landings with either noindex instruction',async()=>{
++ const reviewed=JSON.parse(await fs.readFile(new URL('../config/routes/manifest.json',import.meta.url),'utf8'));
++ const landing=reviewed.landings['/agc'];
++ for(const seo of [{...landing.seo,noIndex:true},{...landing.seo,noIndex:false,metaTags:[{name:'robots',content:'noindex, follow'}]}]){
++  const config={...manifest,entries:[],endpoints:{agc:{...ready,pageName:landing.pageName}},landings:{'/agc':{...landing,seo}}};
++  const m=await load('backend/routers',{}, {},config);
++  assert.equal((await m.agc_SiteMap()).length,0);
++ }
++});
+ test('actual legacy API redirects an inactive grouped source while batch listing keeps it suppressed',async()=>{
+  const source={_id:'secondary',title:'Old Imperial source',active:false};
+  const group={groupId:'imperial-group',relation:'same-entity',approved:true,provenSameEntity:true,primaryKey:'HotelGuides:h',sourceKeys:['HotelGuides:h','NearbyAttractions:secondary'],canonicalPath:'/hotel/imperial/blackpool',renderPolicy:{contentVerified:true}};
