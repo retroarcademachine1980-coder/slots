@@ -134,6 +134,11 @@ async function apply({ title, description, image, url, noindex, schema }) {
         if (!directives.includes('none')) directives.unshift('noindex');
         if (!directives.includes('none') && !directives.includes('nofollow')) directives.push('follow');
         tags.push({ name: 'robots', content: [...new Set(directives)].join(', ') });
+    } else if (noindex === false) {
+        // A finished record page must not inherit a stale platform noindex.
+        // Detail callers pass an explicit boolean; general pages pass nothing
+        // and keep whatever the page settings say.
+        tags.push({ name: 'robots', content: 'index, follow' });
     }
     const key = tag => tag.name ? 'name:' + tag.name : tag.property ? 'property:' + tag.property : '';
     const replaced = new Set(tags.map(key));
