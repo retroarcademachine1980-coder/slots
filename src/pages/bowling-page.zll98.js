@@ -29,10 +29,16 @@ export function bowlingArticleContent(result, path) {
     const body = fields.map(field => text(row[field])).find(Boolean);
     return title && body ? { title, bodyHtml: html(body) } : null;
 }
+// With no guide text for this address, never leave editor placeholder copy on the page.
+function clearGuide(select) {
+    for (const id of ['#srNativeGuideTitle', '#srNativeGuideArticle']) {
+        try { const control = select(id); control.text = ''; control.collapse(); } catch { /* control not on this template */ }
+    }
+}
 export async function renderBowlingArticle({ select, path, routerData, load }) {
     try {
         const content = bowlingArticleContent(routerData, path) || bowlingArticleContent(await load(path), path);
-        if (!content) return false;
+        if (!content) { clearGuide(select); return false; }
         // Resolve both controls before assigning either, preserving the existing
         // page if its native template has not yet received both text elements.
         const title = select('#srNativeGuideTitle'), article = select('#srNativeGuideArticle');
@@ -41,6 +47,7 @@ export async function renderBowlingArticle({ select, path, routerData, load }) {
         article.html = content.bodyHtml;
         return true;
     } catch {
+        clearGuide(select);
         return false;
     }
 }
