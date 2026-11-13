@@ -1,6 +1,16 @@
 // Native text companion to the existing tourism renderer. This never changes
 // CMS content, ratings, photographs, routes or the visitor-facing design.
-const INDEX_PATHS = Object.freeze({ attraction: '/attractions', historicSite: '/historical-sites', tour: '/tours' });
+const INDEX_PATHS = Object.freeze({ attraction: '/attractions', historicSite: '/historical-sites', tour: '/tours',
+    agc: '/agc', arcade: '/arcade', arcadeBar: '/arcade-bars', bingo: '/bingo-halls', casino: '/casinos',
+    fishing: '/fishing-lakes', holidayPark: '/holiday-parks', outdoors: '/outdoors', pier: '/piers',
+    service: '/services', themePark: '/theme-parks', hotel: '/hotel', machine: '/classic-fruit-machines' });
+// Collections whose own written guide may be shown, with the fields read in order.
+const GUIDE_FIELDS = Object.freeze({
+    Venues: ['detailedReview', 'fullDescription', 'guideContent', 'sourceFacts', 'description', 'overview', 'pageIntro'],
+    NearbyAttractions: ['sourceFacts', 'fullDescription', 'detailedReview', 'guideContent', 'description'],
+    HotelGuides: ['guideContent', 'guideDetails', 'description'],
+    ClassicFruitMachines: ['description', 'history', 'gameplay_guide', 'lore_review'],
+});
 function text(value) { return typeof value === 'string' ? value.trim() : ''; }
 function html(value) {
     if (/<(?:p|h[1-6]|ul|ol|div|blockquote)\b/i.test(value)) return value;
@@ -15,14 +25,12 @@ export function nativeGuideContent(result, path, kind) {
     }
     if (result.view !== undefined && result.view !== 'detail') return null;
     const row = result.record || result.row;
-    if (!['Venues', 'NearbyAttractions'].includes(result.collection) || !row?._id) return null;
+    if (!Object.hasOwn(GUIDE_FIELDS, result.collection) || !row?._id) return null;
     if (result.route.key !== result.collection + ':' + row._id) return null;
     const title = text(row.displayTitle) || text(row.title) || text(row.name);
     // Venues keep their article in detailedReview; sourceFacts may only be a
     // citation. NearbyAttractions uses sourceFacts for its full updated guide.
-    const fields = result.collection === 'Venues'
-        ? ['detailedReview', 'fullDescription', 'guideContent', 'sourceFacts', 'description']
-        : ['sourceFacts', 'fullDescription', 'detailedReview', 'guideContent', 'description'];
+    const fields = GUIDE_FIELDS[result.collection];
     const body = fields.map(field => text(row[field])).find(Boolean);
     return title && body ? { title, bodyHtml: html(body) } : null;
 }
