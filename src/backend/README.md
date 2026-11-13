@@ -115,3 +115,5 @@ Here is an example `permissions.json` file for a site with a backend file called
 ```
 
 <!-- Sync check 2026-11-12: documentation-only line to confirm the Wix editor picks up commits from main. No code change. -->
+
+<!-- sync marker 2026-11-13 12:20 -->
