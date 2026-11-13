@@ -34,16 +34,23 @@ export function nativeGuideContent(result, path, kind) {
     const body = fields.map(field => text(row[field])).find(Boolean);
     return title && body ? { title, bodyHtml: html(body) } : null;
 }
+// With no guide text for this address, never leave editor placeholder copy on the page.
+function clearGuide(select) {
+    for (const id of ['#srNativeGuideTitle', '#srNativeGuideArticle']) {
+        try { const control = select(id); control.text = ''; control.collapse(); } catch { /* control not on this template */ }
+    }
+}
 export async function renderNativeGuide({ select, path, kind, routerData, load }) {
     try {
         const content = nativeGuideContent(routerData, path, kind) || nativeGuideContent(await load(path), path, kind);
-        if (!content) return false;
+        if (!content) { clearGuide(select); return false; }
         const title = select('#srNativeGuideTitle'), article = select('#srNativeGuideArticle');
         if (!title || !article) return false;
         title.text = content.title;
         article.html = content.bodyHtml;
         return true;
     } catch {
+        clearGuide(select);
         return false;
     }
 }

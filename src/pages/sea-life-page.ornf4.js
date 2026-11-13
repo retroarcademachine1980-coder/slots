@@ -31,17 +31,24 @@ export function seaLifeGuideContent(result, path) {
     const body = values.find(value => typeof value === 'string' && value.trim());
     return body ? { title, bodyHtml: html(body.trim()) } : null;
 }
+// With no guide text for this address, never leave editor placeholder copy on the page.
+function clearGuide() {
+    for (const id of ['#srNativeGuideTitle', '#srNativeGuideBody']) {
+        try { const control = $w(id); control.text = ''; control.collapse(); } catch { /* control not on this template */ }
+    }
+}
 $w.onReady(async function () {
     let routerData;
     try { routerData = getRouterData(); } catch { /* Editor views can omit router data. */ }
     const path = '/' + [wixLocation.prefix, ...(wixLocation.path || [])].filter(Boolean).join('/');
     try {
         const content = seaLifeGuideContent(routerData, path) || seaLifeGuideContent(await getCanonicalPage(path), path);
-        if (!content) return false;
+        if (!content) { clearGuide(); return false; }
         $w('#srNativeGuideTitle').text = content.title;
         $w('#srNativeGuideBody').html = content.bodyHtml;
         return true;
     } catch {
+        clearGuide();
         return false;
     }
 });

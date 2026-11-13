@@ -28,17 +28,24 @@ export function museumArticleContent(result, path) {
     if (!title || !article) return null;
     return { title, bodyHtml: plainHtml(article) };
 }
+// With no guide text for this address, never leave editor placeholder copy on the page.
+function clearGuide(select) {
+    for (const id of ['#srNativeGuideTitle', '#srNativeGuideArticle']) {
+        try { const control = select(id); control.text = ''; control.collapse(); } catch { /* control not on this template */ }
+    }
+}
 export async function renderMuseumArticle({ select, path, routerData, load }) {
     try {
         // Both payloads must pass the same collection/key/path/kind checks.
         const content = museumIndexContent(routerData, path) || museumArticleContent(routerData, path) || museumArticleContent(await load(path), path);
-        if (!content) return false;
+        if (!content) { clearGuide(select); return false; }
         const title = select('#srNativeGuideTitle');
         const article = select('#srNativeGuideArticle');
         title.text = content.title;
         article.html = content.bodyHtml;
         return true;
     } catch {
+        clearGuide(select);
         return false;
     }
 }
