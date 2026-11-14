@@ -1,11 +1,12 @@
-import { hubGuideArticle } from 'public/hub-guide-articles';
 // Native text companion to the existing tourism renderer. This never changes
 // CMS content, ratings, photographs, routes or the visitor-facing design.
 const INDEX_PATHS = Object.freeze({ attraction: '/attractions', historicSite: '/historical-sites', tour: '/tours',
     agc: '/agc', arcade: '/arcade', arcadeBar: '/arcade-bars', bingo: '/bingo-halls', casino: '/casinos',
     fishing: '/fishing-lakes', holidayPark: '/holiday-parks', outdoors: '/outdoors', pier: '/piers',
     service: '/services', themePark: '/theme-parks', hotel: '/hotel', machine: '/classic-fruit-machines',
-    daysOutIndex: '/days-out', staysIndex: '/places-to-stay', offersIndex: '/offers', familyFunIndex: '/family-fun',
+    // /days-out and /places-to-stay already carry their own readable guide and heading
+    // in the page, so they are deliberately absent here and their controls stay blank.
+    offersIndex: '/offers', familyFunIndex: '/family-fun',
     hiddenGemsIndex: '/hidden-gems', retroIndex: '/retro-video-games', tripIndex: '/plan-a-trip' });
 // Collections whose own written guide may be shown, with the fields read in order.
 const GUIDE_FIELDS = Object.freeze({
@@ -23,7 +24,7 @@ export function nativeGuideContent(result, path, kind) {
     if (!Object.hasOwn(INDEX_PATHS, kind) || result?.route?.kind !== kind || result.route.path !== path) return null;
     if (result.status !== undefined && result.status !== 200) return null;
     if (result.view === 'index') {
-        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.articleHtml) || text(hubGuideArticle(path)?.html) || text(result.metadata?.introduction);
+        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.articleHtml) || text(result.metadata?.introduction);
         return path === INDEX_PATHS[kind] && title && body ? { title, bodyHtml: html(body) } : null;
     }
     if (result.view !== undefined && result.view !== 'detail') return null;
@@ -62,17 +63,9 @@ export async function renderNativeGuide({ select, path, kind, routerData, load }
     }
 }
 
-// Static hub pages (no router data): show the hub's own written guide, the same
-// text the visitor-facing hub already displays.
-export function renderHubGuide({ select, path }) {
-    try {
-        const article = hubGuideArticle(path);
-        if (!article?.title || !article?.html) { clearGuide(select); return false; }
-        select('#srNativeGuideTitle').text = article.title;
-        select('#srNativeGuideArticle').html = article.html;
-        return true;
-    } catch {
-        clearGuide(select);
-        return false;
-    }
+// Hub pages that already carry their own readable guide in the page: keep the
+// two guide controls blank so the same text is never served twice.
+export function blankGuideControls(select) {
+    clearGuide(select);
+    return false;
 }

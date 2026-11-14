@@ -1,7 +1,7 @@
-import { renderHubGuide } from 'public/native-guide-article';
+import { blankGuideControls } from 'public/native-guide-article';
 
-// Fills the page's two guide text controls (srNativeGuideTitle, srNativeGuideArticle)
-// during server rendering with this hub's own written guide.
+// This hub already carries its own readable guide and heading in the page, so the
+// two pasted guide controls are kept blank rather than repeating that text.
 $w.onReady(function () {
-    return renderHubGuide({ select: $w, path: '/food-and-drink' });
+    return blankGuideControls($w);
 });
