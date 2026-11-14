@@ -1,10 +1,10 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+// Homepage. Fills the two native text controls during server rendering with the
+// same headline and introduction the visitor shell shows, so search engines
+// receive the page's real heading rather than an empty document.
+const HEADLINE = 'Big days out. Brilliant discoveries.';
+const INTRODUCTION = 'Find amazing places to visit across the UK – arcades, attractions, food, stays and more.';
 
 $w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    try { $w('#srNativeGuideTitle').text = HEADLINE; } catch { /* control not on this template */ }
+    try { $w('#srNativeGuideArticle').text = INTRODUCTION; } catch { /* control not on this template */ }
 });
