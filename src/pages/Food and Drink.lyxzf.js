@@ -1,10 +1,7 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+import { renderHubGuide } from 'public/native-guide-article';
 
+// Fills the page's two guide text controls (srNativeGuideTitle, srNativeGuideArticle)
+// during server rendering with this hub's own written guide.
 $w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    return renderHubGuide({ select: $w, path: '/food-and-drink' });
 });
