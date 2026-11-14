@@ -1,10 +1,7 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+import { replaceTemplateFiller } from 'public/template-filler';
 
+// Puts this page's real name in its heading and blanks the stock template wording
+// during server rendering.
 $w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    replaceTemplateFiller($w, 'Coin Pusher Arcades');
 });
