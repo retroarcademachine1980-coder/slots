@@ -1,10 +1,7 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+import { renderStaticHubGuide } from 'public/native-guide-article';
 
+// Fills the page's two guide text controls during server rendering with the same
+// beaches guide visitors see on this page.
 $w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    return renderStaticHubGuide({ select: $w, path: '/beaches', title: 'Beaches in England and around the UK' });
 });

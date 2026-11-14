@@ -1,3 +1,4 @@
+import { hubVisitorGuide } from 'public/hub-visitor-guides';
 // Native text companion to the existing tourism renderer. This never changes
 // CMS content, ratings, photographs, routes or the visitor-facing design.
 const INDEX_PATHS = Object.freeze({ attraction: '/attractions', historicSite: '/historical-sites', tour: '/tours',
@@ -24,7 +25,7 @@ export function nativeGuideContent(result, path, kind) {
     if (!Object.hasOwn(INDEX_PATHS, kind) || result?.route?.kind !== kind || result.route.path !== path) return null;
     if (result.status !== undefined && result.status !== 200) return null;
     if (result.view === 'index') {
-        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.articleHtml) || text(result.metadata?.introduction);
+        const title = text(result.metadata?.sourceTitle), body = text(result.metadata?.articleHtml) || text(hubVisitorGuide(path)) || text(result.metadata?.introduction);
         return path === INDEX_PATHS[kind] && title && body ? { title, bodyHtml: html(body) } : null;
     }
     if (result.view !== undefined && result.view !== 'detail') return null;
@@ -68,4 +69,19 @@ export async function renderNativeGuide({ select, path, kind, routerData, load }
 export function blankGuideControls(select) {
     clearGuide(select);
     return false;
+}
+
+// Static hub pages without router data: show the hub's visitor guide under the
+// visitor-facing heading. Does nothing if this hub has no captured guide.
+export function renderStaticHubGuide({ select, path, title }) {
+    try {
+        const body = text(hubVisitorGuide(path));
+        if (!title || !body) { clearGuide(select); return false; }
+        select('#srNativeGuideTitle').text = title;
+        select('#srNativeGuideArticle').html = html(body);
+        return true;
+    } catch {
+        clearGuide(select);
+        return false;
+    }
 }
