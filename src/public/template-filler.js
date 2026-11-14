@@ -1,4 +1,4 @@
-// Some older pages were created from a Wix page template and still carry the
+// Some older pages (sync probe 21:35) were created from a Wix page template and still carry the
 // template's stock wording ("Page Title", "This is a Paragraph..."). Visitors never
 // see it, but it is in the page source. This puts the page's real name in the
 // heading and blanks the rest of the stock wording. It never touches real text.
