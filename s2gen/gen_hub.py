@@ -74,7 +74,7 @@ for n,s in enumerate(srcs):
     r0=1
     if head: gi(f'{k}-h','1 / 2','1 / 2','1 / 2','1 / 2'); txt(f'{k}-h','heading-3',NAVY); r0=2
     gi(f'{k}-rep',f'{r0} / {r0+1}','1 / 2',f'{r0} / {r0+1}','1 / 2')
-    sty.append(f'.{k}-rep {{\n    --preset: {PRESET};\n    --column-count: 3;\n    --row-gap: --spx(24);\n    --column-gap: --spx(24);\n    --background-color: transparent;\n}}')
+    sty.append(f'.{k}-rep {{\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: {PRESET};\n    --column-count: 3;\n    --row-gap: --spx(24);\n    --column-gap: --spx(24);\n    --background-color: transparent;\n}}')
     ids=[i for i in [f'{k}-img' if img_el else None,f'{k}-t',f'{k}-s' if sub else None,f'{k}-b'] if i]
     rule(f'{k}-card','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(18);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(16);\npadding-left: --spx(0);')
     H.bglay(f'{k}-card-bg'); fill(f'{k}-card-bg',WHITE)
@@ -131,7 +131,7 @@ for sel,d,m,ic,icm in lay:
     bm=ref(375)+''.join('    '+l+'\n' for l in (m or '').split('\n') if l)
     if icm: bm+='    @origami-target internal-container-content-wrapper {\n'+''.join('        '+l+'\n' for l in icm.split('\n'))+'    }\n'
     om.append('    '+f'.{sel} {{\n{bm}}}'.replace('\n','\n    '))
-mob=[f'.{k}-rep {{\n    --spx-ref-width: 375;\n    --preset: {PRESET};\n    --column-count: 1;\n}}' for k in [f'l{n}' for n in range(len(srcs))]]
+mob=[f'.{k}-rep {{\n    --spx-ref-width: 375;\n    --spx-resolver-type: scale;\n    --preset: {PRESET};\n    --column-count: 1;\n}}' for k in [f'l{n}' for n in range(len(srcs))]]
 mq=re.search(r'@media \([^)]*\)',L).group(0)
 open(os.path.join(out,'layout.css'),'w').write(base+'\n'+'\n'.join(o)+'\n'+mq+' {\n'+'\n'.join(om)+'\n}\n')
 open(os.path.join(out,'style.css'),'w').write('\n'.join(sty)+'\n'+mq+' {\n'+'\n'.join('    '+x.replace('\n','\n    ') for x in mob)+'\n}\n')
