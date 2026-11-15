@@ -1,0 +1,54 @@
+{
+    "export": {},
+    "components": {
+        "comp-mb7ogqrp": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-mf9tq7ji",
+                "name": "Masters"
+            }
+        },
+        "comp-kbgakxmn": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-mf9tpzk2",
+                "name": "Masters"
+            }
+        },
+        "s1": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s1",
+                "name": "Top"
+            }
+        },
+        "s2": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s2",
+                "name": "Reviews"
+            }
+        },
+        "s3": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s3",
+                "name": "Destinations"
+            }
+        },
+        "s4": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s4",
+                "name": "About"
+            }
+        },
+        "s5": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s5",
+                "name": "More ways"
+            }
+        }
+    }
+}
