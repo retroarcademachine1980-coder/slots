@@ -19,7 +19,8 @@ class P(HTMLParser):
         if s.skip or t not in ALLOW: return
         if t=='a':
             href=dict(a).get('href','') or ''
-            if not href or href.startswith('javascript'): return
+            if not href or href.startswith('javascript') or href.startswith('#'): return
+            if href.startswith('/'): href='https://www.spin-raiders.com'+href
             s.out.append(('o','a',href))
         else: s.out.append(('o',t,None))
     def handle_endtag(s,t):
