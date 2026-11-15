@@ -41,6 +41,11 @@ for k,t,v in p.out:
     elif k=='c' and t==cur:
         if buf.strip(): blocks.append((cur,buf.strip()))
         cur=None; buf=''
+    elif k=='o' and t=='a' and not cur and ext(v):
+        cur='solo'; buf=f'<a href="{html.escape(v)}" target="_blank" rel="sponsored noopener"><strong>'
+    elif k=='c' and t=='a' and cur=='solo':
+        if re.sub('<[^>]+>','',buf).strip(): blocks.append(('p',buf+'</strong></a>'))
+        cur=None; buf=''
     elif k=='o' and t=='a' and cur:
         buf+=f'<a href="{html.escape(v)}" target="{"_blank" if ext(v) else "_self"}"'+(' rel="sponsored noopener"' if ext(v) else '')+'>'
     elif k=='c' and t=='a' and cur: buf+='</a>'
