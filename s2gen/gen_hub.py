@@ -57,6 +57,7 @@ provs=[]
 for n,s in enumerate(srcs):
     c=s['collection']; prov='CmsProvider_'+c; provs.append(c); k=f'l{n}'
     flt=('filter={{ '+s['filter']+': { $isNotEmpty: true } }}') if s.get('filter') else ''
+    if s.get('where'): flt='filter={'+json.dumps(s['where'])+'}'
     hook='useCmsContext' if n==0 else f'useCmsContext_{n}'
     img_el=(f'<Image id="{k}-img" className="{k}-img" displayMode={{"fill"}} image={{item.fields.heroImage.value ?? {json.dumps({"name":"Spin Raiders","uri":"3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg","width":2752,"height":1100,"alt":"","type":"Builder.Image"})}}} />') if s.get('image',True) else ''
     sub=s.get('sub')
