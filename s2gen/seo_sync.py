@@ -20,6 +20,8 @@ for d in sorted(os.listdir('.')):
     m = html.unescape(mm.group(1)) if mm else ''
     if not t or '404' in t:
         miss.append((d, 'no title')); continue
+    if 'Spin Raiders' not in t:
+        t = t + ' | Spin Raiders'
     s = TQ.sub(lambda _: 'pageTitleSEO: ' + json.dumps(t, ensure_ascii=False), s, count=1)
     if m:
         s = DQ.sub(lambda _: 'descriptionSEO: ' + json.dumps(m, ensure_ascii=False), s, count=1)
