@@ -1,5 +1,6 @@
 # Copy each live spin-raiders.com page's <title> and meta description onto the matching Studio Two page
-import os, re, json, html, urllib.request
+import os, re, json, html, urllib.request, sys
+ONLY = set(sys.argv[1:])
 alias = {'where-to-eat': 'food-and-drink'}
 done = []; miss = []
 TQ = re.compile(r"""pageTitleSEO: (?:'[^']*'|"(?:[^"\\]|\\.)*")""")
@@ -7,6 +8,8 @@ DQ = re.compile(r"""descriptionSEO: (?:'[^']*'|"(?:[^"\\]|\\.)*")""")
 for d in sorted(os.listdir('.')):
     f = os.path.join(d, 'structure.jsx')
     if d.startswith('(') or not os.path.isfile(f):
+        continue
+    if ONLY and d not in ONLY:
         continue
     s = open(f).read()
     src = alias.get(d, d)
