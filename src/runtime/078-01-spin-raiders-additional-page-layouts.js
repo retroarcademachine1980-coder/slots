@@ -2,6 +2,8 @@
   try {
     (() => {
       "use strict";
+      // Navigation captured at boot so readiness is only reported for this page view.
+      const srNavigation = (location.pathname.replace(/\/$/, "") || "/") + location.search;
       const e = new URLSearchParams(location.search),
         t =
           ({"/seaside-arcades":"seaside-arcades","/coin-pusher-arcades":"coin-pusher-arcades","/ticket-arcades":"ticket-arcades","/dog-friendly-arcades":"dog-friendly-arcades","/wheelchair-friendly-arcades":"wheelchair-friendly-arcades","/500-jackpot-slots":"500-jackpot-slots","/blackpool-arcades":"blackpool-arcades"}[location.pathname.replace(/\/$/,"")]) ||
@@ -461,9 +463,12 @@
                   (c.querySelector("[data-status]").textContent =
                     "Some categories could not load. Reload to try again."),
                 _());
+              // Tell the release loader this page has rendered, so it stops holding it.
+              window.SR_RUNTIME?.ready("extended-pages", srNavigation);
             } catch {
               c.querySelector("[data-count]").textContent =
                 "Places could not load. Please reload to try again.";
+              window.SR_RUNTIME?.ready("extended-pages", srNavigation);
             }
           })());
       })();
