@@ -21,13 +21,13 @@ base=re.sub(r'(\.'+re.escape(ftr)+r' \{.*?grid-row: )[^;\n]*',r'\g<1>5 / 6',base
 F=cfg['fields']
 def ph(i,html): return {"id":"dataItem-"+i,"type":"Builder.RichText","html":html}
 def btxt(i,field,tag,phhtml):
-    return f'<WRichText id="{i}" className="{i}" richText={{fn(textToRichText, ctx({json.dumps("currentItem.fields."+field+".value")}, {{ from: useCmsContext }}), textEnum({json.dumps(tag)}), {{ placeholder: {json.dumps(ph(i,phhtml),ensure_ascii=False)} }})}} />'
+    return f'<WRichText id="{i}" className="{i}" richText={{fn(textToRichText, ctx({json.dumps("currentItem.fields."+field+".value")}, {{ from: useCmsContext }}), {{ placeholder: {json.dumps(ph(i,phhtml),ensure_ascii=False)} }})}} />'
 def brich(i,field,phhtml):
     return f'<WRichText id="{i}" className="{i}" richText={{ctx({json.dumps("currentItem.fields."+field+".value")}, {{ from: useCmsContext, placeholder: {json.dumps(ph(i,phhtml),ensure_ascii=False)} }})}} />'
 def stat(i,html): return f'<WRichText id="{i}" className="{i}" richText={{{json.dumps(ph(i,html),ensure_ascii=False)}}} />'
 IMGPH={"name":"Spin Raiders","uri":"3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg","width":2752,"height":1100,"alt":"","type":"Builder.Image"}
 def bimg(i,field): return f'<Image id="{i}" className="{i}" displayMode={{"fill"}} image={{ctx({json.dumps("currentItem.fields."+field+".value")}, {{ from: useCmsContext, placeholder: {json.dumps(IMGPH)} }})}} />'
-def blink(i,label,field): return f'<Button id="{i}" className="{i}" label={{{json.dumps(label,ensure_ascii=False)}}} link={{fn(webUrlToLink, ctx({json.dumps("currentItem.fields."+field+".value")}, {{ from: useCmsContext }}), {{ placeholder: {{ type: "ExternalLink", url: "https://www.spin-raiders.com", target: "_blank" }} }})}} />'
+def blink(i,label,field): return f'<Button id="{i}" className="{i}" label={{{json.dumps(label,ensure_ascii=False)}}} link={{ctx({json.dumps("currentItem.fields."+field+".value")}, {{ from: useCmsContext }})}} />'
 def slink(i,label,href): return f'<Button id="{i}" className="{i}" label={{{json.dumps(label,ensure_ascii=False)}}} link={{{json.dumps({"type":"ExternalLink","id":"dataItem-"+i,"url":"https://www.spin-raiders.com"+href,"target":"_self"})}}} />'
 def bg(i,photo=None): return f'<Background id="{i}" className="{i}" />'
 def box(i,kids,b=True): return f'<BoxContainer id="{i}" className="{i}" children={{\n<InternalContainer id="{i}-ic" className="{i}-ic"'+(f' backgroundLayer={{[{bg(i+"-bg")}]}}' if b else '')+'>\n'+'\n'.join(kids)+'\n</InternalContainer>\n} />'
@@ -46,10 +46,9 @@ stackkids(['v-kicker','v-plank','v-town','v-intro'],[10,10,14],[8,8,12],widths={
 rule('v-plank-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: auto;\npadding-top: --spx(14);\npadding-bottom: --spx(14);\npadding-left: --spx(24);\npadding-right: --spx(24);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: auto;\npadding-top: --spx(10);\npadding-bottom: --spx(10);\npadding-left: --spx(14);\npadding-right: --spx(14);')
 gi('v-title','1 / 2','1 / 2','1 / 2','1 / 2')
 H.bglay('v-plank-bg'); fill('v-plank-bg',BLUE)
-sty.append('.v-plank-ic {\n    --borderStartStartRadius: 10px;\n    --borderStartEndRadius: 10px;\n    --borderEndStartRadius: 10px;\n    --borderEndEndRadius: 10px;\n    --boxShadow: 0px 6px 0px rgba(5, 14, 28, 0.45);\n    --borderTopWidth: 3px;\n    --borderTopColor: #0E3F86;\n    --borderTopStyle: solid;\n    --borderBottomWidth: 3px;\n    --borderBottomColor: #0E3F86;\n    --borderBottomStyle: solid;\n    --borderLeftWidth: 3px;\n    --borderLeftColor: #0E3F86;\n    --borderLeftStyle: solid;\n    --borderRightWidth: 3px;\n    --borderRightColor: #0E3F86;\n    --borderRightStyle: solid;\n}')
+sty.append('.v-plank-ic {\n    --borderStartStartRadius: 10px;\n    --borderStartEndRadius: 10px;\n    --borderEndStartRadius: 10px;\n    --borderEndEndRadius: 10px;\n    --boxShadow: 0px 6px 0px rgba(5, 14, 28, 0.45);\n}')
 txt('v-kicker','heading-6',YEL); txt('v-title','heading-1',WHITE); txt('v-town','heading-5',CYAN); txt('v-intro','paragraph-1',WHITE)
 gi('v-img','1 / 2','2 / 3','2 / 3','1 / 2',h='--spx(340)',hm='--spx(220)',a='center')
-sty.append('.v-img {\n    --corvid-border-radius: 18px;\n    border-radius: 18px;\n}')
 # ---- S2 body + info card
 info=[stat('v-info-h','<h3>Visit info</h3>'),btxt('v-addr',F['address'],'p','<p>Address</p>'),btxt('v-pc',F['postcode'],'p','<p>Postcode</p>'),
       stat('v-hours-h','<h6>Opening hours</h6>'),btxt('v-hours',F['hours'],'p','<p>Check before you travel</p>'),btxt('v-phone',F['phone'],'p','<p>Phone</p>'),
@@ -77,7 +76,7 @@ for n in range(4):
     cbtn(f'm-b{n+1}',PINK if n==3 else '#0B2A4A',WHITE,999)
 # ---- write
 head=S[:S.index('export const Structure')]
-imports=["import { Button } from '@origami-wrappers/wixEditorElements/button'","import { textEnum } from '@wix/origami-runtime'","import { webUrlToLink } from '@origami-wrappers/viewer_core_services/datatypeconversions'"]
+imports=["import { Button } from '@origami-wrappers/wixEditorElements/button'"]
 head='\n'.join(l for l in head.split('\n') if not any(x in l for x in ['/line\'','/svgimage\'','{ svg }']))
 head=head.rstrip()+'\n'+'\n'.join(imports)+'\n\n'
 pg=S[S.index('export const Structure'):S.index('<Section id=')]
