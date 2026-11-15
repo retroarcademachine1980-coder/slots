@@ -1,0 +1,6924 @@
+.c1dmp {
+    --spx-ref-width: 1265;
+    --spx-resolver-type: scale;
+    height: auto;
+    display: grid;
+    grid-template-columns: minmax(0px, 1fr);
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    overflow-x: clip;
+    overflow-y: clip;
+    --spx-stopper-max: var(--scaling_stopper_max, 9999px)
+}
+.comp-mb7ogqrp {
+    height: auto;
+    min-width: 0px;
+    min-height: --spx(0);
+    max-width: 99999px;
+    max-height: 99999px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding-top: --spx(0);
+    padding-bottom: --spx(0);
+    padding-left: --spx(0);
+    padding-right: --spx(0)
+}
+.comp-kbgakxmn {
+    --spx-ref-width: 1265;
+    --spx-resolver-type: scale;
+    height: auto;
+    min-width: 0px;
+    min-height: --spx(0);
+    max-width: 99999px;
+    max-height: 99999px;
+    grid-row: 15 / 16;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding-top: --spx(0);
+    padding-bottom: --spx(0);
+    padding-left: --spx(0);
+    padding-right: --spx(0)
+}
+.comp-muxt9fxx {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1
+}
+.s1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(520);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) max-content;
+        grid-template-rows: auto auto auto;
+        padding-top: --spx(10);
+        padding-bottom: --spx(22);
+        padding-left: --spx(24);
+        padding-right: --spx(24);
+        column-gap: --spx(16);
+        row-gap: --spx(12);
+    }
+}
+.s1-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.h-letter {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(560);
+    height: --spx(449);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.h-script {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(200);
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.h-sign {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(210);
+    height: --spx(509);
+    min-width: 0px;
+    grid-row: 1 / 4;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: end;
+    position: relative;
+}
+.h-search {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(640);
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.h-search-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) max-content;
+        grid-template-rows: auto;
+        padding-top: --spx(8);
+        padding-bottom: --spx(8);
+        padding-left: --spx(8);
+        padding-right: --spx(8);
+        column-gap: --spx(10);
+        row-gap: --spx(0);
+    }
+}
+.h-search-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: center;
+    justify-self: start;
+    position: relative;
+}
+.h-search-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(190);
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.h-pills {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(640);
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.h-pills-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content max-content max-content;
+        grid-template-rows: auto;
+        padding-top: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+        padding-right: --spx(0);
+        column-gap: --spx(10);
+        row-gap: --spx(0);
+    }
+}
+.h-p0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.h-p1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.h-p2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.h-p3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 4 / 5;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.h-p4 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 5 / 6;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.h-p5 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 6 / 7;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.s2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto;
+        padding-top: --spx(18);
+        padding-bottom: --spx(14);
+        padding-left: --spx(24);
+        padding-right: --spx(24);
+        column-gap: --spx(8);
+        row-gap: --spx(6);
+    }
+}
+.s2-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ic0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic0-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic1-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic2-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 4 / 5;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic3-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 4 / 5;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic4 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 5 / 6;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic4-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 5 / 6;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic5 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 6 / 7;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic5-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 6 / 7;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic6 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 7 / 8;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic6-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 7 / 8;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic7 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(66);
+    height: --spx(66);
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 8 / 9;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.ic7-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 8 / 9;
+    align-self: start;
+    justify-self: center;
+    position: relative;
+}
+.s3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s3-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto auto auto;
+        padding-top: --spx(48);
+        padding-bottom: --spx(24);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(24);
+        row-gap: --spx(16);
+    }
+}
+.s3-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.in-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.in-p1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.in-p2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.in-p3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 1 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.s4 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 5 / 6;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s4-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto auto;
+        padding-top: --spx(40);
+        padding-bottom: --spx(40);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(18);
+        row-gap: --spx(14);
+    }
+}
+.s4-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.hl-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.hl-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.hl-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(210);
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 3;
+    grid-column: 5 / 6;
+    align-self: end;
+    justify-self: end;
+    position: relative;
+}
+.hc0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.hc0-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.hc0-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.hc0-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(150);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.hc0-badge {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.hc0-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc0-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc0-go {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+}
+.hc1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.hc1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.hc1-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.hc1-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(150);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.hc1-badge {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.hc1-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc1-town {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc1-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc1-go {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 6;
+    position: relative;
+}
+.hc2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.hc2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.hc2-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.hc2-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(150);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.hc2-badge {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.hc2-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc2-town {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc2-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc2-go {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 6;
+    position: relative;
+}
+.hc3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 4 / 5;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.hc3-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.hc3-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.hc3-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(150);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.hc3-badge {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.hc3-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc3-town {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc3-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc3-go {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 6;
+    position: relative;
+}
+.hc4 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 5 / 6;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.hc4-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.hc4-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.hc4-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(150);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.hc4-badge {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.hc4-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc4-town {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc4-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.hc4-go {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 6;
+    position: relative;
+}
+.s5 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 6 / 7;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s5-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto auto auto;
+        padding-top: --spx(28);
+        padding-bottom: --spx(28);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(14);
+        row-gap: --spx(14);
+    }
+}
+.s5-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ds-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 5;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.ds-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 5;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.ds-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(230);
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 3;
+    grid-column: 5 / 7;
+    align-self: end;
+    justify-self: end;
+    position: relative;
+}
+.dt0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.dt0-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(96);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.dt0-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.dt0-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(2);
+}
+.dt0-tag {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+}
+.dt1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.dt1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(96);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.dt1-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.dt1-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(2);
+}
+.dt1-tag {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+}
+.dt2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.dt2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(96);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.dt2-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.dt2-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(2);
+}
+.dt2-tag {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+}
+.dt3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 4 / 5;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.dt3-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(96);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.dt3-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.dt3-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(2);
+}
+.dt3-tag {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+}
+.dt4 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 5 / 6;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.dt4-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(96);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.dt4-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.dt4-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(2);
+}
+.dt4-tag {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+}
+.dt5 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 6 / 7;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.dt5-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(96);
+        padding-right: --spx(14);
+        padding-bottom: --spx(14);
+        padding-left: --spx(14);
+    }
+}
+.dt5-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.dt5-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(2);
+}
+.dt5-tag {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+}
+.ds-cr {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 1 / 7;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.s6 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 7 / 8;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s6-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto;
+        padding-top: --spx(12);
+        padding-bottom: --spx(40);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(18);
+        row-gap: --spx(0);
+    }
+}
+.s6-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.pr0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.pr0-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(24);
+        padding-right: --spx(26);
+        padding-bottom: --spx(24);
+        padding-left: --spx(26);
+    }
+}
+.pr0-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.pr0-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.pr0-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(18);
+}
+.pr0-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(200);
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.pr1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.pr1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(24);
+        padding-right: --spx(26);
+        padding-bottom: --spx(24);
+        padding-left: --spx(26);
+    }
+}
+.pr1-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.pr1-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.pr1-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(18);
+}
+.pr1-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(200);
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.pr2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.pr2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(24);
+        padding-right: --spx(26);
+        padding-bottom: --spx(24);
+        padding-left: --spx(26);
+    }
+}
+.pr2-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.pr2-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.pr2-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(18);
+}
+.pr2-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(200);
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.s7 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 8 / 9;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s7-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto auto auto;
+        padding-top: --spx(40);
+        padding-bottom: --spx(40);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(48);
+        row-gap: --spx(30);
+    }
+}
+.s7-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ws-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.ws0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ws0-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(18);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.ws0-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.ws0-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.ws0-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.ws1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ws1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(18);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.ws1-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.ws1-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.ws1-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.ws2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ws2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(18);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.ws2-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.ws2-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.ws2-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.ws3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ws3-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(18);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.ws3-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.ws3-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.ws3-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.ws4 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ws4-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(18);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.ws4-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.ws4-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.ws4-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.ws5 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ws5-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(18);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.ws5-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.ws5-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.ws5-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.s8 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 9 / 10;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s8-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr);
+        grid-template-rows: auto;
+        padding-top: --spx(24);
+        padding-bottom: --spx(40);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(0);
+        row-gap: --spx(0);
+    }
+}
+.s8-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.tb {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto auto auto auto auto;
+        padding-top: --spx(30);
+        padding-bottom: --spx(34);
+        padding-left: --spx(34);
+        padding-right: --spx(34);
+        column-gap: --spx(28);
+        row-gap: --spx(12);
+    }
+}
+.tb-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.tb-k {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-s0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-s1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-s2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-n {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 5 / 6;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(240);
+    height: auto;
+    min-width: 0px;
+    grid-row: 6 / 7;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.tb-m {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 6 / 7;
+    grid-column: 2 / 4;
+    align-self: center;
+    justify-self: start;
+    position: relative;
+}
+.s9 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 10 / 11;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s9-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr);
+        grid-template-rows: auto auto auto auto;
+        padding-top: --spx(40);
+        padding-bottom: --spx(40);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(0);
+        row-gap: --spx(10);
+    }
+}
+.s9-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ex-k {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.ex-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.ex-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.gb {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.gb-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto auto;
+        padding-top: --spx(26);
+        padding-bottom: --spx(30);
+        padding-left: --spx(30);
+        padding-right: --spx(30);
+        column-gap: --spx(24);
+        row-gap: --spx(10);
+    }
+}
+.gb-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.gb-k {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.gb-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.rv0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.rv0-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(18);
+        padding-left: --spx(14);
+    }
+}
+.rv0-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.rv0-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(170);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.rv0-k {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(6);
+}
+.rv0-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.rv0-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.rv0-s {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.rv0-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 6;
+    position: relative;
+}
+.rv1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.rv1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(18);
+        padding-left: --spx(14);
+    }
+}
+.rv1-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.rv1-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(170);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.rv1-k {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(6);
+}
+.rv1-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.rv1-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.rv1-s {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.rv1-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 6;
+    position: relative;
+}
+.rv2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.rv2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(14);
+        padding-bottom: --spx(18);
+        padding-left: --spx(14);
+    }
+}
+.rv2-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.rv2-img {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: --spx(170);
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(14);
+}
+.rv2-k {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(6);
+}
+.rv2-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.rv2-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.rv2-s {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 5;
+    position: relative;
+    margin-bottom: --spx(12);
+}
+.rv2-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 6;
+    position: relative;
+}
+.s10 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 11 / 12;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s10-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto;
+        padding-top: --spx(40);
+        padding-bottom: --spx(40);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(28);
+        row-gap: --spx(28);
+    }
+}
+.s10-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.es-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.es0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.es0-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(16);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.es0-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.es0-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.es0-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.es1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.es1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(16);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.es1-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.es1-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.es1-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.es2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.es2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(16);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.es2-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.es2-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.es2-l {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.s11 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 12 / 13;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s11-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto auto;
+        padding-top: --spx(30);
+        padding-bottom: --spx(30);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(18);
+        row-gap: --spx(8);
+    }
+}
+.s11-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ar-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 5;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.ar-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 5;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.ar0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ar0-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(16);
+        padding-bottom: --spx(16);
+        padding-left: --spx(16);
+    }
+}
+.ar0-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ar0-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(74);
+}
+.ar0-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(4);
+}
+.ar0-town {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.ar1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ar1-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(16);
+        padding-bottom: --spx(16);
+        padding-left: --spx(16);
+    }
+}
+.ar1-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ar1-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(74);
+}
+.ar1-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(4);
+}
+.ar1-town {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.ar2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    align-self: stretch;
+    justify-self: start;
+    position: relative;
+}
+.ar2-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(14);
+        padding-right: --spx(16);
+        padding-bottom: --spx(16);
+        padding-left: --spx(16);
+    }
+}
+.ar2-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.ar2-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: max-content;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(74);
+}
+.ar2-h {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(4);
+}
+.ar2-town {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+}
+.s12 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 13 / 14;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s12-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr);
+        grid-template-rows: auto;
+        padding-top: --spx(30);
+        padding-bottom: --spx(40);
+        padding-left: --spx(32);
+        padding-right: --spx(32);
+        column-gap: --spx(0);
+        row-gap: --spx(0);
+    }
+}
+.s12-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.jm {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.jm-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: --spx(20);
+        padding-right: --spx(0);
+        padding-bottom: --spx(0);
+        padding-left: --spx(0);
+    }
+}
+.jm-k {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 1;
+    position: relative;
+    margin-bottom: --spx(8);
+}
+.jm-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 2;
+    position: relative;
+    margin-bottom: --spx(10);
+}
+.jm-p {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 3;
+    position: relative;
+    margin-bottom: --spx(16);
+}
+.jm-b {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: --spx(260);
+    height: auto;
+    min-width: 0px;
+    align-self: start;
+    order: 4;
+    position: relative;
+}
+.s13 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    min-width: 0px;
+    min-height: 0px;
+    grid-row: 14 / 15;
+    grid-column: 1 / 2;
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative;
+}
+.s13-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    min-height: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr);
+        grid-template-rows: auto;
+        padding-top: --spx(10);
+        padding-bottom: --spx(0);
+        padding-left: --spx(24);
+        padding-right: --spx(24);
+        column-gap: --spx(0);
+        row-gap: --spx(0);
+    }
+}
+.s13-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.mw {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.mw-ic {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    min-width: --spx(0);
+    @origami-target internal-container-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+        grid-template-rows: auto auto;
+        padding-top: --spx(26);
+        padding-bottom: --spx(30);
+        padding-left: --spx(24);
+        padding-right: --spx(24);
+        column-gap: --spx(20);
+        row-gap: --spx(16);
+    }
+}
+.mw-bg {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    position: relative;
+}
+.mw-t {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 5;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.mw0 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.mw1 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.mw2 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+.mw3 {
+    --spx-ref-width: 1280;
+    --spx-resolver-type: scale;
+    width: 100%;
+    height: auto;
+    min-width: 0px;
+    grid-row: 2 / 3;
+    grid-column: 4 / 5;
+    align-self: start;
+    justify-self: start;
+    position: relative;
+}
+@media (--variants-mqxfr2bo1) {
+    .s1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto;
+            padding-top: --spx(14);
+            padding-bottom: --spx(18);
+            padding-left: --spx(14);
+            padding-right: --spx(14);
+            column-gap: --spx(10);
+            row-gap: --spx(10);
+        }
+    }
+    .s1-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .h-letter {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(322);
+        height: --spx(258);
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-script {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(110);
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: end;
+    }
+    .h-sign {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(70);
+        height: --spx(170);
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: end;
+        justify-self: end;
+    }
+    .h-search {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-search-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto;
+            padding-top: --spx(10);
+            padding-bottom: --spx(10);
+            padding-left: --spx(10);
+            padding-right: --spx(10);
+            column-gap: --spx(8);
+            row-gap: --spx(8);
+        }
+    }
+    .h-search-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-search-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-pills {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-pills-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+            grid-template-rows: auto auto;
+            padding-top: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+            padding-right: --spx(0);
+            column-gap: --spx(8);
+            row-gap: --spx(8);
+        }
+    }
+    .h-p0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-p1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-p2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 3 / 4;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-p3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-p4 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .h-p5 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 3 / 4;
+        align-self: start;
+        justify-self: start;
+    }
+    .s2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto;
+            padding-top: --spx(14);
+            padding-bottom: --spx(12);
+            padding-left: --spx(10);
+            padding-right: --spx(10);
+            column-gap: --spx(6);
+            row-gap: --spx(4);
+        }
+    }
+    .s2-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ic0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic0-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic1-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 3 / 4;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic2-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 3 / 4;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 4 / 5;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic3-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 4 / 5;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic4 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic4-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic5 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic5-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic6 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 3 / 4;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic6-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 3 / 4;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic7 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(52);
+        height: --spx(52);
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 4 / 5;
+        align-self: start;
+        justify-self: center;
+    }
+    .ic7-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 4 / 5;
+        align-self: start;
+        justify-self: center;
+    }
+    .s3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s3-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto;
+            padding-top: --spx(32);
+            padding-bottom: --spx(16);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(16);
+            row-gap: --spx(14);
+        }
+    }
+    .s3-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .in-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .in-p1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .in-p2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .in-p3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .s4 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s4-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto auto auto auto auto;
+            padding-top: --spx(28);
+            padding-bottom: --spx(28);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(14);
+            row-gap: --spx(14);
+        }
+    }
+    .s4-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .hl-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hl-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hl-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(210);
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hc0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hc0-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .hc0-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .hc0-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(180);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .hc0-badge {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(10);
+    }
+    .hc0-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(8);
+    }
+    .hc0-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(8);
+    }
+    .hc0-go {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+    }
+    .hc1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 5 / 6;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hc1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .hc1-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .hc1-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(180);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .hc1-badge {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(10);
+    }
+    .hc1-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(8);
+    }
+    .hc1-town {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(8);
+    }
+    .hc1-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+        margin-bottom: --spx(8);
+    }
+    .hc1-go {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 6;
+    }
+    .hc2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 6 / 7;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hc2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .hc2-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .hc2-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(180);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .hc2-badge {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(10);
+    }
+    .hc2-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(8);
+    }
+    .hc2-town {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(8);
+    }
+    .hc2-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+        margin-bottom: --spx(8);
+    }
+    .hc2-go {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 6;
+    }
+    .hc3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 7 / 8;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hc3-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .hc3-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .hc3-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(180);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .hc3-badge {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(10);
+    }
+    .hc3-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(8);
+    }
+    .hc3-town {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(8);
+    }
+    .hc3-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+        margin-bottom: --spx(8);
+    }
+    .hc3-go {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 6;
+    }
+    .hc4 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 8 / 9;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .hc4-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .hc4-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .hc4-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(180);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .hc4-badge {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(10);
+    }
+    .hc4-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(8);
+    }
+    .hc4-town {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(8);
+    }
+    .hc4-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+        margin-bottom: --spx(8);
+    }
+    .hc4-go {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 6;
+    }
+    .s5 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s5-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto auto auto auto;
+            padding-top: --spx(24);
+            padding-bottom: --spx(24);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(10);
+            row-gap: --spx(10);
+        }
+    }
+    .s5-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ds-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .ds-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .ds-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(230);
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .dt0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .dt0-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(70);
+            padding-right: --spx(12);
+            padding-bottom: --spx(12);
+            padding-left: --spx(12);
+        }
+    }
+    .dt0-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .dt0-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(2);
+    }
+    .dt0-tag {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+    }
+    .dt1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .dt1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(70);
+            padding-right: --spx(12);
+            padding-bottom: --spx(12);
+            padding-left: --spx(12);
+        }
+    }
+    .dt1-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .dt1-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(2);
+    }
+    .dt1-tag {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+    }
+    .dt2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 5 / 6;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .dt2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(70);
+            padding-right: --spx(12);
+            padding-bottom: --spx(12);
+            padding-left: --spx(12);
+        }
+    }
+    .dt2-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .dt2-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(2);
+    }
+    .dt2-tag {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+    }
+    .dt3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 5 / 6;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .dt3-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(70);
+            padding-right: --spx(12);
+            padding-bottom: --spx(12);
+            padding-left: --spx(12);
+        }
+    }
+    .dt3-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .dt3-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(2);
+    }
+    .dt3-tag {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+    }
+    .dt4 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 6 / 7;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .dt4-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(70);
+            padding-right: --spx(12);
+            padding-bottom: --spx(12);
+            padding-left: --spx(12);
+        }
+    }
+    .dt4-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .dt4-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(2);
+    }
+    .dt4-tag {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+    }
+    .dt5 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 6 / 7;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .dt5-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(70);
+            padding-right: --spx(12);
+            padding-bottom: --spx(12);
+            padding-left: --spx(12);
+        }
+    }
+    .dt5-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .dt5-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(2);
+    }
+    .dt5-tag {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+    }
+    .ds-cr {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 7 / 8;
+        grid-column: 1 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .s6 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s6-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto;
+            padding-top: --spx(12);
+            padding-bottom: --spx(28);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(0);
+            row-gap: --spx(14);
+        }
+    }
+    .s6-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .pr0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .pr0-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(20);
+            padding-right: --spx(18);
+            padding-bottom: --spx(20);
+            padding-left: --spx(18);
+        }
+    }
+    .pr0-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .pr0-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .pr0-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(18);
+    }
+    .pr0-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(200);
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .pr1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .pr1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(20);
+            padding-right: --spx(18);
+            padding-bottom: --spx(20);
+            padding-left: --spx(18);
+        }
+    }
+    .pr1-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .pr1-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .pr1-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(18);
+    }
+    .pr1-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(200);
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .pr2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .pr2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(20);
+            padding-right: --spx(18);
+            padding-bottom: --spx(20);
+            padding-left: --spx(18);
+        }
+    }
+    .pr2-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .pr2-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .pr2-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(18);
+    }
+    .pr2-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(200);
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .s7 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s7-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto auto auto auto;
+            padding-top: --spx(28);
+            padding-bottom: --spx(28);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(0);
+            row-gap: --spx(22);
+        }
+    }
+    .s7-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ws-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ws0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ws0-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(16);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .ws0-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .ws0-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(14);
+    }
+    .ws0-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .ws1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ws1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(16);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .ws1-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .ws1-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(14);
+    }
+    .ws1-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .ws2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ws2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(16);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .ws2-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .ws2-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(14);
+    }
+    .ws2-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .ws3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 5 / 6;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ws3-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(16);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .ws3-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .ws3-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(14);
+    }
+    .ws3-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .ws4 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 6 / 7;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ws4-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(16);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .ws4-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .ws4-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(14);
+    }
+    .ws4-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .ws5 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 7 / 8;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ws5-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(16);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .ws5-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .ws5-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(14);
+    }
+    .ws5-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .s8 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s8-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto;
+            padding-top: --spx(16);
+            padding-bottom: --spx(28);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(0);
+            row-gap: --spx(0);
+        }
+    }
+    .s8-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .tb {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto auto auto auto auto auto;
+            padding-top: --spx(24);
+            padding-bottom: --spx(24);
+            padding-left: --spx(18);
+            padding-right: --spx(18);
+            column-gap: --spx(10);
+            row-gap: --spx(12);
+        }
+    }
+    .tb-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .tb-k {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-s0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-s1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 5 / 6;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-s2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 6 / 7;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-n {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 7 / 8;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(240);
+        height: auto;
+        min-width: 0px;
+        grid-row: 8 / 9;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .tb-m {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 9 / 10;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .s9 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s9-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto;
+            padding-top: --spx(28);
+            padding-bottom: --spx(28);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(0);
+            row-gap: --spx(10);
+        }
+    }
+    .s9-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ex-k {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ex-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ex-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .gb {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .gb-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto auto;
+            padding-top: --spx(20);
+            padding-bottom: --spx(20);
+            padding-left: --spx(14);
+            padding-right: --spx(14);
+            column-gap: --spx(10);
+            row-gap: --spx(14);
+        }
+    }
+    .gb-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .gb-k {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .gb-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .rv0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .rv0-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(12);
+            padding-right: --spx(12);
+            padding-bottom: --spx(16);
+            padding-left: --spx(12);
+        }
+    }
+    .rv0-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .rv0-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(170);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .rv0-k {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(6);
+    }
+    .rv0-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(10);
+    }
+    .rv0-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(12);
+    }
+    .rv0-s {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+        margin-bottom: --spx(12);
+    }
+    .rv0-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 6;
+    }
+    .rv1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .rv1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(12);
+            padding-right: --spx(12);
+            padding-bottom: --spx(16);
+            padding-left: --spx(12);
+        }
+    }
+    .rv1-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .rv1-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(170);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .rv1-k {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(6);
+    }
+    .rv1-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(10);
+    }
+    .rv1-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(12);
+    }
+    .rv1-s {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+        margin-bottom: --spx(12);
+    }
+    .rv1-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 6;
+    }
+    .rv2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 5 / 6;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .rv2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(12);
+            padding-right: --spx(12);
+            padding-bottom: --spx(16);
+            padding-left: --spx(12);
+        }
+    }
+    .rv2-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .rv2-img {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: --spx(170);
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(12);
+    }
+    .rv2-k {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(6);
+    }
+    .rv2-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(10);
+    }
+    .rv2-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+        margin-bottom: --spx(12);
+    }
+    .rv2-s {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 5;
+        margin-bottom: --spx(12);
+    }
+    .rv2-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 6;
+    }
+    .s10 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s10-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto;
+            padding-top: --spx(28);
+            padding-bottom: --spx(28);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(0);
+            row-gap: --spx(20);
+        }
+    }
+    .s10-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .es-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .es0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .es0-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .es0-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(8);
+    }
+    .es0-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(8);
+    }
+    .es0-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .es1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .es1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .es1-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(8);
+    }
+    .es1-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(8);
+    }
+    .es1-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .es2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .es2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .es2-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(8);
+    }
+    .es2-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(8);
+    }
+    .es2-l {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .s11 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s11-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto auto auto auto auto;
+            padding-top: --spx(24);
+            padding-bottom: --spx(24);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(0);
+            row-gap: --spx(12);
+        }
+    }
+    .s11-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ar-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ar-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ar0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ar0-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .ar0-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ar0-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(64);
+    }
+    .ar0-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(4);
+    }
+    .ar0-town {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .ar1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ar1-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .ar1-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ar1-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(64);
+    }
+    .ar1-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(4);
+    }
+    .ar1-town {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .ar2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 5 / 6;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .ar2-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(14);
+            padding-right: --spx(14);
+            padding-bottom: --spx(14);
+            padding-left: --spx(14);
+        }
+    }
+    .ar2-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .ar2-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: max-content;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(64);
+    }
+    .ar2-h {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(4);
+    }
+    .ar2-town {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+    }
+    .s12 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s12-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto;
+            padding-top: --spx(24);
+            padding-bottom: --spx(30);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(0);
+            row-gap: --spx(0);
+        }
+    }
+    .s12-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .jm {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .jm-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding-top: --spx(18);
+            padding-right: --spx(0);
+            padding-bottom: --spx(0);
+            padding-left: --spx(0);
+        }
+    }
+    .jm-k {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 1;
+        margin-bottom: --spx(8);
+    }
+    .jm-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 2;
+        margin-bottom: --spx(10);
+    }
+    .jm-p {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 3;
+        margin-bottom: --spx(16);
+    }
+    .jm-b {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: --spx(260);
+        height: auto;
+        min-width: 0px;
+        align-self: start;
+        order: 4;
+    }
+    .s13 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        min-width: 0px;
+        min-height: 0px;
+    }
+    .s13-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        min-height: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: auto;
+            padding-top: --spx(10);
+            padding-bottom: --spx(0);
+            padding-left: --spx(10);
+            padding-right: --spx(10);
+            column-gap: --spx(0);
+            row-gap: --spx(0);
+        }
+    }
+    .s13-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .mw {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .mw-ic {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        min-width: --spx(0);
+        @origami-target internal-container-content-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
+            grid-template-rows: auto auto auto;
+            padding-top: --spx(20);
+            padding-bottom: --spx(24);
+            padding-left: --spx(16);
+            padding-right: --spx(16);
+            column-gap: --spx(12);
+            row-gap: --spx(10);
+        }
+    }
+    .mw-bg {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: auto;
+        height: auto;
+        align-self: stretch;
+        justify-self: stretch;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        position: relative;
+    }
+    .mw-t {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 1 / 2;
+        grid-column: 1 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .mw0 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .mw1 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+    .mw2 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        align-self: start;
+        justify-self: start;
+    }
+    .mw3 {
+        --spx-ref-width: 375;
+        --spx-resolver-type: scale;
+        width: 100%;
+        height: auto;
+        min-width: 0px;
+        grid-row: 3 / 4;
+        grid-column: 2 / 3;
+        align-self: start;
+        justify-self: start;
+    }
+}

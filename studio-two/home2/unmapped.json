@@ -1,0 +1,110 @@
+{
+    "export": {},
+    "components": {
+        "comp-mb7ogqrp": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-mf9tq7ji",
+                "name": "Masters"
+            }
+        },
+        "comp-kbgakxmn": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-mf9tpzk2",
+                "name": "Masters"
+            }
+        },
+        "s1": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s1",
+                "name": "Top"
+            }
+        },
+        "s2": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s2",
+                "name": "Categories"
+            }
+        },
+        "s3": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s3",
+                "name": "Welcome"
+            }
+        },
+        "s4": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s4",
+                "name": "Highlights"
+            }
+        },
+        "s5": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s5",
+                "name": "Destinations"
+            }
+        },
+        "s6": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s6",
+                "name": "Promotions"
+            }
+        },
+        "s7": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s7",
+                "name": "Day types"
+            }
+        },
+        "s8": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s8",
+                "name": "Trip builder"
+            }
+        },
+        "s9": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s9",
+                "name": "Experiences"
+            }
+        },
+        "s10": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s10",
+                "name": "Eat and stay"
+            }
+        },
+        "s11": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s11",
+                "name": "Arcades"
+            }
+        },
+        "s12": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s12",
+                "name": "Jamie"
+            }
+        },
+        "s13": {
+            "anchors": {
+                "type": "AnchorInfo",
+                "id": "anchors-s13",
+                "name": "More ways"
+            }
+        }
+    }
+}
