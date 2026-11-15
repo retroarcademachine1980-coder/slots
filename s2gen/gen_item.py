@@ -33,38 +33,54 @@ def bg(i,photo=None): return f'<Background id="{i}" className="{i}" />'
 def box(i,kids,b=True): return f'<BoxContainer id="{i}" className="{i}" children={{\n<InternalContainer id="{i}-ic" className="{i}-ic"'+(f' backgroundLayer={{[{bg(i+"-bg")}]}}' if b else '')+'>\n'+'\n'.join(kids)+'\n</InternalContainer>\n} />'
 def sec(i,kids): return f'<Section id="{i}" className="{i}">\n<InternalContainer id="{i}-ic" className="{i}-ic" backgroundLayer={{[{bg(i+"-bg")}]}}>\n'+'\n'.join(kids)+'\n</InternalContainer>\n</Section>'
 # ---- S1 hero band
-left=[btxt('v-kicker',F['kicker'],'p','<p>Day out</p>'),
-      box('v-plank',[btxt('v-title',F['title'],'h1','<h1>Place name</h1>')]),
-      btxt('v-town',F['town'],'p','<p>Town</p>'),
-      btxt('v-intro',F['intro'],'p','<p>Short description.</p>')]
-s1=sec('s1',[box('v-left',left,b=False),bimg('v-img',F['image'])])
+KS=cfg.get('kickerStatic','Day out')
+left=[btxt('v-kicker',F['kicker'],'p','<p>Day out</p>') if F.get('kicker') else stat('v-kicker','<p>'+KS+'</p>'),
+      box('v-plank',[btxt('v-title',F['title'],'h1','<h1>Place name</h1>')])]+([btxt('v-town',F['town'],'p','<p>Town</p>')] if F.get('town') else [])+[btxt('v-intro',F['intro'],'p','<p>Short description.</p>')]
+LIDS=['v-kicker','v-plank']+(['v-town'] if F.get('town') else [])+['v-intro']
+s1=sec('s1',[box('v-left',left,b=False)]+([bimg('v-img',F['image'])] if F.get('image') else []))
 section('s1',2,grid_ic('s1-ic','minmax(0px, 1fr) minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto auto',(40,40,44),(20,16,24),(36,0),(0,18)),380,0)
 fill('s1-bg','#0B2A4A')
 gi('v-left','1 / 2','1 / 2','1 / 2','1 / 2',a='center')
 stack('v-left-ic',0,0)
-stackkids(['v-kicker','v-plank','v-town','v-intro'],[10,10,14],[8,8,12],widths={'v-plank':'auto'})
+stackkids(LIDS,[10,10,14][:len(LIDS)-1],[8,8,12][:len(LIDS)-1],widths={'v-plank':'auto'})
 rule('v-plank-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: auto;\npadding-top: --spx(14);\npadding-bottom: --spx(14);\npadding-left: --spx(24);\npadding-right: --spx(24);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: auto;\npadding-top: --spx(10);\npadding-bottom: --spx(10);\npadding-left: --spx(14);\npadding-right: --spx(14);')
 gi('v-title','1 / 2','1 / 2','1 / 2','1 / 2')
 H.bglay('v-plank-bg'); fill('v-plank-bg',BLUE)
 sty.append('.v-plank-ic {\n    --borderStartStartRadius: 10px;\n    --borderStartEndRadius: 10px;\n    --borderEndStartRadius: 10px;\n    --borderEndEndRadius: 10px;\n    --boxShadow: 0px 6px 0px rgba(5, 14, 28, 0.45);\n}')
-txt('v-kicker','heading-6',YEL); txt('v-title','heading-1',WHITE); txt('v-town','heading-5',CYAN); txt('v-intro','paragraph-1',WHITE)
-gi('v-img','1 / 2','2 / 3','2 / 3','1 / 2',h='--spx(340)',hm='--spx(220)',a='center')
+txt('v-kicker','heading-6',YEL); txt('v-title','heading-1',WHITE); txt('v-intro','paragraph-1',WHITE)
+if F.get('town'): txt('v-town','heading-5',CYAN)
+if F.get('image'): gi('v-img','1 / 2','2 / 3','2 / 3','1 / 2',h='--spx(340)',hm='--spx(220)',a='center')
 # ---- S2 body + info card
-info=[stat('v-info-h','<h3>Visit info</h3>'),btxt('v-addr',F['address'],'p','<p>Address</p>'),btxt('v-pc',F['postcode'],'p','<p>Postcode</p>'),
-      stat('v-hours-h','<h6>Opening hours</h6>'),btxt('v-hours',F['hours'],'p','<p>Check before you travel</p>'),btxt('v-phone',F['phone'],'p','<p>Phone</p>'),
-      blink('v-web','Visit website →',F['website']),blink('v-dir','Get directions →',F['directions'])]
+IL=cfg.get('labels',{})
+spec=[('v-info-h','stat','<h3>'+IL.get('info','Visit info')+'</h3>')]
+for i,k in [('v-addr','address'),('v-pc','postcode')]:
+    if F.get(k): spec.append((i,'b',k))
+if F.get('hours'): spec+= [('v-hours-h','stat','<h6>'+IL.get('hours','Opening hours')+'</h6>'),('v-hours','b','hours')]
+if F.get('phone'): spec.append(('v-phone','b','phone'))
+if F.get('website'): spec.append(('v-web','l','website'))
+if F.get('directions'): spec.append(('v-dir','l','directions'))
+LBL={'website':IL.get('website','Visit website →'),'directions':'Get directions →'}
+info=[]
+for i,t,v in spec:
+    if t=='stat': info.append(stat(i,v))
+    elif t=='b': info.append(btxt(i,F[v],'p','<p>…</p>'))
+    else: info.append(blink(i,LBL[v],F[v]))
 s2=sec('s2',[brich('v-body',F['body'],'<p>Our guide to this place.</p>'),box('v-info',info)])
 section('s2',3,grid_ic('s2-ic','minmax(0px, 2fr) minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto auto',(44,40,48),(28,16,32),(40,0),(0,24)))
 fill('s2-bg',WHITE)
 gi('v-body','1 / 2','1 / 2','2 / 3','1 / 2')
 gi('v-info','1 / 2','2 / 3','1 / 2','1 / 2')
 stack('v-info-ic',22,18)
-ids=['v-info-h','v-addr','v-pc','v-hours-h','v-hours','v-phone','v-web','v-dir']
-stackkids(ids,[12,2,14,4,12,18,10],[10,2,12,4,10,14,8])
+ids=[x[0] for x in spec]
+GAP={'v-info-h':12,'v-addr':2,'v-pc':14,'v-hours-h':4,'v-hours':12,'v-phone':18,'v-web':10,'v-dir':0}
+stackkids(ids,[GAP[i] for i in ids[:-1]],[max(GAP[i]-2,2) for i in ids[:-1]])
 H.bglay('v-info-bg'); fill('v-info-bg',LIGHT); card('v-info',18)
 txt('v-body','paragraph-1',NAVY); txt('v-info-h','heading-4',NAVY); txt('v-hours-h','heading-6',NAVY)
-for i in ['v-addr','v-pc','v-hours','v-phone']: txt(i,'paragraph-2',NAVY)
-cbtn('v-web',PINK,WHITE,12); cbtn('v-dir','#0B2A4A',WHITE,12)
+for i in ['v-addr','v-pc','v-hours','v-phone']:
+    if i in ids: txt(i,'paragraph-2',NAVY)
+if 'v-hours-h' not in ids: sty[:]=[x for x in sty if not x.startswith('.v-hours-h ')]
+if 'v-web' in ids: cbtn('v-web',PINK,WHITE,12)
+if 'v-dir' in ids: cbtn('v-dir','#0B2A4A',WHITE,12)
 # ---- S3 more
 more=[stat('m-t','<h2>Make a day of it</h2>'),slink('m-b1','Arcades','/arcade'),slink('m-b2','Attractions','/attractions'),slink('m-b3','Food & drink','/food-and-drink'),slink('m-b4','Plan a day out →','/plan-a-trip')]
 s3=sec('s3',more)
