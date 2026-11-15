@@ -94,8 +94,12 @@ for n,s in enumerate(srcs):
     row+=1
 # ---- write files
 out=os.path.join(PAGES,slug)
-if os.path.exists(out): shutil.rmtree(out)
-shutil.copytree(LB,out)
+if os.path.exists(out):
+    for f in os.listdir(out):
+        fp=os.path.join(out,f)
+        if f.startswith('['): continue
+        shutil.rmtree(fp) if os.path.isdir(fp) else os.remove(fp)
+shutil.copytree(LB,out,dirs_exist_ok=True)
 camel='Hub'+''.join(w.capitalize() for w in re.split(r'[^a-z0-9]+',slug))
 gd=os.path.join(out,'_generated')
 for f in os.listdir(gd):
