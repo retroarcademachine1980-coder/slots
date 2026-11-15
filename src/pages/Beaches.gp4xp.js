@@ -5,3 +5,4 @@ import { renderStaticHubGuide } from 'public/native-guide-article';
 $w.onReady(function () {
     return renderStaticHubGuide({ select: $w, path: '/beaches', title: 'Beaches in England and around the UK' });
 });
+// Resynced to the Wix editor after the 15 Nov site restore.

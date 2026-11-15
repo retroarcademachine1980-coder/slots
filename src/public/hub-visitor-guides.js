@@ -23,3 +23,4 @@ const guides = {
 export function hubVisitorGuide(path) {
     return Object.hasOwn(guides, path) ? guides[path] : null;
 }
+// Resynced to the Wix editor after the 15 Nov site restore.

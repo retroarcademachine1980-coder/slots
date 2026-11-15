@@ -87,3 +87,4 @@ export function renderStaticHubGuide({ select, path, title }) {
         return false;
     }
 }
+// Resynced to the Wix editor after the 15 Nov site restore.

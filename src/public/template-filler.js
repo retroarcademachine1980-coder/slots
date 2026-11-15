@@ -31,3 +31,4 @@ export function replaceTemplateFiller(select, title) {
     }
     return titled;
 }
+// Resynced to the Wix editor after the 15 Nov site restore.

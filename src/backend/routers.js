@@ -100,3 +100,4 @@ export function arcade_venues_beforeRouter(request) { return legacyPathRouter('/
 export function arcade_venues_afterSitemap(request, sitemapEntries) { return []; }
 export function classic_fruit_machine_archive_beforeRouter(request) { return legacyPathRouter('/classic-fruit-machine-archive', request); }
 export function classic_fruit_machine_archive_1_beforeRouter(request) { return legacyPathRouter('/classic-fruit-machine-archive-1', request); }
+// Resynced to the Wix editor after the 15 Nov site restore.
