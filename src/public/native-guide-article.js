@@ -15,6 +15,8 @@ const GUIDE_FIELDS = Object.freeze({
     NearbyAttractions: ['sourceFacts', 'fullDescription', 'detailedReview', 'guideContent', 'description'],
     HotelGuides: ['guideContent', 'guideDetails', 'description'],
     ClassicFruitMachines: ['description', 'history', 'gameplay_guide', 'lore_review'],
+    // Same order the visitor place page reads (runtime 123-01), so Google and visitors see the same guide.
+    AffiliateOffers: ['sourceFacts', 'fullDescription', 'guideContent', 'description'],
 });
 function text(value) { return typeof value === 'string' ? value.trim() : ''; }
 function html(value) {

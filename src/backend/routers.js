@@ -96,5 +96,7 @@ export function food_and_drink_beforeRouter(request) { return foodBeforeRouter(r
 export function food_and_drink_customizeQuery(request, route, query) { return foodCustomizeQuery(request, route, query); }
 export function food_and_drink_afterRouter(request, response) { return foodAfterRouter(request, response); }
 export function arcade_venues_beforeRouter(request) { return legacyPathRouter('/arcade-venues', request); }
+// Every /arcade-venues address 301-redirects to its canonical page, so keep them out of the sitemap.
+export function arcade_venues_afterSitemap(request, sitemapEntries) { return []; }
 export function classic_fruit_machine_archive_beforeRouter(request) { return legacyPathRouter('/classic-fruit-machine-archive', request); }
 export function classic_fruit_machine_archive_1_beforeRouter(request) { return legacyPathRouter('/classic-fruit-machine-archive-1', request); }
