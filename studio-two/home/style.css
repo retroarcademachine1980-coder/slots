@@ -59,7 +59,7 @@
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
 }
-.c1-ic-bg {
+.c1-bg {
     --backgroundColor: var(--wst-base-1-color);
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
@@ -104,7 +104,7 @@
     letter-spacing: var(--wst-paragraph-2-letter-spacing);
     text-decoration: var(--wst-paragraph-2-text-decoration);
 }
-.c2-ic-bg {
+.c2-bg {
     --backgroundColor: var(--wst-base-1-color);
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
@@ -149,7 +149,7 @@
     letter-spacing: var(--wst-paragraph-2-letter-spacing);
     text-decoration: var(--wst-paragraph-2-text-decoration);
 }
-.c3-ic-bg {
+.c3-bg {
     --backgroundColor: var(--wst-base-1-color);
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
@@ -211,7 +211,7 @@
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
 }
-.t1-ic-bg {
+.t1-bg {
     --backgroundColor: var(--wst-accent-4-color);
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
@@ -246,7 +246,7 @@
     letter-spacing: var(--wst-paragraph-2-letter-spacing);
     text-decoration: var(--wst-paragraph-2-text-decoration);
 }
-.t2-ic-bg {
+.t2-bg {
     --backgroundColor: var(--wst-accent-4-color);
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
@@ -281,7 +281,7 @@
     letter-spacing: var(--wst-paragraph-2-letter-spacing);
     text-decoration: var(--wst-paragraph-2-text-decoration);
 }
-.t3-ic-bg {
+.t3-bg {
     --backgroundColor: var(--wst-accent-4-color);
     --backgroundImage: none;
     --backgroundColorOpacity: 1;
