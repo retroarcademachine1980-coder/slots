@@ -9,8 +9,8 @@ oldpid=re.search(r'<Page\s+id="([^"]+)"',S).group(1)
 hdr=re.search(r'<Header_\w+ id="([^"]+)"',S).group(1); ftr=re.search(r'<Footer_\w+ id="([^"]+)"',S).group(1)
 pbg=re.search(r'backgroundLayer=\{\[<Background id="([^"]+)"',S[S.index('<Page'):]).group(1)
 pid='h'+hashlib.md5(slug.encode()).hexdigest()[:4]
-ROLES={'Venues':'w1piy7m','NearbyAttractions':'v25olth','HotelGuides':'rchxpjc','FoodAndDrink':'ar5gsd0','ClassicFruitMachines':'28pp9fa','Locations':'z42qzjc'}
-PFX={'Venues':'/venue','NearbyAttractions':'/attraction','HotelGuides':'/hotel','FoodAndDrink':'/food-and-drink','ClassicFruitMachines':'/fruit-machine','Locations':'/destination'}
+ROLES={'Venues':'w1piy7m','NearbyAttractions':'v25olth','HotelGuides':'rchxpjc','FoodAndDrink':'ar5gsd0','ClassicFruitMachines':'28pp9fa','Locations':'z42qzjc','AffiliateOffers':'k61pfck'}
+PFX={'Venues':'/venue','NearbyAttractions':'/attraction','HotelGuides':'/hotel','FoodAndDrink':'/food-and-drink','ClassicFruitMachines':'/fruit-machine','Locations':'/destination','AffiliateOffers':'/offer'}
 def keep(ids):
     out=[]
     for i in ids:
