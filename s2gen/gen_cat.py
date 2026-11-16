@@ -418,7 +418,7 @@ def do_all2(b,k=0):
     gi('df-prev','2 / 3','1 / 2','2 / 3','1 / 2',w='auto',wm='auto',a='center',am='center'); pill('df-prev',WHITE,INK,size=14,r=6,pad=(9,16),border='1px solid #D2E2F6',shadow=False)
     gi('df-pg','2 / 3','2 / 3','2 / 3','2 / 3',a='center',am='center'); font('df-pg',13,600,GREY,lh=1.3,fam=None,align='center')
     gi('df-next','2 / 3','3 / 4','2 / 3','3 / 4',w='auto',wm='auto',a='center',am='center',j='end',jm='end'); pill('df-next',WHITE,INK,size=14,r=6,pad=(9,16),border='1px solid #D2E2F6',shadow=False)
-    sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: '+str(A.get('cols',3))+';\n    --column-min-width: --spx(180);\n    --row-gap: --spx(18);\n    --column-gap: --spx(18);\n    --background-color: transparent;\n}')
+    sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: '+str(A.get('cols',3))+';\n    --column-min-width: --spx('+str(260 if A.get('cols',3)==3 else 180)+');\n    --row-gap: --spx(18);\n    --column-gap: --spx(18);\n    --background-color: transparent;\n}')
     rule('al-card','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(12);\npadding-left: --spx(0);')
     H.bglay('al-card-bg'); fill('al-card-bg',WHITE)
     sty.append('.al-card {\n'+''.join(f'    --border{k}Radius: 10px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 0px 0px 1px #D2E2F6;\n}')
