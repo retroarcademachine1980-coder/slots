@@ -7,7 +7,8 @@ for a in "$@"; do
   live=${a%%:*}; out=${a#*:}; [ "$out" = "$a" ] && out=$live
   [ -d /tmp/expB/$P/$out ] || { echo "no page $out"; continue; }
   python3 /tmp/gen/prep_listbase.py /tmp/expB/$P/$out /tmp/gen/lb_$out >/dev/null || { echo "listbase fail $out"; continue; }
-  python3 /tmp/gen/prep_cat.py /tmp/gen/scr/scraped_$live.json /tmp/gen/assets.json /tmp/gen/cat_$out.json $out || continue
+  if [ -f /tmp/gen/manual_$out.json ]; then python3 -c "import json,sys;C=json.load(open('/tmp/gen/manual_$out.json'));T=json.load(open('/tmp/gen/towns.json')) if __import__('os').path.exists('/tmp/gen/towns.json') else {};[b.update(towns=T.get('$out',[])) for b in C['blocks'] if b['type']=='all2' and not b.get('towns')];json.dump(C,open('/tmp/gen/cat_$out.json','w'),ensure_ascii=False)"; echo "manual $out"
+  else python3 /tmp/gen/prep_cat.py /tmp/gen/scr/scraped_$live.json /tmp/gen/assets.json /tmp/gen/cat_$out.json $out || continue; fi
   python3 /tmp/gen/gen_cat.py /tmp/gen/lb_$out $P /tmp/gen/cat_$out.json || { echo "gen fail $out"; continue; }
   done+=($out)
 done

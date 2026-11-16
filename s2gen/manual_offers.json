@@ -1,0 +1,162 @@
+{
+ "slug": "offers",
+ "title": "Amazing Offers",
+ "seo_title": "Amazing Offers | Spin Raiders",
+ "seo_description": "Deals, discounts and special offers on attractions, hotels, eats, activities and more across the UK.",
+ "blocks": [
+  {
+   "type": "hero",
+   "uri": "3a517e_8459bbfe85664113ac7b97f2836157f5~mv2.png",
+   "w": 2531,
+   "h": 1000,
+   "alt": "Great days out for less",
+   "search_text": "Search offers, attractions, hotels or locations…",
+   "towns": [
+    [
+     "Blackpool",
+     "/destination/blackpool"
+    ],
+    [
+     "Skegness",
+     "/destination/skegness"
+    ],
+    [
+     "Great Yarmouth",
+     "/destination/great-yarmouth"
+    ],
+    [
+     "Southend",
+     "/destination/southend-on-sea"
+    ],
+    [
+     "Torquay",
+     "/destination/torquay"
+    ],
+    [
+     "⌖ Near me",
+     "/near-me"
+    ]
+   ]
+  },
+  {
+   "type": "intro",
+   "h1": "Amazing Offers",
+   "intro": "A night away, a good food stop or tickets for something to look forward to. Explore the offers and check dates, availability and what is included before booking. Some booking links support Spin Raiders through commission. A deal is best when it fits a day you actually want."
+  },
+  {
+   "type": "featured",
+   "title": "Food, stays & things to do",
+   "button": null,
+   "items": [
+    {
+     "kicker": "Festive days out",
+     "title": "The Great Yorkshire Christmas Fair 2026",
+     "town": "Ad · Affiliate booking option",
+     "text": "Entry for two to the Great Yorkshire Christmas Fair, 26–29 November 2026",
+     "href": "/offer/the-great-yorkshire-christmas-fair-2026",
+     "uri": "3a517e_63d84ebee8ba490c91614b1e3f74d873~mv2.jpg",
+     "w": 1200,
+     "h": 800,
+     "alt": "The Great Yorkshire Christmas Fair 2026"
+    },
+    {
+     "kicker": "Food & drink",
+     "title": "Portsmouth Food & Afternoon Tea Deals",
+     "town": "Ad · Affiliate booking option",
+     "text": "Check the current Portsmouth-area afternoon tea and dining offers available through Things To Do.",
+     "href": "/offer/portsmouth-food-afternoon-tea-deals",
+     "uri": "3a517e_9e68b52fca7a4f80893e694c70bb4145~mv2.jpg",
+     "w": 1200,
+     "h": 800,
+     "alt": "Portsmouth Food & Afternoon Tea Deals"
+    },
+    {
+     "kicker": "Places to stay",
+     "title": "MyRoomz New Discovery Hotel",
+     "town": "Ad · Affiliate booking option",
+     "text": "Check prices and availability for MyRoomz New Discovery Hotel, Blackpool.",
+     "href": "/hotel/myroomz-new-discovery-hotel-blackpool",
+     "uri": "3a517e_0b31cbe394e04a74903690b20440d032~mv2.jpg",
+     "w": 1200,
+     "h": 800,
+     "alt": "MyRoomz New Discovery Hotel"
+    },
+    {
+     "kicker": "Things to do",
+     "title": "Flibco London–Stansted Airport Transfers",
+     "town": "Ad · Affiliate booking option",
+     "text": "Plan your airport journey between London and Stansted with Flibco. Advertised fares start from £7.49, subject to route, departure and availability.",
+     "href": "/offer/flibco-london–stansted-airport-transfers",
+     "uri": "3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg",
+     "w": 1200,
+     "h": 800,
+     "alt": "Flibco London–Stansted Airport Transfers"
+    },
+    {
+     "kicker": "Festive days out",
+     "title": "A Christmas Carol - Old Vic tickets",
+     "town": "Ad · Affiliate booking option",
+     "text": "A Christmas Carol at the Old Vic — November 2026 to 9 January 2027",
+     "href": "/offer/a-christmas-carol-old-vic-tickets",
+     "uri": "3a517e_988d42900d66420eb189a7292acef5d0~mv2.jpg",
+     "w": 1200,
+     "h": 800,
+     "alt": "A Christmas Carol - Old Vic tickets"
+    },
+    {
+     "kicker": "Food & drink",
+     "title": "Kaspa's Desserts, Hull",
+     "town": "Ad · Affiliate booking option",
+     "text": "£10 to spend on desserts for £5",
+     "href": "/offer/kaspas-desserts-hull",
+     "uri": "3a517e_fb62da6a8b4f4de69080ed53181069d4~mv2.webp",
+     "w": 1200,
+     "h": 800,
+     "alt": "Kaspa's Desserts, Hull"
+    },
+    {
+     "kicker": "Places to stay",
+     "title": "Razorbill Cottage",
+     "town": "Ad · Affiliate booking option",
+     "text": "Check prices and availability for Razorbill Cottage, Whitby.",
+     "href": "/hotel/razorbill-cottage-whitby",
+     "uri": "3a517e_876cf4003b444ee2bc848f09721b5e8d~mv2.jpeg",
+     "w": 1200,
+     "h": 800,
+     "alt": "Razorbill Cottage"
+    },
+    {
+     "kicker": "Things to do",
+     "title": "CamperNation Caravan & Camping Gear",
+     "town": "Ad · Affiliate booking option",
+     "text": "Equip your caravan or camping trip with this UK online retailer. Browse awnings, portable power stations and other outdoor equipment.",
+     "href": "/offer/campernation-caravan-camping-gear",
+     "uri": "3a517e_14eb838fcd294c268ec121d84c59c0b4~mv2.webp",
+     "w": 1200,
+     "h": 800,
+     "alt": "CamperNation Caravan & Camping Gear"
+    },
+    {
+     "kicker": "Festive days out",
+     "title": "Christmas Carol Goes Wrong tickets",
+     "town": "Ad · Affiliate booking option",
+     "text": "Choose a performance and seats for Christmas Carol Goes Wrong at Wyndham's Theatre.",
+     "href": "/offer/christmas-carol-goes-wrong-tickets",
+     "uri": "3a517e_7ca6077af5314e10874f701cb8d4d11d~mv2.webp",
+     "w": 1200,
+     "h": 800,
+     "alt": "Christmas Carol Goes Wrong tickets"
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "title": "Plan your perfect day out",
+   "text": "Find great offers near you, check opening times, get directions and save your favourites.",
+   "button": [
+    "Start planning →",
+    "/plan-a-trip"
+   ]
+  }
+ ]
+}

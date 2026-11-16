@@ -432,7 +432,29 @@ def do_all2(b,k=0):
     pill('al-b',WHITE,'#1A73C9',size=13,r=4,pad=(2,0),shadow=False)
     rule('al-empty','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);')
     row+=1
-FN={'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
+def do_ideas(b,k=0):
+    """Live 'What shall we do today?' block: kicker, heading, text and three coloured idea cards."""
+    global row
+    sid=f's{row}'
+    kids=[rt('id-k','<p>'+esc(b['kicker'])+'</p>'),rt('id-h','<h2>'+esc(b['title'])+'</h2>'),rt('id-p','<p>'+esc(b['text'])+'</p>')]
+    for n,c in enumerate(b['cards']):
+        kids.append(box(f'ic{n}',[image(f'ic{n}-i',c['icon'],132,132,c['title']),rt(f'ic{n}-t','<h3>'+esc(c['title'])+'</h3>'),rt(f'ic{n}-p','<p>'+esc(c['text'])+'</p>'),button(f'ic{n}-b','Explore →',c['href'])]))
+    secs.append(sec(sid,kids))
+    nc=len(b['cards'])
+    section(sid,row,grid_ic(sid+'-ic',' '.join(['minmax(0px, 1fr)']*nc),'auto auto auto auto','minmax(0px, 1fr)',' '.join(['auto']*(3+nc)),(26,40,30),(18,16,24),(20,8),(0,10)))
+    fill(sid+'-bg',WHITE)
+    gi('id-k',f'1 / 2',f'1 / {nc+1}','1 / 2','1 / 2'); font('id-k',12,900,'#E0247A',lh=1.2,fam=None); sty.append('.id-k {\n    text-transform: uppercase;\n}')
+    gi('id-h',f'2 / 3',f'1 / {nc+1}','2 / 3','1 / 2'); font('id-h',32,900,INK,lh=1.15,sizem=24)
+    gi('id-p',f'3 / 4',f'1 / {nc+1}','3 / 4','1 / 2',w='--spx(760)',wm='100%'); font('id-p',15,400,'#27425F',lh=1.6,fam=None)
+    for n,c in enumerate(b['cards']):
+        gi(f'ic{n}','4 / 5',f'{n+1} / {n+2}',f'{4+n} / {5+n}','1 / 2',h='100%',hm='auto',a='stretch',am='start')
+        boxgrid(f'ic{n}','minmax(0px, 1fr)','auto auto auto auto','minmax(0px, 1fr)','auto auto auto auto',(18,16),(16,14),(0,6),(0,6),color=c['bg'],radius=14)
+        rule(f'ic{n}-i','width: --spx(30);\nheight: --spx(30);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: start;\nposition: relative;','width: --spx(28);\nheight: --spx(28);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: start;')
+        gi(f'ic{n}-t','2 / 3','1 / 2','2 / 3','1 / 2'); font(f'ic{n}-t',22,900,c['color'],lh=1.2,sizem=20)
+        gi(f'ic{n}-p','3 / 4','1 / 2','3 / 4','1 / 2'); font(f'ic{n}-p',14,400,'#27425F',lh=1.5,fam=None)
+        gi(f'ic{n}-b','4 / 5','1 / 2','4 / 5','1 / 2',w='auto',wm='auto'); pill(f'ic{n}-b','transparent',c['color'],size=14,r=0,pad=(4,0),shadow=False)
+    row+=1
+FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1

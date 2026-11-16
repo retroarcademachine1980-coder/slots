@@ -1,0 +1,120 @@
+{
+ "slug": "days-out",
+ "title": "Days Out & Attractions",
+ "seo_title": "Days Out & Attractions | Spin Raiders",
+ "seo_description": "Find your next brilliant day out. Explore attractions, visitor guides and places across the UK.",
+ "blocks": [
+  {
+   "type": "hero2",
+   "uri": "3a517e_e6e7e4b178a5469686ffc60a5dd6bfbe~mv2.jpeg",
+   "w": 2400,
+   "h": 1000,
+   "title": "Days Out",
+   "desc": "Explore attractions, visitor guides and places across the UK.",
+   "pill": "Find your next brilliant day out.",
+   "sub": "Blackpool beach, Central Pier and Tower · Patel Poojan / Pexels"
+  },
+  {
+   "type": "ideas",
+   "kicker": "Start with an idea",
+   "title": "What shall we do today?",
+   "text": "Start with the bit everyone is excited about. Choose an adventure, add lunch nearby and keep an indoor idea ready if the weather changes.",
+   "cards": [
+    {
+     "title": "Big rides & big smiles",
+     "text": "Make a theme park your main event.",
+     "href": "/theme-parks",
+     "bg": "#DEF3FF",
+     "color": "#075985",
+     "icon": "3a517e_24e8551ba02f4dc581e5e64cf46d079e~mv2.png"
+    },
+    {
+     "title": "Wildlife discoveries",
+     "text": "Explore zoos, wildlife parks and aquariums.",
+     "href": "/zoos",
+     "bg": "#FFE4F0",
+     "color": "#A01859",
+     "icon": "3a517e_3054a97d14e74b0ab796b2a2d02c21ff~mv2.png"
+    },
+    {
+     "title": "Stories worth exploring",
+     "text": "Museums and historic places for a different kind of day.",
+     "href": "/museums",
+     "bg": "#FFF0C4",
+     "color": "#805200",
+     "icon": "3a517e_de3104db094e4ec6bb1b01281836b68b~mv2.png"
+    }
+   ]
+  },
+  {
+   "type": "all2",
+   "title": "Days Out & Attractions in the UK",
+   "collection": "NearbyAttractions",
+   "filter": "",
+   "words": "",
+   "sub": "locationName",
+   "topics": [
+    "All Attractions",
+    "Theme Parks",
+    "Zoos & Wildlife",
+    "Museums",
+    "Historic Sites",
+    "Family Fun",
+    "Tours",
+    "Nature & Outdoors"
+   ],
+   "towns": []
+  },
+  {
+   "type": "tiles",
+   "title": "Explore by category",
+   "button": null,
+   "items": [
+    {
+     "label": "All Attractions",
+     "href": "/attractions",
+     "uri": "3a517e_a78a4bb2d49741e9a62e051fb1ae20ed~mv2.jpg",
+     "w": 2019,
+     "h": 1413
+    },
+    {
+     "label": "Theme Parks",
+     "href": "/theme-parks",
+     "uri": "3a517e_52f2ab8a8deb41ef8536db9dc1568335~mv2.jpg",
+     "w": 1600,
+     "h": 1000
+    },
+    {
+     "label": "Museums",
+     "href": "/museums",
+     "uri": "3a517e_20a2ab540ae74e159286c41bc23b82ff~mv2.jpg",
+     "w": 1600,
+     "h": 1000
+    },
+    {
+     "label": "Historic Sites",
+     "href": "/historical-sites",
+     "uri": "3a517e_b515acb3d9ae4286b860151ab48a14b9~mv2.jpg",
+     "w": 1600,
+     "h": 1000
+    },
+    {
+     "label": "Family Fun",
+     "href": "/family-fun",
+     "uri": "3a517e_a78a4bb2d49741e9a62e051fb1ae20ed~mv2.jpg",
+     "w": 2019,
+     "h": 1413
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "title": "Plan Your Perfect Day Out",
+   "text": "Add places to visit, somewhere to stay and food & drink to your trip.",
+   "button": [
+    "Plan a trip →",
+    "/plan-a-trip"
+   ]
+  }
+ ]
+}
