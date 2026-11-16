@@ -10,7 +10,7 @@ S=open(os.path.join(LB,'structure.jsx')).read(); L=open(os.path.join(LB,'layout.
 oldpid=re.search(r'<Page\s+id="([^"]+)"',S).group(1)
 hdr=re.search(r'<Header_\w+ id="([^"]+)"',S).group(1); ftr=re.search(r'<Footer_\w+ id="([^"]+)"',S).group(1)
 pbg=re.search(r'backgroundLayer=\{\[<Background id="([^"]+)"',S[S.index('<Page'):]).group(1)
-pid='c'+hashlib.md5(slug.encode()).hexdigest()[:4]
+pid=oldpid if C.get('keep_id',True) else 'c'+hashlib.md5(slug.encode()).hexdigest()[:4]
 ROLES={'Venues':'w1piy7m','NearbyAttractions':'v25olth','HotelGuides':'rchxpjc','FoodAndDrink':'ar5gsd0','ClassicFruitMachines':'28pp9fa','Locations':'z42qzjc','AffiliateOffers':'k61pfck'}
 PFX={'Venues':'/venue','NearbyAttractions':'/attraction','HotelGuides':'/hotel','FoodAndDrink':'/food-and-drink','ClassicFruitMachines':'/fruit-machine','Locations':'/destination','AffiliateOffers':'/offer'}
 INK='#102744'; GREY='#536981'; MAG='#A01859'; LIGHTBLUE='#F1FBFF'; PALE='#F5F9FD'; BAR='#00A3E0'
@@ -81,7 +81,7 @@ section('s2',row,grid_ic('s2-ic','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','a
 fill('s2-bg',WHITE)
 gi('intro','1 / 2','1 / 2','1 / 2','1 / 2')
 boxgrid('intro','--spx(5) minmax(0px, 1fr)','auto','--spx(5) minmax(0px, 1fr)','auto',(0,0),(0,0),color=LIGHTBLUE,radius=4)
-gi('in-bar','1 / 2','1 / 2','1 / 2','1 / 2',h='100%',hm='100%',a='stretch',am='stretch'); boxgrid('in-bar','1fr','1fr','1fr','1fr',(0,0),(0,0),color=BAR)
+gi('in-bar','1 / 2','1 / 2','1 / 2','1 / 2',w='--spx(5)',wm='--spx(5)',h='100%',hm='100%',a='stretch',am='stretch'); boxgrid('in-bar','1fr','1fr','1fr','1fr',(0,0),(0,0),color=BAR)
 gi('in-txt','1 / 2','2 / 3','1 / 2','2 / 3')
 boxgrid('in-txt','minmax(0px, 1fr)','auto auto','minmax(0px, 1fr)','auto auto',(20,22,22),(16,16,18),(0,8),(0,6))
 gi('in-h','1 / 2','1 / 2','1 / 2','1 / 2'); font('in-h',36,900,INK,lh=1.1,sizem=27)
@@ -261,6 +261,18 @@ pg=re.sub(r"descriptionSEO: (?:'[^']*'|\"[^\"]*\")",lambda m:"descriptionSEO: "+
 if 'pageUriSEO' not in pg: pg=pg.replace("type: 'Page',","type: 'Page',\n                pageUriSEO: "+json.dumps(slug)+",",1)
 open(os.path.join(out,'structure.jsx'),'w').write('\n'.join(imports)+'\n\n'+pg+'\n'+'\n'.join(secs)+'\n        </Page>\n)\n')
 def ref(w): return f'    --spx-ref-width: {w};\n    --spx-resolver-type: scale;\n'
+def fixcols(t):
+    if not t: return t
+    def rep(m): return ' '.join([m.group(2).strip()]*int(m.group(1)))
+    out=[]
+    for line in t.split('\n'):
+        if line.startswith('grid-template-columns:') or line.startswith('grid-template-rows:'):
+            line=re.sub(r'repeat\((\d+),\s*((?:minmax\([^)]*\)|[^)])*)\)',rep,line)
+            if line.startswith('grid-template-columns:'):
+                line=re.sub(r'(?<![\w-])auto(?![\w-])','max-content',line); line=line.replace('--spx(5)','max-content')
+        out.append(line)
+    return '\n'.join(out)
+lay[:]=[(a,b,c,fixcols(d),fixcols(e)) for a,b,c,d,e in lay]
 o=[];om=[]
 for sel,d,m,ic,icm in lay:
     b_=ref(1280)+''.join('    '+l+'\n' for l in d.split('\n') if l)
