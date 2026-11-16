@@ -18,7 +18,14 @@ def esc(s): return html.escape(s,quote=False)
 def ph(i,h): return {"id":"dataItem-"+i,"type":"Builder.RichText","html":h}
 def rt(i,h): return f'<WRichText id="{i}" className="{i}" richText={{{json.dumps(ph(i,h),ensure_ascii=False)}}} />'
 def lnk(i,href): return {"target":"_self","href":(href if href.startswith('http') else SITE+href),"rel":"noreferrer noopener"}
-def imgd(i,uri,w,h,alt): return {"name":alt[:60] or 'image',"uri":uri,"width":w,"height":h,"alt":alt,"type":"Builder.Image"}
+def imgd(i,uri,w,h,alt):
+    nm=re.sub(r'[^a-z0-9]+','-',(alt or 'image').lower()).strip('-')[:40] or 'image'
+    return {"name":nm,"uri":uri,"width":w,"height":h,"alt":alt,"type":"Builder.Image","url":f"@@URL@@{uri}|{nm}|{w}|{h}@@"}
+def fixurls(t):
+    def rep(m):
+        uri,nm,w,h=m.group(1).split('|')
+        return f"media.getCroppedImageUrl('wix:image://v1/{uri}/{nm}#originWidth={w}&originHeight={h}', 0, 0, 0, 0, {w}, {h}, {{ name: '{nm}', autoEncode: true, devicePixelRatio: 1 }})"
+    return re.sub(r'"@@URL@@([^@"]*)@@"',rep,t)
 def image(i,uri,w,h,alt,href=None):
     l=f' link={{{json.dumps(lnk(i,href))}}}' if href else ''
     return f'<Image id="{i}" className="{i}" displayMode={{"fill"}} image={{{json.dumps(imgd(i,uri,w,h,alt),ensure_ascii=False)}}}{l} />'
@@ -468,7 +475,7 @@ pg=re.sub(r"title: '[^']*'",lambda m:"title: "+json.dumps(C['title']),pg,count=1
 pg=re.sub(r"pageTitleSEO: (?:'[^']*'|\"[^\"]*\")",lambda m:"pageTitleSEO: "+json.dumps(C.get('seo_title',''),ensure_ascii=False),pg,count=1)
 pg=re.sub(r"descriptionSEO: (?:'[^']*'|\"[^\"]*\")",lambda m:"descriptionSEO: "+json.dumps(C.get('seo_description',''),ensure_ascii=False),pg,count=1)
 if 'pageUriSEO' not in pg: pg=pg.replace("type: 'Page',","type: 'Page',\n                pageUriSEO: "+json.dumps(slug)+",",1)
-open(os.path.join(out,'structure.jsx'),'w').write('\n'.join(imports)+'\n\n'+pg+'\n'+'\n'.join(secs)+'\n        </Page>\n)\n')
+open(os.path.join(out,'structure.jsx'),'w').write(fixurls('\n'.join(imports)+'\n\n'+pg+'\n'+'\n'.join(secs)+'\n        </Page>\n)\n'))
 def ref(w): return f'    --spx-ref-width: {w};\n    --spx-resolver-type: scale;\n'
 def fixcols(t):
     if not t: return t
