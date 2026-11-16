@@ -10,7 +10,7 @@ for f in sorted(glob.glob(os.path.join(here,'..','s2data','rmchunk*.txt'))):
     for line in open(f):
         p=line.rstrip('\n').split('\t')
         if len(p)>=3 and p[0] in PFX: RM[p[2].rstrip('/')]=p[0]
-STATIC={'/food-and-drink':'/where-to-eat','/retro-video-games':'/retro-arcades','/beaches':'/seaside','/?raidertube=1':'/','/food-and-drink-hub':'/where-to-eat'}
+STATIC={'/food-and-drink':'/where-to-eat','/?raidertube=1':'/','/food-and-drink-hub':'/where-to-eat'}
 def newpath(h):
     if not h or h.startswith('http') or h.startswith('#') or h.startswith('mailto'): return h
     base,frag=(h.split('#',1)+[''])[:2]
