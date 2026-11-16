@@ -31,6 +31,7 @@ const str = (v: unknown) => (Array.isArray(v) ? v.filter((x) => typeof x === 'st
 const haystack = (r: Row) => [r.displayTitle || r.title || r.name, r.category, r.venueType, r.locationName, r.destination, r.region, r.county, r.manufacturer, r.era].filter(Boolean).map(str).join(' ').toLowerCase();
 const FEATURE_TOPIC = /^(?:Cocktails|Pinball|Social Gaming|Live Events|Retro Games|Walking & Hiking|Nature Reserves|Forests & Woodlands|Parks & Gardens|Countryside|Water Activities|Viewpoints)$/;
 function topicMatch(r: Row, t: string): boolean {
+  t = t.replace(/^18\+\s*/, ''); // "18+ Merkur" filters the same as "Merkur"
   if (/^All /.test(t)) return true;
   const details = FEATURE_TOPIC.test(t) ? [r.shortDescription, str(r.features), str(r.facilities)].filter((v) => typeof v === 'string').join(' ') : '';
   if (t === 'Cocktails' && /\b(?:no|without)\s+(?:\w+\s+){0,2}cocktails?\b|\bcocktails?\s+(?:are\s+)?(?:not|unavailable)\b/i.test(details)) return false;
