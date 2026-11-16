@@ -23,3 +23,13 @@ check near-me, about-us, privacy-policy, terms, responsiblegambling against live
 - Item pages answer 503 (router 400) in the dev preview; check them in the Wix editor preview.
 - Live offer cards open /offers#offer=<id>; new site links to /offer/<slug> pages.
 - Machine reset: clone repo, bash s2gen/setup.sh (node, playwright, pillow, assets).
+
+## Category lists (16 Nov)
+- Category lists (casinos, bowling, holiday parks, arcade bars, bingo, services, cinemas, outdoors) now use the live rule:
+  read Venues, NearbyAttractions, HotelGuides and FoodAndDrink (outdoors: NearbyAttractions + AffiliateOffers) by the page words,
+  keep places with active / directoryReady / cardReady not false and no closed/duplicate status, one card per record.
+- Totals vs live on 16 Nov: casinos 119/119, arcade bars 19/19, bingo 14/14, services 11/11, bowling 151 vs 149-151 (live moves),
+  cinemas 100 vs 99, outdoors 59 vs 58, holiday parks 198 vs 204 (live also shows about 6 affiliate stay offers; its offer rule
+  depends on the live route registry, which the new site does not have).
+- "Explore by destination" grids are on those pages (not AGC, which still uses the older CMS list).
+- Retro Arcades: live has an H1 and a "Help improve this guide" block the new page lacks.
