@@ -1,0 +1,90 @@
+{
+ "crops": {
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_6622,w_482,h_276/t.webp": [
+   "3a517e_a2d9d2866e28438ab8726e74edaf2573~mv2.webp",
+   482,
+   276
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_482,y_6622,w_482,h_276/t.webp": [
+   "3a517e_fa13ba2a211a4ed8a55e72c2056ff71f~mv2.webp",
+   482,
+   276
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_965,y_6622,w_480,h_276/t.webp": [
+   "3a517e_bc72593c38a04f03b3fb225600eca3c2~mv2.webp",
+   480,
+   276
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_1447,y_6622,w_478,h_276/t.webp": [
+   "3a517e_a0421cbe688846c5ba213af6bf286f51~mv2.webp",
+   478,
+   276
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_6898,w_482,h_276/t.webp": [
+   "3a517e_d13e9575ae56462cbebe7e585b8b4118~mv2.webp",
+   482,
+   276
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_482,y_6898,w_482,h_276/t.webp": [
+   "3a517e_afade3554e2d4d57983ce04f3f95e6f4~mv2.webp",
+   482,
+   276
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_7174,w_1054,h_360/plan.webp": [
+   "3a517e_c563a1b75a644d1ab5f6b3810c9fe0ce~mv2.webp",
+   1054,
+   360
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_7534,w_982,h_360/offers.webp": [
+   "3a517e_af8a4345f94945609e029d8e18e41d3f~mv2.webp",
+   982,
+   360
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_7894,w_1049,h_360/join.webp": [
+   "3a517e_2b6d9701bb0246fab98d6b22e57c38d2~mv2.webp",
+   1049,
+   360
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_4068,w_1039,h_322/plan.webp": [
+   "3a517e_564803e082274678b3b60b82963d7d00~mv2.webp",
+   1039,
+   322
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_4390,w_934,h_322/offers.webp": [
+   "3a517e_bf4edc630e0c4ed08ad42c903d946f98~mv2.webp",
+   934,
+   322
+  ],
+  "https://static.wixstatic.com/media/3a517e_526986e7d68344a5becad5b19b3c88a6~mv2.webp/v1/crop/x_0,y_4711,w_1034,h_322/join.webp": [
+   "3a517e_e2ece811c95a4a76b39e089f56fdcdbf~mv2.webp",
+   1034,
+   322
+  ]
+ },
+ "sizes": {
+  "3a517e_5c27ac15e61c4d56bcddfc43dec3b6c8~mv2.webp": [
+   2172,
+   724
+  ],
+  "3a517e_dc56cecd1b9c48d7841a326901bf62ff~mv2.webp": [
+   2172,
+   724
+  ],
+  "3a517e_302220502551491c98f817e44d146973~mv2.jpeg": [
+   1920,
+   1005
+  ],
+  "3a517e_5589c4f0de524487a7c4b4e2061e8ca7~mv2.jpg": [
+   800,
+   600
+  ],
+  "3a517e_725adee95e834e3e8758bb345854b861~mv2.jpg": [
+   1920,
+   1152
+  ],
+  "3a517e_adf02b262d714cb580327dcf5bfad309~mv2.jpg": [
+   1024,
+   768
+  ]
+ }
+}
