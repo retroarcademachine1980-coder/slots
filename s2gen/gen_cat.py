@@ -369,13 +369,12 @@ def do_all2(b,k=0):
          f'<Repeater id="al-rep" className="al-rep" items={{ctx("items", {{ from: useCmsContext }})}} onLoadMore={{callback(ctx("pagination.loadMore", {{ from: useCmsContext }}))}} isLoading={{ctx("pagination.isLoading", {{ from: useCmsContext }})}} renderItem={{item => (\n'
          f'<InternalContainer id="al-card" className="al-card" backgroundLayer={{[{bgc("al-card-bg")}]}}>\n'+'\n'.join(card_kids)+'\n</InternalContainer>\n)}\n'
          f'emptyStateContent={{<InternalContainer id="al-empty" className="al-empty" />}} />\n'
-         f'<Button id="df-more" className="df-more" label={{"Show more →"}} onClick={{callback(ctx("pagination.loadMore", {{ from: useCmsContext }}))}} />\n'
          '</InternalContainer>\n} />\n'+f'</{prov}>')
     head_=[rt('a-h','<h2>'+esc(A['title'])+'</h2>'),
            f'<WRichText id="df-n" className="df-n" richText={{fn(textToRichText, ctx("countText", {{ from: useDirectoryFilter }}), {{ placeholder: {json.dumps(ph("df-n","<p>&nbsp;</p>"))} }})}} />',
            f'<Combobox id="df-sort" className="df-sort" label={{"Sort by"}} value={{ctx("sortValue", {{ from: useDirectoryFilter, placeholder: "name" }})}} options={{[{{ label: "Name A–Z", value: "name" }}, {{ label: "Highest rated", value: "rating" }}]}} onValueChange={{callback(ctx("setSort", {F}))}} />']
     sect=sec(sid,[box('df-side',side)]+head_+[rep])
-    secs.append(f'<DirectoryFilter collection={{{json.dumps(c)}}} baseField={{{json.dumps(A.get("filter") or "")}}} topics={{{json.dumps("|".join(topics),ensure_ascii=False)}}} townField={{{json.dumps(A["sub"])}}} noun={{"places"}}>\n'+sect+'\n</DirectoryFilter>')
+    secs.append(f'<DirectoryFilter collection={{{json.dumps(c)}}} baseField={{{json.dumps(A.get("filter") or "")}}} words={{{json.dumps(A.get("words") or "")}}} topics={{{json.dumps("|".join(topics),ensure_ascii=False)}}} townField={{{json.dumps(A["sub"])}}} noun={{"places"}}>\n'+sect+'\n</DirectoryFilter>')
     Q='minmax(0px, 1fr)'
     section(sid,row,grid_ic(sid+'-ic',' '.join([Q]*4),'auto auto minmax(0px, 1fr)',Q,'auto auto auto auto',(26,40,34),(18,16,24),(26,6),(0,12)))
     fill(sid+'-bg',WHITE)
@@ -402,10 +401,8 @@ def do_all2(b,k=0):
     gi('df-n','2 / 3','2 / 4','2 / 3','1 / 2'); font('df-n',13,600,'#1A73C9',lh=1.3,fam=None)
     gi('df-sort','1 / 3','4 / 5','3 / 4','1 / 2',w='--spx(200)',wm='100%',a='center',am='start',j='end',jm='start')
     gi('df-res','3 / 4','2 / 5','5 / 6','1 / 2')
-    boxgrid('df-res','minmax(0px, 1fr)','auto auto','minmax(0px, 1fr)','auto auto',(0,0),(0,0),(0,18),(0,14))
+    boxgrid('df-res','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(0,0),(0,0),(0,18),(0,14))
     gi('al-rep','1 / 2','1 / 2','1 / 2','1 / 2')
-    gi('df-more','2 / 3','1 / 2','2 / 3','1 / 2',w='auto',wm='auto',j='center',jm='center')
-    pill('df-more',WHITE,INK,size=14,r=6,pad=(10,18),border='1px solid #D2E2F6',shadow=False)
     sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 3;\n    --row-gap: --spx(18);\n    --column-gap: --spx(18);\n    --background-color: transparent;\n}')
     rule('al-card','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(12);\npadding-left: --spx(0);')
     H.bglay('al-card-bg'); fill('al-card-bg',WHITE)

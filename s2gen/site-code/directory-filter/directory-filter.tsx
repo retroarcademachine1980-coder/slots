@@ -27,11 +27,15 @@ const PATTERNS: Record<string, string> = {
 };
 type Row = Record<string, any>;
 const str = (v: unknown) => (Array.isArray(v) ? v.filter((x) => typeof x === 'string').join(' ') : typeof v === 'string' ? v : '');
-const haystack = (r: Row) => [r.title, r.town, r.locationName, r.category, r.routeCategory, r.brand, r.operator, r.shortDescription, r.unifiedSearchText, str(r.tags), str(r.features), str(r.facilities), str(r.searchKeywords)].map(str).join(' ').toLowerCase();
+// Same text the live site searches: name, category, venue type and place.
+const haystack = (r: Row) => [r.displayTitle || r.title || r.name, r.category, r.venueType, r.locationName, r.destination, r.region, r.county].filter(Boolean).map(str).join(' ').toLowerCase();
+const FEATURE_TOPIC = /^(?:Cocktails|Pinball|Social Gaming|Live Events|Retro Games|Walking & Hiking|Nature Reserves|Forests & Woodlands|Parks & Gardens|Countryside|Water Activities|Viewpoints)$/;
 function topicMatch(r: Row, t: string): boolean {
   if (/^All /.test(t)) return true;
+  const details = FEATURE_TOPIC.test(t) ? [r.shortDescription, str(r.features), str(r.facilities)].filter((v) => typeof v === 'string').join(' ') : '';
+  if (t === 'Cocktails' && /\b(?:no|without)\s+(?:\w+\s+){0,2}cocktails?\b|\bcocktails?\s+(?:are\s+)?(?:not|unavailable)\b/i.test(details)) return false;
   const src = PATTERNS[t] || t.replace(/s$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return new RegExp(src, 'i').test(haystack(r));
+  return new RegExp(src, 'i').test(haystack(r) + ' ' + details);
 }
 function facilityMatch(r: Row, f: string): boolean {
   if (f === 'parking') return r.parking === true || r.parkingAvailable === true || r.freeParking === true;
@@ -47,7 +51,7 @@ export interface DirectoryFilterContextType {
   [slot: string]: unknown;
 }
 export interface DirectoryFilterProviderProps {
-  children?: ReactNode; collection: string; baseField?: string; topics?: string; townField?: string; noun?: string;
+  children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string;
 }
 const Ctx = createContext<DirectoryFilterContextType | undefined>(undefined);
 Ctx.displayName = 'DirectoryFilterContext';
@@ -57,7 +61,7 @@ export function useDirectoryFilter(): DirectoryFilterContextType {
   return c;
 }
 
-function DirectoryFilterProvider({ children, collection, baseField, topics, townField, noun }: DirectoryFilterProviderProps): ReactNode {
+function DirectoryFilterProvider({ children, collection, baseField, words, topics, townField, noun }: DirectoryFilterProviderProps): ReactNode {
   const topicList = useMemo(() => (topics || '').split('|').map((s) => s.trim()).filter(Boolean).slice(0, SLOTS), [topics]);
   const tf = townField || 'town';
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -75,21 +79,30 @@ function DirectoryFilterProvider({ children, collection, baseField, topics, town
         let res = await dataItems.query(collection).limit(1000).find();
         all.push(...res.items);
         while (res.hasNext() && all.length < 5000) { res = await res.next(); all.push(...res.items); }
-        if (live) setRows(all.filter((r) => !baseField || (r[baseField] !== undefined && r[baseField] !== null && r[baseField] !== '')));
+        // The live page lists every item whose name, category or venue type mentions one of its words.
+        const ws = (words || '').split('|').map((w) => w.trim().toLowerCase()).filter(Boolean);
+        const seen = new Set<string>();
+        const keep = all.filter((r) => {
+          if (ws.length) { const t = [r.category, r.venueType, r.title, r.name].map(str).join(' ').toLowerCase(); if (!ws.some((w) => t.includes(w))) return false; }
+          else if (baseField && (r[baseField] === undefined || r[baseField] === null || r[baseField] === '')) return false;
+          if (!r.slug && !r._slug && !r['link-' + collection.toLowerCase() + '-title']) { /* still listed: page link comes from the CMS */ }
+          const k = String(r.title || r._id).toLowerCase() + '|' + str(r.locationName || r.town).toLowerCase();
+          if (seen.has(k)) return false; seen.add(k); return true;
+        });
+        if (live) setRows(keep);
       } catch { if (live) setRows(null); }
     })();
     return () => { live = false; };
-  }, [collection, baseField]);
+  }, [collection, baseField, words]);
 
   const matched = useMemo(() => {
     if (!rows) return null;
-    const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    return rows.filter((r) => words.every((w) => haystack(r).includes(w)) && (!town || r[tf] === town) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
+    const qwords = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    return rows.filter((r) => qwords.every((w) => haystack(r).includes(w)) && (!town || r[tf] === town) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
   }, [rows, query, town, picked, fac, tf]);
 
-  const active = !!(query.trim() || town || picked.length || fac.length);
   const baseFilter: Record<string, unknown> = baseField ? { [baseField]: { $isNotEmpty: true } } : {};
-  const filter = active && matched ? { _id: { $hasSome: matched.length ? matched.map((r) => r._id) : ['__none__'] } } : baseFilter;
+  const filter = matched ? (matched.length ? { $or: matched.map((r) => ({ _id: { $eq: r._id } })) } : { _id: { $eq: '__none__' } }) : baseFilter;
   const n = matched ? matched.length : rows ? rows.length : 0;
   const what = noun || 'places';
   const value: DirectoryFilterContextType = {

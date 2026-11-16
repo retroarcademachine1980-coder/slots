@@ -50,6 +50,7 @@ export default extensions.contextProvider({
   data: {
     collection: { dataType: 'text', defaultValue: 'NearbyAttractions', deprecated: false, displayName: 'Collection' },
     baseField: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Only items with this field' },
+    words: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Page words (| separated)' },
     topics: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Categories (| separated)' },
     townField: { dataType: 'text', defaultValue: 'town', deprecated: false, displayName: 'Town field' },
     noun: { dataType: 'text', defaultValue: 'places', deprecated: false, displayName: 'Noun' }
