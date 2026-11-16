@@ -57,6 +57,8 @@ for b in S['blocks']:
         items=[]
         for i in b['items']:
             u,w,h=img(i); items.append({'label':i['label'],'href':newpath(i['href']) if i.get('href') else None,'uri':u,'w':w,'h':h})
+        if not any(i.get('src') or i.get('uri') for i in b['items']):
+            C['blocks'].append({'type':'chips','title':b.get('title') or '','items':[[i['label'],newpath(i['href'])] for i in b['items'] if i.get('href')]}); continue
         C['blocks'].append({'type':'tiles','title':b.get('title') or '','button':[b['button'][0],newpath(b['button'][1])] if b.get('button') else None,'items':items})
     elif t=='featured':
         items=[]

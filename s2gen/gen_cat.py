@@ -243,6 +243,19 @@ def do_promos(b,k=0):
         rule(f'pr{n}','width: 100%;\naspect-ratio: 835 / 482;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nposition: relative;','width: 100%;\naspect-ratio: 835 / 482;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;')
     row+=1
 
+def do_chips(b,k=0):
+    """Live text-only tile rows (e.g. Retro Video Games 'Explore by game era'): heading + link pills."""
+    global row
+    sid=f's{row}'; p=f'ch{k}'
+    M=b['items']; kids=[rt(p+'-h','<h2>'+esc(b.get('title') or '')+'</h2>'),box(p,[button(f'{p}x{n}',t,u) for n,(t,u) in enumerate(M)])]
+    secs.append(sec(sid,kids))
+    section(sid,row,grid_ic(sid+'-ic','minmax(0px, 1fr)','auto auto','minmax(0px, 1fr)','auto auto',(24,40,24),(18,16,18),(0,14),(0,10)))
+    fill(sid+'-bg',WHITE)
+    gi(p+'-h','1 / 2','1 / 2','1 / 2','1 / 2'); font(p+'-h',26,900,INK,lh=1.15,sizem=22)
+    gi(p,'2 / 3','1 / 2','2 / 3','1 / 2'); chipgrid(p,[f'{p}x{n}' for n in range(len(M))],6,2,8,6,justify='start')
+    for n in range(len(M)): pill(f'{p}x{n}',WHITE,INK,size=14,r=999,pad=(8,14),border='1px solid #C9DDF2',shadow=False)
+    row+=1
+
 def do_more(b,k=0):
     global row
     sid=f's{row}'
@@ -473,7 +486,7 @@ def do_ideas(b,k=0):
         gi(f'ic{n}-p','3 / 4','1 / 2','3 / 4','1 / 2'); font(f'ic{n}-p',14,400,'#27425F',lh=1.5,fam=None)
         gi(f'ic{n}-b','4 / 5','1 / 2','4 / 5','1 / 2',w='auto',wm='auto'); pill(f'ic{n}-b','transparent',c['color'],size=14,r=0,pad=(4,0),border='0px solid transparent',shadow=False)
     row+=1
-FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
+FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more,'chips':do_chips}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1
