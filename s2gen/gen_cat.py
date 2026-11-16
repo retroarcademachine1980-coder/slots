@@ -158,15 +158,15 @@ def do_featured(b,k=0):
             rt(f'fc{k}x{n}-t',f'<h4><a href="{SITE}{f["href"]}" target="_self"><span style="color:#102744;">{esc(f["title"])}</span></a></h4>'),rt(f'fc{k}x{n}-s','<p>'+esc(f['town'])+'</p>'),rt(f'fc{k}x{n}-d','<p>'+esc(f['text'])+'</p>'),
             button(f'fc{k}x{n}-b','→',f['href'])]))
     secs.append(sec(sid+'',kids))
-    nF=len(F)
-    section(sid+'',row,grid_ic(sid+'-ic',f'repeat({nF}, minmax(0px, 1fr))','auto auto','minmax(0px, 1fr)','auto auto '+' '.join(['auto']*nF),(26,40,30),(18,16,22),(20,22),(0,14)))
+    nF=len(F); nC=min(b.get('cols') or nF,nF); nR=(nF+nC-1)//nC
+    section(sid+'',row,grid_ic(sid+'-ic',f'repeat({nC}, minmax(0px, 1fr))','auto '+' '.join(['auto']*nR),'minmax(0px, 1fr)','auto auto '+' '.join(['auto']*nF),(26,40,30),(18,16,22),(20,22),(0,14)))
     fill(sid+'-bg',WHITE)
-    rule(f'f{k}-h',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / {nF};\nalign-self: center;\njustify-self: start;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
-    if BT[0]: rule(f'f{k}-v',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: {nF} / {nF+1};\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
+    rule(f'f{k}-h',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / {max(nC,2)};\nalign-self: center;\njustify-self: start;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
+    if BT[0]: rule(f'f{k}-v',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: {nC} / {nC+1};\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
     font(f'f{k}-h',32,900,INK,lh=1.15,sizem=24)
     if BT[0]: pill(f'f{k}-v',WHITE,INK,size=14,r=999,pad=(9,16),border='2px solid #102744',shadow=False)
     for n,f in enumerate(F):
-        gi(f'fc{k}x{n}','2 / 3',f'{n+1} / {n+2}',f'{n+3} / {n+4}','1 / 2',h='100%',a='stretch')
+        gi(f'fc{k}x{n}',f'{2+n//nC} / {3+n//nC}',f'{n%nC+1} / {n%nC+2}',f'{n+3} / {n+4}','1 / 2',h='100%',a='stretch')
         rule(f'fc{k}x{n}-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(16);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);')
         H.bglay(f'fc{k}x{n}-bg'); fill(f'fc{k}x{n}-bg',WHITE)
         sty.append(f'.fc{k}x{n}-ic {{\n'+''.join(f'    --border{k}Radius: 14px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 6px 22px rgba(11, 25, 44, 0.12);\n}')
