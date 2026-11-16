@@ -223,7 +223,7 @@ const TripBuilder: FC<TripBuilderProps> = ({ id, className, mode, town, directio
   function exportPlan() {
     const txt = [plan.tripTitle || 'My next adventure', plan.startDate && `${plan.startDate} to ${plan.endDate || plan.startDate}`, `${plan.people} people · ${plan.days} days · ${plan.nights} nights`, '',
       ...plan.dayStops.flatMap((d, i) => [`Day ${i + 1}`, ...(d.length ? d.map((s) => `- ${s.name}${s.town ? ' (' + s.town + ')' : ''} https://www.spin-raiders.com${s.link}`) : ['- nothing added yet']), '']),
-      'Estimated costs', ...lines.filter(([, v]) => v > 0).map(([k, v]) => `${k}: ${gbp(v)}`), `Total: ${gbp(total)}`, route && `Driving route: ${route}`].filter((x) => x !== false && x !== '').join('\n');
+      'Estimated costs', ...lines.filter(([, v]) => v > 0).map(([k, v]) => `${k}: ${gbp(v)}`), `Total: ${gbp(total)}`, route && `Driving route: ${route}`].filter((x) => typeof x === 'string' && x !== '').join('\n');
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = (plan.tripTitle || 'trip-plan').replace(/[^\w-]+/g, '-') + '.txt'; a.click();
   }
   const numField = (label: string, k: keyof Plan, step = '1') => (
