@@ -7,13 +7,13 @@ export default extensions.contextProvider({
   displayName: "Directory filter",
   context: {
     items: {
-      filter: { dataType: 'data', displayName: 'CMS filter' },
-      sort: { dataType: 'data', displayName: 'CMS sort' },
+      filter: { dataType: 'data', displayName: 'CMS filter', data: { items: {} } },
+      sort: { dataType: 'arrayItems', displayName: 'CMS sort', arrayItems: { item: { dataType: 'data', data: { items: { fieldName: { dataType: 'text', displayName: 'Field' }, order: { dataType: 'text', displayName: 'Order' } } } } } },
       countText: { dataType: 'text', displayName: 'Places found' },
       query: { dataType: 'text', displayName: 'Search text' },
       town: { dataType: 'text', displayName: 'Town' },
       sortValue: { dataType: 'text', displayName: 'Sort' },
-      townOptions: { dataType: 'data', displayName: 'Town options' },
+      townOptions: { dataType: 'arrayItems', displayName: 'Town options', arrayItems: { item: { dataType: 'data', data: { items: { label: { dataType: 'text', displayName: 'Label' }, value: { dataType: 'text', displayName: 'Value' } } } } } },
       toggleTopic: { dataType: 'function', displayName: 'Toggle category', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
       toggleFacility: { dataType: 'function', displayName: 'Toggle facility', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
       setTown: { dataType: 'function', displayName: 'Set town', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
