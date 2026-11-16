@@ -16,7 +16,9 @@ async function heads(p, url) {
         const t = (el.innerText || el.textContent || '').trim();
         if (!t) return;
         const s = el.closest('section');
-        out.push({ t, tag: el.tagName, sec: s ? (s.id || '') + '|' + [...s.classList].join(' ') : '' });
+        const b = el.getBoundingClientRect(); const cs = getComputedStyle(el);
+        const vis = b.width > 2 && b.height > 2 && cs.visibility !== 'hidden' && cs.display !== 'none' && Number(cs.opacity) > 0;
+        out.push({ t, tag: el.tagName, vis, sec: s ? (s.id || '') + '|' + [...s.classList].join(' ') : '' });
       }
     });
     walk(document);
@@ -32,7 +34,7 @@ async function heads(p, url) {
       const neu = await heads(p, PREV + s);
       const txt = norm(await p.evaluate(() => { let t = document.body.innerText; const walk = (r) => r.querySelectorAll('*').forEach(el => { if (el.shadowRoot) { t += ' ' + el.shadowRoot.textContent; walk(el.shadowRoot); } }); walk(document); return t; }));
       const seen = new Set();
-      const miss = live.filter(h => { const n = norm(h.t); if (!n || seen.has(n) || /sr-mega-column|wixui-section/.test(h.sec) || h.sec === '') { seen.add(n); return false; } seen.add(n); return !txt.includes(n); });
+      const miss = live.filter(h => h.vis).filter(h => { const n = norm(h.t); if (!n || seen.has(n) || /sr-mega-column|wixui-section/.test(h.sec) || h.sec === '') { seen.add(n); return false; } seen.add(n); return !txt.includes(n); });
       console.log(`## ${s} live=${live.length} new=${neu.length} missing=${miss.length}`);
       miss.forEach(h => console.log(`   - ${h.tag} "${h.t.slice(0, 70)}" [${h.sec.slice(0, 80)}]`));
     } catch (e) { console.log(`## ${s} ERROR ${e.message.slice(0, 120)}`); }
