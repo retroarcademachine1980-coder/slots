@@ -8,7 +8,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
 for (const slug of slugs) {
   try {
-    await page.goto('https://www.spin-raiders.com/' + slug, { waitUntil: 'networkidle', timeout: 90000 });
+    await page.goto('https://www.spin-raiders.com/' + slug, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.waitForFunction(() => document.getElementById('sr-seaside-root')?.shadowRoot?.getElementById('sr-home-approved-20260921')?.shadowRoot?.querySelector('.sr-page-intro, .chero'), null, { timeout: 60000 });
     const json = await page.evaluate(`(${fnSrc})()`);
     fs.writeFileSync(`${out}/scraped_${slug}.json`, json);
