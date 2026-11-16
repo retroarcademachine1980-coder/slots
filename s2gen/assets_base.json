@@ -1,0 +1,9 @@
+{"sizes": {}, "crops": {
+ "https://static.wixstatic.com/media/3a517e_4edba8c1935e40ff83fd7d836005250b~mv2.webp/v1/crop/x_0,y_2900,w_329,h_355/t.webp": ["3a517e_ec641436bc0e435fa20024103ba9a66c~mv2.webp", 329, 355],
+ "https://static.wixstatic.com/media/3a517e_4edba8c1935e40ff83fd7d836005250b~mv2.webp/v1/crop/x_797,y_2900,w_372,h_355/t.webp": ["3a517e_48875e4bbdfd42ef92b52a7105d07129~mv2.webp", 372, 355],
+ "https://static.wixstatic.com/media/3a517e_4edba8c1935e40ff83fd7d836005250b~mv2.webp/v1/crop/x_0,y_3255,w_398,h_355/t.webp": ["3a517e_f9abc2910f6347eeab440c6790873d81~mv2.webp", 398, 355],
+ "https://static.wixstatic.com/media/3a517e_4edba8c1935e40ff83fd7d836005250b~mv2.webp/v1/crop/x_398,y_3255,w_350,h_355/t.webp": ["3a517e_ede12d4736e64778bb59162f8647c30f~mv2.webp", 350, 355],
+ "https://static.wixstatic.com/media/3a517e_4edba8c1935e40ff83fd7d836005250b~mv2.webp/v1/crop/x_0,y_3610,w_835,h_482/plan.webp": ["3a517e_cf78e8cf6d8b4ee898321f3386fd4ab2~mv2.webp", 835, 482],
+ "https://static.wixstatic.com/media/3a517e_4edba8c1935e40ff83fd7d836005250b~mv2.webp/v1/crop/x_0,y_4093,w_667,h_482/offers.webp": ["3a517e_9a1c19e348ad4460bfe987242479093e~mv2.webp", 667, 482],
+ "https://static.wixstatic.com/media/3a517e_4edba8c1935e40ff83fd7d836005250b~mv2.webp/v1/crop/x_0,y_4575,w_766,h_482/join.webp": ["3a517e_a3db40facbfc44d7abb387a41d92f635~mv2.webp", 766, 482]},
+ "icons": {"arcade": "3a517e_f93c787d83374e768ac1b6a6ce4830a2~mv2.png", "fruit": "3a517e_f69abf28518242e88becd349534332d5~mv2.png", "game": "3a517e_48c1d76248bb4ccd8edc1ebf6e26596e~mv2.png", "adult": "3a517e_07dcbdfcbae34a2687fc30653b0387fb~mv2.png", "pier": "3a517e_2b4792c48be440d9919bf2757730f6e4~mv2.png", "food": "3a517e_d2880beac3d84b26bb9a9eb777fe56be~mv2.png", "map": "3a517e_c97a65e5dae141c98a09cde345da5442~mv2.png"}}

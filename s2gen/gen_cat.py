@@ -98,7 +98,7 @@ def do_strip(b,k=0):
     sid=f's{row}'
     items=b['items']; kids=[]
     for n,it in enumerate(items):
-        kids.append(box(f'cs{n}',[svgimg(f'cs{n}-i',it['icon'],it['href']),rt(f'cs{n}-t',f'<p><a href="{SITE}{it["href"]}" target="_self"><span style="color:#102744;">{esc(it["label"])}</span></a></p>')]))
+        kids.append(box(f'cs{n}',[image(f'cs{n}-i',it['icon'],132,132,it['label'],it['href']),rt(f'cs{n}-t',f'<p><a href="{SITE}{it["href"]}" target="_self"><span style="color:#102744;">{esc(it["label"])}</span></a></p>')]))
     secs.append(sec(sid+'',kids))
     nI=len(items)
     section(sid+'',row,grid_ic(sid+'-ic',f'repeat({nI}, minmax(0px, 1fr))','auto','repeat(3, minmax(0px, 1fr))','auto',(10,0,26),(8,0,18),(0,0),(6,6)))
