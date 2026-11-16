@@ -18,7 +18,7 @@ def esc(s): return html.escape(s,quote=False)
 def ph(i,h): return {"id":"dataItem-"+i,"type":"Builder.RichText","html":h}
 def rt(i,h): return f'<WRichText id="{i}" className="{i}" richText={{{json.dumps(ph(i,h),ensure_ascii=False)}}} />'
 def lnk(i,href): return {"target":"_self","href":(href if href.startswith('http') else SITE+href),"rel":"noreferrer noopener"}
-def imgd(i,uri,w,h,alt): return {"name":alt[:60] or 'image',"uri":uri,"width":w,"height":h,"alt":alt,"type":"Builder.Image","url":"https://static.wixstatic.com/media/"+(uri or "")}
+def imgd(i,uri,w,h,alt): return {"name":alt[:60] or 'image',"uri":uri,"width":w,"height":h,"alt":alt,"type":"Builder.Image"}
 def image(i,uri,w,h,alt,href=None):
     l=f' link={{{json.dumps(lnk(i,href))}}}' if href else ''
     return f'<Image id="{i}" className="{i}" displayMode={{"fill"}} image={{{json.dumps(imgd(i,uri,w,h,alt),ensure_ascii=False)}}}{l} />'
