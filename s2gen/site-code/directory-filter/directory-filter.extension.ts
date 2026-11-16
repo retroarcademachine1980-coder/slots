@@ -7,13 +7,14 @@ export default extensions.contextProvider({
   displayName: "Directory filter",
   context: {
     items: {
-      filter: { dataType: 'data', displayName: 'CMS filter', data: { items: { $or: { dataType: 'arrayItems', displayName: 'Any of', arrayItems: { item: { dataType: 'data', data: { items: { _id: { dataType: 'data', displayName: 'Item', data: { items: { $eq: { dataType: 'text', displayName: 'Equals' } } } } } } } } } } } },
-      sort: { dataType: 'arrayItems', displayName: 'CMS sort', arrayItems: { item: { dataType: 'data', data: { items: { fieldName: { dataType: 'text', displayName: 'Field' }, order: { dataType: 'text', displayName: 'Order' } } } } } },
+      pageItems: { dataType: 'arrayItems', displayName: 'Cards on this page', arrayItems: { item: { dataType: 'data', data: { items: { title: { dataType: 'text', displayName: 'Title' }, town: { dataType: 'text', displayName: 'Town' }, rating: { dataType: 'text', displayName: 'Rating' }, image: { dataType: 'image', displayName: 'Image' }, link: { dataType: 'link', displayName: 'Link' } } } } } },
+      pageText: { dataType: 'text', displayName: 'Page x of y' },
+      prevPage: { dataType: 'function', displayName: 'Previous page', function: {} },
+      nextPage: { dataType: 'function', displayName: 'Next page', function: {} },
       countText: { dataType: 'text', displayName: 'Places found' },
       query: { dataType: 'text', displayName: 'Search text' },
       town: { dataType: 'text', displayName: 'Town' },
       sortValue: { dataType: 'text', displayName: 'Sort' },
-      townOptions: { dataType: 'arrayItems', displayName: 'Town options', arrayItems: { item: { dataType: 'data', data: { items: { label: { dataType: 'text', displayName: 'Label' }, value: { dataType: 'text', displayName: 'Value' } } } } } },
       toggleTopic: { dataType: 'function', displayName: 'Toggle category', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
       toggleFacility: { dataType: 'function', displayName: 'Toggle facility', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
       setTown: { dataType: 'function', displayName: 'Set town', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
@@ -51,6 +52,8 @@ export default extensions.contextProvider({
     collection: { dataType: 'text', defaultValue: 'NearbyAttractions', deprecated: false, displayName: 'Collection' },
     baseField: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Only items with this field' },
     words: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Page words (| separated)' },
+    itemPrefix: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Item page prefix' },
+    pageSize: { dataType: 'number', defaultValue: 6, deprecated: false, displayName: 'Cards per page' },
     topics: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Categories (| separated)' },
     townField: { dataType: 'text', defaultValue: 'town', deprecated: false, displayName: 'Town field' },
     noun: { dataType: 'text', defaultValue: 'places', deprecated: false, displayName: 'Noun' }

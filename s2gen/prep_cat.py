@@ -69,7 +69,8 @@ for b in S['blocks']:
         two=any(x['type']=='iconbtns' for x in C['blocks'])
         tops=[i['label'] for x in C['blocks'] if x['type']=='iconbtns' for i in x['items']]
         WORDS={'outdoors':'Nature|Beach|Garden|Forest|National Park|Country Park|Reserve|Countryside|Walking|Outdoor|Fishing|Fishery|Lake','agc':'Adult Gaming|AGC','arcade-bars':'Arcade Bar|Gaming Bar|Late Lounge|NQ64|Four Quarters|Pixel Bar','holiday-parks':'Holiday Park|Hotel|Camping|Caravan','bowling':'Bowling','cinemas':'Cinema|Cineworld|Odeon|Vue','bingo-halls':'Bingo','services':'Service Station|Motorway Services|Services','casinos':'Casino'}
-        if two: C['blocks'].append({'words':WORDS.get(slug,''),'type':'all2','title':b['title'],'collection':src['collection'],'filter':src.get('filter'),'sub':src.get('sub') or 'town','topics':tops}); continue
+        TW=json.load(open(os.path.join(here,'towns.json'))) if os.path.exists(os.path.join(here,'towns.json')) else {}
+        if two: C['blocks'].append({'towns':TW.get(out_slug,[]),'words':WORDS.get(slug,''),'type':'all2','title':b['title'],'collection':src['collection'],'filter':src.get('filter'),'sub':src.get('sub') or 'town','topics':tops}); continue
         C['blocks'].append({'type':'all','title':b['title'],'button':[b['button'][0],newpath(b['button'][1])] if b.get('button') else None,'collection':src['collection'],'filter':src.get('filter'),'sub':src.get('sub') or 'town'})
     elif t=='editorial':
         if b['html'].strip(): C['blocks'].append({'type':'editorial','html':fixhtml(b['html'])})

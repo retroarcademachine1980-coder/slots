@@ -43,17 +43,19 @@ function facilityMatch(r: Row, f: string): boolean {
   return r[f] === true;
 }
 
+export interface CardImage { name: string; uri: string; width: number; height: number; alt: string; type: string; url: string }
+export interface Card { title: string; town: string; rating: string; image: CardImage; link: { href: string; target: '_self' } }
 export interface DirectoryFilterContextType {
-  filter: { $or: Array<{ _id: { $eq: string } }> };
-  sort: Array<{ fieldName: string; order: 'ASC' | 'DESC' }>;
-  countText: string; query: string; town: string; sortValue: string;
-  townOptions: Array<{ label: string; value: string }>;
+  pageItems: Card[];
+  countText: string; pageText: string; query: string; town: string; sortValue: string;
   toggleTopic: (t: string) => void;
   toggleFacility: (f: string) => void;
   setTown: (t: string) => void;
   setQuery: (q: string) => void;
   setSort: (s: string) => void;
   clearAll: () => void;
+  prevPage: () => void;
+  nextPage: () => void;
   topicLabel0: string;
   topicLabel1: string;
   topicLabel2: string;
@@ -80,8 +82,23 @@ export interface DirectoryFilterContextType {
   facilityLabel3: string;
   facilityLabel4: string;
 }
+function wixImage(v: unknown, alt: string): CardImage {
+  const fallback = '3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg';
+  let uri = fallback, w = 2752, h = 1100;
+  if (typeof v === 'string') {
+    const m = v.match(/^wix:image:\/\/v1\/([^/#]+)[^#]*(?:#originWidth=(\d+)&originHeight=(\d+))?/);
+    if (m) { uri = m[1]; w = Number(m[2]) || 1200; h = Number(m[3]) || 800; }
+  } else if (v && typeof v === 'object' && typeof (v as Row).uri === 'string') { uri = (v as Row).uri; w = (v as Row).width || 1200; h = (v as Row).height || 800; }
+  return { name: 'card', uri, width: w, height: h, alt, type: 'Builder.Image', url: `https://static.wixstatic.com/media/${uri}` };
+}
+const toCard = (prefix: string, tf: string) => (r: Row): Card => {
+  const n = typeof r.publicReviewCount === 'number' ? r.publicReviewCount : 0;
+  const rating = typeof r.publicRating === 'number' && r.publicRating > 0 ? `★ ${r.publicRating.toFixed(1)}${n ? ` (${n.toLocaleString('en-GB')} reviews)` : ''}` : 'No public rating yet.';
+  return { title: String(r.title || ''), town: String(r[tf] || r.locationName || r.town || ''), rating, image: wixImage(r.heroImage, String(r.title || '')), link: { href: `${prefix}/${r._slug || r.slug || ''}`, target: '_self' } };
+};
+
 export interface DirectoryFilterProviderProps {
-  children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string;
+  children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string; itemPrefix?: string; pageSize?: number;
 }
 const Ctx = createContext<DirectoryFilterContextType | undefined>(undefined);
 Ctx.displayName = 'DirectoryFilterContext';
@@ -91,7 +108,7 @@ export function useDirectoryFilter(): DirectoryFilterContextType {
   return c;
 }
 
-function DirectoryFilterProvider({ children, collection, baseField, words, topics, townField, noun }: DirectoryFilterProviderProps): ReactNode {
+function DirectoryFilterProvider({ children, collection, baseField, words, topics, townField, noun, itemPrefix, pageSize }: DirectoryFilterProviderProps): ReactNode {
   const topicList = useMemo(() => (topics || '').split('|').map((s) => s.trim()).filter(Boolean).slice(0, SLOTS), [topics]);
   const tf = townField || 'town';
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -100,6 +117,8 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
   const [town, setTown] = useState('');
   const [query, setQuery] = useState('');
   const [sortValue, setSortValue] = useState('name');
+  const [page, setPage] = useState(1);
+  const per = pageSize && pageSize > 0 ? pageSize : 6;
 
   useEffect(() => {
     let live = true;
@@ -130,17 +149,24 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
     return rows.filter((r) => qwords.every((w) => haystack(r).includes(w)) && (!town || r[tf] === town) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
   }, [rows, query, town, picked, fac, tf]);
 
-  // Always the same shape: any of these item ids (none until the list has loaded).
-  const ids = matched && matched.length ? matched.map((r) => String(r._id)) : ['__none__'];
-  const filter = { $or: ids.map((id) => ({ _id: { $eq: id } })) };
+  const sorted = useMemo(() => {
+    const list = [...(matched || [])];
+    const rated = (r: Row) => (typeof r.publicRating === 'number' && r.publicRating > 0 ? r.publicRating : 0);
+    list.sort((x, y) => (sortValue === 'rating' ? rated(y) - rated(x) : 0) || String(x.title || '').localeCompare(String(y.title || '')));
+    return list;
+  }, [matched, sortValue]);
+  const pages = Math.max(1, Math.ceil(sorted.length / per));
+  const cur = Math.min(page, pages);
+  useEffect(() => { setPage(1); }, [query, town, picked, fac, sortValue]);
   const n = matched ? matched.length : rows ? rows.length : 0;
   const what = noun || 'places';
   const value = {
-    filter,
-    sort: (sortValue === 'rating' ? [{ fieldName: 'publicRating', order: 'DESC' }, { fieldName: 'title', order: 'ASC' }] : [{ fieldName: 'title', order: 'ASC' }]) as DirectoryFilterContextType['sort'],
+    pageItems: sorted.slice((cur - 1) * per, cur * per).map(toCard(itemPrefix || '', tf)),
+    pageText: rows ? `Page ${cur} of ${pages}` : '',
+    prevPage: () => setPage((p) => Math.max(1, p - 1)),
+    nextPage: () => setPage((p) => Math.min(pages, p + 1)),
     countText: rows ? `${n} ${n === 1 ? what.replace(/s$/, '') : what} found` : '',
     query, town, sortValue,
-    townOptions: [{ label: 'All locations', value: '' }, ...Array.from(new Set((rows || []).map((r) => r[tf]).filter((t) => typeof t === 'string' && t))).sort().map((t) => ({ label: t as string, value: t as string }))],
     toggleTopic: (t: string) => setPicked((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t])),
     toggleFacility: (f: string) => setFac((p) => (p.includes(f) ? p.filter((x) => x !== f) : [...p, f])),
     setTown: (t: string) => setTown(t || ''),

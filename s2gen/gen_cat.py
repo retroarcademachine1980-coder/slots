@@ -360,7 +360,8 @@ def do_all2(b,k=0):
         pl=json.dumps(BOX+t,ensure_ascii=False); tv=json.dumps(t,ensure_ascii=False)
         side.append(f'<Button id="df-t{n}" className="df-t{n}" label={{ctx("topicLabel{n}", {{ from: useDirectoryFilter, placeholder: {pl} }})}} onClick={{callback(ctx("toggleTopic", {F}), {tv})}} />')
     side.append(rt('df-r','<h4>▾ Region / town</h4>'))
-    side.append(f'<Combobox id="df-town" className="df-town" placeholder={{"All locations"}} options={{ctx("townOptions", {{ from: useDirectoryFilter, placeholder: [{{ label: "All locations", value: "" }}] }})}} onValueChange={{callback(ctx("setTown", {F}))}} />')
+    topts=json.dumps([{"label":"All locations","value":""}]+[{"label":t,"value":t} for t in (A.get("towns") or [])],ensure_ascii=False)
+    side.append(f'<Combobox id="df-town" className="df-town" placeholder={{"All locations"}} options={{{topts}}} onValueChange={{callback(ctx("setTown", {F}))}} />')
     FN_=['Parking','Wi-Fi','Dog friendly','Accessible entrance','Family friendly']; FV=['parking','wifi','dogFriendly','disabledAccess','familyFriendly']
     for gn,(gt,idx) in enumerate(FAC_GROUPS):
         side.append(rt(f'df-g{gn}',f'<h4>▾ {esc(gt)}</h4>'))
@@ -368,20 +369,24 @@ def do_all2(b,k=0):
             pl=json.dumps(BOX+FN_[i],ensure_ascii=False); fv=json.dumps(FV[i])
             side.append(f'<Button id="df-f{i}" className="df-f{i}" label={{ctx("facilityLabel{i}", {{ from: useDirectoryFilter, placeholder: {pl} }})}} onClick={{callback(ctx("toggleFacility", {F}), {fv})}} />')
     side.append(button('df-map','Explore places on the map →','/map'))
-    card_kids=[f'<Image id="al-img" className="al-img" displayMode={{"fill"}} image={{item.fields.heroImage.value}} />',
-        f'<WRichText id="al-t" className="al-t" richText={{fn(textToRichText, item.fields.title.value, {{ placeholder: {json.dumps(ph("al-t","<h4>Place</h4>"))} }})}} />',
-        f'<WRichText id="al-s" className="al-s" richText={{fn(textToRichText, item.fields.{A["sub"]}.value, {{ placeholder: {json.dumps(ph("al-s","<p>Town</p>"))} }})}} />',
-        f'<Button id="al-b" className="al-b" label={{"View details →"}} link={{item.getPageLink({{ pageRole: {json.dumps(ROLES[c])}, href: {json.dumps(PFX[c])} }})}} />']
-    rep=(f'<{prov} filter={{ctx("filter", {{ from: useDirectoryFilter }})}} sort={{ctx("sort", {{ from: useDirectoryFilter }})}} pageSize={{6}}>\n<BoxContainer id="df-res" className="df-res" children={{\n<InternalContainer id="df-res-ic" className="df-res-ic" backgroundLayer={{[{bgc("df-res-bg")}]}}>\n'
-         f'<Repeater id="al-rep" className="al-rep" items={{ctx("items", {{ from: useCmsContext }})}} onLoadMore={{callback(ctx("pagination.loadMore", {{ from: useCmsContext }}))}} isLoading={{ctx("pagination.isLoading", {{ from: useCmsContext }})}} renderItem={{item => (\n'
+    card_kids=['<Image id="al-img" className="al-img" displayMode={"fill"} image={item.image} />',
+        f'<WRichText id="al-t" className="al-t" richText={{fn(textToRichText, item.title, {{ placeholder: {json.dumps(ph("al-t","<h4>Place</h4>"))} }})}} />',
+        f'<WRichText id="al-s" className="al-s" richText={{fn(textToRichText, item.town, {{ placeholder: {json.dumps(ph("al-s","<p>Town</p>"))} }})}} />',
+        f'<WRichText id="al-r" className="al-r" richText={{fn(textToRichText, item.rating, {{ placeholder: {json.dumps(ph("al-r","<p>&nbsp;</p>"))} }})}} />',
+        '<Button id="al-b" className="al-b" label={"View details →"} link={item.link} />']
+    rep=(f'<BoxContainer id="df-res" className="df-res" children={{\n<InternalContainer id="df-res-ic" className="df-res-ic" backgroundLayer={{[{bgc("df-res-bg")}]}}>\n'
+         f'<Repeater id="al-rep" className="al-rep" items={{ctx("pageItems", {F})}} renderItem={{item => (\n'
          f'<InternalContainer id="al-card" className="al-card" backgroundLayer={{[{bgc("al-card-bg")}]}}>\n'+'\n'.join(card_kids)+'\n</InternalContainer>\n)}\n'
          f'emptyStateContent={{<InternalContainer id="al-empty" className="al-empty" />}} />\n'
-         '</InternalContainer>\n} />\n'+f'</{prov}>')
+         f'<Button id="df-prev" className="df-prev" label={{"← Previous"}} onClick={{callback(ctx("prevPage", {F}))}} />\n'
+         f'<WRichText id="df-pg" className="df-pg" richText={{fn(textToRichText, ctx("pageText", {F}), {{ placeholder: {json.dumps(ph("df-pg","<p>&nbsp;</p>"))} }})}} />\n'
+         f'<Button id="df-next" className="df-next" label={{"Next →"}} onClick={{callback(ctx("nextPage", {F}))}} />\n'
+         '</InternalContainer>\n} />')
     head_=[rt('a-h','<h2>'+esc(A['title'])+'</h2>'),
            f'<WRichText id="df-n" className="df-n" richText={{fn(textToRichText, ctx("countText", {{ from: useDirectoryFilter }}), {{ placeholder: {json.dumps(ph("df-n","<p>&nbsp;</p>"))} }})}} />',
            f'<Combobox id="df-sort" className="df-sort" label={{"Sort by"}} value={{ctx("sortValue", {{ from: useDirectoryFilter, placeholder: "name" }})}} options={{[{{ label: "Name A–Z", value: "name" }}, {{ label: "Highest rated", value: "rating" }}]}} onValueChange={{callback(ctx("setSort", {F}))}} />']
     sect=sec(sid,[box('df-side',side)]+head_+[rep])
-    secs.append(f'<DirectoryFilter collection={{{json.dumps(c)}}} baseField={{{json.dumps(A.get("filter") or "")}}} words={{{json.dumps(A.get("words") or "")}}} topics={{{json.dumps("|".join(topics),ensure_ascii=False)}}} townField={{{json.dumps(A["sub"])}}} noun={{"places"}}>\n'+sect+'\n</DirectoryFilter>')
+    secs.append(f'<DirectoryFilter collection={{{json.dumps(c)}}} baseField={{{json.dumps(A.get("filter") or "")}}} words={{{json.dumps(A.get("words") or "")}}} topics={{{json.dumps("|".join(topics),ensure_ascii=False)}}} townField={{{json.dumps(A["sub"])}}} noun={{"places"}} itemPrefix={{{json.dumps(PFX[c])}}} pageSize={{6}}>\n'+sect+'\n</DirectoryFilter>')
     Q='minmax(0px, 1fr)'
     section(sid,row,grid_ic(sid+'-ic',' '.join([Q]*4),'auto auto minmax(0px, 1fr)',Q,'auto auto auto auto',(26,40,34),(18,16,24),(26,6),(0,12)))
     fill(sid+'-bg',WHITE)
@@ -408,19 +413,22 @@ def do_all2(b,k=0):
     gi('df-n','2 / 3','2 / 4','2 / 3','1 / 2'); font('df-n',13,600,'#1A73C9',lh=1.3,fam=None)
     gi('df-sort','1 / 3','4 / 5','3 / 4','1 / 2',w='--spx(200)',wm='100%',a='center',am='start',j='end',jm='start')
     gi('df-res','3 / 4','2 / 5','5 / 6','1 / 2')
-    boxgrid('df-res','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(0,0),(0,0),(0,18),(0,14))
-    gi('al-rep','1 / 2','1 / 2','1 / 2','1 / 2')
+    boxgrid('df-res','max-content minmax(0px, 1fr) max-content','auto auto','max-content minmax(0px, 1fr) max-content','auto auto',(0,0),(0,0),(12,18),(8,14))
+    gi('al-rep','1 / 2','1 / 4','1 / 2','1 / 4')
+    gi('df-prev','2 / 3','1 / 2','2 / 3','1 / 2',w='auto',wm='auto',a='center',am='center'); pill('df-prev',WHITE,INK,size=14,r=6,pad=(9,16),border='1px solid #D2E2F6',shadow=False)
+    gi('df-pg','2 / 3','2 / 3','2 / 3','2 / 3',a='center',am='center'); font('df-pg',13,600,GREY,lh=1.3,fam=None,align='center')
+    gi('df-next','2 / 3','3 / 4','2 / 3','3 / 4',w='auto',wm='auto',a='center',am='center',j='end',jm='end'); pill('df-next',WHITE,INK,size=14,r=6,pad=(9,16),border='1px solid #D2E2F6',shadow=False)
     sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 3;\n    --row-gap: --spx(18);\n    --column-gap: --spx(18);\n    --background-color: transparent;\n}')
     rule('al-card','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(12);\npadding-left: --spx(0);')
     H.bglay('al-card-bg'); fill('al-card-bg',WHITE)
     sty.append('.al-card {\n'+''.join(f'    --border{k}Radius: 10px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 0px 0px 1px #D2E2F6;\n}')
-    for o,i in enumerate(['al-img','al-t','al-s','al-b']):
+    for o,i in enumerate(['al-img','al-t','al-s','al-r','al-b']):
         if i=='al-img': rule(i,'width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\norder: 1;\nposition: relative;\nmargin-bottom: --spx(10);','width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\norder: 1;\nmargin-bottom: --spx(10);')
         else:
             mb='' if i=='al-b' else '\nmargin-bottom: --spx(4);'
             w='auto' if i=='al-b' else 'calc(100% - --spx(28))'
             rule(i,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nposition: relative;\nmargin-left: --spx(14);\nmargin-right: --spx(14);'+mb,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nmargin-left: --spx(12);\nmargin-right: --spx(12);'+mb)
-    font('al-t',17,900,INK,lh=1.2); font('al-s',13,600,GREY,lh=1.3,fam=None)
+    font('al-t',17,900,INK,lh=1.2); font('al-s',13,600,GREY,lh=1.3,fam=None); font('al-r',13,600,'#B7791F',lh=1.3,fam=None)
     pill('al-b',WHITE,'#1A73C9',size=13,r=4,pad=(2,0),shadow=False)
     rule('al-empty','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);')
     row+=1
@@ -460,7 +468,7 @@ imports=[l for l in S[:S.index('export const Structure')].split('\n') if l.start
 imports+=["import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { SvgImage } from '@origami-wrappers/wixEditorElements/svgimage'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { callback, ctx, fn, svg } from '@wix/origami-runtime'","import { media } from '@wix/sdk'",
     ]
 for _b in C['blocks']:
-    if _b['type'] in ('all','all2'):
+    if _b['type']=='all':
         c=_b['collection']; imports+=[f"import {{ CmsProvider_{c} }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'",f"import {{ useCmsContext }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'"]
 if 'textToRichText' not in '\n'.join(imports):
     tl=[l for l in S.split('\n') if 'textToRichText' in l and l.startswith('import')]
