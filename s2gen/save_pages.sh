@@ -10,4 +10,4 @@ for p in "$@"; do
   rm -rf "$X/packages/site-app/src/pages/$p"; cp -r "packages/site-app/src/pages/$p" "$X/packages/site-app/src/pages/$p"
 done
 npm run lint 2>&1 | grep -v ' warning ' | grep -E ' error |failed|passed' | cut -c1-300 | head -8
-$N $W origami import-site -d $X --json 2>&1 | grep -v '^    at ' | tail -2 | cut -c1-700
+$N $W origami import-site -d $X --json 2>&1 | grep -v '^    at ' | tail -60 | cut -c1-400
