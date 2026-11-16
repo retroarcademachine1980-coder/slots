@@ -137,7 +137,8 @@
    "ready": "directoryReady",
    "per": 12,
    "town_label": "Manufacturer",
-   "town_all": "All manufacturers"
+   "town_all": "All manufacturers",
+   "cols": 3
   },
   {
    "type": "editorial",

@@ -204,7 +204,7 @@ def do_all(b,k=0):
     gi('a-h','1 / 2','1 / 2','1 / 2','1 / 2',a='center',am='center'); font('a-h',32,900,INK,lh=1.15,sizem=24)
     if (A.get('button') or [None])[0]: gi('a-v','1 / 2','2 / 3','2 / 3','1 / 2',w='auto',wm='auto',a='center',am='center',j='end',jm='start'); pill('a-v',WHITE,INK,size=14,r=999,pad=(9,16),border='2px solid #102744',shadow=False)
     gi('al-rep','2 / 3','1 / 3','3 / 4','1 / 2')
-    sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 3;\n    --row-gap: --spx(22);\n    --column-gap: --spx(22);\n    --background-color: transparent;\n}')
+    sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 3;\n    --column-min-width: --spx(220);\n    --row-gap: --spx(22);\n    --column-gap: --spx(22);\n    --background-color: transparent;\n}')
     rule('al-card','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(16);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);')
     H.bglay('al-card-bg'); fill('al-card-bg',WHITE)
     sty.append('.al-card {\n'+''.join(f'    --border{k}Radius: 14px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 6px 22px rgba(11, 25, 44, 0.12);\n}')
@@ -396,18 +396,18 @@ def do_all2(b,k=0):
     r=1
     gi('df-q',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); r+=1
     gi('df-h',f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',a='center',am='center'); font('df-h',20,900,INK,lh=1.2,sizem=18)
-    gi('df-clr',f'{r} / {r+1}','2 / 3',f'{r} / {r+1}','2 / 3',w='auto',wm='auto',a='center',am='center'); pill('df-clr',WHITE,'#1A73C9',size=12,r=4,pad=(2,4),shadow=False); r+=1
+    gi('df-clr',f'{r} / {r+1}','2 / 3',f'{r} / {r+1}','2 / 3',w='auto',wm='auto',a='center',am='center'); pill('df-clr','transparent','#1A73C9',size=12,r=0,pad=(2,0),border='0px solid transparent',shadow=False); r+=1
     def lab(i):
         nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); font(i,14,800,INK,lh=1.3,fam=None); r+=1
     def chk(i):
-        nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='100%',wm='100%'); pill(i,WHITE,INK,size=13,r=0,pad=(2,0),shadow=False); r+=1
+        nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='auto',wm='auto'); pill(i,'transparent',INK,size=13,r=0,pad=(2,0),border='0px solid transparent',shadow=False); sty.append(f'.{i} {{\n    --content-horizontal-alignment: start;\n}}'); r+=1
     lab('df-c')
     for n_ in range(len(topics)): chk(f'df-t{n_}')
     lab('df-r'); gi('df-town',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); r+=1
     for gn,(gt,idx) in enumerate(FAC_GROUPS):
         lab(f'df-g{gn}')
         for i in idx: chk(f'df-f{i}')
-    gi('df-map',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='auto',wm='auto'); pill('df-map',WHITE,'#1A73C9',size=13,r=4,pad=(6,0),shadow=False)
+    gi('df-map',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='auto',wm='auto'); pill('df-map','transparent','#1A73C9',size=13,r=0,pad=(6,0),border='0px solid transparent',shadow=False)
     # results header
     gi('a-h','1 / 2','2 / 4','1 / 2','1 / 2',a='center',am='center'); font('a-h',30,900,INK,lh=1.15,sizem=24)
     gi('df-n','2 / 3','2 / 4','2 / 3','1 / 2'); font('df-n',13,600,'#1A73C9',lh=1.3,fam=None)
@@ -418,7 +418,7 @@ def do_all2(b,k=0):
     gi('df-prev','2 / 3','1 / 2','2 / 3','1 / 2',w='auto',wm='auto',a='center',am='center'); pill('df-prev',WHITE,INK,size=14,r=6,pad=(9,16),border='1px solid #D2E2F6',shadow=False)
     gi('df-pg','2 / 3','2 / 3','2 / 3','2 / 3',a='center',am='center'); font('df-pg',13,600,GREY,lh=1.3,fam=None,align='center')
     gi('df-next','2 / 3','3 / 4','2 / 3','3 / 4',w='auto',wm='auto',a='center',am='center',j='end',jm='end'); pill('df-next',WHITE,INK,size=14,r=6,pad=(9,16),border='1px solid #D2E2F6',shadow=False)
-    sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 3;\n    --row-gap: --spx(18);\n    --column-gap: --spx(18);\n    --background-color: transparent;\n}')
+    sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: '+str(A.get('cols',3))+';\n    --column-min-width: --spx(180);\n    --row-gap: --spx(18);\n    --column-gap: --spx(18);\n    --background-color: transparent;\n}')
     rule('al-card','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(12);\npadding-left: --spx(0);')
     H.bglay('al-card-bg'); fill('al-card-bg',WHITE)
     sty.append('.al-card {\n'+''.join(f'    --border{k}Radius: 10px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 0px 0px 1px #D2E2F6;\n}')
@@ -429,7 +429,7 @@ def do_all2(b,k=0):
             w='auto' if i=='al-b' else 'calc(100% - --spx(28))'
             rule(i,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nposition: relative;\nmargin-left: --spx(14);\nmargin-right: --spx(14);'+mb,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nmargin-left: --spx(12);\nmargin-right: --spx(12);'+mb)
     font('al-t',17,900,INK,lh=1.2); font('al-s',13,600,GREY,lh=1.3,fam=None); font('al-r',13,600,'#B7791F',lh=1.3,fam=None)
-    pill('al-b',WHITE,'#1A73C9',size=13,r=4,pad=(2,0),shadow=False)
+    pill('al-b','transparent','#1A73C9',size=13,r=0,pad=(2,0),border='0px solid transparent',shadow=False)
     rule('al-empty','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);')
     row+=1
 def do_ideas(b,k=0):
