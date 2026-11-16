@@ -33,3 +33,13 @@ check near-me, about-us, privacy-policy, terms, responsiblegambling against live
   depends on the live route registry, which the new site does not have).
 - "Explore by destination" grids are on those pages (not AGC, which still uses the older CMS list).
 - Retro Arcades: live has an H1 and a "Help improve this guide" block the new page lacks.
+
+## Page sweep, evening 16 Nov
+- Casino reviews: All British Casino now has the live Final Verdict (9.7/10) and all 11 FAQ answers; Mr Vegas Pros/Cons/Verdict;
+  review H1s read as live; "More ways to spend your day" added to the 6 casino pages and £500 jackpot. Affiliate buttons untouched (2 per review page).
+- AGC and £500 jackpot: live list (845 / 847), Explore by category tiles (live: Luxury Leisure tile has no matches on live either) and Explore by destination.
+- Fishing lakes: live golf & fishing list (14), Plan your country escape, More golf, fishing & country ideas. The live "Country stays, golf & fishing offers"
+  block shows no offers today, so it was left out.
+- Not copied: casino-offers "Popular casino categories" (image-only tiles that jump to #all on live); home "See the arcade. Before you travel."
+  (lazy section, not found by the scraper yet); classic fruit machine list is paginated differently (live 24 per page, new 6) but holds the same machines.
+- Import rejects new attributes on site-code providers: carry new DirectoryFilter settings in baseField "@live:…" and readyField "@type:…" / "@agconly".
