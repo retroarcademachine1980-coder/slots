@@ -15,7 +15,10 @@
    "h2": "Real machines. Real logos. Real nostalgia.",
    "sub": "Browse classic fruit machines by logo, manufacturer and era. From Barcrest and JPM to Astra, Maygay/BWB, Red Gaming and more.",
    "badge": false,
-   "search": "Search by machine name, manufacturer or year…"
+   "search": "Search by machine name, manufacturer or year…",
+   "title_box": true,
+   "title_hi": "Machine Archive",
+   "h2_pill": true
   },
   {
    "type": "iconbtns",

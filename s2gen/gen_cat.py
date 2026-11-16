@@ -320,8 +320,12 @@ def do_cta(b,k=0):
 def do_hero3(b,k=0):
     global row
     sid=f's{row}'
-    left=[rt('h3t','<h1>'+esc(b['title'])+'</h1>'),rt('h3d','<p>'+esc(b['desc'])+'</p>')]
-    if b.get('h2'): left.append(rt('h3h','<h2>'+esc(b['h2'])+'</h2>'))
+    hi=b.get('title_hi') or ''
+    th=esc(b['title'])
+    if hi and b['title'].endswith(hi): th=esc(b['title'][:-len(hi)])+'<span style="color:#FFC933;">'+esc(hi)+'</span>'
+    tnode=box('h3tb',[rt('h3t','<h1>'+th+'</h1>')]) if b.get('title_box') else rt('h3t','<h1>'+th+'</h1>')
+    left=[tnode,rt('h3d','<p>'+esc(b['desc'])+'</p>')]
+    if b.get('h2'): left.append(box('h3hb',[rt('h3h','<h2>'+esc(b['h2'])+'</h2>')]) if b.get('h2_pill') else rt('h3h','<h2>'+esc(b['h2'])+'</h2>'))
     if b.get('sub'): left.append(rt('h3s','<p>'+esc(b['sub'])+'</p>'))
     if b.get('badge'): left.append(box('h3b',[rt('h3b-t','<p>18+</p>')]))
     left.append(box('h3q',[rt('h3q-t','<p>'+esc(b['search'])+'</p>'),button('h3q-b','Search →','/search')]))
@@ -333,9 +337,20 @@ def do_hero3(b,k=0):
     r=1
     def nxt(i,**kw):
         nonlocal r; gi(i,f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',**kw); r+=1
-    nxt('h3t'); font('h3t',44,900,WHITE,lh=1.15,sizem=30); sty.append('.h3t {\n    text-transform: uppercase;\n}')
+    if b.get('title_box'):
+        nxt('h3tb',w='auto',wm='auto')
+        boxgrid('h3tb','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(12,18),(10,14),color='rgba(11, 31, 58, 0.93)',radius=4,shadow='5px 6px 0px 0px #FFC933')
+        gi('h3t','1 / 2','1 / 2','1 / 2','1 / 2')
+    else: nxt('h3t')
+    font('h3t',44,900,WHITE,lh=1.1,sizem=30); sty.append('.h3t {\n    text-transform: uppercase;\n}')
     nxt('h3d'); font('h3d',16,500,WHITE,lh=1.7,fam=None)
-    if b.get('h2'): nxt('h3h'); font('h3h',15,900,WHITE,lh=1.3,fam=None); sty.append('.h3h {\n    text-transform: uppercase;\n}')
+    if b.get('h2'):
+        if b.get('h2_pill'):
+            nxt('h3hb',w='auto',wm='auto')
+            boxgrid('h3hb','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(7,14),(6,12),color='#E0247A',radius=3)
+            gi('h3h','1 / 2','1 / 2','1 / 2','1 / 2')
+        else: nxt('h3h')
+        font('h3h',15,900,WHITE,lh=1.3,fam=None); sty.append('.h3h {\n    text-transform: uppercase;\n}')
     if b.get('sub'): nxt('h3s'); font('h3s',16,500,WHITE,lh=1.7,fam=None)
     if b.get('badge'):
         nxt('h3b',w='--spx(40)',wm='--spx(36)')
