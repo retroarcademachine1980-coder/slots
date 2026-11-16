@@ -175,8 +175,8 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
       try {
         // Live mode is written into the existing settings so saved pages need no new attributes:
         // baseField "@live:Venues|NearbyAttractions" and readyField "@type:cinemas" (both optional).
-        const liveSrc = (baseField || '').startsWith('@live:') ? baseField!.slice(6) : (sources || '');
-        const liveType = (readyField || '').startsWith('@type:') ? readyField!.slice(6) : (onlyType || '');
+        const liveSrc = (baseField || '').startsWith('@live:') ? String(baseField).slice(6) : (sources || '');
+        const liveType = (readyField || '').startsWith('@type:') ? String(readyField).slice(6) : (onlyType || '');
         const srcs = liveSrc.split('|').map((x) => x.trim()).filter(Boolean);
         if (srcs.length) {
           const ws0 = (words || '').split('|').map((w) => w.trim()).filter(Boolean);
