@@ -33,7 +33,8 @@ hubcfg={}
 for f in glob.glob(os.path.join(here,'hub_*.json')):
     j=json.load(open(f)); hubcfg[j['slug']]=j
 slug=S['slug']
-C={'slug':slug,'title':S['title'].split('|')[0].strip(),'seo_title':S['title'],'seo_description':S.get('seo_description',''),'blocks':[]}
+out_slug=sys.argv[4] if len(sys.argv)>4 else slug
+C={'slug':out_slug,'title':S['title'].split('|')[0].strip(),'seo_title':S['title'],'seo_description':S.get('seo_description',''),'blocks':[]}
 for b in S['blocks']:
     t=b['type']
     if t=='hero':
