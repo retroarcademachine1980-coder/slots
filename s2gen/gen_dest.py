@@ -51,7 +51,7 @@ NAVY='#0B2545'; YEL='#FFE455'; T2='#243B55'
 def ptxt(i,key,phh): return f'<WRichText id="{i}" className="{i}" richText={{fn(textToRichText, ctx({json.dumps(key)}, {TP}), {{ placeholder: {json.dumps(ph(i,phh),ensure_ascii=False)} }})}} />'
 # ---- s1 town photo banner, fuel link, search, quick towns
 CH=[('Blackpool','/destination/blackpool'),('Skegness','/destination/skegness'),('Great Yarmouth','/destination/great-yarmouth'),('Southend','/destination/southend-on-sea'),('Hotels','/places-to-stay'),('Arcades','/arcade')]
-secs.append(sec('s1',[bimg('h-img','heroImage'),sbtn('h-fuel','Compare local fuel prices ↓','/plan-a-trip'),box('h-sb',[sbtn('h-q','Search for a town, venue or attraction…','/search'),sbtn('h-go','Search →','/search')])]+[sbtn(f'h-c{n}',t,u) for n,(t,u) in enumerate(CH)]))
+secs.append(sec('s1',[bimg('h-img','heroImage'),sbtn('h-fuel','Compare local fuel prices ↓','/plan-a-trip#fuel-prices'),box('h-sb',[sbtn('h-q','Search for a town, venue or attraction…','/search'),sbtn('h-go','Search →','/search')])]+[sbtn(f'h-c{n}',t,u) for n,(t,u) in enumerate(CH)]))
 NC=len(CH)
 section('s1',2,grid_ic('s1-ic','minmax(0px, 1fr) '+' '.join(['max-content']*NC)+' minmax(0px, 1fr)','minmax(0px, 1fr) auto auto auto','minmax(0px, 1fr) minmax(0px, 1fr) minmax(0px, 1fr)','minmax(0px, 1fr) auto auto auto auto',(0,0,0),(0,0,0),(8,14),(8,10)),minh=700,minhm=440)
 fill('s1-bg','#103958')
@@ -151,18 +151,23 @@ for o,i in enumerate(['al-img','al-t','al-s','al-r','al-b']):
 font('al-t',18,800,'#080E53',lh=1.2); font('al-s',13,400,'#12347B',lh=1.3); font('al-r',13,400,'#12347B',lh=1.3)
 pill('al-b','transparent','#006BFF',size=13,r=0,pad=(2,0),border=NOB,weight=600)
 rule('al-empty','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);')
-# ---- s6 more ways to spend your day (live list)
-EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Museums','/museums'),('Historic places','/historical-sites'),('Beaches','/beaches'),('Piers','/piers'),('Outdoors','/outdoors'),('Hidden gems','/hidden-gems'),('Cinema','/cinemas'),('Bowling','/bowling'),('Fishing','/fishing-lakes'),('Holiday parks','/holiday-parks'),('Retro games','/retro-video-games'),('Arcade bars','/arcade-bars'),('Adult gaming centres','/agc'),('Fruit Machine Archive','/classic-fruit-machines'),('Offers','/offers'),('Plan a trip','/plan-a-trip'),('Fuel prices','/plan-a-trip')]
-secs.append(sec('s6',[rt('x-h','<h2>More ways to spend your day</h2>')]+[sbtn(f'x{n}',t,u) for n,(t,u) in enumerate(EX)]))
+# ---- s6 fuel for the journey (live town fuel prices, from the trip builder component)
+secs.append(sec('s6',['<TripBuilder id="fz" className="fz" mode={"fuel"} town={ctx("currentItem.fields.title.value", { from: useCmsContext })} />']))
+section('s6',7,grid_ic('s6-ic','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(10,20,30),(10,12,20),(0,0),(0,0)))
+fill('s6-bg',WHITE)
+gi('fz','1 / 2','1 / 2','1 / 2','1 / 2')
+# ---- s7 more ways to spend your day (live list)
+EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Museums','/museums'),('Historic places','/historical-sites'),('Beaches','/beaches'),('Piers','/piers'),('Outdoors','/outdoors'),('Hidden gems','/hidden-gems'),('Cinema','/cinemas'),('Bowling','/bowling'),('Fishing','/fishing-lakes'),('Holiday parks','/holiday-parks'),('Retro games','/retro-video-games'),('Arcade bars','/arcade-bars'),('Adult gaming centres','/agc'),('Fruit Machine Archive','/classic-fruit-machines'),('Offers','/offers'),('Plan a trip','/plan-a-trip'),('Fuel prices','/plan-a-trip#fuel-prices')]
+secs.append(sec('s7',[rt('x-h','<h2>More ways to spend your day</h2>')]+[sbtn(f'x{n}',t,u) for n,(t,u) in enumerate(EX)]))
 C=4; R=(len(EX)+C-1)//C; CM=2; RM=(len(EX)+CM-1)//CM
-section('s6',7,grid_ic('s6-ic',' '.join([Q]*C),' '.join(['auto']*(R+1)),' '.join([Q]*CM),' '.join(['auto']*(RM+1)),(24,24,40),(18,16,30),(32,6),(8,6)))
-fill('s6-bg','#F5F9FD')
+section('s7',8,grid_ic('s7-ic',' '.join([Q]*C),' '.join(['auto']*(R+1)),' '.join([Q]*CM),' '.join(['auto']*(RM+1)),(24,24,40),(18,16,30),(32,6),(8,6)))
+fill('s7-bg','#F5F9FD')
 gi('x-h','1 / 2',f'1 / {C+1}','1 / 2',f'1 / {CM+1}'); font('x-h',27,900,'#0B192C',lh=1.2)
 for n in range(len(EX)):
     gi(f'x{n}',f'{n//C+2} / {n//C+3}',f'{n%C+1} / {n%C+2}',f'{n//CM+2} / {n//CM+3}',f'{n%CM+1} / {n%CM+2}',w='100%',wm='100%')
     pill(f'x{n}','transparent','#174B7C',size=14,r=0,pad=(8,0),border=NOB,weight=500)
 # wrap every section after the banner in the town provider
-NS=6
+NS=7
 # ---- write
 def keep(ids):
     o=[]
@@ -173,9 +178,9 @@ base=keep([pid,hdr,ftr,pbg])
 base=re.sub(r'(\.'+re.escape(pid)+r' \{.*?grid-template-rows: )[^;\n]*',r'\1'+' '.join(['auto']*(NS+2)),base,flags=re.S)
 base=re.sub(r'(\.'+re.escape(ftr)+r' \{.*?grid-row: )[^;\n]*',r'\g<1>'+f'{NS+2} / {NS+3}',base,flags=re.S)
 head=S[:S.index('export const Structure')]
-need=["import TownPlaces, { useTownPlaces } from '@site/site-code/townPlaces'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { media } from '@wix/sdk'"]
+need=["import TownPlaces, { useTownPlaces } from '@site/site-code/townPlaces'","import TripBuilder from '@site/site-code/TripBuilder'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { media } from '@wix/sdk'"]
 hl=[l for l in head.split('\n') if not any(x in l for x in ['/line\'','/svgimage\'','{ svg }'])]
-hl=[l for l in hl if 'townPlaces' not in l and '/repeater\'' not in l]
+hl=[l for l in hl if 'townPlaces' not in l and 'TripBuilder' not in l and '/repeater\'' not in l]
 for n_ in need:
     if not any(n_.split(' from ')[1] in l for l in hl): hl.append(n_)
 hl=[("import { callback, ctx, fn } from '@wix/origami-runtime'" if "'@wix/origami-runtime'" in l else l) for l in hl]
