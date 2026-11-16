@@ -5,6 +5,7 @@ const norm = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 async function heads(p, url) {
   await p.goto(url, { waitUntil: 'load', timeout: 90000 });
   await p.waitForTimeout(8000);
+  for (let k = 0; k < 2 && !(await p.evaluate(() => document.body.innerText.trim().length)); k++) { await p.reload({ waitUntil: 'load', timeout: 90000 }); await p.waitForTimeout(15000); }
   for (let y = 0; y < 16000; y += 800) { await p.mouse.wheel(0, 800); await p.waitForTimeout(150); }
   await p.waitForTimeout(1500);
   return p.evaluate(() => {
