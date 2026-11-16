@@ -699,7 +699,7 @@ for _b in C['blocks']:
         c=_b['collection']; imports+=[f"import {{ CmsProvider_{c} }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'",f"import {{ useCmsContext }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'"]
 if 'textToRichText' not in '\n'.join(imports):
     tl=[l for l in S.split('\n') if 'textToRichText' in l and l.startswith('import')]
-    imports+=tl
+    imports+=tl or ["import { textToRichText } from '@origami-wrappers/viewer_core_services/datatypeconversions'"]
 if any(_b['type']=='all2' for _b in C['blocks']):
     imports+=["import DirectoryFilter from '@site/site-code/directoryFilter'","import { useDirectoryFilter } from '@site/site-code/directoryFilter'","import { TextField } from '@origami-wrappers/wixEditorElements/textfield'","import { Combobox } from '@origami-wrappers/wixEditorElements/combobox'"]
 if any(_b['type']=='tripbuilder' for _b in C['blocks']): imports+=["import TripBuilder from '@site/site-code/TripBuilder'"]
