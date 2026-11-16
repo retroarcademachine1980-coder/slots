@@ -1,0 +1,294 @@
+{
+ "slug": "arcade",
+ "title": "Arcades",
+ "seo_title": "Arcades | Spin Raiders",
+ "seo_description": "Iconic arcades, classic games and family fun at the UK’s best seaside destinations.",
+ "hero": {
+  "uri": "3a517e_a2b890d03b134c7db50348b3888ff5cf~mv2.webp",
+  "w": 2400,
+  "h": 800,
+  "alt": "Arcades – games, prizes and family fun"
+ },
+ "search_text": "Search arcades, towns or something to do…",
+ "towns": [
+  [
+   "Blackpool",
+   "/destination/blackpool"
+  ],
+  [
+   "Southport",
+   "/destination/southport"
+  ],
+  [
+   "Great Yarmouth",
+   "/destination/great-yarmouth"
+  ],
+  [
+   "Skegness",
+   "/destination/skegness"
+  ],
+  [
+   "Brighton",
+   "/destination/brighton"
+  ],
+  [
+   "⌖ Near me",
+   "/map"
+  ]
+ ],
+ "h1": "UK amusement arcades and places to play",
+ "intro": "Lights, games and somebody who is certain they can win that cuddly toy. Find seaside amusements, family arcades and other gaming venues around the UK. Open a venue card for its own guide, and check the venue type before taking children. There is always room for a little play time.",
+ "strip": [
+  {
+   "label": "Arcades",
+   "href": "/arcade",
+   "icon": "3a517e_ede2931e745e491a9df89788b03f2460.svg",
+   "on": true
+  },
+  {
+   "label": "Family Arcades",
+   "href": "/arcade",
+   "icon": "3a517e_ede2931e745e491a9df89788b03f2460.svg"
+  },
+  {
+   "label": "Classic Fruit Machines",
+   "href": "/classic-fruit-machines",
+   "icon": "3a517e_a34deb0beeba43a69cbaf24900136955.svg"
+  },
+  {
+   "label": "Retro Video Games",
+   "href": "/retro-arcades",
+   "icon": "3a517e_7ceff2be4ccc466ba051386806786dd0.svg"
+  },
+  {
+   "label": "AGC (Adult Gaming)",
+   "href": "/agc",
+   "icon": "3a517e_a998eff18806493c8fb64f4e8f0babc0.svg"
+  },
+  {
+   "label": "Arcade Bars",
+   "href": "/arcade-bars",
+   "icon": "3a517e_7ceff2be4ccc466ba051386806786dd0.svg"
+  },
+  {
+   "label": "Piers & Promenades",
+   "href": "/piers",
+   "icon": "3a517e_443b335d9679476e8762bfe1c6edbdb7.svg"
+  },
+  {
+   "label": "Food & Drink",
+   "href": "/where-to-eat",
+   "icon": "3a517e_ceeb7eca5f944bd7aa06bcb3c414ebd4.svg"
+  },
+  {
+   "label": "Plan a Trip",
+   "href": "/plan-a-trip",
+   "icon": "3a517e_05b82440c6fc4688b98e2f2584500531.svg"
+  }
+ ],
+ "tiles_title": "Explore arcades by type",
+ "tiles_all": "/arcade",
+ "tiles": [
+  {
+   "label": "Family Arcades",
+   "href": "/arcade",
+   "uri": "3a517e_ec641436bc0e435fa20024103ba9a66c~mv2.webp",
+   "w": 329,
+   "h": 355
+  },
+  {
+   "label": "Classic Fruit Machines",
+   "href": "/classic-fruit-machines",
+   "uri": "3a517e_36eefd9f515b4f9183c46d4ef64eff48~mv2.png",
+   "w": 2048,
+   "h": 1153
+  },
+  {
+   "label": "Retro Video Games",
+   "href": "/retro-arcades",
+   "uri": "3a517e_48875e4bbdfd42ef92b52a7105d07129~mv2.webp",
+   "w": 372,
+   "h": 355
+  },
+  {
+   "label": "AGC (Adult Gaming Centres)",
+   "href": "/agc",
+   "uri": "3a517e_d1cb49916ad44bb18041dc2bbc3680f3~mv2.jpg",
+   "w": 1980,
+   "h": 1485
+  },
+  {
+   "label": "Arcade Bars",
+   "href": "/arcade-bars",
+   "uri": "3a517e_f9abc2910f6347eeab440c6790873d81~mv2.webp",
+   "w": 398,
+   "h": 355
+  },
+  {
+   "label": "Seaside Arcades",
+   "href": "/arcade",
+   "uri": "3a517e_ede12d4736e64778bb59162f8647c30f~mv2.webp",
+   "w": 350,
+   "h": 355
+  }
+ ],
+ "featured_title": "Featured arcades",
+ "featured_all": "/arcade",
+ "featured": [
+  {
+   "kicker": "EXPLORE",
+   "title": "Silcocks Family Arcade and Late Lounge",
+   "town": "Southport",
+   "text": "We visited Silcock’s Late Lounge on Nevill Street and found older fruit machines, newer cabinets and a lovely welcome from the staff — drinks, biscuits and plenty to look round. My Raider Score is 4.7/5 for the September 2026 lounge visit. The wider premises have family amusements; the Late Lounge is strictly 18+.",
+   "href": "/venue/silcocks-amusements-and-late-lounge-southport",
+   "uri": "3a517e_03dd7bf9188942088a3a691cfe75ee76~mv2.png",
+   "w": 1672,
+   "h": 941,
+   "alt": "Silcock's Amusements & Late Lounge, 36-40 Nevill Street, Southport exterior"
+  },
+  {
+   "kicker": "DISCOVER",
+   "title": "Golden Sands Amusements - Seaton Carew",
+   "town": "Seaton Carew",
+   "text": "Seaton Carew's big seafront arcade: 2p pushers, Pac-Man, pool and Kidzone go-karts, with Talk of the Town's prize shop a few doors down.",
+   "href": "/venue/golden-sands-amusements-seaton-carew",
+   "uri": "3a517e_407ff834b8884746ada80d0674cd53dc~mv2.jpg",
+   "w": 1000,
+   "h": 666,
+   "alt": "Ernie Nichols Golden Sands amusement arcade exterior on The Front, Seaton Carew"
+  },
+  {
+   "kicker": "PLAN A VISIT",
+   "title": "Golden Sands Amusements",
+   "town": "Hunstanton",
+   "text": "Family-run South Beach Road arcade rated 4.7 on Google for friendly owners, fair ticket payouts and a strong line of £5 fruit machines.",
+   "href": "/venue/golden-sands-hunstanton",
+   "uri": "3a517e_c7fb6003ff1b4379a4beeb89026d7361~mv2.webp",
+   "w": 880,
+   "h": 680,
+   "alt": "Golden Sands Amusements entrance and illuminated sign on South Beach Road, Hunstanton"
+  },
+  {
+   "kicker": "FIND OUT MORE",
+   "title": "Circus Circus Amusements",
+   "town": "Southend-on-Sea",
+   "text": "The old Sunspot at the foot of Pier Hill, now one huge fairground-lit arcade: 2p and 10p pushers, stacks of ticket games, £5 fruities and an adults' lounge.",
+   "href": "/venue/circus-circus-amusements-southend-on-sea",
+   "uri": "3a517e_b8302628a14b4aa8aeb3a6b126c6b387~mv2.webp",
+   "w": 880,
+   "h": 680,
+   "alt": "Circus Circus Amusements — Southend-on-Sea"
+  }
+ ],
+ "all": {
+  "title": "All arcades",
+  "button": [
+   "AGC venues →",
+   "/agc"
+  ],
+  "collection": "Venues",
+  "filter": "urlArcadeA",
+  "sub": "town"
+ },
+ "editorial_html": "<h2>Lights, laughs and a little time to play</h2><p>You hear it before you see it: the games, the coins and somebody having a very good go at something. UK amusement arcades make a fun stop on a seaside day or a trip into town. Browse the venue guides and see where you fancy a look round. Family amusements and adult-only venues are different places, so choose the one that suits your group. Add the beach, a food stop or another attraction and make a day of it.</p><h3>What you'll find inside</h3><ul><li><p><strong>Coin pushers</strong> – the classic 2p and 10p falls, often stacked with novelty prizes, keyrings and tokens.</p></li><li><p><strong>Cranes and prize machines</strong> – grabbers, stackers and \"win every time\" machines with plush toys and gadgets.</p></li><li><p><strong>Ticket games</strong> – skee-ball, wheel spinners and video redemption games that spit out tickets you swap at the prize counter.</p></li><li><p><strong>Video games and simulators</strong> – racing cabinets, shooting games, air hockey and basketball hoops.</p></li><li><p><strong>Retro corners</strong> – plenty of seaside arcades keep a few vintage cabinets or old-school pushers for the nostalgia crowd.</p></li></ul><h3>Picking the right arcade for your crowd</h3><p>Got little ones? Look for a family arcade with a clear prize counter and plenty of low-stake pushers. Teenagers usually head straight for the driving games and dance machines. Big kids who grew up in the eighties might fancy a town with a dedicated retro room. Most arcades are indoors, which makes them a lifesaver when the British weather turns, and the bigger seaside halls are usually step-free with wide aisles, though older buildings can be a squeeze.</p><p>Famous arcade towns include Blackpool, Great Yarmouth, Skegness, Cleethorpes, Scarborough, Southend, Margate and Weston-super-Mare, where the seafront is practically one long run of flashing lights.</p><h3>Tips for getting the most from your coppers</h3><ul><li><p>Set a spending pot before you go in and split it into bags for the kids – it stops the \"just one more go\" spiral.</p></li><li><p>Bring a pouch of 2p coins, although most places have change machines and many now take cards on token systems.</p></li><li><p>Save tickets across visits: plenty of arcades let you keep a ticket card, so you can build up to the big prize.</p></li><li><p>Go early on a sunny day or late afternoon on a rainy one – that's when everyone else piles in.</p></li><li><p>Under-18s should stick to the family side; anything marked as an adult area is off limits.</p></li></ul><p>Ready to hit the seafront? Scroll back up to the cards above for arcades worth a visit, then hop over to the town pages to see what else is around once your coppers run out.</p>",
+ "promos": [
+  {
+   "uri": "3a517e_cf78e8cf6d8b4ee898321f3386fd4ab2~mv2.webp",
+   "w": 835,
+   "h": 482,
+   "alt": "Plan your perfect trip",
+   "href": "/plan-a-trip"
+  },
+  {
+   "uri": "3a517e_9a1c19e348ad4460bfe987242479093e~mv2.webp",
+   "w": 667,
+   "h": 482,
+   "alt": "Amazing offers",
+   "href": "/offers"
+  },
+  {
+   "uri": "3a517e_a3db40facbfc44d7abb387a41d92f635~mv2.webp",
+   "w": 766,
+   "h": 482,
+   "alt": "Join the adventure"
+  }
+ ],
+ "more": [
+  [
+   "Theme parks",
+   "/theme-parks"
+  ],
+  [
+   "Zoos & wildlife",
+   "/zoos"
+  ],
+  [
+   "Museums",
+   "/museums"
+  ],
+  [
+   "Historic places",
+   "/historical-sites"
+  ],
+  [
+   "Beaches",
+   "/seaside"
+  ],
+  [
+   "Piers",
+   "/piers"
+  ],
+  [
+   "Outdoors",
+   "/outdoors"
+  ],
+  [
+   "Hidden gems",
+   "/hidden-gems"
+  ],
+  [
+   "Cinema",
+   "/cinemas"
+  ],
+  [
+   "Bowling",
+   "/bowling"
+  ],
+  [
+   "Fishing",
+   "/fishing-lakes"
+  ],
+  [
+   "Holiday parks",
+   "/holiday-parks"
+  ],
+  [
+   "Retro games",
+   "/retro-arcades"
+  ],
+  [
+   "Arcade bars",
+   "/arcade-bars"
+  ],
+  [
+   "Adult gaming centres",
+   "/agc"
+  ],
+  [
+   "Fruit Machine Archive",
+   "/classic-fruit-machines"
+  ],
+  [
+   "Offers",
+   "/offers"
+  ],
+  [
+   "Plan a trip",
+   "/plan-a-trip"
+  ],
+  [
+   "Fuel prices",
+   "/plan-a-trip#fuel-prices"
+  ]
+ ]
+}
