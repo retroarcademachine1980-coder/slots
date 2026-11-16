@@ -37,13 +37,12 @@ function topicMatch(r: Row, t: string): boolean {
   const src = PATTERNS[t] || t.replace(/s$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(src, 'i').test(haystack(r) + ' ' + details);
 }
-// A town picked from the list matches exactly; a destination tile also matches places whose town,
-// location or area names it (e.g. "Baldock Services" -> Baldock).
+// Same as the live destination tiles: a place belongs to a town when its town, city or location name is that town
+// (a services tile also matches the plain town name, e.g. "Baldock Services" -> Baldock).
 function townMatch(r: Row, tf: string, town: string): boolean {
   if (r[tf] === town) return true;
-  const t = town.toLowerCase().replace(/\s+services$/, '').trim();
-  const fields = [r[tf], r.locationName, r.town, r.destination, r.region, r.county].map(str).map((x) => x.toLowerCase().trim()).filter(Boolean);
-  return fields.some((f) => f === t || f.includes(t) || t.includes(f));
+  const t = town.toLowerCase().trim(); const t2 = t.replace(/\s+services$/, '');
+  return [r[tf], r.town, r.city, r.locationName, r.location].map(str).map((x) => x.toLowerCase().trim()).some((f) => f && (f === t || f === t2));
 }
 function facilityMatch(r: Row, f: string): boolean {
   if (f === 'parking') return r.parking === true || r.parkingAvailable === true || r.freeParking === true;
