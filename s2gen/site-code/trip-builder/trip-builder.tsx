@@ -53,7 +53,7 @@ function readStore<T>(k: string, d: T): T { try { const v = window.localStorage.
 function writeStore(k: string, v: unknown): boolean { try { window.localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } }
 const ukDate = (iso: string) => { const d = new Date(iso); return isNaN(d.getTime()) ? '' : d.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }); };
 
-function FuelFinder({ start, onUse }: { start: string; onUse?: (price: number, grade: string) => void }) {
+function FuelFinder({ start, onUse, title }: { start: string; onUse?: (price: number, grade: string) => void; title?: string }) {
   const [place, setPlace] = useState(start);
   const [grade, setGrade] = useState('E10');
   const [busy, setBusy] = useState(false);
@@ -97,7 +97,7 @@ function FuelFinder({ start, onUse }: { start: string; onUse?: (price: number, g
   useEffect(() => { if (start) void find(start, 'E10'); }, [start]);
   return (
     <section className={clsx('fuel', styles.fuel)} id="fuel-prices">
-      <h2 className={styles.h2}>Fuel for the journey</h2>
+      <h2 className={styles.h2}>{title || 'Fuel for the journey'}</h2>
       <p className={styles.lead}>A little planning leaves more in the day-out budget. Compare reported pump prices by town or postcode district.</p>
       <form className={styles.fuelForm} onSubmit={(e) => { e.preventDefault(); void find(place, grade); }}>
         <label className={styles.field}>Town or postcode district<input value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Blackpool or FY1" /></label>
@@ -329,7 +329,7 @@ const TripBuilder: FC<TripBuilderProps> = ({ id, className, mode, town, directio
           {status && <p className={styles.status} role="status">{status}</p>}
         </aside>
       </div>
-      <FuelFinder start={town || ''} onUse={(p, g) => { setPlan((x) => ({ ...x, fuelPrice: p, fuelType: g.startsWith('B7') ? 'Diesel' : 'Petrol' })); setStatus(`Fuel price ${p.toFixed(1)}p added to your costs.`); }} />
+      <FuelFinder start={town || ''} title="Compare petrol and diesel prices" onUse={(p, g) => { setPlan((x) => ({ ...x, fuelPrice: p, fuelType: g.startsWith('B7') ? 'Diesel' : 'Petrol' })); setStatus(`Fuel price ${p.toFixed(1)}p added to your costs.`); }} />
     </div>
   );
 };
