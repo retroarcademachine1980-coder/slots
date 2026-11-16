@@ -42,11 +42,11 @@ def flexbox(i,gap,gapm,justify='flex-start',color=None,pad=(0,0)):
     rule(i+'-ic','min-width: --spx(0);','min-width: --spx(0);',ic=F(gap,pad),icm=F(gapm,pad))
     H.bglay(i+'-bg'); fill(i+'-bg',color or 'transparent')
 def flexitem(i,w='auto',wm=None): rule(i,f'width: {w};\nheight: auto;\nmin-width: 0px;\nposition: relative;',f'width: {wm or w};\nheight: auto;\nmin-width: 0px;')
-def font(i,size,weight,color,lh=1.3,fam='var(--wst-heading-2-font)',extra='',sizem=None,align=None):
-    sm=sizem or size
-    sty.append(f'.{i} {{\n    font: var(--wst-paragraph-1-font);\n    font-size: --spx({size});\n    line-height: {lh};\n    font-weight: {weight};\n    color: {color};\n'+(f'    font-family: {fam};\n' if fam else '')+(f'    text-align: {align};\n' if align else '')+extra+'}')
+def font(i,size,weight,color,lh=1.3,fam='oswald-v2',extra='',sizem=None,align=None):
+    fam=fam or 'inter'
+    sty.append(f'.{i} {{\n    font: normal normal {weight} --spx({size})/{lh}em {fam};\n    color: {color};\n'+(f'    text-align: {align};\n' if align else '')+'}')
 def pill(i,bg,fg,size=15,r=999,pad=(12,22),border=None,shadow=True):
-    b=f'    border: {border};\n' if border else ''
+    b=''.join(f'    {k}: {border};\n' for k in ['border-top','border-bottom','border-inline-start','border-inline-end']) if border else ''
     sh='    box-shadow: 0px 4px 0px rgba(11, 25, 44, 0.18);\n' if shadow else ''
     sty.append(f'.{i} {{\n    --preset: baseButton;\n    background: {bg};\n'+b+''.join(f'    border-{k}-radius: {r}px;\n' for k in ['start-start','start-end','end-start','end-end'])+f'    padding-top: {pad[0]}px;\n    padding-bottom: {pad[0]}px;\n    padding-inline-start: {pad[1]}px;\n    padding-inline-end: {pad[1]}px;\n'+sh+f'}}\n.{i} .label {{\n    font: var(--wst-heading-6-font);\n    font-size: {size}px;\n    color: {fg};\n    letter-spacing: 0;\n    text-decoration-line: none;\n}}')
 secs=[]; row=2
@@ -84,7 +84,7 @@ row+=1
 # ---------- 3 category icon strip
 items=C['strip']; kids=[]
 for n,it in enumerate(items):
-    kids.append(box(f'cs{n}',[svgimg(f'cs{n}-i',it['icon'],it['href']),rt(f'cs{n}-t',f'<p><a href="{SITE}{it["href"]}" target="_self">{esc(it["label"])}</a></p>')]))
+    kids.append(box(f'cs{n}',[svgimg(f'cs{n}-i',it['icon'],it['href']),rt(f'cs{n}-t',f'<p><a href="{SITE}{it["href"]}" target="_self"><span style="color:#102744;">{esc(it["label"])}</span></a></p>')]))
 secs.append(sec('s3',kids))
 nI=len(items)
 section('s3',row,grid_ic('s3-ic',f'repeat({nI}, minmax(0px, 1fr))','auto','repeat(3, minmax(0px, 1fr))','auto',(10,0,26),(8,0,18),(0,0),(6,6)))
@@ -95,7 +95,7 @@ for n,it in enumerate(items):
     on=it.get('on')
     boxgrid(f'cs{n}','minmax(0px, 1fr)','auto auto','minmax(0px, 1fr)','auto auto',(12,6,10),(10,4,8),(0,6),(0,4),color=('#FFF2B8' if on else WHITE),radius=10,shadow=('0px 0px 0px 2px #F2C200' if on else None))
     rule(f'cs{n}-i','width: --spx(44);\nheight: --spx(44);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: center;\nposition: relative;','width: --spx(36);\nheight: --spx(36);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: center;')
-    gi(f'cs{n}-t','2 / 3','1 / 2','2 / 3','1 / 2'); font(f'cs{n}-t',12,700,INK,lh=1.25,align='center',sizem=11,fam=None,extra='    --wst-links-and-actions-color: '+INK+';\n')
+    gi(f'cs{n}-t','2 / 3','1 / 2','2 / 3','1 / 2'); font(f'cs{n}-t',12,700,INK,lh=1.25,align='center',sizem=11,fam=None)
 row+=1
 # ---------- section header helper
 def head(k,title,blabel,bhref):
@@ -107,7 +107,7 @@ def headlay(k):
 # ---------- 4 explore by type tiles
 T=C['tiles']; kids=head('t',C['tiles_title'],'View all →',C['tiles_all'])
 for n,t in enumerate(T):
-    kids.append(box(f'tl{n}',[image(f'tl{n}-i',t['uri'],t['w'],t['h'],t['label'],t['href']),rt(f'tl{n}-t',f'<p><a href="{SITE}{t["href"]}" target="_self">{esc(t["label"])}</a></p>')]))
+    kids.append(box(f'tl{n}',[image(f'tl{n}-i',t['uri'],t['w'],t['h'],t['label'],t['href']),rt(f'tl{n}-t',f'<p><a href="{SITE}{t["href"]}" target="_self"><span style="color:#FFFFFF;">{esc(t["label"])}</span></a></p>')]))
 secs.append(sec('s4',kids))
 rowsT=(len(T)+2)//3
 section('s4',row,grid_ic('s4-ic','repeat(3, minmax(0px, 1fr))','auto '+' '.join(['auto']*rowsT),'minmax(0px, 1fr)','auto auto '+' '.join(['auto']*len(T)),(26,40,30),(18,16,22),(22,22),(0,14)))
@@ -120,13 +120,13 @@ for n,t in enumerate(T):
     boxgrid(f'tl{n}','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)',(0,0),(0,0),color='#0B2A4A',radius=14,shadow='0px 6px 22px rgba(11, 25, 44, 0.12)')
     rule(f'tl{n}-i','width: 100%;\naspect-ratio: 16 / 10;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;','width: 100%;\naspect-ratio: 16 / 9;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;')
     rule(f'tl{n}-t','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nposition: relative;\nmargin-left: --spx(18);\nmargin-bottom: --spx(14);','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nmargin-left: --spx(14);\nmargin-bottom: --spx(10);')
-    font(f'tl{n}-t',22,800,WHITE,lh=1.15,sizem=19,extra='    text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.85);\n    --wst-links-and-actions-color: #FFFFFF;\n')
+    font(f'tl{n}-t',22,800,WHITE,lh=1.15,sizem=19); sty.append(f'.tl{n}-t {{\n    background-color: rgba(11, 25, 44, 0.72);\n}}')
 row+=1
 # ---------- 5 featured cards
 F=C['featured']; kids=head('f',C['featured_title'],'View all arcades →',C['featured_all'])
 for n,f in enumerate(F):
     kids.append(box(f'fc{n}',[image(f'fc{n}-i',f['uri'],f['w'],f['h'],f['alt'],f['href']),rt(f'fc{n}-k','<p>'+esc(f['kicker'])+'</p>'),
-        rt(f'fc{n}-t',f'<h4><a href="{SITE}{f["href"]}" target="_self">{esc(f["title"])}</a></h4>'),rt(f'fc{n}-s','<p>'+esc(f['town'])+'</p>'),rt(f'fc{n}-d','<p>'+esc(f['text'])+'</p>'),
+        rt(f'fc{n}-t',f'<h4><a href="{SITE}{f["href"]}" target="_self"><span style="color:#102744;">{esc(f["title"])}</span></a></h4>'),rt(f'fc{n}-s','<p>'+esc(f['town'])+'</p>'),rt(f'fc{n}-d','<p>'+esc(f['text'])+'</p>'),
         button(f'fc{n}-b','→',f['href'])]))
 secs.append(sec('s5',kids))
 nF=len(F)
@@ -149,8 +149,8 @@ for n,f in enumerate(F):
             grow='\nflex-grow: 1;' if p=='d' else ''
             w='auto' if p=='b' else 'calc(100% - --spx(32))'
             rule(i,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nposition: relative;\nmargin-left: --spx(16);\nmargin-right: --spx(16);'+mb+grow,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nmargin-left: --spx(14);\nmargin-right: --spx(14);'+mb+grow)
-    font(f'fc{n}-k',11,800,MAG,lh=1.4,fam=None,extra='    letter-spacing: 0.12em;\n')
-    font(f'fc{n}-t',19,900,INK,lh=1.2,extra='    --wst-links-and-actions-color: '+INK+';\n')
+    font(f'fc{n}-k',11,800,MAG,lh=1.4,fam=None)
+    font(f'fc{n}-t',19,900,INK,lh=1.2)
     font(f'fc{n}-s',13,700,GREY,lh=1.3,fam=None)
     font(f'fc{n}-d',14,400,'#27425F',lh=1.5,fam=None)
     pill(f'fc{n}-b',INK,WHITE,size=15,r=999,pad=(6,14),shadow=False)
@@ -189,16 +189,19 @@ row+=1
 secs.append(sec('s7',[rt('ed',C['editorial_html'])]))
 section('s7',row,grid_ic('s7-ic','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(30,40,26),(22,16,18)))
 fill('s7-bg',WHITE)
-gi('ed','1 / 2','1 / 2','1 / 2','1 / 2',w='--spx(880)',wm='100%'); font('ed',16,400,'#27425F',lh=1.65,fam=None,extra='    --wst-links-and-actions-color: #007DD1;\n')
+gi('ed','1 / 2','1 / 2','1 / 2','1 / 2',w='--spx(880)',wm='100%'); font('ed',16,400,'#27425F',lh=1.65,fam=None)
 row+=1
 # ---------- 8 promos
-P=C['promos']; kids=[image(f'pr{n}',p['uri'],p['w'],p['h'],p['alt'],p.get('href')) for n,p in enumerate(P)]
+P=C['promos']; kids=[box(f'pb{n}',[image(f'pr{n}',p['uri'],p['w'],p['h'],p['alt'],p.get('href'))]) for n,p in enumerate(P)]
 secs.append(sec('s8',kids))
 section('s8',row,grid_ic('s8-ic',f'repeat({len(P)}, minmax(0px, 1fr))','auto','minmax(0px, 1fr)',' '.join(['auto']*len(P)),(10,40,34),(8,16,24),(20,0),(0,14)))
 fill('s8-bg',WHITE)
 for n,p in enumerate(P):
-    rule(f'pr{n}',f'width: 100%;\naspect-ratio: 835 / 482;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: {n+1} / {n+2};\nalign-self: start;\njustify-self: stretch;\nposition: relative;',f'width: 100%;\naspect-ratio: 835 / 482;\nmin-width: 0px;\ngrid-row: {n+1} / {n+2};\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: stretch;')
-    sty.append(f'.pr{n} {{\n'+''.join(f'    --border{k}Radius: 14px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'}')
+    rule(f'pb{n}',f'width: 100%;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: {n+1} / {n+2};\nalign-self: start;\njustify-self: stretch;\nposition: relative;',f'width: 100%;\nheight: auto;\nmin-width: 0px;\ngrid-row: {n+1} / {n+2};\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: stretch;')
+    rule(f'pb{n}-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: auto;',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: auto;')
+    H.bglay(f'pb{n}-bg'); fill(f'pb{n}-bg','transparent')
+    sty.append(f'.pb{n}-ic {{\n'+''.join(f'    --border{k}Radius: 14px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'}')
+    rule(f'pr{n}','width: 100%;\naspect-ratio: 835 / 482;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nposition: relative;','width: 100%;\naspect-ratio: 835 / 482;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;')
 row+=1
 # ---------- 9 more ways chips
 M=C['more']; kids=[rt('mw-h','<h2>More ways to spend your day</h2>'),box('mw',[button(f'mw{n}',t,u) for n,(t,u) in enumerate(M)])]
