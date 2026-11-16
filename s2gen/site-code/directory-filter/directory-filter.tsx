@@ -48,7 +48,37 @@ export interface DirectoryFilterContextType {
   sort: Array<{ fieldName: string; order: 'ASC' | 'DESC' }>;
   countText: string; query: string; town: string; sortValue: string;
   townOptions: Array<{ label: string; value: string }>;
-  [slot: string]: unknown;
+  toggleTopic: (t: string) => void;
+  toggleFacility: (f: string) => void;
+  setTown: (t: string) => void;
+  setQuery: (q: string) => void;
+  setSort: (s: string) => void;
+  clearAll: () => void;
+  topicLabel0: string;
+  topicLabel1: string;
+  topicLabel2: string;
+  topicLabel3: string;
+  topicLabel4: string;
+  topicLabel5: string;
+  topicLabel6: string;
+  topicLabel7: string;
+  topicLabel8: string;
+  topicLabel9: string;
+  topicLabel10: string;
+  topicLabel11: string;
+  topicLabel12: string;
+  topicLabel13: string;
+  topicLabel14: string;
+  topicLabel15: string;
+  topicLabel16: string;
+  topicLabel17: string;
+  topicLabel18: string;
+  topicLabel19: string;
+  facilityLabel0: string;
+  facilityLabel1: string;
+  facilityLabel2: string;
+  facilityLabel3: string;
+  facilityLabel4: string;
 }
 export interface DirectoryFilterProviderProps {
   children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string;
@@ -104,9 +134,9 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
   const filter = matched ? (matched.length ? { $or: matched.map((r) => ({ _id: { $eq: r._id } })) } : { _id: { $eq: '__none__' } }) : baseFilter;
   const n = matched ? matched.length : rows ? rows.length : 0;
   const what = noun || 'places';
-  const value: DirectoryFilterContextType = {
+  const value = {
     filter,
-    sort: sortValue === 'rating' ? [{ fieldName: 'publicRating', order: 'DESC' }, { fieldName: 'title', order: 'ASC' }] : [{ fieldName: 'title', order: 'ASC' }],
+    sort: (sortValue === 'rating' ? [{ fieldName: 'publicRating', order: 'DESC' }, { fieldName: 'title', order: 'ASC' }] : [{ fieldName: 'title', order: 'ASC' }]) as DirectoryFilterContextType['sort'],
     countText: rows ? `${n} ${n === 1 ? what.replace(/s$/, '') : what} found` : '',
     query, town, sortValue,
     townOptions: [{ label: 'All locations', value: '' }, ...Array.from(new Set((rows || []).map((r) => r[tf]).filter((t) => typeof t === 'string' && t))).sort().map((t) => ({ label: t as string, value: t as string }))],
@@ -117,9 +147,11 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
     setSort: (s: string) => setSortValue(s === 'rating' ? 'rating' : 'name'),
     clearAll: () => { setPicked([]); setFac([]); setTown(''); setQuery(''); },
   };
-  for (let i = 0; i < SLOTS; i++) value[`topicLabel${i}`] = topicList[i] ? `${picked.includes(topicList[i]) ? '☑' : '☐'}  ${topicList[i]}` : '';
-  FACILITIES.forEach((f, i) => { value[`facilityLabel${i}`] = `${fac.includes(f) ? '☑' : '☐'}  ${FACILITY_NAMES[i]}`; });
-  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+  const extra: Record<string, string> = {};
+  for (let i = 0; i < SLOTS; i++) extra[`topicLabel${i}`] = topicList[i] ? `${picked.includes(topicList[i]) ? '☑' : '☐'}  ${topicList[i]}` : '';
+  FACILITIES.forEach((f, i) => { extra[`facilityLabel${i}`] = `${fac.includes(f) ? '☑' : '☐'}  ${FACILITY_NAMES[i]}`; });
+  const api = { ...value, ...extra } as DirectoryFilterContextType;
+  return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }
 DirectoryFilterProvider.displayName = 'DirectoryFilterProvider';
 export default DirectoryFilterProvider;
