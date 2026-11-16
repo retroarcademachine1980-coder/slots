@@ -36,10 +36,19 @@ def pill(i, fg, size):
 # the list section and its direct children (tags at brace depth 0 inside its InternalContainer)
 blk0 = S.index('<DirectoryFilter'); blk1 = S.index('</DirectoryFilter>', blk0)
 sid = re.search(r'<Section id="([^"]+)"', S[blk0:blk1]).group(1)
-ic_open = S.index(f'<InternalContainer id="{sid}-ic"', blk0)
-# content starts after the opening InternalContainer tag line
-start = S.index('\n', ic_open) + 1
-end = S.rindex('</InternalContainer>\n</Section>', blk0, blk1)
+sec_open = S.index('<Section', blk0)
+ic_open = S.index('<InternalContainer', sec_open)
+icid = re.search(r'id="([^"]+)"', S[ic_open:ic_open + 400]).group(1)
+# end of the InternalContainer opening tag (">" outside any braces)
+k = ic_open; dep = 0
+while True:
+    ch = S[k]
+    if ch == '{': dep += 1
+    elif ch == '}': dep -= 1
+    elif ch == '>' and dep == 0: break
+    k += 1
+start = k + 1
+end = [m.start() for m in re.finditer(r'</InternalContainer>\s*</Section>', S[:blk1])][-1]
 body = S[start:end]
 kids = []; depth = 0; i = 0; instr = False
 while i < len(body):
@@ -51,7 +60,7 @@ while i < len(body):
     elif c == '{': depth += 1
     elif c == '}': depth -= 1
     elif c == '<' and depth == 0:
-        m = re.match(r'<(\w+) id="([^"]+)"', body[i:])
+        m = re.match(r'<(\w+)\s+id="([^"]+)"', body[i:])
         if m: kids.append(m.group(2))
     i += 1
 mi = L.index('@media'); base, mob = L[:mi], L[mi:]
@@ -61,7 +70,7 @@ def rows_of(css, ident):
 D = max(rows_of(base, k) for k in kids); M = max(rows_of(mob, k) for k in kids)
 TOK = r'minmax\([^)]*\)|repeat\([^)]*\)|[^\s;]+'
 def grow(css, n_used, add):
-    pat = r'(\n\s*\.' + re.escape(sid + '-ic') + r' \{.*?grid-template-rows: )([^;\n]*)'
+    pat = r'(\n\s*\.' + re.escape(icid) + r' \{.*?grid-template-rows: )([^;\n]*)'
     m = re.search(pat, css, re.S)
     toks = re.findall(TOK, m.group(2))
     toks += ['auto'] * max(0, n_used - len(toks))
