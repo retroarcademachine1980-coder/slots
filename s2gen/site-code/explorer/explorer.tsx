@@ -170,7 +170,7 @@ function ReportView() {
       try { window.localStorage.setItem('sr-report-last', String(Date.now())); } catch { /* ignore */ }
       setF({ reportType: '', venueName: '', pageUrl: '', details: '', contactEmail: '' });
       setMsg('Thank you. Your report has been sent and will be reviewed before the directory is changed.');
-    } catch { setMsg('The report could not be sent just now. Please try again.'); }
+    } catch (err) { console.error('report-a-change', err); setMsg('The report could not be sent just now. Please try again.'); }
     setBusy(false);
   };
   return (
