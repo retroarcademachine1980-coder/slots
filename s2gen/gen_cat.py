@@ -362,7 +362,8 @@ def do_casinooffers(b,k=0):
     sid=f's{row}'; F=b['featured']; n=len(F)
     kids=[rt('ft-h','<h2>'+esc(b['featTitle'])+'</h2>'),rt('ft-p','<p>'+esc(b['featText'])+'</p>')]
     for j,o in enumerate(F):
-        kk=[f'<Button id="ft{j}-b" className="ft{j}-b" label={{{json.dumps(o['badge'],ensure_ascii=False)}}} />',image(f'ft{j}-i',o['uri'],o['w'],o['h'],o['alt']),rt(f'ft{j}-t','<h3>'+esc(o['title'])+'</h3>'),ext(f'ft{j}-go',o['go']['text'],o['go']),rt(f'ft{j}-s','<p>'+esc(o['small'])+'</p>')]
+        bl=json.dumps(o['badge'],ensure_ascii=False)
+        kk=[f'<Button id="ft{j}-b" className="ft{j}-b" label={{{bl}}} />',image(f'ft{j}-i',o['uri'],o['w'],o['h'],o['alt']),rt(f'ft{j}-t','<h3>'+esc(o['title'])+'</h3>'),ext(f'ft{j}-go',o['go']['text'],o['go']),rt(f'ft{j}-s','<p>'+esc(o['small'])+'</p>')]
         if o.get('review'): kk.append(button(f'ft{j}-r',o['review']['text'],o['review']['href']))
         kids.append(box(f'ft{j}',kk))
     secs.append(sec(sid,kids))
