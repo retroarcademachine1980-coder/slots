@@ -8,6 +8,8 @@ const fs = require('fs');
   for (const s of slugs) {
     await p.goto('https://www.spin-raiders.com/' + s, { waitUntil: 'load', timeout: 90000 });
     await p.waitForTimeout(9000);
+    for (let y = 0; y < 14000; y += 700) { await p.mouse.wheel(0, 700); await p.waitForTimeout(200); }
+    await p.waitForTimeout(2000);
     const html = await p.evaluate((cls) => {
       const got = [];
       const walk = (root) => root.querySelectorAll('*').forEach(el => { if (el.shadowRoot) walk(el.shadowRoot); if (el.tagName === 'SECTION' && cls.some(c => el.classList.contains(c))) got.push(el); });
