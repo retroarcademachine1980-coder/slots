@@ -266,6 +266,16 @@ def do_tripbuilder(b,k=0):
     gi(i,'1 / 2','1 / 2','1 / 2','1 / 2')
     row+=1
 
+def do_explorer(b,k=0):
+    """Custom site-code component: the live UK map (mode map) or search results (mode search)."""
+    global row
+    sid=f's{row}'; i=f'ex{k}'
+    secs.append(sec(sid,[f'<Explorer id="{i}" className="{i}" mode={{{json.dumps(b.get("mode","search"))}}} />']))
+    section(sid,row,grid_ic(sid+'-ic','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(20,20,20),(14,12,14),(0,0),(0,0)))
+    fill(sid+'-bg',WHITE)
+    gi(i,'1 / 2','1 / 2','1 / 2','1 / 2')
+    row+=1
+
 def do_more(b,k=0):
     global row
     sid=f's{row}'
@@ -496,7 +506,7 @@ def do_ideas(b,k=0):
         gi(f'ic{n}-p','3 / 4','1 / 2','3 / 4','1 / 2'); font(f'ic{n}-p',14,400,'#27425F',lh=1.5,fam=None)
         gi(f'ic{n}-b','4 / 5','1 / 2','4 / 5','1 / 2',w='auto',wm='auto'); pill(f'ic{n}-b','transparent',c['color'],size=14,r=0,pad=(4,0),border='0px solid transparent',shadow=False)
     row+=1
-FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more,'chips':do_chips,'tripbuilder':do_tripbuilder}
+FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more,'chips':do_chips,'tripbuilder':do_tripbuilder,'explorer':do_explorer}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1
@@ -540,6 +550,7 @@ if 'textToRichText' not in '\n'.join(imports):
 if any(_b['type']=='all2' for _b in C['blocks']):
     imports+=["import DirectoryFilter from '@site/site-code/directoryFilter'","import { useDirectoryFilter } from '@site/site-code/directoryFilter'","import { TextField } from '@origami-wrappers/wixEditorElements/textfield'","import { Combobox } from '@origami-wrappers/wixEditorElements/combobox'"]
 if any(_b['type']=='tripbuilder' for _b in C['blocks']): imports+=["import TripBuilder from '@site/site-code/TripBuilder'"]
+if any(_b['type']=='explorer' for _b in C['blocks']): imports+=["import Explorer from '@site/site-code/Explorer'"]
 imports=list(dict.fromkeys(imports))
 pg=S[S.index('export const Structure'):]
 _bi=pg.index('backgroundLayer={[<Background id="'+pbg); _bj=pg.index(']}',_bi); pg=pg[:pg.index('>',_bj)+1]
