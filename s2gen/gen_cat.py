@@ -386,7 +386,7 @@ def do_all2(b,k=0):
            f'<WRichText id="df-n" className="df-n" richText={{fn(textToRichText, ctx("countText", {{ from: useDirectoryFilter }}), {{ placeholder: {json.dumps(ph("df-n","<p>&nbsp;</p>"))} }})}} />',
            f'<Combobox id="df-sort" className="df-sort" label={{"Sort by"}} value={{ctx("sortValue", {{ from: useDirectoryFilter, placeholder: "name" }})}} options={{[{{ label: "Name A–Z", value: "name" }}, {{ label: "Highest rated", value: "rating" }}]}} onValueChange={{callback(ctx("setSort", {F}))}} />']
     sect=sec(sid,[box('df-side',side)]+head_+[rep])
-    secs.append(f'<DirectoryFilter collection={{{json.dumps(c)}}} baseField={{{json.dumps(A.get("filter") or "")}}} words={{{json.dumps(A.get("words") or "")}}} topics={{{json.dumps("|".join(topics),ensure_ascii=False)}}} townField={{{json.dumps(A["sub"])}}} noun={{"places"}} itemPrefix={{{json.dumps(PFX[c])}}} pageSize={{6}}>\n'+sect+'\n</DirectoryFilter>')
+    secs.append(f'<DirectoryFilter collection={{{json.dumps(c)}}} baseField={{{json.dumps(A.get("filter") or "")}}} words={{{json.dumps(A.get("words") or "")}}} topics={{{json.dumps("|".join(topics),ensure_ascii=False)}}} townField={{{json.dumps(A["sub"])}}} noun={{"places"}} itemPrefix={{{json.dumps(PFX[c])}}} readyField={{{json.dumps(A.get("ready") or "")}}} pageSize={{{A.get("per",6)}}}>\n'+sect+'\n</DirectoryFilter>')
     Q='minmax(0px, 1fr)'
     section(sid,row,grid_ic(sid+'-ic',' '.join([Q]*4),'auto auto minmax(0px, 1fr)',Q,'auto auto auto auto',(26,40,34),(18,16,24),(26,6),(0,12)))
     fill(sid+'-bg',WHITE)

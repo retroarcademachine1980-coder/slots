@@ -133,7 +133,9 @@
     "1990s",
     "2000s"
    ],
-   "towns": []
+   "towns": [],
+   "ready": "directoryReady",
+   "per": 12
   },
   {
    "type": "editorial",

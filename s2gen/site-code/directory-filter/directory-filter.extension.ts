@@ -53,6 +53,7 @@ export default extensions.contextProvider({
     baseField: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Only items with this field' },
     words: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Page words (| separated)' },
     itemPrefix: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Item page prefix' },
+    readyField: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Only items where this is true' },
     pageSize: { dataType: 'number', defaultValue: 6, deprecated: false, displayName: 'Cards per page' },
     topics: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Categories (| separated)' },
     townField: { dataType: 'text', defaultValue: 'town', deprecated: false, displayName: 'Town field' },

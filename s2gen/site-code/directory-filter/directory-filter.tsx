@@ -99,7 +99,7 @@ const toCard = (prefix: string, tf: string) => (r: Row): Card => {
 };
 
 export interface DirectoryFilterProviderProps {
-  children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string; itemPrefix?: string; pageSize?: number;
+  children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string; itemPrefix?: string; pageSize?: number; readyField?: string;
 }
 const Ctx = createContext<DirectoryFilterContextType | undefined>(undefined);
 Ctx.displayName = 'DirectoryFilterContext';
@@ -109,7 +109,7 @@ export function useDirectoryFilter(): DirectoryFilterContextType {
   return c;
 }
 
-function DirectoryFilterProvider({ children, collection, baseField, words, topics, townField, noun, itemPrefix, pageSize }: DirectoryFilterProviderProps): ReactNode {
+function DirectoryFilterProvider({ children, collection, baseField, words, topics, townField, noun, itemPrefix, pageSize, readyField }: DirectoryFilterProviderProps): ReactNode {
   const topicList = useMemo(() => (topics || '').split('|').map((s) => s.trim()).filter(Boolean).slice(0, SLOTS), [topics]);
   const tf = townField || 'town';
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -133,7 +133,8 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
         const ws = (words || '').split('|').map((w) => w.trim().toLowerCase()).filter(Boolean);
         const seen = new Set<string>();
         const keep = all.filter((r) => {
-          if (baseField && (r[baseField] === undefined || r[baseField] === null || r[baseField] === '')) return false;
+          if (baseField && (r[baseField] === undefined || r[baseField] === null || r[baseField] === '' || r[baseField] === false)) return false;
+          if (readyField && r[readyField] !== true) return false;
           if (ws.length) { const t = [r.category, r.venueType, r.title, r.name].map(str).join(' ').toLowerCase(); if (!ws.some((w) => t.includes(w))) return false; }
           const k = String(r.title || r._id).toLowerCase() + '|' + str(r.locationName || r.town).toLowerCase();
           if (seen.has(k)) return false; seen.add(k); return true;
@@ -142,7 +143,7 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
       } catch { if (live) setRows(null); }
     })();
     return () => { live = false; };
-  }, [collection, baseField, words]);
+  }, [collection, baseField, words, readyField]);
 
   const matched = useMemo(() => {
     if (!rows) return null;
