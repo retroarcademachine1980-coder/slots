@@ -9,7 +9,8 @@ d,xf=sys.argv[1:3]
 X=json.load(open(xf))
 fix=lambda h: re.sub(r'\s(class|style|data-[a-z-]+|id)="[^"]*"','',re.sub(r'href="(/[^"]*)"',lambda m:'href="https://www.spin-raiders.com'+m.group(1)+'"',h))
 S=open(os.path.join(d,'structure.jsx')).read(); L=open(os.path.join(d,'layout.css')).read(); St=open(os.path.join(d,'style.css')).read()
-if 'id="sx0"' in S: print('already has inserted sections'); sys.exit(0)
+PFX=os.environ.get('SX','sx')
+if f'id="{PFX}0"' in S: print('already has inserted sections', PFX); sys.exit(0)
 pid=re.search(r'<Page\s+id="([^"]+)"',S).group(1); ftr=re.search(r'<Footer_\w+ id="([^"]+)"',S).group(1)
 mi=L.index('@media'); base,mob=L[:mi],L[mi:]
 sids=re.findall(r'<Section id="([^"]+)"',S)
@@ -20,7 +21,7 @@ tgt=None
 for s in sids:
     blk=S[S.index(f'<Section id="{s}"'):]; blk=blk[:blk.index('</Section>')]
     if 'More ways to spend your day' in blk: tgt=s
-tgt=tgt or sids[-1]; R=rows[tgt]; k=len(X)
+tgt=(sys.argv[3] if len(sys.argv)>3 else None) or tgt or sids[-1]; R=rows[tgt]; k=len(X)
 def bump(m):
     a,b=int(m.group(2)),int(m.group(3))
     return m.group(1)+(f'{a+k} / {b+k}' if a>=R else f'{a} / {b}')+';'
@@ -29,7 +30,7 @@ for s in sids+[ftr]:
 base=re.sub(r'(\n?\.'+re.escape(pid)+r' \{[^}]*?grid-template-rows: )([^;\n]*)',lambda m:m.group(1)+m.group(2)+' auto'*k,base,count=1)
 H.lay.clear(); H.sty.clear(); secs=[]
 for n,h in enumerate(X):
-    sid=f'sx{n}'; t=f'sx{n}-t'
+    sid=f'{PFX}{n}'; t=f'{PFX}{n}-t'
     secs.append(H.sec(sid,[H.rt(t,fix(h))]))
     H.section(sid,R+n,H.grid_ic(sid+'-ic','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(26,40,26),(20,16,20)))
     H.fill(sid+'-bg','#FFFFFF')
