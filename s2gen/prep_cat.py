@@ -41,13 +41,20 @@ for b in S['blocks']:
         w,h=A['sizes'].get(b['uri'],[2400,800])
         C['blocks'].append({'type':'hero','uri':b['uri'],'w':w,'h':h,'alt':b.get('alt') or C['title'],'search_text':b.get('search_text') or 'Search places, towns or days out…','towns':[[x,newpath(u)] for x,u in b['towns'] if x]})
     elif t=='intro': C['blocks'].append(b)
+    elif t=='hero2':
+        w,h=A['sizes'].get(b['uri'],[2019,1413])
+        C['blocks'].append({'type':'hero2','uri':b['uri'],'w':w,'h':h,'title':b['title'],'desc':b['desc'],'pill':b.get('pill'),'sub':b.get('sub')})
+    elif t=='iconbtns':
+        C['blocks'].append({'type':'iconbtns','items':[{'label':i['label'],'icon':A['icons'].get(i['key'],A['icons'].get('map'))} for i in b['items']]})
+    elif t=='cta':
+        C['blocks'].append({'type':'cta','title':b['title'],'text':b.get('text',''),'button':[b['button'][0],newpath(b['button'][1])] if b.get('button') else None})
     elif t=='strip':
         C['blocks'].append({'type':'strip','items':[{'label':i['label'],'href':newpath(i['href']),'icon':A['icons'].get(i['key'],A['icons'].get('map')),'on':i.get('on')} for i in b['items']]})
     elif t=='tiles':
         items=[]
         for i in b['items']:
-            u,w,h=img(i); items.append({'label':i['label'],'href':newpath(i['href']),'uri':u,'w':w,'h':h})
-        C['blocks'].append({'type':'tiles','title':b['title'],'button':[b['button'][0],newpath(b['button'][1])] if b.get('button') else None,'items':items})
+            u,w,h=img(i); items.append({'label':i['label'],'href':newpath(i['href']) if i.get('href') else None,'uri':u,'w':w,'h':h})
+        C['blocks'].append({'type':'tiles','title':b.get('title') or '','button':[b['button'][0],newpath(b['button'][1])] if b.get('button') else None,'items':items})
     elif t=='featured':
         items=[]
         for i in b['items']:
