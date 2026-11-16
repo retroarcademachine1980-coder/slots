@@ -7,7 +7,7 @@ export default extensions.contextProvider({
   displayName: "Directory filter",
   context: {
     items: {
-      filter: { dataType: 'data', displayName: 'CMS filter', data: { items: {} } },
+      filter: { dataType: 'data', displayName: 'CMS filter', data: { items: { $or: { dataType: 'arrayItems', displayName: 'Any of', arrayItems: { item: { dataType: 'data', data: { items: { _id: { dataType: 'data', displayName: 'Item', data: { items: { $eq: { dataType: 'text', displayName: 'Equals' } } } } } } } } } } } },
       sort: { dataType: 'arrayItems', displayName: 'CMS sort', arrayItems: { item: { dataType: 'data', data: { items: { fieldName: { dataType: 'text', displayName: 'Field' }, order: { dataType: 'text', displayName: 'Order' } } } } } },
       countText: { dataType: 'text', displayName: 'Places found' },
       query: { dataType: 'text', displayName: 'Search text' },

@@ -44,7 +44,7 @@ function facilityMatch(r: Row, f: string): boolean {
 }
 
 export interface DirectoryFilterContextType {
-  filter: Record<string, unknown>;
+  filter: { $or: Array<{ _id: { $eq: string } }> };
   sort: Array<{ fieldName: string; order: 'ASC' | 'DESC' }>;
   countText: string; query: string; town: string; sortValue: string;
   townOptions: Array<{ label: string; value: string }>;
@@ -130,8 +130,9 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
     return rows.filter((r) => qwords.every((w) => haystack(r).includes(w)) && (!town || r[tf] === town) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
   }, [rows, query, town, picked, fac, tf]);
 
-  const baseFilter: Record<string, unknown> = baseField ? { [baseField]: { $isNotEmpty: true } } : {};
-  const filter = matched ? (matched.length ? { $or: matched.map((r) => ({ _id: { $eq: r._id } })) } : { _id: { $eq: '__none__' } }) : baseFilter;
+  // Always the same shape: any of these item ids (none until the list has loaded).
+  const ids = matched && matched.length ? matched.map((r) => String(r._id)) : ['__none__'];
+  const filter = { $or: ids.map((id) => ({ _id: { $eq: id } })) };
   const n = matched ? matched.length : rows ? rows.length : 0;
   const what = noun || 'places';
   const value = {
