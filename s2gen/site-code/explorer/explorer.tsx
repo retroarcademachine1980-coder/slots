@@ -168,6 +168,8 @@ function MapView() {
   const [on, setOn] = useState<string[]>(MAPCATS.map((c) => c[0]));
   const [shown, setShown] = useState<string[]>(MAPCATS.map((c) => c[0]));
   const [failed, setFailed] = useState(false);
+  const [here, setHere] = useState<[number, number] | null>(null);
+  const [geoMsg, setGeoMsg] = useState('');
   useEffect(() => { const v = qparam(); setQ(v); setApplied(v); void loadAll().then(setAll, () => setAll([])); }, []);
   const pins = useMemo(() => (all || []).filter((p) => p.lat !== undefined && p.lng !== undefined && p.c !== 'Locations' && shown.includes(p.cat) && (!applied || matchWords(p, applied))), [all, shown, applied]);
   useEffect(() => {
@@ -192,6 +194,16 @@ function MapView() {
     }
     if (applied && pins.length && mapRef.current) mapRef.current.fitBounds(pins.map((p) => [p.lat, p.lng]), { maxZoom: 13, padding: [30, 30] });
   }, [pins, applied, all]);
+  const dist = (p: Place) => (here && p.lat !== undefined && p.lng !== undefined ? Math.hypot((p.lat - here[0]) * 69, (p.lng - here[1]) * 69 * Math.cos((here[0] * Math.PI) / 180)) : 0);
+  const listed = useMemo(() => (here ? [...pins].sort((a, b) => dist(a) - dist(b)) : pins), [pins, here]);
+  const locate = () => {
+    if (!navigator.geolocation) { setGeoMsg('This browser cannot share your location.'); return; }
+    setGeoMsg('Finding your location…');
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const at: [number, number] = [pos.coords.latitude, pos.coords.longitude]; setHere(at); setGeoMsg('Showing places nearest to you. Distances are straight-line estimates.');
+      if (mapRef.current) mapRef.current.setView(at, 12);
+    }, () => setGeoMsg('Your location was not shared. Search for a town instead.'));
+  };
   const fly = (p: Place) => { if (mapRef.current && p.lat !== undefined) { mapRef.current.setView([p.lat, p.lng], 14); } };
   return (
     <div className={styles.mapWrap}>
@@ -205,8 +217,10 @@ function MapView() {
         {MAPCATS.map(([k, l, col]) => <label key={k} className={styles.mapCat}><span className={styles.dot} style={{ background: col }} />{l}<input type="checkbox" checked={on.includes(k)} onChange={() => setOn((p) => (p.includes(k) ? p.filter((x) => x !== k) : [...p, k]))} /></label>)}
         <button type="button" className={clsx(styles.button, styles.full)} onClick={() => { setShown(on); setApplied(q.trim()); }}>Update Map ↻</button>
         <button type="button" className={clsx(styles.button, styles.white, styles.full)} onClick={() => { const a = MAPCATS.map((c) => c[0]); setOn(a); setShown(a); setQ(''); setApplied(''); if (mapRef.current) mapRef.current.setView([54.3, -2.6], 6); }}>Reset Filters</button>
+        <button type="button" className={clsx(styles.button, styles.white, styles.full)} onClick={locate}>⌖ Use my location</button>
+        {geoMsg && <p className={styles.small}>{geoMsg}</p>}
         <p className={styles.count} role="status">{all ? `${pins.length.toLocaleString('en-GB')} places on the map` : 'Loading places…'}</p>
-        <div className={styles.mapList}>{pins.slice(0, 200).map((p) => <button key={p.key} type="button" onClick={() => fly(p)}><strong>{p.name}</strong><small>{p.town}</small></button>)}</div>
+        <div className={styles.mapList}>{listed.slice(0, 200).map((p) => <button key={p.key} type="button" onClick={() => fly(p)}><strong>{p.name}</strong><small>{p.town}{here ? ` · ${dist(p).toFixed(1)} miles` : ''}</small></button>)}</div>
       </aside>
       <div className={styles.mapBox}>
         <div ref={box} className={styles.leaflet} />
