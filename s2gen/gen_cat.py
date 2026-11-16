@@ -38,11 +38,11 @@ def boxgrid(i,cd,rd,cm,rm,pd,pm,gd=(0,0),gm=(0,0),color=None,radius=0,shadow=Non
     if shadow: s+=f'    --boxShadow: {shadow};\n'
     if s.count('\n')>1: sty.append(s+'}')
 def flexbox(i,gap,gapm,justify='flex-start',color=None,pad=(0,0)):
-    def F(g,p): return f'display: flex;\nflex-direction: row;\nflex-wrap: wrap;\njustify-content: {justify};\nalign-items: center;\ncolumn-gap: --spx({g});\nrow-gap: --spx({g});\npadding-top: --spx({p[0]});\npadding-bottom: --spx({p[0]});\npadding-left: --spx({p[1]});\npadding-right: --spx({p[1]});'
+    def F(g,p): return f'display: flex;\nflex-direction: row;\nflex-wrap: wrap;\nalign-items: center;\ncolumn-gap: --spx({g});\nrow-gap: --spx({g});\npadding-top: --spx({p[0]});\npadding-bottom: --spx({p[0]});\npadding-left: --spx({p[1]});\npadding-right: --spx({p[1]});'
     rule(i+'-ic','min-width: --spx(0);','min-width: --spx(0);',ic=F(gap,pad),icm=F(gapm,pad))
     H.bglay(i+'-bg'); fill(i+'-bg',color or 'transparent')
 def chipgrid(i,ids,cd,cm,gap,gapm,justify='center'):
-    def G(c,g,n): return f'display: grid;\ngrid-template-columns: repeat({c}, auto);\ngrid-template-rows: {" ".join(["auto"]*((n+c-1)//c))};\njustify-content: {justify};\ncolumn-gap: --spx({g});\nrow-gap: --spx({g});'
+    def G(c,g,n): return f'display: grid;\ngrid-template-columns: repeat({c}, auto);\ngrid-template-rows: {" ".join(["auto"]*((n+c-1)//c))};\ncolumn-gap: --spx({g});\nrow-gap: --spx({g});'
     rule(i+'-ic','min-width: --spx(0);','min-width: --spx(0);',ic=G(cd,gap,len(ids)),icm=G(cm,gapm,len(ids)))
     H.bglay(i+'-bg'); fill(i+'-bg','transparent')
     for n,x in enumerate(ids):
@@ -71,7 +71,7 @@ rule('srch-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\
 gi('srch-t','1 / 2','1 / 2','1 / 2','1 / 2',a='center',am='center'); font('srch-t',17,400,'#6B7A8C',fam=None)
 gi('srch-b','1 / 2','2 / 3','1 / 2','2 / 3',w='auto',wm='auto',a='center',am='center')
 pill('srch-b','linear-gradient(180deg, #F0407F, #D81B60)',WHITE,size=17,r=10,pad=(14,22))
-gi('chips','3 / 4','1 / 2','3 / 4','1 / 2',w='--spx(900)',wm='100%',j='center',jm='center')
+gi('chips','3 / 4','1 / 2','3 / 4','1 / 2',w='auto',wm='auto',j='center',jm='center')
 chipgrid('chips',[f'tc{n}' for n in range(len(chips))],6,3,8,6)
 for n in range(len(chips)): pill(f'tc{n}','rgba(16, 39, 68, 0.88)',WHITE,size=13,pad=(7,14),border='1px solid rgba(255,255,255,0.35)',shadow=False)
 row+=1
