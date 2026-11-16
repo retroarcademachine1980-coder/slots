@@ -99,7 +99,7 @@ for n in range(4):
     gi(f'd-b{n}','3 / 4',f'{n+1} / {n+2}',f'{3+n//2} / {4+n//2}',f'{n%2+1} / {n%2+2}',w='auto',wm='100%')
     pill(f'd-b{n}','linear-gradient(180deg, #F0407F, #D81B60)' if n==0 else WHITE,WHITE if n==0 else INK,size=14,r=999,pad=(10,18),border=None if n==0 else '1px solid #D2E2F6')
 # ---- s5 explore more
-EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Aquariums','/sea-life'),('Museums','/museums'),('Historic sites','/historical-sites'),('Beaches','/seaside'),('Piers','/piers'),('Food & drink','/where-to-eat'),('Places to stay','/places-to-stay'),('Bowling','/bowling'),('Cinemas','/cinemas'),('Tours','/tours'),('Arcades','/arcade'),('Plan a trip','/plan-a-trip')]
+EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Aquariums','/sea-life'),('Museums','/museums'),('Historic sites','/historical-sites'),('Beaches','/beaches'),('Piers','/piers'),('Food & drink','/where-to-eat'),('Places to stay','/places-to-stay'),('Bowling','/bowling'),('Cinemas','/cinemas'),('Tours','/tours'),('Arcades','/arcade'),('Plan a trip','/plan-a-trip')]
 secs.append(sec('s5',[rt('x-h','<h2>Explore more days out</h2>')]+[sbtn(f'x{n}',t,u) for n,(t,u) in enumerate(EX)]))
 C=7; R=(len(EX)+C-1)//C; CM=2; RM=(len(EX)+CM-1)//CM
 section('s5',6,grid_ic('s5-ic',' '.join(['minmax(0px, 1fr)']*C),' '.join(['auto']*(R+1)),' '.join(['minmax(0px, 1fr)']*CM),' '.join(['auto']*(RM+1)),(10,70,40),(10,16,30),(10,10),(8,8)))
