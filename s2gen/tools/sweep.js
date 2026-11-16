@@ -1,6 +1,6 @@
 // node sweep.js slug ... : list live section headings (with section class/id) missing from the new preview page
 const { chromium } = require('playwright');
-const PREV = 'https://012f531e-4b6f-4cd5-b56e-f5b55bcebec7--uxfda3e1360c--52401.remote-machine.wix-code.com/';
+const PREV = process.env.PREV || 'https://012f531e-4b6f-4cd5-b56e-f5b55bcebec7--uxe1fb9ed790--52401.remote-machine.wix-code.com/';
 const norm = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 async function heads(p, url) {
   await p.goto(url, { waitUntil: 'load', timeout: 90000 });
