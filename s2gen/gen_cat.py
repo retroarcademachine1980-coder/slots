@@ -122,61 +122,61 @@ def headlay(k):
 def do_tiles(b,k=0):
     global row
     sid=f's{row}'
-    T=b['items']; BT=b.get('button') or [None,None]; kids=head('t',b['title'],BT[0],BT[1])
+    T=b['items']; BT=b.get('button') or [None,None]; kids=head(f't{k}',b['title'],BT[0],BT[1])
     for n,t in enumerate(T):
-        kids.append(box(f'tl{n}',[image(f'tl{n}-i',t['uri'],t['w'],t['h'],t['label'],t['href']),rt(f'tl{n}-t',f'<p><a href="{SITE}{t["href"]}" target="_self"><span style="color:#FFFFFF;">{esc(t["label"])}</span></a></p>')]))
+        kids.append(box(f'tl{k}x{n}',[image(f'tl{k}x{n}-i',t['uri'],t['w'],t['h'],t['label'],t['href']),rt(f'tl{k}x{n}-t',f'<p><a href="{SITE}{t["href"]}" target="_self"><span style="color:#FFFFFF;">{esc(t["label"])}</span></a></p>')]))
     secs.append(sec(sid+'',kids))
     rowsT=(len(T)+2)//3
     section(sid+'',row,grid_ic(sid+'-ic','repeat(3, minmax(0px, 1fr))','auto '+' '.join(['auto']*rowsT),'minmax(0px, 1fr)','auto auto '+' '.join(['auto']*len(T)),(26,40,30),(18,16,22),(22,22),(0,14)))
     fill(sid+'-bg',WHITE)
-    gi('t-h','1 / 2','1 / 3','1 / 2','1 / 2')
-    if BT[0]: rule('t-v','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 3 / 4;\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
-    font('t-h',32,900,INK,lh=1.15,sizem=24)
-    if BT[0]: pill('t-v',WHITE,INK,size=14,r=999,pad=(9,16),border='2px solid #102744',shadow=False)
+    gi(f't{k}-h','1 / 2','1 / 3','1 / 2','1 / 2')
+    if BT[0]: rule(f't{k}-v','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 3 / 4;\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
+    font(f't{k}-h',32,900,INK,lh=1.15,sizem=24)
+    if BT[0]: pill(f't{k}-v',WHITE,INK,size=14,r=999,pad=(9,16),border='2px solid #102744',shadow=False)
     for n,t in enumerate(T):
         r=n//3+2; c=n%3+1
-        gi(f'tl{n}',f'{r} / {r+1}',f'{c} / {c+1}',f'{n+3} / {n+4}','1 / 2')
-        boxgrid(f'tl{n}','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)',(0,0),(0,0),color='#0B2A4A',radius=14,shadow='0px 6px 22px rgba(11, 25, 44, 0.12)')
-        rule(f'tl{n}-i','width: 100%;\naspect-ratio: 16 / 10;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;','width: 100%;\naspect-ratio: 16 / 9;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;')
-        rule(f'tl{n}-t','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nposition: relative;\nmargin-left: --spx(18);\nmargin-bottom: --spx(14);','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nmargin-left: --spx(14);\nmargin-bottom: --spx(10);')
-        font(f'tl{n}-t',22,800,WHITE,lh=1.15,sizem=19); sty.append(f'.tl{n}-t {{\n    background-color: rgba(11, 25, 44, 0.72);\n}}')
+        gi(f'tl{k}x{n}',f'{r} / {r+1}',f'{c} / {c+1}',f'{n+3} / {n+4}','1 / 2')
+        boxgrid(f'tl{k}x{n}','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)',(0,0),(0,0),color='#0B2A4A',radius=14,shadow='0px 6px 22px rgba(11, 25, 44, 0.12)')
+        rule(f'tl{k}x{n}-i','width: 100%;\naspect-ratio: 16 / 10;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;','width: 100%;\naspect-ratio: 16 / 9;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;')
+        rule(f'tl{k}x{n}-t','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nposition: relative;\nmargin-left: --spx(18);\nmargin-bottom: --spx(14);','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nmargin-left: --spx(14);\nmargin-bottom: --spx(10);')
+        font(f'tl{k}x{n}-t',22,800,WHITE,lh=1.15,sizem=19); sty.append(f'.tl{n}-t {{\n    background-color: rgba(11, 25, 44, 0.72);\n}}')
     row+=1
 
 def do_featured(b,k=0):
     global row
     sid=f's{row}'
-    F=b['items']; BT=b.get('button') or [None,None]; kids=head('f',b['title'],BT[0],BT[1])
+    F=b['items']; BT=b.get('button') or [None,None]; kids=head(f'f{k}',b['title'],BT[0],BT[1])
     for n,f in enumerate(F):
-        kids.append(box(f'fc{n}',[image(f'fc{n}-i',f['uri'],f['w'],f['h'],f['alt'],f['href']),rt(f'fc{n}-k','<p>'+esc(f['kicker'])+'</p>'),
-            rt(f'fc{n}-t',f'<h4><a href="{SITE}{f["href"]}" target="_self"><span style="color:#102744;">{esc(f["title"])}</span></a></h4>'),rt(f'fc{n}-s','<p>'+esc(f['town'])+'</p>'),rt(f'fc{n}-d','<p>'+esc(f['text'])+'</p>'),
-            button(f'fc{n}-b','→',f['href'])]))
+        kids.append(box(f'fc{k}x{n}',[image(f'fc{k}x{n}-i',f['uri'],f['w'],f['h'],f['alt'],f['href']),rt(f'fc{k}x{n}-k','<p>'+esc(f['kicker'])+'</p>'),
+            rt(f'fc{k}x{n}-t',f'<h4><a href="{SITE}{f["href"]}" target="_self"><span style="color:#102744;">{esc(f["title"])}</span></a></h4>'),rt(f'fc{k}x{n}-s','<p>'+esc(f['town'])+'</p>'),rt(f'fc{k}x{n}-d','<p>'+esc(f['text'])+'</p>'),
+            button(f'fc{k}x{n}-b','→',f['href'])]))
     secs.append(sec(sid+'',kids))
     nF=len(F)
     section(sid+'',row,grid_ic(sid+'-ic',f'repeat({nF}, minmax(0px, 1fr))','auto auto','minmax(0px, 1fr)','auto auto '+' '.join(['auto']*nF),(26,40,30),(18,16,22),(20,22),(0,14)))
     fill(sid+'-bg',WHITE)
-    rule('f-h',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / {nF};\nalign-self: center;\njustify-self: start;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
-    if BT[0]: rule('f-v',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: {nF} / {nF+1};\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
-    font('f-h',32,900,INK,lh=1.15,sizem=24)
-    if BT[0]: pill('f-v',WHITE,INK,size=14,r=999,pad=(9,16),border='2px solid #102744',shadow=False)
+    rule(f'f{k}-h',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / {nF};\nalign-self: center;\njustify-self: start;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
+    if BT[0]: rule(f'f{k}-v',f'width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: {nF} / {nF+1};\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
+    font(f'f{k}-h',32,900,INK,lh=1.15,sizem=24)
+    if BT[0]: pill(f'f{k}-v',WHITE,INK,size=14,r=999,pad=(9,16),border='2px solid #102744',shadow=False)
     for n,f in enumerate(F):
-        gi(f'fc{n}','2 / 3',f'{n+1} / {n+2}',f'{n+3} / {n+4}','1 / 2',h='100%',a='stretch')
-        rule(f'fc{n}-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(16);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);')
-        H.bglay(f'fc{n}-bg'); fill(f'fc{n}-bg',WHITE)
+        gi(f'fc{k}x{n}','2 / 3',f'{n+1} / {n+2}',f'{n+3} / {n+4}','1 / 2',h='100%',a='stretch')
+        rule(f'fc{k}x{n}-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(16);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);')
+        H.bglay(f'fc{k}x{n}-bg'); fill(f'fc{k}x{n}-bg',WHITE)
         sty.append(f'.fc{n}-ic {{\n'+''.join(f'    --border{k}Radius: 14px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 6px 22px rgba(11, 25, 44, 0.12);\n}')
         order=['i','k','t','s','d','b']
         for o,p in enumerate(order):
-            i=f'fc{n}-{p}'
+            i=f'fc{k}x{n}-{p}'
             if p=='i': rule(i,f'width: 100%;\naspect-ratio: 16 / 10;\nmin-width: 0px;\norder: 1;\nposition: relative;\nmargin-bottom: --spx(12);','width: 100%;\naspect-ratio: 16 / 10;\nmin-width: 0px;\norder: 1;\nmargin-bottom: --spx(10);')
             else:
                 mb='' if p=='b' else '\nmargin-bottom: --spx(6);'
                 grow='\nflex-grow: 1;' if p=='d' else ''
                 w='auto' if p=='b' else 'calc(100% - --spx(32))'
                 rule(i,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nposition: relative;\nmargin-left: --spx(16);\nmargin-right: --spx(16);'+mb+grow,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nmargin-left: --spx(14);\nmargin-right: --spx(14);'+mb+grow)
-        font(f'fc{n}-k',11,800,MAG,lh=1.4,fam=None)
-        font(f'fc{n}-t',19,900,INK,lh=1.2)
-        font(f'fc{n}-s',13,700,GREY,lh=1.3,fam=None)
-        font(f'fc{n}-d',14,400,'#27425F',lh=1.5,fam=None)
-        pill(f'fc{n}-b',INK,WHITE,size=15,r=999,pad=(6,14),shadow=False)
+        font(f'fc{k}x{n}-k',11,800,MAG,lh=1.4,fam=None)
+        font(f'fc{k}x{n}-t',19,900,INK,lh=1.2)
+        font(f'fc{k}x{n}-s',13,700,GREY,lh=1.3,fam=None)
+        font(f'fc{k}x{n}-d',14,400,'#27425F',lh=1.5,fam=None)
+        pill(f'fc{k}x{n}-b',INK,WHITE,size=15,r=999,pad=(6,14),shadow=False)
     row+=1
 
 def do_all(b,k=0):
@@ -250,10 +250,9 @@ def do_more(b,k=0):
     
 
 FN={'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
-ne=0
+cnt={}
 for blk in C['blocks']:
-    if blk['type']=='editorial': FN['editorial'](blk,ne); ne+=1
-    else: FN[blk['type']](blk)
+    t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1
 
 NS=row-2
 # ---------- write files
