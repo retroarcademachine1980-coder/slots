@@ -42,7 +42,7 @@ function topicMatch(r: Row, t: string): boolean {
 function townMatch(r: Row, tf: string, town: string): boolean {
   if (r[tf] === town) return true;
   const t = town.toLowerCase().trim(); const t2 = t.replace(/\s+services$/, '');
-  return [r[tf], r.town, r.city, r.locationName, r.location].map(str).map((x) => x.toLowerCase().trim()).some((f) => f && (f === t || f === t2));
+  return [r[tf], r.town, r.city, r.locationName, r.location, r.destination].map(str).map((x) => x.toLowerCase().trim()).some((f) => f && (f === t || f === t2));
 }
 function facilityMatch(r: Row, f: string): boolean {
   if (f === 'parking') return r.parking === true || r.parkingAvailable === true || r.freeParking === true;
@@ -99,14 +99,56 @@ function wixImage(v: unknown, alt: string): CardImage {
   } else if (v && typeof v === 'object' && typeof (v as Row).uri === 'string') { uri = (v as Row).uri; w = (v as Row).width || 1200; h = (v as Row).height || 800; }
   return { name: 'card', uri, width: w, height: h, alt, type: 'Builder.Image', url: `https://static.wixstatic.com/media/${uri}` };
 }
+// The live category pages read every collection below, keep places the live site treats as listed,
+// and classify each one the same way (SR_PLACE_TYPES in the live runtime).
+const PREFIX: Record<string, string> = { Venues: '/venue', NearbyAttractions: '/attraction', HotelGuides: '/hotel', FoodAndDrink: '/food-and-drink', AffiliateOffers: '/offer' };
+const TYPES: [string, RegExp][] = [
+  ['fishing', /fishery|fisheries|fishing|angling/i], ['golf', /\bgolf\b|golf course|driving range|golf club|links course|pitch and putt/i],
+  ['cinemas', /\bcinema\b|\bcineworld\b|\bodeon\b|\bvue\b/i], ['bowling', /bowling|tenpin/i], ['bingo', /bingo/i],
+  ['agc', /adult gaming|\bagc\b|merkur|admiral/i], ['casinos', /casino/i], ['holiday', /holiday park|caravan park|holiday village|camping|glamping/i],
+  ['stays', /hotel|guest\s?house|b&b|accommodation|lodge|cottage|apartment|\bstay\b/i], ['arcadebars', /arcade bar|gaming bar/i],
+  ['food', /food|restaurant|cafe|café|takeaway|\bpub\b|chippy|\bbar\b|grill|dining/i], ['theme', /theme park|amusement park/i],
+  ['zoos', /zoo|wildlife park|safari/i], ['sealife', /aquarium|sea life|sealife/i], ['museums', /museum|gallery/i],
+  ['history', /historic|castle|heritage|stately home/i], ['piers', /\bpier\b/i], ['beaches', /beach/i], ['tours', /tour|experience|sightseeing/i],
+  ['outdoors', /nature|outdoor|garden|forest|woodland|reserve|walk|hiking|country park|national park|lake/i],
+  ['services', /service station|motorway services|^services?$|\bservices$/i], ['venues', /arcade|retro video/i], ['attractions', /attraction|family fun/i],
+];
+function classify(r: Row): string {
+  if (r._collection === 'FoodAndDrink') return 'food';
+  if (r._collection === 'HotelGuides') return 'stays';
+  const a = [r.category, r.venueType].map(str).filter(Boolean).join(' '), b = [r.title, r.name].map(str).filter(Boolean).join(' ');
+  return (TYPES.find((t) => t[1].test(a)) || TYPES.find((t) => t[1].test(b)) || [r._collection === 'Venues' ? 'venues' : 'attractions'])[0];
+}
+const listed = (r: Row) => r.active !== false && r.directoryReady !== false && r.cardReady !== false && !r.canonicalMachineId &&
+  !/^(duplicate|merged|deleted|archived|quarantin|suppress|permanently closed|closed)/i.test([r.status, r.locationStatus, r.currentVenueStatus].map(str).filter(Boolean).join(' '));
+const norm = (v: unknown) => str(v).normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const placeTown = (r: Row) => str(r.locationName) || str(r.destination) || str(r.town);
+async function loadSources(cols: string[], ws: string[]): Promise<Row[]> {
+  const out: Row[] = [];
+  for (const c of cols) {
+    try {
+      let q: any = null;
+      for (const w of ws) for (const f of ['category', 'venueType', 'title', 'name']) { const x = dataItems.query(c).contains(f, w); q = q ? q.or(x) : x; }
+      let res = await (q || dataItems.query(c)).limit(1000).find();
+      const take = (items: Row[]) => out.push(...items.map((it) => ({ ...it, _collection: c })));
+      take(res.items);
+      while (res.hasNext() && out.length < 8000) { res = await res.next(); take(res.items); }
+    } catch { /* one collection failing still shows the rest, like live */ }
+  }
+  const seen = new Set<string>();
+  return out.filter(listed).filter((r) => {
+    const k = (['NearbyAttractions', 'HotelGuides'].includes(r._collection) ? 'place' : r._collection) + '|' + norm(r.displayTitle || r.title || r.name) + '|' + norm(placeTown(r));
+    if (seen.has(k)) return false; seen.add(k); return true;
+  });
+}
 const toCard = (prefix: string, tf: string) => (r: Row): Card => {
   const n = typeof r.publicReviewCount === 'number' ? r.publicReviewCount : 0;
   const rating = typeof r.publicRating === 'number' && r.publicRating > 0 ? `★ ${r.publicRating.toFixed(1)}${n ? ` (${n.toLocaleString('en-GB')} reviews)` : ''}` : 'No public rating yet.';
-  return { title: String(r.title || ''), town: String(r[tf] || r.locationName || r.town || ''), rating, image: wixImage(r.cardImage || r.heroImage, String(r.title || '')), link: { href: `${prefix}/${r._slug || r.slug || ''}`, target: '_self' } };
+  return { title: String(r.title || ''), town: String(r[tf] || r.locationName || r.town || ''), rating, image: wixImage(r.cardImage || r.heroImage, String(r.title || '')), link: { href: `${(r._collection && PREFIX[r._collection]) || prefix}/${r._slug || r.slug || ''}`, target: '_self' } };
 };
 
 export interface DirectoryFilterProviderProps {
-  children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string; itemPrefix?: string; pageSize?: number; readyField?: string;
+  children?: ReactNode; collection: string; baseField?: string; words?: string; topics?: string; townField?: string; noun?: string; itemPrefix?: string; pageSize?: number; readyField?: string; sources?: string; onlyType?: string;
 }
 const Ctx = createContext<DirectoryFilterContextType | undefined>(undefined);
 Ctx.displayName = 'DirectoryFilterContext';
@@ -116,7 +158,7 @@ export function useDirectoryFilter(): DirectoryFilterContextType {
   return c;
 }
 
-function DirectoryFilterProvider({ children, collection, baseField, words, topics, townField, noun, itemPrefix, pageSize, readyField }: DirectoryFilterProviderProps): ReactNode {
+function DirectoryFilterProvider({ children, collection, baseField, words, topics, townField, noun, itemPrefix, pageSize, readyField, sources, onlyType }: DirectoryFilterProviderProps): ReactNode {
   const topicList = useMemo(() => (topics || '').split('|').map((s) => s.trim()).filter(Boolean).slice(0, SLOTS), [topics]);
   const tf = townField || 'town';
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -133,6 +175,14 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
     let live = true;
     (async () => {
       try {
+        const srcs = (sources || '').split('|').map((x) => x.trim()).filter(Boolean);
+        if (srcs.length) {
+          const ws0 = (words || '').split('|').map((w) => w.trim()).filter(Boolean);
+          const types = (onlyType || '').split('|').filter(Boolean);
+          const got = (await loadSources(srcs, ws0)).filter((r) => !types.length || types.includes(classify(r)));
+          if (live) { setRows(got); setWide(got); }
+          return;
+        }
         const all: Row[] = [];
         let res = await dataItems.query(collection).limit(1000).find();
         all.push(...res.items);
@@ -154,7 +204,7 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
       } catch { if (live) setRows(null); }
     })();
     return () => { live = false; };
-  }, [collection, baseField, words, readyField]);
+  }, [collection, baseField, words, readyField, sources, onlyType]);
 
   const matched = useMemo(() => {
     if (!rows) return null;

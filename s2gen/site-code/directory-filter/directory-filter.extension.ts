@@ -57,7 +57,9 @@ export default extensions.contextProvider({
     pageSize: { dataType: 'number', defaultValue: 6, deprecated: false, displayName: 'Cards per page' },
     topics: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Categories (| separated)' },
     townField: { dataType: 'text', defaultValue: 'town', deprecated: false, displayName: 'Town field' },
-    noun: { dataType: 'text', defaultValue: 'places', deprecated: false, displayName: 'Noun' }
+    noun: { dataType: 'text', defaultValue: 'places', deprecated: false, displayName: 'Noun' },
+    sources: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Collections to read, like live (| separated)' },
+    onlyType: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Only places classed as (| separated)' }
   },
   resources: {
     client: {
