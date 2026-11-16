@@ -5,7 +5,7 @@ import fs from 'fs';
 const [out, ...slugs] = process.argv.slice(2);
 const fnSrc = fs.readFileSync(new URL('./scrape_fn.js', import.meta.url), 'utf8');
 const fnSrc2 = fs.readFileSync(new URL('./scrape_fn2.js', import.meta.url), 'utf8');
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});
 const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
 for (const slug of slugs) {
   try {
