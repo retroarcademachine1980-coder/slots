@@ -173,10 +173,14 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
     let live = true;
     (async () => {
       try {
-        const srcs = (sources || '').split('|').map((x) => x.trim()).filter(Boolean);
+        // Live mode is written into the existing settings so saved pages need no new attributes:
+        // baseField "@live:Venues|NearbyAttractions" and readyField "@type:cinemas" (both optional).
+        const liveSrc = (baseField || '').startsWith('@live:') ? baseField!.slice(6) : (sources || '');
+        const liveType = (readyField || '').startsWith('@type:') ? readyField!.slice(6) : (onlyType || '');
+        const srcs = liveSrc.split('|').map((x) => x.trim()).filter(Boolean);
         if (srcs.length) {
           const ws0 = (words || '').split('|').map((w) => w.trim()).filter(Boolean);
-          const types = (onlyType || '').split('|').filter(Boolean);
+          const types = liveType.split('|').filter(Boolean);
           const got = (await loadSources(srcs, ws0)).filter((r) => !types.length || types.includes(classify(r)));
           if (live) { setRows(got); setWide(got); }
           return;
