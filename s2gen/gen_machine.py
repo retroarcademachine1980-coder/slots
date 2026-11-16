@@ -90,7 +90,7 @@ for n,(k,t,b) in enumerate(cards):
     gi(k+'-h','1 / 2','1 / 2','1 / 2','1 / 2'); font(k+'-h',20,900,INK,lh=1.2)
     gi(k+'-b','2 / 3','1 / 2','2 / 3','1 / 2'); font(k+'-b',13,400,'#1F3550',lh=1.6)
 # ---- s5 explore more
-EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Museums','/museums'),('Historic places','/historical-sites'),('Beaches','/seaside'),('Piers','/piers'),('Outdoors','/outdoors'),('Cinema','/cinemas'),('Bowling','/bowling'),('Fishing','/fishing-lakes'),('Holiday parks','/holiday-parks'),('Retro games','/retro-arcades'),('Arcade bars','/arcade-bars'),('Adult gaming centres','/agc'),('Fruit Machine Archive','/classic-fruit-machines'),('Offers','/offers'),('Plan a trip','/plan-a-trip')]
+EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Museums','/museums'),('Historic places','/historical-sites'),('Beaches','/beaches'),('Piers','/piers'),('Outdoors','/outdoors'),('Hidden gems','/hidden-gems'),('Cinema','/cinemas'),('Bowling','/bowling'),('Fishing','/fishing-lakes'),('Holiday parks','/holiday-parks'),('Retro games','/retro-video-games'),('Arcade bars','/arcade-bars'),('Adult gaming centres','/agc'),('Fruit Machine Archive','/classic-fruit-machines'),('Offers','/offers'),('Plan a trip','/plan-a-trip'),('Fuel prices','/plan-a-trip')]
 secs.append(sec('s5',[rt('x-h','<h2>More ways to spend your day</h2>')]+[sbtn(f'x{n}',t,u) for n,(t,u) in enumerate(EX)]))
 C=4; R=(len(EX)+C-1)//C; CM=2; RM=(len(EX)+CM-1)//CM
 section('s5',6,grid_ic('s5-ic',' '.join(['minmax(0px, 1fr)']*C),' '.join(['auto']*(R+1)),' '.join(['minmax(0px, 1fr)']*CM),' '.join(['auto']*(RM+1)),(24,24,40),(18,16,30),(10,6),(8,6)))
