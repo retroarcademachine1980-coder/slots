@@ -365,7 +365,7 @@ def do_all2(b,k=0):
         f'<WRichText id="al-t" className="al-t" richText={{fn(textToRichText, item.fields.title.value, {{ placeholder: {json.dumps(ph("al-t","<h4>Place</h4>"))} }})}} />',
         f'<WRichText id="al-s" className="al-s" richText={{fn(textToRichText, item.fields.{A["sub"]}.value, {{ placeholder: {json.dumps(ph("al-s","<p>Town</p>"))} }})}} />',
         f'<Button id="al-b" className="al-b" label={{"View details →"}} link={{item.getPageLink({{ pageRole: {json.dumps(ROLES[c])}, href: {json.dumps(PFX[c])} }})}} />']
-    rep=(f'<{prov} filter={{ctx("filter", {{ from: useDirectoryFilter }})}} sort={{ctx("sort", {{ from: useDirectoryFilter }})}} pageSize={{6}}>\n<BoxContainer id="df-res" className="df-res" children={{\n<InternalContainer id="df-res-ic" className="df-res-ic" backgroundLayer={{[{bgc("df-res-b")}]}}>\n'
+    rep=(f'<{prov} filter={{ctx("filter", {{ from: useDirectoryFilter }})}} sort={{ctx("sort", {{ from: useDirectoryFilter }})}} pageSize={{6}}>\n<BoxContainer id="df-res" className="df-res" children={{\n<InternalContainer id="df-res-ic" className="df-res-ic" backgroundLayer={{[{bgc("df-res-bg")}]}}>\n'
          f'<Repeater id="al-rep" className="al-rep" items={{ctx("items", {{ from: useCmsContext }})}} onLoadMore={{callback(ctx("pagination.loadMore", {{ from: useCmsContext }}))}} isLoading={{ctx("pagination.isLoading", {{ from: useCmsContext }})}} renderItem={{item => (\n'
          f'<InternalContainer id="al-card" className="al-card" backgroundLayer={{[{bgc("al-card-bg")}]}}>\n'+'\n'.join(card_kids)+'\n</InternalContainer>\n)}\n'
          f'emptyStateContent={{<InternalContainer id="al-empty" className="al-empty" />}} />\n'
@@ -389,7 +389,7 @@ def do_all2(b,k=0):
     def lab(i):
         nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); font(i,14,800,INK,lh=1.3,fam=None); r+=1
     def chk(i):
-        nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='100%',wm='100%'); pill(i,WHITE,INK,size=13,r=0,pad=(2,0),shadow=False); sty.append(f'.{i} {{\n    --label-justify: flex-start;\n    text-align: start;\n    justify-content: flex-start;\n}}'); r+=1
+        nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='100%',wm='100%'); pill(i,WHITE,INK,size=13,r=0,pad=(2,0),shadow=False); r+=1
     lab('df-c')
     for n_ in range(len(topics)): chk(f'df-t{n_}')
     lab('df-r'); gi('df-town',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); r+=1
