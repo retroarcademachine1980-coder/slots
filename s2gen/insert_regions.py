@@ -36,6 +36,7 @@ def pill(i, fg, size):
 # the list section and its direct children (tags at brace depth 0 inside its InternalContainer)
 blk0 = S.index('<DirectoryFilter'); blk1 = S.index('</DirectoryFilter>', blk0)
 sid = re.search(r'<Section id="([^"]+)"', S[blk0:blk1]).group(1)
+ic_open = S.index(f'<InternalContainer id="{sid}-ic"', blk0)
 # content starts after the opening InternalContainer tag line
 start = S.index('\n', ic_open) + 1
 end = S.rindex('</InternalContainer>\n</Section>', blk0, blk1)
