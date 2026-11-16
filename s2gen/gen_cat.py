@@ -348,13 +348,18 @@ def do_all2(b,k=0):
           rt('df-h','<h3>Filter by</h3>'),
           f'<Button id="df-clr" className="df-clr" label={{"Clear all"}} onClick={{callback(ctx("clearAll", {F}))}} />',
           rt('df-c','<h4>▾ Category</h4>')]
-    for n,t in enumerate(topics): side.append(f'<Button id="df-t{n}" className="df-t{n}" label={{ctx("topicLabel{n}", {{ from: useDirectoryFilter, placeholder: {json.dumps('☐  '+t,ensure_ascii=False)} }})}} onClick={{callback(ctx("toggleTopic", {F}), {json.dumps(t,ensure_ascii=False)})}} />')
+    BOX='\u2610  '
+    for n,t in enumerate(topics):
+        pl=json.dumps(BOX+t,ensure_ascii=False); tv=json.dumps(t,ensure_ascii=False)
+        side.append(f'<Button id="df-t{n}" className="df-t{n}" label={{ctx("topicLabel{n}", {{ from: useDirectoryFilter, placeholder: {pl} }})}} onClick={{callback(ctx("toggleTopic", {F}), {tv})}} />')
     side.append(rt('df-r','<h4>▾ Region / town</h4>'))
     side.append(f'<Combobox id="df-town" className="df-town" placeholder={{"All locations"}} options={{ctx("townOptions", {{ from: useDirectoryFilter, placeholder: [{{ label: "All locations", value: "" }}] }})}} onValueChange={{callback(ctx("setTown", {F}))}} />')
     FN_=['Parking','Wi-Fi','Dog friendly','Accessible entrance','Family friendly']; FV=['parking','wifi','dogFriendly','disabledAccess','familyFriendly']
     for gn,(gt,idx) in enumerate(FAC_GROUPS):
         side.append(rt(f'df-g{gn}',f'<h4>▾ {esc(gt)}</h4>'))
-        for i in idx: side.append(f'<Button id="df-f{i}" className="df-f{i}" label={{ctx("facilityLabel{i}", {{ from: useDirectoryFilter, placeholder: {json.dumps('☐  '+FN_[i],ensure_ascii=False)} }})}} onClick={{callback(ctx("toggleFacility", {F}), {json.dumps(FV[i])})}} />')
+        for i in idx:
+            pl=json.dumps(BOX+FN_[i],ensure_ascii=False); fv=json.dumps(FV[i])
+            side.append(f'<Button id="df-f{i}" className="df-f{i}" label={{ctx("facilityLabel{i}", {{ from: useDirectoryFilter, placeholder: {pl} }})}} onClick={{callback(ctx("toggleFacility", {F}), {fv})}} />')
     side.append(button('df-map','Explore places on the map →','/map'))
     card_kids=[f'<Image id="al-img" className="al-img" displayMode={{"fill"}} image={{item.fields.heroImage.value ?? {json.dumps({"name":"Spin Raiders","uri":"3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg","width":2752,"height":1100,"alt":"","type":"Builder.Image"})}}} />',
         f'<WRichText id="al-t" className="al-t" richText={{fn(textToRichText, item.fields.title.value, {{ placeholder: {json.dumps(ph("al-t","<h4>Place</h4>"))} }})}} />',
