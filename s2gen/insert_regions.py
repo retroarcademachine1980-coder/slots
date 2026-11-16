@@ -8,8 +8,8 @@ from helpers import rule, gi, fill, sty
 
 d, xf = sys.argv[1:3]
 R = json.load(open(xf))
-B = [b for b in R['buttons'] if b.get('town') and b.get('uri')]
-if not B: print('no town buttons with photos in', xf); sys.exit(0)
+B = [b for b in R['buttons'] if b.get('town')]
+if not B: print('no town buttons in', xf); sys.exit(0)
 SITE = 'https://www.spin-raiders.com'
 INK = '#102744'; GREY = '#536981'
 F = '{ from: useDirectoryFilter }'
@@ -78,7 +78,8 @@ if note: new.append(rt('rg-note', '<p>' + esc(note) + '</p>'))
 tiles = []
 for n, b in enumerate(B):
     w = b.get('w') or 320; h = b.get('h') or 212
-    tiles.append(box(f'rg{n}', [image(f'rg{n}-i', b['uri'], w, h, b.get('alt') or b['town']),
+    pic = [image(f'rg{n}-i', b['uri'], w, h, b.get('alt') or b['town'])] if b.get('uri') else []
+    tiles.append(box(f'rg{n}', pic + [
                                f'<Button id="rg{n}-b" className="rg{n}-b" label={{{json.dumps(b.get("label") or b["town"], ensure_ascii=False)}}} onClick={{callback(ctx("setTown", {F}), {json.dumps(b["town"], ensure_ascii=False)})}} />']))
 new.append(box('rg-grid', tiles))
 S = S[:end] + '\n'.join(new) + '\n' + S[end:]
@@ -102,9 +103,10 @@ for n in range(len(B)):
     gt = H.grid_ic(t + '-ic', 'minmax(0px, 1fr)', 'auto auto', 'minmax(0px, 1fr)', 'auto auto', (0, 0, 10), (0, 0, 8), (0, 8), (0, 6))
     rule(t + '-ic', 'min-width: --spx(0);', 'min-width: --spx(0);', ic=gt[0], icm=gt[1]); H.bglay(t + '-bg'); fill(t + '-bg', '#FFFFFF')
     sty.append(f'.{t}-ic {{\n' + ''.join(f'    --border{k}Radius: 10px;\n' for k in ['StartStart', 'StartEnd', 'EndStart', 'EndEnd']) + '    --boxShadow: 0px 0px 0px 1px #D2E2F6;\n}')
-    rule(t + '-i', 'width: 100%;\naspect-ratio: 3 / 2;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: stretch;\nposition: relative;',
+    if B[n].get('uri'): rule(t + '-i', 'width: 100%;\naspect-ratio: 3 / 2;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: stretch;\nposition: relative;',
          'width: 100%;\naspect-ratio: 3 / 2;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: stretch;')
-    gi(t + '-b', '2 / 3', '1 / 2', '2 / 3', '1 / 2', w='auto', wm='auto', a='center', am='center', j='center', jm='center'); pill(t + '-b', INK, 14)
+    br = '2 / 3' if B[n].get('uri') else '1 / 3'
+    gi(t + '-b', br, '1 / 2', br, '1 / 2', w='auto', wm='auto', a='center', am='center', j='center', jm='center'); pill(t + '-b', INK, 14)
 
 def ref(w): return f'    --spx-ref-width: {w};\n    --spx-resolver-type: scale;\n'
 o = []; om = []
