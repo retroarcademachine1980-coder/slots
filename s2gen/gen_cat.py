@@ -247,8 +247,8 @@ pg=S[S.index('export const Structure'):]
 _bi=pg.index('backgroundLayer={[<Background id="'+pbg); _bj=pg.index(']}',_bi); pg=pg[:pg.index('>',_bj)+1]
 pg=pg.replace(f"id: '{oldpid}'",f"id: '{pid}'").replace(f'id="{oldpid}"',f'id="{pid}"').replace(f'className="{oldpid}"',f'className="{pid}"')
 pg=re.sub(r"title: '[^']*'",lambda m:"title: "+json.dumps(C['title']),pg,count=1)
-pg=re.sub(r"pageTitleSEO: (?:'[^']*'|\"[^\"]*\")","pageTitleSEO: "+json.dumps(C.get('seo_title','')),pg,count=1)
-pg=re.sub(r"descriptionSEO: (?:'[^']*'|\"[^\"]*\")","descriptionSEO: "+json.dumps(C.get('seo_description','')),pg,count=1)
+pg=re.sub(r"pageTitleSEO: (?:'[^']*'|\"[^\"]*\")",lambda m:"pageTitleSEO: "+json.dumps(C.get('seo_title',''),ensure_ascii=False),pg,count=1)
+pg=re.sub(r"descriptionSEO: (?:'[^']*'|\"[^\"]*\")",lambda m:"descriptionSEO: "+json.dumps(C.get('seo_description',''),ensure_ascii=False),pg,count=1)
 if 'pageUriSEO' not in pg: pg=pg.replace("type: 'Page',","type: 'Page',\n                pageUriSEO: "+json.dumps(slug)+",",1)
 open(os.path.join(out,'structure.jsx'),'w').write('\n'.join(imports)+'\n\n'+pg+'\n'+'\n'.join(secs)+'\n        </Page>\n)\n')
 def ref(w): return f'    --spx-ref-width: {w};\n    --spx-resolver-type: scale;\n'
