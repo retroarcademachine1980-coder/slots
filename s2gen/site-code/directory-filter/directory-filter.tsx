@@ -120,6 +120,7 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
   const topicList = useMemo(() => (topics || '').split('|').map((s) => s.trim()).filter(Boolean).slice(0, SLOTS), [topics]);
   const tf = townField || 'town';
   const [rows, setRows] = useState<Row[] | null>(null);
+  const [wide, setWide] = useState<Row[]>([]);
   const [picked, setPicked] = useState<string[]>([]);
   const [fac, setFac] = useState<string[]>([]);
   const [town, setTown] = useState('');
@@ -138,15 +139,18 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
         while (res.hasNext() && all.length < 5000) { res = await res.next(); all.push(...res.items); }
         // The live page lists every item whose name, category or venue type mentions one of its words.
         const ws = (words || '').split('|').map((w) => w.trim().toLowerCase()).filter(Boolean);
-        const seen = new Set<string>();
-        const keep = all.filter((r) => {
-          if (baseField && (r[baseField] === undefined || r[baseField] === null || r[baseField] === '' || r[baseField] === false)) return false;
-          if (readyField && r[readyField] !== true) return false;
-          if (ws.length) { const t = [r.category, r.venueType, r.title, r.name].map(str).join(' ').toLowerCase(); if (!ws.some((w) => t.includes(w))) return false; }
-          const k = String(r.title || r._id).toLowerCase() + '|' + str(r.locationName || r.town).toLowerCase();
-          if (seen.has(k)) return false; seen.add(k); return true;
-        });
-        if (live) setRows(keep);
+        const pick = (useBase: boolean) => {
+          const seen = new Set<string>();
+          return all.filter((r) => {
+            if (useBase && baseField && (r[baseField] === undefined || r[baseField] === null || r[baseField] === '' || r[baseField] === false)) return false;
+            if (readyField && r[readyField] !== true) return false;
+            if (ws.length) { const t = [r.category, r.venueType, r.title, r.name].map(str).join(' ').toLowerCase(); if (!ws.some((w) => t.includes(w))) return false; }
+            const k = String(r.title || r._id).toLowerCase() + '|' + str(r.locationName || r.town).toLowerCase();
+            if (seen.has(k)) return false; seen.add(k); return true;
+          });
+        };
+        // Like live, a destination search looks through every matching place, including ones without their own category link.
+        if (live) { setRows(pick(true)); setWide(pick(false)); }
       } catch { if (live) setRows(null); }
     })();
     return () => { live = false; };
@@ -155,8 +159,8 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
   const matched = useMemo(() => {
     if (!rows) return null;
     const qwords = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    return rows.filter((r) => qwords.every((w) => haystack(r).includes(w)) && (!town || townMatch(r, tf, town)) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
-  }, [rows, query, town, picked, fac, tf]);
+    return (town ? wide : rows).filter((r) => qwords.every((w) => haystack(r).includes(w)) && (!town || townMatch(r, tf, town)) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
+  }, [rows, wide, query, town, picked, fac, tf]);
 
   const sorted = useMemo(() => {
     const list = [...(matched || [])];
