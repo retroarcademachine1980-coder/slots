@@ -183,7 +183,9 @@ for n_ in need:
 hl=[("import { callback, ctx, fn } from '@wix/origami-runtime'" if "'@wix/origami-runtime'" in l else l) for l in hl]
 head='\n'.join(hl).rstrip()+'\n\n'
 pg=S[S.index('export const Structure'):S.index('<Section id=')]
-out=head+pg+'\n'.join(secs[:2])+'\n<TownPlaces town={ctx("currentItem.fields.title.value", { from: useCmsContext })} pageSize={6}>\n'+'\n'.join(secs[2:])+'\n</TownPlaces>'+f'\n        </Page>\n    </{prov}>\n)\n'
+pg='\n'.join(l for l in pg.split('\n') if '<TownPlaces' not in l)
+pg=pg.replace(f'<{prov}>',f'<{prov}>\n<TownPlaces town={{ctx("currentItem.fields.title.value", {{ from: useCmsContext }})}} pageSize={{6}}>',1)
+out=head+pg+'\n'.join(secs)+f'\n        </Page>\n</TownPlaces>\n    </{prov}>\n)\n'
 open(os.path.join(page_dir,'structure.jsx'),'w').write(out)
 def ref(w): return f'    --spx-ref-width: {w};\n    --spx-resolver-type: scale;\n'
 o=[];om=[]
