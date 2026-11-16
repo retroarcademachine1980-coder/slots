@@ -121,8 +121,6 @@ function classify(r: Row): string {
 }
 const listed = (r: Row) => r.active !== false && r.directoryReady !== false && r.cardReady !== false && !r.canonicalMachineId &&
   !/^(duplicate|merged|deleted|archived|quarantin|suppress|permanently closed|closed)/i.test([r.status, r.locationStatus, r.currentVenueStatus].map(str).filter(Boolean).join(' '));
-const norm = (v: unknown) => str(v).normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-const placeTown = (r: Row) => str(r.locationName) || str(r.destination) || str(r.town);
 async function loadSources(cols: string[], ws: string[]): Promise<Row[]> {
   const out: Row[] = [];
   for (const c of cols) {
