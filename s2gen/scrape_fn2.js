@@ -5,7 +5,10 @@
   const txt = e => (e ? e.innerText.replace(/\s+/g, ' ').trim() : '');
   const blocks = [];
   const hero = R.querySelector('section.hero');
-  if (hero) {
+  if (hero && hero.querySelector('img')) {
+    const im = hero.querySelector('img'); const ps = [...hero.querySelectorAll('p')]; const inp = hero.querySelector('input');
+    blocks.push({ type: 'hero3', src: im.src, uri: media(im.src), alt: im.alt || '', title: txt(hero.querySelector('h1')), desc: txt(hero.querySelector('.sr-first-description')) || txt(ps[0]), h2: txt(hero.querySelector('h2')), sub: txt(ps.find(p => !p.classList.contains('sr-first-description'))), badge: /18\+/.test(hero.innerText) || !!hero.querySelector('[data-sr-brand-icon=adult]'), search: inp ? inp.placeholder : '' });
+  } else if (hero) {
     const bgi = getComputedStyle(hero.querySelector('.hero-image') || hero).backgroundImage;
     const m = bgi.match(/url\("?(.*?)"?\)/);
     const ps = [...hero.querySelectorAll('p')];

@@ -306,7 +306,38 @@ def do_cta(b,k=0):
         rule('ct-b','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 3;\ngrid-column: 2 / 3;\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 3 / 4;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
         pill('ct-b','linear-gradient(180deg, #F0407F, #D81B60)',WHITE,size=15,r=999,pad=(11,20))
     row+=1
-FN={'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
+def do_hero3(b,k=0):
+    global row
+    sid=f's{row}'
+    left=[rt('h3t','<h1>'+esc(b['title'])+'</h1>'),rt('h3d','<p>'+esc(b['desc'])+'</p>')]
+    if b.get('h2'): left.append(rt('h3h','<h2>'+esc(b['h2'])+'</h2>'))
+    if b.get('sub'): left.append(rt('h3s','<p>'+esc(b['sub'])+'</p>'))
+    if b.get('badge'): left.append(box('h3b',[rt('h3b-t','<p>18+</p>')]))
+    left.append(box('h3q',[rt('h3q-t','<p>'+esc(b['search'])+'</p>'),button('h3q-b','Search →','/search')]))
+    secs.append(sec(sid,[box('h3l',left),image('h3i',b['uri'],b['w'],b['h'],b['alt'])]))
+    section(sid,row,grid_ic(sid+'-ic','minmax(0px, 1fr) minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto auto',(0,0,0),(0,0,0),(0,0),(0,0)),560,0)
+    fill(sid+'-bg','#0B2545')
+    gi('h3l','1 / 2','1 / 2','2 / 3','1 / 2',h='100%',hm='auto',a='stretch',am='start')
+    n=len(left); boxgrid('h3l','minmax(0px, 1fr)',' '.join(['auto']*n),'minmax(0px, 1fr)',' '.join(['auto']*n),(32,32),(24,18),(0,16),(0,14))
+    r=1
+    def nxt(i,**kw):
+        nonlocal r; gi(i,f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',**kw); r+=1
+    nxt('h3t'); font('h3t',44,900,WHITE,lh=1.15,sizem=30); sty.append('.h3t {\n    text-transform: uppercase;\n}')
+    nxt('h3d'); font('h3d',16,500,WHITE,lh=1.7,fam=None)
+    if b.get('h2'): nxt('h3h'); font('h3h',15,900,WHITE,lh=1.3,fam=None); sty.append('.h3h {\n    text-transform: uppercase;\n}')
+    if b.get('sub'): nxt('h3s'); font('h3s',16,500,WHITE,lh=1.7,fam=None)
+    if b.get('badge'):
+        nxt('h3b',w='--spx(40)',wm='--spx(36)')
+        boxgrid('h3b','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(9,0),(8,0),color=WHITE,radius=999,shadow='0px 0px 0px 3px #E0247A')
+        gi('h3b-t','1 / 2','1 / 2','1 / 2','1 / 2',a='center',am='center'); font('h3b-t',13,900,'#E0247A',lh=1.0,fam=None,align='center')
+    nxt('h3q',w='100%',wm='100%')
+    boxgrid('h3q','minmax(0px, 1fr) max-content','auto','minmax(0px, 1fr) max-content','auto',(5,5),(4,4),(8,0),(6,0),color=WHITE,radius=6)
+    gi('h3q-t','1 / 2','1 / 2','1 / 2','1 / 2',a='center',am='center'); font('h3q-t',15,400,'#6B7A8C',fam=None)
+    gi('h3q-b','1 / 2','2 / 3','1 / 2','2 / 3',w='auto',wm='auto',a='center',am='center')
+    pill('h3q-b','linear-gradient(180deg, #F0407F, #D81B60)',WHITE,size=15,r=4,pad=(13,24))
+    rule('h3i','width: 100%;\nheight: 100%;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 2 / 3;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;','width: 100%;\nheight: --spx(240);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;')
+    row+=1
+FN={'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1

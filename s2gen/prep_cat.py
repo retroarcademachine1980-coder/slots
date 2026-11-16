@@ -44,6 +44,9 @@ for b in S['blocks']:
     elif t=='hero2':
         w,h=A['sizes'].get(b['uri'],[2019,1413])
         C['blocks'].append({'type':'hero2','uri':b['uri'],'w':w,'h':h,'title':b['title'],'desc':b['desc'],'pill':b.get('pill'),'sub':b.get('sub')})
+    elif t=='hero3':
+        w,h=A['sizes'].get(b['uri'],[1100,900])
+        C['blocks'].append({'type':'hero3','uri':b['uri'],'w':w,'h':h,'alt':b.get('alt') or b['title'],'title':b['title'],'desc':b['desc'],'h2':b.get('h2'),'sub':b.get('sub'),'badge':b.get('badge'),'search':b.get('search') or 'Search a venue, town or location…'})
     elif t=='iconbtns':
         C['blocks'].append({'type':'iconbtns','items':[{'label':i['label'],'icon':A['icons'].get(i['key'],A['icons'].get('map'))} for i in b['items']]})
     elif t=='cta':
