@@ -340,6 +340,94 @@ def do_review(b,k=0):
         gi('rv-note-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('rv-note-t',15,400,NAV,lh=1.5,fam=None)
     row+=1
 
+def do_casinooffers(b,k=0):
+    """Live casino offers page: banner, featured offer cards, why/play-responsibly, and the full offers list.
+    Every Claim/Visit button keeps the live affiliate href and its sponsored rel."""
+    global row
+    NAV='#073B63'; RED='#E7072D'; YEL='#FFD339'; Q='minmax(0px, 1fr)'
+    def ext(i,label,L):
+        d={"target":"_blank","href":L['href'],"rel":L.get('rel') or "noopener noreferrer"}
+        return f'<Button id="{i}" className="{i}" label={{{json.dumps(label,ensure_ascii=False)}}} link={{{json.dumps(d)}}} />'
+    def card(i,pad=(20,20),padm=(16,14),color=WHITE,cols=Q,rows='auto',colsm=Q,rowsm='auto',gap=(14,10),gapm=(0,10)):
+        boxgrid(i,cols,rows,colsm,rowsm,pad,padm,gap,gapm,color=color,radius=12,shadow='0px 0px 0px 1px #DBE5E9')
+    def lab(i,t,size,weight,col): return rt(i,'<p>'+esc(t)+'</p>'),(i,size,weight,col)
+    # banner
+    sid=f's{row}'; H_=b['hero']
+    secs.append(sec(sid,[image('of-ban',H_['uri'],H_['w'],H_['h'],H_['alt'])]))
+    section(sid,row,grid_ic(sid+'-ic',Q,'auto',Q,'auto',(0,0,0),(0,0,0),(0,0),(0,0)))
+    fill(sid+'-bg',WHITE)
+    rule('of-ban','width: 100%;\naspect-ratio: '+f"{H_['w']} / {H_['h']}"+';\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nposition: relative;','width: 100%;\naspect-ratio: '+f"{H_['w']} / {H_['h']}"+';\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;')
+    row+=1
+    # featured cards
+    sid=f's{row}'; F=b['featured']; n=len(F)
+    kids=[rt('ft-h','<h2>'+esc(b['featTitle'])+'</h2>'),rt('ft-p','<p>'+esc(b['featText'])+'</p>')]
+    for j,o in enumerate(F):
+        kk=[f'<Button id="ft{j}-b" className="ft{j}-b" label={{{json.dumps(o['badge'],ensure_ascii=False)}}} />',image(f'ft{j}-i',o['uri'],o['w'],o['h'],o['alt']),rt(f'ft{j}-t','<h3>'+esc(o['title'])+'</h3>'),ext(f'ft{j}-go',o['go']['text'],o['go']),rt(f'ft{j}-s','<p>'+esc(o['small'])+'</p>')]
+        if o.get('review'): kk.append(button(f'ft{j}-r',o['review']['text'],o['review']['href']))
+        kids.append(box(f'ft{j}',kk))
+    secs.append(sec(sid,kids))
+    section(sid,row,grid_ic(sid+'-ic',' '.join([Q]*n),'auto auto auto',f'{Q} {Q}',' '.join(['auto']*(2+(n+1)//2)),(30,50,24),(20,14,18),(18,8),(10,8)))
+    fill(sid+'-bg',WHITE)
+    gi('ft-h','1 / 2',f'1 / {n+1}','1 / 2','1 / 3'); font('ft-h',34,700,NAV,lh=1.15,sizem=26)
+    gi('ft-p','2 / 3',f'1 / {n+1}','2 / 3','1 / 3'); font('ft-p',16,400,NAV,lh=1.5,fam=None)
+    for j,o in enumerate(F):
+        gi(f'ft{j}','3 / 4',f'{j+1} / {j+2}',f'{3+j//2} / {4+j//2}',f'{j%2+1} / {j%2+2}',h='100%',hm='100%',a='stretch',am='stretch')
+        nr=6 if o.get('review') else 5
+        card(f'ft{j}',rows=' '.join(['auto']*nr),rowsm=' '.join(['auto']*nr),gap=(0,10),gapm=(0,8))
+        gi(f'ft{j}-b','1 / 2','1 / 2','1 / 2','1 / 2',w='auto',wm='auto'); pill(f'ft{j}-b',RED if j==0 else NAV,WHITE,size=11,r=999,pad=(5,10),border='0px solid transparent',shadow=False)
+        rule(f'ft{j}-i','width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;\nposition: relative;','width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\ngrid-row: 2 / 3;\ngrid-column: 1 / 2;')
+        gi(f'ft{j}-t','3 / 4','1 / 2','3 / 4','1 / 2'); font(f'ft{j}-t',19,700,NAV,lh=1.25,sizem=16,fam=None)
+        gi(f'ft{j}-go','4 / 5','1 / 2','4 / 5','1 / 2',wm='100%'); pill(f'ft{j}-go',RED,WHITE,size=15,r=6,pad=(12,14),border='1px solid '+RED,shadow=False)
+        gi(f'ft{j}-s','5 / 6','1 / 2','5 / 6','1 / 2'); font(f'ft{j}-s',12,400,'#4A6378',lh=1.4,fam=None)
+        if o.get('review'): gi(f'ft{j}-r','6 / 7','1 / 2','6 / 7','1 / 2',w='auto',wm='auto'); pill(f'ft{j}-r','transparent','#075887',size=13,r=0,pad=(0,0),border='0px solid transparent',shadow=False)
+    row+=1
+    # why + play responsibly
+    sid=f's{row}'; W=b['why']; R_=b['resp']
+    wk=[rt('wy-h','<h2>'+esc(b['whyTitle'])+'</h2>')]+[f'<Button id="wy{j}" className="wy{j}" label={{{json.dumps("✓ "+t,ensure_ascii=False)}}} />' for j,t in enumerate(W)]
+    rk=[rt('rs-18','<p>18+</p>'),rt('rs-h','<h2>'+esc(R_['title'])+'</h2>'),rt('rs-p','<p>'+esc(R_['text'])+'</p>')]+[(ext if l['href'].startswith('http') else (lambda i,t,L: button(i,t,L['href'])))(f'rs-l{j}',l['text'],l) for j,l in enumerate(R_['links'])]
+    secs.append(sec(sid,[box('wy',wk),box('rs',rk)]))
+    section(sid,row,grid_ic(sid+'-ic',f'{Q} {Q}','auto',Q,'auto auto',(10,50,24),(10,14,18),(18,0),(0,12)))
+    fill(sid+'-bg',WHITE)
+    gi('wy','1 / 2','1 / 2','1 / 2','1 / 2',h='100%',hm='auto',a='stretch',am='start')
+    card('wy',color='#F5F9FA',cols=' '.join(['max-content']*3)+' '+Q,rows='auto auto auto',colsm=f'{Q} {Q}',rowsm=' '.join(['auto']*(1+(len(W)+1)//2)),gap=(8,10),gapm=(8,8))
+    gi('wy-h','1 / 2','1 / 5','1 / 2','1 / 3'); font('wy-h',22,700,NAV,lh=1.2,fam=None)
+    for j in range(len(W)):
+        gi(f'wy{j}',f'{2+j//3} / {3+j//3}',f'{j%3+1} / {j%3+2}',f'{2+j//2} / {3+j//2}',f'{j%2+1} / {j%2+2}',w='auto',wm='auto'); pill(f'wy{j}',WHITE,NAV,size=13,r=999,pad=(7,12),border='1px solid #DBE5E9',shadow=False)
+    gi('rs','1 / 2','2 / 3','2 / 3','1 / 2',h='100%',hm='auto',a='stretch',am='start')
+    nl=len(R_['links'])
+    card('rs',color='#F5F9FA',cols='--spx(64) '+' '.join(['max-content']*nl)+' '+Q,rows='auto auto auto',colsm='--spx(56) '+Q,rowsm='auto auto '+' '.join(['auto']*nl),gap=(12,8),gapm=(10,8))
+    gi('rs-18','1 / 4','1 / 2','1 / 3','1 / 2',a='start',am='start'); font('rs-18',30,800,RED,lh=1.1,fam=None)
+    gi('rs-h','1 / 2',f'2 / {nl+3}','1 / 2','2 / 3'); font('rs-h',22,700,NAV,lh=1.2,fam=None)
+    gi('rs-p','2 / 3',f'2 / {nl+3}','2 / 3','2 / 3'); font('rs-p',15,400,NAV,lh=1.5,fam=None)
+    for j in range(nl):
+        gi(f'rs-l{j}','3 / 4',f'{j+2} / {j+3}',f'{3+j} / {4+j}','2 / 3',w='auto',wm='auto'); pill(f'rs-l{j}',NAV if j else 'transparent',WHITE if j else '#075887',size=13,r=6,pad=(9,14) if j else (0,0),border='0px solid transparent',shadow=False)
+    row+=1
+    # all offers
+    sid=f's{row}'; O=b['offers']
+    kids=[rt('al2-h','<h2>'+esc(b['allTitle'])+'</h2>'),rt('al2-p','<p>'+esc(b['allText'])+'</p>')]
+    for j,o in enumerate(O):
+        det='<h3>'+esc(o['name'])+'</h3><p><strong>'+esc(o['offer'])+'</strong></p>'+('<ul>'+''.join('<li>'+esc(x)+'</li>' for x in o['bullets'])+'</ul>' if o['bullets'] else '')+('<p><strong>Key terms:</strong> '+esc(o['terms'])+'</p>' if o['terms'] else '')
+        kk=[image(f'or{j}-i',o['uri'],o['w'],o['h'],o['alt']),rt(f'or{j}-d',det),rt(f'or{j}-sc','<p>'+esc(o['score'])+'</p>'),rt(f'or{j}-sl','<p>Raider Score</p>'),ext(f'or{j}-go',o['go']['text'],o['go'])]
+        if o.get('review'): kk.append(button(f'or{j}-r',o['review']['text'],o['review']['href']))
+        kk.append(rt(f'or{j}-ck','<p>'+esc(o['checked'])+'</p>'))
+        kids.append(box(f'or{j}',kk))
+    secs.append(sec(sid,kids))
+    section(sid,row,grid_ic(sid+'-ic',Q,' '.join(['auto']*(2+len(O))),Q,' '.join(['auto']*(2+len(O))),(24,50,30),(18,14,22),(0,14),(0,12)))
+    fill(sid+'-bg',WHITE)
+    gi('al2-h','1 / 2','1 / 2','1 / 2','1 / 2'); font('al2-h',34,700,NAV,lh=1.15,sizem=26)
+    gi('al2-p','2 / 3','1 / 2','2 / 3','1 / 2'); font('al2-p',16,400,NAV,lh=1.5,fam=None)
+    for j,o in enumerate(O):
+        gi(f'or{j}',f'{3+j} / {4+j}','1 / 2',f'{3+j} / {4+j}','1 / 2')
+        card(f'or{j}',cols='--spx(170) '+Q+' --spx(110) --spx(190)',rows='auto auto auto minmax(0px, 1fr)',colsm=f'--spx(120) {Q}',rowsm='auto auto auto auto auto',gap=(18,6),gapm=(12,8))
+        rule(f'or{j}-i','width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\ngrid-row: 1 / 5;\ngrid-column: 1 / 2;\nalign-self: start;\nposition: relative;','width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\ngrid-row: 1 / 3;\ngrid-column: 1 / 2;\nalign-self: start;')
+        gi(f'or{j}-d','1 / 5','2 / 3','3 / 4','1 / 3'); font(f'or{j}-d',15,400,NAV,lh=1.5,fam=None)
+        gi(f'or{j}-sc','1 / 2','3 / 4','1 / 2','2 / 3',w='auto',wm='auto',j='center',jm='start'); font(f'or{j}-sc',34,800,NAV,lh=1,fam=None)
+        gi(f'or{j}-sl','2 / 3','3 / 4','2 / 3','2 / 3',w='auto',wm='auto',j='center',jm='start'); font(f'or{j}-sl',12,600,'#4A6378',lh=1.2,fam=None)
+        gi(f'or{j}-go','1 / 2','4 / 5','4 / 5','1 / 3',wm='100%'); pill(f'or{j}-go',RED,WHITE,size=15,r=6,pad=(12,14),border='1px solid '+RED,shadow=False)
+        if o.get('review'): gi(f'or{j}-r','2 / 3','4 / 5','5 / 6','1 / 2',w='auto',wm='auto'); pill(f'or{j}-r','transparent','#075887',size=13,r=0,pad=(0,0),border='0px solid transparent',shadow=False)
+        gi(f'or{j}-ck','3 / 4','4 / 5','5 / 6','2 / 3' if o.get('review') else '1 / 3'); font(f'or{j}-ck',12,400,'#4A6378',lh=1.3,fam=None)
+    row+=1
+
 def do_more(b,k=0):
     global row
     sid=f's{row}'
@@ -570,7 +658,7 @@ def do_ideas(b,k=0):
         gi(f'ic{n}-p','3 / 4','1 / 2','3 / 4','1 / 2'); font(f'ic{n}-p',14,400,'#27425F',lh=1.5,fam=None)
         gi(f'ic{n}-b','4 / 5','1 / 2','4 / 5','1 / 2',w='auto',wm='auto'); pill(f'ic{n}-b','transparent',c['color'],size=14,r=0,pad=(4,0),border='0px solid transparent',shadow=False)
     row+=1
-FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more,'chips':do_chips,'tripbuilder':do_tripbuilder,'explorer':do_explorer,'review':do_review}
+FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more,'chips':do_chips,'tripbuilder':do_tripbuilder,'explorer':do_explorer,'review':do_review,'casinooffers':do_casinooffers}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1
