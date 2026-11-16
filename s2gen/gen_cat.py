@@ -17,8 +17,8 @@ INK='#102744'; GREY='#536981'; MAG='#A01859'; LIGHTBLUE='#F1FBFF'; PALE='#F5F9FD
 def esc(s): return html.escape(s,quote=False)
 def ph(i,h): return {"id":"dataItem-"+i,"type":"Builder.RichText","html":h}
 def rt(i,h): return f'<WRichText id="{i}" className="{i}" richText={{{json.dumps(ph(i,h),ensure_ascii=False)}}} />'
-def lnk(i,href): return {"type":"ExternalLink","id":"dataItem-"+i+"-l","url":(href if href.startswith('http') else SITE+href),"target":"_self"}
-def imgd(i,uri,w,h,alt): return {"name":alt[:60] or 'image',"uri":uri,"width":w,"height":h,"id":"dataItem-"+i,"alt":alt,"type":"Builder.Image"}
+def lnk(i,href): return {"target":"_self","href":(href if href.startswith('http') else SITE+href),"rel":"noreferrer noopener"}
+def imgd(i,uri,w,h,alt): return {"name":alt[:60] or 'image',"uri":uri,"width":w,"height":h,"alt":alt,"type":"Builder.Image","url":"https://static.wixstatic.com/media/"+(uri or "")}
 def image(i,uri,w,h,alt,href=None):
     l=f' link={{{json.dumps(lnk(i,href))}}}' if href else ''
     return f'<Image id="{i}" className="{i}" displayMode={{"fill"}} image={{{json.dumps(imgd(i,uri,w,h,alt),ensure_ascii=False)}}}{l} />'
@@ -184,7 +184,7 @@ def do_all(b,k=0):
     sid=f's{row}'
     A=b; c=A['collection']; prov='CmsProvider_'+c
     flt=('filter={{ '+A['filter']+': { $isNotEmpty: true } }}') if A.get('filter') else ''
-    card_kids=[f'<Image id="al-img" className="al-img" displayMode={{"fill"}} image={{item.fields.heroImage.value ?? {json.dumps({"name":"Spin Raiders","uri":"3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg","width":2752,"height":1100,"alt":"","type":"Builder.Image"})}}} />',
+    card_kids=[f'<Image id="al-img" className="al-img" displayMode={{"fill"}} image={{item.fields.heroImage.value}} />',
         f'<WRichText id="al-t" className="al-t" richText={{fn(textToRichText, item.fields.title.value, {{ placeholder: {json.dumps(ph("al-t","<h4>Place</h4>"))} }})}} />',
         f'<WRichText id="al-s" className="al-s" richText={{fn(textToRichText, item.fields.{A["sub"]}.value, {{ placeholder: {json.dumps(ph("al-s","<p>Town</p>"))} }})}} />',
         f'<Button id="al-b" className="al-b" label={{"Read the guide →"}} link={{item.getPageLink({{ pageRole: {json.dumps(ROLES[c])}, href: {json.dumps(PFX[c])} }})}} />']
@@ -361,7 +361,7 @@ def do_all2(b,k=0):
             pl=json.dumps(BOX+FN_[i],ensure_ascii=False); fv=json.dumps(FV[i])
             side.append(f'<Button id="df-f{i}" className="df-f{i}" label={{ctx("facilityLabel{i}", {{ from: useDirectoryFilter, placeholder: {pl} }})}} onClick={{callback(ctx("toggleFacility", {F}), {fv})}} />')
     side.append(button('df-map','Explore places on the map →','/map'))
-    card_kids=[f'<Image id="al-img" className="al-img" displayMode={{"fill"}} image={{item.fields.heroImage.value ?? {json.dumps({"name":"Spin Raiders","uri":"3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg","width":2752,"height":1100,"alt":"","type":"Builder.Image"})}}} />',
+    card_kids=[f'<Image id="al-img" className="al-img" displayMode={{"fill"}} image={{item.fields.heroImage.value}} />',
         f'<WRichText id="al-t" className="al-t" richText={{fn(textToRichText, item.fields.title.value, {{ placeholder: {json.dumps(ph("al-t","<h4>Place</h4>"))} }})}} />',
         f'<WRichText id="al-s" className="al-s" richText={{fn(textToRichText, item.fields.{A["sub"]}.value, {{ placeholder: {json.dumps(ph("al-s","<p>Town</p>"))} }})}} />',
         f'<Button id="al-b" className="al-b" label={{"View details →"}} link={{item.getPageLink({{ pageRole: {json.dumps(ROLES[c])}, href: {json.dumps(PFX[c])} }})}} />']

@@ -12,7 +12,8 @@ for a in "$@"; do
   done+=($out)
 done
 npm run lint 2>&1 | grep -v ' warning ' | grep -E ' error |failed|passed' | cut -c1-260 | head -10
-for ((i=0;i<${#done[@]};i+=6)); do
-  grp=("${done[@]:i:6}"); echo "saving ${grp[*]}"
+[ -n "$NOSAVE" ] && exit 0
+for ((i=0;i<${#done[@]};i+=3)); do
+  grp=("${done[@]:i:3}"); echo "saving ${grp[*]}"
   bash /tmp/gen/save_pages.sh "${grp[@]}" > /tmp/gen/save_$i.log 2>&1; grep -v "^    at " /tmp/gen/save_$i.log | grep -E -o "\"updated\":\[[^]]*\]|✖.*|\[jsx[A-Za-z]+\].*" | head -3 | cut -c1-300
 done
