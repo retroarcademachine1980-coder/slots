@@ -12,7 +12,7 @@ const fs = require('fs');
     await p.waitForTimeout(2000);
     const html = await p.evaluate((cls) => {
       const got = [];
-      const walk = (root) => root.querySelectorAll('*').forEach(el => { if (el.shadowRoot) walk(el.shadowRoot); if (el.tagName === 'SECTION' && cls.some(c => el.classList.contains(c))) got.push(el); });
+      const walk = (root) => root.querySelectorAll('*').forEach(el => { if (el.shadowRoot) walk(el.shadowRoot); if (el.tagName === 'SECTION' && cls.some(c => el.classList.contains(c) || el.id === c)) got.push(el); });
       walk(document);
       return got.map(el => { const c = el.cloneNode(true); c.querySelectorAll('style,script,svg,img,button').forEach(x => x.remove()); return c.innerHTML.replace(/<\/?(article|div|section)[^>]*>/g, ''); });
     }, (process.env.EXTRA_CLASS || 'sr-named-discoveries').split(','));
