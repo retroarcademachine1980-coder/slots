@@ -137,7 +137,7 @@ async function loadSources(cols: string[], ws: string[]): Promise<Row[]> {
   }
   const seen = new Set<string>();
   return out.filter(listed).filter((r) => {
-    const k = (['NearbyAttractions', 'HotelGuides'].includes(r._collection) ? 'place' : r._collection) + '|' + norm(r.displayTitle || r.title || r.name) + '|' + norm(placeTown(r));
+    const k = r._collection + ':' + r._id; // live keys each place by its own record
     if (seen.has(k)) return false; seen.add(k); return true;
   });
 }
