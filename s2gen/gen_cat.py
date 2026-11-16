@@ -276,6 +276,70 @@ def do_explorer(b,k=0):
     gi(i,'1 / 2','1 / 2','1 / 2','1 / 2')
     row+=1
 
+def do_review(b,k=0):
+    """Live casino review summary (.cr-wrap): back link, logo + 18+/score/checked pills, title, offer, Visit (affiliate) and
+    evidence buttons, offer details + score breakdown cards, other cards and the 18+ note. Affiliate hrefs kept exactly."""
+    global row
+    sid=f's{row}'; NAV='#073B63'
+    def ext(i,label,href,rel):
+        L={"target":"_blank","href":href,"rel":rel or "noopener noreferrer"}
+        return f'<Button id="{i}" className="{i}" label={{{json.dumps(label,ensure_ascii=False)}}} link={{{json.dumps(L)}}} />'
+    hero=[]
+    if b.get('logo'): hero.append(image('rv-logo',b['logo']['uri'],b['logo']['w'],b['logo']['h'],b['logo']['alt']))
+    for n,t in enumerate(b['pills']): hero.append(f'<Button id="rv-p{n}" className="rv-p{n}" label={{{json.dumps(t,ensure_ascii=False)}}} />')
+    hero+= [rt('rv-h1','<h1>'+esc(b['h1'])+'</h1>'),rt('rv-of','<p>'+esc(b['offer'])+'</p>')]
+    for n,x in enumerate(b['buttons']): hero.append(ext(f'rv-b{n}',x['text'],x['href'],x['rel']))
+    kids=[]
+    if b.get('back'): kids.append(button('rv-back',b['back'][0],b['back'][1]))
+    kids.append(box('rv-hero',hero))
+    if b.get('main'): kids.append(box('rv-main',[rt('rv-main-t',b['main'])]))
+    if b.get('aside'): kids.append(box('rv-side',[rt('rv-side-t',b['aside'])]))
+    for n,c in enumerate(b.get('cards',[])): kids.append(box(f'rv-c{n}',[rt(f'rv-c{n}-t',c)]))
+    if b.get('note'): kids.append(box('rv-note',[rt('rv-note-t',b['note'])]))
+    secs.append(sec(sid,kids))
+    nc=len(b.get('cards',[])); R=['auto']*(4+nc+1)
+    section(sid,row,grid_ic(sid+'-ic','minmax(0px, 1.22fr) minmax(0px, 1fr)',' '.join(R),'minmax(0px, 1fr)',' '.join(['auto']*(5+nc+1)),(24,50,30),(16,14,22),(24,22),(0,14)))
+    fill(sid+'-bg',WHITE)
+    r=1
+    if b.get('back'):
+        gi('rv-back',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 2',w='auto',wm='auto'); pill('rv-back','transparent','#075887',size=14,r=0,pad=(0,0),border='0px solid transparent',shadow=False)
+    r+=1
+    gi('rv-hero',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 2')
+    np_=len(b['pills']); nb=len(b['buttons'])
+    cols=' '.join(['max-content']*max(np_,nb))+' minmax(0px, 1fr)'
+    boxgrid('rv-hero','--spx(260) '+cols,'auto auto auto auto','minmax(0px, 1fr)','auto '+' '.join(['auto']*(np_+2+nb)),(26,26),(18,16),(22,12),(0,10),color=WHITE,radius=12,shadow='inset 0px 5px 0px #FFD339, 0px 5px 18px rgba(7, 59, 99, 0.07)')
+    span=f'2 / {max(np_,nb)+3}'
+    if b.get('logo'):
+        rule('rv-logo','width: 100%;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 5;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: stretch;\nposition: relative;','width: --spx(200);\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: start;')
+    for n in range(np_):
+        gi(f'rv-p{n}','1 / 2',f'{n+2} / {n+3}',f'{n+2} / {n+3}','1 / 2',w='auto',wm='auto',a='center',am='start')
+        sc='Score' in b['pills'][n]; pill(f'rv-p{n}',NAV if sc else '#F1F6F8',WHITE if sc else NAV,size=13,r=999,pad=(7,11),border='1px solid '+(NAV if sc else '#DBE5E9'),shadow=False)
+    gi('rv-h1','2 / 3',span,f'{np_+2} / {np_+3}','1 / 2'); font('rv-h1',44,700,NAV,lh=1.1,sizem=30)
+    gi('rv-of','3 / 4',span,f'{np_+3} / {np_+4}','1 / 2'); font('rv-of',24,700,NAV,lh=1.25,sizem=19,fam=None)
+    for n,x in enumerate(b['buttons']):
+        gi(f'rv-b{n}','4 / 5',f'{n+2} / {n+3}',f'{np_+4+n} / {np_+5+n}','1 / 2',w='auto',wm='auto')
+        pill(f'rv-b{n}','#E7072D' if x.get('red') else '#FFD339',WHITE if x.get('red') else NAV,size=15,r=6,pad=(12,18),border='1px solid '+('#E7072D' if x.get('red') else '#E8BF00'),shadow=False)
+    r+=1
+    if b.get('main'):
+        gi('rv-main',f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',h='100%',hm='auto',a='stretch',am='start')
+        boxgrid('rv-main','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(22,22),(18,16),color=WHITE,radius=10,shadow='0px 0px 0px 1px #DBE5E9')
+        gi('rv-main-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('rv-main-t',17,400,NAV,lh=1.6,fam=None)
+    if b.get('aside'):
+        gi('rv-side',f'{r} / {r+1}','2 / 3',f'{r+1} / {r+2}','1 / 2',h='100%',hm='auto',a='stretch',am='start')
+        boxgrid('rv-side','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(22,22),(18,16),color=WHITE,radius=10,shadow='0px 0px 0px 1px #DBE5E9')
+        gi('rv-side-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('rv-side-t',17,400,NAV,lh=1.6,fam=None)
+    r+=1; rm=r+1
+    for n in range(nc):
+        gi(f'rv-c{n}',f'{r} / {r+1}','1 / 3',f'{rm} / {rm+1}','1 / 2')
+        boxgrid(f'rv-c{n}','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(22,22),(18,16),color=WHITE,radius=10,shadow='0px 0px 0px 1px #DBE5E9')
+        gi(f'rv-c{n}-t','1 / 2','1 / 2','1 / 2','1 / 2'); font(f'rv-c{n}-t',17,400,NAV,lh=1.6,fam=None)
+        r+=1; rm+=1
+    if b.get('note'):
+        gi('rv-note',f'{r} / {r+1}','1 / 3',f'{rm} / {rm+1}','1 / 2')
+        boxgrid('rv-note','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(16,18),(14,14),color='#F5F9FA',radius=8)
+        gi('rv-note-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('rv-note-t',15,400,NAV,lh=1.5,fam=None)
+    row+=1
+
 def do_more(b,k=0):
     global row
     sid=f's{row}'
@@ -506,7 +570,7 @@ def do_ideas(b,k=0):
         gi(f'ic{n}-p','3 / 4','1 / 2','3 / 4','1 / 2'); font(f'ic{n}-p',14,400,'#27425F',lh=1.5,fam=None)
         gi(f'ic{n}-b','4 / 5','1 / 2','4 / 5','1 / 2',w='auto',wm='auto'); pill(f'ic{n}-b','transparent',c['color'],size=14,r=0,pad=(4,0),border='0px solid transparent',shadow=False)
     row+=1
-FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more,'chips':do_chips,'tripbuilder':do_tripbuilder,'explorer':do_explorer}
+FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more,'chips':do_chips,'tripbuilder':do_tripbuilder,'explorer':do_explorer,'review':do_review}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1
