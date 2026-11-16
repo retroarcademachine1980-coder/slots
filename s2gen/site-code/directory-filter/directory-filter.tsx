@@ -83,9 +83,8 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
         const ws = (words || '').split('|').map((w) => w.trim().toLowerCase()).filter(Boolean);
         const seen = new Set<string>();
         const keep = all.filter((r) => {
+          if (baseField && (r[baseField] === undefined || r[baseField] === null || r[baseField] === '')) return false;
           if (ws.length) { const t = [r.category, r.venueType, r.title, r.name].map(str).join(' ').toLowerCase(); if (!ws.some((w) => t.includes(w))) return false; }
-          else if (baseField && (r[baseField] === undefined || r[baseField] === null || r[baseField] === '')) return false;
-          if (!r.slug && !r._slug && !r['link-' + collection.toLowerCase() + '-title']) { /* still listed: page link comes from the CMS */ }
           const k = String(r.title || r._id).toLowerCase() + '|' + str(r.locationName || r.town).toLowerCase();
           if (seen.has(k)) return false; seen.add(k); return true;
         });
