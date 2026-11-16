@@ -181,7 +181,10 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
         if (srcs.length) {
           const ws0 = (words || '').split('|').map((w) => w.trim()).filter(Boolean);
           const types = liveType.split('|').filter(Boolean);
-          const got = (await loadSources(srcs, ws0)).filter((r) => !types.length || types.includes(classify(r)));
+          // "@agconly" (live agcOnly): leave out family, pier, bowling, bingo, holiday and theme-park venues unless marked adult/18+.
+          const agcOnly = readyField === '@agconly';
+          const got = (await loadSources(srcs, ws0)).filter((r) => (!types.length || types.includes(classify(r))) &&
+            !(agcOnly && /family|pier|bowl|bingo|holiday|theme park|amusement arcade|amusement venue|amusement centre/i.test(str(r.venueType)) && !/adult|18\+/i.test(str(r.venueType))));
           if (live) { setRows(got); setWide(got); }
           return;
         }
