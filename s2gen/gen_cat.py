@@ -284,7 +284,10 @@ for f in os.listdir(gd):
     os.remove(p); open(os.path.join(gd,f.replace('ArcadeVenuesList',camel)),'w').write(t)
 imports=[l for l in S[:S.index('export const Structure')].split('\n') if l.startswith('import') and not any(x in l for x in ['cmsprovider_','/line\'','{ svg }','{ media }','origami-runtime'])]
 imports+=["import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { SvgImage } from '@origami-wrappers/wixEditorElements/svgimage'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { callback, ctx, fn, svg } from '@wix/origami-runtime'","import { media } from '@wix/sdk'",
-    f"import {{ CmsProvider_{c} }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'",f"import {{ useCmsContext }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'"]
+    ]
+for _b in C['blocks']:
+    if _b['type']=='all':
+        c=_b['collection']; imports+=[f"import {{ CmsProvider_{c} }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'",f"import {{ useCmsContext }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'"]
 if 'textToRichText' not in '\n'.join(imports):
     tl=[l for l in S.split('\n') if 'textToRichText' in l and l.startswith('import')]
     imports+=tl
@@ -321,7 +324,8 @@ for sel,d,m,ic,icm in lay:
 mq=re.search(r'@media \([^)]*\)',L).group(0)
 open(os.path.join(out,'layout.css'),'w').write(base+'\n'+'\n'.join(o)+'\n'+mq+' {\n'+'\n'.join(om)+'\n}\n')
 mob='.al-rep {\n    --spx-ref-width: 375;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 1;\n}'
-open(os.path.join(out,'style.css'),'w').write('\n'.join(sty)+'\n'+mq+' {\n    '+mob.replace('\n','\n    ')+'\n}\n')
+has_all=any(_b['type']=='all' for _b in C['blocks'])
+open(os.path.join(out,'style.css'),'w').write('\n'.join(sty)+'\n'+((mq+' {\n    '+mob.replace('\n','\n    ')+'\n}\n') if has_all else ''))
 un=json.load(open(os.path.join(LB,'unmapped.json'))); un['components']={k:v for k,v in un.get('components',{}).items() if k in (hdr,ftr)}
 json.dump(un,open(os.path.join(out,'unmapped.json'),'w'),indent=4,ensure_ascii=False)
 print('ok',slug,pid,'sections',NS)
