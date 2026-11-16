@@ -83,6 +83,11 @@ for b in S['blocks']:
         C['blocks'].append({'type':'promos','items':items})
     elif t=='more':
         C['blocks'].append({'type':'more','items':[[x,newpath(u)] for x,u in b['items']]})
+# live sections the block scraper does not read (e.g. Hidden Gems "Six discoveries"), saved by tools/extra.js
+xf=os.path.join(os.path.dirname(sys.argv[1]),'extra_%s.json'%slug)
+if os.path.exists(xf):
+    at=max([n for n,b in enumerate(C['blocks']) if b['type']=='editorial'] or [len(C['blocks'])-2])+1
+    for h in reversed(json.load(open(xf))): C['blocks'].insert(at,{'type':'editorial','html':fixhtml(h)})
 missing=[i for b in C['blocks'] for i in b.get('items',[]) if isinstance(i,dict) and 'uri' in i and not i['uri']]
 for b in C['blocks']:
     if isinstance(b.get('items'),list): b['items']=[i for i in b['items'] if not (isinstance(i,dict) and 'uri' in i and not i['uri']) and not (isinstance(i,dict) and 'icon' in i and not i['icon'])]
