@@ -9,6 +9,5 @@ $N $W origami export-site --site bbe39ca3-42ff-4580-bbe5-278b6674efbe -d $X >/de
 for p in "$@"; do
   rm -rf "$X/packages/site-app/src/pages/$p"; cp -r "packages/site-app/src/pages/$p" "$X/packages/site-app/src/pages/$p"
 done
-cp -r node_modules $X/ 2>/dev/null || ln -s /user-code/node_modules $X/node_modules
-(cd $X && npm run lint 2>&1 | grep -v ' warning ' | grep -E ' error |failed|passed' | cut -c1-300 | head -8)
+npm run lint 2>&1 | grep -v ' warning ' | grep -E ' error |failed|passed' | cut -c1-300 | head -8
 $N $W origami import-site -d $X --json 2>&1 | grep -v '^    at ' | tail -2 | cut -c1-700
