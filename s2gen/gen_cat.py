@@ -41,6 +41,12 @@ def flexbox(i,gap,gapm,justify='flex-start',color=None,pad=(0,0)):
     def F(g,p): return f'display: flex;\nflex-direction: row;\nflex-wrap: wrap;\njustify-content: {justify};\nalign-items: center;\ncolumn-gap: --spx({g});\nrow-gap: --spx({g});\npadding-top: --spx({p[0]});\npadding-bottom: --spx({p[0]});\npadding-left: --spx({p[1]});\npadding-right: --spx({p[1]});'
     rule(i+'-ic','min-width: --spx(0);','min-width: --spx(0);',ic=F(gap,pad),icm=F(gapm,pad))
     H.bglay(i+'-bg'); fill(i+'-bg',color or 'transparent')
+def chipgrid(i,ids,cd,cm,gap,gapm,justify='center'):
+    def G(c,g,n): return f'display: grid;\ngrid-template-columns: repeat({c}, auto);\ngrid-template-rows: {" ".join(["auto"]*((n+c-1)//c))};\njustify-content: {justify};\ncolumn-gap: --spx({g});\nrow-gap: --spx({g});'
+    rule(i+'-ic','min-width: --spx(0);','min-width: --spx(0);',ic=G(cd,gap,len(ids)),icm=G(cm,gapm,len(ids)))
+    H.bglay(i+'-bg'); fill(i+'-bg','transparent')
+    for n,x in enumerate(ids):
+        gi(x,f'{n//cd+1} / {n//cd+2}',f'{n%cd+1} / {n%cd+2}',f'{n//cm+1} / {n//cm+2}',f'{n%cm+1} / {n%cm+2}',w='auto',wm='auto',j='center' if justify=='center' else 'start',jm='center' if justify=='center' else 'start')
 def flexitem(i,w='auto',wm=None): rule(i,f'width: {w};\nheight: auto;\nmin-width: 0px;\nposition: relative;',f'width: {wm or w};\nheight: auto;\nmin-width: 0px;')
 def font(i,size,weight,color,lh=1.3,fam='oswald-v2',extra='',sizem=None,align=None):
     fam=fam or 'inter'
@@ -58,7 +64,7 @@ secs.append(sec('s1',[image('h-img',h['uri'],h['w'],h['h'],h['alt']),
     box('chips',chips)]))
 g=grid_ic('s1-ic','minmax(0px, 1fr)','minmax(0px, 1fr) auto auto','minmax(0px, 1fr)','minmax(0px, 1fr) auto auto',(0,24,22),(0,12,16),(0,12),(0,10))
 section('s1',row,g,427,330); fill('s1-bg','#0B2A4A')
-rule('h-img','width: 100%;\nheight: 100%;\nmin-width: 0px;\ngrid-row: 1 / 4;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;\nmargin-left: --spx(-24);\nmargin-right: --spx(-24);\nmargin-bottom: --spx(-22);\nwidth: calc(100% + --spx(48));','width: calc(100% + --spx(24));\nheight: 100%;\nmin-width: 0px;\ngrid-row: 1 / 4;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nmargin-left: --spx(-12);\nmargin-bottom: --spx(-16);')
+rule('h-img','height: 100%;\nmin-width: 0px;\ngrid-row: 1 / 4;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;\nmargin-left: --spx(-24);\nmargin-right: --spx(-24);\nmargin-bottom: --spx(-22);\nwidth: calc(100% + --spx(48));','width: calc(100% + --spx(24));\nheight: 100%;\nmin-width: 0px;\ngrid-row: 1 / 4;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nmargin-left: --spx(-12);\nmargin-bottom: --spx(-16);')
 gi('srch','2 / 3','1 / 2','2 / 3','1 / 2',w='--spx(820)',wm='100%',j='center',jm='center')
 boxgrid('srch','minmax(0px, 1fr) auto','auto','minmax(0px, 1fr) auto','auto',(8,8),(6,6),(12,0),(8,0),color=WHITE,radius=14,shadow='0px 10px 30px rgba(5, 14, 28, 0.35)')
 rule('srch-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr) auto;\ngrid-template-rows: auto;\npadding-top: --spx(8);\npadding-bottom: --spx(8);\npadding-left: --spx(22);\npadding-right: --spx(8);\ncolumn-gap: --spx(12);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr) auto;\ngrid-template-rows: auto;\npadding-top: --spx(6);\npadding-bottom: --spx(6);\npadding-left: --spx(12);\npadding-right: --spx(6);\ncolumn-gap: --spx(8);')
@@ -66,8 +72,8 @@ gi('srch-t','1 / 2','1 / 2','1 / 2','1 / 2',a='center',am='center'); font('srch-
 gi('srch-b','1 / 2','2 / 3','1 / 2','2 / 3',w='auto',wm='auto',a='center',am='center')
 pill('srch-b','linear-gradient(180deg, #F0407F, #D81B60)',WHITE,size=17,r=10,pad=(14,22))
 gi('chips','3 / 4','1 / 2','3 / 4','1 / 2',w='--spx(900)',wm='100%',j='center',jm='center')
-flexbox('chips',8,6,justify='center')
-for n in range(len(chips)): flexitem(f'tc{n}'); pill(f'tc{n}','rgba(16, 39, 68, 0.88)',WHITE,size=13,pad=(7,14),border='1px solid rgba(255,255,255,0.35)',shadow=False)
+chipgrid('chips',[f'tc{n}' for n in range(len(chips))],6,3,8,6)
+for n in range(len(chips)): pill(f'tc{n}','rgba(16, 39, 68, 0.88)',WHITE,size=13,pad=(7,14),border='1px solid rgba(255,255,255,0.35)',shadow=False)
 row+=1
 # ---------- 2 intro panel
 secs.append(sec('s2',[box('intro',[box('in-bar',[]),box('in-txt',[rt('in-h','<h1>'+esc(C['h1'])+'</h1>'),rt('in-p','<p>'+esc(C['intro'])+'</p>')])])]))
@@ -209,8 +215,8 @@ secs.append(sec('s9',kids))
 section('s9',row,grid_ic('s9-ic','minmax(0px, 1fr)','auto auto','minmax(0px, 1fr)','auto auto',(24,40,30),(18,16,22),(0,16),(0,12)))
 fill('s9-bg',PALE)
 gi('mw-h','1 / 2','1 / 2','1 / 2','1 / 2'); font('mw-h',26,900,INK,lh=1.15,sizem=22)
-gi('mw','2 / 3','1 / 2','2 / 3','1 / 2'); flexbox('mw',8,6)
-for n in range(len(M)): flexitem(f'mw{n}'); pill(f'mw{n}',WHITE,INK,size=14,r=999,pad=(8,14),border='1px solid #C9DDF2',shadow=False)
+gi('mw','2 / 3','1 / 2','2 / 3','1 / 2'); chipgrid('mw',[f'mw{n}' for n in range(len(M))],7,2,8,6,justify='start')
+for n in range(len(M)): pill(f'mw{n}',WHITE,INK,size=14,r=999,pad=(8,14),border='1px solid #C9DDF2',shadow=False)
 row+=1
 NS=row-2
 # ---------- write files
