@@ -28,7 +28,7 @@ const PATTERNS: Record<string, string> = {
 type Row = Record<string, any>;
 const str = (v: unknown) => (Array.isArray(v) ? v.filter((x) => typeof x === 'string').join(' ') : typeof v === 'string' ? v : '');
 // Same text the live site searches: name, category, venue type and place.
-const haystack = (r: Row) => [r.displayTitle || r.title || r.name, r.category, r.venueType, r.locationName, r.destination, r.region, r.county].filter(Boolean).map(str).join(' ').toLowerCase();
+const haystack = (r: Row) => [r.displayTitle || r.title || r.name, r.category, r.venueType, r.locationName, r.destination, r.region, r.county, r.manufacturer, r.era].filter(Boolean).map(str).join(' ').toLowerCase();
 const FEATURE_TOPIC = /^(?:Cocktails|Pinball|Social Gaming|Live Events|Retro Games|Walking & Hiking|Nature Reserves|Forests & Woodlands|Parks & Gardens|Countryside|Water Activities|Viewpoints)$/;
 function topicMatch(r: Row, t: string): boolean {
   if (/^All /.test(t)) return true;
@@ -88,13 +88,14 @@ function wixImage(v: unknown, alt: string): CardImage {
   if (typeof v === 'string') {
     const m = v.match(/^wix:image:\/\/v1\/([^/#]+)[^#]*(?:#originWidth=(\d+)&originHeight=(\d+))?/);
     if (m) { uri = m[1]; w = Number(m[2]) || 1200; h = Number(m[3]) || 800; }
+    else { const u = v.match(/static\.wixstatic\.com\/media\/([^/?#]+)/); if (u) { uri = u[1]; w = 1200; h = 800; } }
   } else if (v && typeof v === 'object' && typeof (v as Row).uri === 'string') { uri = (v as Row).uri; w = (v as Row).width || 1200; h = (v as Row).height || 800; }
   return { name: 'card', uri, width: w, height: h, alt, type: 'Builder.Image', url: `https://static.wixstatic.com/media/${uri}` };
 }
 const toCard = (prefix: string, tf: string) => (r: Row): Card => {
   const n = typeof r.publicReviewCount === 'number' ? r.publicReviewCount : 0;
   const rating = typeof r.publicRating === 'number' && r.publicRating > 0 ? `★ ${r.publicRating.toFixed(1)}${n ? ` (${n.toLocaleString('en-GB')} reviews)` : ''}` : 'No public rating yet.';
-  return { title: String(r.title || ''), town: String(r[tf] || r.locationName || r.town || ''), rating, image: wixImage(r.heroImage, String(r.title || '')), link: { href: `${prefix}/${r._slug || r.slug || ''}`, target: '_self' } };
+  return { title: String(r.title || ''), town: String(r[tf] || r.locationName || r.town || ''), rating, image: wixImage(r.cardImage || r.heroImage, String(r.title || '')), link: { href: `${prefix}/${r._slug || r.slug || ''}`, target: '_self' } };
 };
 
 export interface DirectoryFilterProviderProps {
