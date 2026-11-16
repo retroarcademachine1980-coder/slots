@@ -1,0 +1,204 @@
+{
+ "slug": "classic-fruit-machines",
+ "title": "Classic Fruit Machine Archive",
+ "seo_title": "Classic Fruit Machine Archive | Spin Raiders",
+ "seo_description": "Reels, nudges, familiar artwork and the names you remember. Explore classic UK fruit machines by maker and era.",
+ "blocks": [
+  {
+   "type": "hero3",
+   "uri": "3a517e_36eefd9f515b4f9183c46d4ef64eff48~mv2.png",
+   "w": 1100,
+   "h": 900,
+   "alt": "Classic fruit machines in an arcade",
+   "title": "Classic Fruit Machine Archive",
+   "desc": "Reels, nudges, familiar artwork and the names you remember. Explore classic UK fruit machines by maker and era. Every machine card opens its own description; venue cards open the place where you can visit. Settle in for a proper look around — there is plenty of nostalgia here.",
+   "h2": "Real machines. Real logos. Real nostalgia.",
+   "sub": "Browse classic fruit machines by logo, manufacturer and era. From Barcrest and JPM to Astra, Maygay/BWB, Red Gaming and more.",
+   "badge": false,
+   "search": "Search by machine name, manufacturer or year…"
+  },
+  {
+   "type": "iconbtns",
+   "items": [
+    {
+     "label": "All Machines",
+     "icon": "3a517e_f69abf28518242e88becd349534332d5~mv2.png"
+    },
+    {
+     "label": "Manufacturers",
+     "icon": "3a517e_9948abfc33934600881fb8afd4fc22d7~mv2.png"
+    },
+    {
+     "label": "By Era",
+     "icon": "3a517e_f7d60ea61e784876aa25c619a994fc6c~mv2.png"
+    },
+    {
+     "label": "Club Machines",
+     "icon": "3a517e_9eebbf56d26348529e5397c3a1a3b821~mv2.png"
+    },
+    {
+     "label": "4-Player Favourites",
+     "icon": "3a517e_9eebbf56d26348529e5397c3a1a3b821~mv2.png"
+    },
+    {
+     "label": "£5 Jackpot Era",
+     "icon": "3a517e_e44d5dd110c94b5baf704c6cc6bf15a2~mv2.png"
+    },
+    {
+     "label": "£15 Jackpot Era",
+     "icon": "3a517e_e44d5dd110c94b5baf704c6cc6bf15a2~mv2.png"
+    },
+    {
+     "label": "£25 Jackpot Era",
+     "icon": "3a517e_e44d5dd110c94b5baf704c6cc6bf15a2~mv2.png"
+    },
+    {
+     "label": "Seaside Classics",
+     "icon": "3a517e_2b4792c48be440d9919bf2757730f6e4~mv2.png"
+    }
+   ]
+  },
+  {
+   "type": "featured",
+   "title": "Featured machines",
+   "button": null,
+   "items": [
+    {
+     "kicker": "From the archive",
+     "title": "Andy Capp",
+     "town": "Barcrest",
+     "text": "Barcrest's 1991 Andy Capp: a cobalt-blue arcade classic where Andy dodges Flo round the pub trail, with nudges, holds and voiceovers.",
+     "href": "/fruit-machine/barcrest-andy-capp-1991-blue-edition",
+     "uri": "3a517e_fc12c6b53d744f0eabc6f597d734e4bd~mv2.webp",
+     "w": 1200,
+     "h": 800,
+     "alt": "Andy Capp"
+    },
+    {
+     "kicker": "Explore",
+     "title": "Bar-X 5",
+     "town": "Electrocoin",
+     "text": "A red 5 in a blue circle, a £15 jackpot starburst and a fiver for three Xs. Only the top box of Bar-X 5 made it into my photo.",
+     "href": "/fruit-machine/electrocoin-bar-x-5",
+     "uri": "3a517e_9799334968a34b429499bc5187ddaa26~mv2.webp",
+     "w": 1200,
+     "h": 800,
+     "alt": "Bar-X 5"
+    },
+    {
+     "kicker": "Discover",
+     "title": "Bullion Bars",
+     "town": "Astra",
+     "text": "Blue arch, gold bars and a £70 jackpot at £1 a go. Astra's 2012 multi-stake Bullion Bars comes with its own streak panel.",
+     "href": "/fruit-machine/astra-bullion-bars-2012-multi-stake",
+     "uri": "3a517e_1653d2dac8654aab8d0895b501f2f943~mv2.webp",
+     "w": 1200,
+     "h": 800,
+     "alt": "Bullion Bars"
+    },
+    {
+     "kicker": "Classic machine",
+     "title": "10 X 10",
+     "town": "Barcrest",
+     "text": "A bright Barcrest MPU4 machine in the Rio Casino cabinet, with chunky orange tens and a purple neon Ten Times Ten banner.",
+     "href": "/fruit-machine/barcrest-10-x-10",
+     "uri": "3a517e_9ee7e5ae931642ee96f5409cec214ffd~mv2.webp",
+     "w": 1200,
+     "h": 800,
+     "alt": "10 X 10"
+    }
+   ]
+  },
+  {
+   "type": "all2",
+   "title": "Explore the archive",
+   "collection": "ClassicFruitMachines",
+   "filter": "",
+   "words": "",
+   "sub": "manufacturer",
+   "topics": [
+    "Barcrest",
+    "JPM",
+    "Maygay",
+    "BWB",
+    "Astra",
+    "Red Gaming",
+    "Electrocoin",
+    "Project",
+    "Concept",
+    "BFM",
+    "Impulse",
+    "Bell-Fruit",
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "towns": []
+  },
+  {
+   "type": "editorial",
+   "html": "<h2>Reels, rattles and proper classics</h2><p>Now this is a proper look around. The classic fruit-machine archive is about the machines themselves: the names, makers, artwork and features that bring the memories back. Browse the cards and open a machine's own page for its description and the available evidence. Use the manufacturer and era sections when you fancy exploring a little further. Looking for somewhere to see or play classic machines? The venue guides are there too. Each has its own page, so you can follow the bit that interests you.</p><h3>The makers behind the magic</h3><ul><li><p><strong>Barcrest</strong> – the giant of the pub scene, famous for skill-feature machines and those unmistakable artwork panels.</p></li><li><p><strong>JPM</strong> – the Welsh manufacturer behind loads of well-loved pub and club machines, with bold themes and big features.</p></li><li><p><strong>Bell-Fruit</strong> – a name stamped on countless cabinets in pubs and seaside arcades for decades.</p></li><li><p><strong>Maygay</strong> – known for inventive features and popular licensed themes.</p></li><li><p><strong>Astra</strong> – a later arrival that brought plenty of colourful machines to the arcade floor.</p></li></ul><h3>What made them so memorable</h3><p>Classic fruit machines weren't just spinning reels. <strong>Holds</strong> let you keep a reel in place for the next spin. <strong>Nudges</strong> let you shuffle a reel up a step. Then there were <strong>features</strong> – number trails, cash ladders, hi-lo games, reel bonuses and \"Mystery\" boxes – all lit up across a glass top-box with artwork that ranged from simple fruit to TV shows, board games and cartoon characters. The cabinets were a riot of chrome, chasing lights and electronic jingles, and every model had its own personality.</p><p>You'd find the low-stake versions in seaside arcades and the bigger ones in pubs, working men's clubs and snooker halls. Many collectors now restore them at home, and you'll still spot a few vintage machines running in seaside arcades and retro rooms around the country.</p><h3>Getting the most out of the archive</h3><ul><li><p><strong>Start with a maker</strong> – browsing by manufacturer is a great way to spot family resemblances between cabinets.</p></li><li><p><strong>Look at the details</strong> – reel bands, feature boards and top-box artwork often changed between versions of the same machine, so colours and layouts can differ.</p></li><li><p><strong>Bring your memories</strong> – if you remember a machine from your local, chances are someone else does too.</p></li><li><p><strong>Treat it as nostalgia</strong> – this is a trip down memory lane and a celebration of design, not tips on how to play.</p></li></ul><p>Go on, have a rummage through the cards above to find the cabinets you remember, then visit the town pages to see which seaside spots still keep a bit of that golden-age spirit alive.</p>"
+  },
+  {
+   "type": "more",
+   "items": [
+    [
+     "Theme parks",
+     "/theme-parks"
+    ],
+    [
+     "Zoos & wildlife",
+     "/zoos"
+    ],
+    [
+     "Aquariums",
+     "/sea-life"
+    ],
+    [
+     "Museums",
+     "/museums"
+    ],
+    [
+     "Historic sites",
+     "/historical-sites"
+    ],
+    [
+     "Nature & outdoors",
+     "/outdoors"
+    ],
+    [
+     "Beaches",
+     "/seaside"
+    ],
+    [
+     "Piers",
+     "/piers"
+    ],
+    [
+     "Food & drink",
+     "/where-to-eat"
+    ],
+    [
+     "Places to stay",
+     "/places-to-stay"
+    ],
+    [
+     "Bowling",
+     "/bowling"
+    ],
+    [
+     "Cinemas",
+     "/cinemas"
+    ],
+    [
+     "Tours",
+     "/tours"
+    ],
+    [
+     "Arcades",
+     "/arcade"
+    ]
+   ]
+  }
+ ]
+}
