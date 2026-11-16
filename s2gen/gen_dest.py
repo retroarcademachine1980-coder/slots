@@ -80,7 +80,6 @@ fill('s3-bg',WHITE)
 gi('g-h','1 / 2','1 / 2','1 / 2','1 / 2'); font('g-h',51,900,NAVY,lh=1.15)
 gi('g-intro','2 / 3','1 / 2','2 / 3','1 / 2'); font('g-intro',20,500,'#0B1F3A',lh=1.55)
 gi('g-body','3 / 4','1 / 2','3 / 4','1 / 2'); font('g-body',18,400,T2,lh=1.75)
-sty.append('.g-body h2 {\n    font: normal normal 900 --spx(32)/1.2em inter;\n    color: #0B1F3A;\n}')
 # ---- s4 start with the fun
 secs.append(sec('s4',[box('f-box',[box('f-hb',[ptxt('f-h','funHeading','<h2>Start with the fun</h2>')]),
     rt('f-p','<p>What gets everyone excited about the trip? Choose your main attraction first, give it time, and leave a little room for a wander. Open a photograph to see what is waiting inside.</p>'),
@@ -99,10 +98,9 @@ gi('f-card','3 / 4','1 / 2','3 / 4','1 / 2')
 boxgrid('f-card','minmax(0px, 1fr)','--spx(231) auto auto auto','minmax(0px, 1fr)','--spx(200) auto auto auto',(0,0,22),(0,0,18),(0,12),(0,10),color=WHITE,radius=14,shadow='0px 6px 18px rgba(11, 37, 69, 0.12)')
 rule('f-img','width: 100%;\nheight: 100%;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;','width: 100%;\nheight: 100%;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;')
 for k,(i,r) in enumerate([('f-t',2),('f-s',3),('f-go',4)]):
-    gi(i,f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',w='calc(100% - --spx(44))' if i!='f-go' else 'auto',wm='calc(100% - --spx(36))' if i!='f-go' else 'auto',j='center' if i!='f-go' else 'start',jm='center' if i!='f-go' else 'start')
+    gi(i,f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',w='calc(100% - --spx(44))' if i!='f-go' else 'auto',wm='calc(100% - --spx(36))' if i!='f-go' else 'auto',j='center',jm='center')
 font('f-t',26,900,NAVY,lh=1.2); font('f-s',16,400,NAVY,lh=1.6)
 pill('f-go',YEL,NAVY,size=15,r=6,pad=(6,10),border=NOB,weight=700)
-sty.append('.f-go {\n    margin-left: 22px;\n}')
 gi('f-more','4 / 5','1 / 3','4 / 5','1 / 2',w='auto',wm='100%'); pill('f-more','#FFE05B',NAVY,size=17,r=10,pad=(16,20),border=NOB,weight=800)
 # ---- s5 places list + plan panel
 card_kids=['<Image id="al-img" className="al-img" displayMode={"fill"} image={item.image} />',
