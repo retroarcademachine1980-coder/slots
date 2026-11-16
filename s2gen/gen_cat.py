@@ -359,9 +359,9 @@ def do_all2(b,k=0):
     for n,t in enumerate(topics):
         pl=json.dumps(BOX+t,ensure_ascii=False); tv=json.dumps(t,ensure_ascii=False)
         side.append(f'<Button id="df-t{n}" className="df-t{n}" label={{ctx("topicLabel{n}", {{ from: useDirectoryFilter, placeholder: {pl} }})}} onClick={{callback(ctx("toggleTopic", {F}), {tv})}} />')
-    side.append(rt('df-r','<h4>▾ Region / town</h4>'))
-    topts=json.dumps([{"label":"All locations","value":""}]+[{"label":t,"value":t} for t in (A.get("towns") or [])],ensure_ascii=False)
-    side.append(f'<Combobox id="df-town" className="df-town" placeholder={{"All locations"}} options={{{topts}}} onValueChange={{callback(ctx("setTown", {F}))}} />')
+    side.append(rt('df-r','<h4>▾ '+esc(A.get('town_label') or 'Region / town')+'</h4>'))
+    topts=json.dumps([{"label":A.get("town_all") or "All locations","value":""}]+[{"label":t,"value":t} for t in (A.get("towns") or [])],ensure_ascii=False)
+    side.append(f'<Combobox id="df-town" className="df-town" placeholder={{{json.dumps(A.get("town_all") or "All locations")}}} options={{{topts}}} onValueChange={{callback(ctx("setTown", {F}))}} />')
     FN_=['Parking','Wi-Fi','Dog friendly','Accessible entrance','Family friendly']; FV=['parking','wifi','dogFriendly','disabledAccess','familyFriendly']
     for gn,(gt,idx) in enumerate(FAC_GROUPS):
         side.append(rt(f'df-g{gn}',f'<h4>▾ {esc(gt)}</h4>'))

@@ -135,7 +135,9 @@
    ],
    "towns": [],
    "ready": "directoryReady",
-   "per": 12
+   "per": 12,
+   "town_label": "Manufacturer",
+   "town_all": "All manufacturers"
   },
   {
    "type": "editorial",
