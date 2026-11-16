@@ -29,8 +29,9 @@ async function heads(p, url) {
     try {
       const live = await heads(p, 'https://www.spin-raiders.com/' + s);
       const neu = await heads(p, PREV + s);
-      const have = new Set(neu.map(h => norm(h.t)));
-      const miss = live.filter(h => !have.has(norm(h.t)));
+      const txt = norm(await p.evaluate(() => { let t = document.body.innerText; const walk = (r) => r.querySelectorAll('*').forEach(el => { if (el.shadowRoot) { t += ' ' + el.shadowRoot.textContent; walk(el.shadowRoot); } }); walk(document); return t; }));
+      const seen = new Set();
+      const miss = live.filter(h => { const n = norm(h.t); if (!n || seen.has(n) || /sr-mega-column|wixui-section/.test(h.sec) || h.sec === '') { seen.add(n); return false; } seen.add(n); return !txt.includes(n); });
       console.log(`## ${s} live=${live.length} new=${neu.length} missing=${miss.length}`);
       miss.forEach(h => console.log(`   - ${h.tag} "${h.t.slice(0, 70)}" [${h.sec.slice(0, 80)}]`));
     } catch (e) { console.log(`## ${s} ERROR ${e.message.slice(0, 120)}`); }
