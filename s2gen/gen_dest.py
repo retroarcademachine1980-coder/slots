@@ -177,6 +177,7 @@ base=re.sub(r'(\.'+re.escape(ftr)+r' \{.*?grid-row: )[^;\n]*',r'\g<1>'+f'{NS+2} 
 head=S[:S.index('export const Structure')]
 need=["import TownPlaces, { useTownPlaces } from '@site/site-code/townPlaces'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { media } from '@wix/sdk'"]
 hl=[l for l in head.split('\n') if not any(x in l for x in ['/line\'','/svgimage\'','{ svg }'])]
+hl=[l for l in hl if 'townPlaces' not in l and '/repeater\'' not in l]
 for n_ in need:
     if not any(n_.split(' from ')[1] in l for l in hl): hl.append(n_)
 hl=[("import { callback, ctx, fn } from '@wix/origami-runtime'" if "'@wix/origami-runtime'" in l else l) for l in hl]
