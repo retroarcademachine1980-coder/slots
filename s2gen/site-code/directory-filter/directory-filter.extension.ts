@@ -1,0 +1,67 @@
+import { extensions } from '@wix/custom-extensions';
+
+export default extensions.contextProvider({
+  id: 'e09e1065-65a9-40c1-9485-28bf2013afc4',
+  name: "directory-filter",
+  type: "companionApp.directoryFilter",
+  displayName: "Directory filter",
+  context: {
+    items: {
+      filter: { dataType: 'data', displayName: 'CMS filter' },
+      sort: { dataType: 'data', displayName: 'CMS sort' },
+      countText: { dataType: 'text', displayName: 'Places found' },
+      query: { dataType: 'text', displayName: 'Search text' },
+      town: { dataType: 'text', displayName: 'Town' },
+      sortValue: { dataType: 'text', displayName: 'Sort' },
+      townOptions: { dataType: 'data', displayName: 'Town options' },
+      toggleTopic: { dataType: 'function', displayName: 'Toggle category', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
+      toggleFacility: { dataType: 'function', displayName: 'Toggle facility', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
+      setTown: { dataType: 'function', displayName: 'Set town', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
+      setQuery: { dataType: 'function', displayName: 'Set search', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
+      setSort: { dataType: 'function', displayName: 'Set sort', function: { parameters: [{ dataType: 'text', displayName: 'Value' }] } },
+      clearAll: { dataType: 'function', displayName: 'Clear all', function: {} },
+      topicMark0: { dataType: 'text', displayName: 'Category 0 mark' },
+      topicMark1: { dataType: 'text', displayName: 'Category 1 mark' },
+      topicMark2: { dataType: 'text', displayName: 'Category 2 mark' },
+      topicMark3: { dataType: 'text', displayName: 'Category 3 mark' },
+      topicMark4: { dataType: 'text', displayName: 'Category 4 mark' },
+      topicMark5: { dataType: 'text', displayName: 'Category 5 mark' },
+      topicMark6: { dataType: 'text', displayName: 'Category 6 mark' },
+      topicMark7: { dataType: 'text', displayName: 'Category 7 mark' },
+      topicMark8: { dataType: 'text', displayName: 'Category 8 mark' },
+      topicMark9: { dataType: 'text', displayName: 'Category 9 mark' },
+      topicMark10: { dataType: 'text', displayName: 'Category 10 mark' },
+      topicMark11: { dataType: 'text', displayName: 'Category 11 mark' },
+      topicMark12: { dataType: 'text', displayName: 'Category 12 mark' },
+      topicMark13: { dataType: 'text', displayName: 'Category 13 mark' },
+      topicMark14: { dataType: 'text', displayName: 'Category 14 mark' },
+      topicMark15: { dataType: 'text', displayName: 'Category 15 mark' },
+      topicMark16: { dataType: 'text', displayName: 'Category 16 mark' },
+      topicMark17: { dataType: 'text', displayName: 'Category 17 mark' },
+      topicMark18: { dataType: 'text', displayName: 'Category 18 mark' },
+      topicMark19: { dataType: 'text', displayName: 'Category 19 mark' },
+      facilityMark0: { dataType: 'text', displayName: 'Facility 0 mark' },
+      facilityMark1: { dataType: 'text', displayName: 'Facility 1 mark' },
+      facilityMark2: { dataType: 'text', displayName: 'Facility 2 mark' },
+      facilityMark3: { dataType: 'text', displayName: 'Facility 3 mark' },
+      facilityMark4: { dataType: 'text', displayName: 'Facility 4 mark' },
+      sortNameMark: { dataType: 'text', displayName: 'Sort A-Z mark' },
+      sortRatingMark: { dataType: 'text', displayName: 'Sort rating mark' }
+    },
+  },
+  data: {
+    collection: { dataType: 'text', defaultValue: 'NearbyAttractions', deprecated: false, displayName: 'Collection' },
+    baseField: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Only items with this field' },
+    topics: { dataType: 'text', defaultValue: '', deprecated: false, displayName: 'Categories (| separated)' },
+    townField: { dataType: 'text', defaultValue: 'town', deprecated: false, displayName: 'Town field' },
+    noun: { dataType: 'text', defaultValue: 'places', deprecated: false, displayName: 'Noun' }
+  },
+  resources: {
+    client: {
+      url: './extensions/site/contexts/directory-filter/directory-filter.tsx',
+    },
+    contextSpecifier: {
+      hook: 'useDirectoryFilter',
+    },
+  },
+});
