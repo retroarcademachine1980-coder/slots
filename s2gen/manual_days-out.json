@@ -12,7 +12,8 @@
    "title": "Days Out",
    "desc": "Explore attractions, visitor guides and places across the UK.",
    "pill": "Find your next brilliant day out.",
-   "sub": "Blackpool beach, Central Pier and Tower · Patel Poojan / Pexels"
+   "sub": "Blackpool beach, Central Pier and Tower · Patel Poojan / Pexels",
+   "pill_first": true
   },
   {
    "type": "ideas",

@@ -260,8 +260,10 @@ def bgimg(i,uri,w,h,alt): return f'<Background id="{i}" className="{i}" fittingT
 def do_hero2(b,k=0):
     global row
     sid=f's{row}'
-    kids=[box('h2t',[rt('h2t-t','<h1>'+esc(b['title'])+'</h1>')]),box('h2d',[rt('h2d-t','<p>'+esc(b['desc'])+'</p>')])]
-    if b.get('pill'): kids.append(box('h2p',[rt('h2p-t','<p>'+esc(b['pill'])+'</p>')]))
+    kids=[box('h2t',[rt('h2t-t','<h1>'+esc(b['title'])+'</h1>')])]
+    if b.get('pill') and b.get('pill_first'): kids.append(box('h2p',[rt('h2p-t','<p>'+esc(b['pill'])+'</p>')]))
+    kids.append(box('h2d',[rt('h2d-t','<p>'+esc(b['desc'])+'</p>')]))
+    if b.get('pill') and not b.get('pill_first'): kids.append(box('h2p',[rt('h2p-t','<p>'+esc(b['pill'])+'</p>')]))
     if b.get('sub'): kids.append(rt('h2s','<p>'+esc(b['sub'])+'</p>'))
     secs.append(f'<Section id="{sid}" className="{sid}">\n<InternalContainer id="{sid}-ic" className="{sid}-ic" backgroundLayer={{[{bgimg(sid+"-bg",b["uri"],b["w"],b["h"],b["title"]) if b.get("uri") else bgc(sid+"-bg")}]}}>\n'+'\n'.join(kids)+'\n</InternalContainer>\n</Section>')
     n=len(kids); rows=' '.join(['auto']*n)
@@ -271,12 +273,14 @@ def do_hero2(b,k=0):
     boxgrid('h2t','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(12,18),(10,14),color='rgba(11, 31, 58, 0.93)',radius=4,shadow='5px 6px 0px 0px #FFC933')
     gi('h2t-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('h2t-t',41,900,WHITE,lh=1.0,sizem=30,extra='')
     sty.append('.h2t-t {\n    text-transform: uppercase;\n}')
-    gi('h2d','2 / 3','1 / 2','2 / 3','1 / 2',w='--spx(600)',wm='100%')
+    dr=3 if (b.get('pill') and b.get('pill_first')) else 2
+    gi('h2d',f'{dr} / {dr+1}','1 / 2',f'{dr} / {dr+1}','1 / 2',w='--spx(600)',wm='100%')
     boxgrid('h2d','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(12,16),(10,12),color='rgba(11, 31, 58, 0.8)',radius=6)
     gi('h2d-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('h2d-t',15,500,WHITE,lh=1.55,fam=None)
     r=3
     if b.get('pill'):
-        gi('h2p',f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',w='auto',wm='auto')
+        pr=2 if b.get('pill_first') else 3
+        gi('h2p',f'{pr} / {pr+1}','1 / 2',f'{pr} / {pr+1}','1 / 2',w='auto',wm='auto')
         boxgrid('h2p','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(7,14),(6,12),color='#E0247A',radius=3)
         gi('h2p-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('h2p-t',15,900,WHITE,lh=1.2,sizem=13)
         sty.append('.h2p-t {\n    text-transform: uppercase;\n}'); r+=1
@@ -452,7 +456,7 @@ def do_ideas(b,k=0):
         rule(f'ic{n}-i','width: --spx(30);\nheight: --spx(30);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: start;\nposition: relative;','width: --spx(28);\nheight: --spx(28);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: start;\njustify-self: start;')
         gi(f'ic{n}-t','2 / 3','1 / 2','2 / 3','1 / 2'); font(f'ic{n}-t',22,900,c['color'],lh=1.2,sizem=20)
         gi(f'ic{n}-p','3 / 4','1 / 2','3 / 4','1 / 2'); font(f'ic{n}-p',14,400,'#27425F',lh=1.5,fam=None)
-        gi(f'ic{n}-b','4 / 5','1 / 2','4 / 5','1 / 2',w='auto',wm='auto'); pill(f'ic{n}-b','transparent',c['color'],size=14,r=0,pad=(4,0),shadow=False)
+        gi(f'ic{n}-b','4 / 5','1 / 2','4 / 5','1 / 2',w='auto',wm='auto'); pill(f'ic{n}-b','transparent',c['color'],size=14,r=0,pad=(4,0),border='0px solid transparent',shadow=False)
     row+=1
 FN={'ideas':do_ideas,'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
 cnt={}
