@@ -175,7 +175,7 @@ base=keep([pid,hdr,ftr,pbg])
 base=re.sub(r'(\.'+re.escape(pid)+r' \{.*?grid-template-rows: )[^;\n]*',r'\1'+' '.join(['auto']*(NS+2)),base,flags=re.S)
 base=re.sub(r'(\.'+re.escape(ftr)+r' \{.*?grid-row: )[^;\n]*',r'\g<1>'+f'{NS+2} / {NS+3}',base,flags=re.S)
 head=S[:S.index('export const Structure')]
-need=["import TownPlaces from '@site/site-code/townPlaces'","import { useTownPlaces } from '@site/site-code/townPlaces'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { media } from '@wix/sdk'"]
+need=["import TownPlaces, { useTownPlaces } from '@site/site-code/townPlaces'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { media } from '@wix/sdk'"]
 hl=[l for l in head.split('\n') if not any(x in l for x in ['/line\'','/svgimage\'','{ svg }'])]
 for n_ in need:
     if not any(n_.split(' from ')[1] in l for l in hl): hl.append(n_)
