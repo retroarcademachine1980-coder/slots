@@ -179,7 +179,7 @@ need=["import TownPlaces from '@site/site-code/townPlaces'","import { useTownPla
 hl=[l for l in head.split('\n') if not any(x in l for x in ['/line\'','/svgimage\'','{ svg }'])]
 for n_ in need:
     if not any(n_.split(' from ')[1] in l for l in hl): hl.append(n_)
-hl=[("import { callback, ctx, fn, textToRichText } from '@wix/origami-runtime'" if "'@wix/origami-runtime'" in l else l) for l in hl]
+hl=[("import { callback, ctx, fn } from '@wix/origami-runtime'" if "'@wix/origami-runtime'" in l else l) for l in hl]
 head='\n'.join(hl).rstrip()+'\n\n'
 pg=S[S.index('export const Structure'):S.index('<Section id=')]
 out=head+pg+'\n'.join(secs[:2])+'\n<TownPlaces town={ctx("currentItem.fields.title.value", { from: useCmsContext })} pageSize={6}>\n'+'\n'.join(secs[2:])+'\n</TownPlaces>'+f'\n        </Page>\n    </{prov}>\n)\n'
