@@ -139,7 +139,7 @@ def do_tiles(b,k=0):
         boxgrid(f'tl{k}x{n}','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)','minmax(0px, 1fr)',(0,0),(0,0),color='#0B2A4A',radius=14,shadow='0px 6px 22px rgba(11, 25, 44, 0.12)')
         rule(f'tl{k}x{n}-i','width: 100%;\naspect-ratio: 16 / 10;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;','width: 100%;\naspect-ratio: 16 / 9;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;')
         rule(f'tl{k}x{n}-t','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nposition: relative;\nmargin-left: --spx(18);\nmargin-bottom: --spx(14);','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: end;\njustify-self: start;\nmargin-left: --spx(14);\nmargin-bottom: --spx(10);')
-        font(f'tl{k}x{n}-t',22,800,WHITE,lh=1.15,sizem=19); sty.append(f'.tl{n}-t {{\n    background-color: rgba(11, 25, 44, 0.72);\n}}')
+        font(f'tl{k}x{n}-t',22,800,WHITE,lh=1.15,sizem=19); sty.append(f'.tl{k}x{n}-t {{\n    background-color: rgba(11, 25, 44, 0.72);\n}}')
     row+=1
 
 def do_featured(b,k=0):
@@ -162,7 +162,7 @@ def do_featured(b,k=0):
         gi(f'fc{k}x{n}','2 / 3',f'{n+1} / {n+2}',f'{n+3} / {n+4}','1 / 2',h='100%',a='stretch')
         rule(f'fc{k}x{n}-ic','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(16);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);')
         H.bglay(f'fc{k}x{n}-bg'); fill(f'fc{k}x{n}-bg',WHITE)
-        sty.append(f'.fc{n}-ic {{\n'+''.join(f'    --border{k}Radius: 14px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 6px 22px rgba(11, 25, 44, 0.12);\n}')
+        sty.append(f'.fc{k}x{n}-ic {{\n'+''.join(f'    --border{k}Radius: 14px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 6px 22px rgba(11, 25, 44, 0.12);\n}')
         order=['i','k','t','s','d','b']
         for o,p in enumerate(order):
             i=f'fc{k}x{n}-{p}'
