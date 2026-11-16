@@ -337,7 +337,85 @@ def do_hero3(b,k=0):
     pill('h3q-b','linear-gradient(180deg, #F0407F, #D81B60)',WHITE,size=15,r=4,pad=(13,24))
     rule('h3i','width: 100%;\nheight: 100%;\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 2 / 3;\nalign-self: stretch;\njustify-self: stretch;\nposition: relative;','width: 100%;\nheight: --spx(240);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: stretch;\njustify-self: stretch;')
     row+=1
-FN={'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
+FAC_GROUPS=[('Facilities',[0,1,2]),('Accessibility',[3]),('Family friendly',[4])]
+def do_all2(b,k=0):
+    """Live second-layout list: left Filter-by panel + count + sort + 3-column cards, driven by the directoryFilter provider."""
+    global row
+    sid=f's{row}'
+    A=b; c=A['collection']; prov='CmsProvider_'+c; F="{ from: useDirectoryFilter }"
+    topics=A.get('topics') or []
+    side=[f'<TextField id="df-q" className="df-q" placeholder={{"Filter these results..."}} onValueChange={{callback(ctx("setQuery", {F}))}} />',
+          rt('df-h','<h3>Filter by</h3>'),
+          f'<Button id="df-clr" className="df-clr" label={{"Clear all"}} onClick={{callback(ctx("clearAll", {F}))}} />',
+          rt('df-c','<h4>▾ Category</h4>')]
+    for n,t in enumerate(topics): side.append(f'<Button id="df-t{n}" className="df-t{n}" label={{ctx("topicLabel{n}", {{ from: useDirectoryFilter, placeholder: {json.dumps('☐  '+t,ensure_ascii=False)} }})}} onClick={{callback(ctx("toggleTopic", {F}), {json.dumps(t,ensure_ascii=False)})}} />')
+    side.append(rt('df-r','<h4>▾ Region / town</h4>'))
+    side.append(f'<Combobox id="df-town" className="df-town" placeholder={{"All locations"}} options={{ctx("townOptions", {{ from: useDirectoryFilter, placeholder: [{{ label: "All locations", value: "" }}] }})}} onValueChange={{callback(ctx("setTown", {F}))}} />')
+    FN_=['Parking','Wi-Fi','Dog friendly','Accessible entrance','Family friendly']; FV=['parking','wifi','dogFriendly','disabledAccess','familyFriendly']
+    for gn,(gt,idx) in enumerate(FAC_GROUPS):
+        side.append(rt(f'df-g{gn}',f'<h4>▾ {esc(gt)}</h4>'))
+        for i in idx: side.append(f'<Button id="df-f{i}" className="df-f{i}" label={{ctx("facilityLabel{i}", {{ from: useDirectoryFilter, placeholder: {json.dumps('☐  '+FN_[i],ensure_ascii=False)} }})}} onClick={{callback(ctx("toggleFacility", {F}), {json.dumps(FV[i])})}} />')
+    side.append(button('df-map','Explore places on the map →','/map'))
+    card_kids=[f'<Image id="al-img" className="al-img" displayMode={{"fill"}} image={{item.fields.heroImage.value ?? {json.dumps({"name":"Spin Raiders","uri":"3a517e_c00db68d44ed453e96b9547639584056~mv2.jpg","width":2752,"height":1100,"alt":"","type":"Builder.Image"})}}} />',
+        f'<WRichText id="al-t" className="al-t" richText={{fn(textToRichText, item.fields.title.value, {{ placeholder: {json.dumps(ph("al-t","<h4>Place</h4>"))} }})}} />',
+        f'<WRichText id="al-s" className="al-s" richText={{fn(textToRichText, item.fields.{A["sub"]}.value, {{ placeholder: {json.dumps(ph("al-s","<p>Town</p>"))} }})}} />',
+        f'<Button id="al-b" className="al-b" label={{"View details →"}} link={{item.getPageLink({{ pageRole: {json.dumps(ROLES[c])}, href: {json.dumps(PFX[c])} }})}} />']
+    rep=(f'<{prov} filter={{ctx("filter", {{ from: useDirectoryFilter }})}} sort={{ctx("sort", {{ from: useDirectoryFilter }})}} pageSize={{6}}>\n<BoxContainer id="df-res" className="df-res" children={{\n<InternalContainer id="df-res-ic" className="df-res-ic" backgroundLayer={{[{bgc("df-res-b")}]}}>\n'
+         f'<Repeater id="al-rep" className="al-rep" items={{ctx("items", {{ from: useCmsContext }})}} onLoadMore={{callback(ctx("pagination.loadMore", {{ from: useCmsContext }}))}} isLoading={{ctx("pagination.isLoading", {{ from: useCmsContext }})}} renderItem={{item => (\n'
+         f'<InternalContainer id="al-card" className="al-card" backgroundLayer={{[{bgc("al-card-bg")}]}}>\n'+'\n'.join(card_kids)+'\n</InternalContainer>\n)}\n'
+         f'emptyStateContent={{<InternalContainer id="al-empty" className="al-empty" />}} />\n'
+         f'<Button id="df-more" className="df-more" label={{"Show more →"}} onClick={{callback(ctx("pagination.loadMore", {{ from: useCmsContext }}))}} />\n'
+         '</InternalContainer>\n} />\n'+f'</{prov}>')
+    head_=[rt('a-h','<h2>'+esc(A['title'])+'</h2>'),
+           f'<WRichText id="df-n" className="df-n" richText={{fn(textToRichText, ctx("countText", {{ from: useDirectoryFilter }}), {{ placeholder: {json.dumps(ph("df-n","<p>&nbsp;</p>"))} }})}} />',
+           f'<Combobox id="df-sort" className="df-sort" label={{"Sort by"}} value={{ctx("sortValue", {{ from: useDirectoryFilter, placeholder: "name" }})}} options={{[{{ label: "Name A–Z", value: "name" }}, {{ label: "Highest rated", value: "rating" }}]}} onValueChange={{callback(ctx("setSort", {F}))}} />']
+    sect=sec(sid,[box('df-side',side)]+head_+[rep])
+    secs.append(f'<DirectoryFilter collection={{{json.dumps(c)}}} baseField={{{json.dumps(A.get("filter") or "")}}} topics={{{json.dumps("|".join(topics),ensure_ascii=False)}}} townField={{{json.dumps(A["sub"])}}} noun={{"places"}}>\n'+sect+'\n</DirectoryFilter>')
+    Q='minmax(0px, 1fr)'
+    section(sid,row,grid_ic(sid+'-ic',' '.join([Q]*4),'auto auto minmax(0px, 1fr)',Q,'auto auto auto auto',(26,40,34),(18,16,24),(26,6),(0,12)))
+    fill(sid+'-bg',WHITE)
+    # sidebar
+    gi('df-side','1 / 4','1 / 2','4 / 5','1 / 2',a='start',am='start')
+    n=len(side); boxgrid('df-side','minmax(0px, 1fr) max-content',' '.join(['auto']*n),'minmax(0px, 1fr) max-content',' '.join(['auto']*n),(14,14),(12,12),(8,6),(8,6),color=WHITE,radius=10,shadow='0px 0px 0px 1px #D2E2F6')
+    r=1
+    gi('df-q',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); r+=1
+    gi('df-h',f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',a='center',am='center'); font('df-h',20,900,INK,lh=1.2,sizem=18)
+    gi('df-clr',f'{r} / {r+1}','2 / 3',f'{r} / {r+1}','2 / 3',w='auto',wm='auto',a='center',am='center'); pill('df-clr',WHITE,'#1A73C9',size=12,r=4,pad=(2,4),shadow=False); r+=1
+    def lab(i):
+        nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); font(i,14,800,INK,lh=1.3,fam=None); r+=1
+    def chk(i):
+        nonlocal r; gi(i,f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='100%',wm='100%'); pill(i,WHITE,INK,size=13,r=0,pad=(2,0),shadow=False); sty.append(f'.{i} {{\n    --label-justify: flex-start;\n    text-align: start;\n    justify-content: flex-start;\n}}'); r+=1
+    lab('df-c')
+    for n_ in range(len(topics)): chk(f'df-t{n_}')
+    lab('df-r'); gi('df-town',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3'); r+=1
+    for gn,(gt,idx) in enumerate(FAC_GROUPS):
+        lab(f'df-g{gn}')
+        for i in idx: chk(f'df-f{i}')
+    gi('df-map',f'{r} / {r+1}','1 / 3',f'{r} / {r+1}','1 / 3',w='auto',wm='auto'); pill('df-map',WHITE,'#1A73C9',size=13,r=4,pad=(6,0),shadow=False)
+    # results header
+    gi('a-h','1 / 2','2 / 4','1 / 2','1 / 2',a='center',am='center'); font('a-h',30,900,INK,lh=1.15,sizem=24)
+    gi('df-n','2 / 3','2 / 4','2 / 3','1 / 2'); font('df-n',13,600,'#1A73C9',lh=1.3,fam=None)
+    gi('df-sort','1 / 3','4 / 5','3 / 4','1 / 2',w='--spx(200)',wm='100%',a='center',am='start',j='end',jm='start')
+    gi('df-res','3 / 4','2 / 5','5 / 6','1 / 2')
+    boxgrid('df-res','minmax(0px, 1fr)','auto auto','minmax(0px, 1fr)','auto auto',(0,0),(0,0),(0,18),(0,14))
+    gi('al-rep','1 / 2','1 / 2','1 / 2','1 / 2')
+    gi('df-more','2 / 3','1 / 2','2 / 3','1 / 2',w='auto',wm='auto',j='center',jm='center')
+    pill('df-more',WHITE,INK,size=14,r=6,pad=(10,18),border='1px solid #D2E2F6',shadow=False)
+    sty.append('.al-rep {\n    --spx-ref-width: 1280;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 3;\n    --row-gap: --spx(18);\n    --column-gap: --spx(18);\n    --background-color: transparent;\n}')
+    rule('al-card','min-width: --spx(0);','min-width: --spx(0);',ic='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(14);\npadding-left: --spx(0);',icm='display: flex;\nflex-direction: column;\npadding-top: --spx(0);\npadding-right: --spx(0);\npadding-bottom: --spx(12);\npadding-left: --spx(0);')
+    H.bglay('al-card-bg'); fill('al-card-bg',WHITE)
+    sty.append('.al-card {\n'+''.join(f'    --border{k}Radius: 10px;\n' for k in ['StartStart','StartEnd','EndStart','EndEnd'])+'    --boxShadow: 0px 0px 0px 1px #D2E2F6;\n}')
+    for o,i in enumerate(['al-img','al-t','al-s','al-b']):
+        if i=='al-img': rule(i,'width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\norder: 1;\nposition: relative;\nmargin-bottom: --spx(10);','width: 100%;\naspect-ratio: 2 / 1;\nmin-width: 0px;\norder: 1;\nmargin-bottom: --spx(10);')
+        else:
+            mb='' if i=='al-b' else '\nmargin-bottom: --spx(4);'
+            w='auto' if i=='al-b' else 'calc(100% - --spx(28))'
+            rule(i,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nposition: relative;\nmargin-left: --spx(14);\nmargin-right: --spx(14);'+mb,f'width: {w};\nheight: auto;\nmin-width: 0px;\norder: {o+1};\nmargin-left: --spx(12);\nmargin-right: --spx(12);'+mb)
+    font('al-t',17,900,INK,lh=1.2); font('al-s',13,600,GREY,lh=1.3,fam=None)
+    pill('al-b',WHITE,'#1A73C9',size=13,r=4,pad=(2,0),shadow=False)
+    rule('al-empty','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);')
+    row+=1
+FN={'all2':do_all2,'hero3':do_hero3,'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1
@@ -365,7 +443,7 @@ for f in os.listdir(gd):
     p=os.path.join(gd,f); t=open(p).read().replace('ArcadeVenuesList',camel)
     if f.endswith('.jsx') and f!='index.jsx':
         t='\n'.join(l for l in t.split('\n') if not ('/line/css' in l))
-        for need in ['boxcontainer','repeater','button','image','wrichtext','svgimage']:
+        for need in ['boxcontainer','repeater','button','image','wrichtext','svgimage']+(['textfield','combobox'] if any(_b['type']=='all2' for _b in C['blocks']) else []):
             imp=f"import '@origami-wrappers/wixEditorElements/{need}/css'"
             if imp not in t: t=imp+'\n'+t
     os.remove(p); open(os.path.join(gd,f.replace('ArcadeVenuesList',camel)),'w').write(t)
@@ -373,11 +451,13 @@ imports=[l for l in S[:S.index('export const Structure')].split('\n') if l.start
 imports+=["import { BoxContainer } from '@origami-wrappers/wixEditorElements/boxcontainer'","import { SvgImage } from '@origami-wrappers/wixEditorElements/svgimage'","import { Button } from '@origami-wrappers/wixEditorElements/button'","import { Image } from '@origami-wrappers/wixEditorElements/image'","import { Repeater } from '@origami-wrappers/wixEditorElements/repeater'","import { WRichText } from '@origami-wrappers/wixEditorElements/wrichtext'","import { callback, ctx, fn, svg } from '@wix/origami-runtime'","import { media } from '@wix/sdk'",
     ]
 for _b in C['blocks']:
-    if _b['type']=='all':
+    if _b['type'] in ('all','all2'):
         c=_b['collection']; imports+=[f"import {{ CmsProvider_{c} }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'",f"import {{ useCmsContext }} from '@origami-wrappers/companionApp/cmsprovider_{c.lower()}'"]
 if 'textToRichText' not in '\n'.join(imports):
     tl=[l for l in S.split('\n') if 'textToRichText' in l and l.startswith('import')]
     imports+=tl
+if any(_b['type']=='all2' for _b in C['blocks']):
+    imports+=["import DirectoryFilter from '@site/site-code/directoryFilter'","import { useDirectoryFilter } from '@site/site-code/directoryFilter'","import { TextField } from '@origami-wrappers/wixEditorElements/textfield'","import { Combobox } from '@origami-wrappers/wixEditorElements/combobox'"]
 imports=list(dict.fromkeys(imports))
 pg=S[S.index('export const Structure'):]
 _bi=pg.index('backgroundLayer={[<Background id="'+pbg); _bj=pg.index(']}',_bi); pg=pg[:pg.index('>',_bj)+1]
@@ -411,7 +491,7 @@ for sel,d,m,ic,icm in lay:
 mq=re.search(r'@media \([^)]*\)',L).group(0)
 open(os.path.join(out,'layout.css'),'w').write(base+'\n'+'\n'.join(o)+'\n'+mq+' {\n'+'\n'.join(om)+'\n}\n')
 mob='.al-rep {\n    --spx-ref-width: 375;\n    --spx-resolver-type: scale;\n    --preset: grid;\n    --column-count: 1;\n}'
-has_all=any(_b['type']=='all' for _b in C['blocks'])
+has_all=any(_b['type'] in ('all','all2') for _b in C['blocks'])
 open(os.path.join(out,'style.css'),'w').write('\n'.join(sty)+'\n'+((mq+' {\n    '+mob.replace('\n','\n    ')+'\n}\n') if has_all else ''))
 un=json.load(open(os.path.join(LB,'unmapped.json'))); un['components']={k:v for k,v in un.get('components',{}).items() if k in (hdr,ftr)}
 json.dump(un,open(os.path.join(out,'unmapped.json'),'w'),indent=4,ensure_ascii=False)

@@ -7,6 +7,7 @@ import { items as dataItems } from '@wix/data';
 
 const SLOTS = 20;
 const FACILITIES = ['parking', 'wifi', 'dogFriendly', 'disabledAccess', 'familyFriendly'];
+const FACILITY_NAMES = ['Parking', 'Wi-Fi', 'Dog friendly', 'Accessible entrance', 'Family friendly'];
 const PATTERNS: Record<string, string> = {
   Beaches: 'beach', Cocktails: 'cocktails?', Pinball: 'pinball', 'Retro Games': 'retro|classic arcade|video games?',
   'Social Gaming': 'social gaming|games bar|gaming bar|shuffleboard|darts|beer pong|karaoke|arcade bar',
@@ -104,10 +105,8 @@ function DirectoryFilterProvider({ children, collection, baseField, topics, town
     setSort: (s: string) => setSortValue(s === 'rating' ? 'rating' : 'name'),
     clearAll: () => { setPicked([]); setFac([]); setTown(''); setQuery(''); },
   };
-  for (let i = 0; i < SLOTS; i++) value[`topicMark${i}`] = topicList[i] && picked.includes(topicList[i]) ? '☑' : '☐';
-  FACILITIES.forEach((f, i) => { value[`facilityMark${i}`] = fac.includes(f) ? '☑' : '☐'; });
-  value.sortNameMark = sortValue === 'name' ? '●' : '○';
-  value.sortRatingMark = sortValue === 'rating' ? '●' : '○';
+  for (let i = 0; i < SLOTS; i++) value[`topicLabel${i}`] = topicList[i] ? `${picked.includes(topicList[i]) ? '☑' : '☐'}  ${topicList[i]}` : '';
+  FACILITIES.forEach((f, i) => { value[`facilityLabel${i}`] = `${fac.includes(f) ? '☑' : '☐'}  ${FACILITY_NAMES[i]}`; });
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 DirectoryFilterProvider.displayName = 'DirectoryFilterProvider';
