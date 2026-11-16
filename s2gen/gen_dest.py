@@ -65,7 +65,7 @@ for n in range(NC):
     gi(f'h-c{n}','4 / 5',f'{n+2} / {n+3}',f'{4+n//3} / {5+n//3}',f'{n%3+1} / {n%3+2}',w='auto',wm='100%',j='center',jm='stretch')
     pill(f'h-c{n}','rgba(0, 51, 84, 0.87)',WHITE,size=13,r=999,pad=(6,12),border=NOB,weight=500)
 # ---- s2 category tabs
-TB=[('All Results','/search'),('Attractions & Family Fun','/attractions'),('Eat & Drink','/food-and-drink'),('Places to Stay','/places-to-stay'),('Nature & Outdoors','/outdoors'),('Cinemas','/cinemas'),('Fishing Lakes','/fishing-lakes')]
+TB=[('All Results','/search'),('Attractions & Family Fun','/attractions'),('Eat & Drink','/where-to-eat'),('Places to Stay','/places-to-stay'),('Nature & Outdoors','/outdoors'),('Cinemas','/cinemas'),('Fishing Lakes','/fishing-lakes')]
 secs.append(sec('s2',[sbtn(f't{n}',t,u) for n,(t,u) in enumerate(TB)]))
 section('s2',3,grid_ic('s2-ic',' '.join(['minmax(0px, 1fr)']*len(TB)),'auto','minmax(0px, 1fr) minmax(0px, 1fr)',' '.join(['auto']*4),(10,20,10),(10,12,10),(8,0),(8,8)))
 fill('s2-bg',WHITE)
@@ -152,7 +152,7 @@ font('al-t',18,800,'#080E53',lh=1.2); font('al-s',13,400,'#12347B',lh=1.3); font
 pill('al-b','transparent','#006BFF',size=13,r=0,pad=(2,0),border=NOB,weight=600)
 rule('al-empty','min-width: --spx(0);','min-width: --spx(0);',ic='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);',icm='display: grid;\ngrid-template-columns: minmax(0px, 1fr);\ngrid-template-rows: minmax(--spx(40), auto);')
 # ---- s6 more ways to spend your day (live list)
-EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Museums','/museums'),('Historic places','/historical-sites'),('Beaches','/beaches'),('Piers','/piers'),('Outdoors','/outdoors'),('Hidden gems','/hidden-gems'),('Cinema','/cinemas'),('Bowling','/bowling'),('Fishing','/fishing-lakes'),('Holiday parks','/holiday-parks'),('Retro games','/retro-video-games'),('Arcade bars','/arcade-bars'),('Adult gaming centres','/agc'),('Fruit Machine Archive','/classic-fruit-machines'),('Offers','/offers'),('Plan a trip','/plan-a-trip'),('Fuel prices','/plan-a-trip')]
+EX=[('Theme parks','/theme-parks'),('Zoos & wildlife','/zoos'),('Museums','/museums'),('Historic places','/historical-sites'),('Beaches','/seaside'),('Piers','/piers'),('Outdoors','/outdoors'),('Hidden gems','/hidden-gems'),('Cinema','/cinemas'),('Bowling','/bowling'),('Fishing','/fishing-lakes'),('Holiday parks','/holiday-parks'),('Retro games','/retro-arcades'),('Arcade bars','/arcade-bars'),('Adult gaming centres','/agc'),('Fruit Machine Archive','/classic-fruit-machines'),('Offers','/offers'),('Plan a trip','/plan-a-trip'),('Fuel prices','/plan-a-trip')]
 secs.append(sec('s6',[rt('x-h','<h2>More ways to spend your day</h2>')]+[sbtn(f'x{n}',t,u) for n,(t,u) in enumerate(EX)]))
 C=4; R=(len(EX)+C-1)//C; CM=2; RM=(len(EX)+CM-1)//CM
 section('s6',7,grid_ic('s6-ic',' '.join([Q]*C),' '.join(['auto']*(R+1)),' '.join([Q]*CM),' '.join(['auto']*(RM+1)),(24,24,40),(18,16,30),(32,6),(8,6)))
