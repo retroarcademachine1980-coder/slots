@@ -37,6 +37,14 @@ function topicMatch(r: Row, t: string): boolean {
   const src = PATTERNS[t] || t.replace(/s$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(src, 'i').test(haystack(r) + ' ' + details);
 }
+// A town picked from the list matches exactly; a destination tile also matches places whose town,
+// location or area names it (e.g. "Baldock Services" -> Baldock).
+function townMatch(r: Row, tf: string, town: string): boolean {
+  if (r[tf] === town) return true;
+  const t = town.toLowerCase().replace(/\s+services$/, '').trim();
+  const fields = [r[tf], r.locationName, r.town, r.destination, r.region, r.county].map(str).map((x) => x.toLowerCase().trim()).filter(Boolean);
+  return fields.some((f) => f === t || f.includes(t) || t.includes(f));
+}
 function facilityMatch(r: Row, f: string): boolean {
   if (f === 'parking') return r.parking === true || r.parkingAvailable === true || r.freeParking === true;
   if (f === 'wifi') return r.wifi === true || r.freeWifi === true;
@@ -148,7 +156,7 @@ function DirectoryFilterProvider({ children, collection, baseField, words, topic
   const matched = useMemo(() => {
     if (!rows) return null;
     const qwords = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    return rows.filter((r) => qwords.every((w) => haystack(r).includes(w)) && (!town || r[tf] === town) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
+    return rows.filter((r) => qwords.every((w) => haystack(r).includes(w)) && (!town || townMatch(r, tf, town)) && (!picked.length || picked.some((t) => topicMatch(r, t))) && fac.every((f) => facilityMatch(r, f)));
   }, [rows, query, town, picked, fac, tf]);
 
   const sorted = useMemo(() => {
