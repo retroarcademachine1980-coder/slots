@@ -73,6 +73,9 @@ for b in S['blocks']:
         C['blocks'].append({'type':'promos','items':items})
     elif t=='more':
         C['blocks'].append({'type':'more','items':[[x,newpath(u)] for x,u in b['items']]})
-json.dump(C,open(sys.argv[3],'w'),ensure_ascii=False,indent=1)
 missing=[i for b in C['blocks'] for i in b.get('items',[]) if isinstance(i,dict) and 'uri' in i and not i['uri']]
+for b in C['blocks']:
+    if isinstance(b.get('items'),list): b['items']=[i for i in b['items'] if not (isinstance(i,dict) and 'uri' in i and not i['uri']) and not (isinstance(i,dict) and 'icon' in i and not i['icon'])]
+C['blocks']=[b for b in C['blocks'] if not (isinstance(b.get('items'),list) and b['type'] in ('tiles','featured','promos','iconbtns','strip') and not b['items'])]
+json.dump(C,open(sys.argv[3],'w'),ensure_ascii=False,indent=1)
 print('ok',slug,[b['type'] for b in C['blocks']],'missing images',len(missing))

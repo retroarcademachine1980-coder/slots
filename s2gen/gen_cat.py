@@ -256,7 +256,7 @@ def do_hero2(b,k=0):
     kids=[box('h2t',[rt('h2t-t','<h1>'+esc(b['title'])+'</h1>')]),box('h2d',[rt('h2d-t','<p>'+esc(b['desc'])+'</p>')])]
     if b.get('pill'): kids.append(box('h2p',[rt('h2p-t','<p>'+esc(b['pill'])+'</p>')]))
     if b.get('sub'): kids.append(rt('h2s','<p>'+esc(b['sub'])+'</p>'))
-    secs.append(f'<Section id="{sid}" className="{sid}">\n<InternalContainer id="{sid}-ic" className="{sid}-ic" backgroundLayer={{[{bgimg(sid+"-bg",b["uri"],b["w"],b["h"],b["title"])}]}}>\n'+'\n'.join(kids)+'\n</InternalContainer>\n</Section>')
+    secs.append(f'<Section id="{sid}" className="{sid}">\n<InternalContainer id="{sid}-ic" className="{sid}-ic" backgroundLayer={{[{bgimg(sid+"-bg",b["uri"],b["w"],b["h"],b["title"]) if b.get("uri") else bgc(sid+"-bg")}]}}>\n'+'\n'.join(kids)+'\n</InternalContainer>\n</Section>')
     n=len(kids); rows=' '.join(['auto']*n)
     section(sid,row,grid_ic(sid+'-ic','minmax(0px, 1fr)',rows,'minmax(0px, 1fr)',rows,(26,40,30),(18,16,22),(0,16),(0,12)),372,330)
     fill(sid+'-bg','#0B2A4A',photo=True)
