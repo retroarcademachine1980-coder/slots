@@ -52,6 +52,13 @@
 .mapList small { display: block; color: #3c5480; }
 .mapBox { position: relative; min-height: 760px; }
 .leaflet { position: absolute; inset: 0; }
+.report { max-width: 850px; margin: 20px auto; }
+.accent { color: #e7072d; }
+.lead2 { font-size: 18px; color: #073b63; margin: 8px 0 18px; }
+.reportForm { display: grid; gap: 14px; }
+.reportForm label { display: flex; flex-direction: column; gap: 6px; font-weight: 700; color: #073b63; }
+.reportForm input, .reportForm select, .reportForm textarea { font: 15px Arial, sans-serif; padding: 11px 12px; border: 1px solid #c4d1da; border-radius: 4px; color: #073b63; }
+.red { background: #e7072d; border-color: #e7072d; width: fit-content; }
 @media (max-width: 900px) {
   .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .body { grid-template-columns: minmax(0, 1fr); }

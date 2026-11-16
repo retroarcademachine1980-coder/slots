@@ -150,6 +150,47 @@ function SearchView() {
   );
 }
 
+
+const REPORT_TYPES = ['Machine changes', 'Ownership change', 'Add a venue', 'Venue closed or no longer exists', 'Incorrect details or photograph', 'Other change'];
+function ReportView() {
+  const qp = (k: string) => { try { return new URLSearchParams(window.location.search).get(k) || ''; } catch { return ''; } };
+  const [f, setF] = useState({ reportType: '', venueName: '', pageUrl: '', details: '', contactEmail: '' });
+  const [msg, setMsg] = useState('');
+  const [busy, setBusy] = useState(false);
+  useEffect(() => { setF((x) => ({ ...x, venueName: qp('venue'), pageUrl: qp('page') })); }, []);
+  const set = (k: keyof typeof f) => (e: { target: { value: string } }) => setF((x) => ({ ...x, [k]: e.target.value }));
+  const send = async (e: React.FormEvent) => {
+    e.preventDefault();
+    let last = 0; try { last = Number(window.localStorage.getItem('sr-report-last')) || 0; } catch { /* ignore */ }
+    if (Date.now() - last < 60000) { setMsg('Your report has been sent. Please wait a minute before sending another.'); return; }
+    setBusy(true); setMsg('Sending your report…');
+    const v = Object.fromEntries(Object.entries(f).map(([k, x]) => [k, x.trim()])) as typeof f;
+    try {
+      await dataItems.insert('SpinRaidersChangeReports', { ...v, title: `${v.reportType} — ${v.venueName}`, submittedAt: new Date().toISOString(), status: 'NEW' });
+      try { window.localStorage.setItem('sr-report-last', String(Date.now())); } catch { /* ignore */ }
+      setF({ reportType: '', venueName: '', pageUrl: '', details: '', contactEmail: '' });
+      setMsg('Thank you. Your report has been sent and will be reviewed before the directory is changed.');
+    } catch { setMsg('The report could not be sent just now. Please try again.'); }
+    setBusy(false);
+  };
+  return (
+    <div className={styles.report}>
+      <h1 className={styles.h1}>Help keep Spin Raiders <span className={styles.accent}>up to date</span></h1>
+      <p className={styles.lead2}>Tell us about a machine change, a new venue, a new owner or a closure.</p>
+      <form className={styles.reportForm} onSubmit={(e) => { void send(e); }}>
+        <label>What would you like to report?<select required value={f.reportType} onChange={set('reportType')}><option value="">Choose a report type</option>{REPORT_TYPES.map((t) => <option key={t}>{t}</option>)}</select></label>
+        <label>Venue or machine name<input required maxLength={200} autoComplete="off" value={f.venueName} onChange={set('venueName')} /></label>
+        <label>Relevant page or website<input type="url" maxLength={1500} placeholder="https://" value={f.pageUrl} onChange={set('pageUrl')} /></label>
+        <label>What has changed?<textarea required minLength={15} maxLength={5000} rows={7} placeholder="Include the location, what changed and any supporting links." value={f.details} onChange={set('details')} /></label>
+        <label>Your email (optional)<input type="email" maxLength={254} autoComplete="email" value={f.contactEmail} onChange={set('contactEmail')} /></label>
+        <p className={styles.small}>Reports are reviewed before the directory is changed. Your email is only used if we need to follow up. <a href="/privacy-policy">Privacy policy</a></p>
+        <button className={clsx(styles.button, styles.red)} disabled={busy}>Send report →</button>
+        <p className={styles.count} role="status" aria-live="polite">{msg}</p>
+      </form>
+    </div>
+  );
+}
+
 declare global { interface Window { L?: any } }
 function loadLeaflet(): Promise<any> {
   if (window.L) return Promise.resolve(window.L);
@@ -232,7 +273,7 @@ function MapView() {
 
 const Explorer: FC<ExplorerProps> = ({ id, className, mode, direction }) => (
   <div id={id} dir={direction} className={clsx('explorer', styles.root, className)}>
-    {mode === 'map' ? <MapView /> : <SearchView />}
+    {mode === 'map' ? <MapView /> : mode === 'report' ? <ReportView /> : <SearchView />}
   </div>
 );
 
