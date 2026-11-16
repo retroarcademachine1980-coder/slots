@@ -124,7 +124,7 @@ def do_tiles(b,k=0):
     sid=f's{row}'
     T=b['items']; BT=b.get('button') or [None,None]; kids=head(f't{k}',b['title'],BT[0],BT[1])
     for n,t in enumerate(T):
-        kids.append(box(f'tl{k}x{n}',[image(f'tl{k}x{n}-i',t['uri'],t['w'],t['h'],t['label'],t['href']),rt(f'tl{k}x{n}-t',f'<p><a href="{SITE}{t["href"]}" target="_self"><span style="color:#FFFFFF;">{esc(t["label"])}</span></a></p>')]))
+        kids.append(box(f'tl{k}x{n}',[image(f'tl{k}x{n}-i',t['uri'],t['w'],t['h'],t['label'],t['href']),rt(f'tl{k}x{n}-t',(f'<p><a href="{SITE}{t["href"]}" target="_self"><span style="color:#FFFFFF;">{esc(t["label"])}</span></a></p>' if t.get("href") else f'<p>{esc(t["label"])}</p>'))]))
     secs.append(sec(sid+'',kids))
     rowsT=(len(T)+2)//3
     section(sid+'',row,grid_ic(sid+'-ic','repeat(3, minmax(0px, 1fr))','auto '+' '.join(['auto']*rowsT),'minmax(0px, 1fr)','auto auto '+' '.join(['auto']*len(T)),(26,40,30),(18,16,22),(22,22),(0,14)))
@@ -249,7 +249,64 @@ def do_more(b,k=0):
     row+=1
     
 
-FN={'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
+def bgimg(i,uri,w,h,alt): return f'<Background id="{i}" className="{i}" fittingType="fill" focalPoint={{{{ x: 50, y: 50 }}}} image={{{json.dumps(imgd(i+"-img",uri,w,h,alt),ensure_ascii=False)}}} />'
+def do_hero2(b,k=0):
+    global row
+    sid=f's{row}'
+    kids=[box('h2t',[rt('h2t-t','<h1>'+esc(b['title'])+'</h1>')]),box('h2d',[rt('h2d-t','<p>'+esc(b['desc'])+'</p>')])]
+    if b.get('pill'): kids.append(box('h2p',[rt('h2p-t','<p>'+esc(b['pill'])+'</p>')]))
+    if b.get('sub'): kids.append(rt('h2s','<p>'+esc(b['sub'])+'</p>'))
+    secs.append(f'<Section id="{sid}" className="{sid}">\n<InternalContainer id="{sid}-ic" className="{sid}-ic" backgroundLayer={{[{bgimg(sid+"-bg",b["uri"],b["w"],b["h"],b["title"])}]}}>\n'+'\n'.join(kids)+'\n</InternalContainer>\n</Section>')
+    n=len(kids); rows=' '.join(['auto']*n)
+    section(sid,row,grid_ic(sid+'-ic','minmax(0px, 1fr)',rows,'minmax(0px, 1fr)',rows,(26,40,30),(18,16,22),(0,16),(0,12)),372,330)
+    fill(sid+'-bg','#0B2A4A',photo=True)
+    gi('h2t','1 / 2','1 / 2','1 / 2','1 / 2',w='auto',wm='auto')
+    boxgrid('h2t','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(12,18),(10,14),color='rgba(11, 31, 58, 0.93)',radius=4,shadow='5px 6px 0px 0px #FFC933')
+    gi('h2t-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('h2t-t',41,900,WHITE,lh=1.0,sizem=30,extra='')
+    sty.append('.h2t-t {\n    text-transform: uppercase;\n}')
+    gi('h2d','2 / 3','1 / 2','2 / 3','1 / 2',w='--spx(600)',wm='100%')
+    boxgrid('h2d','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(12,16),(10,12),color='rgba(11, 31, 58, 0.8)',radius=6)
+    gi('h2d-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('h2d-t',15,500,WHITE,lh=1.55,fam=None)
+    r=3
+    if b.get('pill'):
+        gi('h2p',f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',w='auto',wm='auto')
+        boxgrid('h2p','minmax(0px, 1fr)','auto','minmax(0px, 1fr)','auto',(7,14),(6,12),color='#E0247A',radius=3)
+        gi('h2p-t','1 / 2','1 / 2','1 / 2','1 / 2'); font('h2p-t',15,900,WHITE,lh=1.2,sizem=13)
+        sty.append('.h2p-t {\n    text-transform: uppercase;\n}'); r+=1
+    if b.get('sub'):
+        gi('h2s',f'{r} / {r+1}','1 / 2',f'{r} / {r+1}','1 / 2',w='auto',wm='100%'); font('h2s',15,600,WHITE,lh=1.4,fam=None)
+        sty.append('.h2s {\n    background-color: rgba(11, 31, 58, 0.8);\n}')
+    row+=1
+def do_iconbtns(b,k=0):
+    global row
+    sid=f's{row}'; items=b['items']; kids=[]
+    for n,it in enumerate(items):
+        kids.append(box(f'ib{n}',[image(f'ib{n}-i',it['icon'],132,132,it['label']),rt(f'ib{n}-t','<p>'+esc(it['label'])+'</p>')]))
+    secs.append(sec(sid,kids))
+    cd=5; cm=2; nr=(len(items)+cd-1)//cd; nrm=(len(items)+cm-1)//cm
+    section(sid,row,grid_ic(sid+'-ic',' '.join(['minmax(0px, 1fr)']*cd),' '.join(['auto']*nr),' '.join(['minmax(0px, 1fr)']*cm),' '.join(['auto']*nrm),(18,40,10),(14,16,8),(12,12),(8,8)))
+    fill(sid+'-bg',WHITE)
+    for n,it in enumerate(items):
+        gi(f'ib{n}',f'{n//cd+1} / {n//cd+2}',f'{n%cd+1} / {n%cd+2}',f'{n//cm+1} / {n//cm+2}',f'{n%cm+1} / {n%cm+2}',h='100%',hm='100%',a='stretch',am='stretch')
+        boxgrid(f'ib{n}','max-content minmax(0px, 1fr)','auto','max-content minmax(0px, 1fr)','auto',(10,12),(8,8),(10,0),(8,0),color=WHITE,radius=8,shadow='0px 0px 0px 1px #D2E2F6')
+        rule(f'ib{n}-i','width: --spx(36);\nheight: --spx(36);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;\nposition: relative;','width: --spx(30);\nheight: --spx(30);\nmin-width: 0px;\ngrid-row: 1 / 2;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
+        gi(f'ib{n}-t','1 / 2','2 / 3','1 / 2','2 / 3',a='center',am='center'); font(f'ib{n}-t',13,700,INK,lh=1.25,fam=None,sizem=12)
+    row+=1
+def do_cta(b,k=0):
+    global row
+    sid=f's{row}'
+    kids=[rt('ct-h','<h2>'+esc(b['title'])+'</h2>'),rt('ct-p','<p>'+esc(b.get('text',''))+'</p>')]
+    if b.get('button'): kids.append(button('ct-b',b['button'][0],b['button'][1]))
+    secs.append(sec(sid,kids))
+    section(sid,row,grid_ic(sid+'-ic','minmax(0px, 1fr) max-content','auto auto','minmax(0px, 1fr)','auto auto auto',(24,40,24),(18,16,18),(20,6),(0,10)))
+    fill(sid+'-bg','#EAF8FF')
+    gi('ct-h','1 / 2','1 / 2','1 / 2','1 / 2'); font('ct-h',26,900,INK,lh=1.15,sizem=22)
+    gi('ct-p','2 / 3','1 / 2','2 / 3','1 / 2'); font('ct-p',15,400,'#27425F',lh=1.5,fam=None)
+    if b.get('button'):
+        rule('ct-b','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 1 / 3;\ngrid-column: 2 / 3;\nalign-self: center;\njustify-self: end;\nposition: relative;','width: auto;\nheight: auto;\nmin-width: 0px;\ngrid-row: 3 / 4;\ngrid-column: 1 / 2;\nalign-self: center;\njustify-self: start;')
+        pill('ct-b','linear-gradient(180deg, #F0407F, #D81B60)',WHITE,size=15,r=999,pad=(11,20))
+    row+=1
+FN={'hero2':do_hero2,'iconbtns':do_iconbtns,'cta':do_cta,'hero':do_hero,'intro':do_intro,'strip':do_strip,'tiles':do_tiles,'featured':do_featured,'all':do_all,'editorial':do_editorial,'promos':do_promos,'more':do_more}
 cnt={}
 for blk in C['blocks']:
     t=blk['type']; FN[t](blk,cnt.get(t,0)); cnt[t]=cnt.get(t,0)+1
