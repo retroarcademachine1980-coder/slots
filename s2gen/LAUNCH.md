@@ -43,3 +43,16 @@ check near-me, about-us, privacy-policy, terms, responsiblegambling against live
 - Not copied: casino-offers "Popular casino categories" (image-only tiles that jump to #all on live); home "See the arcade. Before you travel."
   (lazy section, not found by the scraper yet); classic fruit machine list is paginated differently (live 24 per page, new 6) but holds the same machines.
 - Import rejects new attributes on site-code providers: carry new DirectoryFilter settings in baseField "@live:…" and readyField "@type:…" / "@agconly".
+
+## Late 16 Nov
+- Days Out: live listing rule on NearbyAttractions (748); live shows 912 because it also mixes in ~164 offers picked by the live route registry
+  (same limitation as Holiday Parks). Explore by destination grid added (12 towns, all tested).
+- Plan a Trip: fuel heading now "Compare petrol and diesel prices" (as live). Trip builder export filter fixed for the save typecheck.
+- Review pages: both live heroes now present (cr-hero H1 "X Casino Review" + the cx-review-hero box with Raider Score, offer facts and the
+  sponsored "AD · VISIT CASINO" link), the second as an H2 to keep one H1 per page.
+- Offers: live's "GREAT DAYS OUT FOR LESS" strap is already in the new hero image (and its alt text), so no text was added.
+- Needs Jamie: classic-fruit-machine-archive — live shows the archive landing (Featured machines, Browse by manufacturer, Popular eras & styles,
+  Explore the archive); the new page is the long list of every machine description. Copying the landing over it would replace that list,
+  so it waits for his say-so.
+- After a dev-machine reset, pages come back in the re-exported format (prettified JSX, comp-* ids). insert_regions/insert_topics handle it;
+  insert_sections/insert_list/copy_section were written for the generated format — check before use.
