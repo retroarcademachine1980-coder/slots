@@ -67,3 +67,5 @@ check near-me, about-us, privacy-policy, terms, responsiblegambling against live
 - CMS: Business plan = 20,000 items total (site ~11,200). Don't load bulk lookup tables into the CMS.
 - Custom embeds copied from the old site: GTM-WVJK59WZ, AdSense auto ads + google-adsense-account, Metricool pixel,
   Search Console meta. Not copied: Private Traffic Tracker (writes with the old site's OAuth client). ads.txt added in dashboard.
+
+- Home hero rebuilt at the original sign size (hero_rebuild.py): clean beach bg 3a517e_2a371140... + sign/signpost cut from the old hero, new media 3a517e_7d387b07...; search bar 500spx and town buttons centred (home_hero_centre.py). Menu: compact at 1241-1499px, burger at 1240px and below (as old site). Saved, not published.
