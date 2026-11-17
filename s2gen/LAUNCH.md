@@ -56,3 +56,14 @@ check near-me, about-us, privacy-policy, terms, responsiblegambling against live
   so it waits for his say-so.
 - After a dev-machine reset, pages come back in the re-exported format (prettified JSX, comp-* ids). insert_regions/insert_topics handle it;
   insert_sections/insert_list/copy_section were written for the generated format — check before use.
+
+## Launch night, 17 Nov (site went live on spin-raiders.com ~00:19)
+- Header: Wix Menu replaced by site-code MegaNav (site-code/mega-nav, header_mega_nav.py): live mega menu groups/links from
+  dist/sr-days-out-experience-20261104.js, Fuel prices, search, yellow Plan a day out, mobile burger. Saved, not published.
+- 301s: 4,912 created (Wix cap ~5,000 incl. page routes): 3,712 manifest canonical (non machine) + 8 old static pages + ~1,192
+  old-sitemap /arcade-venues addresses. Scripts in redirects/. Still 404: rest of old sitemap /arcade-venues (~1,170),
+  /classic-fruit-machines/<slug> (313), all machine/alias variants, /post (blog, not on new site), /group (Groups, not on new site).
+  The live 404 page carries no custom code and no header, so a JS forwarder can't run there.
+- CMS: Business plan = 20,000 items total (site ~11,200). Don't load bulk lookup tables into the CMS.
+- Custom embeds copied from the old site: GTM-WVJK59WZ, AdSense auto ads + google-adsense-account, Metricool pixel,
+  Search Console meta. Not copied: Private Traffic Tracker (writes with the old site's OAuth client). ads.txt added in dashboard.
