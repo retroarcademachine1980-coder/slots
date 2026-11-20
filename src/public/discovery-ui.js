@@ -32,6 +32,7 @@ function score(element, words) {
 function searchInputs($w) {
     try {
         return asArray($w('TextInput')).filter(input =>
+            read(input, 'id') !== 'categorySearch' && read(input, 'id') !== 'townFilter' &&
             score(input, ['search', 'venue', 'town', 'city', 'postcode', 'place', 'where']) > 0
         );
     } catch (_) {
@@ -306,3 +307,4 @@ export function mountAutoSearchResults($w) {
         }
     };
 }
+
